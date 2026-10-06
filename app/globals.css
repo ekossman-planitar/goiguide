@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Brand tokens. Tailwind exposes these as utilities, e.g. bg-primary, text-ink, bg-cream */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand: #009cde;          /* iGUIDE blue (logo) */
+  --color-primary: #0b6fa4;        /* filled buttons */
+  --color-primary-hover: #095a86;
+  --color-primary-soft: #e3f3fb;   /* tinted backgrounds */
+  --color-ink: #0b0d10;            /* headings */
+  --color-body: #2c3238;           /* body copy */
+  --color-muted: #5b6470;          /* secondary copy */
+  --color-line: #e3e8ee;           /* borders */
+  --color-surface: #f5f8fb;        /* light section background */
+  --color-cream: #fbd9a8;          /* pills and step badges */
+  --color-star: #f59e0b;
+  --color-announce: #0b2a3d;       /* announcement bar */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
