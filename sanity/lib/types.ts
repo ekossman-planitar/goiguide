@@ -23,6 +23,7 @@ export type HeroData = {
   heading?: string
   subheading?: string
   cta?: Link | null
+  secondaryCta?: Link | null
   media?: HeroMediaData | null
 }
 

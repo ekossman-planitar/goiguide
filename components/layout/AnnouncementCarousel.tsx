@@ -72,7 +72,7 @@ export function AnnouncementCarousel({items, renderedAt}: Props) {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="mx-auto flex h-10 max-w-[1320px] items-center px-2 sm:px-4">
+      <div className="mx-auto flex h-12 w-full items-center px-2 sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
         {count > 1 && (
           <button
             type="button"
@@ -99,7 +99,7 @@ export function AnnouncementCarousel({items, renderedAt}: Props) {
                   aria-label={`${i + 1} of ${count}`}
                   aria-hidden={hidden}
                   inert={hidden}
-                  className="flex h-full w-full shrink-0 items-center justify-center px-2 text-center text-sm"
+                  className="flex h-full w-full shrink-0 items-center justify-center px-2 text-center text-sm leading-[21px] font-bold lg:text-base lg:leading-6"
                 >
                   <p className="truncate">
                     <span>{item.message}</span>

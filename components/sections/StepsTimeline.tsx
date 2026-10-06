@@ -15,6 +15,8 @@ export type TimelineStep = {
 }
 
 type Props = {
+  /** Anchor id, so other links can jump to this section. */
+  id?: string
   heading: string
   subheading?: string
   steps: TimelineStep[]
@@ -28,7 +30,7 @@ type Props = {
  * Steps auto-advance once the section is on screen, until the visitor
  * hovers, clicks or focuses a step.
  */
-export function StepsTimeline({heading, subheading, steps, interval = 4000}: Props) {
+export function StepsTimeline({id, heading, subheading, steps, interval = 4000}: Props) {
   const [active, setActive] = useState(0)
   const [autoplay, setAutoplay] = useState(true)
   const [inView, setInView] = useState(false)
@@ -57,11 +59,11 @@ export function StepsTimeline({heading, subheading, steps, interval = 4000}: Pro
   const progress = steps.length > 1 ? (active / (steps.length - 1)) * 100 : 100
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28">
+    <section ref={sectionRef} id={id} className="scroll-mt-24 py-20 lg:py-[60px]">
       <Container>
-        <div className="max-w-3xl">
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">{heading}</h2>
-          {subheading && <p className="mt-5 text-lg text-muted sm:text-xl">{subheading}</p>}
+        <div>
+          <h2 className="text-balance text-[32px] font-bold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
+          {subheading && <p className="mt-5 text-xl leading-[30px] text-muted">{subheading}</p>}
         </div>
 
         {/* Desktop progress rail */}
@@ -154,14 +156,14 @@ export function StepsTimeline({heading, subheading, steps, interval = 4000}: Pro
                   </div>
 
                   <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
-                    <span className="w-fit rounded-full bg-cream px-3 py-1 text-sm font-semibold text-ink">
+                    <span className="w-fit rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink">
                       Step {i + 1}
                     </span>
-                    <h3 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-ink">{step.title}</h3>
-                    <div className="mt-3 flex-1 text-[17px] leading-relaxed text-body [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary">
+                    <h3 className="mt-4 text-2xl font-bold leading-[normal] text-ink">{step.title}</h3>
+                    <div className="mt-3 flex-1 text-base leading-6 text-body [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary">
                       {step.body}
                     </div>
-                    <Button href={step.cta.href} variant="secondary" className="mt-6 w-full">
+                    <Button href={step.cta.href} variant="secondary" size="lg" className="mt-6 w-full">
                       {step.cta.label}
                     </Button>
                   </div>

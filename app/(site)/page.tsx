@@ -17,9 +17,9 @@ export default async function HomePage() {
     <>
       {/* Above the fold: hero + logos */}
       <Hero data={home?.hero ?? heroFallback} footer={<RatingRow />} />
-      <LogoCarousel heading={home?.logoCarousel?.heading ?? logoHeadingFallback} logos={home?.logoCarousel?.logos ?? []} />
+      <LogoCarousel heading={home?.logoCarousel?.heading ?? logoHeadingFallback} logos={(home?.logoCarousel?.logos ?? []).filter((logo) => logo?.src)} />
 
-      <StepsTimeline heading={howItWorks.heading} subheading={howItWorks.subheading} steps={howItWorks.steps} />
+      <StepsTimeline id="how-it-works" heading={howItWorks.heading} subheading={howItWorks.subheading} steps={howItWorks.steps} />
     </>
   )
 }

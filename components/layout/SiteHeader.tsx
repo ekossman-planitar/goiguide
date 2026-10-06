@@ -53,8 +53,7 @@ export function SiteHeader() {
         {/* Native <a> on purpose: full page loads keep GTM triggers working */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" className="shrink-0" aria-label="iGUIDE home">
-          {/* Drop the logo file at public/logo.svg */}
-          <Image src="/logo.svg" alt="iGUIDE" width={170} height={34} priority className="h-8 w-auto" />
+          <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} priority className="h-auto w-[150px]" />
         </a>
 
         <nav aria-label="Main" className="hidden lg:block">
@@ -127,7 +126,7 @@ function DesktopNavItem({
   onHoverPlainLink,
 }: DesktopNavItemProps) {
   const panelId = `mega-${item.label.toLowerCase().replace(/\W+/g, '-')}`
-  const linkClass = 'flex items-center gap-1 rounded-md px-3 py-2 text-[17px] text-ink hover:text-primary'
+  const linkClass = 'flex items-center gap-1 rounded-lg p-2 text-base leading-6 text-ink hover:text-primary'
 
   if (!item.menu) {
     return (

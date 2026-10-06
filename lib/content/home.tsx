@@ -11,7 +11,8 @@ export const heroFallback: HeroData = {
   eyebrow: {label: 'New: Site Plans for residential listings', href: '/iguide/site-plans'},
   heading: 'Your fastest path to accurate floor plans and 3D virtual tours',
   subheading: 'Own your data, floor plans and virtual tour—all from a single scan.',
-  cta: {label: 'Book your personalized product tour', href: '/book-a-demo'},
+  cta: {label: 'Book a Demo', href: '/book-a-demo'},
+  secondaryCta: {label: 'Learn more', href: '#how-it-works'},
   media: null,
 }
 

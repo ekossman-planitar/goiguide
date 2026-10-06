@@ -4,7 +4,7 @@ import type {HeroMediaData} from '@/sanity/lib/types'
 
 /** Right side of the hero: Sanity image or autoplaying muted video in a 16:9 frame. */
 export function HeroMedia({media}: {media?: HeroMediaData | null}) {
-  const frame = 'relative aspect-video w-full overflow-hidden rounded-2xl bg-surface'
+  const frame = 'relative aspect-video w-full min-w-0 flex-1 overflow-hidden rounded-2xl bg-surface'
 
   if (media?.mediaType === 'video' && media.videoSrc) {
     return (

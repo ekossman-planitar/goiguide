@@ -6,6 +6,7 @@ export const HOME_PAGE_QUERY = defineQuery(`*[_type == "homePage" && _id == "hom
     heading,
     subheading,
     cta,
+    secondaryCta,
     media{
       mediaType,
       image{
@@ -20,7 +21,8 @@ export const HOME_PAGE_QUERY = defineQuery(`*[_type == "homePage" && _id == "hom
   },
   logoCarousel{
     heading,
-    "logos": logos[]->{_id, name, "src": logo.asset->url}[defined(src)]
+    // Skip references to logos that are unpublished, deleted or have no image
+    "logos": logos[defined(@->logo.asset)]->{_id, name, "src": logo.asset->url}
   }
 }`)
 

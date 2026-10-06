@@ -16,7 +16,7 @@ type Props = {
 function renderHeading(text: string) {
   return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
     part.startsWith('**') && part.endsWith('**') ? (
-      <strong key={i} className="font-semibold text-ink">
+      <strong key={i} className="font-bold text-ink">
         {part.slice(2, -2)}
       </strong>
     ) : (
@@ -110,47 +110,46 @@ export function LogoCarousel({heading, logos, speed = 40}: Props) {
 
   return (
     <section aria-label="Customers" className="pb-10 pt-2">
-      {heading && (
-        <Container>
-          <p className="mb-6 text-center text-lg text-body">{renderHeading(heading)}</p>
-        </Container>
-      )}
-      <div
-        ref={viewportRef}
-        className={cn(
-          'overflow-hidden select-none touch-pan-y',
-          dragging ? 'cursor-grabbing' : 'cursor-grab',
-        )}
-        onPointerEnter={(e) => {
-          if (e.pointerType === 'mouse') hovering.current = true
-        }}
-        onPointerLeave={(e) => {
-          if (e.pointerType === 'mouse') hovering.current = false
-        }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-      >
-        <div ref={trackRef} className="flex w-max will-change-transform">
-          {Array.from({length: copies}, (_, copy) => (
-            <div key={copy} ref={copy === 0 ? setRef : undefined} className="flex shrink-0" aria-hidden={copy > 0}>
-              {logos.map((logo) => (
-                <div key={logo._id} className="flex h-20 shrink-0 items-center px-8 lg:px-11">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- remote SVG logos */}
-                  <img
-                    src={logoSrc(logo.src)}
-                    alt={copy === 0 ? logo.name : ''}
-                    draggable={false}
-                    loading="eager"
-                    className="pointer-events-none h-12 w-auto max-w-[170px] object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
+      {/* Same width as the rest of the page: logos scroll between the content edges */}
+      <Container>
+        {heading && <p className="mb-6 text-center text-base leading-6 text-body">{renderHeading(heading)}</p>}
+        <div
+          ref={viewportRef}
+          className={cn(
+            'overflow-hidden select-none touch-pan-y',
+            dragging ? 'cursor-grabbing' : 'cursor-grab',
+          )}
+          onPointerEnter={(e) => {
+            if (e.pointerType === 'mouse') hovering.current = true
+          }}
+          onPointerLeave={(e) => {
+            if (e.pointerType === 'mouse') hovering.current = false
+          }}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+        >
+          <div ref={trackRef} className="flex w-max will-change-transform">
+            {Array.from({length: copies}, (_, copy) => (
+              <div key={copy} ref={copy === 0 ? setRef : undefined} className="flex shrink-0" aria-hidden={copy > 0}>
+                {logos.map((logo) => (
+                  <div key={logo._id} className="flex h-20 shrink-0 items-center px-8 lg:px-11">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- remote SVG logos */}
+                    <img
+                      src={logoSrc(logo.src)}
+                      alt={copy === 0 ? logo.name : ''}
+                      draggable={false}
+                      loading="eager"
+                      className="pointer-events-none h-[50px] w-auto max-w-[170px] object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

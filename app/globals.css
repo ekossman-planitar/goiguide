@@ -5,22 +5,24 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --color-brand: #009cde;          /* iGUIDE blue (logo) */
-  --color-primary: #0b6fa4;        /* filled buttons */
-  --color-primary-hover: #095a86;
+  --color-primary: #006e9e;        /* buttons, links (live site) */
+  --color-primary-hover: #005a82;
   --color-primary-soft: #e3f3fb;   /* tinted backgrounds */
-  --color-ink: #0b0d10;            /* headings */
-  --color-body: #2c3238;           /* body copy */
-  --color-muted: #5b6470;          /* secondary copy */
+  --color-ink: #000000;            /* headings (live site) */
+  --color-body: #000000;           /* body copy (live site) */
+  --color-muted: #58595b;          /* secondary copy (live site) */
   --color-line: #e3e8ee;           /* borders */
   --color-surface: #f5f8fb;        /* light section background */
-  --color-cream: #fbd9a8;          /* pills and step badges */
+  --color-cream: #ffd6a0;          /* pills and step badges (live site) */
   --color-star: #f59e0b;
-  --color-announce: #0b2a3d;       /* announcement bar */
+  --color-announce: #009cde;       /* announcement bar (live site) */
 }
 
 body {
   background: #ffffff;
   color: var(--color-body);
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @media (prefers-reduced-motion: reduce) {
