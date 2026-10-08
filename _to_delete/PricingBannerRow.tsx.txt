@@ -1,0 +1,104 @@
+'use client'
+
+import {useRef} from 'react'
+import {Button} from '@/components/ui/Button'
+import {Container} from '@/components/ui/Container'
+import {SectionHeading} from '@/components/ui/SectionHeading'
+import {ChevronLeft, ChevronRight} from '@/components/ui/icons'
+import {
+  ArrowLink,
+  CurrencySwitch,
+  IndustryFilter,
+  PackageDetails,
+  CameraImage,
+  PackageImage,
+  PriceTag,
+  usePricingFilters,
+  type PricingData,
+} from './shared'
+
+/** Option A: slim camera banner, then packages in a horizontally scrolling row. */
+export function PricingBannerRow({data}: {data: PricingData}) {
+  const {currency, setCurrency, industry, setIndustry, visible} = usePricingFilters(data.packages)
+  const rowRef = useRef<HTMLUListElement>(null)
+  const scroll = (dir: 1 | -1) => rowRef.current?.scrollBy({left: dir * 320, behavior: 'smooth'})
+  const {camera} = data
+
+  return (
+    <section className="py-10 lg:py-[60px]">
+      <Container>
+        <div className="rounded-2xl bg-surface px-4 py-12 sm:px-8 lg:px-12">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <SectionHeading heading={data.heading} subheading={data.subheading} className="max-w-3xl" />
+            <CurrencySwitch value={currency} onChange={setCurrency} />
+          </div>
+
+          {/* Camera banner */}
+          <div className="mt-10 grid items-center gap-6 rounded-2xl bg-white p-6 shadow-sm md:grid-cols-[160px_1fr_auto] md:gap-8 md:p-8">
+            <div className="relative mx-auto h-40 w-32 md:mx-0">
+              <CameraImage src={camera.image} alt={camera.name} sizes="160px" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-primary">Step 1 · Get the camera</p>
+              <h3 className="mt-1 text-2xl font-bold text-ink">{camera.name}</h3>
+              <p className="mt-2 max-w-2xl text-body">{camera.intro}</p>
+            </div>
+            <div className="flex flex-col items-start gap-4 md:items-end">
+              <PriceTag prices={camera.prices} currency={currency} size="lg" />
+              <Button href={camera.cta.href}>{camera.cta.label}</Button>
+            </div>
+          </div>
+
+          {/* Packages */}
+          <div className="mt-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-primary">Step 2 · Choose a package</p>
+              <h3 className="mt-1 text-2xl font-bold text-ink">iGUIDE packages</h3>
+            </div>
+            <div className="flex items-center gap-2">
+              <button type="button" aria-label="Scroll packages left" onClick={() => scroll(-1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-primary bg-white text-primary hover:bg-primary hover:text-white">
+                <ChevronLeft />
+              </button>
+              <button type="button" aria-label="Scroll packages right" onClick={() => scroll(1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-primary bg-white text-primary hover:bg-primary hover:text-white">
+                <ChevronRight />
+              </button>
+            </div>
+          </div>
+          <div className="mt-4">
+            <IndustryFilter value={industry} onChange={setIndustry} />
+          </div>
+
+          <ul
+            ref={rowRef}
+            aria-live="polite"
+            className="-mx-4 mt-6 flex snap-x gap-4 overflow-x-auto scroll-px-4 px-4 pb-2 sm:-mx-8 sm:scroll-px-8 sm:px-8 lg:-mx-12 lg:scroll-px-12 lg:px-12 [scrollbar-width:thin]"
+          >
+            {visible.map((pkg) => (
+              <li key={pkg.id} className="flex w-[280px] shrink-0 snap-start">
+                <article className="flex w-full flex-col rounded-2xl border border-[#e7edf6] bg-white p-5 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+                  <PackageImage src={pkg.image} alt={pkg.name} className="aspect-[4/3]" />
+                  <h4 className="mt-4 min-h-[48px] text-lg leading-6 font-bold text-ink">{pkg.name}</h4>
+                  <div className="mt-2">
+                    <PriceTag label={pkg.priceLabel} prices={pkg.prices} currency={currency} size="sm" />
+                  </div>
+                  <div className="mt-4 flex-1">
+                    <PackageDetails pkg={pkg} compact />
+                  </div>
+                  {pkg.sample && (
+                    <ArrowLink href={pkg.sample.href} className="mt-4">
+                      {pkg.sample.label}
+                    </ArrowLink>
+                  )}
+                </article>
+              </li>
+            ))}
+          </ul>
+
+          <ArrowLink href={data.allLink.href} className="mt-6 text-base">
+            {data.allLink.label}
+          </ArrowLink>
+        </div>
+      </Container>
+    </section>
+  )
+}

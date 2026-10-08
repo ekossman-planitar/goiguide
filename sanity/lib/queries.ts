@@ -54,6 +54,10 @@ const RESOURCE_CARD_FIELDS = `
 export const RESOURCES_QUERY = defineQuery(`*[_type in ${RESOURCE_TYPES} && defined(publishedAt)]
   | order(publishedAt desc){${RESOURCE_CARD_FIELDS}}`)
 
+// Newest few resources for homepage rows
+export const LATEST_RESOURCES_QUERY = defineQuery(`*[_type in ${RESOURCE_TYPES} && defined(publishedAt)]
+  | order(publishedAt desc)[0...$limit]{${RESOURCE_CARD_FIELDS}}`)
+
 export const BLOG_SLUGS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current)].slug.current`)
 
 export const BLOG_POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == $slug][0]{

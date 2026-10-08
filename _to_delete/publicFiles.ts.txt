@@ -1,0 +1,10 @@
+import {existsSync} from 'node:fs'
+import {join} from 'node:path'
+
+/**
+ * Returns `src` if that file exists in /public, otherwise null, so components
+ * can show a placeholder until the image is added. Server-only.
+ */
+export function publicSrc(src: string): string | null {
+  return existsSync(join(process.cwd(), 'public', src)) ? src : null
+}

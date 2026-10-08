@@ -9,6 +9,7 @@ type ButtonProps = {
   size?: 'md' | 'lg'
   className?: string
   id?: string
+  newTab?: boolean
 }
 
 const base =
@@ -26,9 +27,14 @@ const sizes = {
 }
 
 /** Link styled as a button. */
-export function Button({href, children, variant = 'primary', size = 'md', className, id}: ButtonProps) {
+export function Button({href, children, variant = 'primary', size = 'md', className, id, newTab}: ButtonProps) {
   return (
-    <SmartLink href={href} id={id} className={cn(base, variants[variant], sizes[size], className)}>
+    <SmartLink
+      href={href}
+      id={id}
+      className={cn(base, variants[variant], sizes[size], className)}
+      {...(newTab ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
+    >
       {children}
     </SmartLink>
   )

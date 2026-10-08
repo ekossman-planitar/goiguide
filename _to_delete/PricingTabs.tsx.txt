@@ -1,0 +1,144 @@
+'use client'
+
+import {useRef, useState} from 'react'
+import {Button} from '@/components/ui/Button'
+import {Container} from '@/components/ui/Container'
+import {SectionHeading} from '@/components/ui/SectionHeading'
+import {ChevronLeft, ChevronRight, Star} from '@/components/ui/icons'
+import {cn} from '@/lib/cn'
+import {
+  ArrowLink,
+  CurrencySwitch,
+  IndustryFilter,
+  PackageDetails,
+  CameraImage,
+  PackageImage,
+  PriceTag,
+  usePricingFilters,
+  type PricingData,
+} from './shared'
+
+/** Option C: live site's Camera / Packages tabs, tightened into one screen. */
+export function PricingTabs({data}: {data: PricingData}) {
+  const {currency, setCurrency, industry, setIndustry, visible} = usePricingFilters(data.packages)
+  const [tab, setTab] = useState<'camera' | 'packages'>('packages')
+  const rowRef = useRef<HTMLUListElement>(null)
+  const scroll = (dir: 1 | -1) => {
+    const el = rowRef.current
+    if (el) el.scrollBy({left: dir * el.clientWidth, behavior: 'smooth'})
+  }
+  const {camera} = data
+
+  return (
+    <section className="py-10 lg:py-[60px]">
+      <Container>
+        <div className="rounded-2xl bg-surface px-4 py-12 sm:px-8 lg:px-12">
+          <SectionHeading heading={data.heading} subheading={data.subheading} />
+
+          <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div role="tablist" aria-label="Pricing" className="inline-flex w-fit rounded-full bg-white p-1 shadow-sm">
+              {(
+                [
+                  ['camera', 'PLANIX R1 Camera'],
+                  ['packages', 'iGUIDE Packages'],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === id}
+                  onClick={() => setTab(id)}
+                  className={cn(
+                    'rounded-full px-6 py-3 text-base leading-6 font-semibold transition-colors',
+                    tab === id ? 'bg-primary-soft text-primary ring-1 ring-primary' : 'text-ink hover:text-primary',
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Industry only filters packages, so it only shows on that tab */}
+              {tab === 'packages' && <IndustryFilter value={industry} onChange={setIndustry} variant="select" />}
+              <CurrencySwitch value={currency} onChange={setCurrency} />
+            </div>
+          </div>
+
+          {tab === 'camera' ? (
+            <div role="tabpanel" className="mt-8 grid items-center gap-10 rounded-2xl bg-white p-8 shadow-sm lg:grid-cols-2 lg:p-12">
+              <div>
+                <h3 className="text-[32px] leading-10 font-bold text-ink">{camera.name}</h3>
+                <div className="mt-4">
+                  <PriceTag prices={camera.prices} currency={currency} size="lg" />
+                </div>
+                <p className="mt-6 text-body">{camera.intro}</p>
+                <p className="mt-4 text-body">{camera.body}</p>
+                <Button href={camera.cta.href} size="lg" className="mt-8">
+                  {camera.cta.label}
+                </Button>
+                <figure className="mt-8 border-t border-line pt-6">
+                  <div className="flex gap-1 text-star" aria-hidden>
+                    {Array.from({length: 5}, (_, i) => (
+                      <Star key={i} width={16} height={16} />
+                    ))}
+                  </div>
+                  <blockquote className="mt-3 text-body italic">“{camera.review.quote}”</blockquote>
+                  <figcaption className="mt-3 text-sm text-muted">
+                    <span className="font-semibold text-ink">{camera.review.name}</span> / {camera.review.role}, {camera.review.company}
+                  </figcaption>
+                </figure>
+              </div>
+              <div className="relative h-80 lg:h-[420px]">
+                <CameraImage src={camera.image} alt={camera.name} sizes="(min-width: 1024px) 40vw, 90vw" />
+              </div>
+            </div>
+          ) : (
+            <div role="tabpanel" className="mt-8">
+              <ul
+                ref={rowRef}
+                aria-live="polite"
+                className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {visible.map((pkg) => (
+                  <li key={pkg.id} className="flex w-[85%] shrink-0 snap-start sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-3rem)/4)]">
+                    <article className="flex w-full flex-col rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+                      <h4 className="min-h-[56px] text-xl leading-7 font-bold text-ink">{pkg.name}</h4>
+                      <PackageImage src={pkg.image} alt={pkg.name} className="mt-3 aspect-[4/3]" />
+                      <div className="mt-4">
+                        <PriceTag label={pkg.priceLabel} prices={pkg.prices} currency={currency} />
+                      </div>
+                      <div className="mt-4 flex-1">
+                        <PackageDetails pkg={pkg} compact />
+                      </div>
+                      {pkg.sample && (
+                        <ArrowLink href={pkg.sample.href} className="mt-4">
+                          {pkg.sample.label}
+                        </ArrowLink>
+                      )}
+                    </article>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex items-center justify-between">
+                <ArrowLink href={data.allLink.href} className="text-base">
+                  {data.allLink.label}
+                </ArrowLink>
+                {visible.length > 4 && (
+                  <div className="flex gap-2">
+                    <button type="button" aria-label="Previous packages" onClick={() => scroll(-1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-primary bg-white text-primary hover:bg-primary hover:text-white">
+                      <ChevronLeft />
+                    </button>
+                    <button type="button" aria-label="Next packages" onClick={() => scroll(1)} className="flex h-10 w-10 items-center justify-center rounded-full border border-primary bg-white text-primary hover:bg-primary hover:text-white">
+                      <ChevronRight />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </Container>
+    </section>
+  )
+}

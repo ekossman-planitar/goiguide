@@ -31,6 +31,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See camera options', href: '/#pricingTabs'},
+      image: {src: '/homepage/steps/step-1.jpg', alt: 'Capturing a home with the PLANIX R1 camera'},
     },
     {
       title: 'Choose the package that fits your project',
@@ -41,6 +42,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'Compare packages', href: '/#pricingTabs'},
+      image: {src: '/homepage/steps/step-2.jpg', alt: 'Choosing an iGUIDE package'},
     },
     {
       title: 'Add only the extras your project requires',
@@ -51,6 +53,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See available add-ons', href: '/pricing#add-ons'},
+      image: {src: '/homepage/steps/step-3.jpg', alt: 'Adding optional deliverables'},
     },
     {
       title: 'Receive your deliverables quickly',
@@ -61,6 +64,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See samples in our gallery', href: '/resources-and-media/iguide-gallery'},
+      image: {src: '/homepage/steps/step-4.jpg', alt: 'iGUIDE floor plan and 3D tour deliverables'},
     },
   ] satisfies TimelineStep[],
 }

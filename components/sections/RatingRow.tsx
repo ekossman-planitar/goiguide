@@ -10,9 +10,9 @@ export function RatingRow() {
           <Star key={i} width={19} height={18} />
         ))}
       </div>
-      <p className="flex items-center gap-3 text-base leading-none font-medium text-ink">
+      <p className="flex flex-wrap items-center justify-center gap-3 text-base leading-none font-medium text-ink">
         4.9/5 based on 30+ reviews
-        <Image src="/homepage/capterra.svg" alt="Capterra" width={350} height={81} className="h-5 w-auto" />
+        <Image src="/homepage/capterra.svg" alt="Capterra" width={350} height={81} className="h-5 w-auto shrink-0" />
       </p>
     </div>
   )

@@ -15,7 +15,7 @@ export const resourceTypes = [
   {name: 'video', singular: 'Video', label: 'Videos', tab: 'Videos', basePath: '/video', linkLabel: 'Watch video'},
   {name: 'webinar', singular: 'Webinar', label: 'Webinars', tab: 'webinars', basePath: '/webinars', linkLabel: 'Watch webinar'},
   {name: 'newsArticle', singular: 'News article', label: 'News', tab: 'news', basePath: '/news', linkLabel: 'Read more'},
-  {name: 'galleryItem', singular: 'Gallery tour', label: 'iGUIDE Gallery', tab: 'gallery', basePath: '/resources-and-media/iguide-gallery', linkLabel: 'View tour'},
+  {name: 'galleryItem', singular: 'Gallery tour', label: 'iGUIDE Gallery', tab: 'iguide-gallery', basePath: '/resources-and-media/iguide-gallery', linkLabel: 'View tour'},
 ] as const
 
 export type ResourceTypeName = (typeof resourceTypes)[number]['name']

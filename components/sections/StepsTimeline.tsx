@@ -1,15 +1,15 @@
 'use client'
 
-import Image from 'next/image'
 import {useEffect, useRef, useState, type ReactNode} from 'react'
 import {Button} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
+import {FallbackImage} from '@/components/ui/FallbackImage'
 import {cn} from '@/lib/cn'
 
 export type TimelineStep = {
   title: string
   body: ReactNode
-  cta: {label: string; href: string}
+  cta?: {label: string; href: string}
   /** Path in /public or a full URL. Shows a placeholder when missing. */
   image?: {src: string; alt: string}
 }
@@ -22,6 +22,8 @@ type Props = {
   steps: TimelineStep[]
   /** Milliseconds per step while auto-playing. */
   interval?: number
+  /** Hide the image area on each card (text-only steps). */
+  showImages?: boolean
 }
 
 /**
@@ -30,7 +32,7 @@ type Props = {
  * Steps auto-advance once the section is on screen, until the visitor
  * hovers, clicks or focuses a step.
  */
-export function StepsTimeline({id, heading, subheading, steps, interval = 4000}: Props) {
+export function StepsTimeline({id, heading, subheading, steps, interval = 4000, showImages = true}: Props) {
   const [active, setActive] = useState(0)
   const [autoplay, setAutoplay] = useState(true)
   const [inView, setInView] = useState(false)
@@ -133,14 +135,27 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000}:
                       : 'border-line lg:opacity-80',
                   )}
                 >
+                  {showImages && (
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-surface">
+                    {/* Placeholder shows until the image file exists */}
                     {step.image ? (
-                      <Image
+                      <FallbackImage
                         src={step.image.src}
                         alt={step.image.alt}
                         fill
                         sizes="(min-width: 1024px) 25vw, 100vw"
                         className={cn('object-cover transition-transform duration-700', isActive && 'scale-105')}
+                        fallback={
+                      <div
+                        className={cn(
+                          'absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-soft to-surface transition-transform duration-700',
+                          isActive && 'scale-105',
+                        )}
+                        aria-hidden
+                      >
+                        <span className="text-7xl font-bold text-primary/15">{i + 1}</span>
+                      </div>
+                        }
                       />
                     ) : (
                       <div
@@ -154,6 +169,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000}:
                       </div>
                     )}
                   </div>
+                  )}
 
                   <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
                     <span className="w-fit rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink">
@@ -163,9 +179,11 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000}:
                     <div className="mt-3 flex-1 text-base leading-6 text-body [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary">
                       {step.body}
                     </div>
-                    <Button href={step.cta.href} variant="secondary" size="lg" className="mt-6 w-full">
-                      {step.cta.label}
-                    </Button>
+                    {step.cta && (
+                      <Button href={step.cta.href} variant="secondary" size="lg" className="mt-6 w-full">
+                        {step.cta.label}
+                      </Button>
+                    )}
                   </div>
                 </article>
               </li>
