@@ -23,3 +23,9 @@ export function pageMetadata({
     twitter: {card: 'summary_large_image', title, description, images: [ogImage]},
   }
 }
+
+/** Same as pageMetadata, for the Australia section (Open Graph locale en_AU). */
+export function auPageMetadata(args: Parameters<typeof pageMetadata>[0]): Metadata {
+  const m = pageMetadata(args)
+  return {...m, openGraph: {...m.openGraph, locale: 'en_AU'}}
+}

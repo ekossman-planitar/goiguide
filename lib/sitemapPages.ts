@@ -29,6 +29,10 @@ export const sitemapPages: string[] = [
   '/downloads',
   RESOURCE_CENTER_PATH,
   ...resourceTypes.map((t) => t.basePath),
+  '/au',
+  '/au/residential-real-estate',
+  '/au/real-estate-photography',
+  '/au/immersive-campaign-terms-and-conditions',
   ...catalogues.map((c) => c.path),
 ]
 

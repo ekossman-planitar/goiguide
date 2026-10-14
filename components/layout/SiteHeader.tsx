@@ -56,7 +56,6 @@ export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-line bg-white">
       <Container className="flex h-20 items-center justify-between gap-6">
         {/* Native <a> on purpose: full page loads keep GTM triggers working */}
-        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href={homeHref} className="shrink-0" aria-label="iGUIDE home">
           <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} priority className="h-auto w-[150px]" />
         </a>
@@ -104,7 +103,7 @@ export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '
         </button>
       </Container>
 
-      {mobileOpen && <MobileNav />}
+      {mobileOpen && <MobileNav nav={nav} buttons={buttons} />}
     </header>
   )
 }
@@ -215,7 +214,7 @@ function DesktopNavItem({
   )
 }
 
-function MobileNav() {
+function MobileNav({nav, buttons}: {nav: NavItem[]; buttons: HeaderButtons}) {
   return (
     <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-white lg:hidden">
       <Container className="max-h-[calc(100svh-5rem)] overflow-y-auto py-4">

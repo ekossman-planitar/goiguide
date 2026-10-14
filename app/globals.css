@@ -26,6 +26,16 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
+  /* Plain links inside body copy must look like links, not just differ by colour (WCAG 1.4.1) */
+  main :is(p, li, dd, td) a:not([class]) {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+  }
+  main :is(p, li, dd, td) a:not([class]):hover {
+    color: var(--color-primary-hover);
+  }
 }
 
 body {

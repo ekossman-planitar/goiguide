@@ -19,6 +19,10 @@ export const legacyRedirects: {source: string; destination: string}[] = [
   {source: '/home-old', destination: '/'},
   {source: '/home', destination: '/'},
   {source: '/operator', destination: 'https://ion.goiguide.com/'},
+  // Australia pages moved under /au (Evan, 2026-10-14)
+  {source: '/residential-real-estate-au', destination: '/au/residential-real-estate'},
+  {source: '/real-estate-photography-au', destination: '/au/real-estate-photography'},
+  {source: '/au-immersive-campaign-terms-and-conditions', destination: '/au/immersive-campaign-terms-and-conditions'},
   {source: '/dwg', destination: '/'},
   {source: '/aec', destination: '/'},
   {source: '/showcase', destination: '/'},

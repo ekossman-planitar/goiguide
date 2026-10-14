@@ -250,6 +250,12 @@ const ptSchema = compileSchema(
 function tidyHtml(html) {
   const doc = jsdom(`<body>${html}</body>`).window.document
   for (const span of [...doc.body.querySelectorAll('span')].reverse()) span.replaceWith(...span.childNodes)
+  // Footnote markers: the converter loses the word before a <sup>, so use superscript characters instead
+  const SUP = {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+  for (const sup of [...doc.body.querySelectorAll('sup, sub')]) {
+    const t = sup.textContent.trim()
+    sup.replaceWith(sup.tagName === 'SUP' && /^\d+$/.test(t) ? [...t].map((d) => SUP[d]).join('') : sup.textContent)
+  }
   const blank = (n) => n && n.nodeType === 3 && !n.textContent.replace(/\u00a0/g, ' ').trim()
   for (const p of [...doc.body.querySelectorAll('p')]) {
     if (!p.querySelector('br')) continue

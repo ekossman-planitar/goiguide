@@ -133,3 +133,14 @@ export const headerButtons = {
   findPro: {label: 'Find a pro', href: 'https://ion.goiguide.com/'},
   shop: {label: 'Shop Now', href: 'https://store.goiguide.com/'},
 }
+
+/**
+ * Australia section (/au): its own top navigation. Mega menus are optional,
+ * so these are plain links for now.
+ */
+export const auNav: NavItem[] = [
+  {label: 'For agents', href: '/au/residential-real-estate'},
+  {label: 'For photographers', href: '/au/real-estate-photography'},
+  {label: 'Offer terms', href: '/au/immersive-campaign-terms-and-conditions'},
+  {label: 'Global site', href: '/'},
+]
