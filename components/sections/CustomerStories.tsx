@@ -42,7 +42,7 @@ export function CustomerStories({heading, subheading, link, stories}: Props) {
     <section className="bg-sky py-16 lg:py-[60px]">
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-12">
-          <h2 className="text-[32px] font-bold leading-[normal] text-ink md:text-5xl md:leading-[normal] lg:flex-1">
+          <h2 className="text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal] lg:flex-1">
             {heading.map((line, i) => (
               <span key={line}>
                 {i > 0 && <br className="hidden lg:block" />}

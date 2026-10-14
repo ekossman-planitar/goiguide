@@ -119,3 +119,15 @@ export const RSS_ITEMS_QUERY = defineQuery(`*[_type == $type && defined(publishe
   publishedAt,
   excerpt
 }`)
+
+// Logo bands and testimonials managed in Sanity (see lib/cmsLibrary.ts)
+const LOGO_FIELDS = `name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}`
+export const CMS_LIBRARY_QUERY = defineQuery(`{
+  "bands": *[_type == "logoBand"]{_id, "logos": logos[defined(@->logo.asset)]->{${LOGO_FIELDS}}},
+  "testimonials": *[_type == "testimonial"]{
+    _id, hidden, quote, detail, name, role, company,
+    link{label, href},
+    photo{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}},
+    "companyLogo": companyLogo->{${LOGO_FIELDS}}
+  }
+}`)

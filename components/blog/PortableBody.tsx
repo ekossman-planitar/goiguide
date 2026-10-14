@@ -1,8 +1,15 @@
 import Image from 'next/image'
 import {PortableText, type PortableTextBlock, type PortableTextComponents} from 'next-sanity'
+import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {Button} from '@/components/ui/Button'
 import {urlFor} from '@/sanity/lib/image'
 import type {SanityImage} from '@/sanity/lib/types'
+
+type FaqValue = {heading?: string; items?: {_key: string; question: string; answer?: PortableTextBlock[]}[]}
+
+/** Screen-reader title for imported embeds that didn't have one */
+const embedTitle = (url: string) =>
+  /youriguide\.com|iguideradix\.com/.test(url) ? 'iGUIDE 3D virtual tour' : /youtube|vimeo|vidyard/.test(url) ? 'Video' : 'Embedded content'
 
 type CtaBannerValue = {
   heading?: string
@@ -16,9 +23,9 @@ type CtaBannerValue = {
 const components: PortableTextComponents = {
   block: {
     normal: ({children}) => <p className="mt-6 text-lg leading-relaxed text-body">{children}</p>,
-    h2: ({children}) => <h2 className="mt-12 text-3xl font-bold tracking-tight text-ink">{children}</h2>,
-    h3: ({children}) => <h3 className="mt-10 text-2xl font-bold tracking-tight text-ink">{children}</h3>,
-    h4: ({children}) => <h4 className="mt-8 text-xl font-bold text-ink">{children}</h4>,
+    h2: ({children}) => <h2 className="mt-12 text-3xl font-semibold text-ink">{children}</h2>,
+    h3: ({children}) => <h3 className="mt-10 text-2xl font-semibold text-ink">{children}</h3>,
+    h4: ({children}) => <h4 className="mt-8 text-xl font-semibold text-ink">{children}</h4>,
     blockquote: ({children}) => (
       <blockquote className="mt-8 border-l-4 border-brand pl-6 text-xl italic leading-relaxed text-ink">{children}</blockquote>
     ),
@@ -59,12 +66,48 @@ const components: PortableTextComponents = {
         </figure>
       )
     },
-    videoEmbed: ({value}: {value: {url?: string; title?: string}}) =>
+    videoEmbed: ({value}: {value: {url?: string; title?: string; height?: number}}) =>
       value?.url ? (
-        <div className="relative mt-10 aspect-video overflow-hidden rounded-xl bg-surface">
-          <iframe src={value.url} title={value.title ?? 'Video'} className="absolute inset-0 h-full w-full" allowFullScreen loading="lazy" />
-        </div>
+        value.height ? (
+          <iframe src={value.url} title={value.title ?? 'Embedded player'} height={value.height} className="mt-10 w-full rounded-xl" allowFullScreen loading="lazy" />
+        ) : (
+          <div className="relative mt-10 aspect-video overflow-hidden rounded-xl bg-surface">
+            <iframe src={value.url} title={value.title ?? embedTitle(value.url)} className="absolute inset-0 h-full w-full" allowFullScreen loading="lazy" />
+          </div>
+        )
       ) : null,
+    faq: ({value}: {value: FaqValue}) =>
+      value?.items?.length ? (
+        <section className="mt-12" aria-label={value.heading || 'Frequently asked questions'}>
+          {value.heading && <h2 className="text-3xl font-semibold text-ink">{value.heading}</h2>}
+          <div className="mt-6 divide-y divide-line border-y border-line">
+            {value.items.map((item) => (
+              <details key={item._key} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                  {item.question}
+                  <span aria-hidden className="mt-1 shrink-0 text-primary transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="[&>p:first-child]:mt-3">
+                  <PortableText value={item.answer ?? []} components={components} />
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null,
+    socialEmbed: ({value}: {value: {url?: string}}) => {
+      // Instagram's own embed page, without its tracking script
+      const path = value?.url?.match(/instagram\.com\/((?:p|reel|tv)\/[\w-]+)/)?.[1]
+      return path ? (
+        <iframe
+          src={`https://www.instagram.com/${path}/embed`}
+          title="Instagram post"
+          className="mx-auto mt-10 block h-[640px] w-full max-w-[540px] rounded-xl border border-line bg-white"
+          loading="lazy"
+        />
+      ) : null
+    },
+    hubspotForm: ({value}: {value: {formId?: string}}) => (value?.formId ? <HubSpotForm formId={value.formId} className="mt-10" /> : null),
     ctaBanner: ({value}: {value: CtaBannerValue}) => (
       <aside
         className="relative mt-12 overflow-hidden rounded-2xl bg-primary px-8 py-10 text-white"

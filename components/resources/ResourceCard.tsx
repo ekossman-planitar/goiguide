@@ -47,7 +47,7 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
         ) : (
           <span className="text-sm text-muted">Interactive 3D tour</span>
         )}
-        <h3 className="mt-3 text-xl font-bold leading-snug tracking-tight text-ink">
+        <h3 className="mt-3 text-xl font-semibold leading-snug text-ink">
           <a href={href} {...linkProps} className="transition-colors group-hover:text-primary">
             {item.title}
           </a>

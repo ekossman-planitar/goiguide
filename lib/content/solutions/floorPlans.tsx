@@ -22,6 +22,7 @@ export const floorPlans = {
     ],
   },
   software: {
+    band: 'floor-plans-software',
     heading: 'Files delivered ready for',
     logos: [
       {src: '/assets/autocad-logo-aec.png', alt: 'AutoCAD'},

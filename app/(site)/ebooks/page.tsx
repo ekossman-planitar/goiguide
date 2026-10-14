@@ -22,7 +22,7 @@ export default async function EbooksPage() {
   return (
     <section className="py-16 lg:py-20">
       <Container>
-        <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">eBooks</h1>
+        <h1 className="text-4xl font-semibold text-ink sm:text-5xl">eBooks</h1>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {items.map((item) => (
             <li key={item._id}>

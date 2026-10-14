@@ -18,6 +18,7 @@ export const cameraHardware = {
     ctas: [bookDemo, buyNow],
     image: {src: '/assets/Uploads/Camera_Hardware_Header_72dpi-1.jpg', alt: 'iGUIDE PLANIX R1 camera system capturing a home interior'},
   },
+  logosBand: 'camera-hardware',
   logos: [
     {src: '/assets/Uploads/Scrolling-LogosDeft.png', alt: 'logo - Deft Group'},
     {src: '/assets/Uploads/Scrolling-LogosLevco.png', alt: 'logo - Levco Builders'},

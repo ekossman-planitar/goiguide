@@ -9,7 +9,9 @@ import {CtaBanner} from './CtaBanner'
 import {CtaButtons} from './CtaButtons'
 import {DeliverableCards, type Deliverable} from './DeliverableCards'
 import {FeatureTabs, type FeatureTab} from './FeatureTabs'
-import {LogoBand} from './LogoBand'
+import {CmsLogoBand} from '@/components/cms/CmsLogoBand'
+import {CmsTestimonials} from '@/components/cms/CmsTestimonials'
+import {resolveQuotes} from '@/lib/cmsLibrary'
 import {MediaView} from './MediaView'
 import {PageHero} from './PageHero'
 import {Section, type SectionBg} from './Section'
@@ -27,7 +29,8 @@ type Head = {id?: string; heading?: string; subheading?: string; align?: 'left' 
 
 export type Block =
   | {type: 'hero'; heading: string; subheading?: string; extra?: ReactNode; ctas?: Cta[]; media: Media}
-  | {type: 'logos'; heading?: string; logos: Img[]; marquee?: boolean; background?: SectionBg}
+  /** `band`: ID of the Sanity logo band that can replace these logos (lib/cmsLibrary.ts) */
+  | {type: 'logos'; band?: string; heading?: string; logos: Img[]; marquee?: boolean; background?: SectionBg}
   | (Head & {type: 'cards'; cards: GridCard[]; columns?: 2 | 3 | 4; after?: ReactNode; ctas?: Cta[]; link?: Link})
   | {type: 'quote'; quote: Quote; background?: SectionBg}
   | (Head & {type: 'quotes'; quotes: Quote[]; link?: Link})
@@ -81,7 +84,7 @@ function BlockView({block, index}: {block: Block; index: number}) {
         </PageHero>
       )
     case 'logos':
-      return <LogoBand heading={block.heading} logos={block.logos} variant={block.marquee === false ? 'row' : 'marquee'} background={block.background ?? 'surface'} />
+      return <CmsLogoBand band={block.band} heading={block.heading} logos={block.logos} variant={block.marquee === false ? 'row' : 'marquee'} background={block.background ?? 'surface'} />
     case 'cards':
       return (
         <Section id={block.id} heading={block.heading} subheading={block.subheading} align={block.align} background={block.background}>
@@ -96,18 +99,9 @@ function BlockView({block, index}: {block: Block; index: number}) {
         </Section>
       )
     case 'quote':
-      return <Testimonials quotes={[block.quote]} background={block.background} />
+      return <CmsTestimonials quotes={[block.quote]} background={block.background} />
     case 'quotes':
-      return (
-        <Section id={block.id} heading={block.heading} subheading={block.subheading} align={block.align} background={block.background}>
-          {block.link && (
-            <div className={block.align === 'center' ? '-mt-4 mb-10 text-center' : '-mt-4 mb-10'}>
-              <SectionLink link={block.link} />
-            </div>
-          )}
-          <Testimonials quotes={block.quotes} background={block.background} bare />
-        </Section>
-      )
+      return <QuotesSection block={block} />
     case 'split': {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {type: _type, ...props} = block
@@ -140,7 +134,7 @@ function BlockView({block, index}: {block: Block; index: number}) {
             <CompareTable rows={block.rows} columns={block.columns} caption={block.heading ?? 'Comparison'} footnote={block.footnote} />
             {block.aside && (
               <div className="rounded-2xl bg-sky p-8">
-                <h3 className="text-2xl font-bold text-ink">{block.aside.heading}</h3>
+                <h3 className="text-2xl font-semibold text-ink">{block.aside.heading}</h3>
                 <p className="mt-4 text-lg leading-7 text-body">{block.aside.text}</p>
               </div>
             )}
@@ -178,5 +172,21 @@ export function Blocks({blocks}: {blocks: Block[]}) {
         <BlockView key={i} block={block} index={i} />
       ))}
     </>
+  )
+}
+
+/** Row of testimonials under a heading; the whole section is left out if every quote is hidden in Sanity. */
+async function QuotesSection({block}: {block: Extract<Block, {type: 'quotes'}>}) {
+  const quotes = await resolveQuotes(block.quotes)
+  if (!quotes.length) return null
+  return (
+    <Section id={block.id} heading={block.heading} subheading={block.subheading} align={block.align} background={block.background}>
+      {block.link && (
+        <div className={block.align === 'center' ? '-mt-4 mb-10 text-center' : '-mt-4 mb-10'}>
+          <SectionLink link={block.link} />
+        </div>
+      )}
+      <Testimonials quotes={quotes} background={block.background} bare />
+    </Section>
   )
 }

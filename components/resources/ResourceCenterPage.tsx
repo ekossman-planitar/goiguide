@@ -29,7 +29,7 @@ export async function ResourceCenterPage({type}: {type?: ResourceTypeName}) {
     <section className="py-16 lg:py-20">
       <Container>
         <p className="font-semibold text-primary">Resource Center</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight text-ink sm:text-5xl">Get more out of iGUIDE</h1>
+        <h1 className="mt-3 text-4xl font-semibold text-ink sm:text-5xl">Get more out of iGUIDE</h1>
         <p className="mt-5 max-w-2xl text-lg text-muted sm:text-xl">
           Articles, customer stories, webinars and sample tours to help you capture, measure and share spaces.
         </p>

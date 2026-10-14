@@ -19,6 +19,7 @@ export const cadDeliverables = {
     },
   },
   logos: {
+    band: 'cad-deliverables',
     heading: 'Trusted by thousands of professionals worldwide',
     items: [
       {src: '/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png', alt: 'logo - MC3 Design'},

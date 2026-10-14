@@ -1,10 +1,10 @@
 import {CtaBanner} from '@/components/blocks/CtaBanner'
-import {LogoBand} from '@/components/blocks/LogoBand'
+import {CmsLogoBand} from '@/components/cms/CmsLogoBand'
 import {MediaView} from '@/components/blocks/MediaView'
 import {PageHero} from '@/components/blocks/PageHero'
 import {Section} from '@/components/blocks/Section'
 import {SplitSection} from '@/components/blocks/SplitSection'
-import {Testimonials} from '@/components/blocks/Testimonials'
+import {CmsTestimonials} from '@/components/cms/CmsTestimonials'
 import {Faq} from '@/components/sections/Faq'
 import {Pill} from '@/components/ui/Pill'
 import {sitePlans as c} from '@/lib/content/solutions/sitePlans'
@@ -24,7 +24,7 @@ export default function SitePlansPage() {
       >
         <p>{c.hero.extra}</p>
       </PageHero>
-      <LogoBand heading={c.logos.heading} logos={c.logos.items} variant="marquee" background="surface" />
+      <CmsLogoBand band={c.logos.band} heading={c.logos.heading} logos={c.logos.items} variant="marquee" background="surface" />
       <SplitSection
         heading={c.context.heading}
         body={<p>{c.context.body}</p>}
@@ -38,7 +38,7 @@ export default function SitePlansPage() {
       <Section background="sky">
         <div className="mx-auto max-w-3xl text-center">
           <Pill label={c.explore.eyebrow} />
-          <h2 className="mt-6 text-balance text-[32px] font-bold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{c.explore.heading}</h2>
+          <h2 className="mt-6 text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{c.explore.heading}</h2>
           <p className="mt-4 text-xl leading-[30px] text-muted">{c.explore.subheading}</p>
         </div>
         <MediaView media={{type: 'embed', ...c.explore.tour}} className="mt-10 shadow-lg" />
@@ -52,7 +52,7 @@ export default function SitePlansPage() {
         after={<p>{c.oneCapture.after}</p>}
         media={{type: 'image', image: c.oneCapture.image}}
       />
-      <Testimonials quotes={[c.testimonial]} />
+      <CmsTestimonials quotes={[c.testimonial]} />
       <Faq heading={c.faq.heading} items={c.faq.items} background="white" />
       <CtaBanner {...c.cta} />
     </>

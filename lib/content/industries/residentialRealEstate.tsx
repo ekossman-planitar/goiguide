@@ -25,7 +25,7 @@ export const blocks: Block[] = [
       title: 'iGUIDE 3D tour of 100 Chattel St, Haverhill MA',
     },
   },
-  {type: 'logos', heading: 'Trusted by thousands of real estate professionals worldwide', logos: realEstateLogos},
+  {type: 'logos', band: 'real-estate', heading: 'Trusted by thousands of real estate professionals worldwide', logos: realEstateLogos},
   {
     type: 'cards',
     id: 'benefits',

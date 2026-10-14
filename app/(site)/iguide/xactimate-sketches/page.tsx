@@ -2,11 +2,11 @@ import {CardGrid} from '@/components/blocks/CardGrid'
 import {CtaBanner} from '@/components/blocks/CtaBanner'
 import {CtaButtons} from '@/components/blocks/CtaButtons'
 import {DeliverableCards} from '@/components/blocks/DeliverableCards'
-import {LogoBand} from '@/components/blocks/LogoBand'
+import {CmsLogoBand} from '@/components/cms/CmsLogoBand'
 import {MediaView} from '@/components/blocks/MediaView'
 import {PageHero} from '@/components/blocks/PageHero'
 import {Section} from '@/components/blocks/Section'
-import {Testimonials} from '@/components/blocks/Testimonials'
+import {CmsTestimonials} from '@/components/cms/CmsTestimonials'
 import {StepsTimeline} from '@/components/sections/StepsTimeline'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight} from '@/components/ui/icons'
@@ -24,11 +24,11 @@ export default function XactimateSketchesPage() {
         ctas={c.hero.ctas}
         media={<MediaView media={{type: 'video', ...c.hero.video}} className="shadow-lg" />}
       />
-      <LogoBand heading={c.logos.heading} logos={c.logos.items} variant="marquee" background="surface" />
+      <CmsLogoBand band={c.logos.band} heading={c.logos.heading} logos={c.logos.items} variant="marquee" background="surface" />
       <Section heading={c.audiences.heading} subheading={c.audiences.subheading}>
         <CardGrid cards={c.audiences.cards} />
       </Section>
-      <Testimonials quotes={c.testimonials} />
+      <CmsTestimonials quotes={c.testimonials} />
       {/* Live site shows these as an accordion; cards show all four without clicks */}
       <Section heading={c.included.heading}>
         <CardGrid cards={c.included.cards} />

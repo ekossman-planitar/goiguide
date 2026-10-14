@@ -28,7 +28,7 @@ export async function CatalogueListing({id}: {id: CatalogueId}) {
     <section className="py-16 lg:py-20">
       <Container>
         <p className="font-semibold text-primary">Marketing Catalogue</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight text-ink sm:text-5xl">{catalogue.label}</h1>
+        <h1 className="mt-3 text-4xl font-semibold text-ink sm:text-5xl">{catalogue.label}</h1>
         <p className="mt-5 max-w-2xl text-lg text-muted sm:text-xl">Ready-made marketing files to promote your iGUIDE services.</p>
 
         <nav aria-label="Catalogues" className="mt-10 flex flex-wrap gap-2">

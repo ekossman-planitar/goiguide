@@ -25,6 +25,7 @@ export const blocks: Block[] = [
   },
   {
     type: 'logos',
+    band: 'aec-customers',
     heading: 'Trusted by thousands of AEC professionals worldwide',
     logos: [
       {src: '/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png', alt: 'logo - MC3 Design'},
@@ -155,6 +156,7 @@ export const blocks: Block[] = [
   },
   {
     type: 'logos',
+    band: 'cad-software',
     heading: 'Files delivered ready for',
     marquee: false,
     background: 'white',

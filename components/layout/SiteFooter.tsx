@@ -19,7 +19,7 @@ export function SiteFooter() {
             <a href="/" aria-label="iGUIDE home" className="inline-block">
               <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} className="h-auto w-[156px]" />
             </a>
-            <h2 className="mt-8 text-xl leading-7 font-bold text-ink">Subscribe to stay current</h2>
+            <h2 className="mt-8 text-xl leading-7 font-semibold text-ink">Subscribe to stay current</h2>
             <p className="mt-2 text-base leading-6 text-body">Receive information on the latest releases, tips and updates.</p>
             <div className="mt-6">
               <SubscribeForm {...subscribeForm} />
@@ -32,7 +32,7 @@ export function SiteFooter() {
               <div key={column[0].heading.label} className="space-y-10">
                 {column.map((group) => (
                   <div key={group.heading.label}>
-                    <h3 className="text-base leading-6 font-bold text-ink">
+                    <h3 className="text-base leading-6 font-semibold text-ink">
                       <SmartLink href={group.heading.href} {...newTab(group.heading)} className="hover:text-primary">
                         {group.heading.label}
                       </SmartLink>

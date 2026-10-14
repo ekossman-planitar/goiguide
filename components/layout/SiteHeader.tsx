@@ -12,8 +12,13 @@ import {headerButtons, mainNav, type NavItem} from '@/lib/navigation'
 /** Delay before a mega menu closes, so the pointer can travel from the trigger to the panel. */
 const CLOSE_DELAY = 150
 
-/** Sticky site header: logo, main nav with full-width mega menus, and the two action buttons. */
-export function SiteHeader() {
+type HeaderButtons = {findPro: {label: string; href: string}; shop: {label: string; href: string}}
+
+/**
+ * Sticky site header: logo, main nav with full-width mega menus, and the two action buttons.
+ * Regional sections (e.g. /au) pass their own nav, buttons and home link.
+ */
+export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '/'}: {nav?: NavItem[]; buttons?: HeaderButtons; homeHref?: string} = {}) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
@@ -52,13 +57,13 @@ export function SiteHeader() {
       <Container className="flex h-20 items-center justify-between gap-6">
         {/* Native <a> on purpose: full page loads keep GTM triggers working */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="shrink-0" aria-label="iGUIDE home">
+        <a href={homeHref} className="shrink-0" aria-label="iGUIDE home">
           <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} priority className="h-auto w-[150px]" />
         </a>
 
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {mainNav.map((item) => (
+            {nav.map((item) => (
               <DesktopNavItem
                 key={item.label}
                 item={item}
@@ -81,10 +86,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button href={headerButtons.findPro.href} variant="secondary">
-            {headerButtons.findPro.label}
+          <Button href={buttons.findPro.href} variant="secondary">
+            {buttons.findPro.label}
           </Button>
-          <Button href={headerButtons.shop.href}>{headerButtons.shop.label}</Button>
+          <Button href={buttons.shop.href}>{buttons.shop.label}</Button>
         </div>
 
         <button
@@ -215,7 +220,7 @@ function MobileNav() {
     <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-white lg:hidden">
       <Container className="max-h-[calc(100svh-5rem)] overflow-y-auto py-4">
         <ul className="divide-y divide-line">
-          {mainNav.map((item) =>
+          {nav.map((item) =>
             item.menu ? (
               <li key={item.label}>
                 <details className="group">
@@ -250,10 +255,10 @@ function MobileNav() {
           )}
         </ul>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <Button href={headerButtons.findPro.href} variant="secondary">
-            {headerButtons.findPro.label}
+          <Button href={buttons.findPro.href} variant="secondary">
+            {buttons.findPro.label}
           </Button>
-          <Button href={headerButtons.shop.href}>{headerButtons.shop.label}</Button>
+          <Button href={buttons.shop.href}>{buttons.shop.label}</Button>
         </div>
       </Container>
     </nav>

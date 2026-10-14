@@ -13,7 +13,7 @@ export function SpecsAccordion({title, groups}: {title: string; groups: SpecGrou
       <div className="grid gap-8 px-6 pb-8 md:grid-cols-2">
         {groups.map((g) => (
           <div key={g.heading}>
-            <h4 className="font-bold text-ink">{g.heading}</h4>
+            <h4 className="font-semibold text-ink">{g.heading}</h4>
             <dl className="mt-3 divide-y divide-line border-y border-line text-sm leading-5">
               {g.rows.map(([label, value]) => (
                 <div key={label} className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 py-2.5">

@@ -1,6 +1,7 @@
-/** /design-construction — copy, links and asset paths from the live page (checked 2026-10-07). */
+/** /design-construction — copy, links and asset paths from the live page (checked 2026-10-07; packages tabs 2026-10-14). */
 import type {Block} from '@/components/blocks/Blocks'
 import {CheckList} from '@/components/blocks/CheckList'
+import {PackageTabs, type PackageTab} from '@/components/blocks/PackageTabs'
 import {book} from './shared'
 
 export const meta = {
@@ -14,12 +15,79 @@ export const meta = {
 const requestSurvey = book('Request an iGUIDE Site Survey')
 const packageSample = '/assets/183-Weber-Advanced-Drawing-Package.zip'
 
-const samples = [
-  {label: 'Download plotted PDF sample', href: '/assets/Sample-Files/Plotted-PDF-Sample.pdf'},
-  {label: 'Download CAD sample', href: 'https://planitar.sharepoint.com/:u:/s/iGUIDE-Resources-and-Assets/IQAKknNDBH-yRJIJcrFh8q-eAbEKGgk6ECABHgW-FQB_GKg?e=0lh6cK'},
-  {label: 'Download 3D model sample', href: 'https://planitar.sharepoint.com/:u:/s/iGUIDE-Resources-and-Assets/IQCooj0eaFhLSoH0Sxrh0Sc1AWTBJozXsZQFbOCOZJFHKpk?e=Zlx8a7'},
-  {label: 'Sample walkthrough', href: 'https://youriguide.com/56c4afe2-1548-495b-ac08-44ef56cc979e'},
-  {label: 'Site survey checklist', href: '/assets/Sample-Files/iGUIDE-Site-Survey-Checklist.pdf'},
+const sharedWalkthrough = [
+  '3D Virtual walkthrough',
+  'Advanced measurements',
+  'Room dimensions',
+  'Floor area calculations',
+  'Equipment photo tags (Make, serial numbers)',
+  'Downloadable offline file (self-hosting)',
+]
+const virtualText = 'Provide an immersive virtual experience that lets colleagues, partners and contractors explore your site 24/7 from any location.'
+
+// Live "iGUIDE Packages" tabs (copy, images and links checked 2026-10-14)
+const packageTabs: PackageTab[] = [
+  {
+    id: 'cad',
+    label: 'Advanced Drawing Package',
+    heading: 'Advanced Drawing Package',
+    text: 'For comprehensive property understanding, each iGUIDE CAD package includes comprehensive property documentation.',
+    list: [
+      'As-Built Floor Plans',
+      'Dimension Plans',
+      '3D Virtual Walkthrough',
+      'Photo Tags of Services & Equipment',
+      'Downloadable Offline File (self-hosting)',
+      'Add: Exterior Elevation Drawings',
+      'Add: Roof Plans',
+      'Add: Reflected Ceiling Plans',
+      'Add: 3D Model (RVT File)',
+    ],
+    image: {src: '/assets/plotted.png', alt: 'Floor plan preview'},
+    links: [
+      {label: 'Download plotted PDF sample', href: '/assets/Sample-Files/Plotted-PDF-Sample.pdf'},
+      {label: 'Download CAD sample', href: 'https://planitar.sharepoint.com/:u:/s/iGUIDE-Resources-and-Assets/IQAKknNDBH-yRJIJcrFh8q-eAbEKGgk6ECABHgW-FQB_GKg?e=0lh6cK'},
+      {label: 'Download 3D model sample', href: 'https://planitar.sharepoint.com/:u:/s/iGUIDE-Resources-and-Assets/IQCooj0eaFhLSoH0Sxrh0Sc1AWTBJozXsZQFbOCOZJFHKpk?e=Zlx8a7'},
+      {label: 'Sample walkthrough', href: 'https://youriguide.com/56c4afe2-1548-495b-ac08-44ef56cc979e'},
+      {label: 'Site survey checklist', href: '/assets/Sample-Files/iGUIDE-Site-Survey-Checklist.pdf'},
+    ],
+  },
+  {
+    id: 'premium',
+    label: 'iGUIDE Premium',
+    heading: 'iGUIDE Premium',
+    text: virtualText,
+    list: [...sharedWalkthrough, 'Detailed Schematic Floor Plans with fixtures and appliances', 'Photo gallery & slide show'],
+    image: {src: '/assets/premium_rest.png', alt: 'Premium preview'},
+    links: [
+      {label: 'Download floor plan sample', href: '/assets/Sample-Files/Premium-Restaurant-Floor-Plan-Sample-.pdf'},
+      {label: 'Sample walkthrough', href: 'https://youriguide.com/a425761f-6319-4955-bd18-97abdc5f3660'},
+    ],
+  },
+  {
+    id: 'standard',
+    label: 'iGUIDE Standard',
+    heading: 'iGUIDE Standard',
+    text: virtualText,
+    list: [...sharedWalkthrough, 'Detailed Schematic Floor Plans', 'Photo gallery & slide show'],
+    image: {src: '/assets/standard_restaurant.png', alt: 'Standard preview'},
+    links: [
+      {label: 'Download floor plan sample', href: '/assets/Sample-Files/Standard-Restaurant-Floor-Plan-Sample-.pdf'},
+      {label: 'Sample walkthrough', href: 'https://youriguide.com/631d1b23-92a6-4981-b96a-284ab93f8f2e'},
+    ],
+  },
+  {
+    id: 'radix',
+    label: 'iGUIDE Radix',
+    heading: 'iGUIDE Radix',
+    text: 'iGUIDE RADIX provides fast and efficient site visual documentation. The online interface with lidar point cloud is shareable and can be used to view a site and measure in 3D space.',
+    list: ['Lidar Point Cloud (DXF)', '3D Virtual walkthrough', 'Advanced on-screen measurements'],
+    image: {src: '/assets/Icons/radix-v2.png', alt: 'Radix preview'},
+    links: [
+      {label: 'DXF Point Cloud', href: '/assets/Radix-Sample-DXF-file.zip'},
+      {label: 'Sample walkthrough', href: 'https://iguideradix.com/999_upper_wentworth_st'},
+    ],
+  },
 ]
 
 export const blocks: Block[] = [
@@ -53,6 +121,7 @@ export const blocks: Block[] = [
   },
   {
     type: 'logos',
+    band: 'design-construction-customers',
     heading: 'Trusted by thousands of Design & Construction professionals worldwide',
     logos: [
       {src: '/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png', alt: 'logo - MC3 Design'},
@@ -77,42 +146,13 @@ export const blocks: Block[] = [
     },
   },
   {
-    type: 'split',
+    type: 'custom',
     id: 'iguide_packages',
     background: 'surface',
     heading: 'iGUIDE Packages',
-    body: (
-      <>
-        <p>You&apos;re covered from site selection to pre-design, construction and occupancy.</p>
-        <p>
-          <strong className="text-ink">Advanced Drawing Package.</strong> For comprehensive property understanding, each iGUIDE CAD package
-          includes comprehensive property documentation.
-        </p>
-      </>
-    ),
-    list: [
-      'As-Built Floor Plans',
-      'Dimension Plans',
-      '3D Virtual Walkthrough',
-      'Photo Tags of Services & Equipment',
-      'Downloadable Offline File (self-hosting)',
-      'Add: Exterior Elevation Drawings',
-      'Add: Roof Plans',
-      'Add: Reflected Ceiling Plans',
-      'Add: 3D Model (RVT File)',
-    ],
-    after: (
-      <ul className="flex flex-wrap gap-x-6 gap-y-2 text-base">
-        {samples.map((s) => (
-          <li key={s.label}>
-            <a href={s.href} className="font-semibold text-primary hover:underline" {...(s.href.startsWith('http') ? {target: '_blank', rel: 'noopener noreferrer'} : {})}>
-              {s.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    ),
-    media: {type: 'image', image: {src: '/assets/plotted.png', alt: 'Floor plan preview'}},
+    subheading: 'You’re covered from site selection to pre-design, construction and occupancy.',
+    align: 'center',
+    children: <PackageTabs label="Package tabs" tabs={packageTabs} />,
   },
   {
     type: 'steps',

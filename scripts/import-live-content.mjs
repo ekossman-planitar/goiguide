@@ -233,14 +233,57 @@ const ptSchema = compileSchema(
     annotations: [{name: 'link', fields: [{name: 'href', type: 'string'}]}],
     blockObjects: [
       {name: 'image', fields: [{name: 'src', type: 'string'}, {name: 'alt', type: 'string'}]},
-      {name: 'videoEmbed', fields: [{name: 'url', type: 'string'}, {name: 'title', type: 'string'}]},
+      {name: 'videoEmbed', fields: [{name: 'url', type: 'string'}, {name: 'title', type: 'string'}, {name: 'height', type: 'number'}]},
+      {name: 'socialEmbed', fields: [{name: 'url', type: 'string'}]},
+      {name: 'hubspotForm', fields: [{name: 'formId', type: 'string'}]},
+      {name: 'faqPlaceholder', fields: [{name: 'index', type: 'number'}]},
     ],
     inlineObjects: [{name: 'image', fields: [{name: 'src', type: 'string'}, {name: 'alt', type: 'string'}]}],
   }),
 )
 
-function htmlToBlocks(html) {
-  const blocks = htmlToPortableText(html, {
+/**
+ * Clean pasted-from-Word markup before converting: unwrap the plain <span>s
+ * (the converter drops text after some nested span/<br> patterns) and turn
+ * double line breaks inside a paragraph into separate paragraphs.
+ */
+function tidyHtml(html) {
+  const doc = jsdom(`<body>${html}</body>`).window.document
+  for (const span of [...doc.body.querySelectorAll('span')].reverse()) span.replaceWith(...span.childNodes)
+  const blank = (n) => n && n.nodeType === 3 && !n.textContent.replace(/\u00a0/g, ' ').trim()
+  for (const p of [...doc.body.querySelectorAll('p')]) {
+    if (!p.querySelector('br')) continue
+    const parts = [[]]
+    const nodes = [...p.childNodes]
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i]
+      if (n.nodeName === 'BR') {
+        let j = i + 1
+        while (blank(nodes[j])) j++
+        if (nodes[j]?.nodeName === 'BR' || j >= nodes.length) {
+          // paragraph break (or trailing breaks): start a new paragraph, skip the run of breaks
+          while (nodes[j]?.nodeName === 'BR' || blank(nodes[j])) j++
+          parts.push([])
+          i = j - 1
+          continue
+        }
+      }
+      parts.at(-1).push(n)
+    }
+    const filled = parts.filter((ns) => ns.some((n) => !blank(n) && n.nodeName !== 'BR'))
+    if (filled.length < 2) continue
+    for (const ns of filled) {
+      const np = doc.createElement('p')
+      np.append(...ns)
+      p.before(np)
+    }
+    p.remove()
+  }
+  return doc.body.innerHTML
+}
+
+function htmlToBlocks(html, faqs = []) {
+  const blocks = htmlToPortableText(tidyHtml(html), {
     schema: ptSchema,
     parseHtml: (h) => jsdom(h).window.document,
     whitespaceMode: 'normalize',
@@ -248,8 +291,32 @@ function htmlToBlocks(html) {
       {
         deserialize(el, _next, createBlock) {
           if (el.tagName?.toLowerCase() !== 'iframe') return undefined
-          const src = el.getAttribute('src') || el.getAttribute('data-src')
-          return src ? createBlock({_type: 'videoEmbed', url: abs(src), title: el.getAttribute('title') || undefined}) : undefined
+          // Self-hosted videos were wrapped in an iframe srcdoc page: use the video file itself
+          const srcdocVideo = el.getAttribute('srcdoc')?.match(/<(?:video|source)[^>]+src=["']([^"']+)["']/)?.[1]
+          const src = srcdocVideo ? localise(srcdocVideo) : el.getAttribute('src') || el.getAttribute('data-src')
+          // Short players (Spotify, audio) keep their fixed height; everything else is 16:9
+          const h = Number(el.getAttribute('height'))
+          const height = h > 0 && h <= 400 && /%/.test(el.getAttribute('width') ?? '100%') ? h : undefined
+          return src ? createBlock({_type: 'videoEmbed', url: srcdocVideo ? src : abs(src), title: el.getAttribute('title') || undefined, height}) : undefined
+        },
+      },
+      {
+        deserialize(el, _next, createBlock) {
+          const permalink = el.getAttribute?.('data-instgrm-permalink')
+          if (!permalink) return undefined
+          return createBlock({_type: 'socialEmbed', url: permalink.split('?')[0]})
+        },
+      },
+      {
+        deserialize(el, _next, createBlock) {
+          const formId = el.getAttribute?.('data-hubspot-form')
+          return formId ? createBlock({_type: 'hubspotForm', formId}) : undefined
+        },
+      },
+      {
+        deserialize(el, _next, createBlock) {
+          const index = el.getAttribute?.('data-faq')
+          return index != null ? createBlock({_type: 'faqPlaceholder', index: Number(index)}) : undefined
         },
       },
     ],
@@ -277,18 +344,19 @@ function htmlToBlocks(html) {
     if (spans.some((c) => clean(c.text))) out.push({...b, children: spans})
     for (const img of images) out.push({_type: 'image', _key: img._key, src: img.src, alt: img.alt})
   }
-  return out
+  return out.map((b) => (b._type === 'faqPlaceholder' ? faqs[b.index] : b)).filter(Boolean)
 }
 
-const THEME_SCRIPTS = /<script[^>]*_resources\/themes[^>]*><\/script>/g
-
+/**
+ * Turns one live content element into Sanity blocks. Text, headings, lists,
+ * images and links become rich text; iframes (iGUIDE tours, YouTube, Spotify,
+ * Facebook) become embeds; Instagram posts, inline HubSpot forms and FAQ
+ * accordions get their own block types. Only the old theme's helper scripts,
+ * styles and the "Check out more from iGUIDE" post lists are dropped (the new
+ * template shows related posts itself).
+ */
 function parseElement(el) {
   const kind = el.className.match(/elements__(\w+)/)?.[1] ?? 'unknown'
-  if (kind === 'elementcontent') {
-    const inner = el.querySelector('section') ?? el
-    inner.querySelectorAll('script, style, noscript').forEach((n) => n.remove())
-    return {kind, blocks: htmlToBlocks(inner.innerHTML)}
-  }
   if (kind === 'elementctafeaturelarge') {
     const button = el.querySelector('a[href], button')
     const scripts = [...el.querySelectorAll('script')].map((s) => s.textContent).join('\n')
@@ -310,11 +378,76 @@ function parseElement(el) {
       ],
     }
   }
-  // Embeds: one known pattern swaps the header image for a YouTube video
-  const html = el.innerHTML.replace(THEME_SCRIPTS, '').replace(/\s+/g, ' ').trim()
-  const headerVideo = /post-header/.test(html) ? html.match(/https:\/\/www\.youtube\.com\/embed\/[\w-]+/)?.[0] : undefined
-  if (headerVideo) return {kind, headerVideo, blocks: []}
-  return {kind, blocks: html ? [{_type: 'htmlEmbed', _key: key(), html, show: false}] : []}
+
+  const root = el.querySelector('section') ?? el
+  const raw = root.innerHTML
+
+  // One known pattern swaps the post's header image for a YouTube video
+  if (/post-header/.test(raw)) {
+    const headerVideo = raw.match(/https:\/\/www\.youtube\.com\/embed\/[\w-]+/)?.[0]
+    if (headerVideo) return {kind, headerVideo, blocks: []}
+  }
+
+  // "Check out more from iGUIDE" lists of other posts: the new template has related posts
+  const headings = [...root.querySelectorAll('h2, h3')]
+  if (kind === 'elementfeaturedposts' || headings.some((h) => /check out more from iguide/i.test(h.textContent))) return {kind, blocks: [], dropped: true}
+
+  // Inline HubSpot forms: leave a marker where the form was
+  for (const script of root.querySelectorAll('script')) {
+    const text = script.textContent
+    const formId = text.match(/formId:\s*["']([^"']+)["']/)?.[1]
+    if (formId && /hbspt\.forms\.create/.test(text) && !/isHubspotForm/.test(text)) {
+      const marker = root.ownerDocument.createElement('div')
+      marker.setAttribute('data-hubspot-form', formId)
+      script.replaceWith(marker)
+    }
+  }
+  // Buttons that open a HubSpot form in a pop-up become a call-to-action banner
+  const popupScript = [...root.querySelectorAll('script')].map((s) => s.textContent).find((t) => /isHubspotForm/.test(t))
+  const popupForm = popupScript?.match(/formId:\s*["']([^"']+)["']/)?.[1]
+  // Old theme helpers and Material icon ligatures ("expand_circle_right", "check") that would show as words
+  root.querySelectorAll('script, style, noscript, link, #meta-info, .material-symbols-outlined, .material-icons').forEach((n) => n.remove())
+
+  // FAQ accordions (Alpine x-data "open" items): question button + answer panel
+  const faqs = []
+  const items = [...root.querySelectorAll('[x-data*="open"]')].filter((item) => item.querySelector(':scope > button'))
+  const groups = [...new Set(items.map((item) => item.parentElement))]
+  for (const group of groups) {
+    const groupItems = items.filter((item) => item.parentElement === group)
+    // Heading: nearest h2/h3 above the group inside this element
+    const heading = headings.filter((h) => h.compareDocumentPosition(group) & 4 /* group follows heading */ && !group.contains(h) && /faq|frequently asked|questions/i.test(h.textContent)).pop()
+    const faq = {
+      _type: 'faq',
+      _key: key(),
+      heading: heading ? clean(heading.textContent) : undefined,
+      items: groupItems.map((item) => {
+        const button = item.querySelector(':scope > button')
+        const answer = button.nextElementSibling
+        return {
+          _key: key(),
+          question: clean(button.textContent),
+          answer: answer ? htmlToBlocks(answer.innerHTML).filter((b) => b._type === 'block') : [],
+        }
+      }),
+    }
+    if (heading) heading.remove()
+    const marker = root.ownerDocument.createElement('div')
+    marker.setAttribute('data-faq', String(faqs.length))
+    faqs.push(faq)
+    // Replace the outermost wrapper that holds only this FAQ
+    let target = group
+    while (target.parentElement && target.parentElement !== root && target.parentElement.children.length === 1) target = target.parentElement
+    target.replaceWith(marker)
+  }
+
+  let blocks = htmlToBlocks(root.innerHTML, faqs)
+  if (popupForm) {
+    const label = clean(root.querySelector('button')?.textContent) || 'Book a demo'
+    // The pop-up button's own text came through as a paragraph; the banner replaces it
+    blocks = blocks.filter((b) => !(b._type === 'block' && clean((b.children ?? []).map((c) => c.text).join('')) === label))
+    blocks.push({_type: 'ctaBanner', _key: key(), buttonLabel: label, hubspotFormId: popupForm})
+  }
+  return {kind, blocks}
 }
 
 /* ------------------------------------------------------------------ entry pages */
@@ -356,6 +489,7 @@ function parseEntry(html, path) {
     headerVideo: parts.find((p) => p.headerVideo)?.headerVideo,
     blocks: parts.flatMap((p) => p.blocks),
     kinds: parts.map((p) => p.kind),
+    dropped: parts.some((p) => p.dropped),
   }
 }
 
@@ -490,8 +624,8 @@ async function importType(cfg, sitemap, stats) {
           lastModified: lastmodOf(sitemap, path),
           importedAt: new Date().toISOString(),
           notes: [
-            e.kinds.some((k) => !['elementcontent', 'elementctafeaturelarge', 'elementembedscript'].includes(k)) && `Other blocks: ${e.kinds.join(', ')}`,
-            e.blocks.some((b) => b._type === 'htmlEmbed') && 'Has an imported HTML embed (hidden until reviewed)',
+            e.kinds.some((k) => k === 'unknown') && `Unrecognised blocks on the old page: ${e.kinds.join(', ')}`,
+            e.dropped && 'Old "Check out more from iGUIDE" post list not imported (the page shows related posts)',
             card?.thumb && e.headerImg && card.thumb !== e.headerImg && `Card thumbnail on the old site: ${card.thumb}`,
           ]
             .filter(Boolean)

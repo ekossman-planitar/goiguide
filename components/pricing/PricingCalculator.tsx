@@ -274,7 +274,7 @@ export function PricingCalculator() {
       <div id="calculator-content" className="flex flex-col bg-sky p-6 sm:p-8" aria-live="polite">
         {noCalc ? (
           <>
-            <h3 className="text-2xl font-bold text-ink">{noCalc.title}</h3>
+            <h3 className="text-2xl font-semibold text-ink">{noCalc.title}</h3>
             <p className="mt-3 text-lg leading-7 text-body">{noCalc.message}</p>
           </>
         ) : (

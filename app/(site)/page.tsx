@@ -1,5 +1,5 @@
 import {PricingSideBySide} from '@/components/pricing/PricingSideBySide'
-import {CustomerStories} from '@/components/sections/CustomerStories'
+import {CmsCustomerStories} from '@/components/cms/CmsCustomerStories'
 import {Faq} from '@/components/sections/Faq'
 import {Hero} from '@/components/sections/Hero'
 import {LatestResources} from '@/components/sections/LatestResources'
@@ -61,7 +61,7 @@ export default async function HomePage() {
 
       <TourShowcase {...tourShowcase} />
 
-      <CustomerStories {...customerStories} />
+      <CmsCustomerStories {...customerStories} />
 
       <PricingSideBySide data={pricing} />
 

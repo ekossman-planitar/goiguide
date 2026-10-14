@@ -1,6 +1,7 @@
 import type {StructureResolver} from 'sanity/structure'
 import {BellIcon} from '@sanity/icons/Bell'
 import {BookIcon} from '@sanity/icons/Book'
+import {CommentIcon} from '@sanity/icons/Comment'
 import {DownloadIcon} from '@sanity/icons/Download'
 import {HomeIcon} from '@sanity/icons/Home'
 import {ImageIcon} from '@sanity/icons/Image'
@@ -53,5 +54,16 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('author').title('Authors').icon(UsersIcon),
       S.divider(),
       S.documentTypeListItem('announcement').title('Announcements').icon(BellIcon),
-      S.documentTypeListItem('clientLogo').title('Client logos').icon(ImageIcon),
+      S.listItem()
+        .title('Logos')
+        .icon(ImageIcon)
+        .child(
+          S.list()
+            .title('Logos')
+            .items([
+              S.documentTypeListItem('logoBand').title('Logo bands (rows on pages)'),
+              S.documentTypeListItem('clientLogo').title('All client logos'),
+            ]),
+        ),
+      S.documentTypeListItem('testimonial').title('Testimonials').icon(CommentIcon),
     ])

@@ -22,7 +22,7 @@ export function LogoCards({items, columns = 3, headingLevel = 'h3'}: {items: Log
               fallback={<span className="text-lg font-bold text-ink">{item.name}</span>}
             />
           </div>
-          <Heading className="mt-5 text-lg leading-7 font-bold text-ink">{item.name}</Heading>
+          <Heading className="mt-5 text-lg leading-7 font-semibold text-ink">{item.name}</Heading>
           <p className="mt-2 flex-1 text-base leading-6 text-body">{item.text}</p>
           <a
             href={item.href}

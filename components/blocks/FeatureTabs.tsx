@@ -69,7 +69,7 @@ export function FeatureTabs({
                 open ? 'border-primary bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]' : 'border-[#e7edf6] bg-white/60 hover:border-primary',
               )}
             >
-              <Heading className="text-lg leading-7 font-bold text-ink">
+              <Heading className="text-lg leading-7 font-semibold text-ink">
                 <button
                   ref={(el) => {
                     refs.current[i] = el

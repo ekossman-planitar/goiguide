@@ -8,7 +8,7 @@ import type {HeroData} from '@/sanity/lib/types'
 
 /** Used only until the Home page document is published in Sanity. */
 export const heroFallback: HeroData = {
-  eyebrow: {label: 'New: Site Plans for residential listings', href: '/iguide/site-plans'},
+  eyebrow: null,
   heading: 'Your fastest path to accurate floor plans and 3D virtual tours',
   subheading: 'Own your data, floor plans and virtual tour—all from a single scan.',
   cta: {label: 'Book a Demo', href: '/book-a-demo'},

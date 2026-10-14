@@ -3,6 +3,8 @@
 /* Brand tokens. Tailwind exposes these as utilities, e.g. bg-primary, text-ink, bg-cream */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Headlines: REA Pangea, with REA's own fallbacks */
+  --font-display: var(--font-pangea), Helvetica, Arial, sans-serif;
 
   --color-brand: #009cde;          /* iGUIDE blue (logo) */
   --color-primary: #006e9e;        /* buttons, links (live site) */
@@ -17,6 +19,13 @@
   --color-cream: #ffd6a0;          /* pills and step badges (live site) */
   --color-star: #f59e0b;
   --color-announce: #009cde;       /* announcement bar (live site) */
+}
+
+/* Every headline uses REA Pangea (utility classes like font-sans can still override) */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
 }
 
 body {

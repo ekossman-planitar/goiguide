@@ -5,7 +5,7 @@ import {PageHero} from '@/components/blocks/PageHero'
 import {Section} from '@/components/blocks/Section'
 import {PricingCalculator} from '@/components/pricing/PricingCalculator'
 import {PricingSideBySide} from '@/components/pricing/PricingSideBySide'
-import {CustomerStories} from '@/components/sections/CustomerStories'
+import {CmsCustomerStories} from '@/components/cms/CmsCustomerStories'
 import {Faq} from '@/components/sections/Faq'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 import {customerStories} from '@/lib/content/homeSections'
@@ -50,7 +50,7 @@ export default function PricingPage() {
                 fallback={<div className="aspect-square w-full rounded-xl bg-surface" />}
               />
               <div>
-                <h3 className="text-lg leading-6 font-bold text-ink">{addOn.title}</h3>
+                <h3 className="text-lg leading-6 font-semibold text-ink">{addOn.title}</h3>
                 <p className="mt-1.5 text-sm leading-5 text-body">{addOn.summary}</p>
                 <p className="mt-3 text-sm text-muted">
                   iGUIDE package + <span className="text-base font-bold text-ink">{addOn.priceCAD}</span>
@@ -62,7 +62,7 @@ export default function PricingPage() {
       </Section>
 
       {/* Same four stories as the live pricing page and homepage */}
-      <CustomerStories {...customerStories} />
+      <CmsCustomerStories {...customerStories} />
 
       <Faq heading={faq.heading} items={faq.items} />
       <div className="bg-sky pb-16 lg:pb-[60px]">

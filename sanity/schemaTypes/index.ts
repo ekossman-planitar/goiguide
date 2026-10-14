@@ -5,6 +5,8 @@ import {author} from './documents/author'
 import {catalogueItem} from './documents/catalogueItem'
 import {clientLogo} from './documents/clientLogo'
 import {homePage} from './documents/homePage'
+import {logoBand} from './documents/logoBand'
+import {testimonial} from './documents/testimonial'
 import {heroMedia} from './objects/heroMedia'
 import {link} from './objects/link'
 import {richText} from './objects/richText'
@@ -19,6 +21,8 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     homePage,
     announcement,
     clientLogo,
+    logoBand,
+    testimonial,
     ...resourceDocumentTypes,
     catalogueItem,
     author,

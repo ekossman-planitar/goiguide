@@ -37,7 +37,7 @@ export function PricingSideBySide({data}: {data: PricingData}) {
             {/* Step 1: camera */}
             <article className="flex min-w-0 flex-col rounded-2xl bg-white p-6 shadow-sm sm:p-8">
               <p className="text-sm font-semibold text-primary">Step 1 · Get the camera</p>
-              <h3 className="mt-1 text-2xl font-bold text-ink">{camera.name}</h3>
+              <h3 className="mt-1 text-2xl font-semibold text-ink">{camera.name}</h3>
               <div className="relative my-6 h-56">
                 <CameraImage src={camera.image} alt={camera.name} sizes="(min-width: 1024px) 25vw, 80vw" />
               </div>
@@ -58,7 +58,7 @@ export function PricingSideBySide({data}: {data: PricingData}) {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-primary">Step 2 · Choose a package</p>
-                  <h3 className="mt-1 text-2xl font-bold text-ink">iGUIDE packages</h3>
+                  <h3 className="mt-1 text-2xl font-semibold text-ink">iGUIDE packages</h3>
                 </div>
                 <IndustryFilter value={industry} onChange={setIndustry} variant="select" />
               </div>

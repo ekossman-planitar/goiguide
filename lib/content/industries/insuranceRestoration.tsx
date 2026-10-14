@@ -28,7 +28,7 @@ export const blocks: Block[] = [
     background: 'surface',
     children: (
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-        <h2 className="text-balance text-[32px] font-bold leading-[normal] text-ink md:text-5xl md:leading-[normal]">
+        <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">
           Two hours of measuring or a fifteen-minute walkthrough
         </h2>
         <div className="space-y-4 text-lg leading-7 text-body">

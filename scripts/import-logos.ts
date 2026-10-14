@@ -37,7 +37,6 @@ const logos = [
 
 const heroDefaults = {
   _type: 'object',
-  eyebrow: {_type: 'link', label: 'New: Site Plans for residential listings', href: '/iguide/site-plans'},
   heading: 'Your fastest path to accurate floor plans and 3D virtual tours',
   subheading: 'Own your data, floor plans and virtual tour—all from a single scan.',
   cta: {_type: 'link', label: 'Book a Demo', href: '/book-a-demo'},

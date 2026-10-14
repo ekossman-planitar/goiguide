@@ -125,7 +125,7 @@ export async function ResourceDetail({type, params}: {type: ResourceTypeName} & 
               )}
               {item.author?.name && <span className="text-muted">· By {item.author.name}</span>}
             </div>
-            <h1 className="mt-5 text-balance text-[40px] font-bold leading-[1.15] text-ink md:text-5xl">{item.title}</h1>
+            <h1 className="mt-5 text-balance text-[40px] font-semibold leading-[1.15] text-ink md:text-5xl">{item.title}</h1>
             {item.excerpt && <p className="mt-6 text-xl leading-[30px] text-muted">{item.excerpt}</p>}
             {item.eventDateText && (
               <p className="mt-6 text-lg">
@@ -188,7 +188,7 @@ export async function ResourceDetail({type, params}: {type: ResourceTypeName} & 
       {item.related?.length ? (
         <section className="mt-20">
           <Container>
-            <h2 className="text-[32px] font-bold leading-[normal] text-ink md:text-5xl md:leading-[normal]">Related {config.label.toLowerCase()}</h2>
+            <h2 className="text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">Related {config.label.toLowerCase()}</h2>
             <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {item.related.map((r) => (
                 <li key={r._id}>

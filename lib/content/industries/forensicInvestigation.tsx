@@ -21,7 +21,7 @@ export const blocks: Block[] = [
       title: 'iGUIDE tour of a documented fire scene',
     },
   },
-  {type: 'logos', heading: 'Trusted by thousands of IRC professionals worldwide', logos: ircLogos},
+  {type: 'logos', band: 'irc', heading: 'Trusted by thousands of IRC professionals worldwide', logos: ircLogos},
   {
     type: 'cards',
     id: 'benefits',

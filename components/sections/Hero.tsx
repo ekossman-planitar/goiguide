@@ -34,7 +34,7 @@ export function Hero({data, footer}: HeroProps) {
           )}
 
           {heading && (
-            <h1 className="text-balance text-[40px] font-bold leading-[normal] text-ink md:text-[56px]">
+            <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">
               {heading}
             </h1>
           )}

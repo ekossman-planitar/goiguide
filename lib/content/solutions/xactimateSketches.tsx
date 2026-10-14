@@ -16,6 +16,7 @@ export const xactimateSketches = {
     video: {src: '/assets/xacimate-integration.mp4', label: 'iGUIDE and Xactimate integration demo'},
   },
   logos: {
+    band: 'xactimate',
     heading: 'Trusted by thousands of IRC professionals worldwide',
     items: [
       {src: '/assets/noblesville-fire-department.png', alt: 'logo - Noblesville Fire Department'},

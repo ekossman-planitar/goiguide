@@ -20,6 +20,7 @@ export const virtualTours = {
     },
   },
   portals: {
+    band: 'listing-portals',
     heading: 'iGUIDE virtual tours integrate with',
     logos: [
       {src: '/assets/realtor-v2.ca.png', alt: 'Realtor.ca', width: 133, height: 45},

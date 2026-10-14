@@ -57,7 +57,7 @@ export function CardGrid({cards, columns = 4}: {cards: GridCard[]; columns?: 2 |
               fallback={<span className="mb-5 block h-12 w-12 rounded-xl bg-primary-soft" aria-hidden />}
             />
           )}
-          <h3 className="text-xl leading-7 font-bold text-ink">{card.title}</h3>
+          <h3 className="text-xl leading-7 font-semibold text-ink">{card.title}</h3>
           {card.text && <div className="mt-2 flex-1 text-base leading-6 text-body [&_p+p]:mt-3 [&_strong]:text-ink">{card.text}</div>}
           {card.link && (
             <SmartLink

@@ -64,7 +64,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
     <section ref={sectionRef} id={id} className="scroll-mt-24 py-20 lg:py-[60px]">
       <Container>
         <div>
-          <h2 className="text-balance text-[32px] font-bold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
+          <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
           {subheading && <p className="mt-5 text-xl leading-[30px] text-muted">{subheading}</p>}
         </div>
 
@@ -175,7 +175,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
                     <span className="w-fit rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink">
                       Step {i + 1}
                     </span>
-                    <h3 className="mt-4 text-2xl font-bold leading-[normal] text-ink">{step.title}</h3>
+                    <h3 className="mt-4 text-2xl font-semibold leading-[normal] text-ink">{step.title}</h3>
                     <div className="mt-3 flex-1 text-base leading-6 text-body [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary">
                       {step.body}
                     </div>

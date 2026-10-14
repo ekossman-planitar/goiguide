@@ -20,6 +20,7 @@ export const sitePlans = {
     video: {src: '/assets/Site-Plans-Feature-Launch-Video.mp4', label: 'iGUIDE Site Plans feature launch video'},
   },
   logos: {
+    band: 'site-plans',
     heading: 'Trusted by thousands of creators worldwide',
     items: [
       {src: '/assets/Uploads/Scrolling-LogosRemax.png', alt: 'logo - RE/MAX'},

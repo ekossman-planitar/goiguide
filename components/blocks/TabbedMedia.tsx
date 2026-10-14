@@ -68,7 +68,7 @@ export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; 
           {(tab.media.type !== 'embed' || loaded.has(i)) && <MediaView media={tab.media} />}
           {(tab.title || tab.text) && (
             <div className={cn('mt-6', align === 'center' && 'mx-auto max-w-3xl text-center')}>
-              {tab.title && <h4 className="text-xl font-bold text-ink">{tab.title}</h4>}
+              {tab.title && <h4 className="text-xl font-semibold text-ink">{tab.title}</h4>}
               {tab.text && <div className="mt-2 text-lg leading-7 text-body">{tab.text}</div>}
             </div>
           )}

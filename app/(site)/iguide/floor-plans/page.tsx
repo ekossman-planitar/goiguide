@@ -1,12 +1,12 @@
 import {CardGrid} from '@/components/blocks/CardGrid'
 import {CtaBanner} from '@/components/blocks/CtaBanner'
 import {DeliverableCards} from '@/components/blocks/DeliverableCards'
-import {LogoBand} from '@/components/blocks/LogoBand'
+import {CmsLogoBand} from '@/components/cms/CmsLogoBand'
 import {PageHero} from '@/components/blocks/PageHero'
 import {Section} from '@/components/blocks/Section'
 import {SplitSection} from '@/components/blocks/SplitSection'
 import {TabbedMedia} from '@/components/blocks/TabbedMedia'
-import {Testimonials} from '@/components/blocks/Testimonials'
+import {CmsTestimonials} from '@/components/cms/CmsTestimonials'
 import {Faq} from '@/components/sections/Faq'
 import {floorPlans as c} from '@/lib/content/solutions/floorPlans'
 import {pageMetadata} from '@/lib/pageMetadata'
@@ -28,7 +28,7 @@ export default function FloorPlansPage() {
           />
         }
       />
-      <LogoBand heading={c.software.heading} logos={c.software.logos} background="surface" />
+      <CmsLogoBand band={c.software.band} heading={c.software.heading} logos={c.software.logos} background="surface" />
       <Section heading={c.workflows.heading} subheading={c.workflows.subheading}>
         <CardGrid cards={c.workflows.cards} />
       </Section>
@@ -41,7 +41,7 @@ export default function FloorPlansPage() {
         body={<p>{c.overviews.body}</p>}
         media={{type: 'image', image: c.overviews.image}}
       />
-      <Testimonials quotes={[c.testimonial]} />
+      <CmsTestimonials quotes={[c.testimonial]} />
       <Faq heading={c.faq.heading} items={c.faq.items} background="white" />
       <CtaBanner heading={c.cta.heading} ctas={c.cta.ctas} />
     </>

@@ -25,7 +25,7 @@ export default function IndustriesPage() {
       <section className="pt-8 pb-16 lg:pt-12 lg:pb-[60px]">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-balance text-[40px] font-bold leading-[normal] text-ink md:text-[56px]">One capture. Every industry.</h1>
+            <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">One capture. Every industry.</h1>
             <p className="mt-6 text-xl leading-[30px] text-muted">{industries.description}</p>
           </div>
           <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
