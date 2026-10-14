@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://goiguide.com'),
   title: 'iGUIDE',
   description: 'Accurate floor plans and 3D virtual tours from a single scan.',
+  // Google Search Console verification tag, on every page of the live site
+  verification: {google: 'CWS2Ax14FDHr2m7YFeuvcLwPorLoVtLHyO5XWupBsmU'},
 }
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

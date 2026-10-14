@@ -19,7 +19,7 @@ export function pageMetadata({
     title,
     description,
     alternates: {canonical: path},
-    openGraph: {title, description, url: path, siteName: 'iGUIDE', type: 'website', images: [ogImage]},
+    openGraph: {title, description, url: path, siteName: 'iGUIDE', locale: 'en_CA', type: 'website', images: [ogImage]},
     twitter: {card: 'summary_large_image', title, description, images: [ogImage]},
   }
 }

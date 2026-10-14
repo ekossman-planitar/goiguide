@@ -2,6 +2,7 @@ import {type SchemaTypeDefinition} from 'sanity'
 
 import {announcement} from './documents/announcement'
 import {author} from './documents/author'
+import {catalogueItem} from './documents/catalogueItem'
 import {clientLogo} from './documents/clientLogo'
 import {homePage} from './documents/homePage'
 import {heroMedia} from './objects/heroMedia'
@@ -19,6 +20,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     announcement,
     clientLogo,
     ...resourceDocumentTypes,
+    catalogueItem,
     author,
     link,
     heroMedia,

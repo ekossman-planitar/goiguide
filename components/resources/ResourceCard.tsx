@@ -11,7 +11,7 @@ import type {ResourceCardData} from '@/sanity/lib/types'
  */
 export function ResourceCard({item}: {item: ResourceCardData}) {
   const type = getResourceType(item._type)
-  const {href, external} = resourceLink(item)
+  const {href, external, label} = resourceLink(item)
   const linkProps = external ? {target: '_blank', rel: 'noopener noreferrer'} : {}
   const showDate = !undatedTypes.has(item._type) && item.publishedAt
   const image = item.featuredImage
@@ -57,9 +57,9 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
           href={href}
           {...linkProps}
           className="mt-auto inline-flex items-center gap-1.5 pt-6 font-semibold text-primary"
-          aria-label={`${type?.linkLabel ?? 'Read more'}: ${item.title}`}
+          aria-label={`${label}: ${item.title}`}
         >
-          {type?.linkLabel ?? 'Read more'}
+          {label}
           <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
         </a>
       </div>

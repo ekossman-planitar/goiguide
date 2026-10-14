@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Live-content import (scripts/import-live-content.mjs)
+scripts/.import-preview/
+scripts/.import-cache.json

@@ -36,6 +36,7 @@ export const ANNOUNCEMENTS_QUERY = defineQuery(`*[
   _id, message, link, startAt, endAt
 }`)
 
+// Types shown in the Resource Center (eBooks have pages but no filter)
 const RESOURCE_TYPES = `["blogPost", "whitePaper", "customerStory", "brochure", "video", "webinar", "newsArticle", "galleryItem"]`
 
 const RESOURCE_CARD_FIELDS = `
@@ -45,8 +46,9 @@ const RESOURCE_CARD_FIELDS = `
   "slug": slug.current,
   publishedAt,
   excerpt,
-  externalUrl,
-  tourUrl,
+  categories,
+  linkType,
+  "externalUrl": coalesce(externalUrl, tourUrl),
   featuredImage{alt, hotspot, crop, asset->{_id, url, metadata{lqip}}}
 `
 
@@ -58,12 +60,62 @@ export const RESOURCES_QUERY = defineQuery(`*[_type in ${RESOURCE_TYPES} && defi
 export const LATEST_RESOURCES_QUERY = defineQuery(`*[_type in ${RESOURCE_TYPES} && defined(publishedAt)]
   | order(publishedAt desc)[0...$limit]{${RESOURCE_CARD_FIELDS}}`)
 
-export const BLOG_SLUGS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current)].slug.current`)
+// Every item of one type (e.g. eBooks), newest first
+export const RESOURCES_OF_TYPE_QUERY = defineQuery(`*[_type == $type && defined(publishedAt)] | order(publishedAt desc){${RESOURCE_CARD_FIELDS}}`)
 
-export const BLOG_POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == $slug][0]{
+// Slugs of one type, for static generation of its detail pages
+export const RESOURCE_SLUGS_QUERY = defineQuery(`*[_type == $type && defined(slug.current)].slug.current`)
+
+const IMAGE_FIELDS = `alt, caption, href, hotspot, crop, asset->{_id, url, metadata{lqip, dimensions{width, height}}}`
+
+// One resource of any type, with everything its detail page shows
+export const RESOURCE_DETAIL_QUERY = defineQuery(`*[_type == $type && slug.current == $slug][0]{
   ${RESOURCE_CARD_FIELDS},
   _updatedAt,
-  body[]{..., _type == "image" => {..., asset->{_id, url, metadata{lqip, dimensions{width, height}}}}},
+  headerVideoUrl,
+  customerName,
+  customerLocation,
+  eventDateText,
+  eventCta,
+  newsCta,
+  body[]{
+    ...,
+    _type == "image" => {${IMAGE_FIELDS}},
+    _type == "ctaBanner" => {..., image{asset->{_id, url}}}
+  },
   author->{name, role, bio, linkedin, photo{hotspot, crop, asset->{_id, url}}},
-  seo{metaTitle, metaDescription, noIndex, ogImage{hotspot, crop, asset->{_id, url}}}
+  seo{metaTitle, metaDescription, noIndex, ogImage{hotspot, crop, asset->{_id, url}}},
+  "related": *[_type == ^._type && _id != ^._id && defined(slug.current) && (!defined(^.categories) || count(categories[@ in ^.^.categories]) > 0)]
+    | order(publishedAt desc)[0...3]{${RESOURCE_CARD_FIELDS}}
+}`)
+
+// Kept for the blog route
+export const BLOG_SLUGS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current)].slug.current`)
+
+const CATALOGUE_FIELDS = `_id, title, catalogue, "slug": slug.current, fileUrl, publishedAt,
+  thumbnail{alt, hotspot, crop, asset->{_id, url, metadata{lqip}}}`
+
+export const CATALOGUE_ITEMS_QUERY = defineQuery(`*[_type == "catalogueItem"] | order(publishedAt desc){${CATALOGUE_FIELDS}}`)
+
+export const CATALOGUE_ITEM_QUERY = defineQuery(`*[_type == "catalogueItem" && catalogue == $catalogue && slug.current == $slug][0]{${CATALOGUE_FIELDS}}`)
+
+// Every resource and catalogue page for sitemap.xml. Imported entries keep the
+// old site's <lastmod> until someone edits them in the Studio.
+export const SITEMAP_ENTRIES_QUERY = defineQuery(`*[_type in $types && defined(slug.current) && seo.noIndex != true]{
+  _type,
+  "slug": slug.current,
+  catalogue,
+  "lastModified": select(
+    defined(legacy.lastModified) && dateTime(_updatedAt) < dateTime(legacy.importedAt) + 3600 => legacy.lastModified,
+    _updatedAt
+  ),
+  "image": coalesce(featuredImage.asset->url, thumbnail.asset->url)
+}`)
+
+// One type's entries for its RSS feed (/blogs/rss etc.), newest first
+export const RSS_ITEMS_QUERY = defineQuery(`*[_type == $type && defined(publishedAt) && defined(slug.current)] | order(publishedAt desc){
+  title,
+  "slug": slug.current,
+  publishedAt,
+  excerpt
 }`)

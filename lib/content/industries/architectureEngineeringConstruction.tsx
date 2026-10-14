@@ -173,7 +173,7 @@ export const blocks: Block[] = [
     background: 'surface',
     heading: 'See how iGUIDE helps firms work faster and smarter',
     columns: 3,
-    link: {label: 'View all AEC customer stories', href: '/resource-center?tab=customer-stories&category=architecture-and-remodeling'},
+    link: {label: 'View all AEC customer stories', href: '/customer-stories?category=architecture-and-remodeling'},
     cards: [
       {
         title: 'Six months saved: Good Carbon Co.’s path to faster redevelopment with iGUIDE',

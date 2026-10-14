@@ -1,9 +1,11 @@
 import type {StructureResolver} from 'sanity/structure'
 import {BellIcon} from '@sanity/icons/Bell'
 import {BookIcon} from '@sanity/icons/Book'
+import {DownloadIcon} from '@sanity/icons/Download'
 import {HomeIcon} from '@sanity/icons/Home'
 import {ImageIcon} from '@sanity/icons/Image'
 import {UsersIcon} from '@sanity/icons/Users'
+import {catalogues} from '../lib/catalogue'
 import {resourceTypes} from '../lib/resourceTypes'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -24,6 +26,29 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Resource Center')
             .items(resourceTypes.map((type) => S.documentTypeListItem(type.name).title(type.label))),
+        ),
+      S.listItem()
+        .title('Marketing Catalogue')
+        .icon(DownloadIcon)
+        .child(
+          S.list()
+            .title('Marketing Catalogue')
+            .items([
+              S.documentTypeListItem('catalogueItem').title('All items'),
+              S.divider(),
+              ...catalogues.map((c) =>
+                S.listItem()
+                  .title(c.label)
+                  .id(`catalogue-${c.id}`)
+                  .child(
+                    S.documentTypeList('catalogueItem')
+                      .title(c.label)
+                      .filter('_type == "catalogueItem" && catalogue == $catalogue')
+                      .params({catalogue: c.id})
+                      .initialValueTemplates([]),
+                  ),
+              ),
+            ]),
         ),
       S.documentTypeListItem('author').title('Authors').icon(UsersIcon),
       S.divider(),

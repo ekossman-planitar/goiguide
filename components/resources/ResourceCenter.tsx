@@ -1,35 +1,46 @@
 'use client'
 
-import {useSearchParams} from 'next/navigation'
-import {useMemo, useState} from 'react'
+import {useEffect, useMemo, useRef, useState} from 'react'
 import {cn} from '@/lib/cn'
-import {resourceTypes} from '@/lib/resourceTypes'
+import {categoryLabel, getResourceType, listedResourceTypes, RESOURCE_CENTER_PATH, resourceCenterTitle} from '@/lib/resourceTypes'
 import type {ResourceCardData} from '@/sanity/lib/types'
 import {ResourceCard} from './ResourceCard'
 
 const ALL = 'all'
+const PAGE_SIZE = 12
 
-/** Maps a ?tab= value (any capitalisation) to a document type name. */
-function typeFromTab(tab: string | null) {
-  if (!tab) return ALL
-  return resourceTypes.find((t) => t.tab.toLowerCase() === tab.toLowerCase())?.name ?? ALL
+type Props = {
+  items: ResourceCardData[]
+  /** Pre-selected type (set by the listing route, e.g. /blogs → blogPost) */
+  initialType?: string
 }
 
-type Props = {items: ResourceCardData[]}
+const pill = (active: boolean) =>
+  cn(
+    'inline-flex h-10 items-center gap-2 rounded-full border px-4 text-[15px] font-medium transition-colors',
+    active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-body hover:border-primary hover:text-primary',
+  )
 
 /**
- * Filter pills + card grid. The active filter is kept in the URL as ?tab=…
- * (same values as the live site) so filtered views can be linked to.
- * Wrap in <Suspense fallback={<ResourceCenterView items={items} />}>.
+ * Filter pills + card grid. Each type filter has its own clean URL: "All" is
+ * /resource-center, Blog is /blogs, Videos is /video, etc. Types with
+ * categories get a second row of filters, kept in ?category= like the live
+ * site (so links such as /customer-stories?category=insurance-and-restoration
+ * keep working). Choosing a filter updates the address bar without reloading.
  */
-export function ResourceCenter({items}: Props) {
-  const searchParams = useSearchParams()
-  return <ResourceCenterView items={items} initialType={typeFromTab(searchParams.get('tab'))} />
-}
-
-/** The filter UI without reading the URL (used as the static fallback). */
-export function ResourceCenterView({items, initialType = ALL}: Props & {initialType?: string}) {
+export function ResourceCenter({items, initialType = ALL}: Props) {
   const [active, setActive] = useState<string>(initialType)
+  const [category, setCategory] = useState<string>(ALL)
+  const [shown, setShown] = useState(PAGE_SIZE)
+  const type = getResourceType(active)
+  const categories = Object.entries((type?.categories ?? {}) as Record<string, string>)
+
+  // Read ?category= once on load (keeps the page static: no useSearchParams)
+  useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('category')
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (fromUrl) setCategory(fromUrl)
+  }, [])
 
   const counts = useMemo(() => {
     const map = new Map<string, number>()
@@ -37,19 +48,42 @@ export function ResourceCenterView({items, initialType = ALL}: Props & {initialT
     return map
   }, [items])
 
-  const visible = active === ALL ? items : items.filter((item) => item._type === active)
+  const visible = items.filter(
+    (item) => (active === ALL || item._type === active) && (category === ALL || item.categories?.includes(category)),
+  )
 
-  const choose = (name: string) => {
-    setActive(name)
-    const url = new URL(window.location.href)
-    const tab = resourceTypes.find((t) => t.name === name)?.tab
-    if (tab) url.searchParams.set('tab', tab)
-    else url.searchParams.delete('tab')
+  const updateUrl = (typeName: string, cat: string) => {
+    const config = getResourceType(typeName)
+    const url = new URL(config?.basePath ?? RESOURCE_CENTER_PATH, window.location.origin)
+    if (cat !== ALL) url.searchParams.set('category', cat)
     window.history.replaceState(null, '', url)
   }
 
+  const chooseType = (name: string) => {
+    setActive(name)
+    setCategory(ALL)
+    setShown(PAGE_SIZE)
+    updateUrl(name, ALL)
+  }
+
+  const chooseCategory = (cat: string) => {
+    setCategory(cat)
+    setShown(PAGE_SIZE)
+    updateUrl(active, cat)
+  }
+
+  // Keep the tab title in step with the URL after a filter change
+  const firstRender = useRef(true)
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+    document.title = resourceCenterTitle(getResourceType(active))
+  }, [active])
+
   const filters = [{name: ALL, label: 'All', count: items.length}].concat(
-    resourceTypes.map((t) => ({name: t.name, label: t.label, count: counts.get(t.name) ?? 0})),
+    listedResourceTypes.map((t) => ({name: t.name, label: t.label, count: counts.get(t.name) ?? 0})),
   )
 
   return (
@@ -58,25 +92,9 @@ export function ResourceCenterView({items, initialType = ALL}: Props & {initialT
         {filters.map((filter) => {
           const isActive = filter.name === active
           return (
-            <button
-              key={filter.name}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => choose(filter.name)}
-              className={cn(
-                'inline-flex h-10 items-center gap-2 rounded-full border px-4 text-[15px] font-medium transition-colors',
-                isActive
-                  ? 'border-primary bg-primary text-white'
-                  : 'border-line bg-white text-body hover:border-primary hover:text-primary',
-              )}
-            >
+            <button key={filter.name} type="button" aria-pressed={isActive} onClick={() => chooseType(filter.name)} className={pill(isActive)}>
               {filter.label}
-              <span
-                className={cn(
-                  'rounded-full px-2 text-xs tabular-nums',
-                  isActive ? 'bg-white/20 text-white' : 'bg-surface text-muted',
-                )}
-              >
+              <span className={cn('rounded-full px-2 text-xs tabular-nums', isActive ? 'bg-white/20 text-white' : 'bg-surface text-muted')}>
                 {filter.count}
               </span>
             </button>
@@ -84,22 +102,53 @@ export function ResourceCenterView({items, initialType = ALL}: Props & {initialT
         })}
       </div>
 
+      {categories.length > 0 && (
+        <div role="group" aria-label="Filter by category" className="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-4">
+          <span className="mr-1 text-sm font-semibold text-muted">Category:</span>
+          {[[ALL, 'All categories'] as const, ...categories].map(([slug, label]) => (
+            <button
+              key={slug}
+              type="button"
+              aria-pressed={category === slug}
+              onClick={() => chooseCategory(slug)}
+              className={cn(
+                'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+                category === slug ? 'bg-primary-soft text-primary' : 'text-body hover:text-primary',
+              )}
+            >
+              {slug === ALL ? label : categoryLabel(type, slug)}
+            </button>
+          ))}
+        </div>
+      )}
+
       <p className="sr-only" aria-live="polite">
         {visible.length} {visible.length === 1 ? 'resource' : 'resources'} shown
       </p>
 
       {visible.length ? (
-        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {visible.map((item) => (
-            <li key={item._id}>
-              <ResourceCard item={item} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {visible.slice(0, shown).map((item) => (
+              <li key={item._id}>
+                <ResourceCard item={item} />
+              </li>
+            ))}
+          </ul>
+          {visible.length > shown && (
+            <div className="mt-10 text-center">
+              <button
+                type="button"
+                onClick={() => setShown((n) => n + PAGE_SIZE)}
+                className="rounded-lg border border-primary bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary-soft"
+              >
+                Show more ({visible.length - shown} more)
+              </button>
+            </div>
+          )}
+        </>
       ) : (
-        <p className="mt-10 rounded-2xl border border-dashed border-line p-12 text-center text-muted">
-          Nothing here yet. Check back soon.
-        </p>
+        <p className="mt-10 rounded-2xl border border-dashed border-line p-12 text-center text-muted">Nothing here yet. Check back soon.</p>
       )}
     </>
   )

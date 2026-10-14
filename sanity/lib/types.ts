@@ -58,7 +58,10 @@ export type ResourceCardData = {
   publishedAt?: string | null
   excerpt?: string | null
   externalUrl?: string | null
+  /** Legacy gallery field; queries return it as externalUrl */
   tourUrl?: string | null
+  categories?: string[] | null
+  linkType?: 'page' | 'external' | 'video' | 'download' | 'tour' | null
   featuredImage?: SanityImage | null
 }
 
@@ -77,11 +80,33 @@ export type Seo = {
   ogImage?: SanityImage | null
 }
 
-export type BlogPostData =
+export type CtaLink = {label?: string | null; href?: string | null}
+
+export type ResourceDetailData =
   | (ResourceCardData & {
       _updatedAt: string
+      headerVideoUrl?: string | null
+      customerName?: string | null
+      customerLocation?: string | null
+      eventDateText?: string | null
+      eventCta?: CtaLink | null
+      newsCta?: CtaLink | null
       body?: PortableTextBlock[] | null
       author?: Author | null
       seo?: Seo | null
+      related?: ResourceCardData[] | null
     })
   | null
+
+/** @deprecated use ResourceDetailData */
+export type BlogPostData = ResourceDetailData
+
+export type CatalogueItemData = {
+  _id: string
+  title: string
+  catalogue: string
+  slug?: string | null
+  fileUrl?: string | null
+  publishedAt?: string | null
+  thumbnail?: SanityImage | null
+}
