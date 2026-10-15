@@ -131,3 +131,26 @@ export const CMS_LIBRARY_QUERY = defineQuery(`{
     "companyLogo": companyLogo->{${LOGO_FIELDS}}
   }
 }`)
+
+// Paid-media landing pages (any URL; see lib/landingPages)
+const LP_IMG = `{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}`
+const LP_MEDIA = `{kind, url, title, "image": image${LP_IMG}}`
+export const LANDING_PAGE_QUERY = defineQuery(`*[_type == "landingPage" && path == $path && live != false][0]{
+  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, headerButton,
+  sections[]{
+    ...,
+    _type == "lpHero" => {"media": media${LP_MEDIA}},
+    _type == "lpLogos" => {"logos": band->logos[defined(@->logo.asset)]->{name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}}},
+    _type == "lpFeatures" => {"items": items[]{..., "icon": icon${LP_IMG}}},
+    _type == "lpSplit" => {"media": media${LP_MEDIA}},
+    _type == "lpSteps" => {"steps": steps[]{..., "image": image${LP_IMG}}},
+    _type == "lpTabs" => {"tabs": tabs[]{..., "media": media${LP_MEDIA}}},
+    _type == "lpTestimonials" => {"quotes": items[]->[hidden != true]{
+      quote, detail, name, role, company, link{label, href},
+      photo{alt, hotspot, crop, asset->{_id, url}},
+      "logo": companyLogo->{name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}}
+    }}
+  }
+}`)
+
+export const LANDING_PATHS_QUERY = defineQuery(`*[_type == "landingPage" && defined(path) && live != false].path`)

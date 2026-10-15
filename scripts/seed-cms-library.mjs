@@ -8,13 +8,15 @@
  *  - Never overwrites a band or testimonial that already exists, so Studio
  *    edits are safe. Only the read-only "Shown on" list is refreshed.
  *
- * Needs the dev server running (it reads http://localhost:3000/api/dev/cms-manifest).
+ * Reads scripts/cms-library-manifest.json: a one-time snapshot (2026-10-14) of
+ * every logo band and testimonial written in lib/content. After this seed,
+ * edit logos and testimonials in the Studio, not in code.
  * Run from the repo root while logged in to the Sanity CLI:
  *
  *   npx sanity exec scripts/seed-cms-library.mjs --with-user-token
  *   npx sanity exec scripts/seed-cms-library.mjs --with-user-token -- --dry-run
  */
-import {createReadStream, existsSync} from 'node:fs'
+import {createReadStream, existsSync, readFileSync} from 'node:fs'
 import {basename, extname, join} from 'node:path'
 import {getCliClient} from 'sanity/cli'
 import {slugify} from '../lib/cmsKeys.mjs'
@@ -22,7 +24,7 @@ import {slugify} from '../lib/cmsKeys.mjs'
 const client = getCliClient({apiVersion: '2026-10-06'})
 const args = process.argv.slice(2)
 const DRY_RUN = args.includes('--dry-run')
-const MANIFEST = args.find((a) => a.startsWith('http')) ?? 'http://localhost:3000/api/dev/cms-manifest'
+const MANIFEST = join(process.cwd(), 'scripts', 'cms-library-manifest.json')
 
 const log = (...a) => console.log(...a)
 const warnings = []
@@ -70,9 +72,7 @@ async function clientLogo({src, alt}) {
 const exists = async (_id) => !DRY_RUN && !!(await client.getDocument(_id))
 
 async function main() {
-  const res = await fetch(MANIFEST).catch(() => null)
-  if (!res?.ok) throw new Error(`Couldn't read ${MANIFEST}. Is the dev server running (npm run dev)?`)
-  const {bands, testimonials, conflicts} = await res.json()
+  const {bands, testimonials, conflicts} = JSON.parse(readFileSync(MANIFEST, 'utf8'))
   if (conflicts.length) throw new Error(`Fix these in lib/content first:\n${conflicts.join('\n')}`)
   log(`${bands.length} logo bands, ${testimonials.length} testimonials${DRY_RUN ? ' (dry run, nothing written)' : ''}\n`)
 

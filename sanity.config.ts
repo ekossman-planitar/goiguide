@@ -12,6 +12,8 @@ import {structureTool} from 'sanity/structure'
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema, singletonTypes} from './sanity/schemaTypes'
 import {structure} from './sanity/structure'
+import {lpLayouts} from './lib/landingPages/layouts'
+import {studioTemplateValue} from './lib/landingPages/samples'
 
 export default defineConfig({
   basePath: '/studio',
@@ -21,7 +23,17 @@ export default defineConfig({
   schema: {
     ...schema,
     // Singletons can't be created from the "+" menu (they already exist at a fixed ID)
-    templates: (templates) => templates.filter(({schemaType}) => !singletonTypes.has(schemaType)),
+    // Landing pages start from a layout ("New landing page: Lead form", …) instead of an empty page
+    templates: (templates) => [
+      ...templates.filter(({schemaType}) => !singletonTypes.has(schemaType) && schemaType !== 'landingPage'),
+      ...lpLayouts.map((layout) => ({
+        id: `landingPage-${layout.id}`,
+        title: `Landing page: ${layout.name}`,
+        description: layout.bestFor,
+        schemaType: 'landingPage',
+        value: studioTemplateValue(layout.id),
+      })),
+    ],
   },
   document: {
     // Singletons can't be duplicated or deleted

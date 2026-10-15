@@ -2,6 +2,7 @@ import type {StructureResolver} from 'sanity/structure'
 import {BellIcon} from '@sanity/icons/Bell'
 import {BookIcon} from '@sanity/icons/Book'
 import {CommentIcon} from '@sanity/icons/Comment'
+import {RocketIcon} from '@sanity/icons/Rocket'
 import {DownloadIcon} from '@sanity/icons/Download'
 import {HomeIcon} from '@sanity/icons/Home'
 import {ImageIcon} from '@sanity/icons/Image'
@@ -19,6 +20,11 @@ export const structure: StructureResolver = (S) =>
         .id('homePage')
         .icon(HomeIcon)
         .child(S.document().schemaType('homePage').documentId('homePage').title('Home page')),
+      S.listItem()
+        .title('Landing pages (paid media)')
+        .id('landingPages')
+        .icon(RocketIcon)
+        .child(S.documentTypeList('landingPage').title('Landing pages').defaultOrdering([{field: 'path', direction: 'asc'}])),
       S.divider(),
       S.listItem()
         .title('Resource Center')

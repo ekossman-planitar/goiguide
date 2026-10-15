@@ -1,5 +1,6 @@
 /** /real-estate-photography — copy, links and asset paths from the live page (checked 2026-10-07). */
 import type {Block} from '@/components/blocks/Blocks'
+import {SmartLink} from '@/components/ui/SmartLink'
 import {book, instantPackage, premiumPackage, realEstateLogos, standardPackage, tour} from './shared'
 
 export const meta = {
@@ -203,7 +204,7 @@ export const blocks: Block[] = [
         q: 'Are there hosting fees associated with iGUIDE?',
         a: (
           <p>
-            iGUIDE uses simple, <a href="/pricing">pay-per-project pricing</a>. There are no required subscriptions or ongoing hosting fees,
+            iGUIDE uses simple, <SmartLink href="/pricing">pay-per-project pricing</SmartLink>. There are no required subscriptions or ongoing hosting fees,
             allowing real estate photographers to control costs and pay only for the projects they deliver.
           </p>
         ),
@@ -217,7 +218,7 @@ export const blocks: Block[] = [
         a: (
           <p>
             Yes. iGUIDE virtual tours and floor plans are designed to fit seamlessly into common{' '}
-            <a href="/iguide/integrations">real estate marketing workflows</a>, making it easy to share assets alongside listings, websites, and
+            <SmartLink href="/iguide/integrations">real estate marketing workflows</SmartLink>, making it easy to share assets alongside listings, websites, and
             other client-facing tools.
           </p>
         ),

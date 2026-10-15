@@ -3,6 +3,7 @@ import {Container} from '@/components/ui/Container'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {SocialIcon} from '@/components/ui/socialIcons'
 import {footerColumns, legal, reviewBadges, socialLinks, subscribeForm, type FooterLink} from '@/lib/footerNavigation'
+import {LanguageSwitcher} from './LanguageSwitcher'
 import {SubscribeForm} from './SubscribeForm'
 
 const newTab = (link: FooterLink) => (link.external ? {target: '_blank', rel: 'noopener noreferrer'} : {})
@@ -76,6 +77,9 @@ export function SiteFooter() {
             </div>
           </div>
           <div className="text-sm leading-6 text-body xl:text-right">
+            <div className="mb-3 flex xl:justify-end">
+              <LanguageSwitcher />
+            </div>
             <p>{legal.copyright}</p>
             <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 xl:justify-end">
               <a href={legal.address.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary">

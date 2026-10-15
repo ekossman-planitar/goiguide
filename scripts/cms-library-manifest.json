@@ -1,0 +1,944 @@
+{
+  "bands": [
+    {
+      "_id": "logoBand-aec-customers",
+      "band": "aec-customers",
+      "title": "Trusted by thousands of AEC professionals worldwide",
+      "logos": [
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png",
+          "alt": "logo - MC3 Design"
+        },
+        {
+          "src": "/assets/make-it-right.svg",
+          "alt": "logo - Make it Right"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-UCGC.png",
+          "alt": "logo - UCGC"
+        },
+        {
+          "src": "/assets/Uploads/bar_burrito-v3.png",
+          "alt": "logo - BarBurrito"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-CS-Construction.png",
+          "alt": "logo - CS Construction"
+        },
+        {
+          "src": "/assets/Pizza-Pizza-Logo.png",
+          "alt": "logo - Pizza Pizza"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Harder-Build-Construction.png",
+          "alt": "logo - Harder Build Construction"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Hills-Group.png",
+          "alt": "logo - Hills Group"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Levitech-Acrchitects-Builders.png",
+          "alt": "logo - Levitch Associates Inc."
+        },
+        {
+          "src": "/assets/Uploads/CCS-Logo.png",
+          "alt": "logo - CCS"
+        },
+        {
+          "src": "/assets/Uploads/RJM-Logo.png",
+          "alt": "logo - RMJ"
+        },
+        {
+          "src": "/assets/Uploads/Sheffield-Homes-logo-v3.png",
+          "alt": "logo - Sheffield Homes"
+        },
+        {
+          "src": "/assets/Uploads/Max-Returns-44.png",
+          "alt": "logo - Max Returns Real Estate Investments"
+        },
+        {
+          "src": "/assets/Uploads/Tetsimonial-Logo-Master-Trades-Group.png",
+          "alt": "logo - Master Trades Group"
+        }
+      ],
+      "usedOn": [
+        "/architecture-engineering-construction"
+      ]
+    },
+    {
+      "_id": "logoBand-cad-software",
+      "band": "cad-software",
+      "title": "Files delivered ready for",
+      "logos": [
+        {
+          "src": "/assets/autocad-logo-aec.png",
+          "alt": "AutoCAD"
+        },
+        {
+          "src": "/assets/revit-logo-aec.png",
+          "alt": "Revit"
+        },
+        {
+          "src": "/assets/sketchup-logo-aec.png",
+          "alt": "SketchUp"
+        },
+        {
+          "src": "/assets/chief-architect-logo-aec.png",
+          "alt": "Chief Architect"
+        },
+        {
+          "src": "/assets/vectorworks-logo-aec.png",
+          "alt": "Vectorworks"
+        },
+        {
+          "src": "/assets/xacimate-logo-aec.png",
+          "alt": "Xactimate"
+        }
+      ],
+      "usedOn": [
+        "/architecture-engineering-construction"
+      ]
+    },
+    {
+      "_id": "logoBand-design-construction-customers",
+      "band": "design-construction-customers",
+      "title": "Trusted by thousands of Design & Construction professionals worldwide",
+      "logos": [
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png",
+          "alt": "logo - MC3 Design"
+        },
+        {
+          "src": "/assets/make-it-right.svg",
+          "alt": "logo - Make it Right"
+        },
+        {
+          "src": "/assets/Chris_Fernandes_Design_Corp.png",
+          "alt": "logo - Chris Fernandes"
+        },
+        {
+          "src": "/assets/Uploads/bar_burrito-v3.png",
+          "alt": "logo - BarBurrito"
+        },
+        {
+          "src": "/assets/Pizza-Pizza-Logo.png",
+          "alt": "logo - Pizza Pizza"
+        },
+        {
+          "src": "/assets/pds-logo.png",
+          "alt": "logo - PDS Architecture"
+        }
+      ],
+      "usedOn": [
+        "/design-construction"
+      ]
+    },
+    {
+      "_id": "logoBand-irc",
+      "band": "irc",
+      "title": "Trusted by thousands of IRC professionals worldwide",
+      "logos": [
+        {
+          "src": "/assets/noblesville-fire-department.png",
+          "alt": "logo - Noblesville Fire Department"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosDeft.png",
+          "alt": "logo - Deft Group"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosGrindley.png",
+          "alt": "logo - Grindley Williams Engineering"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosPrepTours-v2.png",
+          "alt": "logo - PuroClean"
+        },
+        {
+          "src": "/assets/Uploads/compass.png",
+          "alt": "logo - Compass Building Services"
+        },
+        {
+          "src": "/assets/Icons/all-seasons-adjusting-logo.png",
+          "alt": "logo - All Seasons Adjusting"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosSeeknow.png",
+          "alt": "logo - SeekNow"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosColonial-Claims.png",
+          "alt": "Colonial Claims"
+        }
+      ],
+      "usedOn": [
+        "/forensic-investigation"
+      ]
+    },
+    {
+      "_id": "logoBand-real-estate",
+      "band": "real-estate",
+      "title": "Trusted by thousands of real estate photographers worldwide",
+      "logos": [
+        {
+          "src": "/assets/Uploads/Scrolling-LogosRemax.png",
+          "alt": "logo - RE/MAX"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosKW.png",
+          "alt": "logo - Keller Williams"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosRoyalLePage.png",
+          "alt": "logo - Royal LePage"
+        },
+        {
+          "src": "/assets/Uploads/loookinside-logo.png",
+          "alt": "logo - LooOK INside"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosSeeknow.png",
+          "alt": "logo - SeekNow"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosPrepTours.png",
+          "alt": "logo - PREP Tours"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosVisual.png",
+          "alt": "logo - Visual Advantage"
+        }
+      ],
+      "usedOn": [
+        "/real-estate-photography",
+        "/residential-real-estate"
+      ]
+    },
+    {
+      "_id": "logoBand-cad-deliverables",
+      "band": "cad-deliverables",
+      "title": "Trusted by thousands of professionals worldwide",
+      "logos": [
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png",
+          "alt": "logo - MC3 Design"
+        },
+        {
+          "src": "/assets/make-it-right.svg",
+          "alt": "logo - Make it Right"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-UCGC.png",
+          "alt": "logo - UCGC"
+        },
+        {
+          "src": "/assets/Uploads/bar_burrito-v3.png",
+          "alt": "logo - BarBurrito"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosLevco.png",
+          "alt": "logo - Levco Builders"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-CS-Construction.png",
+          "alt": "logo - CS Construction"
+        },
+        {
+          "src": "/assets/Pizza-Pizza-Logo.png",
+          "alt": "logo - Pizza Pizza"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Harder-Build-Construction.png",
+          "alt": "logo - Harder Build Construction"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Hills-Group.png",
+          "alt": "logo - Hills Group"
+        },
+        {
+          "src": "/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Levitech-Acrchitects-Builders.png",
+          "alt": "logo - Levitch Associates Inc."
+        },
+        {
+          "src": "/assets/Uploads/CCS-Logo.png",
+          "alt": "logo - CCS"
+        },
+        {
+          "src": "/assets/Uploads/RJM-Logo.png",
+          "alt": "logo - RMJ"
+        },
+        {
+          "src": "/assets/Uploads/Sheffield-Homes-logo-v3.png",
+          "alt": "logo - Sheffield Homes"
+        },
+        {
+          "src": "/assets/Uploads/Max-Returns-44.png",
+          "alt": "logo - Max Returns Real Estate Investments"
+        },
+        {
+          "src": "/assets/Uploads/Tetsimonial-Logo-Master-Trades-Group.png",
+          "alt": "logo - Master Trades Group"
+        }
+      ],
+      "usedOn": [
+        "/iguide/cad-deliverables"
+      ]
+    },
+    {
+      "_id": "logoBand-camera-hardware",
+      "band": "camera-hardware",
+      "title": "camera-hardware",
+      "logos": [
+        {
+          "src": "/assets/Uploads/Scrolling-LogosDeft.png",
+          "alt": "logo - Deft Group"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosLevco.png",
+          "alt": "logo - Levco Builders"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosPrepTours.png",
+          "alt": "logo - PREP Tours"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosPrepTours-v2.png",
+          "alt": "logo - PuroClean"
+        }
+      ],
+      "usedOn": [
+        "/camera-hardware"
+      ]
+    },
+    {
+      "_id": "logoBand-floor-plans-software",
+      "band": "floor-plans-software",
+      "title": "Files delivered ready for",
+      "logos": [
+        {
+          "src": "/assets/autocad-logo-aec.png",
+          "alt": "AutoCAD"
+        },
+        {
+          "src": "/assets/revit-logo-aec.png",
+          "alt": "Revit"
+        },
+        {
+          "src": "/assets/sketchup-logo-aec.png",
+          "alt": "SketchUp"
+        },
+        {
+          "src": "/assets/chief-architect-logo-aec.png",
+          "alt": "Chief Architect"
+        },
+        {
+          "src": "/assets/vectorworks-logo-aec.png",
+          "alt": "Vectorworks"
+        },
+        {
+          "src": "/assets/xacimate-logo-aec.png",
+          "alt": "Xactimate"
+        }
+      ],
+      "usedOn": [
+        "/iguide/floor-plans"
+      ]
+    },
+    {
+      "_id": "logoBand-site-plans",
+      "band": "site-plans",
+      "title": "Trusted by thousands of creators worldwide",
+      "logos": [
+        {
+          "src": "/assets/Uploads/Scrolling-LogosRemax.png",
+          "alt": "logo - RE/MAX"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosKW.png",
+          "alt": "logo - Keller Williams"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosRoyalLePage.png",
+          "alt": "logo - Royal LePage"
+        },
+        {
+          "src": "/assets/Uploads/loookinside-logo.png",
+          "alt": "logo - LooOK INside"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosSeeknow.png",
+          "alt": "logo - SeekNow"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosPrepTours.png",
+          "alt": "logo - PREP Tours"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosVisual.png",
+          "alt": "logo - Visual Advantage"
+        }
+      ],
+      "usedOn": [
+        "/iguide/site-plans"
+      ]
+    },
+    {
+      "_id": "logoBand-listing-portals",
+      "band": "listing-portals",
+      "title": "iGUIDE virtual tours integrate with",
+      "logos": [
+        {
+          "src": "/assets/realtor-v2.ca.png",
+          "alt": "Realtor.ca"
+        },
+        {
+          "src": "/assets/realtor.com.png",
+          "alt": "Realtor.com"
+        },
+        {
+          "src": "/assets/zillow-v2.png",
+          "alt": "Zillow"
+        },
+        {
+          "src": "/assets/flexmls-v2.png",
+          "alt": "FlexMLS"
+        },
+        {
+          "src": "/assets/funda-v3.png",
+          "alt": "Funda"
+        },
+        {
+          "src": "/assets/realestate.com.au.png",
+          "alt": "Real Estate AU"
+        }
+      ],
+      "usedOn": [
+        "/iguide/3d-virtual-tours"
+      ]
+    },
+    {
+      "_id": "logoBand-xactimate",
+      "band": "xactimate",
+      "title": "Trusted by thousands of IRC professionals worldwide",
+      "logos": [
+        {
+          "src": "/assets/noblesville-fire-department.png",
+          "alt": "logo - Noblesville Fire Department"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosDeft.png",
+          "alt": "logo - Deft Group"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosGrindley.png",
+          "alt": "logo - Grindley Williams Engineering"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosPrepTours-v2.png",
+          "alt": "logo - PuroClean"
+        },
+        {
+          "src": "/assets/Uploads/compass.png",
+          "alt": "logo - Compass Building Services"
+        },
+        {
+          "src": "/assets/Icons/all-seasons-adjusting-logo.png",
+          "alt": "logo - All Seasons Adjusting"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosSeeknow.png",
+          "alt": "logo - SeekNow"
+        },
+        {
+          "src": "/assets/Uploads/Scrolling-LogosColonial-Claims.png",
+          "alt": "Colonial Claims"
+        }
+      ],
+      "usedOn": [
+        "/iguide/xactimate-sketches"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "_id": "testimonial-lauren-murphy-1hhvb9u",
+      "quote": "Since incorporating iGUIDE into our services, our business has grown 10X!",
+      "name": "Lauren Murphy",
+      "role": "Photographer",
+      "company": "Monster Media House",
+      "link": {
+        "label": "Read their story",
+        "href": "/customer-stories/how-iguide-helped-monster-media-house-boost-revenue-by-10x"
+      },
+      "logo": {
+        "src": "/homepage/stories/monster-media-house.png",
+        "alt": "logo - Monster Media House"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/",
+        "/pricing"
+      ]
+    },
+    {
+      "_id": "testimonial-john-mckenna-1wphnjd",
+      "quote": "The value speaks for itself. I can't picture MC3 working without iGUIDE now.",
+      "name": "John McKenna",
+      "role": "Owner",
+      "company": "MC3 Design",
+      "link": {
+        "label": "Read their story",
+        "href": "/customer-stories/mc3-design-cuts-measurement-time-by-50-with-iguide-technology"
+      },
+      "logo": {
+        "src": "/homepage/stories/mc3-design.png",
+        "alt": "logo - MC3 Design"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/",
+        "/pricing"
+      ]
+    },
+    {
+      "_id": "testimonial-jeremiah-kiefer-10m2vvk",
+      "quote": "Simply seeing how much value it's brought to Deft, we fell in love with it!",
+      "name": "Jeremiah Kiefer",
+      "role": "Founder & CEO",
+      "company": "The Deft Group",
+      "link": {
+        "label": "Read their story",
+        "href": "/customer-stories/the-deft-group-case-study"
+      },
+      "logo": {
+        "src": "/homepage/stories/deft.png",
+        "alt": "logo - The Deft Group"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/",
+        "/pricing"
+      ]
+    },
+    {
+      "_id": "testimonial-rachel-morgan-wiehnz",
+      "quote": "iGUIDE brought a unique convenience and comfort to our buyer's search experience.",
+      "name": "Rachel Morgan",
+      "role": "Realtor",
+      "company": "Morgan Wasley",
+      "link": {
+        "label": "Read their story",
+        "href": "/customer-stories/creating-an-enhanced-buyer-experience-with-iguide"
+      },
+      "logo": {
+        "src": "/homepage/stories/morgan-wasley.png",
+        "alt": "logo - Morgan Wasley"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/",
+        "/pricing"
+      ]
+    },
+    {
+      "_id": "testimonial-john-mckenna-1y18htl",
+      "quote": "With iGUIDE, we kicked off new projects 50% faster and never had to go back to site.",
+      "detail": "Using iGUIDE, MC3 Group cut fieldwork to just 1–2 hours with a single team member. Precise floor plans and 3D models are captured at once, eliminating manual steps. Unlike other tools that offer visuals or measurements, iGUIDE delivers both.",
+      "name": "John McKenna",
+      "role": "Owner & Architect",
+      "company": "MC3 Design",
+      "photo": {
+        "src": "/assets/John-McKenna.jpeg",
+        "alt": "photo - John McKenna"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/architecture-engineering-construction",
+        "/iguide/cad-deliverables"
+      ]
+    },
+    {
+      "_id": "testimonial-mike-holmes-1gh38jd",
+      "quote": "One of the smartest things you can do on any build is document what’s behind the walls. With iGUIDE, you can tag electrical, plumbing, and structural elements before they’re covered, so years later there’s no guessing. That’s priceless for maintenance and renovations.",
+      "name": "Mike Holmes",
+      "role": "Professional Contractor & TV Host",
+      "company": "The Holmes Group",
+      "photo": {
+        "src": "/assets/mike-holmes-cta.png",
+        "alt": "photo - Mike Holmes"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/architecture-engineering-construction"
+      ]
+    },
+    {
+      "_id": "testimonial-tayyab-ali-20my5e",
+      "quote": "When I don’t have sufficient or accurate base building information, I reach out to iGUIDE. Their walkthroughs and drawings help me move forward with confidence.",
+      "name": "Tayyab Ali",
+      "role": "Construction Design Manager",
+      "company": "Pizza Pizza",
+      "link": {
+        "label": "Read their story",
+        "href": "/customer-stories/cutting-delays-boosting-design-pizza-pizzas-path-to-faster-openings"
+      },
+      "photo": {
+        "src": "/assets/Tayyab-.jpg",
+        "alt": "photo - Tayyab Ali"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/design-construction"
+      ]
+    },
+    {
+      "_id": "testimonial-bryan-arnold-cwxb2k",
+      "quote": "iGUIDE and their Project Management Group offered a solution that could combine measurement, visual documentation, and CAD file delivery in a single visit.",
+      "name": "Bryan Arnold",
+      "role": "Project Manager",
+      "company": "PDS Architecture",
+      "link": {
+        "label": "Read their story",
+        "href": "/customer-stories/scaling-without-the-headcount-how-pds-architecture-modernized-site-documentation"
+      },
+      "photo": {
+        "src": "/assets/Sample-Drawing-Packages/bryan.jpg",
+        "alt": "logo - BarBurrito"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/design-construction"
+      ]
+    },
+    {
+      "_id": "testimonial-ar-eissa-oymny6",
+      "quote": "iGUIDE’s Service Pro network captures all the data we need and eliminates repeat site visits, reducing vendor costs and streamlining our construction workflow.",
+      "name": "AR Eissa",
+      "role": "Sr. Construction Manager",
+      "company": "BarBurrito",
+      "logo": {
+        "src": "/assets/barburrito-block.png",
+        "alt": "logo - BarBurrito"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/design-construction"
+      ]
+    },
+    {
+      "_id": "testimonial-riley-mackey-fgq4ke",
+      "quote": "It’s a snapshot in time, but for mature clients we keep it current—post-renovation documentation, new builds, and ongoing updates as part of their programs.",
+      "name": "Riley Mackey",
+      "role": "Manager, Spatial Data",
+      "company": "BGIS",
+      "photo": {
+        "src": "/assets/Uploads/Riley-Mackey-BGIS-headshot.jpg",
+        "alt": "photo - Riley Mackey"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/facility-management"
+      ]
+    },
+    {
+      "_id": "testimonial-todd-estes-rkwt8y",
+      "quote": "Accurately documenting fire scenes can be a challenge, but iGUIDE has changed that for us. The setup is simple, the deliverables are fast, and the value is unmatched.",
+      "name": "Todd Estes",
+      "role": "Division Chief - Planning, Investigations",
+      "company": "Noblesville Fire Department",
+      "photo": {
+        "src": "/assets/Todd-Estes.png",
+        "alt": "photo - Todd Estes"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/forensic-investigation"
+      ]
+    },
+    {
+      "_id": "testimonial-roger-thorpe-1rl4d3u",
+      "quote": "This product amazes me every time I use it. It works so flawlessly and it's such a joy to have and use for my work. I shot a 53,000 sq ft office space and although it took a while, it was so easy and took little effort on my part aside from moving around the 5-story building.",
+      "name": "Roger Thorpe",
+      "role": "Fire investigator",
+      "company": "Joseph Myers Investigations LLC",
+      "hasVideo": true,
+      "usedOn": [
+        "/forensic-investigation"
+      ]
+    },
+    {
+      "_id": "testimonial-bob-toth-y8fswz",
+      "quote": "One of our clients told us, ‘Every fire I send you on, I want an iGUIDE.’ That’s how valuable it has become. Now we scan every scene. If it ends up in litigation? We’ve got exactly what we need ready to go.",
+      "name": "Bob Toth",
+      "role": "Owner & Certified Fire Investigator",
+      "company": "IRIS Fire",
+      "hasVideo": true,
+      "usedOn": [
+        "/forensic-investigation"
+      ]
+    },
+    {
+      "_id": "testimonial-roman-barrett-1k89gkr",
+      "quote": "Our competitors generate sketches with AI. Some run that output past a reviewer and call it human-checked. We employ drafters, and on Standard and Premium a person draws your property from the LiDAR data and turns it around inside 24 hours.",
+      "name": "Roman Barrett",
+      "role": "Sr. Draft Operations Manager",
+      "company": "Planitar",
+      "photo": {
+        "src": "/assets/Testimonial-Headshots/Roman.jpeg",
+        "alt": "photo - Roman"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/insurance-restoration"
+      ]
+    },
+    {
+      "_id": "testimonial-jeremiah-kiefer-1wbgoj6",
+      "quote": "iGUIDE technology has given Deft a huge competitive advantage... We can get through a home in probably a third of the time.",
+      "name": "Jeremiah Kiefer",
+      "photo": {
+        "src": "/assets/iguide-vs-docusketch-jeremiah.jpg",
+        "alt": "Jeremiah Kiefer"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/insurance-restoration"
+      ]
+    },
+    {
+      "_id": "testimonial-jeremy-murray-1iaxku6",
+      "quote": "With iGUIDE, I'm getting back at least 20 hours a week. And that's being conservative. While someone else is still hand-sketching one property, I've already done four.",
+      "name": "Jeremy Murray",
+      "photo": {
+        "src": "/assets/Jeremy-Murray.jpg",
+        "alt": "Jeremy Murray"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/insurance-restoration",
+        "/iguide/xactimate-sketches"
+      ]
+    },
+    {
+      "_id": "testimonial-chris-a-howell-5g95pz",
+      "quote": "iGUIDE is great and the Xactimate ESX file is incredible. The amount of time saved on return trips to measure is huge savings. The camera will pay for itself. To be able to have a full sketch 24 hours later is great.",
+      "name": "Chris A. Howell",
+      "photo": {
+        "src": "/assets/Chris-Howell.png",
+        "alt": "Chris A. Howell"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/insurance-restoration"
+      ]
+    },
+    {
+      "_id": "testimonial-julie-pringle-68vna6",
+      "quote": "It used to take me over two-and-a-half hours to go into a home and just do measurements and manually insert them into floor plans. With iGUIDE, it was all so quick and easy. I’ve been able to grow my business by 375%, and the cost of the camera has paid for itself many times over.",
+      "name": "Julie Pringle",
+      "role": "Owner",
+      "company": "Snap Commercial Photography",
+      "photo": {
+        "src": "/assets/Julie-Pringle.jpeg",
+        "alt": "photo - Julie Pringle"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/real-estate-photography"
+      ]
+    },
+    {
+      "_id": "testimonial-rachel-morgan-1tnv2sx",
+      "quote": "iGUIDE brought a unique convenience and comfort to our buyer’s search experience. Before seeing a property in person, they’re able to explore it virtually… understand the layout and space, take measurements and determine if it meets their needs.",
+      "name": "Rachel Morgan",
+      "role": "Broker & Co-founder",
+      "company": "Morgan Wasley Group",
+      "photo": {
+        "src": "/assets/rachel_morgab.png",
+        "alt": "photo - Rachel Morgan"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/residential-real-estate"
+      ]
+    },
+    {
+      "_id": "testimonial-jim-gordon-1wgrnbr",
+      "quote": "iGUIDE is a crucial piece in our listing process — it gives us accurate square footage, helps buyers get a real feel for a home before stepping inside, and delivers an end product we’re always happy with.",
+      "name": "Jim Gordon",
+      "role": "Broker",
+      "company": "Agent Gordon Team",
+      "hasVideo": true,
+      "usedOn": [
+        "/residential-real-estate"
+      ]
+    },
+    {
+      "_id": "testimonial-sarah-middleton-10br40c",
+      "quote": "iGUIDE gives buyers a comprehensive view of the home, provides me with accurate room measurements, and adds an important layer of safety and peace of mind for my clients.",
+      "name": "Sarah Middleton",
+      "role": "Real Estate Broker",
+      "company": "Royal LePage",
+      "hasVideo": true,
+      "usedOn": [
+        "/residential-real-estate"
+      ]
+    },
+    {
+      "_id": "testimonial-marty-fraser-1o2acs2",
+      "quote": "Today’s sellers want sophisticated marketing solutions. iGUIDE fills the gap by giving us 3D tour and floor plans that buyers expect — and it’s incredibly simple to add to our listings.",
+      "name": "Marty Fraser",
+      "role": "Real Estate Agent",
+      "company": "Bosley Real Estate Ltd.",
+      "hasVideo": true,
+      "usedOn": [
+        "/residential-real-estate"
+      ]
+    },
+    {
+      "_id": "testimonial-quote-1pqd9zy",
+      "quote": "It used to take me over two-and-a-half hours to go into a home and just do measurements and manually insert them into floor plans. But, with iGUIDE, it was all so quick and easy. I have been able to grow my business by a whopping 375% using iGUIDE, and the cost of the camera has paid for itself a hundredfold, many times over!",
+      "logo": {
+        "src": "/assets/Uploads/Tetsimonial-Logo-Snap-Photo.png",
+        "alt": "Snap Photo logo"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/camera-hardware"
+      ]
+    },
+    {
+      "_id": "testimonial-quote-1oqd82m",
+      "quote": "By adding iGUIDE as a service, I had a well-rounded, complete solution to offer clients. So my capacity is at zero since I started offering iGUIDE.",
+      "logo": {
+        "src": "/assets/Uploads/scend-media.png",
+        "alt": "Scend Media logo"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/camera-hardware"
+      ]
+    },
+    {
+      "_id": "testimonial-quote-1r8qqyd",
+      "quote": "I made enough revenue to cover that in the first 10 weeks or something, it was crazy how quickly it paid for itself, and it's continued to generate a good degree of profit for me every single month since.",
+      "logo": {
+        "src": "/assets/Uploads/Tetsimonial-Logo-Nanaimo-Photo.png",
+        "alt": "Nanaimo Photo logo"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/camera-hardware"
+      ]
+    },
+    {
+      "_id": "testimonial-quote-1dijgqt",
+      "quote": "It [iGUIDE] was faster. It was lighter. It was smaller. It made more sense to me. The interface just made more sense to me.",
+      "logo": {
+        "src": "/assets/Uploads/Tetsimonial-Logo-Nashua-Video-Tours.png",
+        "alt": "Nashua Video Tours logo"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/camera-hardware"
+      ]
+    },
+    {
+      "_id": "testimonial-ryan-hagel-140uycl",
+      "quote": "We've had our measurements challenged at least 200 times. Every single time, iGUIDE has been accurate. Not once has it been wrong.",
+      "name": "Ryan Hagel",
+      "role": "Owner",
+      "company": "Calgary Real Estate Photos",
+      "photo": {
+        "src": "/assets/ryan.jpg",
+        "alt": "photo - Ryan Hagel"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/iguide/floor-plans"
+      ]
+    },
+    {
+      "_id": "testimonial-mike-martin-168q9ev",
+      "quote": "I think it's cool because it gives buyers a chance to really look at the property. Sometimes the angle you grab in a photo can make the backyard look huge or really small—and then you walk out there and it's not what you expected. With a Site Plan, they can actually see what they're getting before they ever step foot on the property.",
+      "name": "Mike Martin",
+      "role": "Agent",
+      "company": "InMotion Real Estate",
+      "photo": {
+        "src": "/assets/Testimonial-Headshots/Mike-Martin.jpg",
+        "alt": "photo - Mike Martin"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/iguide/site-plans"
+      ]
+    },
+    {
+      "_id": "testimonial-ron-elias-pocn05",
+      "quote": "We don't sell it as an iGUIDE with pictures. We sell it as the pictures with floor plans and measurements and a 3D tour.",
+      "name": "Ron Elias",
+      "role": "VP",
+      "company": "London House Photography",
+      "photo": {
+        "src": "/assets/Testimonial-Headshots/Ron-Elias.png",
+        "alt": "Ron Elias, VP of London House Photography",
+        "width": 300,
+        "height": 300
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/iguide/3d-virtual-tours"
+      ]
+    },
+    {
+      "_id": "testimonial-todd-estes-15n5mnu",
+      "quote": "iGUIDE makes documenting fire scenes simple, fast, and more accurate than ever.",
+      "name": "Todd Estes",
+      "role": "Division Chief - Planning, Investigations",
+      "company": "Noblesville Fire Department",
+      "photo": {
+        "src": "/assets/Todd-Estes.png",
+        "alt": "photo - Todd Estes"
+      },
+      "hasVideo": false,
+      "usedOn": [
+        "/iguide/xactimate-sketches"
+      ]
+    },
+    {
+      "_id": "testimonial-robert-toth-17n9s6q",
+      "quote": "Everything lived in the cloud with Matterport. There were chain-of-custody concerns, subscription fees and we couldn’t store the raw data ourselves. Our clients—especially public agencies—care about data control. I couldn’t download or store the raw data. That was a dealbreaker.",
+      "name": "Robert Toth",
+      "role": "Owner & Certified Fire Investigator",
+      "company": "IRIS Fire",
+      "hasVideo": true,
+      "usedOn": [
+        "/iguide/xactimate-sketches"
+      ]
+    },
+    {
+      "_id": "testimonial-jeremy-murray-lagdcc",
+      "quote": "The reports look sharp, the floor plans are accurate, and the 3D walkthrough helps me catch every detail—even after I’ve left the site. All the documentation I need is in one place.",
+      "name": "Jeremy Murray",
+      "role": "Independent Adjuster",
+      "company": "Gale-Force Adjusters LLC",
+      "hasVideo": true,
+      "usedOn": [
+        "/iguide/xactimate-sketches"
+      ]
+    },
+    {
+      "_id": "testimonial-jeremiah-kiefer-nuyd5z",
+      "quote": "10 adjusters and 9 of them don’t know how to frame a shot. If you let us take an iGUIDE virtual tour, then you’ll have a million still images. iGUIDE technology has given Deft a huge competitive advantage. Simply seeing how much value it’s brought to deft, we fell in love with it!",
+      "name": "Jeremiah Kiefer",
+      "role": "Founder & CEO",
+      "company": "The Deft Group",
+      "hasVideo": true,
+      "usedOn": [
+        "/iguide/xactimate-sketches"
+      ]
+    }
+  ],
+  "conflicts": []
+}
