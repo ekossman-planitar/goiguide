@@ -47,7 +47,8 @@ function Section_({s, formAnchor}: {s: any; formAnchor: boolean}) {
       return all.length ? <LogoBand heading={s.heading} logos={all} variant={all.length > 5 ? 'marquee' : 'row'} background="white" /> : null
     }
     case 'lpTestimonials': {
-      const quotes = ((s.quotes ?? s._previewQuotes ?? []) as LpQuote[]).map(quoteFrom)
+      // Skip missing or unpublished testimonials instead of failing the page
+      const quotes = ((s.quotes ?? s._previewQuotes ?? []) as (LpQuote | null)[]).filter((q): q is LpQuote => !!q?.quote).map(quoteFrom)
       return quotes.length ? <Testimonials heading={s.heading} quotes={quotes} background={bg(s) ?? 'surface'} /> : null
     }
     case 'lpTabs': {

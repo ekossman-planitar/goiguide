@@ -145,7 +145,7 @@ export const LANDING_PAGE_QUERY = defineQuery(`*[_type == "landingPage" && path 
     _type == "lpSplit" => {"media": media${LP_MEDIA}},
     _type == "lpSteps" => {"steps": steps[]{..., "image": image${LP_IMG}}},
     _type == "lpTabs" => {"tabs": tabs[]{..., "media": media${LP_MEDIA}}},
-    _type == "lpTestimonials" => {"quotes": items[]->[hidden != true]{
+    _type == "lpTestimonials" => {"quotes": items[@->hidden != true]->{
       quote, detail, name, role, company, link{label, href},
       photo{alt, hotspot, crop, asset->{_id, url}},
       "logo": companyLogo->{name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}}
