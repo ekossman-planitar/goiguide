@@ -56,7 +56,7 @@ export function CustomerStories({heading, subheading, link, stories}: Props) {
             {link && (
               <SmartLink
                 href={link.href}
-                className="group mt-6 inline-flex items-center gap-1.5 text-base leading-6 font-semibold text-ink hover:text-primary"
+                className="group mt-6 inline-flex items-center gap-1.5 text-base leading-6 font-semibold text-ink hover:text-primary-hover"
               >
                 {link.label}
                 <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
@@ -91,7 +91,7 @@ function StoryCardView({story}: {story: StoryCard}) {
       aria-label={`Read ${story.company}'s story: ${story.quote}`}
       className="group flex w-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
-      <figure className="flex w-full flex-col rounded-2xl border border-[#e7edf6] bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-shadow group-hover:shadow-lg">
+      <figure className="flex w-full flex-col rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-shadow group-hover:shadow-lg">
         <blockquote className="flex-1">
           <p className="text-2xl leading-[1.35] font-semibold text-ink">
             <span aria-hidden className="mr-1 text-brand">

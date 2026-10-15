@@ -17,7 +17,7 @@ const base =
 
 const variants = {
   primary: 'border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover',
-  secondary: 'border-primary bg-white text-primary hover:bg-primary-soft',
+  secondary: 'border-primary bg-white text-primary hover:border-primary-hover hover:text-primary-hover',
 }
 
 const sizes = {

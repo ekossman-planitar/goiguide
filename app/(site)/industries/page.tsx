@@ -33,7 +33,7 @@ export default function IndustriesPage() {
               <li key={href}>
                 <SmartLink
                   href={href}
-                  className="group flex h-full flex-col rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary"
+                  className="group flex h-full flex-col rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
                     <Icon aria-hidden width={24} height={24} />

@@ -18,7 +18,7 @@ type Props = {
 const pill = (active: boolean) =>
   cn(
     'inline-flex h-10 items-center gap-2 rounded-full border px-4 text-[15px] font-medium transition-colors',
-    active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-body hover:border-primary hover:text-primary',
+    active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-body hover:border-primary-hover hover:text-primary-hover',
   )
 
 /**
@@ -113,7 +113,7 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
               onClick={() => chooseCategory(slug)}
               className={cn(
                 'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
-                category === slug ? 'bg-primary-soft text-primary' : 'text-body hover:text-primary',
+                category === slug ? 'bg-primary-soft text-primary' : 'text-body hover:text-primary-hover',
               )}
             >
               {slug === ALL ? label : categoryLabel(type, slug)}
@@ -140,7 +140,7 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
               <button
                 type="button"
                 onClick={() => setShown((n) => n + PAGE_SIZE)}
-                className="rounded-lg border border-primary bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary-soft"
+                className="rounded-lg border border-primary bg-white px-6 py-3 font-semibold text-primary transition-colors hover:border-primary-hover hover:text-primary-hover"
               >
                 Show more ({visible.length - shown} more)
               </button>

@@ -111,7 +111,7 @@ const components: PortableTextComponents = {
     ctaBanner: ({value}: {value: CtaBannerValue}) => (
       <aside
         className="relative mt-12 overflow-hidden rounded-2xl bg-primary px-8 py-10 text-white"
-        style={value.image?.asset?.url ? {backgroundImage: `linear-gradient(rgba(0,74,107,.82),rgba(0,74,107,.82)), url(${value.image.asset.url})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}
+        style={value.image?.asset?.url ? {backgroundImage: `linear-gradient(rgba(46,44,48,.85),rgba(46,44,48,.85)), url(${value.image.asset.url})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}
       >
         {value.heading && <p className="text-2xl font-bold">{value.heading}</p>}
         {value.text && <p className="mt-2 text-lg text-white/90">{value.text}</p>}

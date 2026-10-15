@@ -6,9 +6,9 @@ import type {HeroStyle, LpSectionType} from '../../lib/landingPages/layouts'
  * the /landing-templates overview.
  */
 const W = 120
-const ink = '#9aa5b1'
-const soft = '#dfe5eb'
-const blue = '#006e9e'
+const ink = '#a1a1aa'
+const soft = '#e4e4e7'
+const blue = '#2e2c30'
 
 function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; y: number}) {
   const lines = (x: number, yy: number, widths: number[], h = 2.5) =>
@@ -163,18 +163,18 @@ export function LayoutWireframe({sections, heroStyle, width = 160}: {sections: L
   const total = (tops.at(-1) ?? 10) + (heights[sections.at(-1)!] ?? 30) + 8
   const bands = sections.map((type, i) => (
     <g key={i}>
-      {i > 0 && <line x1={0} y1={tops[i] - 1} x2={W} y2={tops[i] - 1} stroke="#eef1f4" />}
+      {i > 0 && <line x1={0} y1={tops[i] - 1} x2={W} y2={tops[i] - 1} stroke="#f0f0f1" />}
       <Band type={type} heroStyle={heroStyle} y={tops[i]} />
     </g>
   ))
   return (
-    <svg viewBox={`0 0 ${W} ${total}`} width={width} role="img" aria-label="Layout wireframe" style={{display: 'block', background: '#fff', borderRadius: 6, border: '1px solid #e3e8ee'}}>
+    <svg viewBox={`0 0 ${W} ${total}`} width={width} role="img" aria-label="Layout wireframe" style={{display: 'block', background: '#fff', borderRadius: 6, border: '1px solid #e4e4e7'}}>
       {/* Header: logo only */}
-      <rect x={0} y={0} width={W} height={7} fill="#f6f8fa" />
+      <rect x={0} y={0} width={W} height={7} fill="#f7f7f8" />
       <rect x={6} y={2} width={16} height={3} rx={1} fill={blue} />
       {bands}
       {/* Footer: copyright + legal */}
-      <rect x={0} y={total - 6} width={W} height={6} fill="#f6f8fa" />
+      <rect x={0} y={total - 6} width={W} height={6} fill="#f7f7f8" />
     </svg>
   )
 }

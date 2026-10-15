@@ -108,7 +108,7 @@ function SingleQuote({quote}: {quote: Quote}) {
 
 function QuoteCard({quote}: {quote: Quote}) {
   return (
-    <figure className="flex w-full flex-col rounded-2xl border border-[#e7edf6] bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <figure className="flex w-full flex-col rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       {quote.media && <MediaView media={quote.media} className="mb-6" />}
       {quote.logo && (
         <FallbackImage

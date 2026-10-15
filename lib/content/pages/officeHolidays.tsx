@@ -23,7 +23,7 @@ const holidays: [string, string, string, string][] = [
 
 function HolidayTable() {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[#e7edf6] shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-x-auto rounded-2xl border border-[#e4e4e7] shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <table className="w-full min-w-[560px] border-collapse text-left text-base">
         <thead>
           <tr className="bg-brand text-lg font-semibold text-white">

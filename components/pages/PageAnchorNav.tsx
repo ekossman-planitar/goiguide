@@ -11,7 +11,7 @@ export function PageAnchorNav({links, label = 'On this page'}: {links: {label: s
             <SmartLink
               key={link.href}
               href={link.href}
-              className="border-b-4 border-transparent px-4 py-3 text-base font-semibold text-ink transition-colors hover:border-primary hover:text-primary"
+              className="border-b-4 border-transparent px-4 py-3 text-base font-semibold text-ink transition-colors hover:border-primary-hover hover:text-primary-hover"
             >
               {link.label}
             </SmartLink>

@@ -228,7 +228,7 @@ export const blocks: Block[] = [
               ['Size', '9.9 cm × 7.9 cm × 29.0 cm'],
               ['Weight', '725g'],
             ].map(([label, value]) => (
-              <tr key={label} className="border-b border-[#e7edf6]">
+              <tr key={label} className="border-b border-[#e4e4e7]">
                 <th scope="row" className="py-3 pr-4 font-semibold text-ink">
                   {label}
                 </th>
@@ -248,7 +248,7 @@ export const blocks: Block[] = [
     id: 'section-10',
     background: 'sky',
     children: (
-      <div id="footer-form" className="mx-auto max-w-2xl rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-lg md:p-10">
+      <div id="footer-form" className="mx-auto max-w-2xl rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-lg md:p-10">
         <h2 className="text-center text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">
           Ready to be like Mike and make it right?
         </h2>

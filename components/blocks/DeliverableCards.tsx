@@ -36,7 +36,7 @@ export function DeliverableCards({
       {items.map((item) => (
         <li
           key={item.title}
-          className="flex flex-col rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
+          className="flex flex-col rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
         >
           <h3 className="text-xl leading-7 font-semibold text-ink">{item.title}</h3>
           {item.summary && <p className="mt-2 text-base leading-6 text-muted">{item.summary}</p>}

@@ -36,7 +36,7 @@ export function FormDialogButton({label, title, formId, id, variant = 'primary',
           'inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-6 py-3 text-center text-base leading-6 font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
           variant === 'primary'
             ? 'border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover'
-            : 'border-primary bg-white text-primary hover:bg-primary-soft',
+            : 'border-primary bg-white text-primary hover:border-primary-hover hover:text-primary-hover',
           className,
         )}
       >

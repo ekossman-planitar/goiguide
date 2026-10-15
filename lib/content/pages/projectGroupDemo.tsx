@@ -56,7 +56,7 @@ function PackageText({intro, items, links}: {intro: string[]; items: string[]; l
             href={link.href}
             className={cn(
               'inline-flex items-center rounded-lg border border-primary px-4 py-2 text-sm font-semibold transition-colors',
-              link.primary ? 'bg-primary text-white hover:bg-primary-hover' : 'bg-white text-primary hover:bg-primary-soft',
+              link.primary ? 'bg-primary text-white hover:bg-primary-hover' : 'bg-white text-primary hover:border-primary-hover hover:text-primary-hover',
             )}
             {...(link.newTab ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
           >

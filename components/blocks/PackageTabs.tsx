@@ -37,7 +37,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
   return (
     <div id="packageTabs">
       <div className="flex justify-center">
-        <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] bg-[#e6edf3] p-2">
+        <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] bg-[#ececee] p-2">
           {tabs.map((tab, i) => (
             <button
               key={tab.id}
@@ -53,7 +53,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
               onClick={() => setActive(i)}
               className={cn(
                 'shrink-0 rounded-3xl border px-5 py-2.5 text-base leading-6 font-semibold whitespace-nowrap transition-colors',
-                i === active ? 'border-primary bg-[#d0edf8] text-primary' : 'border-[#e7edf6] bg-white text-ink hover:border-primary hover:text-primary',
+                i === active ? 'border-primary bg-[#dcdcdf] text-primary' : 'border-[#e4e4e7] bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
               )}
             >
               {tab.label}
@@ -68,7 +68,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
           id={`panel-${tab.id}`}
           aria-labelledby={`tab-${tab.id}`}
           hidden={i !== active}
-          className="mx-auto mt-8 max-w-[1080px] rounded-2xl border border-[#e7edf6] bg-white p-8 shadow-sm md:p-12"
+          className="mx-auto mt-8 max-w-[1080px] rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-sm md:p-12"
         >
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
@@ -76,7 +76,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
               <p className="mt-4 text-base leading-7 text-body">{tab.text}</p>
               <CheckList items={tab.list} className="mt-6" />
             </div>
-            <div className="rounded-2xl border border-[#e7edf6] bg-white p-6">
+            <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6">
               <MediaView media={{type: 'image', image: tab.image}} />
             </div>
           </div>

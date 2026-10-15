@@ -40,7 +40,7 @@ export async function CatalogueListing({id}: {id: CatalogueId}) {
               className={
                 c.id === id
                   ? 'inline-flex h-10 items-center rounded-full border border-primary bg-primary px-4 text-[15px] font-medium text-white'
-                  : 'inline-flex h-10 items-center rounded-full border border-line bg-white px-4 text-[15px] font-medium text-body hover:border-primary hover:text-primary'
+                  : 'inline-flex h-10 items-center rounded-full border border-line bg-white px-4 text-[15px] font-medium text-body hover:border-primary-hover hover:text-primary-hover'
               }
             >
               {c.label}
@@ -54,7 +54,7 @@ export async function CatalogueListing({id}: {id: CatalogueId}) {
               <li key={item._id}>
                 <a
                   href={`${catalogue.path}/${item.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:border-primary-hover/40 hover:shadow-xl"
                 >
                   <span className="relative block aspect-[16/9] bg-surface">
                     {item.thumbnail?.asset && (
@@ -68,7 +68,7 @@ export async function CatalogueListing({id}: {id: CatalogueId}) {
                     )}
                   </span>
                   <span className="flex flex-1 flex-col p-6">
-                    <span className="text-xl font-bold leading-snug text-ink group-hover:text-primary">{item.title}</span>
+                    <span className="text-xl font-bold leading-snug text-ink group-hover:text-primary-hover">{item.title}</span>
                     <span className="mt-auto inline-flex items-center gap-1.5 pt-6 font-semibold text-primary">
                       Download
                       <ArrowRight width={16} height={16} />

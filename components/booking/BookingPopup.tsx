@@ -13,7 +13,7 @@ import {useEffect} from 'react'
  *   browser with the booking email (when Calendly provides it), UTM tags, first
  *   referrer and page URL — exactly as on live. This site's server never sees it.
  */
-const CALENDLY_BASE_URL = 'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=006e9e'
+const CALENDLY_BASE_URL = 'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=2e2c30'
 const BUTTON_SELECTOR = '.openCalendly, .book-demo'
 const HUBSPOT_PORTAL_ID = '6828755'
 const HUBSPOT_FORM_ID = 'be68b69a-fff5-46a0-8dbc-f72dbbb5938f'
@@ -197,7 +197,7 @@ export function BookingPopup() {
     const params = new URLSearchParams(window.location.search)
     let timer: ReturnType<typeof setTimeout> | undefined
     if (params.get('demo') === 'true') {
-      let url = 'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=006E9E'
+      let url = 'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=2e2c30'
       const country = params.get('country')
       if (country) url += `&a4=${encodeURIComponent(country)}`
       timer = setTimeout(() => openPopup(url), 500)

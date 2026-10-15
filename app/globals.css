@@ -6,19 +6,19 @@
   /* Headlines: REA Pangea, with REA's own fallbacks */
   --font-display: var(--font-pangea), Helvetica, Arial, sans-serif;
 
-  --color-brand: #009cde;          /* iGUIDE blue (logo) */
-  --color-primary: #006e9e;        /* buttons, links (live site) */
-  --color-primary-hover: #005a82;
-  --color-primary-soft: #e3f3fb;   /* tinted backgrounds */
+  --color-brand: #2e2c30;          /* brand black (2026 rebrand; was iGUIDE blue #009cde) */
+  --color-primary: #2e2c30;        /* buttons, links: brand black (was #006e9e) */
+  --color-primary-hover: #e31f2e;  /* every hover: brand red */
+  --color-primary-soft: #f4f4f5;   /* tinted backgrounds: light grey (was light blue) */
   --color-ink: #000000;            /* headings (live site) */
   --color-body: #000000;           /* body copy (live site) */
   --color-muted: #58595b;          /* secondary copy (live site) */
-  --color-line: #e3e8ee;           /* borders */
-  --color-surface: #f2f6f9;        /* grey panel background (live site) */
-  --color-sky: #ebfaff;            /* light blue section background (live site) */
+  --color-line: #e4e4e7;           /* borders */
+  --color-surface: #f4f4f5;        /* light grey section background (was blue-grey) */
+  --color-sky: #f4f4f5;            /* light grey section background (was light blue #ebfaff) */
   --color-cream: #ffd6a0;          /* pills and step badges (live site) */
   --color-star: #f59e0b;
-  --color-announce: #009cde;       /* announcement bar (live site) */
+  --color-announce: #2e2c30;       /* announcement bar: brand black (was blue) */
 }
 
 /* Every headline uses REA Pangea (utility classes like font-sans can still override) */
@@ -57,7 +57,7 @@ body {
 /* HubSpot newsletter form in the footer (HubSpot's own CSS is disabled) */
 .subscribe-form .hs-form-field > label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .subscribe-form .hs-input[type='email'] {
-  width: 100%; height: 50px; padding: 0 16px; border: 1px solid #c9d2dc; border-radius: 8px;
+  width: 100%; height: 50px; padding: 0 16px; border: 1px solid #d4d4d8; border-radius: 8px;
   font-size: 16px; background: #fff; color: var(--color-ink);
 }
 .subscribe-form .hs-input[type='email']:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; }

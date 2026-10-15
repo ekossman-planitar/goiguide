@@ -109,7 +109,7 @@ export function ResellerDirectory() {
         </svg>
         <input
           id="reseller-search"
-          className="search w-full rounded-[28px] border border-line bg-white py-3 pr-4 pl-[42px] text-base transition hover:border-primary focus:border-primary focus:outline-none"
+          className="search w-full rounded-[28px] border border-line bg-white py-3 pr-4 pl-[42px] text-base transition hover:border-primary-hover focus:border-primary focus:outline-none"
           type="text"
           placeholder="Search by country or region"
           value={term}
@@ -139,7 +139,7 @@ export function ResellerDirectory() {
                         type="button"
                         aria-pressed={active}
                         onClick={() => setLocation(active ? null : loc)}
-                        className={cn('location-filters text-left font-medium whitespace-nowrap hover:text-primary md:whitespace-normal', active && 'active text-primary')}
+                        className={cn('location-filters text-left font-medium whitespace-nowrap hover:text-primary-hover md:whitespace-normal', active && 'active text-primary')}
                       >
                         {loc} ({locationCounts[loc]})
                         {active && (
@@ -161,7 +161,7 @@ export function ResellerDirectory() {
               {visible.map((r, i) => {
                 const site = websiteFor(r)
                 return (
-                  <li key={`${r.Name}-${i}`} className="rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-sm">
+                  <li key={`${r.Name}-${i}`} className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm">
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <h3 className="flex-1 text-2xl font-bold break-words text-ink">{r.Name}</h3>
                       {split(r.Locations).length > 0 && (
@@ -203,7 +203,7 @@ export function ResellerDirectory() {
                     </div>
                     {r.Description && <p className="mt-6">{r.Description}</p>}
                     {site && (
-                      <a href={site} target="_blank" rel="noopener noreferrer" className="card-link group mt-6 inline-flex items-center gap-2 font-semibold text-ink hover:text-primary">
+                      <a href={site} target="_blank" rel="noopener noreferrer" className="card-link group mt-6 inline-flex items-center gap-2 font-semibold text-ink hover:text-primary-hover">
                         Visit website
                         <ArrowRight width={20} height={20} className="transition-transform group-hover:translate-x-1" />
                       </a>

@@ -26,7 +26,7 @@ export function VsColumns({ours, theirs}: {ours: VsSide; theirs: VsSide}) {
           key={side.name}
           className={cn(
             'flex flex-col rounded-2xl border p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] md:p-8',
-            i === 0 ? 'border-primary bg-white' : 'border-[#e7edf6] bg-surface',
+            i === 0 ? 'border-primary bg-white' : 'border-[#e4e4e7] bg-surface',
           )}
         >
           <div className="flex h-40 items-center justify-center">

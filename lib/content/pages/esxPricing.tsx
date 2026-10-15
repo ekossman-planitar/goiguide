@@ -17,7 +17,7 @@ type Row = string[]
 
 function PriceTable({head, rows}: {head: string[]; rows: Row[]}) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-2xl border border-[#e7edf6]">
+    <div className="mt-6 overflow-x-auto rounded-2xl border border-[#e4e4e7]">
       <table className="w-full min-w-[480px] text-left text-base">
         <thead className="bg-surface">
           <tr>
@@ -30,7 +30,7 @@ function PriceTable({head, rows}: {head: string[]; rows: Row[]}) {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row[0]} className="border-t border-[#e7edf6]">
+            <tr key={row[0]} className="border-t border-[#e4e4e7]">
               {row.map((cell, i) =>
                 i === 0 ? (
                   <th key={i} scope="row" className="px-4 py-3 font-medium text-ink">
@@ -115,7 +115,7 @@ export const blocks: Block[] = [
           <SmartLink
             key={href}
             href={href}
-            className="rounded-full border border-[#e7edf6] bg-white px-5 py-2 text-base font-semibold text-ink no-underline hover:border-primary hover:text-primary"
+            className="rounded-full border border-[#e4e4e7] bg-white px-5 py-2 text-base font-semibold text-ink no-underline hover:border-primary-hover hover:text-primary-hover"
           >
             {label}
           </SmartLink>

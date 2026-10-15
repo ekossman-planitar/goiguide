@@ -13,10 +13,10 @@ export function LayoutPicker(props: StringInputProps) {
           <div
             key={layout.id}
             style={{
-              border: `2px solid ${selected ? '#006e9e' : '#e3e8ee'}`,
+              border: `2px solid ${selected ? '#2e2c30' : '#e4e4e7'}`,
               borderRadius: 8,
               padding: 10,
-              background: selected ? '#e3f3fb' : 'transparent',
+              background: selected ? '#f4f4f5' : 'transparent',
             }}
           >
             <button

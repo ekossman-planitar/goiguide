@@ -31,7 +31,7 @@ export function CardGrid({cards, columns = 4}: {cards: GridCard[]; columns?: 2 |
       {cards.map((card) => (
         <li
           key={card.title}
-          className="flex flex-col rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
+          className="flex flex-col rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
         >
           {card.image && (
             <div className="relative mb-5 overflow-hidden rounded-xl bg-surface">

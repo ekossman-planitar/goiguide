@@ -90,7 +90,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
                     'relative flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-bold transition-all duration-500',
                     i < active && 'border-primary bg-primary text-white',
                     i === active && 'scale-110 border-primary bg-primary text-white shadow-lg shadow-primary/30',
-                    i > active && 'border-line bg-white text-muted hover:border-primary hover:text-primary',
+                    i > active && 'border-line bg-white text-muted hover:border-primary-hover hover:text-primary-hover',
                   )}
                 >
                   {i === active && <span className="absolute inset-0 animate-ping rounded-full bg-primary/25" />}

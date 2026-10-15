@@ -53,7 +53,7 @@ export function CurrencySwitch({value, onChange}: {value: Currency; onChange: (c
           onClick={() => onChange(c)}
           className={cn(
             'rounded-full px-4 py-1.5 text-sm leading-5 font-semibold transition-colors',
-            value === c ? 'bg-primary text-white' : 'text-ink hover:text-primary',
+            value === c ? 'bg-primary text-white' : 'text-ink hover:text-primary-hover',
           )}
         >
           {c}
@@ -111,7 +111,7 @@ export function IndustryFilter({
             'rounded-full border px-4 py-1.5 text-sm leading-5 font-medium transition-colors',
             value === i.id
               ? 'border-primary bg-primary-soft text-primary'
-              : 'border-line bg-white text-ink hover:border-primary hover:text-primary',
+              : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
           )}
         >
           {i.label}

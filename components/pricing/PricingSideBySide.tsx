@@ -79,7 +79,7 @@ export function PricingSideBySide({data}: {data: PricingData}) {
                         <PackageImage src={pkg.image} alt="" thumb className="h-10 w-12 shrink-0 sm:h-12 sm:w-16" />
                         <span
                           className={cn(
-                            'min-w-0 flex-1 text-base font-semibold transition-colors group-hover:text-primary sm:text-lg',
+                            'min-w-0 flex-1 text-base font-semibold transition-colors group-hover:text-primary-hover sm:text-lg',
                             isOpen ? 'text-primary' : 'text-ink',
                           )}
                         >

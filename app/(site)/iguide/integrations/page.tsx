@@ -26,7 +26,7 @@ export default function IntegrationsPage() {
             <a
               key={g.id}
               href={`#${g.id}`}
-              className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-primary hover:text-primary"
+              className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-primary-hover hover:text-primary-hover"
             >
               {g.heading}
             </a>

@@ -57,7 +57,7 @@ export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '
       <Container className="flex h-20 items-center justify-between gap-6">
         {/* Native <a> on purpose: full page loads keep GTM triggers working */}
         <a href={homeHref} className="shrink-0" aria-label="iGUIDE home">
-          <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} priority className="h-auto w-[150px]" />
+          <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={1330} height={368} priority className="h-auto w-[150px]" />
         </a>
 
         <nav aria-label="Main" className="hidden lg:block">
@@ -130,7 +130,7 @@ function DesktopNavItem({
   onHoverPlainLink,
 }: DesktopNavItemProps) {
   const panelId = `mega-${item.label.toLowerCase().replace(/\W+/g, '-')}`
-  const linkClass = 'flex items-center gap-1 rounded-lg p-2 text-base leading-6 text-ink hover:text-primary'
+  const linkClass = 'flex items-center gap-1 rounded-lg p-2 text-base leading-6 text-ink hover:text-primary-hover'
 
   if (!item.menu) {
     return (
@@ -161,7 +161,7 @@ function DesktopNavItem({
         <button
           type="button"
           data-menu-trigger={item.label}
-          className={cn('-ml-1 rounded-md p-1.5 text-ink hover:text-primary', open && 'text-primary')}
+          className={cn('-ml-1 rounded-md p-1.5 text-ink hover:text-primary-hover', open && 'text-primary')}
           aria-expanded={open}
           aria-controls={panelId}
           aria-label={`${item.label} menu`}
@@ -182,7 +182,7 @@ function DesktopNavItem({
         <Container className="grid grid-cols-4 gap-10 py-10">
           {/* Left 1/4: the top-level item */}
           <div className="border-r border-line pr-10">
-            <SmartLink href={item.href} className="text-2xl font-bold text-ink hover:text-primary">
+            <SmartLink href={item.href} className="text-2xl font-bold text-ink hover:text-primary-hover">
               {item.label}
             </SmartLink>
             <p className="mt-3 leading-relaxed text-muted">{menu.description}</p>
@@ -197,11 +197,11 @@ function DesktopNavItem({
             {menu.links.map(({label, href, description, icon: Icon}) => (
               <li key={href + label}>
                 <SmartLink href={href} className="group flex gap-4 rounded-xl p-3 transition-colors hover:bg-surface">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary-hover group-hover:text-white">
                     <Icon size={20} strokeWidth={1.75} aria-hidden />
                   </span>
                   <span>
-                    <span className="block font-semibold text-ink group-hover:text-primary">{label}</span>
+                    <span className="block font-semibold text-ink group-hover:text-primary-hover">{label}</span>
                     <span className="mt-0.5 block text-sm leading-snug text-muted">{description}</span>
                   </span>
                 </SmartLink>

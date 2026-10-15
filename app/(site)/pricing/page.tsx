@@ -39,7 +39,7 @@ export default function PricingPage() {
           {addOns.map((addOn) => (
             <li
               key={addOn.title}
-              className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-2xl border border-[#e7edf6] bg-white p-5 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
+              className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-2xl border border-[#e4e4e7] bg-white p-5 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
             >
               <FallbackImage
                 src={addOn.image.src}

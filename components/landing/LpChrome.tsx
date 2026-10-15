@@ -14,7 +14,7 @@ export function LpHeader({button}: {button?: LpButton | null}) {
         {/* Native <a>: full page load keeps GTM page views working */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" aria-label="iGUIDE home" className="shrink-0">
-          <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} priority className="h-auto w-[130px] md:w-[150px]" />
+          <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={1330} height={368} priority className="h-auto w-[130px] md:w-[150px]" />
         </a>
         {cta && (
           <Button href={cta.href} className={cta.className} newTab={cta.newTab}>
@@ -35,7 +35,7 @@ export function LpFooter() {
         <ul className="flex flex-wrap gap-x-5 gap-y-1">
           {legal.links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary-hover hover:underline">
                 {l.label}
               </a>
             </li>

@@ -10,7 +10,7 @@ type Result =
   {state: 'idle' | 'loading' | 'error'} | {state: 'done'; total: string; currency: string; customQuote: boolean}
 
 const field =
-  'h-12 w-full rounded-lg border border-[#d5dde5] bg-white px-4 text-base text-ink focus:border-primary focus:outline-2 focus:outline-primary/30 disabled:cursor-not-allowed disabled:border-[#e7edf6] disabled:bg-surface disabled:text-muted'
+  'h-12 w-full rounded-lg border border-[#d4d4d8] bg-white px-4 text-base text-ink focus:border-primary focus:outline-2 focus:outline-primary/30 disabled:cursor-not-allowed disabled:border-[#e4e4e7] disabled:bg-surface disabled:text-muted'
 
 /** Native select with our own chevron, inset from the edge */
 function Select({className, children, ...props}: React.ComponentProps<'select'>) {
@@ -48,13 +48,13 @@ function Segmented<T extends string>({
   labels?: Record<string, string>
 }) {
   return (
-    <div className="inline-flex h-12 items-stretch rounded-lg border border-[#d5dde5] bg-white p-1">
+    <div className="inline-flex h-12 items-stretch rounded-lg border border-[#d4d4d8] bg-white p-1">
       {options.map((opt) => (
         <label
           key={opt}
           className={cn(
             'flex cursor-pointer items-center rounded-md px-4 text-sm font-semibold transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary',
-            value === opt ? 'bg-primary text-white' : 'text-ink hover:text-primary',
+            value === opt ? 'bg-primary text-white' : 'text-ink hover:text-primary-hover',
           )}
         >
           <input
@@ -147,7 +147,7 @@ export function PricingCalculator() {
   const total = result.state === 'done' && !result.customQuote ? result.total : '$0.00'
 
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-[#e7edf6] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+    <div className="grid overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
       <form
         id="Form_PricingCalculatorForm"
         className="space-y-6 p-6 sm:p-8"
@@ -213,7 +213,7 @@ export function PricingCalculator() {
                           'inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary',
                           checked
                             ? 'border-primary bg-primary-soft text-primary'
-                            : 'border-[#d5dde5] text-ink hover:border-primary',
+                            : 'border-[#d4d4d8] text-ink hover:border-primary-hover',
                           locked && 'cursor-default',
                         )}
                       >

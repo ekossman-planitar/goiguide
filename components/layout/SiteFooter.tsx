@@ -18,7 +18,7 @@ export function SiteFooter() {
           <div>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- full page loads for GTM */}
             <a href="/" aria-label="iGUIDE home" className="inline-block">
-              <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={720} height={175} className="h-auto w-[156px]" />
+              <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={1330} height={368} className="h-auto w-[156px]" />
             </a>
             <h2 className="mt-8 text-xl leading-7 font-semibold text-ink">Subscribe to stay current</h2>
             <p className="mt-2 text-base leading-6 text-body">Receive information on the latest releases, tips and updates.</p>
@@ -34,14 +34,14 @@ export function SiteFooter() {
                 {column.map((group) => (
                   <div key={group.heading.label}>
                     <h3 className="text-base leading-6 font-semibold text-ink">
-                      <SmartLink href={group.heading.href} {...newTab(group.heading)} className="hover:text-primary">
+                      <SmartLink href={group.heading.href} {...newTab(group.heading)} className="hover:text-primary-hover">
                         {group.heading.label}
                       </SmartLink>
                     </h3>
                     <ul className="mt-5 space-y-3">
                       {group.links.map((link) => (
                         <li key={link.label}>
-                          <SmartLink href={link.href} {...newTab(link)} className="text-base leading-6 text-body hover:text-primary">
+                          <SmartLink href={link.href} {...newTab(link)} className="text-base leading-6 text-body hover:text-primary-hover">
                             {link.label}
                           </SmartLink>
                         </li>
@@ -60,7 +60,7 @@ export function SiteFooter() {
             <ul className="flex gap-5">
               {socialLinks.map((social) => (
                 <li key={social.name}>
-                  <a href={social.href} target="_blank" rel="noopener noreferrer" className="text-ink hover:text-primary">
+                  <a href={social.href} target="_blank" rel="noopener noreferrer" className="text-ink hover:text-primary-hover">
                     <span className="sr-only">{social.name}</span>
                     <SocialIcon name={social.name} />
                   </a>
@@ -82,11 +82,11 @@ export function SiteFooter() {
             </div>
             <p>{legal.copyright}</p>
             <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 xl:justify-end">
-              <a href={legal.address.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary">
+              <a href={legal.address.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary-hover">
                 {legal.address.label}
               </a>
               {legal.links.map((link) => (
-                <SmartLink key={link.href} href={link.href} className="underline underline-offset-2 hover:text-primary">
+                <SmartLink key={link.href} href={link.href} className="underline underline-offset-2 hover:text-primary-hover">
                   {link.label}
                 </SmartLink>
               ))}

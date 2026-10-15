@@ -38,9 +38,9 @@ export const blocks: Block[] = [
             <li key={page.href} className="flex">
               <SmartLink
                 href={page.href}
-                className="group flex w-full flex-col justify-between gap-6 rounded-2xl border border-[#e7edf6] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary"
+                className="group flex w-full flex-col justify-between gap-6 rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover"
               >
-                <h2 className="text-xl leading-7 font-semibold text-ink group-hover:text-primary">{page.title}</h2>
+                <h2 className="text-xl leading-7 font-semibold text-ink group-hover:text-primary-hover">{page.title}</h2>
                 <ArrowRight width={20} height={20} className="text-primary" aria-hidden />
               </SmartLink>
             </li>

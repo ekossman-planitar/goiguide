@@ -10,7 +10,7 @@ const LEARN_MORE_FORM_ID = 'ab373579-0755-4f0f-a53c-a04f1ff89266'
 
 /** Live /book-a-demo opens this Calendly URL when arriving with ?openCalendly=true from goiguide.com */
 const OPEN_CALENDLY_URL =
-  'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=009cde&hide_landing_page_details=1'
+  'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=2e2c30&hide_landing_page_details=1'
 
 type CalendlyApi = {initPopupWidget: (options: {url: string}) => void}
 
@@ -45,7 +45,7 @@ export function BookADemoChoice() {
   }, [open])
 
   return (
-    <div className="rounded-2xl border border-[#e7edf6] bg-white p-8 text-center shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="rounded-2xl border border-[#e4e4e7] bg-white p-8 text-center shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <h2 className="text-2xl font-semibold text-ink">What would you like to do?</h2>
       <div className="mt-6 flex flex-col items-center gap-3">
         <SmartLink href="/book-a-demo" className={`book-demo ${buttonBase} border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover`}>
@@ -57,7 +57,7 @@ export function BookADemoChoice() {
             setOpen(true)
             window.location.hash = 'learn-more'
           }}
-          className={`toggle-mle-lightbox ${buttonBase} border-primary bg-white text-primary hover:bg-primary-soft`}
+          className={`toggle-mle-lightbox ${buttonBase} border-primary bg-white text-primary hover:border-primary-hover hover:text-primary-hover`}
         >
           I&apos;m just looking to learn more
         </button>

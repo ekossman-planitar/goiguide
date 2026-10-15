@@ -17,7 +17,7 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
   const image = item.featuredImage
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-hover/40 hover:shadow-xl hover:shadow-primary/10">
       <div className="relative">
         <a href={href} {...linkProps} tabIndex={-1} aria-hidden className="relative block aspect-[16/9] overflow-hidden bg-surface">
           {image?.asset && (
@@ -48,7 +48,7 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
           <span className="text-sm text-muted">Interactive 3D tour</span>
         )}
         <h3 className="mt-3 text-xl font-semibold leading-snug text-ink">
-          <a href={href} {...linkProps} className="transition-colors group-hover:text-primary">
+          <a href={href} {...linkProps} className="transition-colors group-hover:text-primary-hover">
             {item.title}
           </a>
         </h3>
