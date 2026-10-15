@@ -1,6 +1,7 @@
 import {AnnouncementBar} from '@/components/layout/AnnouncementBar'
 import {SiteFooter} from '@/components/layout/SiteFooter'
 import {SiteHeader} from '@/components/layout/SiteHeader'
+import {SitePopups} from '@/components/popup/SitePopups'
 
 /** Shared chrome for every public page (the Studio at /studio is outside this group). */
 export default function SiteLayout({children}: {children: React.ReactNode}) {
@@ -10,6 +11,7 @@ export default function SiteLayout({children}: {children: React.ReactNode}) {
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
+      <SitePopups />
     </>
   )
 }

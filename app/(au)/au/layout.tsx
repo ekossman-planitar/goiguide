@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {AuOfferBar} from '@/components/au/AuOfferBar'
 import {SiteFooter} from '@/components/layout/SiteFooter'
 import {SiteHeader} from '@/components/layout/SiteHeader'
+import {SitePopups} from '@/components/popup/SitePopups'
 import {auNav} from '@/lib/navigation'
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function AuLayout({children}: {children: React.ReactNode}) {
         {children}
       </main>
       <SiteFooter />
+      <SitePopups />
     </>
   )
 }

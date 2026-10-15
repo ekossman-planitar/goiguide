@@ -3,6 +3,7 @@ import {BellIcon} from '@sanity/icons/Bell'
 import {BookIcon} from '@sanity/icons/Book'
 import {CommentIcon} from '@sanity/icons/Comment'
 import {RocketIcon} from '@sanity/icons/Rocket'
+import {SparklesIcon} from '@sanity/icons/Sparkles'
 import {DownloadIcon} from '@sanity/icons/Download'
 import {HomeIcon} from '@sanity/icons/Home'
 import {ImageIcon} from '@sanity/icons/Image'
@@ -60,6 +61,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('author').title('Authors').icon(UsersIcon),
       S.divider(),
       S.documentTypeListItem('announcement').title('Announcements').icon(BellIcon),
+      S.documentTypeListItem('sitePopup').title('Pop-ups').icon(SparklesIcon),
       S.listItem()
         .title('Logos')
         .icon(ImageIcon)

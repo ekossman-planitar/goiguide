@@ -154,3 +154,18 @@ export const LANDING_PAGE_QUERY = defineQuery(`*[_type == "landingPage" && path 
 }`)
 
 export const LANDING_PATHS_QUERY = defineQuery(`*[_type == "landingPage" && defined(path) && live != false].path`)
+
+// Site pop-ups that are on and not yet ended. Schedule and page targeting are
+// checked again in the browser (pages are cached for up to a minute).
+export const POPUPS_QUERY = defineQuery(`*[
+  _type == "sitePopup" && enabled == true && defined(image.asset)
+  && (!defined(endAt) || dateTime(endAt) > dateTime(now()))
+] | order(coalesce(priority, 9999) asc, _createdAt desc){
+  _id, name, layout, imageLink, imageSide, title, description,
+  image{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}},
+  countdown{endsAt, label, hidePopupWhenDone},
+  button{label, href, openBooking, newTab, background, textColour},
+  backgroundColour, textColour, highlightColour,
+  startAt, endAt, showOn, paths, excludePaths, includeLandingPages,
+  trigger, delaySeconds, scrollPercent, frequency, frequencyDays
+}`)

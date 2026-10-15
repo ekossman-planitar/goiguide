@@ -74,3 +74,58 @@ body {
 }
 .subscribe-form .hs-button:hover { background: var(--color-primary-hover); }
 .subscribe-form .submitted-message { font-size: 16px; color: var(--color-ink); }
+
+/*
+ * Embedded HubSpot forms (landing pages, compare, demo pages, pop-ups).
+ * Tailwind's reset strips input borders and button styles, so HubSpot forms
+ * need our own field styling (the live site did the same in its theme CSS).
+ * The footer newsletter (.subscribe-form, above) keeps its own rules.
+ */
+.hs-form:not(.subscribe-form .hs-form) fieldset { max-width: none !important; }
+.hs-form:not(.subscribe-form .hs-form) .hs-form-field { margin-bottom: 16px; }
+.hs-form:not(.subscribe-form .hs-form) fieldset.form-columns-2 { display: flex; gap: 16px; }
+.hs-form:not(.subscribe-form .hs-form) fieldset.form-columns-2 .hs-form-field { flex: 1 1 0; width: auto !important; float: none !important; min-width: 0; }
+.hs-form:not(.subscribe-form .hs-form) fieldset .input { margin-right: 0 !important; }
+.hs-form:not(.subscribe-form .hs-form) .hs-form-field > label:not(.hs-form-booleancheckbox-display) {
+  display: block; margin-bottom: 6px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--color-ink);
+}
+.hs-form:not(.subscribe-form .hs-form) .hs-form-required { color: var(--color-primary-hover); margin-left: 2px; }
+.hs-form:not(.subscribe-form .hs-form) .hs-input:not([type='checkbox']):not([type='radio']) {
+  display: block; width: 100% !important; min-height: 48px; padding: 10px 14px;
+  border: 1px solid #a1a1aa; border-radius: 8px; background: #fff;
+  font-size: 16px; line-height: 24px; color: var(--color-ink);
+}
+.hs-form:not(.subscribe-form .hs-form) select.hs-input { appearance: auto; padding-right: 10px; }
+.hs-form:not(.subscribe-form .hs-form) textarea.hs-input { min-height: 120px; resize: vertical; }
+.hs-form:not(.subscribe-form .hs-form) .hs-input::placeholder { color: #71717a; opacity: 1; }
+.hs-form:not(.subscribe-form .hs-form) .hs-input:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; border-color: var(--color-primary); }
+.hs-form:not(.subscribe-form .hs-form) .hs-input.invalid.error { border-color: #b42318; }
+.hs-form:not(.subscribe-form .hs-form) .hs-error-msgs { list-style: none; margin: 6px 0 0; padding: 0; }
+.hs-form:not(.subscribe-form .hs-form) .hs-error-msg, .hs-form:not(.subscribe-form .hs-form) .hs_error_rollup .hs-main-font-element { font-size: 13px; line-height: 18px; color: #b42318; font-weight: 400; }
+.hs-form:not(.subscribe-form .hs-form) .inputs-list { list-style: none; margin: 0; padding: 0; }
+.hs-form:not(.subscribe-form .hs-form) .inputs-list > li + li { margin-top: 8px; }
+.hs-form:not(.subscribe-form .hs-form) .hs-form-booleancheckbox-display, .hs-form:not(.subscribe-form .hs-form) .hs-form-checkbox-display, .hs-form:not(.subscribe-form .hs-form) .hs-form-radio-display {
+  display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 21px; color: var(--color-body); cursor: pointer;
+}
+.hs-form:not(.subscribe-form .hs-form) .hs-form-booleancheckbox-display input, .hs-form:not(.subscribe-form .hs-form) .hs-form-checkbox-display input, .hs-form:not(.subscribe-form .hs-form) .hs-form-radio-display input {
+  flex-shrink: 0; width: 18px !important; height: 18px; margin: 2px 0 0; accent-color: var(--color-primary);
+}
+.hs-form:not(.subscribe-form .hs-form) .legal-consent-container, .hs-form:not(.subscribe-form .hs-form) .hs-richtext { font-size: 14px; line-height: 21px; }
+.hs-form:not(.subscribe-form .hs-form) .legal-consent-container .hs-form-booleancheckbox-display > span { margin-left: 0; }
+.hs-form:not(.subscribe-form .hs-form) .hs-richtext p + p { margin-top: 8px; }
+.hs-form:not(.subscribe-form .hs-form) .hs-richtext a, .hs-form:not(.subscribe-form .hs-form) .legal-consent-container a { color: var(--color-primary); text-decoration: underline; }
+.hs-form:not(.subscribe-form .hs-form) .hs-richtext a:hover, .hs-form:not(.subscribe-form .hs-form) .legal-consent-container a:hover { color: var(--color-primary-hover); }
+.hs-form:not(.subscribe-form .hs-form) .hs-recaptcha { margin-top: 16px; }
+.hs-form:not(.subscribe-form .hs-form) .hs-submit { margin-top: 20px; }
+.hs-form:not(.subscribe-form .hs-form) .hs-button {
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  border-radius: 8px; border: 1px solid var(--color-primary); background: var(--color-primary); color: #fff;
+  font-weight: 600; font-size: 16px; line-height: 24px; padding: 12px 24px; transition: background-color 0.15s, border-color 0.15s;
+}
+.hs-form:not(.subscribe-form .hs-form) .hs-button:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+.hs-form:not(.subscribe-form .hs-form) .hs-button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (max-width: 480px) {
+  .hs-form:not(.subscribe-form .hs-form) fieldset.form-columns-2 { flex-direction: column; gap: 0; }
+}
+/* Forms set to "placeholder text only" in HubSpot output empty labels: don't leave a gap */
+.hs-form:not(.subscribe-form .hs-form) .hs-form-field > label:has(> span:empty:only-child) { display: none; }
