@@ -3,7 +3,8 @@ import {getCatalogue} from '@/lib/catalogue'
 import {adLandingPages, sitemapPages} from '@/lib/sitemapPages'
 import {getResourceType, resourceTypeNames} from '@/lib/resourceTypes'
 import {fetchSanity} from '@/sanity/lib/fetch'
-import {SITEMAP_ENTRIES_QUERY} from '@/sanity/lib/queries'
+import {SITEMAP_ENTRIES_QUERY, SITEMAP_EVENTS_QUERY} from '@/sanity/lib/queries'
+import {eventPath} from '@/lib/events'
 
 const SITE = 'https://goiguide.com'
 
@@ -21,8 +22,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [{url: `${SITE}${base}/${e.slug}`, lastModified: e.lastModified, images: e.image ? [e.image] : undefined}]
   })
 
+  // Upcoming events only (past event pages are noindex)
+  const events = await fetchSanity<{slug: string; lastModified?: string}[]>(SITEMAP_EVENTS_QUERY, [])
+  const eventEntries = events.map((e) => ({url: `${SITE}${eventPath(e.slug)}`, lastModified: e.lastModified}))
+
   const excluded = new Set(adLandingPages)
   const pages = sitemapPages.filter((p) => !excluded.has(p)).map((p) => ({url: p === '/' ? SITE : `${SITE}${p}`}))
 
-  return [...pages, ...dynamic]
+  return [...pages, ...dynamic, ...eventEntries]
 }

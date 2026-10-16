@@ -2,6 +2,7 @@ import {
   Aperture,
   BookOpen,
   Building2,
+  CalendarDays,
   Camera,
   CirclePlay,
   ClipboardList,
@@ -52,8 +53,8 @@ export type NavItem = {
 export const mainNav: NavItem[] = [
   {
     label: 'Solutions',
-    // Live site: the "Solutions" top-level link goes to Floor Plans
-    href: '/iguide/floor-plans',
+    // New /solutions overview (live: the top-level link went to Floor Plans)
+    href: '/solutions',
     menu: {
       description: 'Everything you get from a single iGUIDE scan.',
       overviewLabel: 'Explore solutions',
@@ -97,6 +98,7 @@ export const mainNav: NavItem[] = [
         {label: 'Customer Stories', href: '/customer-stories', description: 'See how teams succeed with iGUIDE', icon: MessageSquareQuote},
         {label: 'Blog', href: '/blogs', description: 'Tips, trends and product updates', icon: PenLine},
         {label: 'Webinars', href: '/webinars', description: 'Live and on-demand expert sessions', icon: Presentation},
+        {label: 'Events', href: '/events', description: 'Trade shows, webinars and workshops', icon: CalendarDays},
         {label: 'Videos', href: '/video', description: 'Watch iGUIDE in action', icon: CirclePlay},
         {label: 'Brochures', href: '/brochures', description: 'Product overviews to download and share', icon: BookOpen},
         {label: 'News', href: '/news', description: 'Company announcements and press releases', icon: Newspaper},
@@ -117,7 +119,7 @@ export const mainNav: NavItem[] = [
         {label: 'Forum', href: 'https://forum.goiguide.com/', description: 'Ask questions and learn from peers', icon: MessagesSquare},
         {
           label: 'Marketing Catalogue',
-          href: 'https://help.youriguide.com/hc/en-us/articles/28225392683154-iGUIDE-Marketing-Catalogue',
+          href: '/support/marketing-catalogue',
           description: 'Materials to promote your iGUIDE services',
           icon: Megaphone,
         },
@@ -131,7 +133,7 @@ export const mainNav: NavItem[] = [
 
 export const headerButtons = {
   findPro: {label: 'Find a Pro', href: 'https://ion.goiguide.com/'},
-  shop: {label: 'Shop Now', href: 'https://store.goiguide.com/'},
+  shop: {label: 'Shop Now', href: 'https://store.goiguide.com/products/iguide-planix-r1'},
 }
 
 /**

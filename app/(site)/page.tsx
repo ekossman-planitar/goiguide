@@ -2,6 +2,7 @@ import {PricingSideBySide} from '@/components/pricing/PricingSideBySide'
 import {CmsCustomerStories} from '@/components/cms/CmsCustomerStories'
 import {Faq} from '@/components/sections/Faq'
 import {Hero} from '@/components/sections/Hero'
+import {IndustryPicker} from '@/components/sections/IndustryPicker'
 import {LatestResources} from '@/components/sections/LatestResources'
 import {LogoCarousel} from '@/components/sections/LogoCarousel'
 import {RatingRow} from '@/components/sections/RatingRow'
@@ -45,6 +46,9 @@ export default async function HomePage() {
       {/* Above the fold: hero + logos */}
       <Hero data={home?.hero ?? heroFallback} footer={<RatingRow />} />
       <LogoCarousel heading={home?.logoCarousel?.heading ?? logoHeadingFallback} logos={(home?.logoCarousel?.logos ?? []).filter((logo) => logo?.src)} />
+
+      {/* Personalised paths for the four core audiences */}
+      <IndustryPicker />
 
       <StepsTimeline id="how-it-works" heading={howItWorks.heading} subheading={howItWorks.subheading} steps={howItWorks.steps} />
 

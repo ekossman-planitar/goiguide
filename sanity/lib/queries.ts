@@ -169,3 +169,31 @@ export const POPUPS_QUERY = defineQuery(`*[
   startAt, endAt, showOn, paths, excludePaths, includeLandingPages,
   trigger, delaySeconds, scrollPercent, frequency, frequencyDays
 }`)
+
+// Events (Studio → Events). The list hides ended events; the browser re-checks,
+// since pages are cached for up to a minute.
+const EVENT_CARD_FIELDS = `_id, title, "slug": slug.current, eventType, categories, attendance, timeZone,
+  startAt, endAt, allDay, venue, city, region, country, booth, price, shortDescription,
+  featuredImage{alt, hotspot, crop, asset->{_id, url, metadata{lqip}}}`
+
+export const UPCOMING_EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(slug.current) && defined(startAt)
+  && dateTime(coalesce(endAt, startAt)) > dateTime(now())] | order(startAt asc){${EVENT_CARD_FIELDS}}`)
+
+export const EVENT_QUERY = defineQuery(`*[_type == "event" && slug.current == $slug][0]{
+  ${EVENT_CARD_FIELDS},
+  _updatedAt, address, eventUrl, eventUrlLabel, registrationUrl, hubspotFormId, formHeading,
+  speakers[]{name, role, photo{hotspot, crop, asset->{_id, url}}},
+  body[]{
+    ...,
+    _type == "image" => {${IMAGE_FIELDS}},
+    _type == "ctaBanner" => {..., image{asset->{_id, url}}}
+  },
+  seo{metaTitle, metaDescription, noIndex, ogImage{hotspot, crop, asset->{_id, url}}},
+  "more": *[_type == "event" && _id != ^._id && defined(slug.current) && dateTime(coalesce(endAt, startAt)) > dateTime(now())]
+    | order(startAt asc)[0...3]{${EVENT_CARD_FIELDS}}
+}`)
+
+export const EVENT_SLUGS_QUERY = defineQuery(`*[_type == "event" && defined(slug.current)].slug.current`)
+
+export const SITEMAP_EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(slug.current) && seo.noIndex != true
+  && dateTime(coalesce(endAt, startAt)) > dateTime(now())]{"slug": slug.current, "lastModified": _updatedAt}`)

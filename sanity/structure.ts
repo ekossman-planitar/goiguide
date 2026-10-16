@@ -1,6 +1,7 @@
 import type {StructureResolver} from 'sanity/structure'
 import {BellIcon} from '@sanity/icons/Bell'
 import {BookIcon} from '@sanity/icons/Book'
+import {CalendarIcon} from '@sanity/icons/Calendar'
 import {CommentIcon} from '@sanity/icons/Comment'
 import {RocketIcon} from '@sanity/icons/Rocket'
 import {SparklesIcon} from '@sanity/icons/Sparkles'
@@ -56,6 +57,23 @@ export const structure: StructureResolver = (S) =>
                       .initialValueTemplates([]),
                   ),
               ),
+            ]),
+        ),
+      S.listItem()
+        .title('Events')
+        .icon(CalendarIcon)
+        .child(
+          S.list()
+            .title('Events')
+            .items([
+              S.listItem()
+                .title('Upcoming')
+                .id('events-upcoming')
+                .child(S.documentTypeList('event').title('Upcoming events').filter('_type == "event" && (!defined(endAt) || dateTime(endAt) > dateTime(now()))').defaultOrdering([{field: 'startAt', direction: 'asc'}])),
+              S.listItem()
+                .title('Past')
+                .id('events-past')
+                .child(S.documentTypeList('event').title('Past events').filter('_type == "event" && dateTime(endAt) <= dateTime(now())').defaultOrdering([{field: 'startAt', direction: 'desc'}])),
             ]),
         ),
       S.documentTypeListItem('author').title('Authors').icon(UsersIcon),

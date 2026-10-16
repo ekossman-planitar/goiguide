@@ -31,7 +31,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See camera options', href: '/#pricingTabs'},
-      image: {src: '/homepage/steps/step-1.jpg', alt: 'Capturing a home with the PLANIX R1 camera'},
+      image: {src: '/assets/R1-Camera.png', alt: 'iGUIDE operator capturing a home with the PLANIX R1 camera and a tablet'},
     },
     {
       title: 'Choose the package that fits your project',
@@ -42,7 +42,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'Compare packages', href: '/#pricingTabs'},
-      image: {src: '/homepage/steps/step-2.jpg', alt: 'Choosing an iGUIDE package'},
+      image: {src: '/assets/schematic-pdf-floorplan.png', alt: 'iGUIDE floor plan with room names and dimensions'},
     },
     {
       title: 'Add only the extras your project requires',
@@ -53,7 +53,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See available add-ons', href: '/pricing#add-ons'},
-      image: {src: '/homepage/steps/step-3.jpg', alt: 'Adding optional deliverables'},
+      image: {src: '/assets/CS0001-3DModel-DWG.png', alt: 'iGUIDE 3D CAD model add-on in DWG format'},
     },
     {
       title: 'Receive your deliverables quickly',
@@ -64,7 +64,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See samples in our gallery', href: '/resources-and-media/iguide-gallery'},
-      image: {src: '/homepage/steps/step-4.jpg', alt: 'iGUIDE floor plan and 3D tour deliverables'},
+      image: {src: '/assets/space-planning.png', alt: 'Team reviewing iGUIDE deliverables on a computer'},
     },
   ] satisfies TimelineStep[],
 }
