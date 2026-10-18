@@ -8,7 +8,11 @@
  *     Resource Center uses), including where the card links to and its categories.
  *  2. Reads every entry page from the live sitemap (plus entries the sitemap misses):
  *     title, date, summary, header image/video, body, SEO title and description.
- *  3. Converts the body HTML to Sanity rich text, uploads images to Sanity, and
+ *  3. Takes the page furniture out of the body: the author box becomes the post's
+ *     author (name, job title, bio, photo), the customer details box on customer stories
+ *     becomes "Customer details", and date / read-time lines are dropped. The old
+ *     elements stay separate sections (side-by-side, cards, key wins, quotes).
+ *  4. Converts the body HTML to Sanity rich text, uploads images to Sanity, and
  *     creates one document per entry with a fixed ID (<type>-<slug>), so it can be
  *     re-run safely.
  *
@@ -237,6 +241,7 @@ const ptSchema = compileSchema(
       {name: 'socialEmbed', fields: [{name: 'url', type: 'string'}]},
       {name: 'hubspotForm', fields: [{name: 'formId', type: 'string'}]},
       {name: 'faqPlaceholder', fields: [{name: 'index', type: 'number'}]},
+      {name: 'quotePlaceholder', fields: [{name: 'index', type: 'number'}]},
     ],
     inlineObjects: [{name: 'image', fields: [{name: 'src', type: 'string'}, {name: 'alt', type: 'string'}]}],
   }),
@@ -288,7 +293,7 @@ function tidyHtml(html) {
   return doc.body.innerHTML
 }
 
-function htmlToBlocks(html, faqs = []) {
+function htmlToBlocks(html, faqs = [], quotes = []) {
   const blocks = htmlToPortableText(tidyHtml(html), {
     schema: ptSchema,
     parseHtml: (h) => jsdom(h).window.document,
@@ -325,10 +330,19 @@ function htmlToBlocks(html, faqs = []) {
           return index != null ? createBlock({_type: 'faqPlaceholder', index: Number(index)}) : undefined
         },
       },
+      {
+        deserialize(el, _next, createBlock) {
+          const index = el.getAttribute?.('data-quote')
+          return index != null ? createBlock({_type: 'quotePlaceholder', index: Number(index)}) : undefined
+        },
+      },
     ],
     types: {
+      // "#icon" is added below to small icons so they stay icon-sized
       image: ({context, value}) =>
-        value.src ? {_key: context.keyGenerator(), _type: 'image', src: stripVariant(value.src), alt: value.alt || undefined} : undefined,
+        value.src
+          ? {_key: context.keyGenerator(), _type: 'image', src: stripVariant(value.src.replace(/#icon$/, '')), alt: value.alt || undefined, icon: value.src.endsWith('#icon') || undefined}
+          : undefined,
     },
   })
   // Fit the site's body styles (h2–h4) and make goiguide.com links relative
@@ -348,10 +362,113 @@ function htmlToBlocks(html, faqs = []) {
     const images = (b.children ?? []).filter((c) => c._type === 'image')
     const spans = (b.children ?? []).filter((c) => c._type !== 'image')
     if (spans.some((c) => clean(c.text))) out.push({...b, children: spans})
-    for (const img of images) out.push({_type: 'image', _key: img._key, src: img.src, alt: img.alt})
+    for (const img of images) out.push({_type: 'image', _key: img._key, src: img.src, alt: img.alt, size: img.icon ? 'icon' : undefined})
   }
-  return out.map((b) => (b._type === 'faqPlaceholder' ? faqs[b.index] : b)).filter(Boolean)
+  return out.map((b) => (b._type === 'faqPlaceholder' ? faqs[b.index] : b._type === 'quotePlaceholder' ? quotes[b.index] : b)).filter(Boolean)
 }
+
+/* ------------------------------------------------------------------ page furniture */
+
+/** Text of a node with its whitespace collapsed */
+const textOf = (n) => clean(n?.textContent)
+
+/**
+ * The author box at the end of posts (two live variants: .bio-info-container
+ * and .author-container). Returns the author's name, job title, photo and bio,
+ * or undefined if the element isn't an author box.
+ */
+function readAuthorBox(el) {
+  const box = el.querySelector('.bio-info-container, .author-container')
+  if (!box) return undefined
+  const photo = el.querySelector('img.author-image')?.getAttribute('src')
+  let name = textOf(el.querySelector('.author-name'))
+  let role = textOf(el.querySelector('.author-title'))
+  if (!name) {
+    const strong = box.querySelector('.bio-info-inner strong')
+    name = textOf(strong)
+    role = textOf(strong?.closest('p')?.nextElementSibling)
+  }
+  // Bio: the paragraphs that aren't the name or job title
+  const bio = [...el.querySelectorAll('p')]
+    .filter((p) => !p.closest('.bio-info-inner, .author-details') && !p.matches('.author-name, .author-title'))
+    .map(textOf)
+    .filter(Boolean)
+    .join('\n\n')
+  // One post writes the job title as "By <name>, <title>"
+  role = role.replace(new RegExp(`^By\\s+${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')},?\\s*`, 'i'), '')
+  return name ? {name, role: role || undefined, bio: bio || undefined, photo: photo ? stripVariant(photo) : undefined} : undefined
+}
+
+/**
+ * The customer details box on customer stories (.article-meta-info with emoji
+ * labels, or the inline .company-info): [{label, value}] plus its button.
+ */
+function readFactsBox(el) {
+  const box = el.querySelector('.article-meta-info, .company-info')
+  if (!box) return undefined
+  const facts = [...box.querySelectorAll('p, span')]
+    .filter((n) => n.querySelector(':scope > strong'))
+    .map((n) => {
+      const label = textOf(n.querySelector(':scope > strong'))
+      return {
+        label: label.replace(/^[^\p{L}]+/u, '').replace(/:\s*$/, ''),
+        value: clean(textOf(n).slice(label.length)),
+      }
+    })
+    .filter((f) => f.label && f.value)
+  const a = box.querySelector('a[href]')
+  return {facts, cta: a ? {label: textOf(a), href: localise(a.getAttribute('href'))} : undefined}
+}
+
+/**
+ * Customer quotes in their live variants: testimonial slider cards (<figure>),
+ * .testimonial-block / .testimonial-content (quote in an <h3>, name in a <p>)
+ * and .custom-quote (photo, quote, name and title). Each is replaced by a
+ * marker so it lands in the same place in the body as a "testimonial" block.
+ */
+function extractQuotes(root) {
+  const quotes = []
+  const add = (node, q) => {
+    if (!q.quote) return
+    const marker = root.ownerDocument.createElement('div')
+    marker.setAttribute('data-quote', String(quotes.length))
+    quotes.push({_type: 'testimonial', _key: key(), ...q})
+    node.replaceWith(marker)
+  }
+  // "Name, Role" or "Name / Role"
+  const splitName = (s) => {
+    const m = s.replace(/[,\s]+$/, '').match(/^(.+?)(?:,\s+|\s+[/–—-]\s+)(.+)$/)
+    return m ? {name: clean(m[1]), role: clean(m[2])} : {name: s || undefined}
+  }
+  for (const fig of root.querySelectorAll('figure')) {
+    const bq = fig.querySelector('blockquote')
+    if (!bq) continue
+    const lines = [...fig.querySelectorAll('figcaption > div')].map(textOf).filter(Boolean)
+    const who = splitName(lines[0] ?? '')
+    const role = [who.role, ...lines.slice(1)].filter(Boolean).join(', ')
+    const img = fig.querySelector('img')?.getAttribute('src')
+    add(fig, {quote: [...bq.querySelectorAll('p')].map(textOf).filter(Boolean).join('\n\n') || textOf(bq), name: who.name, role: role || undefined, imageSrc: img ? stripVariant(img) : undefined})
+  }
+  for (const box of root.querySelectorAll('.custom-quote')) {
+    const img = box.querySelector('img')?.getAttribute('src')
+    add(box, {
+      quote: textOf(box.querySelector('.quote-text')),
+      name: textOf(box.querySelector('.author-name')) || undefined,
+      role: textOf(box.querySelector('.author-title')) || undefined,
+      imageSrc: img ? stripVariant(img) : undefined,
+    })
+  }
+  for (const box of root.querySelectorAll('.testimonial-block, .testimonial-content')) {
+    const outer = box.closest('.white-block, .testimonial-container') ?? box
+    // Name and company can be split over several paragraphs
+    const by = [...box.querySelectorAll('p')].map((p) => textOf(p).replace(/,$/, '')).filter(Boolean).join(', ')
+    add(outer, {quote: textOf(box.querySelector('h3, h4, blockquote')), ...splitName(by)})
+  }
+  return quotes
+}
+
+/** Element kinds that get their own section layout on the new site */
+const LAYOUT_BY_KIND = {elementtextandimage: 'split', elementtestimonials: 'split', elementtextandicons: 'cards'}
 
 /**
  * Turns one live content element into Sanity blocks. Text, headings, lists,
@@ -387,6 +504,55 @@ function parseElement(el) {
 
   const root = el.querySelector('section') ?? el
   const raw = root.innerHTML
+
+  // Page furniture the new template shows itself: author box, customer details box,
+  // date / read-time line
+  const author = readAuthorBox(root)
+  if (author) return {kind, blocks: [], author}
+  const factsBox = readFactsBox(root)
+  if (factsBox) return {kind, blocks: [], ...factsBox}
+  if (root.querySelector('.profile-container') || el.id === 'meta-wrapper') return {kind, blocks: []}
+
+  let layout = LAYOUT_BY_KIND[kind] ?? 'plain'
+  const quotes = extractQuotes(root)
+  // "Key wins" lists (icon + text rows) become a bullet list shown as highlight tiles
+  for (const wins of root.querySelectorAll('.key-wins-inline, .key-wins-stacked')) {
+    const ul = root.ownerDocument.createElement('ul')
+    for (const win of wins.querySelectorAll('.win')) {
+      win.querySelectorAll('img, .material-symbols-outlined').forEach((n) => n.remove())
+      const li = root.ownerDocument.createElement('li')
+      li.textContent = textOf(win)
+      if (li.textContent) ul.append(li)
+    }
+    wins.replaceWith(ul)
+    layout = 'highlights'
+  }
+  // Team member grid: photo, name, role, description per person; the name becomes a heading so each is a card
+  for (const grid of root.querySelectorAll('.team-grid')) {
+    for (const person of grid.children) {
+      const name = person.querySelector('p')
+      if (!name) continue
+      const h = root.ownerDocument.createElement('h4')
+      h.textContent = textOf(name)
+      name.replaceWith(h)
+    }
+    layout = 'cards'
+  }
+  // Icon + title + text rows
+  if (root.querySelector('.info-container')) {
+    layout = 'cards'
+    root.querySelectorAll('.info-container img').forEach((img) => img.setAttribute('src', img.getAttribute('src') + '#icon'))
+  }
+  // "Compare iGUIDE vs …" pop-open comparisons: the toggle button becomes the heading, each
+  // feature row a card (the tick / cross columns and header row are decoration)
+  const toggle = root.querySelector('button.compare-btn, button.expand-btn')
+  if (toggle) {
+    const h = root.ownerDocument.createElement('h3')
+    h.textContent = textOf(toggle).replace(/\s*[▼▾]\s*$/, '')
+    toggle.replaceWith(h)
+    root.querySelectorAll('.comparison-head, .comparison-grid > .cell').forEach((n) => n.remove())
+    layout = 'cards'
+  }
 
   // One known pattern swaps the post's header image for a YouTube video
   if (/post-header/.test(raw)) {
@@ -446,14 +612,14 @@ function parseElement(el) {
     target.replaceWith(marker)
   }
 
-  let blocks = htmlToBlocks(root.innerHTML, faqs)
+  let blocks = htmlToBlocks(root.innerHTML, faqs, quotes)
   if (popupForm) {
     const label = clean(root.querySelector('button')?.textContent) || 'Book a demo'
     // The pop-up button's own text came through as a paragraph; the banner replaces it
     blocks = blocks.filter((b) => !(b._type === 'block' && clean((b.children ?? []).map((c) => c.text).join('')) === label))
     blocks.push({_type: 'ctaBanner', _key: key(), buttonLabel: label, hubspotFormId: popupForm})
   }
-  return {kind, blocks}
+  return {kind, blocks, layout, id: el.id}
 }
 
 /* ------------------------------------------------------------------ entry pages */
@@ -479,7 +645,30 @@ function parseEntry(html, path) {
   const meta = (name) => doc.querySelector(`meta[name="${name}"], meta[property="${name}"]`)?.getAttribute('content')
   const redirectTo = html.match(/window\.location\.replace\(["']([^"']+)["']\)/)?.[1]
 
+  // Customer stories with a side menu: its section ids and labels live in an inline script
+  // (read before the elements are parsed, which strips their scripts)
+  const menu = new Map()
+  for (const s of doc.querySelectorAll('script')) {
+    for (const m of s.textContent.matchAll(/\{\s*id:\s*['"]([\w-]+)['"],\s*label:\s*['"]([^'"]+)['"]\s*\}/g)) menu.set(m[1], m[2])
+  }
   const parts = [...(section?.querySelectorAll('article .element') ?? [])].map(parseElement)
+  // Keep the live elements as separate sections when the page had a menu or any laid-out element
+  // (side-by-side, cards, quotes, key wins); plain posts stay one flowing body
+  const content = parts.filter((p) => p.blocks.length)
+  const sectioned = menu.size > 0 || content.some((p) => p.layout && p.layout !== 'plain')
+  const anchors = new Set()
+  const blocks = sectioned
+    ? content.flatMap((p) => {
+        // Live ids become section anchors (a few pages reuse an id: only the first keeps it)
+        let anchor = p.id && !/^e\d+$/.test(p.id) ? p.id : undefined
+        if (anchors.has(anchor)) anchor = undefined
+        anchors.add(anchor)
+        return [{_type: 'sectionBreak', _key: key(), title: (anchor && menu.get(anchor)) || undefined, anchor, layout: p.layout ?? 'plain'}, ...p.blocks]
+      })
+    : content.flatMap((p) => p.blocks)
+  const authorBox = parts.find((p) => p.author)?.author
+  const factsPart = parts.find((p) => p.facts)
+
   return {
     path,
     title: h1 || clean(doc.title.replace(/\s*\|\s*iGUIDE\s*$/, '')),
@@ -487,13 +676,16 @@ function parseEntry(html, path) {
     headerTexts,
     headerLinks,
     datePublished: ld.datePublished,
-    author: Array.isArray(ld.author) ? ld.author[0]?.name : ld.author?.name,
+    author: authorBox?.name ?? (Array.isArray(ld.author) ? ld.author[0]?.name : ld.author?.name),
+    authorBox,
+    facts: factsPart?.facts,
+    factsCta: factsPart?.cta,
     metaTitle: clean(doc.title),
     metaDescription: meta('description'),
     ogImage: stripVariant(meta('og:image')),
     redirectTo,
     headerVideo: parts.find((p) => p.headerVideo)?.headerVideo,
-    blocks: parts.flatMap((p) => p.blocks),
+    blocks,
     kinds: parts.map((p) => p.kind),
     dropped: parts.some((p) => p.dropped),
   }
@@ -528,7 +720,10 @@ async function resolveImages(blocks) {
   for (const b of blocks) {
     if (b._type === 'image') {
       const img = await imageRef(b.src)
-      if (img) out.push({...img, _key: b._key, alt: b.alt})
+      if (img) out.push({...img, _key: b._key, alt: b.alt, size: b.size})
+    } else if (b._type === 'testimonial') {
+      const {imageSrc, ...rest} = b
+      out.push(imageSrc ? {...rest, image: await imageRef(imageSrc)} : rest)
     } else if (b._type === 'ctaBanner' && b.imageSrc) {
       const {imageSrc, ...rest} = b
       out.push({...rest, image: await imageRef(imageSrc)})
@@ -541,16 +736,38 @@ async function resolveImages(blocks) {
 
 const docId = (type, slug) => `${type}-${slug}`.replace(/[^a-zA-Z0-9_-]/g, '-').slice(0, 128)
 const authorIds = new Map()
+// Best details seen for each author (from their most recent post), written once the import finishes
+const authorDetails = new Map()
 
-async function authorRef(name) {
+async function authorRef(name, box, date) {
   if (!name || /^iguide$/i.test(name)) return undefined
+  // The live JSON-LD writes some names "Last, First"; the author box writes "First Last"
+  const m = name.match(/^([^,]+),\s*([^,]+)$/)
+  if (m) name = `${m[2]} ${m[1]}`
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
   const _id = `author-${slug}`
   if (!authorIds.has(_id)) {
     authorIds.set(_id, name)
     if (!DRY_RUN) await client.createIfNotExists({_id, _type: 'author', name})
   }
+  if (box) {
+    const seen = authorDetails.get(_id)
+    if (!seen || (date ?? '') > (seen.date ?? '')) authorDetails.set(_id, {...box, date})
+  }
   return {_type: 'reference', _ref: _id}
+}
+
+/** Fills in each author's job title, bio and photo. Never overwrites what's already set in the Studio. */
+async function writeAuthorDetails() {
+  for (const [_id, a] of authorDetails) {
+    const fields = {role: a.role, bio: a.bio, photo: a.photo ? await imageRef(a.photo) : undefined}
+    for (const k of Object.keys(fields)) if (!fields[k]) delete fields[k]
+    log(`  author ${a.name}: ${Object.keys(fields).join(', ') || 'name only'}`)
+    if (DRY_RUN) {
+      mkdirSync(join(PREVIEW_DIR, 'author'), {recursive: true})
+      writeFileSync(join(PREVIEW_DIR, 'author', `${_id}.json`), JSON.stringify({_id, name: a.name, ...fields}, null, 2))
+    } else if (Object.keys(fields).length) await client.patch(_id).setIfMissing(fields).commit()
+  }
 }
 
 async function write(doc) {
@@ -638,7 +855,12 @@ async function importType(cfg, sitemap, stats) {
             .join('\n') || undefined,
         },
       }
-      if (cfg.type === 'blogPost') doc.author = await authorRef(e.author)
+      if (cfg.type === 'blogPost' || cfg.type === 'customerStory') doc.author = await authorRef(e.author, e.authorBox, doc.publishedAt)
+      else if (e.authorBox) warn(`${path}: author box for ${e.authorBox.name} not imported (${cfg.type} has no author field)`)
+      if (cfg.type === 'customerStory' && e.facts?.length) {
+        doc.customerFacts = e.facts.map((f) => ({_type: 'fact', _key: key(), ...f}))
+        if (e.factsCta) doc.customerCta = e.factsCta
+      } else if (e.facts?.length) warn(`${path}: customer details box not imported (${cfg.type})`)
       if (cfg.type === 'webinar') {
         if (dateText) doc.eventDateText = dateText.replace(/^Date:\s*/i, '')
         const reg = e.headerLinks.find((l) => !/^back$/i.test(l.label) && !/facebook|twitter|linkedin|mailto/i.test(l.href))
@@ -702,6 +924,10 @@ async function main() {
   const stats = {}
   for (const cfg of TYPES) if (!ONLY || ONLY.includes(cfg.type)) await importType(cfg, sitemap, stats)
   if (!ONLY || ONLY.includes('catalogueItem')) for (const cat of CATALOGUES) await importCatalogue(cat, sitemap, stats)
+  if (authorDetails.size) {
+    log('\n== authors')
+    await writeAuthorDetails()
+  }
 
   mkdirSync(PREVIEW_DIR, {recursive: true})
   const report = {finishedAt: new Date().toISOString(), dryRun: DRY_RUN, stats, authors: [...authorIds.values()], warnings}
@@ -710,7 +936,7 @@ async function main() {
 }
 
 // Tests import the parsing helpers without running the import
-export {parseCards, parseEntry, htmlToBlocks, parseElement, linkTypeFor}
+export {parseCards, parseEntry, htmlToBlocks, parseElement, linkTypeFor, readAuthorBox, readFactsBox}
 if (!process.env.IMPORT_LIVE_TEST) {
   main().catch((err) => {
     console.error(err)

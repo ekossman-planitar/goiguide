@@ -5,7 +5,7 @@ import {useCallback, useId} from 'react'
 
 type HubSpotForms = {forms: {create: (options: Record<string, unknown>) => void}}
 
-/** iGUIDE's HubSpot portal (same as the live site) */
+/** iGuide's HubSpot portal (same as the live site) */
 const PORTAL_ID = '6828755'
 
 /**

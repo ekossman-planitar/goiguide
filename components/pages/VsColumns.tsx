@@ -17,7 +17,7 @@ function Mark({ok}: {ok: boolean}) {
   )
 }
 
-/** iGUIDE vs. a competitor as two cards (image, name, ticked / crossed list), as on the live compare pages. */
+/** iGuide vs. a competitor as two cards (image, name, ticked / crossed list), as on the live compare pages. */
 export function VsColumns({ours, theirs}: {ours: VsSide; theirs: VsSide}) {
   return (
     <div className="grid gap-6 md:grid-cols-2">

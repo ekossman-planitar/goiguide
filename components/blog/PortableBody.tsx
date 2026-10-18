@@ -9,7 +9,63 @@ type FaqValue = {heading?: string; items?: {_key: string; question: string; answ
 
 /** Screen-reader title for imported embeds that didn't have one */
 const embedTitle = (url: string) =>
-  /youriguide\.com|iguideradix\.com/.test(url) ? 'iGUIDE 3D virtual tour' : /youtube|vimeo|vidyard/.test(url) ? 'Video' : 'Embedded content'
+  /youriguide\.com|iguideradix\.com/.test(url) ? 'iGuide 3D virtual tour' : /youtube|vimeo|vidyard/.test(url) ? 'Video' : 'Embedded content'
+
+export type TestimonialValue = {
+  quote?: string
+  name?: string
+  role?: string
+  image?: SanityImage
+}
+
+/** A customer quote: the words, then who said it (with their photo or logo). */
+export function Testimonial({value}: {value: TestimonialValue}) {
+  if (!value?.quote) return null
+  const dims = value.image?.asset?.metadata?.dimensions
+  // Square-ish pictures are headshots (round); wide ones are logos (shown whole)
+  const headshot = !dims || (dims.width / dims.height > 0.75 && dims.width / dims.height < 1.35)
+  return (
+    <figure className="testimonial mt-10 rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+      <svg aria-hidden viewBox="0 0 48 48" width="32" height="32" className="text-primary-hover">
+        <path
+          fill="currentColor"
+          d="M36.4 15 33.5 20c2.2 0 4.08.78 5.65 2.35A7.7 7.7 0 0 1 41.5 28a7.7 7.7 0 0 1-2.35 5.65A7.7 7.7 0 0 1 33.5 36a7.7 7.7 0 0 1-5.65-2.35A7.7 7.7 0 0 1 25.5 28c0-.77.09-1.48.28-2.13.18-.65.46-1.27.82-1.87l6.35-11c.17-.3.4-.54.7-.73.3-.18.63-.27 1-.27.77 0 1.34.33 1.73 1 .38.67.39 1.33.02 2Zm-18 0L15.5 20c2.2 0 4.08.78 5.65 2.35A7.7 7.7 0 0 1 23.5 28a7.7 7.7 0 0 1-2.35 5.65A7.7 7.7 0 0 1 15.5 36a7.7 7.7 0 0 1-5.65-2.35A7.7 7.7 0 0 1 7.5 28c0-.77.09-1.48.28-2.13.18-.65.46-1.27.82-1.87l6.35-11c.17-.3.4-.54.7-.73.3-.18.63-.27 1-.27.77 0 1.34.33 1.73 1 .38.67.39 1.33.02 2Z"
+        />
+      </svg>
+      <blockquote className="mt-4 space-y-4 text-xl font-medium leading-relaxed text-ink">
+        {value.quote.split(/\n{2,}/).map((para, i) => (
+          <p key={i}>{para}</p>
+        ))}
+      </blockquote>
+      {(value.name || value.role) && (
+        <figcaption className="mt-6 flex items-center gap-4">
+          {value.image?.asset &&
+            (headshot ? (
+              <Image
+                src={urlFor(value.image).width(112).height(112).fit('crop').auto('format').url()}
+                alt=""
+                width={56}
+                height={56}
+                className="h-14 w-14 shrink-0 rounded-full object-cover"
+              />
+            ) : (
+              <Image
+                src={urlFor(value.image).height(80).fit('max').auto('format').url()}
+                alt=""
+                width={Math.round((dims!.width / dims!.height) * 40)}
+                height={40}
+                className="h-10 w-auto shrink-0"
+              />
+            ))}
+          <span>
+            {value.name && <span className="block font-semibold text-ink">{value.name}</span>}
+            {value.role && <span className="block text-muted">{value.role}</span>}
+          </span>
+        </figcaption>
+      )}
+    </figure>
+  )
+}
 
 type CtaBannerValue = {
   heading?: string
@@ -20,7 +76,7 @@ type CtaBannerValue = {
   image?: {asset?: {url: string}}
 }
 
-const components: PortableTextComponents = {
+export const bodyComponents: PortableTextComponents = {
   block: {
     normal: ({children}) => <p className="mt-6 text-lg leading-relaxed text-body">{children}</p>,
     h2: ({children}) => <h2 className="mt-12 text-3xl font-semibold text-ink">{children}</h2>,
@@ -46,17 +102,25 @@ const components: PortableTextComponents = {
     ),
   },
   types: {
-    image: ({value}: {value: SanityImage & {href?: string}}) => {
+    image: ({value}: {value: SanityImage & {href?: string; size?: string}}) => {
       if (!value?.asset) return null
       const dims = value.asset.metadata?.dimensions
+      // Icons and other small images keep their own size instead of being stretched to the column
+      if (value.size === 'icon')
+        return (
+          <figure className="mt-10">
+            <Image src={urlFor(value).height(112).fit('max').auto('format').url()} alt={value.alt ?? ''} width={dims ? Math.round((dims.width / dims.height) * 56) : 56} height={56} className="h-14 w-auto" />
+          </figure>
+        )
+      const small = dims && dims.width <= 240
       const img = (
         <Image
-          src={urlFor(value).width(1600).fit('max').auto('format').url()}
+          src={urlFor(value).width(small ? dims.width * 2 : 1600).fit('max').auto('format').url()}
           alt={value.alt ?? ''}
           width={dims?.width ?? 1600}
           height={dims?.height ?? 900}
-          sizes="(min-width: 768px) 768px, 100vw"
-          className="w-full rounded-xl"
+          sizes={small ? `${dims.width}px` : '(min-width: 768px) 768px, 100vw'}
+          className={small ? 'h-auto max-w-full' : 'w-full rounded-xl'}
         />
       )
       return (
@@ -88,7 +152,7 @@ const components: PortableTextComponents = {
                   <span aria-hidden className="mt-1 shrink-0 text-primary transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <div className="[&>p:first-child]:mt-3">
-                  <PortableText value={item.answer ?? []} components={components} />
+                  <PortableText value={item.answer ?? []} components={bodyComponents} />
                 </div>
               </details>
             ))}
@@ -123,6 +187,9 @@ const components: PortableTextComponents = {
         )}
       </aside>
     ),
+    testimonial: ({value}: {value: TestimonialValue}) => <Testimonial value={value} />,
+    // Section breaks only group content (see SectionedBody); on their own they show nothing
+    sectionBreak: () => null,
     // Imported raw HTML stays hidden until someone reviews it and ticks "Show on the page"
     htmlEmbed: ({value}: {value: {html?: string; show?: boolean}}) =>
       value?.show && value.html ? <div className="mt-8" dangerouslySetInnerHTML={{__html: value.html}} /> : null,
@@ -131,5 +198,5 @@ const components: PortableTextComponents = {
 
 /** Renders a Sanity rich text body with site typography. */
 export function PortableBody({value}: {value: PortableTextBlock[]}) {
-  return <PortableText value={value} components={components} />
+  return <PortableText value={value} components={bodyComponents} />
 }

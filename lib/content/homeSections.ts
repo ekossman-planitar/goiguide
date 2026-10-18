@@ -8,30 +8,30 @@
 
 export const tourShowcase = {
   heading: 'Experience how easy it is to explore, measure and understand a space',
-  subheading: 'Try a real iGUIDE tour and see it for yourself.',
+  subheading: 'Try a real iGuide tour and see it for yourself.',
   tours: [
     {
       id: 'real-estate',
       label: 'Real Estate',
-      title: 'iGUIDE virtual tour — Real Estate with Site Plans',
+      title: 'iGuide virtual tour: Real Estate with Site Plans',
       src: 'https://youriguide.com/334_south_lake_shore_drive_thousand_oaks?branded=1&autostart=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash',
     },
     {
       id: 'insurance',
       label: 'Insurance & Restoration',
-      title: 'iGUIDE virtual tour — Insurance and Restoration',
+      title: 'iGuide virtual tour: Insurance and Restoration',
       src: 'https://youriguide.com/embed/urwkb_1121_sample_road_kitchener_on?branded=1&autostart=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash',
     },
     {
       id: 'architecture',
       label: 'Architecture & Remodeling',
-      title: 'iGUIDE virtual tour — Architecture and Remodeling',
+      title: 'iGuide virtual tour: Architecture and Remodeling',
       src: 'https://youriguide.com/embed/pre_and_post_construction?branded=1&autostart=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash',
     },
     {
       id: 'facility',
       label: 'Facility Management',
-      title: 'iGUIDE virtual tour — Facility Management',
+      title: 'iGuide virtual tour: Facility Management',
       src: 'https://youriguide.com/embed/v4H2RMIUYYJDD1?branded=1&autostart=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash',
     },
   ],
@@ -52,11 +52,11 @@ export type CustomerStory = {
 export const customerStories = {
   // Two lines on desktop; the break goes after "it,"
   heading: ["Don't take our word for it,", 'hear it from the pros.'],
-  subheading: 'Real stories from professionals using iGUIDE to win more business, save time and deliver better results.',
+  subheading: 'Real stories from professionals using iGuide to win more business, save time and deliver better results.',
   link: {label: 'View customer stories', href: '/customer-stories'},
   stories: [
     {
-      quote: 'Since incorporating iGUIDE into our services, our business has grown 10X!',
+      quote: 'Since incorporating iGuide into our services, our business has grown 10X!',
       name: 'Lauren Murphy',
       role: 'Photographer',
       company: 'Monster Media House',
@@ -64,7 +64,7 @@ export const customerStories = {
       logo: '/homepage/stories/monster-media-house.png',
     },
     {
-      quote: "The value speaks for itself. I can't picture MC3 working without iGUIDE now.",
+      quote: "The value speaks for itself. I can't picture MC3 working without iGuide now.",
       name: 'John McKenna',
       role: 'Owner',
       company: 'MC3 Design',
@@ -80,7 +80,7 @@ export const customerStories = {
       logo: '/homepage/stories/deft.png',
     },
     {
-      quote: "iGUIDE brought a unique convenience and comfort to our buyer's search experience.",
+      quote: "iGuide brought a unique convenience and comfort to our buyer's search experience.",
       name: 'Rachel Morgan',
       role: 'Realtor',
       company: 'Morgan Wasley',
@@ -119,10 +119,10 @@ export type Package = {
 
 export const pricing = {
   heading: 'No subscriptions. Powerful tools.',
-  subheading: 'Explore the PLANIX R1 camera and iGUIDE packages to find the setup that fits your workflow.',
+  subheading: 'Explore the PLANIX R1 camera and iGuide packages to find the setup that fits your workflow.',
   allLink: {label: 'See all packages and add-ons', href: '/pricing'},
   camera: {
-    name: 'iGUIDE PLANIX R1',
+    name: 'iGuide PLANIX R1',
     prices: {CAD: '$3,499.00', USD: '$2,599.00', AUD: '$3,850.00'} as Prices,
     intro:
       'The PLANIX R1 is a professional-grade scanning camera built for real estate professionals, appraisers, inspectors and insurance adjusters. One visit. Complete property data.',
@@ -141,7 +141,7 @@ export const pricing = {
   packages: [
     {
       id: 'radix',
-      name: 'iGUIDE RADIX',
+      name: 'iGuide RADIX',
       priceLabel: 'Per project',
       prices: {CAD: '$6.99', USD: '$4.99', AUD: '$8.79'},
       industries: ['insurance', 'architecture', 'facility'],
@@ -153,7 +153,7 @@ export const pricing = {
     },
     {
       id: 'instant',
-      name: 'iGUIDE Instant',
+      name: 'iGuide Instant',
       priceLabel: 'Per project',
       // No CAD price on the live site
       prices: {USD: '$7.99', AUD: '$14.29'},
@@ -170,7 +170,7 @@ export const pricing = {
     },
     {
       id: 'standard',
-      name: 'iGUIDE Standard',
+      name: 'iGuide Standard',
       priceLabel: 'Starting at',
       prices: {CAD: '$48.00', USD: '$34.50', AUD: '$59.40'},
       industries: ['real-estate', 'insurance', 'architecture', 'facility'],
@@ -189,12 +189,12 @@ export const pricing = {
     },
     {
       id: 'premium',
-      name: 'iGUIDE Premium',
+      name: 'iGuide Premium',
       priceLabel: 'Starting at',
       prices: {CAD: '$66.00', USD: '$46.50', AUD: '$82.50'},
       industries: ['real-estate', 'architecture', 'facility'],
       includes: [
-        'Everything in iGUIDE Standard',
+        'Everything in iGuide Standard',
         'Enhanced detailed floor plans with objects, fixtures, and appliances',
         'VR compatible',
       ],
@@ -205,7 +205,7 @@ export const pricing = {
     },
     {
       id: 'adp',
-      name: 'iGUIDE Advanced Drawing Package',
+      name: 'iGuide Advanced Drawing Package',
       priceLabel: 'Starting at',
       prices: {CAD: '$210.00', USD: '$150.00', AUD: '$273.90'},
       industries: ['architecture', 'facility'],
@@ -221,7 +221,7 @@ export const pricing = {
     },
     {
       id: 'instantsketch',
-      name: 'iGUIDE Instant Sketch',
+      name: 'iGuide Instant Sketch',
       priceLabel: 'Per project',
       prices: {CAD: '$34.99', USD: '$24.99', AUD: '$43.99'},
       industries: ['insurance'],
@@ -229,7 +229,7 @@ export const pricing = {
         'Receive sketch in minutes',
         '3D virtual tour',
         'Site documentation',
-        'Verisk Xactimate integration — delivers ESX file',
+        'Verisk Xactimate integration: delivers ESX file',
       ],
       bestFor:
         'Professionals who need a fast, AI-generated Xactimate sketch with an integrated 3D tour to speed up estimating and claims work.',
@@ -237,7 +237,7 @@ export const pricing = {
     },
     {
       id: 'standardsketch',
-      name: 'iGUIDE Standard Sketch',
+      name: 'iGuide Standard Sketch',
       priceLabel: 'Starting at',
       prices: {CAD: '$90.00', USD: '$64.50', AUD: '$113.40'},
       industries: ['insurance'],
@@ -248,7 +248,7 @@ export const pricing = {
     },
     {
       id: 'premiumsketch',
-      name: 'iGUIDE Premium Sketch',
+      name: 'iGuide Premium Sketch',
       priceLabel: 'Starting at',
       prices: {CAD: '$108.00', USD: '$76.50', AUD: '$136.50'},
       industries: ['insurance'],
@@ -276,20 +276,20 @@ export const faq = {
   initiallyVisible: 3,
   items: [
     {
-      q: 'Does iGUIDE only capture interiors?',
-      a: 'No. While iGUIDE captures immersive interior tours and floor plans, it can also include Site Plans that show how the home sits on the property and how interior and exterior spaces connect. From a single iGUIDE capture, listings can include both interior and exterior context—helping buyers understand the full property, not just what’s inside.',
+      q: 'Does iGuide only capture interiors?',
+      a: 'No. While iGuide captures immersive interior tours and floor plans, it can also include Site Plans that show how the home sits on the property and how interior and exterior spaces connect. From a single iGuide capture, listings can include both interior and exterior context, helping buyers understand the full property, not just what’s inside.',
     },
     {
       q: 'Can I brand the virtual tour or floor plan?',
-      a: 'Yes, iGUIDE lets you add your logo and customize the virtual tour and floor plans with branding options including company logo, contact information and customized colour schemes.',
+      a: 'Yes, iGuide lets you add your logo and customize the virtual tour and floor plans with branding options including company logo, contact information and customized colour schemes.',
     },
     {
       q: 'Is the virtual tour automatically created?',
       a: 'Once a property is scanned with the PLANIX camera system, an immersive 3D virtual tour, schematic floor plan and rich property data is generated, no stitching or manual post-processing required.',
     },
     {
-      q: 'Can I use iGUIDE for more than just real estate?',
-      a: 'Yes! iGUIDE is used across industries including insurance, restoration, architecture and construction, thanks to its accuracy and format flexibility.',
+      q: 'Can I use iGuide for more than just real estate?',
+      a: 'Yes! iGuide is used across industries including insurance, restoration, architecture and construction, thanks to its accuracy and format flexibility.',
     },
     {
       q: 'Do I need to pay for a subscription to access my data?',
@@ -301,7 +301,7 @@ export const faq = {
     },
     {
       q: 'How accurate are the floor plans and measurements?',
-      a: 'Typical iGUIDE measurement uncertainty in distance measurement on a floor plan is 0.5% or better and the corresponding uncertainty in square footage is 1% or better, providing you the confidence required.',
+      a: 'Typical iGuide measurement uncertainty in distance measurement on a floor plan is 0.5% or better and the corresponding uncertainty in square footage is 1% or better, providing you the confidence required.',
     },
     {
       q: 'How long does it take to capture a property?',
@@ -313,7 +313,7 @@ export const faq = {
 /* ---------- Section: resources ---------- */
 
 export const latestResources = {
-  heading: 'Get more out of iGUIDE',
+  heading: 'Get more out of iGuide',
   subheading: 'Whether you’re just getting started or looking to level up, we’ve got you covered.',
   link: {label: 'View all resources', href: '/resource-center'},
   count: 3,
@@ -323,11 +323,11 @@ export const latestResources = {
 
 export const closingQuote = {
   quote:
-    "Tech is important, but it's only part of it. What matters is having a partner like iGUIDE who helps us scale and keeps things running smoothly.",
+    "Tech is important, but it's only part of it. What matters is having a partner like iGuide who helps us scale and keeps things running smoothly.",
   name: 'Glen MacIsaac',
   role: 'Photography Manager',
   company: 'Royal LePage Atlantic',
   image: '/homepage/glen-macisaac.png',
   primary: {label: 'Shop PLANIX R1', href: 'https://store.goiguide.com/'},
-  secondary: {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'},
+  secondary: {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
 }

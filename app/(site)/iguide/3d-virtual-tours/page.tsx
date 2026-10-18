@@ -25,7 +25,7 @@ export default function VirtualToursPage() {
         <CardGrid cards={c.deliverables.cards} columns={3} />
       </Section>
       <Section heading={c.extend.heading} subheading={c.extend.subheading} align="center" background="sky">
-        <TabbedMedia label="iGUIDE extras" tabs={c.extend.tabs} />
+        <TabbedMedia label="iGuide extras" tabs={c.extend.tabs} />
       </Section>
       <CmsTestimonials quotes={[c.testimonial]} />
       <CtaBanner {...c.cta} />

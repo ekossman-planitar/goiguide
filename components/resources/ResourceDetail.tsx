@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
 import {AuthorBox} from '@/components/blog/AuthorBox'
-import {PortableBody} from '@/components/blog/PortableBody'
+import {SectionedBody, splitSections} from '@/components/blog/SectionedBody'
 import {Button} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
 import {SmartLink} from '@/components/ui/SmartLink'
@@ -13,7 +13,9 @@ import {fetchSanity} from '@/sanity/lib/fetch'
 import {urlFor} from '@/sanity/lib/image'
 import {RESOURCE_DETAIL_QUERY, RESOURCE_SLUGS_QUERY} from '@/sanity/lib/queries'
 import type {ResourceDetailData} from '@/sanity/lib/types'
+import {CustomerFacts} from './CustomerFacts'
 import {ResourceCard} from './ResourceCard'
+import {StoryToc} from './StoryToc'
 
 /**
  * Detail page shared by every Resource Center type (/blogs/<slug>,
@@ -39,8 +41,8 @@ export function resourceMetadata(type: ResourceTypeName) {
     const item = await getItem(type, slug)
     if (!item) return {}
     const path = `${getResourceType(type)!.basePath}/${slug}`
-    // Live titles are "<title> | iGUIDE"; imported meta titles already include it
-    const title = item.seo?.metaTitle || `${item.title} | iGUIDE`
+    // Live titles are "<title> | iGuide"; imported meta titles already include it
+    const title = item.seo?.metaTitle || `${item.title} | iGuide`
     const description = item.seo?.metaDescription || item.excerpt || undefined
     const shareImage = item.seo?.ogImage?.asset ? item.seo.ogImage : item.featuredImage
     const ogImage = shareImage?.asset
@@ -56,7 +58,7 @@ export function resourceMetadata(type: ResourceTypeName) {
         title,
         description,
         url: path,
-        siteName: 'iGUIDE',
+        siteName: 'iGuide',
         locale: 'en_CA',
         publishedTime: item.publishedAt ?? undefined,
         modifiedTime: item._updatedAt,
@@ -68,13 +70,30 @@ export function resourceMetadata(type: ResourceTypeName) {
   }
 }
 
+function ShareLinks({share}: {share: {label: string; href: string}[]}) {
+  return (
+    <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-6 text-sm">
+      <span className="font-semibold text-ink">Share:</span>
+      {share.map((s) => (
+        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">
+          {s.label}
+        </a>
+      ))}
+    </div>
+  )
+}
+
 const schemaTypes: Partial<Record<ResourceTypeName, string>> = {blogPost: 'BlogPosting', newsArticle: 'NewsArticle'}
 
 export async function ResourceDetail({type, params}: {type: ResourceTypeName} & RouteProps) {
   const {slug} = await params
   const item = await getItem(type, slug)
   if (!item) notFound()
+  return <ResourceDetailView type={type} slug={slug} item={item} />
+}
 
+/** The detail page itself, from already-fetched data */
+export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; slug: string; item: NonNullable<ResourceDetailData>}) {
   const config = getResourceType(type)!
   const url = `https://goiguide.com${config.basePath}/${slug}`
   const image = item.featuredImage
@@ -90,9 +109,16 @@ export async function ResourceDetail({type, params}: {type: ResourceTypeName} & 
     dateModified: item._updatedAt,
     image: image?.asset ? urlFor(image).width(1200).height(630).fit('crop').url() : undefined,
     author: item.author?.name ? {'@type': 'Person', name: item.author.name} : undefined,
-    publisher: {'@type': 'Organization', name: 'iGUIDE', url: 'https://goiguide.com'},
+    publisher: {'@type': 'Organization', name: 'iGuide', url: 'https://goiguide.com'},
     mainEntityOfPage: url,
   }
+
+  // Customer stories: wider layout with the customer details box and an "On this page" menu beside the story
+  const isStory = type === 'customerStory'
+  const sections = item.body?.length ? splitSections(item.body, {splitAtHeadings: isStory}) : []
+  const toc = sections.filter((s): s is typeof s & {id: string; label: string} => !!s.id && !!s.label)
+  const facts = isStory && item.customerFacts?.length ? <CustomerFacts facts={item.customerFacts} cta={item.customerCta} /> : null
+  const showToc = isStory && toc.length >= 3
 
   const share = [
     {label: 'Facebook', href: `https://www.facebook.com/sharer.php?u=${encodeURIComponent(url)}`},
@@ -172,18 +198,28 @@ export async function ResourceDetail({type, params}: {type: ResourceTypeName} & 
         </Container>
       </header>
 
-      <Container size="narrow">
-        {item.body?.length ? <PortableBody value={item.body} /> : null}
-        {item.author && <AuthorBox author={item.author} />}
-        <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-6 text-sm">
-          <span className="font-semibold text-ink">Share:</span>
-          {share.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">
-              {s.label}
-            </a>
-          ))}
-        </div>
-      </Container>
+      {isStory && (facts || showToc) ? (
+        <Container className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[260px_minmax(0,880px)]">
+          <div className="lg:order-2 lg:min-w-0">
+            {facts && <div className="mb-12 lg:hidden">{facts}</div>}
+            <SectionedBody sections={sections} />
+            {item.author && <AuthorBox author={item.author} />}
+            <ShareLinks share={share} />
+          </div>
+          <div className="hidden lg:order-1 lg:block">
+            <div className="sticky top-28 space-y-10">
+              {facts}
+              {showToc && <StoryToc items={toc.map(({id, label}) => ({id, label}))} />}
+            </div>
+          </div>
+        </Container>
+      ) : (
+        <Container size="narrow">
+          {sections.length ? <SectionedBody sections={sections} /> : null}
+          {item.author && <AuthorBox author={item.author} />}
+          <ShareLinks share={share} />
+        </Container>
+      )}
 
       {item.related?.length ? (
         <section className="mt-20">

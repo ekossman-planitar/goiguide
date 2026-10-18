@@ -3,7 +3,7 @@ import type {Block} from '@/components/blocks/Blocks'
 import {BambooHrJobs} from '@/components/pages/BambooHrJobs'
 
 export const meta = {
-  title: 'Join Planitar: Lead the Way in PropTech Innovation | iGUIDE',
+  title: 'Join Planitar: Lead the Way in PropTech Innovation | iGuide',
   description: "Join Planitar's team and lead PropTech innovation. Transform industries with cutting-edge tech. Start your journey today!",
   path: '/careers',
 }
@@ -26,7 +26,7 @@ export const blocks: Block[] = [
       <>
         <p>With humble roots as a start-up in the Waterloo region, Planitar Inc. has become a global leader in the 3D tour and floor plan space.</p>
         <p>
-          By leveraging state-of-the-art technologies like AI, lidar scanning, and 360° imagery, Planitar has taken iGUIDE to every corner of the
+          By leveraging state-of-the-art technologies like AI, lidar scanning, and 360° imagery, Planitar has taken iGuide to every corner of the
           world in a short time span.
         </p>
         <p>
@@ -73,7 +73,7 @@ export const blocks: Block[] = [
         title: 'Drafting & Operations',
         text: (
           <p>
-            Create the products iGUIDE is famous for. Draft spaces to produce iGUIDE’s world-renowned floor plans and sketches with
+            Create the products iGuide is famous for. Draft spaces to produce iGuide’s world-renowned floor plans and sketches with
             industry-leading accuracy and attention to detail. Work with high-profile software integrations such as Xactimate, AutoCAD, and Revit.
             Leverage automated sequences and artificial intelligence to optimize workflows and provide our customers with the services they seek.
           </p>
@@ -96,7 +96,7 @@ export const blocks: Block[] = [
         title: 'Sales & Marketing',
         text: (
           <p>
-            Bring iGUIDE to the world with our Sales &amp; Marketing department. Take part in delivering riveting marketing materials to our broad
+            Bring iGuide to the world with our Sales &amp; Marketing department. Take part in delivering riveting marketing materials to our broad
             range of audiences or interact firsthand with soon-to-be customers as a Sales team member.
           </p>
         ),
@@ -107,7 +107,7 @@ export const blocks: Block[] = [
         title: 'Client Success',
         text: (
           <p>
-            Join the front lines of our public-facing Product Support department. Become an iGUIDE expert and assist our growing client base with
+            Join the front lines of our public-facing Product Support department. Become an iGuide expert and assist our growing client base with
             friendly and informative customer service along every step of their journey.
           </p>
         ),
@@ -131,7 +131,7 @@ export const blocks: Block[] = [
     columns: 3,
     cards: [
       {
-        title: 'Best practices for creating floor plans and 3D virtual tours with iGUIDE',
+        title: 'Best practices for creating floor plans and 3D virtual tours with iGuide',
         media: {
           type: 'image',
           image: {src: '/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzUzNV0.png', alt: '', width: 535, height: 285},
@@ -141,7 +141,7 @@ export const blocks: Block[] = [
             <p>
               Creating floor plans and 3D virtual tours has become essential for real estate professionals in today’s digital age. These assets
               provide potential buyers with an immersive experience, allowing them to explore properties from the comfort of their own homes. One of
-              the most popular platforms for creating these virtual tours is iGUIDE.
+              the most popular platforms for creating these virtual tours is iGuide.
             </p>
             <p className="text-sm font-semibold text-gray-400">Residential Real Estate, Real Estate Photography</p>
           </>
@@ -149,7 +149,7 @@ export const blocks: Block[] = [
         link: {label: 'Read more', href: '/blogs/best-practices-for-creating-floor-plans-and-3d-virtual-tours-with-iguide'},
       },
       {
-        title: 'iGUIDE for Real Estate Agents',
+        title: 'iGuide for Real Estate Agents',
         media: {
           type: 'image',
           image: {src: '/assets/Uploads/Brochure-TNs-iGUIDE-for-Real-Estate-Agents__ScaleMaxWidthWzUzNV0.png', alt: '', width: 535, height: 268},
@@ -158,7 +158,7 @@ export const blocks: Block[] = [
         link: {label: 'Download file', href: '/assets/Uploads/brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', newTab: true},
       },
       {
-        title: 'The Deft Group is revolutionizing property assessments with iGUIDE',
+        title: 'The Deft Group is revolutionizing property assessments with iGuide',
         media: {
           type: 'image',
           image: {
@@ -171,7 +171,7 @@ export const blocks: Block[] = [
         text: (
           <>
             <p>
-              Jeremiah Kiefer of The Deft Group uses iGUIDE to complete insurance property assessments in a third of the time, cutting costs and
+              Jeremiah Kiefer of The Deft Group uses iGuide to complete insurance property assessments in a third of the time, cutting costs and
               building client trust with accurate, repeatable data.
             </p>
             <p className="text-sm font-semibold text-gray-400">Insurance &amp; Restoration</p>

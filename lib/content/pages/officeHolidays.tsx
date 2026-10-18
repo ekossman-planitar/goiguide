@@ -2,9 +2,9 @@
 import type {Block} from '@/components/blocks/Blocks'
 
 export const meta = {
-  title: 'Office Holidays | iGUIDE',
+  title: 'Office Holidays | iGuide',
   description:
-    'iGUIDE observes the following holidays. Please note that our office closures may impact service delivery times. Thank you for your continued support.',
+    'iGuide observes the following holidays. Please note that our office closures may impact service delivery times. Thank you for your continued support.',
   path: '/office-holidays',
 }
 
@@ -44,7 +44,7 @@ function HolidayTable() {
         <tbody>
           <tr>
             <td colSpan={4} className="bg-[#949494] px-6 py-4 text-sm text-white">
-              *Limited iGUIDE drafts, ESX files and update requests processed. No DWG/RVT processing. No CAD Package processing. No Enterprise/Secure
+              *Limited iGuide drafts, ESX files and update requests processed. No DWG/RVT processing. No CAD Package processing. No Enterprise/Secure
               Portal processing. Processing will resume the next open day.
             </td>
           </tr>

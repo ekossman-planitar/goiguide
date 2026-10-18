@@ -10,11 +10,11 @@ export const revalidate = 60
 // Live: /ebooks is a CMS listing page titled "eBooks"
 export const metadata: Metadata = {
   // Copied from the live page (2026-10-09)
-  title: {absolute: 'Ebooks | iGUIDE'},
+  title: {absolute: 'Ebooks | iGuide'},
   description:
-    'iGUIDE ebooks are available on a range of subjects to help users maximize their experience, learn how to use iGUIDE in their lines of business, and more.',
+    'iGuide ebooks are available on a range of subjects to help users maximize their experience, learn how to use iGuide in their lines of business, and more.',
   alternates: {canonical: '/ebooks'},
-  openGraph: {title: 'Ebooks | iGUIDE', url: '/ebooks', images: ['/assets/iGUIDE-Meta-Thumbnail.png']},
+  openGraph: {title: 'Ebooks | iGuide', url: '/ebooks', images: ['/assets/iGUIDE-Meta-Thumbnail.png']},
 }
 
 export default async function EbooksPage() {

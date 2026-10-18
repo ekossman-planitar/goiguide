@@ -4,9 +4,9 @@ import {CheckList} from '@/components/blocks/CheckList'
 import {HeroFormColumns} from '@/components/pages/HeroFormColumns'
 
 export const meta = {
-  title: 'Watch on-demand: 2025 Real Estate Photography Business Webinar | iGUIDE',
+  title: 'Watch on-demand: 2025 Real Estate Photography Business Webinar | iGuide',
   description:
-    "In this 1-hour webinar experts share real strategies to land clients, shoot smarter and earn more—whether you're just starting out or ready to scale.",
+    "In this 1-hour webinar experts share real strategies to land clients, shoot smarter and earn more, whether you're just starting out or ready to scale.",
   path: '/how-to-build-a-thriving-real-estate-photography-business-in-2025',
   ogImage: '/assets/Picture_Profits_1280x400-Export-V2-2.jpg',
 }
@@ -26,7 +26,7 @@ export const blocks: Block[] = [
       <HeroFormColumns
         heading="Watch on-demand:"
         subheading="How to build a thriving real estate photography business in 2025"
-        formHeading="Don’t miss out — access the webinar instantly"
+        formHeading="Don’t miss out: access the webinar instantly"
         formId="b6b81548-b9c5-48f7-b340-41de91873ef8"
       />
     ),
@@ -51,7 +51,7 @@ export const blocks: Block[] = [
         image: {src: '/assets/Uploads/j.png', alt: ''},
         text: speaker(
           'J.W.Lee Media & Pres. North Florida Photographers',
-          'Former Navy mechanic turned real estate media pro — Jonathan captures spaces with clarity, detail, and purpose.',
+          'Former Navy mechanic turned real estate media pro, Jonathan captures spaces with clarity, detail, and purpose.',
         ),
       },
       {
@@ -59,7 +59,7 @@ export const blocks: Block[] = [
         image: {src: '/assets/Uploads/chris.png', alt: ''},
         text: speaker(
           'Product Marketing Manager',
-          'Seasoned photographer and gear junkie, Chris champions the needs of real estate photographers at iGUIDE.',
+          'Seasoned photographer and gear junkie, Chris champions the needs of real estate photographers at iGuide.',
         ),
       },
     ],

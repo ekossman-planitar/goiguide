@@ -4,7 +4,7 @@ import {pageMetadata} from '@/lib/pageMetadata'
 
 /** /cookie-policy — TITLE/DESC and copy from the live page (checked 2026-10-14). */
 export const metadata = pageMetadata({
-  title: 'Planitar Cookie Policy | iGUIDE',
+  title: 'Planitar Cookie Policy | iGuide',
   description:
     'At Planitar Inc., we respect your privacy and give you control over which cookies are stored on your device allowing you to customize your experience.',
   path: '/cookie-policy',

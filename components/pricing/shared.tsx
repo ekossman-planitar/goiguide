@@ -146,7 +146,7 @@ export function PriceTag({
             size === 'lg' && 'text-[32px] leading-10 sm:text-[40px] sm:leading-[48px]',
           )}
         >
-          {price ?? '—'}
+          {price ?? '–'}
         </span>
         <span className="text-xs font-semibold text-ink">{currency}</span>
       </p>

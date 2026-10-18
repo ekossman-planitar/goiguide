@@ -13,10 +13,10 @@ export const rea = <a href="https://www.realestate.com.au/">realestate.com.au</a
 
 export const reaLogo = {src: '/assets/realestate_logo_h_rev_rgb.png', alt: 'realestate.com.au'}
 
-export const launchVideo = {type: 'video' as const, src: '/assets/Australia/iGUIDE-Australia-Launch-Video.mp4', label: 'iGUIDE Australia launch video'}
+export const launchVideo = {type: 'video' as const, src: '/assets/Australia/iGUIDE-Australia-Launch-Video.mp4', label: 'iGuide Australia launch video'}
 
 export const danielNik = {
-  quote: 'Without an immersive iGUIDE tour to allow buyers to deeply explore the home, a listing isn’t complete.',
+  quote: 'Without an immersive iGuide tour to allow buyers to deeply explore the home, a listing isn’t complete.',
   name: 'Daniel Nik',
   role: 'Director & Co-Founder',
   company: 'Logic Media',

@@ -3,9 +3,9 @@ import type {Block} from '@/components/blocks/Blocks'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 
 export const meta = {
-  title: 'Meet Planitar | The Team Behind iGUIDE | iGUIDE',
+  title: 'Meet Planitar | The Team Behind iGuide | iGuide',
   description:
-    'Learn about Planitar, the makers of iGUIDE. Discover our vision, values, and commitment to sustainability, meet our leadership team, and explore how we’re shaping the future of real estate technology.',
+    'Learn about Planitar, the makers of iGuide. Discover our vision, values, and commitment to sustainability, meet our leadership team, and explore how we’re shaping the future of real estate technology.',
   path: '/about',
 }
 
@@ -74,16 +74,16 @@ function LeadershipGrid() {
 export const blocks: Block[] = [
   {
     type: 'hero',
-    heading: 'Meet Planitar, the team behind iGUIDE',
+    heading: 'Meet Planitar, the team behind iGuide',
     subheading:
-      'At Planitar, we believe every space tells a story. iGUIDE was born in 2013 when co-founders Alex Likholyot and Kevin Klages decided there had to be a better way than misleading floor plans. Their idea paired rock-solid measurements with immersive 3D tours, a simple fix that changed how properties were shared and understood.',
+      'At Planitar, we believe every space tells a story. iGuide was born in 2013 when co-founders Alex Likholyot and Kevin Klages decided there had to be a better way than misleading floor plans. Their idea paired rock-solid measurements with immersive 3D tours, a simple fix that changed how properties were shared and understood.',
     extra: (
       <p>
         What began with just a handful of projects has grown into over 1 billion ft² mapped, helping people experience spaces in ways that are
         accurate and engaging. And behind it all is a team that believes in doing things right and making property data smarter for everyone.
       </p>
     ),
-    media: {type: 'image', image: {src: '/assets/about-team-image.png', alt: 'photo - iGUIDE Town Hall Meeting', width: 4096, height: 2009}},
+    media: {type: 'image', image: {src: '/assets/about-team-image.png', alt: 'photo - iGuide Town Hall Meeting', width: 4096, height: 2009}},
   },
   {
     type: 'cards',
@@ -107,7 +107,7 @@ export const blocks: Block[] = [
     body: (
       <p>
         We care about building technology that makes a difference without adding strain on the planet. From sharing resources online to reducing
-        office waste, sustainability is part of how we work every day. And with iGUIDE, we help cut down on travel and extra site visits, lowering
+        office waste, sustainability is part of how we work every day. And with iGuide, we help cut down on travel and extra site visits, lowering
         the footprint across the industries we serve.
       </p>
     ),
@@ -134,7 +134,7 @@ export const blocks: Block[] = [
       </p>
     ),
     ctas: [{label: 'View open positions', href: '/careers#apply'}],
-    media: {type: 'image', image: {src: '/assets/about-group-shot-image.jpg', alt: 'photo - iGUIDE Team at  Imaging USA 2025 show', width: 1080, height: 608}},
+    media: {type: 'image', image: {src: '/assets/about-group-shot-image.jpg', alt: 'photo - iGuide Team at  Imaging USA 2025 show', width: 1080, height: 608}},
     mediaSide: 'left',
     mediaClassName: 'rounded-2xl',
   },

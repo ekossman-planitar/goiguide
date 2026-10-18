@@ -4,9 +4,9 @@ import type {Deliverable} from '@/components/blocks/DeliverableCards'
 import {pricing as homePricing} from './homeSections'
 
 export const meta = {
-  title: 'iGUIDE Pricing, Packages, Options and Add-ons | iGUIDE',
+  title: 'iGuide Pricing, Packages, Options and Add-ons | iGuide',
   description:
-    'Find the right fit for your needs and budget with per-project pricing, no fees, and flexible add-ons. Learn more about iGUIDE pricing today!',
+    'Find the right fit for your needs and budget with per-project pricing, no fees, and flexible add-ons. Learn more about iGuide pricing today!',
   path: '/pricing',
 }
 
@@ -14,7 +14,7 @@ export const hero = {
   heading: 'No subscriptions, no surprises',
   included: ['Interactive 3D virtual tour', 'Accurate floor plan', 'Measurement tool', 'Shareable property link'],
   footnote:
-    '*Included with all iGUIDE packages, except iGUIDE Radix (no floor plan) and iGUIDE Instant (interactive floor plan only, not downloadable).',
+    '*Included with all iGuide packages, except iGuide Radix (no floor plan) and iGuide Instant (interactive floor plan only, not downloadable).',
   image: {src: '/assets/Pricing-w-Chris-Logo.png', alt: 'pricing w chris'},
 }
 
@@ -33,7 +33,7 @@ export const addOns: (Deliverable & {priceCAD: string})[] = [
   {
     title: 'Site Plan',
     summary:
-      'Site Plans provide a schematic view of the entire property, including buildings and outdoor features. Powered by aerial data and onsite PLANIX captures, they extend iGUIDE value beyond the interior.',
+      'Site Plans provide a schematic view of the entire property, including buildings and outdoor features. Powered by aerial data and onsite PLANIX captures, they extend iGuide value beyond the interior.',
     image: {src: '/assets/Site_Plans_Add-On.jpg', alt: 'image - Site Plan'},
     includes: [],
     priceCAD: '$45 CAD',
@@ -41,14 +41,14 @@ export const addOns: (Deliverable & {priceCAD: string})[] = [
   {
     title: 'CAD Floor Plan (DWG)',
     summary:
-      'Drafted floor plan in DWG format with LOD 200 detail. Includes AIA standard layers, annotations and LiDAR point cloud data (DXF). Annotations are only included with iGUIDE Premium or Advanced Drawing Packages.',
+      'Drafted floor plan in DWG format with LOD 200 detail. Includes AIA standard layers, annotations and LiDAR point cloud data (DXF). Annotations are only included with iGuide Premium or Advanced Drawing Packages.',
     image: {src: '/assets/CS0001-Premium-Floor-Plans.png', alt: 'image - CAD Floor Plans'},
     includes: [],
     priceCAD: '$0.028 CAD',
   },
   {
     title: 'Roof Plan',
-    summary: 'Drafted roof plan in DWG format. Includes slopes and roof edges of the primary structure. Requires iGUIDE Premium or Advanced Drawing Package.',
+    summary: 'Drafted roof plan in DWG format. Includes slopes and roof edges of the primary structure. Requires iGuide Premium or Advanced Drawing Package.',
     image: {src: '/assets/CS0001-Roof-Plan.png', alt: 'image - Roof Plan'},
     includes: [],
     priceCAD: '$0.042 CAD',
@@ -56,7 +56,7 @@ export const addOns: (Deliverable & {priceCAD: string})[] = [
   {
     title: 'Exterior Elevations',
     summary:
-      'Drafted exterior elevation drawings in DWG format, including front, rear and side building façades. Requires iGUIDE Premium or Advanced Drawing Package.',
+      'Drafted exterior elevation drawings in DWG format, including front, rear and side building façades. Requires iGuide Premium or Advanced Drawing Package.',
     image: {src: '/assets/CS0001-Exterior-Elevations.png', alt: 'image - Exterior Elevations'},
     includes: [],
     priceCAD: '$0.042 CAD',
@@ -64,14 +64,14 @@ export const addOns: (Deliverable & {priceCAD: string})[] = [
   {
     title: 'Reflected Ceiling Plan',
     summary:
-      'Drafted reflected ceiling plan (DWG format) with elements like bulkheads, lighting and ceiling height indicators. Requires iGUIDE Premium or Advanced Drawing Package.',
+      'Drafted reflected ceiling plan (DWG format) with elements like bulkheads, lighting and ceiling height indicators. Requires iGuide Premium or Advanced Drawing Package.',
     image: {src: '/assets/RS0001-Reflected-Ceiling-Plans.png', alt: 'image - Reflected Ceiling Plan'},
     includes: [],
     priceCAD: '$0.042 CAD',
   },
   {
     title: '3D Model',
-    summary: '3D model of drafted floors (Revit or DWG). Includes walls, doors, windows and basic structural elements. Requires iGUIDE Premium or Advanced Drawing Package.',
+    summary: '3D model of drafted floors (Revit or DWG). Includes walls, doors, windows and basic structural elements. Requires iGuide Premium or Advanced Drawing Package.',
     image: {src: '/assets/CS0001-3DModel-DWG.png', alt: 'image - 3D Model'},
     includes: [],
     priceCAD: '$0.110 CAD',
@@ -83,10 +83,10 @@ export const faq = {
   items: [
     {
       q: 'How does the pricing work?',
-      a: 'iGUIDE processing fees are based on billable area per project. When hiring a provider, their capture fee is separate and varies by location.',
+      a: 'iGuide processing fees are based on billable area per project. When hiring a provider, their capture fee is separate and varies by location.',
     },
     {
-      q: 'How fast will I receive my iGUIDE deliverables, and what does it cost?',
+      q: 'How fast will I receive my iGuide deliverables, and what does it cost?',
       a: (
         <>
           <p>
@@ -114,11 +114,11 @@ export const faq = {
           </p>
           <ul>
             <li>Charges are based on billable ft².</li>
-            <li>The processing fees include hosting in the iGUIDE Cloud (no hosting fee is currently charged after the first year).</li>
-            <li>Processed iGUIDEs can be downloaded for offline viewing or self-hosting.</li>
+            <li>The processing fees include hosting in the iGuide Cloud (no hosting fee is currently charged after the first year).</li>
+            <li>Processed iGuides can be downloaded for offline viewing or self-hosting.</li>
             <li>
-              Total Delivery Cost: iGUIDE processing fees are one part of the total delivery cost, which also includes the cost of data collection,
-              as determined by on-site scanning time multiplied by the hourly pay rate of a camera operator. iGUIDE is the leader in
+              Total Delivery Cost: iGuide processing fees are one part of the total delivery cost, which also includes the cost of data collection,
+              as determined by on-site scanning time multiplied by the hourly pay rate of a camera operator. iGuide is the leader in
               cost-efficiency, allowing you to service more volume with fewer cameras and camera operators, saving you time and money.
             </li>
           </ul>
@@ -126,18 +126,18 @@ export const faq = {
             <strong>Delivery time and additional requirements</strong>
           </p>
           <ul>
-            <li>iGUIDEs with all required data uploaded to the Portal will be processed within 24 hours.</li>
-            <li>The exact completion time is contingent on the daily volume of iGUIDEs.</li>
-            <li>iGUIDEs are drafted in the order in which the files are uploaded to the Portal.</li>
+            <li>iGuides with all required data uploaded to the Portal will be processed within 24 hours.</li>
+            <li>The exact completion time is contingent on the daily volume of iGuides.</li>
+            <li>iGuides are drafted in the order in which the files are uploaded to the Portal.</li>
             <li>No drafting occurs on official holidays in Ontario, Canada.</li>
             <li>
-              For iGUIDEs greater than 10,000 sq ft, the standard turnaround time for the completed iGUIDE is not guaranteed. The size and complexity
+              For iGuides greater than 10,000 sq ft, the standard turnaround time for the completed iGuide is not guaranteed. The size and complexity
               of the property will determine the delivery date.
             </li>
             <li>
               You can read additional details regarding{' '}
               <a href="https://help.youriguide.com/hc/en-us/articles/27362487646098-iGUIDE-Delivery-Time-Estimates" target="_blank" rel="noopener noreferrer">
-                iGUIDE delivery time estimates
+                iGuide delivery time estimates
               </a>{' '}
               in our help center.
             </li>
@@ -146,14 +146,14 @@ export const faq = {
       ),
     },
     {
-      q: 'Why does iGUIDE use a pay-per-project model instead of subscription fees?',
+      q: 'Why does iGuide use a pay-per-project model instead of subscription fees?',
       a: (
         <p>
-          Subscription platforms often charge you even when you’re not scanning—and hit you with surprise fees as you grow. iGUIDE does it
+          Subscription platforms often charge you even when you’re not scanning, and hit you with surprise fees as you grow. iGuide does it
           differently. There are no monthly fees, no storage limits, and no penalties. You only pay when you scan. It’s a flexible, transparent
           model that adapts to your workflow and respects your business. Learn more about how{' '}
           <SmartLink href="/blogs/why-subscription-fees-suck-and-why-iguides-pay-per-project-model-respects-your-business">
-            iGUIDE&apos;s per-project pricing model respects your business
+            iGuide&apos;s per-project pricing model respects your business
           </SmartLink>
           .
         </p>
@@ -162,11 +162,11 @@ export const faq = {
     {
       q: 'Can I order just the floor plans?',
       // "becuase" is the live site's spelling
-      a: 'Discrete floor plans are not available to order. This is becuase the 3D tour is an integral part of every iGUIDE. However, floor plans can be shared discretely if the 3D tour is not required.',
+      a: 'Discrete floor plans are not available to order. This is becuase the 3D tour is an integral part of every iGuide. However, floor plans can be shared discretely if the 3D tour is not required.',
     },
     {
-      q: 'What is the processing time for an iGUIDE with a Site Plan Add-on?',
-      a: 'iGUIDEs with a Site Plan Add‑on for conventional lot sizes will be processed within 24 hours when all required data is uploaded to the iGUIDE Portal; however, this timeline may not apply to properties with more than 10,000 sq ft (929 sq m) of interior space, extensive acreage or complex site features. In such cases, delivery of the iGUIDE + Site Plan Add-on will depend on overall size and complexity and may exceed 48 hours.',
+      q: 'What is the processing time for an iGuide with a Site Plan Add-on?',
+      a: 'iGuides with a Site Plan Add‑on for conventional lot sizes will be processed within 24 hours when all required data is uploaded to the iGuide Portal; however, this timeline may not apply to properties with more than 10,000 sq ft (929 sq m) of interior space, extensive acreage or complex site features. In such cases, delivery of the iGuide + Site Plan Add-on will depend on overall size and complexity and may exceed 48 hours.',
     },
   ],
 }
@@ -234,7 +234,7 @@ export const calcIndustries: {id: number; title: string; packages: number[]; noC
     noCalc: {
       title: 'Looking for Design & Construction Services?',
       message:
-        "We're ready to craft a personalized quote based on the product package you've chosen. Simply set up a call with an iGUIDE Specialist to learn more.",
+        "We're ready to craft a personalized quote based on the product package you've chosen. Simply set up a call with an iGuide Specialist to learn more.",
     },
   },
   {id: 4, title: 'Insurance, Restoration & Forensics', packages: [1, 4, 5, 6]},
@@ -244,12 +244,12 @@ export const calcIndustries: {id: number; title: string; packages: number[]; noC
 export const calculator = {
   heading: 'Pricing Calculator',
   customQuoteMessage:
-    "It looks like your property exceeds 10,000 square feet (929 square meters), you're eligible for special pricing. Set up a call with an iGUIDE Specialist to learn more.",
+    "It looks like your property exceeds 10,000 square feet (929 square meters), you're eligible for special pricing. Set up a call with an iGuide Specialist to learn more.",
   currencies: ['AUD', 'CAD', 'USD'] as const,
   defaultCurrency: 'CAD' as const,
   defaultSize: 1500,
   /** Silverstripe default for Calculator.CustomQuoteMaxSizeFt; confirm the CMS value */
   customQuoteMaxSizeFt: 10000,
   disclaimer:
-    'Disclaimer: The price shown is an estimate based on the provided square footage or square meters and is subject to change. Final pricing may vary depending on the details of the project submitted to the iGUIDE Portal. Prices displayed are inclusive of 10% GST (Australia only).',
+    'Disclaimer: The price shown is an estimate based on the provided square footage or square meters and is subject to change. Final pricing may vary depending on the details of the project submitted to the iGuide Portal. Prices displayed are inclusive of 10% GST (Australia only).',
 }

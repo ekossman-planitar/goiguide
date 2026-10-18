@@ -28,17 +28,17 @@ export default function DownloadsPage() {
             <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">{heading}</h1>
             <p className="mt-6 text-lg leading-7 text-muted">
               Welcome to the software and documentation downloads area. Here you will find the software required to work with data captured with
-              the <SmartLink href="/camera-hardware" className="font-medium text-primary underline">iGUIDE Camera System</SmartLink> and update
-              firmware to the latest version. If you are new to creating iGUIDEs start by downloading Stitch. Stitch will automatically update once
+              the <SmartLink href="/camera-hardware" className="font-medium text-primary underline">iGuide Camera System</SmartLink> and update
+              firmware to the latest version. If you are new to creating iGuides start by downloading Stitch. Stitch will automatically update once
               installed and will notify you when your camera needs the newest firmware. Firmware update instructions are available on the{' '}
               <SmartLink href="https://help.youriguide.com/" className="font-medium text-primary underline">
-                iGUIDE Support Desk
+                iGuide Support Desk
               </SmartLink>
               .
             </p>
           </div>
           <div className="rounded-2xl bg-sky p-8 lg:p-10">
-            <p className="text-sm font-semibold text-primary">New to iGUIDE? Start here</p>
+            <p className="text-sm font-semibold text-primary">New to iGuide? Start here</p>
             <h2 className="mt-2 text-[32px] font-semibold leading-tight text-ink">Stitch v{stitch.version}</h2>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={stitch.pc} size="lg">

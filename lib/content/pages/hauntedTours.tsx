@@ -5,9 +5,9 @@ import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 
 export const meta = {
-  title: "iGUIDE Haunted Tours: Discover North America's Haunted Sites | iGUIDE",
+  title: "iGuide Haunted Tours: Discover North America's Haunted Sites | iGuide",
   description:
-    'Explore America’s haunted sites with iGUIDE\'s 3D virtual tours, featuring eerie stories and chilling history for paranormal fans and thrill-seekers alike.',
+    'Explore America’s haunted sites with iGuide\'s 3D virtual tours, featuring eerie stories and chilling history for paranormal fans and thrill-seekers alike.',
   path: '/haunted-tours',
   ogImage: '/assets/iGUIDE_Haunted_Tours_72dpi.jpg',
 }
@@ -56,10 +56,10 @@ export const blocks: Block[] = [
               <strong>The most haunted hotel in the world</strong>&quot;. Each area of The Historic Jefferson Hotel is rich with stories and ghostly
               murmurs, providing a distinct and exciting escape from the everyday.
             </p>
-            <p>If you&apos;re curious about ghosts, watch the video in this tour—it will give you goosebumps!</p>
+            <p>If you&apos;re curious about ghosts, watch the video in this tour. It will give you goosebumps!</p>
           </>,
         )}
-        <HauntedTour src="https://youriguide.com/embed/the-historic-jefferson-hotel?branded=1&autostart=1&bgcolor=FFFFFF" title="iGUIDE tour of The Historic Jefferson Hotel" />
+        <HauntedTour src="https://youriguide.com/embed/the-historic-jefferson-hotel?branded=1&autostart=1&bgcolor=FFFFFF" title="iGuide tour of The Historic Jefferson Hotel" />
       </>
     ),
   },
@@ -84,7 +84,7 @@ export const blocks: Block[] = [
             </p>
           </>,
         )}
-        <HauntedTour src="https://youriguide.com/bradford_ma_barker_house?branded=1&autostart=1&bgcolor=FFFFFF" title="iGUIDE tour of The Bradford-Ma Barker House" />
+        <HauntedTour src="https://youriguide.com/bradford_ma_barker_house?branded=1&autostart=1&bgcolor=FFFFFF" title="iGuide tour of The Bradford-Ma Barker House" />
       </>
     ),
   },
@@ -108,7 +108,7 @@ export const blocks: Block[] = [
             </p>
           </>,
         )}
-        <HauntedTour src="https://youriguide.com/embed/2413_collingwood_blvd_toledo_oh?autostart=1&bgcolor=FFFFFF" title="iGUIDE tour of The Collingwood Arts Center" />
+        <HauntedTour src="https://youriguide.com/embed/2413_collingwood_blvd_toledo_oh?autostart=1&bgcolor=FFFFFF" title="iGuide tour of The Collingwood Arts Center" />
       </>
     ),
   },
@@ -133,14 +133,14 @@ export const blocks: Block[] = [
             <p>If you&apos;re near Kitchener-Waterloo, don&apos;t miss a visit to the Good Family Farm.</p>
           </>,
         )}
-        <HauntedTour src="https://youriguide.com/embed/909_bridge_st_e_waterloo_on?autostart=1&bgcolor=FFFFFF" title="iGUIDE tour of Good Family Farm" />
+        <HauntedTour src="https://youriguide.com/embed/909_bridge_st_e_waterloo_on?autostart=1&bgcolor=FFFFFF" title="iGuide tour of Good Family Farm" />
       </>
     ),
   },
   {
     type: 'custom',
     id: 'e1376',
-    heading: 'What haunted property should iGUIDE visit next?',
+    heading: 'What haunted property should iGuide visit next?',
     background: 'sky',
     children: (
       <div className="grid items-start gap-8 lg:grid-cols-2">

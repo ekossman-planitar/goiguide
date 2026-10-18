@@ -97,7 +97,7 @@ export const landingPage = defineType({
       title: 'Share image',
       type: 'image',
       group: 'settings',
-      description: 'Shown when the link is shared. Defaults to the iGUIDE share image.',
+      description: 'Shown when the link is shared. Defaults to the iGuide share image.',
     }),
     defineField({name: 'notes', title: 'Campaign notes', type: 'text', rows: 3, group: 'settings', description: 'Internal: campaign, audience, test hypothesis…'}),
     defineField({

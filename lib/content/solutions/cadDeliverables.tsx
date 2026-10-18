@@ -3,9 +3,9 @@ import {book} from './shared'
 
 export const cadDeliverables = {
   meta: {
-    title: 'Accurate CAD Deliverables for Design & Construction | iGUIDE',
+    title: 'Accurate CAD Deliverables for Design & Construction | iGuide',
     description:
-      'Get LiDAR-accurate CAD drawings in DWG, DXF, and PDF — LOD 200, AIA standard layers, delivered in days. One site visit. No manual measurement. No return visits.',
+      'Get LiDAR-accurate CAD drawings in DWG, DXF, and PDF: LOD 200, AIA standard layers, delivered in days. One site visit. No manual measurement. No return visits.',
     path: '/iguide/cad-deliverables',
     ogImage: '/assets/Solutions_Site-Plans.png',
   },
@@ -72,40 +72,40 @@ export const cadDeliverables = {
         label: 'CAD Floor Plan',
         image: {src: '/assets/CS0001-Premium-Floor-Plans.png', alt: 'image - CAD Floor Plans'},
         title: 'CAD Floor Plan (DWG)',
-        text: 'Drafted floor plan in DWG format with LOD 200 detail. Includes AIA standard layers, annotations and LiDAR point cloud data (DXF). Annotations are only included with iGUIDE Premium or Advanced Drawing Packages.',
+        text: 'Drafted floor plan in DWG format with LOD 200 detail. Includes AIA standard layers, annotations and LiDAR point cloud data (DXF). Annotations are only included with iGuide Premium or Advanced Drawing Packages.',
       },
       {
         id: 'roof-plan',
         label: 'Roof Plan',
         image: {src: '/assets/CS0001-Roof-Plan.png', alt: 'image - Roof Plan'},
         title: 'Roof Plan',
-        text: 'Drafted roof plan in DWG format. Includes slopes and roof edges of the primary structure. Requires iGUIDE Premium or Advanced Drawing Package.',
+        text: 'Drafted roof plan in DWG format. Includes slopes and roof edges of the primary structure. Requires iGuide Premium or Advanced Drawing Package.',
       },
       {
         id: 'exterior-elevations',
         label: 'Exterior Elevations',
         image: {src: '/assets/CS0001-Exterior-Elevations.png', alt: 'image - Exterior Elevations'},
         title: 'Exterior Elevations',
-        text: 'Drafted exterior elevation drawings in DWG format, including front, rear and side building façades. Requires iGUIDE Premium or Advanced Drawing Package.',
+        text: 'Drafted exterior elevation drawings in DWG format, including front, rear and side building façades. Requires iGuide Premium or Advanced Drawing Package.',
       },
       {
         id: 'reflected-ceiling-plan',
         label: 'Reflected Ceiling Plan',
         image: {src: '/assets/RS0001-Reflected-Ceiling-Plans.png', alt: 'image - Reflected Ceiling Plan'},
         title: 'Reflected Ceiling Plan',
-        text: 'Drafted reflected ceiling plan (DWG format) with elements like bulkheads, lighting and ceiling height indicators. Requires iGUIDE Premium or Advanced Drawing Package.',
+        text: 'Drafted reflected ceiling plan (DWG format) with elements like bulkheads, lighting and ceiling height indicators. Requires iGuide Premium or Advanced Drawing Package.',
       },
       {
         id: '3d-model',
         label: '3D Model',
         image: {src: '/assets/CS0001-3DModel-DWG.png', alt: 'image - 3D Model'},
         title: '3D Model',
-        text: '3D model of drafted floors (Revit or DWG). Includes walls, doors, windows and basic structural elements. Requires iGUIDE Premium or Advanced Drawing Package.',
+        text: '3D model of drafted floors (Revit or DWG). Includes walls, doors, windows and basic structural elements. Requires iGuide Premium or Advanced Drawing Package.',
       },
     ],
   },
   testimonial: {
-    quote: 'With iGUIDE, we kicked off new projects 50% faster and never had to go back to site.',
+    quote: 'With iGuide, we kicked off new projects 50% faster and never had to go back to site.',
     name: 'John McKenna',
     role: 'Owner & Architect',
     company: 'MC3 Design',
@@ -118,12 +118,12 @@ export const cadDeliverables = {
   faq: {
     heading: 'Frequently asked questions',
     items: [
-      {q: 'What types of buildings does iGUIDE support for CAD deliverables?', a: 'iGUIDE CAD deliverables are available for residential, commercial and mixed-use buildings. The system works well for projects up to mid-size commercial, including retail fit-outs, multi-unit dwellings, office interiors and renovation projects.'},
-      {q: 'How accurate are iGUIDE CAD drawings?', a: 'iGUIDE CAD drawings are built from lidar-captured point cloud data with 0.5 percent or less typical distance measurement uncertainty. Measurements meet Alberta RMS and ANSI Z765-2013 standards, making them reliable for design, permitting and cost estimation.'},
-      {q: 'What CAD deliverables does iGUIDE provide for design and construction projects?', a: "Every iGUIDE Advanced Drawing Package includes CAD floor plans (DWG), a LiDAR point cloud (DXF), plotted PDF drawings and a 3D virtual walkthrough. Add-ons such as Elevations, Ceiling Plans, Roof Plans and a 3D model (DWG or RVT) are available to match your project's scope."},
-      {q: 'Can iGUIDE CAD files be used for permits, design and estimating?', a: "Yes. iGUIDE CAD files are drawn to LOD 200 with AIA-compliant layers, room labels and dimensions. They're suited for pre-design, tenant improvements, as-built documentation, permit submissions and cost estimation."},
-      {q: 'How do I order iGUIDE CAD deliverables?', a: 'You can get iGUIDE CAD deliverables two ways: scan the property yourself with a PLANIX R1 camera system, or hire a local iGUIDE Operator through the ION Directory. Deliverables are ordered at processing and returned as project-ready files.'},
-      {q: 'How is iGUIDE CAD pricing structured?', a: 'iGUIDE CAD deliverables are priced per project with no subscriptions or ongoing fees. You pay for the data you need and retain full ownership of all files. Visit the iGUIDE pricing page for current package and add-on pricing.'},
+      {q: 'What types of buildings does iGuide support for CAD deliverables?', a: 'iGuide CAD deliverables are available for residential, commercial and mixed-use buildings. The system works well for projects up to mid-size commercial, including retail fit-outs, multi-unit dwellings, office interiors and renovation projects.'},
+      {q: 'How accurate are iGuide CAD drawings?', a: 'iGuide CAD drawings are built from lidar-captured point cloud data with 0.5 percent or less typical distance measurement uncertainty. Measurements meet Alberta RMS and ANSI Z765-2013 standards, making them reliable for design, permitting and cost estimation.'},
+      {q: 'What CAD deliverables does iGuide provide for design and construction projects?', a: "Every iGuide Advanced Drawing Package includes CAD floor plans (DWG), a LiDAR point cloud (DXF), plotted PDF drawings and a 3D virtual walkthrough. Add-ons such as Elevations, Ceiling Plans, Roof Plans and a 3D model (DWG or RVT) are available to match your project's scope."},
+      {q: 'Can iGuide CAD files be used for permits, design and estimating?', a: "Yes. iGuide CAD files are drawn to LOD 200 with AIA-compliant layers, room labels and dimensions. They're suited for pre-design, tenant improvements, as-built documentation, permit submissions and cost estimation."},
+      {q: 'How do I order iGuide CAD deliverables?', a: 'You can get iGuide CAD deliverables two ways: scan the property yourself with a PLANIX R1 camera system, or hire a local iGuide Operator through the ION Directory. Deliverables are ordered at processing and returned as project-ready files.'},
+      {q: 'How is iGuide CAD pricing structured?', a: 'iGuide CAD deliverables are priced per project with no subscriptions or ongoing fees. You pay for the data you need and retain full ownership of all files. Visit the iGuide pricing page for current package and add-on pricing.'},
     ],
   },
   // "Starting designing" is the live wording

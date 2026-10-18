@@ -7,14 +7,12 @@ import {LatestResources} from '@/components/sections/LatestResources'
 import {LogoCarousel} from '@/components/sections/LogoCarousel'
 import {RatingRow} from '@/components/sections/RatingRow'
 import {StepsTimeline} from '@/components/sections/StepsTimeline'
-import {TourShowcase} from '@/components/sections/TourShowcase'
 import {heroFallback, howItWorks, logoHeadingFallback} from '@/lib/content/home'
 import {
   customerStories,
   faq,
   latestResources,
   pricing,
-  tourShowcase,
 } from '@/lib/content/homeSections'
 import {jsonLdScript, organizationJsonLd} from '@/lib/organization'
 import {pageMetadata} from '@/lib/pageMetadata'
@@ -27,9 +25,9 @@ export const revalidate = 60
 
 // Title, description and canonical copied from the live homepage (2026-10-09)
 export const metadata = pageMetadata({
-  title: 'Accurate Floor Plans & 3D Tours | iGUIDE',
+  title: 'Accurate Floor Plans & 3D Tours | iGuide',
   description:
-    'Capture detailed floor plans, 3D tours, and 1,000s of measurements in minutes. iGUIDE helps pros share precise property data confidently, no subscriptions.',
+    'Capture detailed floor plans, 3D tours, and 1,000s of measurements in minutes. iGuide helps pros share precise property data confidently, no subscriptions.',
   path: '/',
 })
 
@@ -47,12 +45,10 @@ export default async function HomePage() {
       <Hero data={home?.hero ?? heroFallback} footer={<RatingRow />} />
       <LogoCarousel heading={home?.logoCarousel?.heading ?? logoHeadingFallback} logos={(home?.logoCarousel?.logos ?? []).filter((logo) => logo?.src)} />
 
-      {/* Personalised paths for the four core audiences */}
+      {/* Personalised paths for the core audiences */}
       <IndustryPicker />
 
       <StepsTimeline id="how-it-works" heading={howItWorks.heading} subheading={howItWorks.subheading} steps={howItWorks.steps} />
-
-      <TourShowcase {...tourShowcase} />
 
       <CmsCustomerStories {...customerStories} />
 

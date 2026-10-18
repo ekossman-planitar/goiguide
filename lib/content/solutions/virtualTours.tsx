@@ -3,25 +3,25 @@ import {book} from './shared'
 
 export const virtualTours = {
   meta: {
-    title: 'iGUIDE 3D Virtual Tours with Accurate Floor Plans & Measurements | iGUIDE',
+    title: 'iGuide 3D Virtual Tours with Accurate Floor Plans & Measurements | iGuide',
     description:
-      'Explore iGUIDE 3D virtual tours with built in floor plans, room measurements, reports, tagging and rich media. Capture once and deliver immersive property documentation for real estate, insurance, restoration and more.',
+      'Explore iGuide 3D virtual tours with built in floor plans, room measurements, reports, tagging and rich media. Capture once and deliver immersive property documentation for real estate, insurance, restoration and more.',
     path: '/iguide/3d-virtual-tours',
     ogImage: '/assets/Solutions_Site-Plans.png',
   },
   hero: {
     heading: 'More than just a virtual tour',
     subheading:
-      'Every iGUIDE includes immersive virtual tours, accurate floor plans, room measurements and property documentation in one capture.',
+      'Every iGuide includes immersive virtual tours, accurate floor plans, room measurements and property documentation in one capture.',
     ctas: [book()],
     tour: {
       src: 'https://youriguide.com/100_chattel_st_haverhill_ma?branded=1&autostart=1&nocontactform=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash',
-      title: 'iGUIDE virtual tour of 100 Chattel St, Haverhill, MA',
+      title: 'iGuide virtual tour of 100 Chattel St, Haverhill, MA',
     },
   },
   portals: {
     band: 'listing-portals',
-    heading: 'iGUIDE virtual tours integrate with',
+    heading: 'iGuide virtual tours integrate with',
     logos: [
       {src: '/assets/realtor-v2.ca.png', alt: 'Realtor.ca', width: 133, height: 45},
       {src: '/assets/realtor.com.png', alt: 'Realtor.com', width: 133, height: 26},
@@ -42,14 +42,14 @@ export const virtualTours = {
       },
       {
         title: 'Floor Plans',
-        text: 'Accurate floor plans generated automatically with every iGUIDE capture.',
-        image: {src: '/assets/floorplan-480.png', alt: 'Color-coded iGUIDE floor plan showing room outlines and measurements', width: 480, height: 480},
+        text: 'Accurate floor plans generated automatically with every iGuide capture.',
+        image: {src: '/assets/floorplan-480.png', alt: 'Color-coded iGuide floor plan showing room outlines and measurements', width: 480, height: 480},
         link: {label: 'View floor plan sample', href: '/assets/iGUIDE-Schematic-Floor-Plan.pdf'},
       },
       {
         title: 'Room Measurements',
         text: 'Reliable room and object measurements with real world accuracy.',
-        image: {src: '/assets/measurement-mode-480.png', alt: 'iGUIDE measurement mode showing live room dimensions inside the virtual tour', width: 480, height: 480},
+        image: {src: '/assets/measurement-mode-480.png', alt: 'iGuide measurement mode showing live room dimensions inside the virtual tour', width: 480, height: 480},
         link: {label: 'Using the measurement tool', href: 'https://help.youriguide.com/hc/en-us/articles/29058226468882-Using-the-Measurement-Tool'},
       },
       {
@@ -73,19 +73,19 @@ export const virtualTours = {
     ],
   },
   extend: {
-    heading: 'Extend what your iGUIDE can do',
+    heading: 'Extend what your iGuide can do',
     subheading: 'Host live walkthroughs, publish to Street View, stage interiors and customize floor plans.',
     tabs: [
       {
         id: 'virtual-showing',
         label: 'Virtual Showing',
-        media: {type: 'embed' as const, src: 'https://www.youtube.com/embed/VtvfYwgyeY4?si=G4yr98DLVN0jj7xR', title: 'iGUIDE Virtual Showing feature overview video'},
-        text: 'Lead live remote walkthroughs where everyone follows the same iGUIDE tour in real time.',
+        media: {type: 'embed' as const, src: 'https://www.youtube.com/embed/VtvfYwgyeY4?si=G4yr98DLVN0jj7xR', title: 'iGuide Virtual Showing feature overview video'},
+        text: 'Lead live remote walkthroughs where everyone follows the same iGuide tour in real time.',
       },
       {
         id: 'virtual-staging',
         label: 'Virtual Staging',
-        media: {type: 'embed' as const, src: 'https://www.youtube.com/embed/jidt64auBmE?si=Y3WWFiQLFBlD2JgB', title: 'iGUIDE Virtual Staging feature overview video'},
+        media: {type: 'embed' as const, src: 'https://www.youtube.com/embed/jidt64auBmE?si=Y3WWFiQLFBlD2JgB', title: 'iGuide Virtual Staging feature overview video'},
         text: 'Show the potential of a space with staged 360° images, furniture, finishes and layout ideas.',
       },
       {
@@ -102,12 +102,12 @@ export const virtualTours = {
         id: 'floorplanner',
         label: 'Floorplanner',
         media: {type: 'embed' as const, src: 'https://floorplanner.com/projects/76006167/viewer', title: 'Interactive floor planner viewer for the property layout'},
-        text: 'Turn iGUIDE floor plan data into editable 2D and 3D layouts with Floorplanner.',
+        text: 'Turn iGuide floor plan data into editable 2D and 3D layouts with Floorplanner.',
       },
     ],
   },
   testimonial: {
-    quote: "We don't sell it as an iGUIDE with pictures. We sell it as the pictures with floor plans and measurements and a 3D tour.",
+    quote: "We don't sell it as an iGuide with pictures. We sell it as the pictures with floor plans and measurements and a 3D tour.",
     name: 'Ron Elias',
     role: 'VP',
     company: 'London House Photography',
@@ -115,8 +115,8 @@ export const virtualTours = {
   },
   // The live FAQ answers are placeholder text, so the FAQ is left off until real answers exist
   cta: {
-    heading: 'Get started with iGUIDE 3D virtual tours',
-    text: 'See how iGUIDE 3D virtual tours help you explore, document and share spaces.',
+    heading: 'Get started with iGuide 3D virtual tours',
+    text: 'See how iGuide 3D virtual tours help you explore, document and share spaces.',
     ctas: [book('Book a 15-minute walkthrough')],
   },
 }

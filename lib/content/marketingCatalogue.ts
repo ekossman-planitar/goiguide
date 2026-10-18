@@ -15,11 +15,11 @@ export type CatalogueAudience = 'real-estate' | 'commercial' | 'insurance' | 'au
 
 export const catalogueCategories: {id: CatalogueCategoryId; label: string; description: string}[] = [
   {id: 'brochures', label: 'Brochures & flyers', description: 'Customizable templates: add your company logo and contact details.'},
-  {id: 'one-pagers', label: 'One-pagers', description: 'Single-page overviews of iGUIDE services and pricing.'},
-  {id: 'presentations', label: 'Presentations', description: 'Customizable decks to showcase iGUIDE packages and services. Update the pricing and contact slides before you present.'},
-  {id: 'ebooks', label: 'eBooks', description: 'In-depth guides to help you grow your iGUIDE business.'},
+  {id: 'one-pagers', label: 'One-pagers', description: 'Single-page overviews of iGuide services and pricing.'},
+  {id: 'presentations', label: 'Presentations', description: 'Customizable decks to showcase iGuide packages and services. Update the pricing and contact slides before you present.'},
+  {id: 'ebooks', label: 'eBooks', description: 'In-depth guides to help you grow your iGuide business.'},
   {id: 'checklists', label: 'Checklists', description: 'Share with clients before a scan so every capture goes smoothly.'},
-  {id: 'photos', label: 'Photos', description: 'Industry-specific image collections (ZIP) to promote your iGUIDE services.'},
+  {id: 'photos', label: 'Photos', description: 'Industry-specific image collections (ZIP) to promote your iGuide services.'},
   {id: 'videos', label: 'Videos', description: 'Promo videos and social reels in landscape and portrait formats.'},
   {id: 'drawing-samples', label: 'Drawing samples', description: 'Sample CAD deliverables (ZIP) for commercial and residential projects.'},
 ]
@@ -45,12 +45,12 @@ export const catalogueCampaigns: {id: CatalogueCampaignId; label: string; descri
     id: 'agent-campaign',
     label: 'Agent campaign: Sell smarter. Sell faster.',
     description:
-      'Our Back to the Future–inspired campaign showing agents how iGUIDE helps them step into the future of real estate marketing with speed, precision and powerful visuals.',
+      'Our Back to the Future–inspired campaign showing agents how iGuide helps them step into the future of real estate marketing with speed, precision and powerful visuals.',
     image: '/assets/marketing-catalogue/video-agent-listings-with-iguide-sell-39-faster-than-photos-alone.webp',
   },
   {
     id: 'australia-launch',
-    label: 'iGUIDE Australia launch',
+    label: 'iGuide Australia launch',
     description: 'Launch videos and an agent one-pager for listings on realestate.com.au.',
     image: '/assets/marketing-catalogue/au-complete-listing.webp',
   },
@@ -112,7 +112,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "listing-brochure",
     image: {src: "/assets/marketing-catalogue/listing-brochure.webp", width: 960, height: 790},
-    title: "iGUIDE Listing Brochure",
+    title: "iGuide Listing Brochure",
     category: "brochures",
     audiences: [
       "real-estate"
@@ -224,7 +224,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "pres-residential",
     image: {src: "/assets/marketing-catalogue/pres-residential.webp", width: 960, height: 455},
-    title: "iGUIDE Residential Services Introduction 2024",
+    title: "iGuide Residential Services Introduction 2024",
     category: "presentations",
     audiences: [
       "real-estate"
@@ -240,7 +240,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "pres-commercial",
     image: {src: "/assets/marketing-catalogue/pres-commercial.webp", width: 960, height: 455},
-    title: "iGUIDE Commercial Services Introduction 2024",
+    title: "iGuide Commercial Services Introduction 2024",
     category: "presentations",
     audiences: [
       "commercial"
@@ -257,7 +257,7 @@ export const catalogueAssets: CatalogueAsset[] = [
     id: "pres-measurements",
     description: "Slides on key points for your next office measurement presentation.",
     image: {src: "/assets/marketing-catalogue/pres-measurements.webp", width: 960, height: 468},
-    title: "iGUIDE Property Measurements Presentation",
+    title: "iGuide Property Measurements Presentation",
     category: "presentations",
     audiences: [
       "real-estate",
@@ -275,7 +275,7 @@ export const catalogueAssets: CatalogueAsset[] = [
     id: "ebook-revenue",
     description: "Moneymaking tips to expand your photography services and boost your income.",
     image: {src: "/assets/marketing-catalogue/ebook-revenue.webp", width: 960, height: 749},
-    title: "7 Extra Revenue Streams with iGUIDE",
+    title: "7 Extra Revenue Streams with iGuide",
     category: "ebooks",
     audiences: [
       "real-estate"
@@ -291,7 +291,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "checklist-staging",
     image: {src: "/assets/marketing-catalogue/checklist-staging.webp", width: 960, height: 799},
-    title: "iGUIDE Staging Checklist",
+    title: "iGuide Staging Checklist",
     category: "checklists",
     audiences: [
       "real-estate"
@@ -307,7 +307,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "checklist-walkthrough",
     image: {src: "/assets/marketing-catalogue/checklist-walkthrough.webp", width: 960, height: 746},
-    title: "iGUIDE Walkthrough Checklist",
+    title: "iGuide Walkthrough Checklist",
     category: "checklists",
     audiences: [
       "real-estate"
@@ -423,7 +423,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "yt-agent-campaign",
     campaign: "agent-campaign",
-    title: "iGUIDE Agent Campaign: Sell Smarter. Sell Faster.",
+    title: "iGuide Agent Campaign: Sell Smarter. Sell Faster.",
     category: "videos",
     audiences: ["real-estate"],
     group: "Watch on YouTube",
@@ -439,7 +439,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "yt-au-launch",
     campaign: "australia-launch",
-    title: "iGUIDE Australia Launch",
+    title: "iGuide Australia Launch",
     category: "videos",
     audiences: ["australia"],
     group: "Watch on YouTube",
@@ -542,7 +542,7 @@ export const catalogueAssets: CatalogueAsset[] = [
     id: "video-agent-listings-with-iguide-sell-39-faster-than-photos-alone",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-listings-with-iguide-sell-39-faster-than-photos-alone.webp", width: 960, height: 541},
-    title: "Listings with iGUIDE Sell 39% Faster Than Photos Alone",
+    title: "Listings with iGuide Sell 39% Faster Than Photos Alone",
     category: "videos",
     audiences: [
       "real-estate"
@@ -560,7 +560,7 @@ export const catalogueAssets: CatalogueAsset[] = [
     id: "video-agent-get-a-listing-do-over-with-iguide",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-get-a-listing-do-over-with-iguide.webp", width: 960, height: 540},
-    title: "Get a Listing Do-over with iGUIDE",
+    title: "Get a Listing Do-over with iGuide",
     category: "videos",
     audiences: [
       "real-estate"
@@ -578,7 +578,7 @@ export const catalogueAssets: CatalogueAsset[] = [
     id: "video-agent-start-harnessing-the-power-of-iguide",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-start-harnessing-the-power-of-iguide.webp", width: 960, height: 536},
-    title: "Start Harnessing the Power of iGUIDE",
+    title: "Start Harnessing the Power of iGuide",
     category: "videos",
     audiences: [
       "real-estate"
@@ -614,7 +614,7 @@ export const catalogueAssets: CatalogueAsset[] = [
     id: "video-2d-furniture",
     description: "Instagram reel, ready to post.",
     image: {src: "/assets/marketing-catalogue/video-2d-furniture.webp", width: 679, height: 960},
-    title: "iGUIDE 2D Furniture & Objects Reel",
+    title: "iGuide 2D Furniture & Objects Reel",
     category: "videos",
     audiences: [
       "real-estate"
@@ -631,7 +631,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "video-au-launch",
     campaign: "australia-launch",
-    title: "iGUIDE Australia Launch",
+    title: "iGuide Australia Launch",
     category: "videos",
     audiences: [
       "australia"

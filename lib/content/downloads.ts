@@ -3,9 +3,9 @@
 export const heading = 'Software & Documentation Downloads'
 
 export const meta = {
-  title: 'iGUIDE Downloads: Key resources and information to help you grow your business | iGUIDE',
+  title: 'iGuide Downloads: Key resources and information to help you grow your business | iGuide',
   description:
-    'Need to grow your business? iGUIDE Downloads offers essential resources and tips. Start expanding today with our expert advice!',
+    'Need to grow your business? iGuide Downloads offers essential resources and tips. Start expanding today with our expert advice!',
   path: '/downloads',
 }
 
@@ -23,7 +23,7 @@ export const stitch = {
 export const products: ProductDownloads[] = [
   {
     id: 'e1351',
-    name: 'iGUIDE PLANIX R1',
+    name: 'iGuide PLANIX R1',
     files: [
       {label: 'Camera Manual', action: 'Download', href: '/assets/PLANIX-R1-Assets/PLANIX-R1-Manual-v1.1.pdf'},
       {label: 'Quick Start Guide', action: 'Download', href: '/assets/PLANIX-R1-Assets/PLANIX_R1_QSG.pdf'},
@@ -32,7 +32,7 @@ export const products: ProductDownloads[] = [
   },
   {
     id: 'e166',
-    name: 'iGUIDE PLANIX',
+    name: 'iGuide PLANIX',
     files: [
       {label: 'Latest Firmware', action: 'Download v2.1.8', href: '/assets/downloads/fw6_update.7z'},
       {label: 'Camera Manual', action: 'Download', href: '/assets/downloads/iGUIDE-PLANIX-Instruction-Manual.pdf'},
@@ -60,7 +60,7 @@ export const products: ProductDownloads[] = [
   },
   {
     id: 'e1467',
-    name: 'iGUIDE PLANIX Mobile App',
+    name: 'iGuide PLANIX Mobile App',
     files: [
       {label: 'iOS App', action: 'Download', href: 'https://apps.apple.com/ca/app/iguide-planix/id6450938233'},
       {label: 'Android App', action: 'Download', href: 'https://play.google.com/store/apps/details?id=com.planitar.iguide&hl=en_CA&pli=1'},
@@ -76,11 +76,11 @@ export const otherDownloads: {file: string; href: string; description: string; u
   {file: 'Stitch_6_15_1.dmg', href: '/assets/downloads/Stitch_6_15_1.dmg', description: 'Stitch v6.15.1 for MacOS 12', uploaded: 'July 17, 2026'},
   {file: 'Stitch_6_14_8.dmg', href: '/assets/downloads/Stitch_6_14_8.dmg', description: 'Stitch v6.14.8 for MacOS 12 – OLD', uploaded: 'June 16, 2026'},
   {file: 'Stitch_Setup32_6_9_1.exe', href: '/assets/downloads/Stitch_Setup32_6_9_1.exe', description: 'Stitch v6.9.1 for Windows (32bit) – OLD', uploaded: 'October 12, 2021'},
-  {file: 'iGUIDE PLANIX Instruction Manual.pdf', href: '/assets/downloads/iGUIDE-PLANIX-Instruction-Manual.pdf', description: 'v1.7', uploaded: 'June 2, 2023'},
-  {file: 'iGUIDE IMS-5 Camera System Documentation 1.22.pdf', href: '/assets/downloads/iGUIDE-IMS-5-Camera-System-Documentation-1.22.pdf', description: 'v1.22', uploaded: 'January 6, 2020'},
-  {file: 'iGUIDE PLANIX Quick Start GUIDE.pdf', href: '/assets/downloads/iGUIDE-Planix-Quick-Start-Guide.pdf', description: '', uploaded: 'May 5, 2023'},
-  {file: 'iGUIDE IMS-5 Quick Start GUIDE.pdf', href: '/assets/downloads/iGUIDE_Quick_Start_Guide.pdf', description: '', uploaded: 'December 8, 2020'},
-  {file: 'fw6_update.7z', href: '/assets/downloads/fw6_update.7z', description: 'iGUIDE PLANIX System Firmware v2.1.8', uploaded: 'October 6, 2026'},
+  {file: 'iGuide PLANIX Instruction Manual.pdf', href: '/assets/downloads/iGUIDE-PLANIX-Instruction-Manual.pdf', description: 'v1.7', uploaded: 'June 2, 2023'},
+  {file: 'iGuide IMS-5 Camera System Documentation 1.22.pdf', href: '/assets/downloads/iGUIDE-IMS-5-Camera-System-Documentation-1.22.pdf', description: 'v1.22', uploaded: 'January 6, 2020'},
+  {file: 'iGuide PLANIX Quick Start GUIDE.pdf', href: '/assets/downloads/iGUIDE-Planix-Quick-Start-Guide.pdf', description: '', uploaded: 'May 5, 2023'},
+  {file: 'iGuide IMS-5 Quick Start GUIDE.pdf', href: '/assets/downloads/iGUIDE_Quick_Start_Guide.pdf', description: '', uploaded: 'December 8, 2020'},
+  {file: 'fw6_update.7z', href: '/assets/downloads/fw6_update.7z', description: 'iGuide PLANIX System Firmware v2.1.8', uploaded: 'October 6, 2026'},
   {file: 'fw_update.7z', href: '/assets/downloads/fw_update.7z', description: 'IMS-5 System Firmware v1.4.138', uploaded: 'October 8, 2020'},
   {file: 'Stitch_Sample_Data.zip', href: '/assets/downloads/Stitch_Sample_Data.zip', description: 'Sample Stitch Data – Model Home 1', uploaded: 'April 17, 2020'},
 ]
@@ -210,7 +210,7 @@ export const stitchHistory: Release[] = [
     groups: [
       {
         items: [
-          'Add support for iGUIDE Radix;',
+          'Add support for iGuide Radix;',
           'Stop exporting the maps (drafters will not have access to it anymore);',
           'Prevent exporting empty floors and empty projects;',
           'Fix crash in some right-click menu actions for map scans;',
@@ -225,7 +225,7 @@ export const stitchHistory: Release[] = [
       {
         items: [
           'Drops compatibility for Mac OS 10.11 and older;',
-          'Add an option to open Create iGUIDE page on the portal and locate export file;',
+          'Add an option to open Create iGuide page on the portal and locate export file;',
           'Add color equalization to IMS-6;',
           'Add purples/greens slider to Adjust Panoramas dialog;',
           'Add confirmation dialog and progress bar when Pasting to All in Adjust Panoramas dialog;',
@@ -279,7 +279,7 @@ export const stitchHistory: Release[] = [
       {
         items: [
           'Greatly improves image sharpness and make it adjustable via Settings menu;',
-          'Add ability to hide/show multiple selected scans in iGUIDE;',
+          'Add ability to hide/show multiple selected scans in iGuide;',
           'Add an option to manually check for updates (useful for those who import from Survey when offline);',
           'Fix a bug that prevented saved initial pano from being remembered on reloading;',
           'Increase reliability when processing corrupted image files; Warn when lens may need calibration;',
@@ -307,7 +307,7 @@ export const stitchHistory: Release[] = [
         title: 'Major Changes:',
         items: [
           'Image export format changed from pano (cubic) tiles to photo sphere (equirectangular projection) with option to export photo spheres now removed;',
-          'Moved photo sphere branding from Stitch Export Settings to the iGUIDE Portal;',
+          'Moved photo sphere branding from Stitch Export Settings to the iGuide Portal;',
           'Increased number of pixels in each image by a factor of 3x, resulting in sharper images;',
           'Substantial improvement in image blending quality;',
           'Setting above/below grade status per floor is now required before exporting;',
@@ -362,7 +362,7 @@ export const stitchHistory: Release[] = [
         items: [
           'Preserve expanded/collapsed state of items in project tree view;',
           'Improve arrangement of disconnected scan groups;',
-          'Disable/Enable in iGUIDE renamed to Hide/Show in iGUIDE;',
+          'Disable/Enable in iGuide renamed to Hide/Show in iGuide;',
           'Fix issue with User Pano in Adjust Pano dialog;',
           'Fix auto arrange dialog opening in another monitor;',
         ],

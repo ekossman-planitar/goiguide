@@ -9,9 +9,9 @@ import {SectionHeading} from '@/components/ui/SectionHeading'
 import {SmartLink} from '@/components/ui/SmartLink'
 
 export const meta = {
-  title: 'Become an Advanced Capture Pro | iGUIDE',
+  title: 'Become an Advanced Capture Pro | iGuide',
   description:
-    "Commercial work pays more per capture, repeats more often and doesn't swing with the housing market. This program shows you how to win it, and iGUIDE backs you with the tools, the directory and the support to grow.",
+    "Commercial work pays more per capture, repeats more often and doesn't swing with the housing market. This program shows you how to win it, and iGuide backs you with the tools, the directory and the support to grow.",
   path: '/advanced-capture-program',
 }
 
@@ -28,7 +28,7 @@ const pros = [
     photo: {src: '/assets/Uploads/Dan-Richard.jpg', alt: 'Dan Richard'},
     name: 'Dan Richard',
     business: 'Measure My Space · Moncton, NB',
-    text: 'Adopted iGUIDE in 2020 for pandemic-era virtual tours. Repositioned the business around documentation, floor plans and building plans, then expanded into commercial work.',
+    text: 'Adopted iGuide in 2020 for pandemic-era virtual tours. Repositioned the business around documentation, floor plans and building plans, then expanded into commercial work.',
     stat: '70/30 commercial to residential · ~3.8M sq ft in 2025',
     quote: "Don't position yourself as a photographer. Position yourself as the expert.",
     link: {label: "Read Dan's story →", href: '/customer-stories/how-measure-my-space-expanded-into-commercial-property-work'},
@@ -57,7 +57,7 @@ const downloads = [
   },
   {
     title: 'The AEC business toolkit',
-    text: 'How two iGUIDE Pros moved into commercial work, plus a step-by-step plan: who to approach, what to charge and a 30-day checklist.',
+    text: 'How two iGuide Pros moved into commercial work, plus a step-by-step plan: who to approach, what to charge and a 30-day checklist.',
     cta: {label: 'Download the toolkit', href: '/assets/downloads/iGUIDE-ION-AEC-Growth-Guide.pdf'},
   },
 ]
@@ -65,7 +65,7 @@ const downloads = [
 const faqs: {q: string; a: string}[] = [
   {
     q: 'Who is this training for?',
-    a: 'iGUIDE operators who want to add commercial and AEC work to their business. If you already capture residential properties, the course builds directly on skills you have. New capture technicians are welcome too.',
+    a: 'iGuide operators who want to add commercial and AEC work to their business. If you already capture residential properties, the course builds directly on skills you have. New capture technicians are welcome too.',
   },
   {
     q: 'How long does the training take to complete?',
@@ -77,7 +77,7 @@ const faqs: {q: string; a: string}[] = [
   },
   {
     q: 'What software do I need?',
-    a: 'An iGUIDE camera and access to your iGUIDE account; the CAD modules show the workflow but do not require you to own CAD software to complete the course.',
+    a: 'An iGuide camera and access to your iGuide account; the CAD modules show the workflow but do not require you to own CAD software to complete the course.',
   },
   {
     q: 'Can I access the downloads without signing up?',
@@ -97,11 +97,11 @@ export const blocks: Block[] = [
     children: (
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="min-w-0">
-          <Eyebrow>For iGUIDE Pros</Eyebrow>
+          <Eyebrow>For iGuide Pros</Eyebrow>
           <h1 className="mt-6 text-balance text-[40px] font-semibold leading-[1.15] text-ink md:text-[56px]">Become an Advanced Capture Pro</h1>
           <p className="mt-6 text-xl leading-[30px] text-muted">
             Commercial work pays more per capture, repeats more often and doesn&apos;t swing with the housing market. This program shows you how to
-            win it, and iGUIDE backs you with the tools, the directory and the support to grow.
+            win it, and iGuide backs you with the tools, the directory and the support to grow.
           </p>
           {/* Live hero stats (note: the FAQ below says "About 4 hours across 6 modules") */}
           <dl className="mt-8 flex flex-wrap items-center gap-6">
@@ -140,7 +140,7 @@ export const blocks: Block[] = [
         <SectionHeading
           eyebrow={<Eyebrow>Real results</Eyebrow>}
           heading="Pros who made the shift"
-          subheading="Two iGUIDE Pros who moved from residential listings into commercial and AEC work. You can do the same."
+          subheading="Two iGuide Pros who moved from residential listings into commercial and AEC work. You can do the same."
           className="mb-10 max-w-3xl"
         />
         <ul className="grid gap-6 md:grid-cols-2">
@@ -165,7 +165,7 @@ export const blocks: Block[] = [
         </ul>
         <figure className="mx-auto mt-12 max-w-3xl text-center">
           <blockquote className="text-2xl leading-[1.35] font-semibold text-ink md:text-[28px]">
-            &quot;Once iGUIDE started doing CAD files I saw the potential with that. I expanded into commercial.&quot;
+            &quot;Once iGuide started doing CAD files I saw the potential with that. I expanded into commercial.&quot;
           </blockquote>
           <figcaption className="mt-4 text-sm font-semibold tracking-wide text-muted">DAN RICHARD, FOUNDER · MEASURE MY SPACE</figcaption>
         </figure>
@@ -182,7 +182,7 @@ export const blocks: Block[] = [
         <div className={card}>
           <h3 className="text-2xl font-semibold text-ink">Build the skills to take on commercial and AEC work</h3>
           <p className="mt-4 text-base leading-6 text-body">
-            Learn how to choose the right deliverables and run a CAD workflow that holds up to AEC standards — so you can take on your next
+            Learn how to choose the right deliverables and run a CAD workflow that holds up to AEC standards, so you can take on your next
             commercial project with confidence.
           </p>
           <p className="mt-6 font-semibold text-ink">In this training you&apos;ll cover:</p>

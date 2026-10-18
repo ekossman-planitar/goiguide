@@ -12,8 +12,8 @@ import {UPCOMING_EVENTS_QUERY} from '@/sanity/lib/queries'
 export const revalidate = 60
 
 export const metadata = pageMetadata({
-  title: 'Events: Trade Shows, Webinars & Workshops | iGUIDE',
-  description: 'Meet the iGUIDE team at upcoming conferences and trade shows, or join a live webinar or workshop.',
+  title: 'Events: Trade Shows, Webinars & Workshops | iGuide',
+  description: 'Meet the iGuide team at upcoming conferences and trade shows, or join a live webinar or workshop.',
   path: EVENTS_PATH,
 })
 
@@ -31,7 +31,7 @@ export default async function EventsPage() {
           <div className="max-w-3xl">
             <h1 className="text-balance text-[40px] leading-[normal] font-semibold text-ink md:text-[56px]">Events</h1>
             <p className="mt-6 text-xl leading-[30px] text-muted">
-              Meet the iGUIDE team at conferences and trade shows, or join us online for live webinars and workshops.
+              Meet the iGuide team at conferences and trade shows, or join us online for live webinars and workshops.
             </p>
           </div>
           <div className="mt-12">
@@ -41,7 +41,7 @@ export default async function EventsPage() {
       </section>
       <CtaBanner
         heading="Can’t make it to an event?"
-        text="Book a one-on-one demo and see iGUIDE in action at a time that suits you."
+        text="Book a one-on-one demo and see iGuide in action at a time that suits you."
         ctas={[book(), {label: 'Watch on-demand webinars', href: '/webinars', variant: 'secondary'}]}
       />
     </>

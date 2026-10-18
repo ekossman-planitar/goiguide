@@ -5,8 +5,10 @@ import {HelpCircleIcon} from '@sanity/icons/HelpCircle'
 import {ShareIcon} from '@sanity/icons/Share'
 import {LaunchIcon} from '@sanity/icons/Launch'
 import {PlayIcon} from '@sanity/icons/Play'
+import {BlockquoteIcon} from '@sanity/icons/Blockquote'
+import {SplitHorizontalIcon} from '@sanity/icons/SplitHorizontal'
 
-/** Article body: headings, lists, links, images, videos and call-to-action banners. */
+/** Article body: headings, lists, links, images, videos, quotes, section breaks and call-to-action banners. */
 export const richText = defineType({
   name: 'richText',
   title: 'Body',
@@ -42,6 +44,13 @@ export const richText = defineType({
         defineField({name: 'alt', title: 'Alt text', type: 'string'}),
         defineField({name: 'caption', title: 'Caption', type: 'string'}),
         defineField({name: 'href', title: 'Link (optional)', type: 'string'}),
+        defineField({
+          name: 'size',
+          title: 'Size',
+          type: 'string',
+          options: {list: [{value: 'icon', title: 'Icon (small)'}], layout: 'radio'},
+          description: 'Leave empty for normal width.',
+        }),
       ],
     }),
     defineArrayMember({
@@ -49,7 +58,7 @@ export const richText = defineType({
       title: 'Video or embed',
       type: 'object',
       icon: PlayIcon,
-      description: 'YouTube, iGUIDE tour, Spotify or any other embeddable player.',
+      description: 'YouTube, iGuide tour, Spotify or any other embeddable player.',
       fields: [
         defineField({
           name: 'url',
@@ -62,6 +71,61 @@ export const richText = defineType({
         defineField({name: 'height', title: 'Fixed height (px)', type: 'number', description: 'Only for short players like Spotify. Leave empty for 16:9.'}),
       ],
       preview: {select: {title: 'title', subtitle: 'url'}},
+    }),
+    defineArrayMember({
+      name: 'sectionBreak',
+      title: 'Section break',
+      type: 'object',
+      icon: SplitHorizontalIcon,
+      description: 'Starts a new section. Everything after it, up to the next section break, is laid out as one section.',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Menu label',
+          type: 'string',
+          description: 'Shown in the "On this page" menu on customer stories. Leave empty to use the section heading.',
+        }),
+        defineField({
+          name: 'anchor',
+          title: 'Anchor',
+          type: 'string',
+          description: 'Optional link target, e.g. "challenge" makes /…#challenge jump here. Letters, numbers and dashes.',
+          validation: (rule) => rule.regex(/^[A-Za-z][\w-]*$/, {name: 'anchor'}),
+        }),
+        defineField({
+          name: 'layout',
+          title: 'Layout',
+          type: 'string',
+          initialValue: 'plain',
+          options: {
+            layout: 'radio',
+            list: [
+              {value: 'plain', title: 'Plain text'},
+              {value: 'split', title: 'Text left, images / quote right'},
+              {value: 'cards', title: 'Cards (each heading starts a card)'},
+              {value: 'highlights', title: 'Highlights (bullet points become tiles)'},
+              {value: 'panel', title: 'Grey panel'},
+            ],
+          },
+        }),
+      ],
+      preview: {
+        select: {title: 'title', anchor: 'anchor', layout: 'layout'},
+        prepare: ({title, anchor, layout}) => ({title: `Section: ${title || anchor || 'untitled'}`, subtitle: layout || 'plain'}),
+      },
+    }),
+    defineArrayMember({
+      name: 'testimonial',
+      title: 'Quote',
+      type: 'object',
+      icon: BlockquoteIcon,
+      fields: [
+        defineField({name: 'quote', title: 'Quote', type: 'text', rows: 4, validation: (rule) => rule.required()}),
+        defineField({name: 'name', title: 'Name', type: 'string'}),
+        defineField({name: 'role', title: 'Role / company', type: 'string'}),
+        defineField({name: 'image', title: 'Photo or logo', type: 'image'}),
+      ],
+      preview: {select: {title: 'quote', subtitle: 'name', media: 'image'}},
     }),
     defineArrayMember({
       name: 'ctaBanner',

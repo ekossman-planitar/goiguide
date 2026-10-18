@@ -3,7 +3,7 @@ import type {Block} from '@/components/blocks/Blocks'
 import {cscAnchors, cscBlocks, pastCompetitions, tourVideoLinks} from './cscShared'
 
 export const meta = {
-  title: 'CSC Student Design Challenge 2025 | iGUIDE',
+  title: 'CSC Student Design Challenge 2025 | iGuide',
   description: 'Construction Specifications Canada (CSC) Student Design Challenge 2025',
   path: '/csc',
 }
@@ -22,7 +22,7 @@ export const blocks: Block[] = cscBlocks({
   },
   tour: {
     src: 'https://iguideradix.com/embed/50_grand_ave_s_cambridge_on?unbranded=1&bgcolor=FFFFFF',
-    title: 'iGUIDE tour of 50 Grand Avenue South',
+    title: 'iGuide tour of 50 Grand Avenue South',
     links: [
       ...tourVideoLinks('Learn how to use advanced measurement.'),
       {label: 'Vertical Measurements', href: 'https://share.vidyard.com/watch/PU6x61tafD5Wj3hCRi15HA', variant: 'secondary', newTab: true},

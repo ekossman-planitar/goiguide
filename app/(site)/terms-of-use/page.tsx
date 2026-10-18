@@ -4,9 +4,9 @@ import {pageMetadata} from '@/lib/pageMetadata'
 
 /** /terms-of-use — TITLE copied from the live page (checked 2026-10-14). */
 export const metadata = pageMetadata({
-  title: 'Terms of Use | iGUIDE',
+  title: 'Terms of Use | iGuide',
   // NEW description (live had none)
-  description: 'The terms that apply when you browse, access or view iGUIDE Content or data via the iGUIDE viewer application.',
+  description: 'The terms that apply when you browse, access or view iGuide Content or data via the iGuide viewer application.',
   path: '/terms-of-use',
 })
 

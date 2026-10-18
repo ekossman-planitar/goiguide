@@ -160,7 +160,7 @@ function toBlock(s: any): Block | null {
         heading: s.heading,
         subheading: s.subheading,
         rows: ((s.rows ?? []) as any[]).map((r) => ({label: r.label, ours: r.ours ?? '', theirs: r.theirs ?? ''})),
-        columns: {label: '', ours: s.oursLabel ?? 'iGUIDE', theirs: s.theirsLabel ?? 'Others'},
+        columns: {label: '', ours: s.oursLabel ?? 'iGuide', theirs: s.theirsLabel ?? 'Others'},
         footnote: s.footnote,
       }
     case 'lpFaq':

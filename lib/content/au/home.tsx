@@ -9,9 +9,9 @@ import {tour} from '@/lib/content/industries/shared'
 import {AU_TERMS_PATH, book, danielNik, launchVideo, rea, reaLogo} from './shared'
 
 export const meta = {
-  title: 'iGUIDE Australia | 3D Tours & Floor Plans for realestate.com.au Listings | iGUIDE',
+  title: 'iGuide Australia | 3D Tours & Floor Plans for realestate.com.au Listings | iGuide',
   description:
-    'iGUIDE is the only 3D tour fully integrated into realestate.com.au. Capture 3D tours, accurate floor plans and Site Plans in one visit, delivered within 24 hours.',
+    'iGuide is the only 3D tour fully integrated into realestate.com.au. Capture 3D tours, accurate floor plans and Site Plans in one visit, delivered within 24 hours.',
   path: '/au',
 }
 
@@ -20,7 +20,7 @@ export const blocks: Block[] = [
     type: 'hero',
     heading: 'Immersive listings for Australia’s #1 property portal',
     subheading:
-      'One iGUIDE capture delivers a 3D tour, accurate floor plans and Site Plans—built into the realestate.com.au listing buyers already use.',
+      'One iGuide capture delivers a 3D tour, accurate floor plans and Site Plans, built into the realestate.com.au listing buyers already use.',
     ctas: [book(), {label: 'I’m a photographer', href: '/au/real-estate-photography', variant: 'secondary'}],
     media: launchVideo,
   },
@@ -28,10 +28,10 @@ export const blocks: Block[] = [
     type: 'split',
     id: 'rea',
     background: 'surface',
-    heading: 'realestate.com.au is covering iGUIDE processing',
+    heading: 'realestate.com.au is covering iGuide processing',
     body: (
       <p>
-        Until 31 March 2027, {rea} is funding processing on eligible residential iGUIDE orders that are uploaded to the listing within 60 days.
+        Until 31 March 2027, {rea} is funding processing on eligible residential iGuide orders that are uploaded to the listing within 60 days.
         Eligible Premiere+ listings in NSW and VIC can also unlock a content credit.
       </p>
     ),
@@ -47,29 +47,29 @@ export const blocks: Block[] = [
   {
     type: 'cards',
     heading: 'Choose your path',
-    subheading: 'iGUIDE works for the agents who list properties and the photographers who capture them.',
+    subheading: 'iGuide works for the agents who list properties and the photographers who capture them.',
     columns: 2,
     cards: [
       {
         title: 'Real estate agents',
         text: 'Win vendors with branded tours and floor plans, and move serious buyers from screen to inspection.',
-        image: {src: '/assets/Australia/iGUIDE-REA-StandOut.png', alt: 'Agent presenting an iGUIDE listing'},
-        link: {label: 'iGUIDE for agents', href: '/au/residential-real-estate'},
+        image: {src: '/assets/Australia/iGUIDE-REA-StandOut.png', alt: 'Agent presenting an iGuide listing'},
+        link: {label: 'iGuide for agents', href: '/au/residential-real-estate'},
       },
       {
         title: 'Real estate photographers',
         text: 'Add 3D tours, floor plans and Site Plans to every shoot from a single capture, and raise your value per job.',
-        image: {src: '/assets/Australia/AUS-Branded-Property-Overview.png', alt: 'iGUIDE Branded Property Overview'},
-        link: {label: 'iGUIDE for photographers', href: '/au/real-estate-photography'},
+        image: {src: '/assets/Australia/AUS-Branded-Property-Overview.png', alt: 'iGuide Branded Property Overview'},
+        link: {label: 'iGuide for photographers', href: '/au/real-estate-photography'},
       },
     ],
   },
   {
     type: 'split',
-    heading: 'Explore an Australian iGUIDE',
+    heading: 'Explore an Australian iGuide',
     body: <p>Walk through a Sydney property the way buyers do on realestate.com.au: move room to room, check dimensions and jump straight to the spaces that matter.</p>,
     ctas: [{label: 'Download sample floor plans', href: '/assets/iGUIDE-Floor-Plans.pdf', newTab: true}],
-    media: {type: 'embed', src: tour('https://youriguide.com/141_harris_st_sydney_nsw?autostart=1&bgcolor=FFFFFF'), title: 'iGUIDE 3D tour of 141 Harris St, Sydney NSW'},
+    media: {type: 'embed', src: tour('https://youriguide.com/141_harris_st_sydney_nsw?autostart=1&bgcolor=FFFFFF'), title: 'iGuide 3D tour of 141 Harris St, Sydney NSW'},
     mediaSide: 'left',
   },
   {
@@ -87,25 +87,25 @@ export const blocks: Block[] = [
   {type: 'quote', quote: danielNik},
   {
     type: 'faq',
-    heading: 'iGUIDE in Australia',
+    heading: 'iGuide in Australia',
     items: [
       {
-        q: 'Is iGUIDE part of REA Group?',
-        a: 'Yes. iGUIDE is backed by REA Group, the owner of realestate.com.au, and is the only 3D tour fully integrated into the realestate.com.au listing experience.',
+        q: 'Is iGuide part of REA Group?',
+        a: 'Yes. iGuide is backed by REA Group, the owner of realestate.com.au, and is the only 3D tour fully integrated into the realestate.com.au listing experience.',
       },
       {
-        q: 'How do I get an iGUIDE for my listing?',
-        a: 'Book an iGUIDE Pro photographer near you, or equip your own photographer with an iGUIDE PLANIX camera. Either way, deliverables arrive within 24 hours of capture.',
+        q: 'How do I get an iGuide for my listing?',
+        a: 'Book an iGuide Pro photographer near you, or equip your own photographer with an iGuide PLANIX camera. Either way, deliverables arrive within 24 hours of capture.',
       },
       {
         q: 'Is there a subscription?',
-        a: 'No. iGUIDE is pay-per-project with no lock-in contracts.',
+        a: 'No. iGuide is pay-per-project with no lock-in contracts.',
       },
     ],
   },
   {
     type: 'cta',
-    heading: 'See iGUIDE on a realestate.com.au listing',
+    heading: 'See iGuide on a realestate.com.au listing',
     text: 'Book a short walkthrough with our Australian team.',
     ctas: [book('Book your personalized product tour')],
   },

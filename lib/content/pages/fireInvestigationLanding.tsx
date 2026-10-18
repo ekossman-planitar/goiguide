@@ -4,9 +4,9 @@ import {MediaView} from '@/components/blocks/MediaView'
 import {HeroFormColumns} from '@/components/pages/HeroFormColumns'
 
 export const meta = {
-  title: 'Experience iGUIDE: Precise floor plans & 3D virtual tours made easy | iGUIDE',
+  title: 'Experience iGuide: Precise floor plans & 3D virtual tours made easy | iGuide',
   description:
-    'Quickly create 3D virtual tours, CAD floor plans and 3D models with the iGUIDE PLANIX camera system. Take 360° photos and 1,000s of measurements in minutes, capturing rich property data.',
+    'Quickly create 3D virtual tours, CAD floor plans and 3D models with the iGuide PLANIX camera system. Take 360° photos and 1,000s of measurements in minutes, capturing rich property data.',
   path: '/get-iguide/irc/fire-investigation',
 }
 
@@ -17,9 +17,9 @@ export const blocks: Block[] = [
     children: (
       <HeroFormColumns
         heading="Capture accurate floor plans & property data in 15 min or less"
-        subheading="Investigate, document and resolve faster with iGUIDE."
-        formHeading="Learn more about iGUIDE for Fire Investigators"
-        formText="Connect with an iGUIDE Specialist to get a brochure, book a demo and discuss how iGUIDE can help you deliver fast and accurate fire investigations."
+        subheading="Investigate, document and resolve faster with iGuide."
+        formHeading="Learn more about iGuide for Fire Investigators"
+        formText="Connect with an iGuide Specialist to get a brochure, book a demo and discuss how iGuide can help you deliver fast and accurate fire investigations."
         formId="b4e5ac23-7869-41e2-9da7-af466a835196"
       />
     ),
@@ -39,13 +39,13 @@ export const blocks: Block[] = [
   },
   {
     type: 'cards',
-    heading: 'Why Fire Investigators choose iGUIDE',
+    heading: 'Why Fire Investigators choose iGuide',
     align: 'center',
     columns: 3,
     cards: [
       {
         title: 'Quick capture technology',
-        text: 'Spend less time on-site. iGUIDE’s PLANIX R1 captures high-resolution visuals and thousands of LiDAR measurements per scan.',
+        text: 'Spend less time on-site. iGuide’s PLANIX R1 captures high-resolution visuals and thousands of LiDAR measurements per scan.',
         icon: {src: '/assets/Uploads/Icons_Processing-Time__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
       {
@@ -55,7 +55,7 @@ export const blocks: Block[] = [
       },
       {
         title: 'Real-Time Tagging feature',
-        text: 'Add photos, notes, and videos directly to your iGUIDE 3D Walkthrough during the scan. Capture every critical detail effortlessly.',
+        text: 'Add photos, notes, and videos directly to your iGuide 3D Walkthrough during the scan. Capture every critical detail effortlessly.',
         icon: {src: '/assets/Icons/Real-time_Tagging__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
       {
@@ -70,7 +70,7 @@ export const blocks: Block[] = [
       },
       {
         title: 'Verisk Xactimate integration',
-        text: 'Instantly convert your iGUIDE data into Xactimate-compatible formats to streamline reporting and claims.',
+        text: 'Instantly convert your iGuide data into Xactimate-compatible formats to streamline reporting and claims.',
         icon: {src: '/assets/Icons/Icon-300x300_Superior-Navigation__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
     ],
@@ -100,14 +100,14 @@ export const blocks: Block[] = [
     heading: 'Significantly reduce the time spent documenting your claims',
     body: (
       <p>
-        The iGUIDE PLANIX R1 does more than just take pictures. Unlike a conventional camera system, it measures and photographs a space
+        The iGuide PLANIX R1 does more than just take pictures. Unlike a conventional camera system, it measures and photographs a space
         simultaneously.
       </p>
     ),
     media: {
       type: 'embed',
       src: 'https://youriguide.com/embed/i6qr7_1122_sample_road_kitchener_on?autostart=1&bgcolor=FFFFFF',
-      title: 'iGUIDE 3D tour of 1122 Sample Road, Kitchener, ON',
+      title: 'iGuide 3D tour of 1122 Sample Road, Kitchener, ON',
     },
   },
   {
@@ -119,24 +119,24 @@ export const blocks: Block[] = [
     cards: [
       {
         title: 'Capture',
-        text: 'Connect the iGUIDE PLANIX R1 to your smart device, scan the property, and gather visuals and measurements simultaneously.',
+        text: 'Connect the iGuide PLANIX R1 to your smart device, scan the property, and gather visuals and measurements simultaneously.',
         icon: {src: '/assets/Icons/1__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
       {
         title: 'Process',
-        text: 'Automatically generate floor plans with Instant Sketch. Upgrade to iGUIDE Standard or Premium ESX files for enhanced capabilities.',
+        text: 'Automatically generate floor plans with Instant Sketch. Upgrade to iGuide Standard or Premium ESX files for enhanced capabilities.',
         icon: {src: '/assets/Icons/2__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
       {
         title: 'Use',
-        text: 'Share your comprehensive iGUIDE report with adjusters, clients, and teams to expedite claim resolutions.',
+        text: 'Share your comprehensive iGuide report with adjusters, clients, and teams to expedite claim resolutions.',
         icon: {src: '/assets/Icons/3__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
     ],
   },
   {
     type: 'custom',
-    heading: 'Want more resources? Check out this webinar on how iGUIDE revolutionizes fire scene documentation!',
+    heading: 'Want more resources? Check out this webinar on how iGuide revolutionizes fire scene documentation!',
     align: 'center',
     children: (
       <div className="mx-auto max-w-4xl">

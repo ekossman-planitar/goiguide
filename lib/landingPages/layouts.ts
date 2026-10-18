@@ -43,7 +43,7 @@ export const lpLayouts: LpLayout[] = [
   {
     id: 'product-showcase',
     name: 'Product showcase',
-    bestFor: 'Show the product in action first (video or live iGUIDE tour), then explain.',
+    bestFor: 'Show the product in action first (video or live iGuide tour), then explain.',
     heroStyle: 'media',
     sections: ['lpHero', 'lpLogos', 'lpSplit', 'lpSplit', 'lpSteps', 'lpTestimonials', 'lpForm'],
   },

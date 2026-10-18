@@ -9,13 +9,13 @@ import {book} from '@/lib/content/solutions/shared'
 import {pageMetadata} from '@/lib/pageMetadata'
 
 /**
- * NEW PAGE (no live equivalent): overview of every iGUIDE solution, linked from
+ * NEW PAGE (no live equivalent): overview of every iGuide solution, linked from
  * the "Solutions" nav item. Copy is first draft for Evan to iterate on.
  */
 export const metadata = pageMetadata({
-  title: 'iGUIDE Solutions: Floor Plans, 3D Tours, CAD & More | iGUIDE',
+  title: 'iGuide Solutions: Floor Plans, 3D Tours, CAD & More | iGuide',
   description:
-    'One iGUIDE scan delivers accurate floor plans, 3D virtual tours, CAD files, Xactimate sketches and site plans. Explore every iGUIDE solution.',
+    'One iGuide scan delivers accurate floor plans, 3D virtual tours, CAD files, Xactimate sketches and site plans. Explore every iGuide solution.',
   path: '/solutions',
 })
 
@@ -33,41 +33,41 @@ const deliverables: Deliverable[] = [
     href: '/iguide/floor-plans',
     description: 'Accurate, measured floor plans with every scan, from branded schematic PDFs to CAD and ESX exports.',
     bestFor: ['Real estate', 'Photographers', 'Insurance'],
-    image: {src: '/assets/schematic-pdf-floorplan.png', alt: 'iGUIDE schematic floor plan with room dimensions', width: 2160, height: 1668},
+    image: {src: '/assets/schematic-pdf-floorplan.png', alt: 'iGuide schematic floor plan with room dimensions', width: 2160, height: 1668},
   },
   {
     title: '3D Virtual Tours',
     href: '/iguide/3d-virtual-tours',
     description: 'Immersive walkthroughs anyone can explore online, with measurements built in.',
     bestFor: ['Real estate', 'Photographers', 'Facilities'],
-    image: {src: '/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzY1OF0.png', alt: 'iGUIDE 3D virtual tour and floor plan on a desktop and laptop', width: 658, height: 350},
+    image: {src: '/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzY1OF0.png', alt: 'iGuide 3D virtual tour and floor plan on a desktop and laptop', width: 658, height: 350},
   },
   {
     title: 'CAD Deliverables',
     href: '/iguide/cad-deliverables',
     description: 'Editable DWG, DXF, RVT and PDF drawings from one site visit, ready in days, not weeks.',
     bestFor: ['Architecture', 'Design & construction', 'Facilities'],
-    image: {src: '/assets/CS0001-Premium-Floor-Plans.png', alt: 'iGUIDE CAD floor plan drawing of a commercial space', width: 3001, height: 2000},
+    image: {src: '/assets/CS0001-Premium-Floor-Plans.png', alt: 'iGuide CAD floor plan drawing of a commercial space', width: 3001, height: 2000},
   },
   {
     title: 'Xactimate Sketches',
     href: '/iguide/xactimate-sketches',
     description: 'Insurance-ready ESX sketches with an integrated 3D walkthrough for faster claims.',
     bestFor: ['Insurance & restoration', 'Forensic investigation'],
-    image: {src: '/assets/Xactimate_72dpi.jpg', alt: 'Adjuster reviewing an iGUIDE Xactimate sketch and 3D tour', width: 1682, height: 1121},
+    image: {src: '/assets/Xactimate_72dpi.jpg', alt: 'Adjuster reviewing an iGuide Xactimate sketch and 3D tour', width: 1682, height: 1121},
   },
   {
     title: 'Site Plans',
     href: '/iguide/site-plans',
     description: 'Exterior property layouts that complete the listing, inside and out.',
     bestFor: ['Real estate', 'Photographers'],
-    image: {src: '/assets/Site_Plans_Add-On.jpg', alt: 'iGUIDE site plan showing a home, yard and pool', width: 3001, height: 2000},
+    image: {src: '/assets/Site_Plans_Add-On.jpg', alt: 'iGuide site plan showing a home, yard and pool', width: 3001, height: 2000},
   },
 ]
 
 const steps = [
-  {icon: Camera, title: 'Capture', text: 'Scan the property once with the PLANIX R1 camera, or hire a trained iGUIDE Pro.'},
-  {icon: Cloud, title: 'Process', text: 'iGUIDE turns the scan into measurements, plans and an interactive tour.'},
+  {icon: Camera, title: 'Capture', text: 'Scan the property once with the PLANIX R1 camera, or hire a trained iGuide Pro.'},
+  {icon: Cloud, title: 'Process', text: 'iGuide turns the scan into measurements, plans and an interactive tour.'},
   {icon: Share2, title: 'Deliver', text: 'Share, download or publish everything to the tools and portals you already use.'},
 ]
 
@@ -80,14 +80,14 @@ export default function SolutionsPage() {
           <div className="min-w-0">
             <h1 className="text-balance text-[40px] leading-[normal] font-semibold text-ink md:text-[56px]">One scan. Every deliverable.</h1>
             <p className="mt-6 text-xl leading-[30px] text-muted">
-              Floor plans, 3D virtual tours, CAD files, Xactimate sketches and site plans, all from a single iGUIDE capture.
+              Floor plans, 3D virtual tours, CAD files, Xactimate sketches and site plans, all from a single iGuide capture.
             </p>
-            <CtaButtons className="mt-8" ctas={[book(), {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/', variant: 'secondary'}]} />
+            <CtaButtons className="mt-8" ctas={[book(), {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/', variant: 'secondary'}]} />
           </div>
           <div className="min-w-0">
             <Image
               src="/assets/Chirs_R1_Living_Room.png"
-              alt="iGUIDE operator scanning a living room with the PLANIX R1 camera"
+              alt="iGuide operator scanning a living room with the PLANIX R1 camera"
               width={1080}
               height={1283}
               priority
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
       <section className="bg-surface py-16 lg:py-20" aria-labelledby="how-heading">
         <Container>
           <h2 id="how-heading" className="text-center text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
-            How iGUIDE works
+            How iGuide works
           </h2>
           <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {steps.map(({icon: Icon, title, text}, i) => (
@@ -177,17 +177,17 @@ export default function SolutionsPage() {
             {[
               {
                 title: 'PLANIX R1 capture hardware',
-                text: 'The camera behind every iGUIDE: immersive imagery and precise LiDAR measurements in one scan.',
+                text: 'The camera behind every iGuide: immersive imagery and precise LiDAR measurements in one scan.',
                 href: '/camera-hardware',
                 link: 'Explore the hardware',
-                image: {src: '/assets/Homepage-PLANIX-R1.jpg', alt: 'iGUIDE PLANIX R1 camera', width: 1094, height: 1258},
+                image: {src: '/assets/Homepage-PLANIX-R1.jpg', alt: 'iGuide PLANIX R1 camera', width: 1094, height: 1258},
               },
               {
                 title: 'Integrations',
-                text: 'Capture once, publish everywhere. iGUIDE connects with MLS systems, listing portals and the software you use.',
+                text: 'Capture once, publish everywhere. iGuide connects with MLS systems, listing portals and the software you use.',
                 href: '/iguide/integrations',
                 link: 'See integrations',
-                image: {src: '/assets/integrations-hub-new.png', alt: 'iGUIDE connected to Zillow, Realtor.com, Flexmls and other platforms', width: 2464, height: 1280},
+                image: {src: '/assets/integrations-hub-new.png', alt: 'iGuide connected to Zillow, Realtor.com, Flexmls and other platforms', width: 2464, height: 1280},
               },
             ].map((c) => (
               <SmartLink

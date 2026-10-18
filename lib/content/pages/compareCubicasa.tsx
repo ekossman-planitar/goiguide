@@ -4,18 +4,18 @@ import {VsColumns} from '@/components/pages/VsColumns'
 import {closingCta, compareHeroFormId, compareLogos, comparePlanixImage, logosHeading, lookInsideV2, ProList} from './compareShared'
 
 export const meta = {
-  title: 'iGUIDE vs CubiCasa: Comparing camera systems for fire investigators, insurance adjusters, & contractors | iGUIDE',
+  title: 'iGuide vs CubiCasa: Comparing camera systems for fire investigators, insurance adjusters, & contractors | iGuide',
   description:
-    'Compare iGUIDE vs. CubiCasa to see why pros choose iGUIDE - faster scans, accurate measurements, full data ownership, and offline access.',
+    'Compare iGuide vs. CubiCasa to see why pros choose iGuide - faster scans, accurate measurements, full data ownership, and offline access.',
   path: '/compare/iguide-vs-cubicasa',
 }
 
 export const hero = {
-  heading: 'iGUIDE vs CubiCasa: why settle, have it all',
+  heading: 'iGuide vs CubiCasa: why settle, have it all',
   subheading:
-    'iGUIDE delivers more value than Cubicasa by combining floor plans with immersive tours and accurate property data to tell the whole story.',
+    'iGuide delivers more value than Cubicasa by combining floor plans with immersive tours and accurate property data to tell the whole story.',
   rating: true,
-  formHeading: 'See how iGUIDE compares to CubiCasa',
+  formHeading: 'See how iGuide compares to CubiCasa',
   formId: compareHeroFormId,
 }
 
@@ -25,9 +25,9 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'key-reasons',
     align: 'center',
-    heading: 'Why professionals continue to choose iGUIDE over CubiCasa',
+    heading: 'Why professionals continue to choose iGuide over CubiCasa',
     subheading:
-      'iGUIDE uses the perfect combination of media to make property listings more effective. Immersive visuals along side floor plans grabs attention, maximizes engagement and pushes potential homebuyers into action.',
+      'iGuide uses the perfect combination of media to make property listings more effective. Immersive visuals along side floor plans grabs attention, maximizes engagement and pushes potential homebuyers into action.',
     columns: 2,
     cards: [
       {
@@ -36,7 +36,7 @@ export const blocks: Block[] = [
       },
       {
         title: 'Professional capture',
-        text: "iGUIDE's camera solution captures 360° images and accurate LiDAR measurements, simultaneously. This means more efficient use of time on-site and higher value outcomes.",
+        text: "iGuide's camera solution captures 360° images and accurate LiDAR measurements, simultaneously. This means more efficient use of time on-site and higher value outcomes.",
       },
       {
         title: 'Superior accuracy',
@@ -53,7 +53,7 @@ export const blocks: Block[] = [
     background: 'surface',
     quote: {
       quote:
-        'Since incorporating iGUIDE into our services, our business has grown 10X – the capture speed is unmatched. We\'ve worked with other virtual tour solutions, but none come close to iGUIDE\'s efficiency. Adding the PLANIX camera system to our offering has brought us more shoots and clients. It’s been a game-changer!',
+        'Since incorporating iGuide into our services, our business has grown 10X – the capture speed is unmatched. We\'ve worked with other virtual tour solutions, but none come close to iGuide\'s efficiency. Adding the PLANIX camera system to our offering has brought us more shoots and clients. It’s been a game-changer!',
       name: 'Lauren Murphy',
       role: 'Photographer',
       company: 'Monster Media House',
@@ -94,12 +94,12 @@ export const blocks: Block[] = [
     id: 'compare',
     background: 'surface',
     align: 'center',
-    heading: 'iGUIDE wins where it matters most',
+    heading: 'iGuide wins where it matters most',
     subheading: 'Don’t settle for quick sketches. Choose the platform built for compliance, precision and ownership.',
     children: (
       <VsColumns
         ours={{
-          name: 'iGUIDE',
+          name: 'iGuide',
           image: comparePlanixImage,
           items: [
             {text: 'Schematic floor plans in JPG, PDF, SVG', ok: true},
@@ -129,17 +129,17 @@ export const blocks: Block[] = [
     type: 'quote',
     quote: {
       quote:
-        'When we scan with iGUIDE, I know I won’t get a call from an agent questioning the numbers. It saves me time, builds trust and delivers a polished product that helps my clients win listings.',
+        'When we scan with iGuide, I know I won’t get a call from an agent questioning the numbers. It saves me time, builds trust and delivers a polished product that helps my clients win listings.',
       name: 'Alex Coombs',
       role: 'Owner',
       company: 'Northern Spruce Media',
       photo: {src: '/assets/alex_photo.jpg', alt: 'photo - Alex Coombs'},
-      link: {label: 'See what Alex had to say about iGUIDE vs CubiCasa', href: '/blogs/why-i-use-both-iguide-and-cubicasa-in-my-business'},
+      link: {label: 'See what Alex had to say about iGuide vs CubiCasa', href: '/blogs/why-i-use-both-iguide-and-cubicasa-in-my-business'},
     },
   },
   closingCta({
     heading: 'Ready to upgrade to a professional solution?',
     text: 'Professional tools mean professional results and that’s what sets you apart.',
-    secondary: {label: 'Buy the iGUIDE PLANIX camera', href: 'https://store.goiguide.com'},
+    secondary: {label: 'Buy the iGuide PLANIX camera', href: 'https://store.goiguide.com'},
   }),
 ]

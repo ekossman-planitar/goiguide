@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const page = await getPage(params)
   if (!page) return {}
-  const title = page.seoTitle || `${page.title ?? 'iGUIDE'} | iGUIDE`
+  const title = page.seoTitle || `${page.title ?? 'iGuide'} | iGuide`
   const image = page.shareImage ?? '/assets/iGUIDE-Meta-Thumbnail.png'
   return {
     title: {absolute: title},
@@ -36,7 +36,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     alternates: {canonical: page.path},
     // Paid-media pages are never indexed (live: noindex)
     robots: {index: false, follow: false},
-    openGraph: {title, description: page.metaDescription, url: page.path, siteName: 'iGUIDE', locale: 'en_CA', type: 'website', images: [image]},
+    openGraph: {title, description: page.metaDescription, url: page.path, siteName: 'iGuide', locale: 'en_CA', type: 'website', images: [image]},
   }
 }
 

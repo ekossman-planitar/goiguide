@@ -11,9 +11,9 @@ import {hero as matterport, meta as matterportMeta} from './compareMatterport'
 import {hero as zillow, meta as zillowMeta} from './compareZillow3dHome'
 
 export const meta = {
-  title: 'Compare | iGUIDE',
+  title: 'Compare | iGuide',
   // NEW description (live had none)
-  description: 'See how iGUIDE compares to Matterport, DocuSketch, Zillow 3D Home, CubiCasa and manual measurement.',
+  description: 'See how iGuide compares to Matterport, DocuSketch, Zillow 3D Home, CubiCasa and manual measurement.',
   path: '/compare',
 }
 

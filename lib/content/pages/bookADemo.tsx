@@ -6,9 +6,9 @@ import {HeroColumns} from '@/components/pages/HeroColumns'
 import {RatingRow} from '@/components/sections/RatingRow'
 
 export const meta = {
-  title: 'Book an iGUIDE Demo | iGUIDE',
+  title: 'Book an iGuide Demo | iGuide',
   description:
-    'Book an iGUIDE demo and let our professionals walk you though how our system delivers the capture data you need to deliver results for your business.',
+    'Book an iGuide demo and let our professionals walk you though how our system delivers the capture data you need to deliver results for your business.',
   path: '/book-a-demo',
 }
 
@@ -21,8 +21,8 @@ export const blocks: Block[] = [
     background: 'sky',
     children: (
       <>
-        <HeroColumns heading="See how iGUIDE works for you" aside={<BookADemoChoice />}>
-          <p className="text-xl leading-[30px]">iGUIDE delivers floor plans, virtual tours and accurate property data all in one visit.</p>
+        <HeroColumns heading="See how iGuide works for you" aside={<BookADemoChoice />}>
+          <p className="text-xl leading-[30px]">iGuide delivers floor plans, virtual tours and accurate property data all in one visit.</p>
           <div className="pt-2">
             <RatingRow />
           </div>
@@ -54,9 +54,9 @@ export const blocks: Block[] = [
   {
     type: 'featureTabs',
     id: 'first-look',
-    heading: 'Get a first look at the full iGUIDE experience',
-    subheading: 'The best way to understand iGUIDE is to experience it yourself.',
-    label: 'The iGUIDE experience',
+    heading: 'Get a first look at the full iGuide experience',
+    subheading: 'The best way to understand iGuide is to experience it yourself.',
+    label: 'The iGuide experience',
     items: [
       {
         id: 'capture',
@@ -83,13 +83,13 @@ export const blocks: Block[] = [
     type: 'quotes',
     id: 'testimonials',
     heading: 'Don’t take our word for it, hear it from the pros.',
-    subheading: 'Real stories from professionals using iGUIDE to win more business, save time, and deliver better results.',
+    subheading: 'Real stories from professionals using iGuide to win more business, save time, and deliver better results.',
     background: 'surface',
     link: {label: 'View customer stories', href: '/customer-stories'},
     quotes: [
       {
         quote:
-          'iGUIDE allows potential buyers to capture an emotional attachment and picture themselves in the property. We have noticed that the more layers of visual tools our properties offer, the longer buyers stay on our site, dreaming of their dream house, and of course making that essential offer.',
+          'iGuide allows potential buyers to capture an emotional attachment and picture themselves in the property. We have noticed that the more layers of visual tools our properties offer, the longer buyers stay on our site, dreaming of their dream house, and of course making that essential offer.',
         name: 'Maryna de Lannoy',
         role: 'Design Team & Client Care',
         company: 'Mark Richards Team, RE/MAX Hallmark Realty',
@@ -105,7 +105,7 @@ export const blocks: Block[] = [
       },
       {
         quote:
-          'Before iGUIDE, we struggled with unreliable vendors, higher costs, and the need for repeat site visits. iGUIDE’s Service Pro network captures all the data we need, and iGUIDE delivers CAD drawings and 3D tours, streamlining our process. iGUIDE\'s fast, efficient, and affordable, saving us both time and money.',
+          'Before iGuide, we struggled with unreliable vendors, higher costs, and the need for repeat site visits. iGuide’s Service Pro network captures all the data we need, and iGuide delivers CAD drawings and 3D tours, streamlining our process. iGuide\'s fast, efficient, and affordable, saving us both time and money.',
         name: 'AR Eissa',
         role: 'Sr. Construction Manager',
         company: 'BarBurrito',
@@ -113,7 +113,7 @@ export const blocks: Block[] = [
       },
       {
         quote:
-          '10 adjusters and 9 of them don’t know how to frame a shot. If you let us take an iGUIDE virtual tour, then you’ll have a million still images. iGUIDE technology has given Deft a huge competitive advantage. Simply seeing how much value it’s brought to deft, we fell in love with it!',
+          '10 adjusters and 9 of them don’t know how to frame a shot. If you let us take an iGuide virtual tour, then you’ll have a million still images. iGuide technology has given Deft a huge competitive advantage. Simply seeing how much value it’s brought to deft, we fell in love with it!',
         name: 'Jeremiah Kiefer',
         role: 'Founder & CEO',
         company: 'The Deft Group',

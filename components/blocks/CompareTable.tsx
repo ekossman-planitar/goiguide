@@ -14,7 +14,7 @@ function Mark({ok}: {ok: boolean}) {
   )
 }
 
-/** Two-column comparison: iGUIDE vs. alternatives, row by row. */
+/** Two-column comparison: iGuide vs. alternatives, row by row. */
 export function CompareTable({
   rows,
   columns,

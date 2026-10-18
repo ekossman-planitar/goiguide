@@ -4,7 +4,7 @@ import {HeroFormColumns} from '@/components/pages/HeroFormColumns'
 import {Button} from '@/components/ui/Button'
 
 export const meta = {
-  title: 'Watch on-demand: Stop waiting, start building: how top firms are speeding up projects today | iGUIDE',
+  title: 'Watch on-demand: Stop waiting, start building: how top firms are speeding up projects today | iGuide',
   description:
     'Watch an on-demand roundtable featuring a builder, architect, and co-founder as they share how modern tools like 3D scans, digital floor plans, and data-rich visuals are transforming workflows, boosting collaboration, and cutting costly rework.',
   path: '/stop-waiting-start-building-webinar',
@@ -12,7 +12,7 @@ export const meta = {
 }
 
 const learn: [string, string][] = [
-  ['Spot the real bottlenecks:', 'Where projects stall—and proven ways to speed things up.'],
+  ['Spot the real bottlenecks:', 'Where projects stall, and proven ways to speed things up.'],
   ['Ditch the clipboard:', 'How 3D tools are replacing tape measures and manual site sketches.'],
   ['Consultation and pre-design decoded:', 'Why solid processes and clear retainers lead to smoother starts and fewer surprises.'],
   ['Build trust with floor plans:', 'How rapid, accurate floor plans improve coordination and build trust across teams.'],
@@ -41,7 +41,7 @@ export const blocks: Block[] = [
             <span className="text-primary">how top firms are speeding up projects today</span>
           </>
         }
-        formHeading="Don’t miss out — access the webinar instantly"
+        formHeading="Don’t miss out: access the webinar instantly"
         formId="11ae3133-8b26-49a6-8132-6fc7d12f0811"
         formAnchorId="webinar-form"
       />
@@ -96,15 +96,15 @@ export const blocks: Block[] = [
         image: {src: '/assets/Uploads/AEC-Webinar_July-3-2025_Headshots_John-Mckenna_V2.png', alt: ''},
         text: speaker(
           'Founder, MC3 Design (Virginia)',
-          'Architect big on clean design, smart planning, and keeping projects moving. Knows the art of the possible—and how to get it approved.',
+          'Architect big on clean design, smart planning, and keeping projects moving. Knows the art of the possible, and how to get it approved.',
         ),
       },
       {
         title: 'Kevin Klages',
         image: {src: '/assets/Uploads/AEC-Webinar_July-3-2025_Headshots_Kevin-Klages_V2-v2.png', alt: ''},
         text: speaker(
-          'Co-Founder, iGUIDE',
-          'Co-founder of iGUIDE® and champion of as-built clarity, Kevin believes your data should work harder than your tape measure.',
+          'Co-Founder, iGuide',
+          'Co-founder of iGuide® and champion of as-built clarity, Kevin believes your data should work harder than your tape measure.',
         ),
       },
     ],

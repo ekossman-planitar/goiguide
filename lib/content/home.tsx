@@ -10,7 +10,7 @@ import type {HeroData} from '@/sanity/lib/types'
 export const heroFallback: HeroData = {
   eyebrow: null,
   heading: 'Your fastest path to accurate floor plans and 3D virtual tours',
-  subheading: 'Own your data, floor plans and virtual tour—all from a single scan.',
+  subheading: 'Own your data, floor plans and virtual tour, all from a single scan.',
   cta: {label: 'Book a Demo', href: '/book-a-demo'},
   secondaryCta: {label: 'Learn more', href: '#how-it-works'},
   media: null,
@@ -20,29 +20,29 @@ export const logoHeadingFallback = 'Trusted by **thousands** of professionals wo
 
 export const howItWorks = {
   heading: 'Capture, measure and share spaces with confidence',
-  subheading: 'See how iGUIDE reduces steps, removes guesswork and helps your team move faster.',
+  subheading: 'See how iGuide reduces steps, removes guesswork and helps your team move faster.',
   steps: [
     {
-      title: 'Buy a PLANIX camera or hire an iGUIDE Pro',
+      title: 'Buy a PLANIX camera or hire an iGuide Pro',
       body: (
         <p>
-          Capture the space yourself with a PLANIX camera or <a href="https://ion.goiguide.com/">hire an iGUIDE Pro</a>{' '}
+          Capture the space yourself with a PLANIX camera or <a href="https://ion.goiguide.com/">hire an iGuide Pro</a>{' '}
           to do it for you. They&apos;re fast, trained and available across North America.
         </p>
       ),
       cta: {label: 'See camera options', href: '/#pricingTabs'},
-      image: {src: '/assets/R1-Camera.png', alt: 'iGUIDE operator capturing a home with the PLANIX R1 camera and a tablet'},
+      image: {src: '/assets/R1-Camera.png', alt: 'iGuide operator capturing a home with the PLANIX R1 camera and a tablet'},
     },
     {
       title: 'Choose the package that fits your project',
       body: (
         <p>
-          Every iGUIDE includes a 3D virtual tour. Just choose the level of detail and file types that fit your
+          Every iGuide includes a 3D virtual tour. Just choose the level of detail and file types that fit your
           workflow, like floor plans or CAD files.
         </p>
       ),
       cta: {label: 'Compare packages', href: '/#pricingTabs'},
-      image: {src: '/assets/schematic-pdf-floorplan.png', alt: 'iGUIDE floor plan with room names and dimensions'},
+      image: {src: '/assets/schematic-pdf-floorplan.png', alt: 'iGuide floor plan with room names and dimensions'},
     },
     {
       title: 'Add only the extras your project requires',
@@ -53,7 +53,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See available add-ons', href: '/pricing#add-ons'},
-      image: {src: '/assets/CS0001-3DModel-DWG.png', alt: 'iGUIDE 3D CAD model add-on in DWG format'},
+      image: {src: '/assets/CS0001-3DModel-DWG.png', alt: 'iGuide 3D CAD model add-on in DWG format'},
     },
     {
       title: 'Receive your deliverables quickly',
@@ -64,7 +64,7 @@ export const howItWorks = {
         </p>
       ),
       cta: {label: 'See samples in our gallery', href: '/resources-and-media/iguide-gallery'},
-      image: {src: '/assets/space-planning.png', alt: 'Team reviewing iGUIDE deliverables on a computer'},
+      image: {src: '/assets/space-planning.png', alt: 'Team reviewing iGuide deliverables on a computer'},
     },
   ] satisfies TimelineStep[],
 }

@@ -2,10 +2,10 @@
 import type {Block} from '@/components/blocks/Blocks'
 
 export const meta = {
-  title: 'R1 Unboxing Social Contest Rules & Regulations | iGUIDE',
+  title: 'R1 Unboxing Social Contest Rules & Regulations | iGuide',
   // NEW description (live had none)
   description:
-    'Rules and regulations for the iGUIDE PLANIX R1 unboxing social contest on Instagram (contest period November 14, 2024 to November 29, 2024).',
+    'Rules and regulations for the iGuide PLANIX R1 unboxing social contest on Instagram (contest period November 14, 2024 to November 29, 2024).',
   path: '/r1-unboxing',
 }
 
@@ -22,8 +22,8 @@ export const blocks: Block[] = [
           <li>Record a short video of you unboxing your brand-new PLANIX R1 and share it to your Instagram story.</li>
           <li>Tag @go_iguide</li>
           <li>
-            That&apos;s it! 3 winners will be randomly selected and will receive a PLANIX R1 branded hoodie PLUS 3 free iGUIDE Standards (up to 3000
-            sqft each). iGUIDEs must be redeemed within 90 days of receiving them.
+            That&apos;s it! 3 winners will be randomly selected and will receive a PLANIX R1 branded hoodie PLUS 3 free iGuide Standards (up to 3000
+            sqft each). iGuides must be redeemed within 90 days of receiving them.
           </li>
           <li>Contest period: November 14, 2024 to November 29, 2024.</li>
           <li>Winners will be contacted via email on December 2, 2024.</li>

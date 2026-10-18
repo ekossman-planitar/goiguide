@@ -4,18 +4,18 @@ import {VsColumns} from '@/components/pages/VsColumns'
 import {closingCta, compareHeroFormId, compareLogos, comparePlanixImage, logosHeading, lookInsideV2} from './compareShared'
 
 export const meta = {
-  title: 'iGUIDE vs Manual Measurement | Faster, Accurate Floor Plans | iGUIDE',
+  title: 'iGuide vs Manual Measurement | Faster, Accurate Floor Plans | iGuide',
   description:
-    'Compare iGUIDE vs manual measurement. Capture accurate floor plans and 3D walkthroughs in one visit with faster delivery and fewer return trips.',
+    'Compare iGuide vs manual measurement. Capture accurate floor plans and 3D walkthroughs in one visit with faster delivery and fewer return trips.',
   path: '/compare/iguide-vs-manual-measurement',
 }
 
 export const hero = {
-  heading: 'iGUIDE vs manual measurement: digital precision, manual no more',
+  heading: 'iGuide vs manual measurement: digital precision, manual no more',
   subheading:
-    'Ditch manual measuring for fast, accurate floor plans and immersive 3D walkthroughs—captured in a single visit and delivered within 24 hours.',
+    'Ditch manual measuring for fast, accurate floor plans and immersive 3D walkthroughs, captured in a single visit and delivered within 24 hours.',
   rating: true,
-  formHeading: 'See how iGUIDE compares to manual measurement',
+  formHeading: 'See how iGuide compares to manual measurement',
   formId: compareHeroFormId,
 }
 
@@ -25,30 +25,30 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'key-reasons',
     align: 'center',
-    heading: 'Why leading real estate professionals choose iGUIDE over manual measurement',
+    heading: 'Why leading real estate professionals choose iGuide over manual measurement',
     columns: 3,
     cards: [
       {
         title: 'Faster capture on site',
-        text: 'iGUIDE captures the entire property in a single efficient visit (often in under 15 minutes) delivering floor plans, site plans, and immersive walkthroughs without manual measuring.',
+        text: 'iGuide captures the entire property in a single efficient visit (often in under 15 minutes) delivering floor plans, site plans, and immersive walkthroughs without manual measuring.',
       },
       {
         title: 'Precision measurements',
-        text: 'iGUIDE delivers professional floor plans, Site Plans and walkthroughs in as little as six hours*—no manual hand-sketching required.',
+        text: 'iGuide delivers professional floor plans, Site Plans and walkthroughs in as little as six hours*, no manual hand-sketching required.',
       },
       {
         title: 'Immersive 3D virtual tours',
-        text: 'iGUIDE combines floor plans, Site Plans and immersive walkthroughs to show layout, flow and how spaces connect.',
+        text: 'iGuide combines floor plans, Site Plans and immersive walkthroughs to show layout, flow and how spaces connect.',
       },
-      {title: 'Own your data, forever', text: 'iGUIDE gives you permanent ownership and access to your projects, with no ongoing subscriptions.'},
+      {title: 'Own your data, forever', text: 'iGuide gives you permanent ownership and access to your projects, with no ongoing subscriptions.'},
       {
         title: 'Fewer return visits, lower costs',
-        text: 'iGUIDE captures measurements and visuals in one visit, reducing the need for return trips.',
+        text: 'iGuide captures measurements and visuals in one visit, reducing the need for return trips.',
       },
     ],
     after: (
       <p className="text-sm leading-6 text-muted">
-        *Note: iGUIDE Instant is delivered within minutes. iGUIDE Standard and Premium are delivered within a 24 hr SLA.
+        *Note: iGuide Instant is delivered within minutes. iGuide Standard and Premium are delivered within a 24 hr SLA.
       </p>
     ),
   },
@@ -57,7 +57,7 @@ export const blocks: Block[] = [
     background: 'surface',
     quote: {
       quote:
-        'Being able to shoot 4–5 houses in a day would not be possible by hand without iGUIDE. The reliability and accuracy are unmatched. Clients rely on it, even in legal disputes. iGUIDE’s accuracy can stand up in court.',
+        'Being able to shoot 4–5 houses in a day would not be possible by hand without iGuide. The reliability and accuracy are unmatched. Clients rely on it, even in legal disputes. iGuide’s accuracy can stand up in court.',
       name: 'Saad Khan',
       role: 'Photographer',
       company: 'Northern Spruce Media',
@@ -72,8 +72,8 @@ export const blocks: Block[] = [
     columns: 3,
     cards: [
       {title: 'For fast, accurate photographers', text: 'Ditch measuring tapes. Capture accurate floor plans and 3D tours in one visit.'},
-      {title: 'Elevated listings for agents', text: 'Go beyond floor plans with 3D tours that show fit and flow—and elevate your brand.'},
-      {title: 'Fewer return visits', text: 'Capture every detail in one pass—reducing costly return trips.'},
+      {title: 'Elevated listings for agents', text: 'Go beyond floor plans with 3D tours that show fit and flow, and elevate your brand.'},
+      {title: 'Fewer return visits', text: 'Capture every detail in one pass, reducing costly return trips.'},
     ],
   },
   {
@@ -81,11 +81,11 @@ export const blocks: Block[] = [
     id: 'compare',
     background: 'surface',
     align: 'center',
-    heading: 'iGUIDE vs manual measurement at a glance',
+    heading: 'iGuide vs manual measurement at a glance',
     children: (
       <VsColumns
         ours={{
-          name: 'iGUIDE',
+          name: 'iGuide',
           image: comparePlanixImage,
           items: [
             {text: 'Fast, professional camera system', ok: true},
@@ -119,7 +119,7 @@ export const blocks: Block[] = [
     align: 'center',
     heading: 'A better fit for modern listings',
     subheading:
-      'Today’s listings demand speed, accuracy, and clarity. iGUIDE delivers precise measurements, fast turnaround and immersive walkthroughs, without manual measuring.',
+      'Today’s listings demand speed, accuracy, and clarity. iGuide delivers precise measurements, fast turnaround and immersive walkthroughs, without manual measuring.',
     children: null,
   },
   {
@@ -132,23 +132,23 @@ export const blocks: Block[] = [
       },
       {
         q: 'How accurate are the floor plans and measurements?',
-        a: 'Typical iGUIDE measurement uncertainty in distance measurement on a floor plan is 0.5% or better and the corresponding uncertainty in square footage is 1% or better, providing you the confidence required.',
+        a: 'Typical iGuide measurement uncertainty in distance measurement on a floor plan is 0.5% or better and the corresponding uncertainty in square footage is 1% or better, providing you the confidence required.',
       },
       {
         q: 'What file formats are available?',
         a: 'You can export your data in multiple formats including SVG, PDF, DWG, RVT, ESX and FML (coming soon), ready for use across a variety of platforms including CAD tools, Verisk Xactimate, or search portals / web listings.',
       },
       {
-        q: 'Is iGUIDE suitable for different types of residential listings?',
-        a: 'iGUIDE is designed to scale across a wide range of residential properties, delivering consistent results regardless of size or complexity.',
+        q: 'Is iGuide suitable for different types of residential listings?',
+        a: 'iGuide is designed to scale across a wide range of residential properties, delivering consistent results regardless of size or complexity.',
       },
       {
-        q: 'Does iGUIDE reduce the need to revisit the property?',
-        a: 'Yes. Because measurements and visuals are captured digitally, iGUIDE significantly reduces the likelihood of return visits for missed dimensions or additional context.',
+        q: 'Does iGuide reduce the need to revisit the property?',
+        a: 'Yes. Because measurements and visuals are captured digitally, iGuide significantly reduces the likelihood of return visits for missed dimensions or additional context.',
       },
       {
-        q: 'Can iGUIDE replace hand-sketching entirely?',
-        a: 'Yes, iGUIDE provides accurate measurements, professional floor plans and a walkthrough experience from a single capture, removing the need for manual measurement and hand-sketching.',
+        q: 'Can iGuide replace hand-sketching entirely?',
+        a: 'Yes, iGuide provides accurate measurements, professional floor plans and a walkthrough experience from a single capture, removing the need for manual measurement and hand-sketching.',
       },
       {
         q: 'Do buyers care about floor plans and walkthroughs?',
@@ -156,12 +156,12 @@ export const blocks: Block[] = [
       },
       {
         q: 'Are hand-sketched floor plans accurate?',
-        a: 'Hand-sketched floor plans rely on manual measuring and handwritten notes, which can introduce variability. iGUIDE uses the PLANIX R1 camera system, which is LiDAR-equipped, to produce consistent, repeatable results.',
+        a: 'Hand-sketched floor plans rely on manual measuring and handwritten notes, which can introduce variability. iGuide uses the PLANIX R1 camera system, which is LiDAR-equipped, to produce consistent, repeatable results.',
       },
     ],
   },
   closingCta({
-    heading: 'See how iGUIDE fits into your workflow',
-    secondary: {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'},
+    heading: 'See how iGuide fits into your workflow',
+    secondary: {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
   }),
 ]

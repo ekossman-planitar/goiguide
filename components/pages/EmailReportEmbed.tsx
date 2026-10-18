@@ -2,7 +2,7 @@ import {cn} from '@/lib/cn'
 import {ReportScaleFit} from './ReportScaleFit'
 
 /**
- * Sample iGUIDE email report, embedded as the live page does (the email's own
+ * Sample iGuide email report, embedded as the live page does (the email's own
  * inline-styled HTML, copied verbatim from the live capture). `scaleHeight`
  * turns on the fit-to-width script for the annotated analytics canvas.
  */

@@ -3,9 +3,9 @@ import type {Block} from '@/components/blocks/Blocks'
 import {book, tour} from './shared'
 
 export const meta = {
-  title: 'Insurance Claim Documentation & Estimating Tools | iGUIDE',
+  title: 'Insurance Claim Documentation & Estimating Tools | iGuide',
   description:
-    'Document property damage and speed up insurance estimating with Xactimate-ready sketches, floor plans and lidar measurements. Capture once and move claims forward faster with iGUIDE.',
+    'Document property damage and speed up insurance estimating with Xactimate-ready sketches, floor plans and lidar measurements. Capture once and move claims forward faster with iGuide.',
   path: '/insurance-restoration',
 }
 
@@ -19,7 +19,7 @@ export const blocks: Block[] = [
     media: {
       type: 'embed',
       src: tour('https://youriguide.com/urwkb_1121_sample_road_kitchener_on?autostart=1'),
-      title: 'iGUIDE tour of a sample insurance loss, 1121 Sample Road, Kitchener ON',
+      title: 'iGuide tour of a sample insurance loss, 1121 Sample Road, Kitchener ON',
     },
   },
   {
@@ -33,7 +33,7 @@ export const blocks: Block[] = [
         </h2>
         <div className="space-y-4 text-lg leading-7 text-body">
           <p>
-            Standard documentation methods require tape, clipboards, lasers and endless manual sketches. With iGUIDE, you just walk and scan.
+            Standard documentation methods require tape, clipboards, lasers and endless manual sketches. With iGuide, you just walk and scan.
           </p>
           <p>
             Less time on site and no time spent building the sketch in Xactimate. You get to estimating quicker and close claims faster, with
@@ -130,7 +130,7 @@ export const blocks: Block[] = [
     heading: 'Why we cost more than the cheaper options',
     subheading:
       "You'll hear the number and think it, so here it is directly. You're paying for accuracy you can stand behind, a sketch a person drew and no subscription sitting underneath any of it.",
-    columns: {label: 'The details', ours: 'iGUIDE', theirs: 'Cheaper alternatives'},
+    columns: {label: 'The details', ours: 'iGuide', theirs: 'Cheaper alternatives'},
     rows: [
       {label: 'How you pay', ours: 'Per claim, no contract', theirs: 'Monthly subscription'},
       {label: 'Slow month', ours: 'You pay less, because you pay per claim', theirs: 'You pay anyway, credits expire*'},
@@ -154,9 +154,9 @@ export const blocks: Block[] = [
     subheading: 'Order a different level on every job. A two-room water loss and a whole-house fire should not cost the same.',
     items: [
       {
-        title: 'iGUIDE Instant Sketch',
+        title: 'iGuide Instant Sketch',
         summary: 'Best for small, daily residential losses and preliminary estimates.',
-        image: {src: '/assets/sketch.png', alt: 'iGUIDE Instant Sketch'},
+        image: {src: '/assets/sketch.png', alt: 'iGuide Instant Sketch'},
         price: {label: 'Per project', value: '$24.99 USD'},
         includesLabel: 'Includes:',
         includes: [
@@ -170,9 +170,9 @@ export const blocks: Block[] = [
         ],
       },
       {
-        title: 'iGUIDE Standard Sketch',
+        title: 'iGuide Standard Sketch',
         summary: 'Best for residential and commercial claims.',
-        image: {src: '/assets/esx_standard.png', alt: 'iGUIDE Standard Sketch'},
+        image: {src: '/assets/esx_standard.png', alt: 'iGuide Standard Sketch'},
         price: {label: 'Starting at', value: '$64.50 USD'},
         includesLabel: 'Includes:',
         includes: [
@@ -186,9 +186,9 @@ export const blocks: Block[] = [
         ],
       },
       {
-        title: 'iGUIDE Premium Sketch',
+        title: 'iGuide Premium Sketch',
         summary: 'Best for residential and commercial, when the scope needs full detail.',
-        image: {src: '/assets/esx_premium.png', alt: 'iGUIDE Premium Sketch'},
+        image: {src: '/assets/esx_premium.png', alt: 'iGuide Premium Sketch'},
         price: {label: 'Starting at', value: '$76.50 USD'},
         includesLabel: 'Includes:',
         includes: [
@@ -207,19 +207,19 @@ export const blocks: Block[] = [
     align: 'center',
     quotes: [
       {
-        quote: 'iGUIDE technology has given Deft a huge competitive advantage... We can get through a home in probably a third of the time.',
+        quote: 'iGuide technology has given Deft a huge competitive advantage... We can get through a home in probably a third of the time.',
         name: 'Jeremiah Kiefer',
         photo: {src: '/assets/iguide-vs-docusketch-jeremiah.jpg', alt: 'Jeremiah Kiefer'},
       },
       {
         quote:
-          "With iGUIDE, I'm getting back at least 20 hours a week. And that's being conservative. While someone else is still hand-sketching one property, I've already done four.",
+          "With iGuide, I'm getting back at least 20 hours a week. And that's being conservative. While someone else is still hand-sketching one property, I've already done four.",
         name: 'Jeremy Murray',
         photo: {src: '/assets/Jeremy-Murray.jpg', alt: 'Jeremy Murray'},
       },
       {
         quote:
-          'iGUIDE is great and the Xactimate ESX file is incredible. The amount of time saved on return trips to measure is huge savings. The camera will pay for itself. To be able to have a full sketch 24 hours later is great.',
+          'iGuide is great and the Xactimate ESX file is incredible. The amount of time saved on return trips to measure is huge savings. The camera will pay for itself. To be able to have a full sketch 24 hours later is great.',
         name: 'Chris A. Howell',
         photo: {src: '/assets/Chris-Howell.png', alt: 'Chris A. Howell'},
       },
@@ -230,7 +230,7 @@ export const blocks: Block[] = [
     heading: 'Frequently asked questions',
     items: [
       {
-        q: 'Why does iGUIDE cost more than others?',
+        q: 'Why does iGuide cost more than others?',
         a: 'Three reasons. Our published measurement uncertainty is 0.5% in distance and 1% in square footage. Standard and Premium sketches are drawn by our drafting team rather than generated. And there is no subscription underneath it, so you are not paying in the months you do not work.',
       },
       {
@@ -247,8 +247,8 @@ export const blocks: Block[] = [
         a: 'Instant Sketch covers daily residential water losses. Standard and Premium both handle residential and commercial, with Premium adding cabinets, baths, appliances and outdoor features. You can also upgrade an Instant Sketch to Standard or Premium later, so starting cheap does not lock you in.',
       },
       {
-        q: 'What happens to my files if I stop using iGUIDE?',
-        a: 'You can download the whole project, including the virtual tour, and host it yourself for as long as you like. Hosting with us is free for the first year, then a small annual fee per iGUIDE if you want us to keep it live. Either way the files are yours to pull down, which matters when a claim resurfaces years later.',
+        q: 'What happens to my files if I stop using iGuide?',
+        a: 'You can download the whole project, including the virtual tour, and host it yourself for as long as you like. Hosting with us is free for the first year, then a small annual fee per iGuide if you want us to keep it live. Either way the files are yours to pull down, which matters when a claim resurfaces years later.',
       },
       {
         q: 'Can I capture outside the building?',
@@ -259,7 +259,7 @@ export const blocks: Block[] = [
   {
     type: 'cta',
     heading: "One visit. One complete file. Let's talk.",
-    text: "Book a 15-minute product walkthrough to see how iGUIDE's IRC Bundle can pay for itself in just your first few cases.",
+    text: "Book a 15-minute product walkthrough to see how iGuide's IRC Bundle can pay for itself in just your first few cases.",
     ctas: [book('Book a 15-minute walkthrough')],
   },
 ]

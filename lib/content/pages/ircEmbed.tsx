@@ -3,9 +3,9 @@ import type {Block} from '@/components/blocks/Blocks'
 import {MediaView} from '@/components/blocks/MediaView'
 
 export const meta = {
-  title: 'embed | iGUIDE',
+  title: 'embed | iGuide',
   // NEW description (live had none)
-  description: 'Embedded iGUIDE RADIX 3D walkthrough of 1121 Sample Road, Kitchener, ON.',
+  description: 'Embedded iGuide RADIX 3D walkthrough of 1121 Sample Road, Kitchener, ON.',
   path: '/get-iguide/irc/embed',
 }
 
@@ -25,7 +25,7 @@ export const blocks: Block[] = [
           media={{
             type: 'embed',
             src: 'https://iguideradix.com/embed/1121_sample_road_kitchener_on?unbranded=1&bgcolor=FFFFFF',
-            title: 'iGUIDE RADIX 3D walkthrough of 1121 Sample Road, Kitchener, ON',
+            title: 'iGuide RADIX 3D walkthrough of 1121 Sample Road, Kitchener, ON',
           }}
           className="mt-10"
         />

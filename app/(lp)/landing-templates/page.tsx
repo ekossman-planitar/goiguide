@@ -5,7 +5,7 @@ import {lpLayouts, lpSectionLabels} from '@/lib/landingPages/layouts'
 import {LayoutWireframe} from '@/sanity/components/LayoutWireframe'
 
 export const metadata: Metadata = {
-  title: {absolute: 'Landing page templates | iGUIDE'},
+  title: {absolute: 'Landing page templates | iGuide'},
   robots: {index: false, follow: false},
 }
 

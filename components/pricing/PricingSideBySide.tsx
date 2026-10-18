@@ -58,7 +58,7 @@ export function PricingSideBySide({data}: {data: PricingData}) {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-primary">Step 2 · Choose a package</p>
-                  <h3 className="mt-1 text-2xl font-semibold text-ink">iGUIDE packages</h3>
+                  <h3 className="mt-1 text-2xl font-semibold text-ink">iGuide packages</h3>
                 </div>
                 <IndustryFilter value={industry} onChange={setIndustry} variant="select" />
               </div>

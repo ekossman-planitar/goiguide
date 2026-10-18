@@ -100,8 +100,8 @@ export const event = defineType({
     }),
     defineField({name: 'region', title: 'Province / state', type: 'string', group: 'details', hidden: ({document}) => isOnline(document as Doc)}),
     defineField({name: 'country', title: 'Country', type: 'string', group: 'details', initialValue: 'Canada', hidden: ({document}) => isOnline(document as Doc)}),
-    defineField({name: 'booth', title: 'Booth number', type: 'string', group: 'details', description: 'Shown as "Visit us at booth …". Leave empty if iGUIDE has no booth.'}),
-    defineField({name: 'price', title: 'Price', type: 'string', group: 'details', description: 'Optional, e.g. Free, $99, Free for iGUIDE customers.'}),
+    defineField({name: 'booth', title: 'Booth number', type: 'string', group: 'details', description: 'Shown as "Visit us at booth …". Leave empty if iGuide has no booth.'}),
+    defineField({name: 'price', title: 'Price', type: 'string', group: 'details', description: 'Optional, e.g. Free, $99, Free for iGuide customers.'}),
 
     defineField({
       name: 'shortDescription',
@@ -124,7 +124,7 @@ export const event = defineType({
     defineField({name: 'body', title: 'Event page content', type: 'richText', group: 'content'}),
     defineField({
       name: 'speakers',
-      title: 'Speakers / iGUIDE team attending',
+      title: 'Speakers / iGuide team attending',
       type: 'array',
       group: 'content',
       of: [

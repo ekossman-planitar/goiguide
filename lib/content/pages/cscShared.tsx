@@ -33,7 +33,7 @@ export type CscPage = {
 
 /** Links shared by every CSC page's tour section (live: venobox video pop-ups; here they open in a new tab). */
 export const tourVideoLinks = (measureLabel: string): Cta[] => [
-  {label: 'How to use an iGUIDE tour?', href: 'https://youtu.be/vxHUsp8DDtg', newTab: true},
+  {label: 'How to use an iGuide tour?', href: 'https://youtu.be/vxHUsp8DDtg', newTab: true},
   {label: measureLabel, href: 'https://youtu.be/iUYMj5L5i7A?si=pEL5iWd-9k_bzXF5', variant: 'secondary', newTab: true},
 ]
 
@@ -50,7 +50,7 @@ export const competitionDescription =
 
 /** In-page links under the hero (same three on every CSC page). */
 export const cscAnchors = (path: string) => [
-  {label: 'iGUIDE tools', href: `${path}#tools`},
+  {label: 'iGuide tools', href: `${path}#tools`},
   {label: 'About project', href: `${path}#about`},
   {label: 'Competition information', href: `${path}#competition`},
 ]
@@ -89,11 +89,11 @@ export function cscBlocks(p: CscPage): Block[] {
     {
       type: 'custom',
       id: 'tools',
-      heading: 'iGUIDE Tools',
+      heading: 'iGuide Tools',
       children: (
         <div className="space-y-16">
           <div>
-            <h3 className={h3}>iGUIDE Tour</h3>
+            <h3 className={h3}>iGuide Tour</h3>
             <MediaView media={{type: 'embed', src: p.tour.src, title: p.tour.title, aspect: 'aspect-[100/57]'}} className="mt-6" />
             <CtaButtons ctas={p.tour.links} className="mt-8" />
           </div>

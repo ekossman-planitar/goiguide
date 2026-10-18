@@ -4,7 +4,7 @@ import {pageMetadata} from '@/lib/pageMetadata'
 
 /** /privacy-policy — TITLE/DESC copied from the live page (checked 2026-10-14). */
 export const metadata = pageMetadata({
-  title: 'Privacy Policy | iGUIDE',
+  title: 'Privacy Policy | iGuide',
   description:
     'The Planitar Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information, your privacy rights and how the law protects you.',
   path: '/privacy-policy',

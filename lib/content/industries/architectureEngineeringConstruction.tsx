@@ -3,8 +3,8 @@ import type {Block} from '@/components/blocks/Blocks'
 import {book, findPro, shopCameras, tour} from './shared'
 
 export const meta = {
-  title: 'Fast-Track Projects with iGUIDE’s DWG Floor Plans & 3D Models | iGUIDE',
-  description: "Get your project on the fast track with iGUIDE's DWG floor plans & 3D models—perfect for saving time & boosting accuracy.",
+  title: 'Fast-Track Projects with iGuide’s DWG Floor Plans & 3D Models | iGuide',
+  description: "Get your project on the fast track with iGuide's DWG floor plans & 3D models, perfect for saving time & boosting accuracy.",
   path: '/architecture-engineering-construction',
 }
 
@@ -15,12 +15,12 @@ export const blocks: Block[] = [
     type: 'hero',
     heading: 'Site documentation built for architects, contractors and design teams',
     subheading:
-      'From LiDAR scans to CAD-ready files, iGUIDE delivers everything you need to design, collaborate and build. Starting with just one visit.',
+      'From LiDAR scans to CAD-ready files, iGuide delivers everything you need to design, collaborate and build. Starting with just one visit.',
     ctas: [book(), {label: 'Download drawing sample', href: drawingSample, variant: 'secondary', newTab: true}],
     media: {
       type: 'embed',
       src: tour('https://youriguide.com/pre_and_post_construction?branded=1&autostart=1&bgcolor=FFFFFF'),
-      title: 'iGUIDE tour: pre- and post-construction',
+      title: 'iGuide tour: pre- and post-construction',
     },
   },
   {
@@ -47,8 +47,8 @@ export const blocks: Block[] = [
   {
     type: 'cards',
     id: 'benefits',
-    heading: 'From pre-design to handoff, iGUIDE accelerates every phase',
-    subheading: 'Inaccurate as-builts. Missed dimensions. Repeat site visits. iGUIDE eliminates what slows you down.',
+    heading: 'From pre-design to handoff, iGuide accelerates every phase',
+    subheading: 'Inaccurate as-builts. Missed dimensions. Repeat site visits. iGuide eliminates what slows you down.',
     columns: 3,
     cards: [
       {title: 'Spend less time on-site', text: 'Reduce field time by up to 50%', icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'}},
@@ -62,9 +62,9 @@ export const blocks: Block[] = [
   {
     type: 'quote',
     quote: {
-      quote: 'With iGUIDE, we kicked off new projects 50% faster and never had to go back to site.',
+      quote: 'With iGuide, we kicked off new projects 50% faster and never had to go back to site.',
       detail:
-        'Using iGUIDE, MC3 Group cut fieldwork to just 1–2 hours with a single team member. Precise floor plans and 3D models are captured at once, eliminating manual steps. Unlike other tools that offer visuals or measurements, iGUIDE delivers both.',
+        'Using iGuide, MC3 Group cut fieldwork to just 1–2 hours with a single team member. Precise floor plans and 3D models are captured at once, eliminating manual steps. Unlike other tools that offer visuals or measurements, iGuide delivers both.',
       name: 'John McKenna',
       role: 'Owner & Architect',
       company: 'MC3 Design',
@@ -77,7 +77,7 @@ export const blocks: Block[] = [
     heading: 'Everything your team needs in one deliverable',
     body: (
       <>
-        <p>iGUIDE combines LiDAR scanning, 3D visualization and CAD-ready files into one package so you can move from capture to design without delay.</p>
+        <p>iGuide combines LiDAR scanning, 3D visualization and CAD-ready files into one package so you can move from capture to design without delay.</p>
         <p>
           <strong className="text-ink">Projects differ. So should your deliverables.</strong> Order an Advanced Drawing Package with a variety of
           flexible add-ons to match your project’s needs.
@@ -90,7 +90,7 @@ export const blocks: Block[] = [
       <p>
         <strong className="text-ink">Available add-ons.</strong> Add the specific drawings your team needs. Get exactly what fits your project.
         CAD Floor Plan (DWG): drafted floor plan in DWG format with LOD 200 detail. Includes AIA standard layers, annotations and LiDAR point
-        cloud data (DXF). Annotations are only included with iGUIDE Premium or Advanced Drawing Packages.
+        cloud data (DXF). Annotations are only included with iGuide Premium or Advanced Drawing Packages.
       </p>
     ),
     ctas: [{label: 'Download drawing sample', href: drawingSample, newTab: true}],
@@ -105,7 +105,7 @@ export const blocks: Block[] = [
     background: 'surface',
     heading: 'Document every stage of your build',
     subheading:
-      'From initial site surveys to project close-out, iGUIDE delivers the visuals and measurements you need to document progress and ensure accuracy.',
+      'From initial site surveys to project close-out, iGuide delivers the visuals and measurements you need to document progress and ensure accuracy.',
     columns: 2,
     cards: [
       {title: 'Pre-construction', media: {type: 'image', image: {src: '/assets/Uploads/AEC-Images-Before.png', alt: 'Pre-construction'}}},
@@ -117,7 +117,7 @@ export const blocks: Block[] = [
     background: 'white',
     quote: {
       quote:
-        'One of the smartest things you can do on any build is document what’s behind the walls. With iGUIDE, you can tag electrical, plumbing, and structural elements before they’re covered, so years later there’s no guessing. That’s priceless for maintenance and renovations.',
+        'One of the smartest things you can do on any build is document what’s behind the walls. With iGuide, you can tag electrical, plumbing, and structural elements before they’re covered, so years later there’s no guessing. That’s priceless for maintenance and renovations.',
       name: 'Mike Holmes',
       role: 'Professional Contractor & TV Host',
       company: 'The Holmes Group',
@@ -132,9 +132,9 @@ export const blocks: Block[] = [
         title: 'Capture',
         body: (
           <>
-            Connect your iGUIDE PLANIX R1 camera to your device, create a project, and scan the site. Don’t want to buy a camera? Find{' '}
+            Connect your iGuide PLANIX R1 camera to your device, create a project, and scan the site. Don’t want to buy a camera? Find{' '}
             <a href="https://ion.goiguide.com/" className="font-medium text-primary underline">
-              your local iGUIDE Pro
+              your local iGuide Pro
             </a>{' '}
             to capture for you!
           </>
@@ -143,13 +143,13 @@ export const blocks: Block[] = [
       },
       {
         title: 'Draft',
-        body: 'Upload to the iGUIDE Portal directly from on-site. In 48–72* hours, your CAD files, 3D walkthrough and point cloud will be ready.',
+        body: 'Upload to the iGuide Portal directly from on-site. In 48–72* hours, your CAD files, 3D walkthrough and point cloud will be ready.',
         image: {src: '/assets/Uploads/Process_72dpi.jpg', alt: 'photo - PLANIX App in use'},
       },
       {
         title: 'Deliver',
         body: 'Your files arrive in days, not weeks. Ready for planning, design or review. *Deliverable timing varies depending on selection.',
-        image: {src: '/assets/Uploads/Utilize_72dpi.jpg', alt: 'photo - Sharing an iGUIDE with the Team'},
+        image: {src: '/assets/Uploads/Utilize_72dpi.jpg', alt: 'photo - Sharing an iGuide with the Team'},
       },
     ],
     ctas: [{...shopCameras, variant: 'primary'}, {...findPro, variant: 'secondary'}],
@@ -173,17 +173,17 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'customer-stories',
     background: 'surface',
-    heading: 'See how iGUIDE helps firms work faster and smarter',
+    heading: 'See how iGuide helps firms work faster and smarter',
     columns: 3,
     link: {label: 'View all AEC customer stories', href: '/customer-stories?category=architecture-and-remodeling'},
     cards: [
       {
-        title: 'Six months saved: Good Carbon Co.’s path to faster redevelopment with iGUIDE',
+        title: 'Six months saved: Good Carbon Co.’s path to faster redevelopment with iGuide',
         media: {type: 'embed', src: 'https://www.youtube.com/embed/AWclYaVMK5E', title: 'Good Carbon Co. customer story video'},
         link: {label: 'Read their story', href: '/customer-stories/six-months-saved-good-carbon-co-s-path-to-faster-redevelopment-with-iguide'},
       },
       {
-        title: 'Why Mike Holmes approved iGUIDE for accurate, defensible site documentation',
+        title: 'Why Mike Holmes approved iGuide for accurate, defensible site documentation',
         media: {type: 'image', image: {src: '/assets/mike_holmes.png', alt: 'photo - Mike Holmes inspection'}},
         link: {label: 'Read their story', href: '/customer-stories/mike-holmes-approved-iguide-site-documentation'},
       },
@@ -205,11 +205,11 @@ export const blocks: Block[] = [
       },
       {
         q: 'Can I track progress over time?',
-        a: 'Yes, iGUIDE can document different project stages and Real-Time Tags can be used to identify points of interest within the virtual walkthrough.',
+        a: 'Yes, iGuide can document different project stages and Real-Time Tags can be used to identify points of interest within the virtual walkthrough.',
       },
       {q: 'Is there a subscription?', a: 'No. All pricing is per project, and you own the data. You can download the project and host it yourself if you choose.'},
-      {q: 'Do I need to do the scan myself?', a: 'No, our national network of iGUIDE Pros is ready to capture on-site data for you.'},
-      {q: 'What’s the typical turnaround time?', a: 'Deliverables are available within days of capture, typically 48 to 72 hours post iGUIDE delivery.'},
+      {q: 'Do I need to do the scan myself?', a: 'No, our national network of iGuide Pros is ready to capture on-site data for you.'},
+      {q: 'What’s the typical turnaround time?', a: 'Deliverables are available within days of capture, typically 48 to 72 hours post iGuide delivery.'},
       {
         q: 'Is these files compatible with my software? I use Chief Architect, Sketchup, etc.',
         a: 'Please download and open the sample files to test your software for compatibility.',
@@ -217,5 +217,5 @@ export const blocks: Block[] = [
     ],
   },
   // Live: "Talk to a product expert" opens a contact pop-up
-  {type: 'cta', heading: 'Learn how iGUIDE can accelerate your projects with better site data', ctas: [book('Talk to a product expert')]},
+  {type: 'cta', heading: 'Learn how iGuide can accelerate your projects with better site data', ctas: [book('Talk to a product expert')]},
 ]

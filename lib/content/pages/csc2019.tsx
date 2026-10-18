@@ -3,7 +3,7 @@ import type {Block} from '@/components/blocks/Blocks'
 import {competitionDescription, cscAnchors, cscBlocks, pastCompetitions, tourVideoLinks} from './cscShared'
 
 export const meta = {
-  title: 'CSC Student Design Challenge 2019 | iGUIDE',
+  title: 'CSC Student Design Challenge 2019 | iGuide',
   description: 'Construction Specifications Canada (CSC) Student Design Challenge 2019',
   path: '/csc/csc2019',
 }
@@ -21,7 +21,7 @@ export const blocks: Block[] = cscBlocks({
   },
   tour: {
     src: 'https://youriguide.com/embed/1655_dupont_st_toronto_on?autostart=1&?unbranded=1&bgcolor=FFFFFF',
-    title: 'iGUIDE tour of 1655 Dupont Street',
+    title: 'iGuide tour of 1655 Dupont Street',
     links: tourVideoLinks('Learn how to use advanced measurements'),
   },
   downloads: [

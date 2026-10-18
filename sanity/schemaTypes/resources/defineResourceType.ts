@@ -16,7 +16,7 @@ const linkTypeTitles: Record<(typeof linkTypes)[number], string> = {
   external: 'Another website',
   video: 'A video (YouTube, Vimeo…)',
   download: 'A file download (PDF, ZIP…)',
-  tour: 'An iGUIDE tour',
+  tour: 'An iGuide tour',
 }
 
 /**

@@ -4,10 +4,10 @@ import {HeroColumns} from '@/components/pages/HeroColumns'
 import {SimulatorFrame} from '@/components/pages/SimulatorFrame'
 
 export const meta = {
-  title: 'Tablet Survey Simulator | iGUIDE',
+  title: 'Tablet Survey Simulator | iGuide',
   // NEW description (live had none)
   description:
-    'Try the iGUIDE PLANIX experience online: look at panoramas and manipulate data in an interactive survey simulator sized like a typical tablet.',
+    'Try the iGuide PLANIX experience online: look at panoramas and manipulate data in an interactive survey simulator sized like a typical tablet.',
   path: '/get-iguide/tools/planix-survey-simulator-tablet',
 }
 
@@ -18,10 +18,10 @@ export const blocks: Block[] = [
       // Live page has no h1; its heading is this h2
       <HeroColumns
         heading="Tablet Survey Simulator v1.1.1.1"
-        aside={<SimulatorFrame src="https://d392iulwvs68wl.cloudfront.net/" title="iGUIDE PLANIX survey simulator (tablet)" device="tablet" />}
+        aside={<SimulatorFrame src="https://d392iulwvs68wl.cloudfront.net/" title="iGuide PLANIX survey simulator (tablet)" device="tablet" />}
       >
         <p>
-          This interactive simulator was designed to give you an opportunity to try out the iGUIDE PLANIX experience online. You can look at
+          This interactive simulator was designed to give you an opportunity to try out the iGuide PLANIX experience online. You can look at
           panoramas and manipulate data as though you were using the real thing. This version is meant to resemble the aspect ratio of a typical
           tablet.{' '}
           {/* Link target copied from live (legacy v1 host) */}

@@ -2,17 +2,17 @@ import {MarketingCatalogue} from '@/components/catalogue/MarketingCatalogue'
 import {Container} from '@/components/ui/Container'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight, ChevronLeft} from '@/components/ui/icons'
-import {catalogueAssets, catalogueCategories, HELP_CENTER_URL, MARKETING_CATALOGUE_SUPPORT_PATH} from '@/lib/content/marketingCatalogue'
+import {HELP_CENTER_URL, MARKETING_CATALOGUE_SUPPORT_PATH} from '@/lib/content/marketingCatalogue'
 import {pageMetadata} from '@/lib/pageMetadata'
 
 /**
- * NEW PAGE: replaces the Zendesk article "iGUIDE Marketing Catalogue"
+ * NEW PAGE: replaces the Zendesk article "iGuide Marketing Catalogue"
  * (help.youriguide.com/hc/en-us/articles/28225392683154). Files live in HubSpot.
  */
 export const metadata = pageMetadata({
-  title: 'iGUIDE Marketing Catalogue: Brochures, Videos, Photos & More | iGUIDE',
+  title: 'iGuide Marketing Catalogue: Brochures, Videos, Photos & More | iGuide',
   description:
-    'Download ready-to-use iGUIDE marketing materials: brochures, one-pagers, presentations, checklists, photos, videos and CAD drawing samples.',
+    'Download ready-to-use iGuide marketing materials: brochures, one-pagers, presentations, checklists, photos, videos and CAD drawing samples.',
   path: MARKETING_CATALOGUE_SUPPORT_PATH,
 })
 
@@ -27,11 +27,8 @@ export default function MarketingCataloguePage() {
           <div className="mt-5 max-w-3xl">
             <h1 className="text-balance text-[40px] leading-[normal] font-semibold text-ink md:text-[56px]">Marketing Catalogue</h1>
             <p className="mt-5 text-xl leading-[30px] text-muted">
-              Ready-to-use iGUIDE marketing materials for your listings, website, presentations and social channels. Find what you need and
+              Ready-to-use iGuide marketing materials for your listings, website, presentations and social channels. Find what you need and
               download it in one click.
-            </p>
-            <p className="mt-5 text-base font-semibold text-ink">
-              {catalogueAssets.length} resources · {catalogueCategories.length} categories
             </p>
           </div>
         </Container>
@@ -48,15 +45,15 @@ export default function MarketingCataloguePage() {
           <div className="flex flex-col items-start gap-6 rounded-2xl bg-primary px-6 py-10 text-white md:flex-row md:items-center md:justify-between md:px-12">
             <div className="max-w-2xl">
               <h2 className="text-[28px] leading-tight font-semibold md:text-[32px]">Looking for help articles, training or product updates?</h2>
-              <p className="mt-3 text-lg leading-7 text-white/85">The iGUIDE Help Center has how-to guides, release notes and support for every iGUIDE product.</p>
+              <p className="mt-3 text-lg leading-7 text-white/85">The iGuide Help Center has how-to guides, release notes and support for every iGuide product.</p>
               <p className="mt-4 text-base text-white/85">
                 Using these materials? See the{' '}
                 <a href="https://help.youriguide.com/hc/en-us/articles/28224993459730" className="font-semibold text-white underline underline-offset-2 hover:text-white/80">
-                  iGUIDE Branding Guide
+                  iGuide Branding Guide
                 </a>{' '}
                 and{' '}
                 <a href="https://help.youriguide.com/hc/en-us/articles/27696902963858" className="font-semibold text-white underline underline-offset-2 hover:text-white/80">
-                  how to add your branding in the iGUIDE Portal
+                  how to add your branding in the iGuide Portal
                 </a>
                 .
               </p>

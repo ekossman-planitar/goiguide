@@ -3,9 +3,9 @@ import {book} from './shared'
 
 export const xactimateSketches = {
   meta: {
-    title: 'iGUIDE: Create Xactimate Sketches with 3D Walkthroughs | iGUIDE',
+    title: 'iGuide: Create Xactimate Sketches with 3D Walkthroughs | iGuide',
     description:
-      'Speed up claims and restoration with iGUIDE. Instantly create Xactimate ESX Sketches and 3D walkthroughs for fast, accurate, and detailed documentation.',
+      'Speed up claims and restoration with iGuide. Instantly create Xactimate ESX Sketches and 3D walkthroughs for fast, accurate, and detailed documentation.',
     path: '/iguide/xactimate-sketches',
     ogImage: '/assets/iGUIDE-Meta-Thumbnail.png',
   },
@@ -13,7 +13,7 @@ export const xactimateSketches = {
     heading: 'Create Xactimate Sketches with an integrated 3D Virtual Walkthrough',
     subheading: 'Accelerate claims and restoration projects with fast, accurate and detailed loss documentation.',
     ctas: [book()],
-    video: {src: '/assets/xacimate-integration.mp4', label: 'iGUIDE and Xactimate integration demo'},
+    video: {src: '/assets/xacimate-integration.mp4', label: 'iGuide and Xactimate integration demo'},
   },
   logos: {
     band: 'xactimate',
@@ -30,7 +30,7 @@ export const xactimateSketches = {
     ],
   },
   audiences: {
-    heading: 'Who benefits from accurate Sketch files with an integrated iGUIDE virtual walkthrough?',
+    heading: 'Who benefits from accurate Sketch files with an integrated iGuide virtual walkthrough?',
     subheading: 'Accurate measurements, area totals, sketch files and comprehensive images benefit anyone documenting a loss.',
     cards: [
       {title: 'Adjusters', text: 'Capture and submit claims documentation faster to speed up processing', icon: {src: '/assets/adjusters.svg', alt: 'icon - Stamped Document'}},
@@ -41,14 +41,14 @@ export const xactimateSketches = {
   },
   testimonials: [
     {
-      quote: 'iGUIDE makes documenting fire scenes simple, fast, and more accurate than ever.',
+      quote: 'iGuide makes documenting fire scenes simple, fast, and more accurate than ever.',
       name: 'Todd Estes',
       role: 'Division Chief - Planning, Investigations',
       company: 'Noblesville Fire Department',
       photo: {src: '/assets/Todd-Estes.png', alt: 'photo - Todd Estes'},
     },
     {
-      quote: "With iGUIDE, I'm getting back at least 20 hours a week. And that's being conservative. While someone else is still hand-sketching one property, I've already done four.",
+      quote: "With iGuide, I'm getting back at least 20 hours a week. And that's being conservative. While someone else is still hand-sketching one property, I've already done four.",
       name: 'Jeremy Murray',
       role: 'Independent Adjuster',
       company: 'Gale-Force Adjusters LLC',
@@ -57,7 +57,7 @@ export const xactimateSketches = {
   ],
   included: {
     // "Whats" is the live wording
-    heading: 'Whats included in every iGUIDE?',
+    heading: 'Whats included in every iGuide?',
     cards: [
       {title: 'Enhanced speed and efficiency', text: 'Eliminate the need for manual measurements, sketching or repetitive site visits. Document a 3,000 sq ft property in 15 minutes.'},
       {title: 'Industry leading accuracy', text: 'Take 1000s of LiDAR based measurements instantly with each scan.'},
@@ -67,19 +67,19 @@ export const xactimateSketches = {
   },
   sketches: {
     heading: 'Flexible Sketch detail levels for every workflow',
-    subheading: 'See and compare what you get with each type of iGUIDE Sketch.',
+    subheading: 'See and compare what you get with each type of iGuide Sketch.',
     items: [
       {
-        title: 'iGUIDE Instant Sketch',
-        image: {src: '/assets/Instant-Sketch.png', alt: 'iGUIDE Instant Sketch'},
+        title: 'iGuide Instant Sketch',
+        image: {src: '/assets/Instant-Sketch.png', alt: 'iGuide Instant Sketch'},
         includesLabel: 'Includes:',
         includes: ['Available directly in Xactimate via integration', 'Basic structure such as walls and openings', 'Delivery in minutes'],
       },
       {
-        title: 'iGUIDE Standard Sketch',
-        image: {src: '/assets/Standard-Sketch_Pricing.png', alt: 'iGUIDE Standard Sketch'},
+        title: 'iGuide Standard Sketch',
+        image: {src: '/assets/Standard-Sketch_Pricing.png', alt: 'iGuide Standard Sketch'},
         includes: [
-          'All details found in iGUIDE Instant Sketch',
+          'All details found in iGuide Instant Sketch',
           'ESX direct download',
           'Windows, doors & door styles',
           'Room names & types',
@@ -93,20 +93,20 @@ export const xactimateSketches = {
         ],
       },
       {
-        title: 'iGUIDE Premium Sketch',
-        image: {src: '/assets/Premium-Sketch_Pricing.png', alt: 'iGUIDE Premium Sketch'},
-        includes: ['All details found in iGUIDE Standard Sketch', 'Complex ceilings', 'Cabinetry'],
+        title: 'iGuide Premium Sketch',
+        image: {src: '/assets/Premium-Sketch_Pricing.png', alt: 'iGuide Premium Sketch'},
+        includes: ['All details found in iGuide Standard Sketch', 'Complex ceilings', 'Cabinetry'],
       },
     ],
     cta: {label: 'Download Sketch samples', href: '/assets/downloads/iGUIDE_ESX_Sketch_Samples.zip', variant: 'secondary' as const},
   },
   stories: {
-    heading: 'See how iGUIDE helps insurance and restoration teams work faster',
+    heading: 'See how iGuide helps insurance and restoration teams work faster',
     link: {label: 'View all IRC customer stories', href: '/customer-stories?category=insurance-and-restoration'},
     quotes: [
       {
         quote:
-          'Everything lived in the cloud with Matterport. There were chain-of-custody concerns, subscription fees and we couldn’t store the raw data ourselves. Our clients—especially public agencies—care about data control. I couldn’t download or store the raw data. That was a dealbreaker.',
+          'Everything lived in the cloud with Matterport. There were chain-of-custody concerns, subscription fees and we couldn’t store the raw data ourselves. Our clients, especially public agencies, care about data control. I couldn’t download or store the raw data. That was a dealbreaker.',
         name: 'Robert Toth',
         role: 'Owner & Certified Fire Investigator',
         company: 'IRIS Fire',
@@ -114,7 +114,7 @@ export const xactimateSketches = {
       },
       {
         quote:
-          'The reports look sharp, the floor plans are accurate, and the 3D walkthrough helps me catch every detail—even after I’ve left the site. All the documentation I need is in one place.',
+          'The reports look sharp, the floor plans are accurate, and the 3D walkthrough helps me catch every detail, even after I’ve left the site. All the documentation I need is in one place.',
         name: 'Jeremy Murray',
         role: 'Independent Adjuster',
         company: 'Gale-Force Adjusters LLC',
@@ -125,7 +125,7 @@ export const xactimateSketches = {
       },
       {
         quote:
-          '10 adjusters and 9 of them don’t know how to frame a shot. If you let us take an iGUIDE virtual tour, then you’ll have a million still images. iGUIDE technology has given Deft a huge competitive advantage. Simply seeing how much value it’s brought to deft, we fell in love with it!',
+          '10 adjusters and 9 of them don’t know how to frame a shot. If you let us take an iGuide virtual tour, then you’ll have a million still images. iGuide technology has given Deft a huge competitive advantage. Simply seeing how much value it’s brought to deft, we fell in love with it!',
         name: 'Jeremiah Kiefer',
         role: 'Founder & CEO',
         company: 'The Deft Group',
@@ -134,15 +134,15 @@ export const xactimateSketches = {
     ],
   },
   steps: {
-    heading: 'Get an iGUIDE Sketch in 4 steps',
+    heading: 'Get an iGuide Sketch in 4 steps',
     steps: [
-      {title: 'Capture', body: 'Capture the property with the iGUIDE PLANIX system in minutes, not hours.', image: {src: '/assets/Uploads/iGUIDE_Contractor_900x760-copy.jpg', alt: 'photo - iGUIDE Capture Professional'}},
+      {title: 'Capture', body: 'Capture the property with the iGuide PLANIX system in minutes, not hours.', image: {src: '/assets/Uploads/iGUIDE_Contractor_900x760-copy.jpg', alt: 'photo - iGuide Capture Professional'}},
       {title: 'Tag', body: 'Add on-site notes with Real-Time Tags to document the loss.', image: {src: '/assets/Uploads/IRC_iGUIDE_Showcase-2.png', alt: 'photo - Reviewing Floor Plans on Tablet'}},
       {title: 'Draft', body: 'Submit the capture for processing and choose your Sketch detail level.', image: {src: '/assets/irc-sketch-step-3.png', alt: 'photo - PLANIX App in Use'}},
       {title: 'Deliver', body: 'Receive your Sketch, files and walkthrough within the listed turnaround time.', image: {src: '/assets/irc-sketch-step-4.png', alt: 'image - Verisk Xactimate Sketch'}},
     ],
-    // Live "Lets chat about iGUIDE" opens a "Get in touch" pop-up with these options
-    ctas: [book('Lets chat about iGUIDE'), {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/', variant: 'secondary' as const}],
+    // Live "Lets chat about iGuide" opens a "Get in touch" pop-up with these options
+    ctas: [book('Lets chat about iGuide'), {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/', variant: 'secondary' as const}],
   },
   cta: {
     heading: 'Start capturing your own jobs and streamline your workflow',

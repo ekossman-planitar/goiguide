@@ -4,16 +4,16 @@ import {SmartLink} from '@/components/ui/SmartLink'
 import {cn} from '@/lib/cn'
 
 export const meta = {
-  title: 'iGUIDE: A Leader in Site Surveys and As-Built Documentation | iGUIDE',
+  title: 'iGuide: A Leader in Site Surveys and As-Built Documentation | iGuide',
   description:
-    'iGUIDE offers industry-leading site surveys and as-built documentation services, delivering precise, efficient solutions for your building and renovation needs.',
+    'iGuide offers industry-leading site surveys and as-built documentation services, delivering precise, efficient solutions for your building and renovation needs.',
   path: '/project-group/demo',
   // Live og:image (file not yet in public/, see report)
   ogImage: '/assets/Uploads/Page_Header.png',
 }
 
 export const hero = {
-  heading: 'iGUIDE: Leaders in Site Surveys & As-Built Documentation',
+  heading: 'iGuide: Leaders in Site Surveys & As-Built Documentation',
   /** Live hero background (file not yet in public/; the section falls back to the brand colour) */
   background: '/assets/Uploads/Commercial_design_150dpi.jpg',
   request: {label: 'Request a Project', href: '/projectrequest'},
@@ -85,7 +85,7 @@ export const blocks: Block[] = [
           {title: '2. Site Visit', text: 'Our local Field Technician will visit your site(s) to collect, scan and document the property.'},
           {
             title: '3. Delivery',
-            text: 'We’ll deliver your iGUIDE Report with downloadable drawing files, photos and links to your virtual walkthrough.',
+            text: 'We’ll deliver your iGuide Report with downloadable drawing files, photos and links to your virtual walkthrough.',
           },
         ]}
       />
@@ -96,16 +96,16 @@ export const blocks: Block[] = [
     type: 'featureTabs',
     id: 'packages',
     background: 'surface',
-    heading: 'iGUIDE Packages',
+    heading: 'iGuide Packages',
     subheading: "You're covered from site selection to pre-design, construction and occupancy!",
-    label: 'iGUIDE Packages',
+    label: 'iGuide Packages',
     items: [
       {
         id: 'cad-package',
-        title: 'iGUIDE CAD Package',
+        title: 'iGuide CAD Package',
         text: (
           <PackageText
-            intro={['For comprehensive property understanding, each iGUIDE CAD package includes comprehensive property documentation.']}
+            intro={['For comprehensive property understanding, each iGuide CAD package includes comprehensive property documentation.']}
             items={[
               'As-built Floor Plans',
               'Dimension Plans',
@@ -128,7 +128,7 @@ export const blocks: Block[] = [
       },
       {
         id: 'premium',
-        title: 'iGUIDE Premium',
+        title: 'iGuide Premium',
         text: (
           <PackageText
             intro={virtualIntro}
@@ -152,7 +152,7 @@ export const blocks: Block[] = [
       },
       {
         id: 'standard',
-        title: 'iGUIDE Standard',
+        title: 'iGuide Standard',
         text: (
           <PackageText
             intro={virtualIntro}
@@ -175,13 +175,13 @@ export const blocks: Block[] = [
         media: {type: 'image', image: {src: '/assets/Uploads/standard_dentist-v2.png', alt: ''}},
       },
       {
-        // Tab label on live is "iGUIDE Radix"; the panel heading reads "Radix Package"
+        // Tab label on live is "iGuide Radix"; the panel heading reads "Radix Package"
         id: 'radix',
-        title: 'iGUIDE Radix',
+        title: 'iGuide Radix',
         text: (
           <PackageText
             intro={[
-              'iGUIDE RADIX provides fast and efficient site visual documentation. The online interface with lidar point cloud is shareable and can be used to view a site and measure in 3D space.',
+              'iGuide RADIX provides fast and efficient site visual documentation. The online interface with lidar point cloud is shareable and can be used to view a site and measure in 3D space.',
               'Deliverables include:',
             ]}
             items={['Lidar Point Cloud (DXF)', '3D Virtual walkthrough', 'Advanced on-screen measurements']}
@@ -196,7 +196,7 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'why-iguide',
     align: 'center',
-    heading: 'Why choose iGUIDE?',
+    heading: 'Why choose iGuide?',
     columns: 3,
     cards: [
       {
@@ -234,8 +234,8 @@ export const blocks: Block[] = [
     body: (
       <Steps
         items={[
-          {title: 'Professional iGUIDE Service Pros', text: 'Educated via iGUIDE Training Program'},
-          {title: 'Nationwide Coverage', text: '2,500+ iGUIDE Service Pros coast-to-coast (Canada & United States)'},
+          {title: 'Professional iGuide Service Pros', text: 'Educated via iGuide Training Program'},
+          {title: 'Nationwide Coverage', text: '2,500+ iGuide Service Pros coast-to-coast (Canada & United States)'},
           {title: 'Fast Response Time', text: 'Scheduling system manages requests in real-time'},
         ]}
       />
@@ -279,7 +279,7 @@ export const blocks: Block[] = [
     quotes: [
       {
         quote:
-          'Before iGUIDE, we struggled with unreliable vendors, higher costs, and the need for repeat site visits. iGUIDE’s Service Pro network captures all the data we need, and iGUIDE delivers CAD drawings and 3D tours, streamlining our process. iGUIDE\'s fast, efficient, and affordable, saving us both time and money.',
+          'Before iGuide, we struggled with unreliable vendors, higher costs, and the need for repeat site visits. iGuide’s Service Pro network captures all the data we need, and iGuide delivers CAD drawings and 3D tours, streamlining our process. iGuide\'s fast, efficient, and affordable, saving us both time and money.',
         name: 'AR Eissa',
         role: 'Sr. Construction Manager',
         company: 'BarBurrito',
@@ -287,7 +287,7 @@ export const blocks: Block[] = [
       },
       {
         quote:
-          'Whether it be with the contractors, architects or developers, using iGUIDE made it easy for everybody to understand the project. With the online floorplan, virtual tour and CAD, it’s easier to stay on the same page. iGUIDE is a game-changer for me.',
+          'Whether it be with the contractors, architects or developers, using iGuide made it easy for everybody to understand the project. With the online floorplan, virtual tour and CAD, it’s easier to stay on the same page. iGuide is a game-changer for me.',
         name: 'Marcel Bradbury',
         role: 'President',
         company: 'Master Trades Group',

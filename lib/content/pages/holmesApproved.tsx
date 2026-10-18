@@ -8,9 +8,9 @@ import {FallbackImage} from '@/components/ui/FallbackImage'
 import {book, shopCameras} from '@/lib/content/industries/shared'
 
 export const meta = {
-  title: 'Make It Right with iGUIDE | Trusted by Mike Holmes for Accuracy and Documentation | iGUIDE',
+  title: 'Make It Right with iGuide | Trusted by Mike Holmes for Accuracy and Documentation | iGuide',
   description:
-    'Discover how iGUIDE helps builders and inspectors document every detail with precision. Trusted by professionals and approved by Mike Holmes, iGUIDE captures accurate floor plans, 3D tours, and measurement data that make it right the first time.',
+    'Discover how iGuide helps builders and inspectors document every detail with precision. Trusted by professionals and approved by Mike Holmes, iGuide captures accurate floor plans, 3D tours, and measurement data that make it right the first time.',
   path: '/iguide-holmes-approved',
 }
 
@@ -82,7 +82,7 @@ export const blocks: Block[] = [
     heading: 'Bad data builds bad projects',
     body: (
       <p>
-        Most mistakes happen before the first hammer swings with missing photos, bad measurements and undocumented changes. iGUIDE captures it
+        Most mistakes happen before the first hammer swings with missing photos, bad measurements and undocumented changes. iGuide captures it
         all in one scan, so you can focus on making it right, not backtracking.
       </p>
     ),
@@ -90,7 +90,7 @@ export const blocks: Block[] = [
     media: {
       type: 'embed',
       src: 'https://youriguide.com/pre_and_post_construction?branded=1&autostart=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash',
-      title: 'iGUIDE tour: pre and post construction',
+      title: 'iGuide tour: pre and post construction',
       aspect: 'aspect-[4/3]',
     },
   },
@@ -103,19 +103,19 @@ export const blocks: Block[] = [
       'We gave Mike and his team our PLANIX R1 Camera System to try out for a few weeks and give us their honest opinion. Here’s what they had to say about it.',
     quotes: [
       {
-        quote: 'What sets iGUIDE apart is the deliverables. We’re talking floor plans in DWG, point-cloud DXF, 3D walkthroughs, annotated PDFs — the whole package.',
+        quote: 'What sets iGuide apart is the deliverables. We’re talking floor plans in DWG, point-cloud DXF, 3D walkthroughs, annotated PDFs: the whole package.',
         name: 'Mike Holmes',
         photo: {src: '/assets/Mike-Construction.png', alt: 'Mike Construction'},
       },
       {
         quote:
-          'The PLANIX R1 camera lets us measure, photograph, and document a space all at once — no more tape measures, hand sketches, or missed dimensions. What used to take half a day now takes under an hour.',
+          'The PLANIX R1 camera lets us measure, photograph, and document a space all at once, with no more tape measures, hand sketches, or missed dimensions. What used to take half a day now takes under an hour.',
         name: 'Michael Holmes Jr',
         photo: {src: '/assets/Michael-Construction.png', alt: 'Michael Construction'},
       },
       {
         quote:
-          'We’ve tested iGUIDE’s measurements ourselves, and the accuracy is spot on. You can’t build, inspect, or design on guesswork. This gives us data we can rely on for planning, quoting, and execution.',
+          'We’ve tested iGuide’s measurements ourselves, and the accuracy is spot on. You can’t build, inspect, or design on guesswork. This gives us data we can rely on for planning, quoting, and execution.',
         name: 'Sherry Holmes',
         photo: {src: '/assets/Sherry-Construction.png', alt: 'Sherry Construction'},
       },
@@ -125,39 +125,39 @@ export const blocks: Block[] = [
     type: 'steps',
     id: 'section-4',
     heading: 'How it works',
-    subheading: 'From capture to delivery, here’s how iGUIDE fits into your workflow.',
+    subheading: 'From capture to delivery, here’s how iGuide fits into your workflow.',
     steps: [
       {
         title: 'Capture',
         body: (
           <>
-            Connect your iGUIDE PLANIX R1 camera to your device, create a project, and scan the site. Don’t want to buy a camera? Find{' '}
-            <a href="https://ion.goiguide.com/">your local iGUIDE Pro</a> to capture for you!
+            Connect your iGuide PLANIX R1 camera to your device, create a project, and scan the site. Don’t want to buy a camera? Find{' '}
+            <a href="https://ion.goiguide.com/">your local iGuide Pro</a> to capture for you!
           </>
         ),
         image: {src: '/assets/Uploads/Capture_and_processing_150dpi.jpg', alt: 'photo - Capture Specialist'},
       },
       {
         title: 'Draft',
-        body: 'Upload to the iGUIDE Portal directly from on-site. In 48–72* hours, your CAD files, 3D walkthrough and point cloud will be ready.',
+        body: 'Upload to the iGuide Portal directly from on-site. In 48–72* hours, your CAD files, 3D walkthrough and point cloud will be ready.',
         image: {src: '/assets/Uploads/Process_72dpi.jpg', alt: 'photo - PLANIX App in use'},
       },
       {
         title: 'Deliver',
         body: 'Your files arrive in days, not weeks. Ready for planning, design or review. *Deliverable timing varies depending on selection.',
-        image: {src: '/assets/Uploads/Utilize_72dpi.jpg', alt: 'photo - Sharing an iGUIDE with the Team'},
+        image: {src: '/assets/Uploads/Utilize_72dpi.jpg', alt: 'photo - Sharing an iGuide with the Team'},
       },
     ],
   },
   {
     type: 'cta',
     heading: 'Start your next project the right way',
-    text: 'See how iGUIDE helps you capture, plan and deliver with confidence.',
+    text: 'See how iGuide helps you capture, plan and deliver with confidence.',
     ctas: [book(), drawingSample],
   },
   {
     type: 'cards',
-    heading: 'What you get with iGUIDE, trusted by the builders who make it right',
+    heading: 'What you get with iGuide, trusted by the builders who make it right',
     columns: 4,
     cards: [
       {
@@ -202,7 +202,7 @@ export const blocks: Block[] = [
     type: 'quote',
     quote: {
       quote:
-        'One of the smartest things we can do on any build is document what’s behind the walls. iGUIDE lets us do that in 3D. We can tag the electrical, plumbing, or structural elements before they’re covered, so years from now, there’s no guessing where something is. That’s priceless for maintenance and renovations.',
+        'One of the smartest things we can do on any build is document what’s behind the walls. iGuide lets us do that in 3D. We can tag the electrical, plumbing, or structural elements before they’re covered, so years from now, there’s no guessing where something is. That’s priceless for maintenance and renovations.',
       name: 'Mike Holmes',
       role: 'Professional Contractor and TV Host',
       company: 'The Holmes Group',
@@ -241,7 +241,7 @@ export const blocks: Block[] = [
       </>
     ),
     ctas: [{...shopCameras, label: 'Shop PLANIX Camera Systems', variant: 'primary', newTab: true}],
-    media: {type: 'image', image: {src: '/assets/Uploads/PLANIX_R1_Front_72dpi.png', alt: 'photo - iGUIDE PLANIX R1'}},
+    media: {type: 'image', image: {src: '/assets/Uploads/PLANIX_R1_Front_72dpi.png', alt: 'photo - iGuide PLANIX R1'}},
   },
   {
     type: 'custom',

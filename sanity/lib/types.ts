@@ -88,6 +88,8 @@ export type ResourceDetailData =
       headerVideoUrl?: string | null
       customerName?: string | null
       customerLocation?: string | null
+      customerFacts?: {_key: string; label: string; value: string}[] | null
+      customerCta?: CtaLink | null
       eventDateText?: string | null
       eventCta?: CtaLink | null
       newsCta?: CtaLink | null

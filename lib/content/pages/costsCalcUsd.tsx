@@ -3,9 +3,9 @@ import type {Block} from '@/components/blocks/Blocks'
 import {costsCalcBlocks} from './costsCalcShared'
 
 export const meta = {
-  title: 'Cost Calculator - USA | iGUIDE',
+  title: 'Cost Calculator - USA | iGuide',
   // NEW description (live had none)
-  description: 'Estimate the cost of an iGUIDE in the USA with the iGUIDE pricing calculator, and see the per-square-foot rates used to calculate it.',
+  description: 'Estimate the cost of an iGuide in the USA with the iGuide pricing calculator, and see the per-square-foot rates used to calculate it.',
   path: '/get-iguide/tools/costs-calc-usd',
 }
 
@@ -13,7 +13,7 @@ export const blocks: Block[] = costsCalcBlocks({
   heading: 'Cost Calculator - USA',
   tables: [
     {
-      heading: 'iGUIDE',
+      heading: 'iGuide',
       rows: [
         ['Up to 1,500 ft²', '$33'],
         ['1,501-10,000 ft²', '$0.022 per ft²'],
@@ -23,7 +23,7 @@ export const blocks: Block[] = costsCalcBlocks({
       ],
     },
     {
-      heading: 'Premium iGUIDE',
+      heading: 'Premium iGuide',
       rows: [
         ['Up to 1,500 ft²', '$45'],
         ['1,501-10,000 ft²', '$0.03 per ft²'],

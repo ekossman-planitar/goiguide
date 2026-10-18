@@ -4,17 +4,17 @@ import {VsColumns} from '@/components/pages/VsColumns'
 import {closingCta, compareHeroFormId, compareLogos, comparePlanixImage, logosHeading, lookInsideV2, ProList} from './compareShared'
 
 export const meta = {
-  title: 'iGUIDE vs Matterport: Comparing camera systems for photographers & contractors | iGUIDE',
+  title: 'iGuide vs Matterport: Comparing camera systems for photographers & contractors | iGuide',
   description:
-    'Photographers and contractors choose iGUIDE over Matterport because of speed, cost, accuracy, and no subscriptions. See the full comparison.',
+    'Photographers and contractors choose iGuide over Matterport because of speed, cost, accuracy, and no subscriptions. See the full comparison.',
   path: '/compare/iguide-vs-matterport',
 }
 
 export const hero = {
-  heading: 'iGUIDE vs Matterport: less flash, more function',
-  subheading: 'Matterport locks you in. iGUIDE sets you free with faster capture, lower costs and true data ownership.',
+  heading: 'iGuide vs Matterport: less flash, more function',
+  subheading: 'Matterport locks you in. iGuide sets you free with faster capture, lower costs and true data ownership.',
   rating: true,
-  formHeading: 'See how iGUIDE compares to Matterport',
+  formHeading: 'See how iGuide compares to Matterport',
   formId: compareHeroFormId,
 }
 
@@ -24,34 +24,34 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'key-reasons',
     align: 'center',
-    heading: 'Why professionals continue to choose iGUIDE over Matterport',
+    heading: 'Why professionals continue to choose iGuide over Matterport',
     subheading:
-      'Matterport looks good, but looks only go so far. iGUIDE delivers what professionals actually need: precision, speed and complete control over your data. No subscriptions. No headaches. Just real results.',
+      'Matterport looks good, but looks only go so far. iGuide delivers what professionals actually need: precision, speed and complete control over your data. No subscriptions. No headaches. Just real results.',
     columns: 3,
     cards: [
       {
         title: 'Own your data, forever',
-        text: 'With Matterport, you don’t own your data and have to keep paying to host it. iGUIDE gives you full ownership with offline access, forever.',
+        text: 'With Matterport, you don’t own your data and have to keep paying to host it. iGuide gives you full ownership with offline access, forever.',
       },
       {
         title: 'Faster capture on-site',
-        text: 'With Matterport, scanning a property can take hours. iGUIDE captures 3,000 sq ft in just 15–30 minutes and delivers finished assets in under 24 hours.',
+        text: 'With Matterport, scanning a property can take hours. iGuide captures 3,000 sq ft in just 15–30 minutes and delivers finished assets in under 24 hours.',
       },
       {
         title: 'Accurate, measurement-compliant floor plans',
-        text: 'Matterport floor plans aren’t measurement-compliant. iGUIDE delivers ANSI and RMS-compliant layouts with precise square footage.',
+        text: 'Matterport floor plans aren’t measurement-compliant. iGuide delivers ANSI and RMS-compliant layouts with precise square footage.',
       },
       {
         title: 'Under 24 hours turnaround time',
-        text: 'Matterport processing can take 2–3 days. iGUIDE delivers floor plans, 3D tours, and measurements in less than 24 hours.',
+        text: 'Matterport processing can take 2–3 days. iGuide delivers floor plans, 3D tours, and measurements in less than 24 hours.',
       },
       {
         title: 'Easy-to-navigate 3D virtual tours',
-        text: 'Matterport’s dollhouse looks flashy but is hard to use. iGUIDE combines floor plans with 360° photos for simple, intuitive navigation.',
+        text: 'Matterport’s dollhouse looks flashy but is hard to use. iGuide combines floor plans with 360° photos for simple, intuitive navigation.',
       },
       {
         title: 'Pay-per-use pricing, no subscriptions',
-        text: 'Matterport locks you into monthly subscriptions and hosting fees. iGUIDE lets you pay per project with no ongoing costs.',
+        text: 'Matterport locks you into monthly subscriptions and hosting fees. iGuide lets you pay per project with no ongoing costs.',
       },
     ],
   },
@@ -97,12 +97,12 @@ export const blocks: Block[] = [
     id: 'compare',
     background: 'surface',
     align: 'center',
-    heading: 'iGUIDE wins where it matters most',
+    heading: 'iGuide wins where it matters most',
     subheading: 'Don’t get locked into a closed ecosystem. Choose the platform that puts you in control.',
     children: (
       <VsColumns
         ours={{
-          name: 'iGUIDE',
+          name: 'iGuide',
           image: comparePlanixImage,
           items: [
             {text: 'Schematic floor plans included as PDF / SVG files', ok: true},
@@ -136,7 +136,7 @@ export const blocks: Block[] = [
     type: 'quote',
     quote: {
       quote:
-        'Everything lived in the cloud with Matterport. There were chain-of-custody concerns, subscription fees and we couldn’t store the raw data ourselves. Our clients—especially public agencies—care about data control. I couldn’t download or store the raw data. That was a dealbreaker.',
+        'Everything lived in the cloud with Matterport. There were chain-of-custody concerns, subscription fees and we couldn’t store the raw data ourselves. Our clients, especially public agencies, care about data control. I couldn’t download or store the raw data. That was a dealbreaker.',
       name: 'Robert Toth',
       role: 'Owner & Certified Fire Investigator',
       company: 'IRIS Fire',
@@ -149,24 +149,24 @@ export const blocks: Block[] = [
     items: [
       {
         q: 'Do I own my data with Matterport?',
-        a: 'Matterport requires you to host your content on their cloud and locks you into ongoing subscription fees. With iGUIDE, you own your data outright, with full download and self-hosting options — giving you long-term control and flexibility.',
+        a: 'Matterport requires you to host your content on their cloud and locks you into ongoing subscription fees. With iGuide, you own your data outright, with full download and self-hosting options, giving you long-term control and flexibility.',
       },
       {
-        q: 'How does iGUIDE pricing compare to Matterport?',
-        a: 'Matterport forces you into monthly subscriptions and hosting fees just to keep your tours live. iGUIDE uses a simple pay-per-project model — no subscriptions, no hosting fees and no hidden costs.',
+        q: 'How does iGuide pricing compare to Matterport?',
+        a: 'Matterport forces you into monthly subscriptions and hosting fees just to keep your tours live. iGuide uses a simple pay-per-project model: no subscriptions, no hosting fees and no hidden costs.',
       },
       {
-        q: 'What deliverables do I get with iGUIDE that Matterport doesn’t include?',
-        a: 'With iGUIDE you always get ANSI Z765/RECA RMS-compliant floor plans, immersive 3D tours, property details and downloadable files (PDF, SVG, DXF, DWG, RVT, ESX). Matterport charges extra for floor plans and does not provide measurement-standard-compliant deliverables.',
+        q: 'What deliverables do I get with iGuide that Matterport doesn’t include?',
+        a: 'With iGuide you always get ANSI Z765/RECA RMS-compliant floor plans, immersive 3D tours, property details and downloadable files (PDF, SVG, DXF, DWG, RVT, ESX). Matterport charges extra for floor plans and does not provide measurement-standard-compliant deliverables.',
       },
       {
-        q: 'How accurate are iGUIDE measurements compared to Matterport?',
-        a: 'iGUIDE delivers typical measurement uncertainty of 0.5% or better, meeting recognized industry standards (ANSI Z765-2021, RECA RMS 2017). Matterport does not produce measurement-compliant floor plans, meaning its outputs are not suitable for regulated use or professional documentation.',
+        q: 'How accurate are iGuide measurements compared to Matterport?',
+        a: 'iGuide delivers typical measurement uncertainty of 0.5% or better, meeting recognized industry standards (ANSI Z765-2021, RECA RMS 2017). Matterport does not produce measurement-compliant floor plans, meaning its outputs are not suitable for regulated use or professional documentation.',
       },
     ],
   },
   closingCta({
     heading: 'Experience faster capture, lower costs and data you truly own.',
-    secondary: {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'},
+    secondary: {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
   }),
 ]

@@ -11,9 +11,9 @@ import {pageMetadata} from '@/lib/pageMetadata'
  * exists because the new nav's "Industries" item links here. Copy is draft.
  */
 export const metadata = pageMetadata({
-  title: 'Industries | iGUIDE',
+  title: 'Industries | iGuide',
   description:
-    'See how real estate, photography, architecture, construction, insurance, forensic and facility teams use iGUIDE to measure, document and share spaces.',
+    'See how real estate, photography, architecture, construction, insurance, forensic and facility teams use iGuide to measure, document and share spaces.',
   path: '/industries',
 })
 
@@ -51,9 +51,9 @@ export default function IndustriesPage() {
         </Container>
       </section>
       <CtaBanner
-        heading="Not sure where iGUIDE fits?"
+        heading="Not sure where iGuide fits?"
         text="Talk to a product expert about your workflow and the deliverables you need."
-        ctas={[book(), {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/', variant: 'secondary'}]}
+        ctas={[book(), {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/', variant: 'secondary'}]}
       />
     </>
   )

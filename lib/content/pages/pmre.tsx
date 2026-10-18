@@ -7,9 +7,9 @@ import {FallbackImage} from '@/components/ui/FallbackImage'
 import {SmartLink} from '@/components/ui/SmartLink'
 
 export const meta = {
-  title: 'Win a Free Trip to PMRE 2026 — iGUIDE × Upmarket Giveaway | iGUIDE',
+  title: 'Win a Free Trip to PMRE 2026: iGuide × Upmarket Giveaway | iGuide',
   description:
-    'Enter for a chance to win an all-expenses-paid trip to PMRE 2026 in Las Vegas — including flights, 3 nights at The Palms, and full conference access. Follow @go_iguide and @upmarketpod on Instagram to enter.',
+    'Enter for a chance to win an all-expenses-paid trip to PMRE 2026 in Las Vegas, including flights, 3 nights at The Palms, and full conference access. Follow @go_iguide and @upmarketpod on Instagram to enter.',
   path: '/pmre',
   ogImage: '/assets/pmre-2026-thumbnail.png',
 }
@@ -26,7 +26,7 @@ const prizes: {icon: ReactNode; text: string}[] = [
   {icon: <Plane className={iconClass} aria-hidden="true" />, text: 'Round-trip flight from anywhere in the continental US or Canada'},
   {icon: <BedDouble className={iconClass} aria-hidden="true" />, text: '3-night stay at The Palms, Las Vegas'},
   {icon: <Car className={iconClass} aria-hidden="true" />, text: 'Private car service to and from the airport'},
-  {icon: <Gift className={iconClass} aria-hidden="true" />, text: 'iGUIDE swag pack to take to the event'},
+  {icon: <Gift className={iconClass} aria-hidden="true" />, text: 'iGuide swag pack to take to the event'},
   {icon: <Presentation className={iconClass} aria-hidden="true" />, text: '1 free PMRE Workshop pass'},
 ]
 
@@ -60,7 +60,7 @@ export const blocks: Block[] = [
   {
     type: 'hero',
     heading: 'Your all-expenses-paid trip to PMRE 2026 awaits',
-    subheading: 'Not one. 3 winners. Flights, hotel and conference passes—all on iGUIDE.',
+    subheading: 'Not one. 3 winners. Flights, hotel and conference passes, all on iGuide.',
     extra: (
       <div className="space-y-6">
         <FallbackImage src="/assets/iGUIDE_upmarket_Logos-v2.png" alt="logo - upmarket logo" width={2447} height={523} sizes="300px" className="h-auto w-full max-w-[300px]" />

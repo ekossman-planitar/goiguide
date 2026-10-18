@@ -52,7 +52,7 @@ export const lpButton = defineType({
   preview: {select: {title: 'label', subtitle: 'action'}},
 })
 
-/** Image, video file, YouTube video or live iGUIDE tour */
+/** Image, video file, YouTube video or live iGuide tour */
 export const lpMedia = defineType({
   name: 'lpMedia',
   title: 'Media',
@@ -66,7 +66,7 @@ export const lpMedia = defineType({
       options: {
         list: [
           {title: 'Image', value: 'image'},
-          {title: 'iGUIDE tour', value: 'tour'},
+          {title: 'iGuide tour', value: 'tour'},
           {title: 'YouTube video', value: 'youtube'},
           {title: 'Video file (MP4)', value: 'video'},
         ],
@@ -80,7 +80,7 @@ export const lpMedia = defineType({
       title: 'URL',
       type: 'url',
       hidden: ({parent}) => !parent?.kind || parent.kind === 'image',
-      description: 'iGUIDE: https://youriguide.com/… · YouTube: the normal watch link or the embed link · Video file: an .mp4 URL',
+      description: 'iGuide: https://youriguide.com/… · YouTube: the normal watch link or the embed link · Video file: an .mp4 URL',
     }),
     defineField({name: 'title', title: 'Title (for screen readers)', type: 'string', hidden: ({parent}) => !parent?.kind || parent.kind === 'image'}),
   ],
@@ -240,7 +240,7 @@ export const lpSections = [
   section('lpCompare', [
     heading,
     subheading,
-    defineField({name: 'oursLabel', title: 'Our column', type: 'string', initialValue: 'iGUIDE'}),
+    defineField({name: 'oursLabel', title: 'Our column', type: 'string', initialValue: 'iGuide'}),
     defineField({name: 'theirsLabel', title: 'Their column', type: 'string', initialValue: 'Others'}),
     defineField({
       name: 'rows',
@@ -252,7 +252,7 @@ export const lpSections = [
           type: 'object',
           fields: [
             defineField({name: 'label', title: 'Feature', type: 'string', validation: (rule) => rule.required()}),
-            defineField({name: 'ours', title: 'iGUIDE', type: 'string', description: 'Shown with a tick'}),
+            defineField({name: 'ours', title: 'iGuide', type: 'string', description: 'Shown with a tick'}),
             defineField({name: 'theirs', title: 'Them', type: 'string', description: 'Shown with a cross'}),
           ],
           preview: {select: {title: 'label', subtitle: 'ours'}},
@@ -296,7 +296,7 @@ export const lpSections = [
           type: 'object',
           fields: [
             defineField({name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required()}),
-            defineField({name: 'url', title: 'YouTube or iGUIDE URL', type: 'url', validation: (rule) => rule.required()}),
+            defineField({name: 'url', title: 'YouTube or iGuide URL', type: 'url', validation: (rule) => rule.required()}),
           ],
         }),
       ],

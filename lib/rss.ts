@@ -10,42 +10,42 @@ const SITE = 'https://goiguide.com'
  */
 const feeds: Record<ResourceTypeName, {title: string; description: string}> = {
   blogPost: {
-    title: 'iGUIDE Blogs: Learn About iGUIDE 3D Virtual Tours and Floor Plans',
-    description: 'Dive into the world of innovation with iGUIDE Explore blogs for insider tips on mastering 3D virtual tours and floor plans.',
+    title: 'iGuide Blogs: Learn About iGuide 3D Virtual Tours and Floor Plans',
+    description: 'Dive into the world of innovation with iGuide Explore blogs for insider tips on mastering 3D virtual tours and floor plans.',
   },
   newsArticle: {
-    title: 'Unlock the Latest iGUIDE News Updates – Read Now!',
-    description: "Get the scoop on all things iGUIDE! From iGUIDE news updates to insider tips, we've got your back. Click to read more!",
+    title: 'Unlock the Latest iGuide News Updates – Read Now!',
+    description: "Get the scoop on all things iGuide! From iGuide news updates to insider tips, we've got your back. Click to read more!",
   },
   customerStory: {
-    title: 'Real Results: How iGUIDE Helped Businesses Thrive - Customer Stories',
-    description: "iGUIDE's impact on businesses is undeniable. Click to read success stories from our diverse community of thriving customers.",
+    title: 'Real Results: How iGuide Helped Businesses Thrive - Customer Stories',
+    description: "iGuide's impact on businesses is undeniable. Click to read success stories from our diverse community of thriving customers.",
   },
   webinar: {
-    title: 'Unlock Success with iGUIDE Webinars: Boost Your Skills Now',
+    title: 'Unlock Success with iGuide Webinars: Boost Your Skills Now',
     description:
-      'Get ahead with iGUIDE Webinars: Explore a new angle and learn new tips to accelerate your skills. Simple steps, big results. Start now and see the change!',
+      'Get ahead with iGuide Webinars: Explore a new angle and learn new tips to accelerate your skills. Simple steps, big results. Start now and see the change!',
   },
   video: {
     title: 'Boost Your Skills with These iGuide Videos – Watch Now!',
-    description: 'Want to craft amazing virtual tours? Our iGUIDE videos show you how in simple steps. Start making 3D tours and floor plans now!',
+    description: 'Want to craft amazing virtual tours? Our iGuide videos show you how in simple steps. Start making 3D tours and floor plans now!',
   },
   brochure: {
-    title: 'iGUIDE Brochures & Downloads. Click to explore!',
-    description: 'Looking for detailed information on iGUIDE? Our downloadable brochures are packed with tips and tricks. Explore more now!',
+    title: 'iGuide Brochures & Downloads. Click to explore!',
+    description: 'Looking for detailed information on iGuide? Our downloadable brochures are packed with tips and tricks. Explore more now!',
   },
   whitePaper: {
-    title: 'Unlock the Future of PropTech: Discover Insights in Our iGUIDE Whitepapers',
-    description: "Unlock the future of tech with our iGUIDE whitepapers. Get the latest insights on innovation that's reshaping industries now.",
+    title: 'Unlock the Future of PropTech: Discover Insights in Our iGuide Whitepapers',
+    description: "Unlock the future of tech with our iGuide whitepapers. Get the latest insights on innovation that's reshaping industries now.",
   },
   galleryItem: {
-    title: 'iGUIDE Gallery',
-    description: 'Explore sample iGUIDE properties. Choose a category, then explore a property of interest. Get started now.',
+    title: 'iGuide Gallery',
+    description: 'Explore sample iGuide properties. Choose a category, then explore a property of interest. Get started now.',
   },
   ebook: {
     title: 'Ebooks',
     description:
-      'iGUIDE ebooks are available on a range of subjects to help users maximize their experience, learn how to use iGUIDE in their lines of business, and more.',
+      'iGuide ebooks are available on a range of subjects to help users maximize their experience, learn how to use iGuide in their lines of business, and more.',
   },
 }
 

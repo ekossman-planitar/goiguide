@@ -11,7 +11,7 @@ export type Deliverable = {
   image: Img
   includesLabel?: string
   includes: string[]
-  /** e.g. "Requires: iGUIDE Standard or Premium" */
+  /** e.g. "Requires: iGuide Standard or Premium" */
   note?: string
   /** e.g. {label: 'Starting at', value: '$64.50 USD'} */
   price?: {label: string; value: string}

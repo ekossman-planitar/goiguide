@@ -1,4 +1,4 @@
-import {defineField} from 'sanity'
+import {defineArrayMember, defineField} from 'sanity'
 import {BookIcon} from '@sanity/icons/Book'
 import {CaseIcon} from '@sanity/icons/Case'
 import {DocumentIcon} from '@sanity/icons/Document'
@@ -20,8 +20,35 @@ export const customerStory = defineResourceType({
   name: 'customerStory',
   icon: StarIcon,
   extraFields: [
+    defineField({name: 'author', title: 'Author', type: 'reference', to: [{type: 'author'}]}),
     defineField({name: 'customerName', title: 'Customer name', type: 'string'}),
     defineField({name: 'customerLocation', title: 'Customer location', type: 'string'}),
+    defineField({
+      name: 'customerFacts',
+      title: 'Customer details box',
+      type: 'array',
+      description: 'Short facts shown beside the story, e.g. Location, Industry, Use case.',
+      of: [
+        defineArrayMember({
+          name: 'fact',
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Label', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'value', title: 'Value', type: 'string', validation: (rule) => rule.required()}),
+          ],
+          preview: {select: {title: 'value', subtitle: 'label'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'customerCta',
+      title: 'Details box button',
+      type: 'object',
+      fields: [
+        defineField({name: 'label', title: 'Label', type: 'string'}),
+        defineField({name: 'href', title: 'URL', type: 'string'}),
+      ],
+    }),
   ],
 })
 

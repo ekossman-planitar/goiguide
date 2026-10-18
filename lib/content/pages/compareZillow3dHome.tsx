@@ -4,18 +4,18 @@ import {VsColumns} from '@/components/pages/VsColumns'
 import {closingCta, compareHeroFormId, compareLogos, logosHeading, ProList} from './compareShared'
 
 export const meta = {
-  title: 'iGUIDE vs Zillow 3D Home: Comparing camera systems for photographers, agents and brokerages | iGUIDE',
+  title: 'iGuide vs Zillow 3D Home: Comparing camera systems for photographers, agents and brokerages | iGuide',
   description:
-    'Photographers, agents and brokerages choose iGUIDE over Zillow 3D Home because of speed, cost, accuracy, and no subscriptions. See the full comparison.',
+    'Photographers, agents and brokerages choose iGuide over Zillow 3D Home because of speed, cost, accuracy, and no subscriptions. See the full comparison.',
   path: '/compare/iguide-vs-zillow3dhome',
 }
 
 export const hero = {
-  heading: 'iGUIDE vs Zillow 3D Home: built for professionals, not just promotion',
+  heading: 'iGuide vs Zillow 3D Home: built for professionals, not just promotion',
   subheading:
-    'Zillow is a lead-gen tool locked to its own ecosystem. iGUIDE delivers accuracy, compliance and full control of your data across any MLS or platform.',
+    'Zillow is a lead-gen tool locked to its own ecosystem. iGuide delivers accuracy, compliance and full control of your data across any MLS or platform.',
   rating: true,
-  formHeading: 'See how iGUIDE compares to Zillow 3D Home',
+  formHeading: 'See how iGuide compares to Zillow 3D Home',
   formId: compareHeroFormId,
 }
 
@@ -25,23 +25,23 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'key-reasons',
     align: 'center',
-    heading: 'Why professionals continue to choose iGUIDE over Zillow 3D Home',
+    heading: 'Why professionals continue to choose iGuide over Zillow 3D Home',
     subheading:
-      'Zillow 3D Home looks free, but freedom comes with strings. iGUIDE delivers the tools pros need: compliant floor plans, MLS-friendly tours and control over your brand and data.',
+      'Zillow 3D Home looks free, but freedom comes with strings. iGuide delivers the tools pros need: compliant floor plans, MLS-friendly tours and control over your brand and data.',
     columns: 3,
     cards: [
-      {title: 'Floor plans you can trust', text: 'iGUIDE delivers ANSI/RMS-compliant layouts. Zillow floor plans aren’t measurement-focused.'},
-      {title: 'Tours that travel', text: 'iGUIDE tours embed anywhere. Zillow tours are stuck inside their ecosystem.'},
-      {title: 'Your brand, not theirs', text: 'iGUIDE puts your name front and center. Zillow promotes theirs.'},
-      {title: 'No subscriptions', text: 'iGUIDE uses pay-per-project pricing. Zillow’s best exposure requires costly Showcase fees.'},
-      {title: 'Professional capture', text: 'iGUIDE’s PLANIX camera captures LiDAR measurements and 360° photos together. Zillow relies on smartphones.'},
+      {title: 'Floor plans you can trust', text: 'iGuide delivers ANSI/RMS-compliant layouts. Zillow floor plans aren’t measurement-focused.'},
+      {title: 'Tours that travel', text: 'iGuide tours embed anywhere. Zillow tours are stuck inside their ecosystem.'},
+      {title: 'Your brand, not theirs', text: 'iGuide puts your name front and center. Zillow promotes theirs.'},
+      {title: 'No subscriptions', text: 'iGuide uses pay-per-project pricing. Zillow’s best exposure requires costly Showcase fees.'},
+      {title: 'Professional capture', text: 'iGuide’s PLANIX camera captures LiDAR measurements and 360° photos together. Zillow relies on smartphones.'},
     ],
   },
   {
     type: 'quote',
     background: 'surface',
     quote: {
-      quote: 'In our company, iGUIDE has become the new standard for virtual tours, floor plans and accurate measurements.',
+      quote: 'In our company, iGuide has become the new standard for virtual tours, floor plans and accurate measurements.',
       name: 'Glen MacIsaac',
       role: 'Photography Manager',
       company: 'Royal LePage Atlantic',
@@ -78,12 +78,12 @@ export const blocks: Block[] = [
     id: 'compare',
     background: 'surface',
     align: 'center',
-    heading: 'iGUIDE wins where it matters most',
+    heading: 'iGuide wins where it matters most',
     subheading: "Don't limit your reach. Choose property information that is fully shareable on all platforms.",
     children: (
       <VsColumns
         ours={{
-          name: 'iGUIDE',
+          name: 'iGuide',
           image: {src: '/assets/iguide-vs-competitors-planix-r1.png', alt: 'planix r1'},
           items: [
             {text: 'ANSI-Z765 & RMS compliant floor plans', ok: true},
@@ -115,7 +115,7 @@ export const blocks: Block[] = [
     type: 'quote',
     quote: {
       quote:
-        'iGUIDE has helped us grow from strength to strength and allowed us to host all the other services we offer from video, drone photography, virtual staging, printing and truly making us a comprehensive all-in-one solution.',
+        'iGuide has helped us grow from strength to strength and allowed us to host all the other services we offer from video, drone photography, virtual staging, printing and truly making us a comprehensive all-in-one solution.',
       name: 'Barnaby Decam',
       role: 'Co-Founder',
       company: 'Leading Image',
@@ -128,21 +128,21 @@ export const blocks: Block[] = [
     items: [
       {
         q: 'Is Zillow 3D Home really free?',
-        a: 'Yes — but only to create. The catch is visibility. To showcase your listings prominently, Zillow requires agents to purchase Showcase packages, which come with ongoing monthly fees. iGUIDE, on the other hand, uses a simple pay-per-project model with no hosting costs, no subscriptions and no forced showcase upsells. You own your content outright and can use it across any MLS or marketing channel.',
+        a: 'Yes, but only to create. The catch is visibility. To showcase your listings prominently, Zillow requires agents to purchase Showcase packages, which come with ongoing monthly fees. iGuide, on the other hand, uses a simple pay-per-project model with no hosting costs, no subscriptions and no forced showcase upsells. You own your content outright and can use it across any MLS or marketing channel.',
       },
       {
         q: 'Can Zillow 3D Home tours be used outside of Zillow?',
-        a: 'Not effectively. Zillow 3D Home is designed to keep traffic inside the Zillow ecosystem, limiting your flexibility if you want to share on other MLS platforms or your own marketing channels. iGUIDE tours are MLS-friendly, fully shareable, and customizable with your branding — giving you control instead of locking your content into one platform.',
+        a: 'Not effectively. Zillow 3D Home is designed to keep traffic inside the Zillow ecosystem, limiting your flexibility if you want to share on other MLS platforms or your own marketing channels. iGuide tours are MLS-friendly, fully shareable, and customizable with your branding, giving you control instead of locking your content into one platform.',
       },
       {
-        q: 'How do iGUIDE floor plans compare to Zillow 3D Home?',
-        a: 'iGUIDE delivers ANSI-Z765/RECA RMS-compliant floor plans with typical measurement uncertainty of 0.5% or better. Zillow 3D Home is not measurement-focused and does not provide verified square footage, which means listings may lack the accuracy required for appraisals, compliance, or confident decision-making. For professionals who need precision and credibility, iGUIDE is the clear choice.',
+        q: 'How do iGuide floor plans compare to Zillow 3D Home?',
+        a: 'iGuide delivers ANSI-Z765/RECA RMS-compliant floor plans with typical measurement uncertainty of 0.5% or better. Zillow 3D Home is not measurement-focused and does not provide verified square footage, which means listings may lack the accuracy required for appraisals, compliance, or confident decision-making. For professionals who need precision and credibility, iGuide is the clear choice.',
       },
     ],
   },
   closingCta({
     heading: 'Ready to upgrade to a professional solution?',
     text: 'Professional tools mean professional results and that’s what sets you apart.',
-    secondary: {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'},
+    secondary: {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
   }),
 ]

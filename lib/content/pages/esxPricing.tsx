@@ -6,10 +6,10 @@ import {FallbackImage} from '@/components/ui/FallbackImage'
 import {SmartLink} from '@/components/ui/SmartLink'
 
 export const meta = {
-  title: 'ESX Pricing | iGUIDE',
+  title: 'ESX Pricing | iGuide',
   // NEW description (live had none)
   description:
-    'Sketch processing pricing in USD for iGUIDE Instant Sketch, iGUIDE Standard: ESX and iGUIDE Premium: ESX files compatible with Xactimate.',
+    'Sketch processing pricing in USD for iGuide Instant Sketch, iGuide Standard: ESX and iGuide Premium: ESX files compatible with Xactimate.',
   path: '/get-iguide/irc/esx',
 }
 
@@ -96,21 +96,21 @@ function Package({
   )
 }
 
-const fullHead = ['Billable Area', 'iGUIDE Processing', 'ESX Processing', 'Total']
+const fullHead = ['Billable Area', 'iGuide Processing', 'ESX Processing', 'Total']
 
 export const blocks: Block[] = [
   {
     type: 'hero',
     heading: 'Sketch Processing (USD)',
     subheading:
-      'iGUIDE technology can automatically create room(s) or entire floor plan drawings and translate those directly into a format compatible with Xactimate.',
+      'iGuide technology can automatically create room(s) or entire floor plan drawings and translate those directly into a format compatible with Xactimate.',
     // Live: sub-navigation links under the header
     extra: (
       <nav aria-label="Sub navigation" className="flex flex-wrap gap-2">
         {[
           ['Instant Sketch', '/get-iguide/irc/esx#instant_sketch'],
-          ['iGUIDE Standard: ESX', '/get-iguide/irc/esx#iguide_standard'],
-          ['iGUIDE Premium: ESX', '/get-iguide/irc/esx#iguide_premium'],
+          ['iGuide Standard: ESX', '/get-iguide/irc/esx#iguide_standard'],
+          ['iGuide Premium: ESX', '/get-iguide/irc/esx#iguide_premium'],
         ].map(([label, href]) => (
           <SmartLink
             key={href}
@@ -132,7 +132,7 @@ export const blocks: Block[] = [
       <Package
         image="/assets/Uploads/sketch.jpg"
         heading="Instant Sketch*"
-        intro={{href: '/assets/Uploads/Instant-Sketch.pdf', text: 'to learn more information about what’s included in the iGUIDE Instant Sketch package.'}}
+        intro={{href: '/assets/Uploads/Instant-Sketch.pdf', text: 'to learn more information about what’s included in the iGuide Instant Sketch package.'}}
         table={{
           head: ['Billable Area', 'ESX Processing'],
           rows: [
@@ -142,9 +142,9 @@ export const blocks: Block[] = [
         }}
         after={
           <p className="mt-4 text-sm leading-6 text-muted">
-            *The machine-generated sketch quality relies on the input data the camera operator provides. Although iGUIDE and Verisk aim for
+            *The machine-generated sketch quality relies on the input data the camera operator provides. Although iGuide and Verisk aim for
             typical file delivery in Xactimate within minutes, this timeframe may vary depending on load factors, such as after a catastrophic
-            loss event. iGUIDE Instant Sketch is limited to properties no greater than 5000 sq ft and projects with no more than 75 scans.
+            loss event. iGuide Instant Sketch is limited to properties no greater than 5000 sq ft and projects with no more than 75 scans.
           </p>
         }
         download={{label: 'Download Instant Sketch Sample', href: '/assets/downloads/iGUIDE_ESX_Sketch_Samples.zip'}}
@@ -157,8 +157,8 @@ export const blocks: Block[] = [
     children: (
       <Package
         image="/assets/Uploads/esx-standard_transparent.png"
-        heading="iGUIDE Standard: ESX"
-        intro={{href: '/assets/brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGUIDE Standard Sketch add-on.'}}
+        heading="iGuide Standard: ESX"
+        intro={{href: '/assets/brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGuide Standard Sketch add-on.'}}
         table={{
           head: fullHead,
           rows: [
@@ -179,8 +179,8 @@ export const blocks: Block[] = [
     children: (
       <Package
         image="/assets/Uploads/esx_premium.jpg"
-        heading="iGUIDE Premium: ESX"
-        intro={{href: '/assets/brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGUIDE Premium ESX add-on.'}}
+        heading="iGuide Premium: ESX"
+        intro={{href: '/assets/brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGuide Premium ESX add-on.'}}
         table={{
           head: fullHead,
           rows: [
@@ -199,7 +199,7 @@ export const blocks: Block[] = [
     type: 'custom',
     children: (
       <div className="mx-auto max-w-[600px] text-center">
-        <p className="text-lg leading-7 text-body">Cabinets will be represented in the sketch file for iGUIDE Premiums.</p>
+        <p className="text-lg leading-7 text-body">Cabinets will be represented in the sketch file for iGuide Premiums.</p>
         <FallbackImage
           src="/assets/cabinets-and-tray-ceiling__ResizedImageWzYwMCwzMzhd.jpg"
           alt=""

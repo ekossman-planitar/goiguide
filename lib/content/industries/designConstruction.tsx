@@ -5,14 +5,14 @@ import {PackageTabs, type PackageTab} from '@/components/blocks/PackageTabs'
 import {book} from './shared'
 
 export const meta = {
-  title: 'Commercial Site Surveys & As-Built Documentation | iGUIDE for Design Teams | iGUIDE',
+  title: 'Commercial Site Surveys & As-Built Documentation | iGuide for Design Teams | iGuide',
   description:
-    'Get accurate commercial site surveys and as-built documentation in days, not weeks. iGUIDE delivers consistent CAD files, precise measurements, and immersive walkthroughs for offices, retail, hospitality, and multi-location design projects.',
+    'Get accurate commercial site surveys and as-built documentation in days, not weeks. iGuide delivers consistent CAD files, precise measurements, and immersive walkthroughs for offices, retail, hospitality, and multi-location design projects.',
   path: '/design-construction',
 }
 
-// Live: "Request an iGUIDE Site Survey" opens a request pop-up
-const requestSurvey = book('Request an iGUIDE Site Survey')
+// Live: "Request an iGuide Site Survey" opens a request pop-up
+const requestSurvey = book('Request an iGuide Site Survey')
 const packageSample = '/assets/183-Weber-Advanced-Drawing-Package.zip'
 
 const sharedWalkthrough = [
@@ -25,13 +25,13 @@ const sharedWalkthrough = [
 ]
 const virtualText = 'Provide an immersive virtual experience that lets colleagues, partners and contractors explore your site 24/7 from any location.'
 
-// Live "iGUIDE Packages" tabs (copy, images and links checked 2026-10-14)
+// Live "iGuide Packages" tabs (copy, images and links checked 2026-10-14)
 const packageTabs: PackageTab[] = [
   {
     id: 'cad',
     label: 'Advanced Drawing Package',
     heading: 'Advanced Drawing Package',
-    text: 'For comprehensive property understanding, each iGUIDE CAD package includes comprehensive property documentation.',
+    text: 'For comprehensive property understanding, each iGuide CAD package includes comprehensive property documentation.',
     list: [
       'As-Built Floor Plans',
       'Dimension Plans',
@@ -54,8 +54,8 @@ const packageTabs: PackageTab[] = [
   },
   {
     id: 'premium',
-    label: 'iGUIDE Premium',
-    heading: 'iGUIDE Premium',
+    label: 'iGuide Premium',
+    heading: 'iGuide Premium',
     text: virtualText,
     list: [...sharedWalkthrough, 'Detailed Schematic Floor Plans with fixtures and appliances', 'Photo gallery & slide show'],
     image: {src: '/assets/premium_rest.png', alt: 'Premium preview'},
@@ -66,8 +66,8 @@ const packageTabs: PackageTab[] = [
   },
   {
     id: 'standard',
-    label: 'iGUIDE Standard',
-    heading: 'iGUIDE Standard',
+    label: 'iGuide Standard',
+    heading: 'iGuide Standard',
     text: virtualText,
     list: [...sharedWalkthrough, 'Detailed Schematic Floor Plans', 'Photo gallery & slide show'],
     image: {src: '/assets/standard_restaurant.png', alt: 'Standard preview'},
@@ -78,9 +78,9 @@ const packageTabs: PackageTab[] = [
   },
   {
     id: 'radix',
-    label: 'iGUIDE Radix',
-    heading: 'iGUIDE Radix',
-    text: 'iGUIDE RADIX provides fast and efficient site visual documentation. The online interface with lidar point cloud is shareable and can be used to view a site and measure in 3D space.',
+    label: 'iGuide Radix',
+    heading: 'iGuide Radix',
+    text: 'iGuide RADIX provides fast and efficient site visual documentation. The online interface with lidar point cloud is shareable and can be used to view a site and measure in 3D space.',
     list: ['Lidar Point Cloud (DXF)', '3D Virtual walkthrough', 'Advanced on-screen measurements'],
     image: {src: '/assets/Icons/radix-v2.png', alt: 'Radix preview'},
     links: [
@@ -99,7 +99,7 @@ export const blocks: Block[] = [
       <>
         <p className="font-semibold text-ink">One standard. Every site. Every time.</p>
         <p className="mt-2">
-          For fast-paced QSR and retail teams, iGUIDE provides reliable CAD files, measurements and virtual walkthroughs, standardized across all
+          For fast-paced QSR and retail teams, iGuide provides reliable CAD files, measurements and virtual walkthroughs, standardized across all
           regions and store formats.
         </p>
         <CheckList
@@ -113,7 +113,7 @@ export const blocks: Block[] = [
         />
       </>
     ),
-    ctas: [requestSurvey, {label: 'View iGUIDE CAD Package sample', href: packageSample, variant: 'secondary'}],
+    ctas: [requestSurvey, {label: 'View iGuide CAD Package sample', href: packageSample, variant: 'secondary'}],
     media: {
       type: 'image',
       image: {src: '/assets/d772616a36/iguidespotlight_high.gif', alt: 'Photo - Advanced Drawing Packages Sample Package'},
@@ -137,7 +137,7 @@ export const blocks: Block[] = [
     background: 'white',
     quote: {
       quote:
-        'When I don’t have sufficient or accurate base building information, I reach out to iGUIDE. Their walkthroughs and drawings help me move forward with confidence.',
+        'When I don’t have sufficient or accurate base building information, I reach out to iGuide. Their walkthroughs and drawings help me move forward with confidence.',
       name: 'Tayyab Ali',
       role: 'Construction Design Manager',
       company: 'Pizza Pizza',
@@ -149,7 +149,7 @@ export const blocks: Block[] = [
     type: 'custom',
     id: 'iguide_packages',
     background: 'surface',
-    heading: 'iGUIDE Packages',
+    heading: 'iGuide Packages',
     subheading: 'You’re covered from site selection to pre-design, construction and occupancy.',
     align: 'center',
     children: <PackageTabs label="Package tabs" tabs={packageTabs} />,
@@ -161,18 +161,18 @@ export const blocks: Block[] = [
     steps: [
       {
         title: 'Kick off',
-        body: 'Submit a project request and our iGUIDE Project Management team will create your quote and launch the process.',
+        body: 'Submit a project request and our iGuide Project Management team will create your quote and launch the process.',
         image: {src: '/assets/Uploads/video-call-conference-online-meeting-virtual-peopl-2023-11-27-05-36-42-utc-v2.jpg', alt: 'photo - Project manager'},
       },
       {
         title: 'Site visit',
-        body: 'Within five business days of approval, an iGUIDE Field Technician will scan and document your property.',
+        body: 'Within five business days of approval, an iGuide Field Technician will scan and document your property.',
         image: {src: '/assets/Uploads/Capture_and_processing_150dpi.jpg', alt: 'photo - capture specialist'},
       },
       {
         title: 'Project delivery',
-        body: 'Within 7 business days of the site visit, you’ll receive your iGUIDE Report with downloadable drawings, photos and a virtual walkthrough.',
-        image: {src: '/assets/space-planning.png', alt: 'photo - Sharing an iGUIDE with the Team'},
+        body: 'Within 7 business days of the site visit, you’ll receive your iGuide Report with downloadable drawings, photos and a virtual walkthrough.',
+        image: {src: '/assets/space-planning.png', alt: 'photo - Sharing an iGuide with the Team'},
       },
     ],
     ctas: [requestSurvey, {label: 'Download drawing sample', href: packageSample, variant: 'secondary'}],
@@ -182,15 +182,15 @@ export const blocks: Block[] = [
     id: 'technology',
     background: 'sky',
     mediaSide: 'left',
-    heading: 'Nationwide iGUIDE Field Techs are equipped with the PLANIX LiDAR system deliver fast, accurate site capture.',
-    list: ['1% SF measurement uncertainty', '60MP high-clarity visuals', 'Pay-per-project—no subscriptions', 'Full data ownership, no lock-in'],
-    media: {type: 'image', image: {src: '/assets/PLANIX-R1.png', alt: 'photo - iGUIDE PLANIX R1'}},
+    heading: 'Nationwide iGuide Field Techs are equipped with the PLANIX LiDAR system deliver fast, accurate site capture.',
+    list: ['1% SF measurement uncertainty', '60MP high-clarity visuals', 'Pay-per-project, no subscriptions', 'Full data ownership, no lock-in'],
+    media: {type: 'image', image: {src: '/assets/PLANIX-R1.png', alt: 'photo - iGuide PLANIX R1'}},
     mediaClassName: 'mx-auto max-w-md',
   },
   {
     type: 'cards',
     id: 'benefits',
-    heading: 'Why design & construction teams rely on iGUIDE',
+    heading: 'Why design & construction teams rely on iGuide',
     subheading: 'Accurate base information reduces uncertainty, prevents re-visits and supports confident planning at every stage of your project.',
     columns: 3,
     cards: [
@@ -198,7 +198,7 @@ export const blocks: Block[] = [
       {title: 'Improved consistency', text: 'Standardized survey outputs ensure consistency across every project and location.', icon: {src: '/assets/capture-comprehensive-data.svg', alt: 'icon - Stamped Document'}},
       {title: 'Immersive visuals', text: 'A 3D walkthrough gives your team the context needed to design accurately.', icon: {src: '/assets/Icons/tour.png', alt: 'icon - Tour'}},
       {title: 'Streamlined execution', text: 'A predictable workflow from kickoff to delivery keeps projects moving forward smoothly.', icon: {src: '/assets/stay-on-top-of-progress.svg', alt: 'icon - Wall Clock'}},
-      {title: 'Organized deliverables', text: 'Everything you need—measurements, CAD files and visuals in one place.', icon: {src: '/assets/fasttrack-your-cad-workflow.svg', alt: 'icon - CAD File'}},
+      {title: 'Organized deliverables', text: 'Everything you need: measurements, CAD files and visuals in one place.', icon: {src: '/assets/fasttrack-your-cad-workflow.svg', alt: 'icon - CAD File'}},
       {title: 'No project re-visits', text: 'Comprehensive capture reduces the risk of missing critical information and costly oversights.', icon: {src: '/assets/say-goodbye-to-rework.svg', alt: 'icon - Finger Point'}},
     ],
   },
@@ -209,7 +209,7 @@ export const blocks: Block[] = [
     quotes: [
       {
         quote:
-          'iGUIDE and their Project Management Group offered a solution that could combine measurement, visual documentation, and CAD file delivery in a single visit.',
+          'iGuide and their Project Management Group offered a solution that could combine measurement, visual documentation, and CAD file delivery in a single visit.',
         name: 'Bryan Arnold',
         role: 'Project Manager',
         company: 'PDS Architecture',
@@ -218,7 +218,7 @@ export const blocks: Block[] = [
       },
       {
         quote:
-          'iGUIDE’s Service Pro network captures all the data we need and eliminates repeat site visits, reducing vendor costs and streamlining our construction workflow.',
+          'iGuide’s Service Pro network captures all the data we need and eliminates repeat site visits, reducing vendor costs and streamlining our construction workflow.',
         name: 'AR Eissa',
         role: 'Sr. Construction Manager',
         company: 'BarBurrito',
@@ -231,8 +231,8 @@ export const blocks: Block[] = [
     heading: 'Answers for architects, designers and construction pros',
     items: [
       {
-        q: 'How accurate are iGUIDE Site Surveys?',
-        a: 'iGUIDE’s LiDAR camera system delivers floor plans with typical linear measurement uncertainty of 0.5% or better, giving you reliable data you can trust for design, construction and facility planning.',
+        q: 'How accurate are iGuide Site Surveys?',
+        a: 'iGuide’s LiDAR camera system delivers floor plans with typical linear measurement uncertainty of 0.5% or better, giving you reliable data you can trust for design, construction and facility planning.',
       },
       {
         q: 'How quickly can I get my deliverables?',
@@ -242,9 +242,9 @@ export const blocks: Block[] = [
         q: 'What deliverables are included?',
         a: 'Depending on project stage: CAD files (DWG, RVT, DXF), Plotted PDFs, point-cloud data, 3D virtual walkthroughs and photo-tagged equipment.',
       },
-      {q: 'Do I need a subscription?', a: 'No. iGUIDE offers pay-per-project pricing with full data ownership.'},
+      {q: 'Do I need a subscription?', a: 'No. iGuide offers pay-per-project pricing with full data ownership.'},
     ],
   },
   // Live: "Get started" opens a contact pop-up
-  {type: 'cta', heading: 'Connect with an iGUIDE Project Manager today', ctas: [book('Get started')]},
+  {type: 'cta', heading: 'Connect with an iGuide Project Manager today', ctas: [book('Get started')]},
 ]

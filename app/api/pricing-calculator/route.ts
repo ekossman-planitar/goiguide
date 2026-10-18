@@ -2,7 +2,7 @@ import {calcPackages, calculator} from '@/lib/content/pricing'
 
 /**
  * Server-side port of the Silverstripe pricing calculator (ElementPricingCalculatorController
- * + CalculatorAPI). Calls the iGUIDE Portal's public cost endpoint, as the live site's
+ * + CalculatorAPI). Calls the iGuide Portal's public cost endpoint, as the live site's
  * server does today. No credentials are involved.
  */
 const COST_API = 'https://manage.youriguide.com/apiro/v1/calculator/cost'

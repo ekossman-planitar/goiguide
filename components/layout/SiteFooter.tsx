@@ -17,8 +17,8 @@ export function SiteFooter() {
           {/* Subscribe */}
           <div>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- full page loads for GTM */}
-            <a href="/" aria-label="iGUIDE home" className="inline-block">
-              <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={1330} height={368} className="h-auto w-[156px]" />
+            <a href="/" aria-label="iGuide home" className="inline-block">
+              <Image src="/iGUIDE-Logo.svg" alt="iGuide" width={1330} height={368} className="h-auto w-[156px]" />
             </a>
             <h2 className="mt-8 text-xl leading-7 font-semibold text-ink">Subscribe to stay current</h2>
             <p className="mt-2 text-base leading-6 text-body">Receive information on the latest releases, tips and updates.</p>

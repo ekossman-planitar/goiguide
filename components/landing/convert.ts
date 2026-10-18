@@ -17,7 +17,7 @@ export function youtubeEmbed(url: string) {
   return id ? `https://www.youtube.com/embed/${id}` : url
 }
 
-/** iGUIDE tour links → embed URL with the live site's flags */
+/** iGuide tour links → embed URL with the live site's flags */
 export function tourEmbed(url: string) {
   const u = url.includes('/embed/') ? url : url.replace(/youriguide\.com\//, 'youriguide.com/embed/')
   return `${u}${u.includes('?') ? '&' : '?'}autostart=1&bgcolor=FFFFFF&__avoid-embed-load__&nosplash`
@@ -32,7 +32,7 @@ export function lpMedia(media: LpMedia | undefined): Media | undefined {
   if (!media.url) return undefined
   if (media.kind === 'video') return {type: 'video', src: media.url, label: media.title ?? 'Video'}
   if (media.kind === 'youtube') return {type: 'embed', src: youtubeEmbed(media.url), title: media.title ?? 'Video'}
-  return {type: 'embed', src: tourEmbed(media.url), title: media.title ?? 'iGUIDE 3D virtual tour'}
+  return {type: 'embed', src: tourEmbed(media.url), title: media.title ?? 'iGuide 3D virtual tour'}
 }
 
 /** Landing page button → site button. "demo" keeps the openCalendly class GTM listens for. */

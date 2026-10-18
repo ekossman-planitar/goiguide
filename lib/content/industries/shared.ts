@@ -4,10 +4,10 @@ import type {Cta, Img} from '@/components/blocks/types'
 
 export {book} from '@/lib/content/solutions/shared'
 
-export const findPro: Cta = {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'}
+export const findPro: Cta = {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'}
 export const shopCameras: Cta = {label: 'Shop cameras', href: 'https://store.goiguide.com/', variant: 'secondary'}
 
-/** Live iGUIDE tour embeds append these flags */
+/** Live iGuide tour embeds append these flags */
 export const tour = (url: string) => `${url}${url.includes('?') ? '&' : '?'}__avoid-embed-load__&nosplash`
 
 export const realEstateLogos: Img[] = [
@@ -33,16 +33,16 @@ export const ircLogos: Img[] = [
 
 /* Package cards used on the Real Estate, Photography and Forensic pages */
 export const instantPackage: Deliverable = {
-  title: 'iGUIDE Instant (US Only)',
-  image: {src: '/assets/Uploads/Pricing-iGUIDE-Instant-updated-v2__ScaleMaxWidthWzMwMF0.png', alt: 'iGUIDE Instant', width: 300, height: 225},
+  title: 'iGuide Instant (US Only)',
+  image: {src: '/assets/Uploads/Pricing-iGUIDE-Instant-updated-v2__ScaleMaxWidthWzMwMF0.png', alt: 'iGuide Instant', width: 300, height: 225},
   includesLabel: 'Includes:',
-  includes: ['Available in minutes', '120 days hosting', '3D virtual walkthrough', 'Online interactive black and white iGUIDE floor plan'],
+  includes: ['Available in minutes', '120 days hosting', '3D virtual walkthrough', 'Online interactive black and white iGuide floor plan'],
   cta: {label: 'Try Instant demo', href: 'https://youriguide.com/87n9g_150_chattel_st_middletown_ny', newTab: true},
 }
 
 export const standardPackage: Deliverable = {
-  title: 'iGUIDE Standard',
-  image: {src: '/assets/Standard_Pricing__FitMaxWzkzMCwzMzZd.png', alt: 'iGUIDE Standard', width: 930, height: 336},
+  title: 'iGuide Standard',
+  image: {src: '/assets/Standard_Pricing__FitMaxWzkzMCwzMzZd.png', alt: 'iGuide Standard', width: 930, height: 336},
   includesLabel: 'Includes:',
   includes: [
     '3D virtual walkthrough',
@@ -58,9 +58,9 @@ export const standardPackage: Deliverable = {
 }
 
 export const premiumPackage: Deliverable = {
-  title: 'iGUIDE Premium',
-  image: {src: '/assets/Premium_Pricing.png', alt: 'iGUIDE Premium', width: 930, height: 336},
+  title: 'iGuide Premium',
+  image: {src: '/assets/Premium_Pricing.png', alt: 'iGuide Premium', width: 930, height: 336},
   includesLabel: 'Includes:',
-  includes: ['Everything in our iGUIDE Standard package', 'Enhanced detailed floor plans with objects, fixtures and appliances', 'VR compatible'],
+  includes: ['Everything in our iGuide Standard package', 'Enhanced detailed floor plans with objects, fixtures and appliances', 'VR compatible'],
   cta: {label: 'Explore Premium tour', href: 'https://youriguide.com/100_chattel_st_haverhill_ma', newTab: true},
 }

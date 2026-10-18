@@ -4,10 +4,10 @@ import {FallbackImage} from '@/components/ui/FallbackImage'
 import {SmartLink} from '@/components/ui/SmartLink'
 
 export const meta = {
-  title: 'iGUIDE PLANIX Mobile App | iGUIDE',
+  title: 'iGuide PLANIX Mobile App | iGuide',
   // NEW description (live had none)
   description:
-    'Download the iGUIDE PLANIX mobile app for iOS and Android to pair, control and capture with your iGUIDE PLANIX camera system and upload projects to the iGUIDE Portal.',
+    'Download the iGuide PLANIX mobile app for iOS and Android to pair, control and capture with your iGuide PLANIX camera system and upload projects to the iGuide Portal.',
   path: '/download-iguide-planix-app',
 }
 
@@ -29,12 +29,12 @@ export const blocks: Block[] = [
   {
     type: 'hero',
     // Live page has no h1: its heading is the h2 below an h3 "A new way to capture:" lead-in
-    heading: 'Meet the iGUIDE PLANIX mobile app',
-    subheading: 'The iGUIDE PLANIX mobile app is your key to unlocking the easier way to capture with your iGUIDE PLANIX camera system.',
+    heading: 'Meet the iGuide PLANIX mobile app',
+    subheading: 'The iGuide PLANIX mobile app is your key to unlocking the easier way to capture with your iGuide PLANIX camera system.',
     extra: (
       <>
-        <p>With quick pair, intuitive controls, easy capture and prompt project upload to the iGUIDE Portal, it’s a match made in heaven.</p>
-        <p className="mt-4">Elevate your capture experience today—download now!</p>
+        <p>With quick pair, intuitive controls, easy capture and prompt project upload to the iGuide Portal, it’s a match made in heaven.</p>
+        <p className="mt-4">Elevate your capture experience today. Download now!</p>
         <div className="mt-6 flex flex-wrap items-center gap-4">
           {stores.map((s) => (
             <SmartLink key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className="inline-block">
@@ -51,6 +51,6 @@ export const blocks: Block[] = [
         </div>
       </>
     ),
-    media: {type: 'image', image: {src: '/assets/Uploads/Mobile_App_Lander_Image_x1600.png', alt: 'iGUIDE PLANIX mobile app on a smartphone', width: 1600, height: 1153}},
+    media: {type: 'image', image: {src: '/assets/Uploads/Mobile_App_Lander_Image_x1600.png', alt: 'iGuide PLANIX mobile app on a smartphone', width: 1600, height: 1153}},
   },
 ]

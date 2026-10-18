@@ -3,7 +3,7 @@
  *  - /landing-templates/<layout> renders it as a full example page
  *  - the Studio "New landing page: <layout>" templates start from it
  *    (studioTemplateValue strips the preview-only fields)
- * Copy is taken from existing iGUIDE pages so the examples read realistically.
+ * Copy is taken from existing iGuide pages so the examples read realistically.
  */
 import {getLpLayout, type LpSectionType} from './layouts'
 
@@ -22,8 +22,8 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
     bullets: style === 'centered' ? ['3D tour, floor plans and measurements from one scan', 'Delivered in 24 hours', 'Pay per project'] : undefined,
     buttons: style === 'form' ? undefined : [button(style === 'media' ? 'Book a demo' : 'Get started', style === 'media' ? 'demo' : 'form')],
     showRating: true,
-    media: style === 'media' ? {kind: 'tour', url: 'https://youriguide.com/100_chattel_st_haverhill_ma', title: 'Sample iGUIDE 3D tour'} : undefined,
-    formHeading: 'Connect with an iGUIDE Specialist!',
+    media: style === 'media' ? {kind: 'tour', url: 'https://youriguide.com/100_chattel_st_haverhill_ma', title: 'Sample iGuide 3D tour'} : undefined,
+    formHeading: 'Connect with an iGuide Specialist!',
     // Real HubSpot form IDs are added per page (so template previews never send real leads)
     _previewForm: true,
   }),
@@ -36,7 +36,7 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
   }),
   lpFeatures: () => ({
     _type: 'lpFeatures',
-    heading: 'Why real estate photographers choose iGUIDE',
+    heading: 'Why real estate photographers choose iGuide',
     columns: 3,
     items: [
       {_type: 'feature', title: 'Speed of capture', text: 'Capture 3D virtual tours and detailed floor plans in minutes, not hours.', icon: img('/assets/Uploads/Icons_3D-Tour__FitMaxWzYwLDYwXQ.png')},
@@ -48,19 +48,19 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
   lpSplit: () => ({
     _type: 'lpSplit',
     heading: 'The real estate camera for floor plans and tours',
-    body: 'The PLANIX R1 camera system captures 360° images and LiDAR measurements of each room to create an iGUIDE in minutes.',
+    body: 'The PLANIX R1 camera system captures 360° images and LiDAR measurements of each room to create an iGuide in minutes.',
     bullets: ['Easy set up', 'Fast capture: 15–20 minutes for 3,000 sq ft', 'Quick turnaround: deliverables in under 24 hours*'],
     footnote: '*Delivery time depends on the complexity of the file.',
-    media: {kind: 'youtube', url: 'https://www.youtube.com/watch?v=waROUizarks', title: 'iGUIDE PLANIX R1 overview'},
+    media: {kind: 'youtube', url: 'https://www.youtube.com/watch?v=waROUizarks', title: 'iGuide PLANIX R1 overview'},
     mediaSide: 'right',
   }),
   lpSteps: () => ({
     _type: 'lpSteps',
-    heading: 'iGUIDE is as easy as 1-2-3',
+    heading: 'iGuide is as easy as 1-2-3',
     steps: [
       {_type: 'step', title: 'Capture', text: 'Connect the camera to your smart device, create a project and start scanning.'},
-      {_type: 'step', title: 'Process', text: 'Request your floor plan, virtual tour and feature sheet in the iGUIDE Portal.'},
-      {_type: 'step', title: 'Utilize', text: 'Share, post, upload or download your files. iGUIDE works with MLS systems and listing portals.'},
+      {_type: 'step', title: 'Process', text: 'Request your floor plan, virtual tour and feature sheet in the iGuide Portal.'},
+      {_type: 'step', title: 'Utilize', text: 'Share, post, upload or download your files. iGuide works with MLS systems and listing portals.'},
     ],
   }),
   lpTestimonials: () => ({
@@ -68,13 +68,13 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
     heading: 'What our customers say',
     _previewQuotes: [
       {
-        quote: 'Adding iGUIDE virtual tours has helped my Realtor clients sell more properties, save more time by showing fewer properties that fit home buyer’s needs.',
+        quote: 'Adding iGuide virtual tours has helped my Realtor clients sell more properties, save more time by showing fewer properties that fit home buyer’s needs.',
         name: 'Paul Maynard',
         company: 'Colorful Virtual Tours',
         photo: '/assets/paul.png',
       },
       {
-        quote: 'I do photos and iGUIDE 3D tour with floor plan for almost every single listing I do. So, it gives me more revenue.',
+        quote: 'I do photos and iGuide 3D tour with floor plan for almost every single listing I do. So, it gives me more revenue.',
         name: 'Todd Wasylyshyn',
         company: 'Nanaimo Photography',
         photo: '/assets/todd.png',
@@ -93,8 +93,8 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
   }),
   lpCompare: () => ({
     _type: 'lpCompare',
-    heading: 'iGUIDE vs. the alternatives',
-    oursLabel: 'iGUIDE',
+    heading: 'iGuide vs. the alternatives',
+    oursLabel: 'iGuide',
     theirsLabel: 'Others',
     rows: [
       {_type: 'row', label: 'LiDAR-accurate floor plans', ours: 'Yes', theirs: 'No'},
@@ -104,25 +104,25 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
   }),
   lpTabs: () => ({
     _type: 'lpTabs',
-    heading: 'Experience iGUIDE',
+    heading: 'Experience iGuide',
     subheading: 'Every project is different. Explore the deliverables that work best for your needs.',
     tabs: [
-      {_type: 'tab', label: 'iGUIDE Virtual Walkthrough', text: 'Track, document and share project progress with no site revisit.', media: {kind: 'tour', url: 'https://youriguide.com/pre_and_post_construction', title: 'iGUIDE walkthrough'}},
-      {_type: 'tab', label: 'DWG Add-on', text: 'DWG floor plans for any iGUIDE Standard or Premium, delivered in 48 hours or less.', media: {kind: 'image', image: img('/assets/Uploads/DWG-v3.png', 'DWG example')}, buttons: [button('Commercial Premium DWG', 'url', '/assets/Sample-Drawing-Packages/Commercial-Premium-DWG.zip')]},
+      {_type: 'tab', label: 'iGuide Virtual Walkthrough', text: 'Track, document and share project progress with no site revisit.', media: {kind: 'tour', url: 'https://youriguide.com/pre_and_post_construction', title: 'iGuide walkthrough'}},
+      {_type: 'tab', label: 'DWG Add-on', text: 'DWG floor plans for any iGuide Standard or Premium, delivered in 48 hours or less.', media: {kind: 'image', image: img('/assets/Uploads/DWG-v3.png', 'DWG example')}, buttons: [button('Commercial Premium DWG', 'url', '/assets/Sample-Drawing-Packages/Commercial-Premium-DWG.zip')]},
     ],
   }),
   lpVideos: () => ({
     _type: 'lpVideos',
     heading: 'Hear it from customers',
     videos: [
-      {_type: 'video', title: 'MC3 Design shares their iGUIDE experience', url: 'https://www.youtube.com/watch?v=6VXKsBK0DnE'},
-      {_type: 'video', title: 'Levco Builders shares their iGUIDE experience', url: 'https://www.youtube.com/watch?v=MFywiM0oFwc'},
+      {_type: 'video', title: 'MC3 Design shares their iGuide experience', url: 'https://www.youtube.com/watch?v=6VXKsBK0DnE'},
+      {_type: 'video', title: 'Levco Builders shares their iGuide experience', url: 'https://www.youtube.com/watch?v=MFywiM0oFwc'},
     ],
   }),
   lpForm: () => ({
     _type: 'lpForm',
     heading: 'Book your demo today',
-    subheading: 'Tell us about your business and an iGUIDE specialist will be in touch.',
+    subheading: 'Tell us about your business and an iGuide specialist will be in touch.',
     _previewForm: true,
     background: 'sky',
   }),
@@ -131,10 +131,10 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
     heading: 'Frequently asked questions',
     items: [
       {_type: 'qa', question: 'How fast are deliverables ready?', answer: 'Floor plans and tours are delivered within 24 hours of uploading your data, and generally much faster.'},
-      {_type: 'qa', question: 'Is there a subscription?', answer: 'No. iGUIDE is pay-per-project with no subscriptions or hosting fees.'},
+      {_type: 'qa', question: 'Is there a subscription?', answer: 'No. iGuide is pay-per-project with no subscriptions or hosting fees.'},
     ],
   }),
-  lpCta: () => ({_type: 'lpCta', heading: 'Ready to grow your business?', text: 'See iGUIDE in action with a personalized product tour.', buttons: [button('Book your demo', 'demo')]}),
+  lpCta: () => ({_type: 'lpCta', heading: 'Ready to grow your business?', text: 'See iGuide in action with a personalized product tour.', buttons: [button('Book your demo', 'demo')]}),
   lpNotice: () => ({_type: 'lpNotice', text: 'Offer valid for new customers only. Terms and conditions apply. Prices in CAD/USD exclude applicable taxes.'}),
 }
 

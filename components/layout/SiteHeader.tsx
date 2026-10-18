@@ -56,8 +56,8 @@ export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-line bg-white">
       <Container className="flex h-20 items-center justify-between gap-6">
         {/* Native <a> on purpose: full page loads keep GTM triggers working */}
-        <a href={homeHref} className="shrink-0" aria-label="iGUIDE home">
-          <Image src="/iGUIDE-Logo.svg" alt="iGUIDE" width={1330} height={368} priority className="h-auto w-[150px]" />
+        <a href={homeHref} className="shrink-0" aria-label="iGuide home">
+          <Image src="/iGUIDE-Logo.svg" alt="iGuide" width={1330} height={368} priority className="h-auto w-[150px]" />
         </a>
 
         <nav aria-label="Main" className="hidden lg:block">

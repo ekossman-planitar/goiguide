@@ -23,7 +23,7 @@ export default function PricingPage() {
         ctas={[{label: 'Estimate your project cost', href: '#calculator'}]}
         media={<MediaView media={{type: 'image', image: hero.image, priority: true}} className="rounded-2xl" />}
       >
-        <p className="font-semibold text-ink">Included with every iGUIDE*</p>
+        <p className="font-semibold text-ink">Included with every iGuide*</p>
         <CheckList items={hero.included} className="mt-4" />
         <p className="mt-5 text-sm leading-5">{hero.footnote}</p>
       </PageHero>
@@ -53,7 +53,7 @@ export default function PricingPage() {
                 <h3 className="text-lg leading-6 font-semibold text-ink">{addOn.title}</h3>
                 <p className="mt-1.5 text-sm leading-5 text-body">{addOn.summary}</p>
                 <p className="mt-3 text-sm text-muted">
-                  iGUIDE package + <span className="text-base font-bold text-ink">{addOn.priceCAD}</span>
+                  iGuide package + <span className="text-base font-bold text-ink">{addOn.priceCAD}</span>
                 </p>
               </div>
             </li>

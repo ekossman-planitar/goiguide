@@ -3,7 +3,7 @@ import type {Block} from '@/components/blocks/Blocks'
 import {competitionDescription, cscAnchors, cscBlocks, pastCompetitions, tourVideoLinks} from './cscShared'
 
 export const meta = {
-  title: 'CSC Student Design Challenge 2021 | iGUIDE',
+  title: 'CSC Student Design Challenge 2021 | iGuide',
   description: 'Construction Specifications Canada (CSC) Student Design Challenge 2021',
   path: '/csc/csc2021',
 }
@@ -21,7 +21,7 @@ export const blocks: Block[] = cscBlocks({
   },
   tour: {
     src: 'https://youriguide.com/embed/498_eagle_st_n_cambridge_on?unbranded=1&autostart=1&bgcolor=FFFFFF',
-    title: 'iGUIDE tour of 498 Eagle Street North',
+    title: 'iGuide tour of 498 Eagle Street North',
     links: tourVideoLinks('Learn how to use advanced measurement'),
   },
   downloads: [

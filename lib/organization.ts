@@ -1,7 +1,7 @@
 /**
  * Organization structured data (schema.org). Addresses confirmed by Evan,
  * 2026-10-14: Canadian HQ in Waterloo (also in the site footer), and the
- * Australian team at REA Group's Melbourne head office. iGUIDE is owned by REA Group.
+ * Australian team at REA Group's Melbourne head office. iGuide is owned by REA Group.
  */
 const SITE = 'https://goiguide.com'
 const LOGO = `${SITE}/_resources/themes/main/public/images/favicons/android-chrome-192x192.png`
@@ -29,7 +29,7 @@ const reaGroup = {'@type': 'Organization', name: 'REA Group', url: 'https://www.
 const australianOffice = {
   '@type': 'Organization',
   '@id': `${SITE}/au#organization`,
-  name: 'iGUIDE Australia',
+  name: 'iGuide Australia',
   url: `${SITE}/au`,
   address: australia,
 }
@@ -39,7 +39,7 @@ export const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE}/#organization`,
-  name: 'iGUIDE',
+  name: 'iGuide',
   legalName: 'Planitar Inc.',
   url: SITE,
   logo: LOGO,
@@ -57,8 +57,8 @@ export const australiaOrganizationJsonLd = {
   '@context': 'https://schema.org',
   ...australianOffice,
   logo: LOGO,
-  description: 'iGUIDE 3D tours, floor plans and Site Plans for realestate.com.au listings',
-  parentOrganization: {'@id': `${SITE}/#organization`, '@type': 'Organization', name: 'iGUIDE', url: SITE},
+  description: 'iGuide 3D tours, floor plans and Site Plans for realestate.com.au listings',
+  parentOrganization: {'@id': `${SITE}/#organization`, '@type': 'Organization', name: 'iGuide', url: SITE},
 }
 
 export const jsonLdScript = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c')

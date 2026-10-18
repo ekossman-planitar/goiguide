@@ -7,7 +7,7 @@ import {Button} from '@/components/ui/Button'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 
 export const meta = {
-  title: 'Real estate photography industry outlook 2026 | iGUIDE',
+  title: 'Real estate photography industry outlook 2026 | iGuide',
   description:
     'Explore the 2026 real estate photography industry outlook with insights from 10 creators on trends, workflows, AI adoption and where the field is heading.',
   path: '/reports/framing-whats-next-2026',
@@ -25,7 +25,7 @@ const trends: {label: string; text: ReactNode}[] = [
     text: (
       <>
         Buyer behaviour is shifting fast. With <strong>74% of buyers starting online</strong> and professional photos driving{' '}
-        <strong>61% more views</strong> and <strong>50% faster sales</strong>, the report shows why clear, accurate visuals—and fast delivery—will
+        <strong>61% more views</strong> and <strong>50% faster sales</strong>, the report shows why clear, accurate visuals, and fast delivery, will
         matter more than ever in 2026.
       </>
     ),
@@ -43,7 +43,7 @@ const trends: {label: string; text: ReactNode}[] = [
     label: 'Tech adoption and the AI advantage',
     text: (
       <>
-        AI isn’t a trend—it’s part of the workflow now. With <strong>71% of real-estate photographers using AI tools</strong> and some reporting{' '}
+        AI isn’t a trend; it’s part of the workflow now. With <strong>71% of real-estate photographers using AI tools</strong> and some reporting{' '}
         <strong>up to 90% faster editing</strong>, the report breaks down where automation genuinely helps and where human judgment still carries
         the work.
       </>
@@ -147,7 +147,7 @@ const contributors: {photo: string; name: string; role: string; company: string;
     photo: '/assets/chris-white-iguide.jpeg',
     name: 'Chris White',
     role: 'Product Manager',
-    company: 'iGUIDE',
+    company: 'iGuide',
     bio: 'Chris White believes the next wave of real-estate marketing won’t just change how properties are shown, it will change what buyers believe is real. As AI tools blur the line between accuracy and artistry, he argues that trust, transparency and a sense of humour may be what keep the industry grounded.',
   },
 ]

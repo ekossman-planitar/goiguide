@@ -2,17 +2,17 @@
  * Footer links (hard-coded for the demo). Copied from the live goiguide.com
  * footer (checked 2026-10-07), with the nav changes applied:
  * Client Portal added and Marketing Catalogue / Downloads moved to Support,
- * iGUIDE Gallery also listed under Resources, Find an iGUIDE Pro added.
+ * iGuide Gallery also listed under Resources, Find an iGuide Pro added.
  */
 export type FooterLink = {label: string; href: string; external?: boolean}
 export type FooterColumn = {heading: FooterLink; links: FooterLink[]}
 
 export const footerColumns: FooterColumn[][] = [
-  // Each inner array is one grid column (iGUIDE + Compare share a column, as on live)
+  // Each inner array is one grid column (iGuide + Compare share a column, as on live)
   [
     {
       // Same target as the "Solutions" nav item
-      heading: {label: 'iGUIDE', href: '/iguide/floor-plans'},
+      heading: {label: 'iGuide', href: '/iguide/floor-plans'},
       links: [
         {label: 'Floor Plans', href: '/iguide/floor-plans'},
         {label: '3D Virtual Tours', href: '/iguide/3d-virtual-tours'},
@@ -21,20 +21,20 @@ export const footerColumns: FooterColumn[][] = [
         {label: 'Site Plans', href: '/iguide/site-plans'},
         {label: 'Integrations', href: '/iguide/integrations'},
         {label: 'Capture Hardware', href: '/camera-hardware'},
-        {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'},
+        {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
         {label: 'Pricing', href: '/pricing'},
-        {label: 'iGUIDE Gallery', href: '/resources-and-media/iguide-gallery'},
+        {label: 'iGuide Gallery', href: '/resources-and-media/iguide-gallery'},
       ],
     },
     {
       // New URL: no Compare overview page exists on the live site yet
-      heading: {label: 'Compare iGUIDE', href: '/compare'},
+      heading: {label: 'Compare iGuide', href: '/compare'},
       links: [
-        {label: 'iGUIDE vs Matterport', href: '/compare/iguide-vs-matterport'},
-        {label: 'iGUIDE vs DocuSketch', href: '/compare/iguide-vs-docusketch'},
-        {label: 'iGUIDE vs CubiCasa', href: '/compare/iguide-vs-cubicasa'},
-        {label: 'iGUIDE vs Zillow3D Home', href: '/compare/iguide-vs-zillow3dhome'},
-        {label: 'iGUIDE vs Manual Measurement', href: '/compare/iguide-vs-manual-measurement'},
+        {label: 'iGuide vs Matterport', href: '/compare/iguide-vs-matterport'},
+        {label: 'iGuide vs DocuSketch', href: '/compare/iguide-vs-docusketch'},
+        {label: 'iGuide vs CubiCasa', href: '/compare/iguide-vs-cubicasa'},
+        {label: 'iGuide vs Zillow3D Home', href: '/compare/iguide-vs-zillow3dhome'},
+        {label: 'iGuide vs Manual Measurement', href: '/compare/iguide-vs-manual-measurement'},
       ],
     },
   ],
@@ -61,7 +61,7 @@ export const footerColumns: FooterColumn[][] = [
         {label: 'Brochures', href: '/brochures'},
         {label: 'News', href: '/news'},
         {label: 'White Papers & eBooks', href: '/white-papers-and-ebooks'},
-        {label: 'iGUIDE Gallery', href: '/resources-and-media/iguide-gallery'},
+        {label: 'iGuide Gallery', href: '/resources-and-media/iguide-gallery'},
       ],
     },
   ],
@@ -72,7 +72,7 @@ export const footerColumns: FooterColumn[][] = [
       links: [
         {label: 'Help Center', href: 'https://help.youriguide.com/hc/en-us', external: true},
         {label: 'Ask for Help', href: 'https://help.youriguide.com/requests/new', external: true},
-        {label: 'iGUIDE Forum', href: 'https://forum.goiguide.com/', external: true},
+        {label: 'iGuide Forum', href: 'https://forum.goiguide.com/', external: true},
         {label: 'Training', href: 'https://help.youriguide.com/hc/en-us/categories/27462998868498-Getting-Started-with-iGUIDE', external: true},
         {label: 'Client Portal', href: 'https://manage.youriguide.com/', external: true},
         {
@@ -118,7 +118,7 @@ export const reviewBadges = [
     newTab: false,
   },
   {
-    alt: 'iGUIDE Reviews',
+    alt: 'iGuide Reviews',
     src: 'https://b.sf-syn.com/badge_img/3372173/customers-love-us-white?&variant_id=sf&r=https://goiguide.com/',
     href: 'https://sourceforge.net/software/product/iGUIDE/?pk_campaign=badge&pk_source=vendor',
     width: 90,
@@ -128,7 +128,7 @@ export const reviewBadges = [
 ]
 
 export const legal = {
-  copyright: '© 2012–2026 Planitar Inc. All Rights Reserved. iGUIDE and Planitar are registered trademarks of Planitar Inc.',
+  copyright: '© 2012–2026 Planitar Inc. All Rights Reserved. iGuide and Planitar are registered trademarks of Planitar Inc.',
   address: {
     label: '560 Parkside Drive, Unit 401 Waterloo, ON, Canada N2L 5Z4',
     href: 'https://www.google.com/maps?q=560+Parkside+Drive,+Unit+401,+Waterloo,+ON,+Canada+N2L+5Z4',

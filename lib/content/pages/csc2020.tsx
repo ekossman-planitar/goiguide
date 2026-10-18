@@ -3,7 +3,7 @@ import type {Block} from '@/components/blocks/Blocks'
 import {competitionDescription, cscAnchors, cscBlocks, pastCompetitions, tourVideoLinks} from './cscShared'
 
 export const meta = {
-  title: 'CSC Student Design Challenge 2020 | iGUIDE',
+  title: 'CSC Student Design Challenge 2020 | iGuide',
   description: 'Construction Specifications Canada (CSC) Student Design Challenge 2020',
   path: '/csc/csc2020',
 }
@@ -21,7 +21,7 @@ export const blocks: Block[] = cscBlocks({
   },
   tour: {
     src: 'https://youriguide.com/embed/321_courtland_ave_e_kitchener_on?autostart=1&?unbranded=1&bgcolor=FFFFFF',
-    title: 'iGUIDE tour of 321 Courtland Avenue East',
+    title: 'iGuide tour of 321 Courtland Avenue East',
     links: tourVideoLinks('Learn how to use advanced measurement'),
   },
   winner: {

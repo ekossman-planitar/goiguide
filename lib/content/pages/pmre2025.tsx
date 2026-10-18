@@ -4,9 +4,9 @@ import type {Block} from '@/components/blocks/Blocks'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 
 export const meta = {
-  title: 'Explore PMRE 2025 with iGUIDE | Enter Sweepstakes Now | iGUIDE',
+  title: 'Explore PMRE 2025 with iGuide | Enter Sweepstakes Now | iGuide',
   description:
-    'We’re sending one lucky winner on an all-expenses-paid trip to PMRE 2025—the ultimate real estate media conference in Las Vegas. Flights, hotel, car service, and full-access passes are all covered.',
+    'We’re sending one lucky winner on an all-expenses-paid trip to PMRE 2025, the ultimate real estate media conference in Las Vegas. Flights, hotel, car service, and full-access passes are all covered.',
   path: '/pmre-2025',
 }
 
@@ -15,7 +15,7 @@ const prizes = [
   {emoji: '✈️', label: 'Round-trip flight', rest: ' from anywhere in the continental US/Canada'},
   {emoji: '🏨', label: '3-night hotel stay', rest: ' at The Palms, Las Vegas'},
   {emoji: '🚗', label: 'Private car service', rest: ' to and from the airport'},
-  {emoji: '🎁', label: 'iGUIDE swag pack', rest: ' to show off at the event'},
+  {emoji: '🎁', label: 'iGuide swag pack', rest: ' to show off at the event'},
 ]
 
 const dates = [
@@ -29,7 +29,7 @@ export const blocks: Block[] = [
   {
     type: 'hero',
     heading: 'Win* a Trip to PMRE 2025!',
-    subheading: 'We’re sending one lucky winner on an all-expenses-paid trip to PMRE 2025—the ultimate real estate media conference in Las Vegas.',
+    subheading: 'We’re sending one lucky winner on an all-expenses-paid trip to PMRE 2025, the ultimate real estate media conference in Las Vegas.',
     // Live used this as the hero background
     media: {type: 'image', image: {src: '/assets/Uploads/Road-to-PMRE_-Export.png', alt: 'Road to PMRE', width: 1440, height: 600}},
   },
@@ -43,7 +43,7 @@ export const blocks: Block[] = [
         <p className="mt-5 text-lg leading-7 text-body">
           Good luck to everyone who entered. Stay tuned to the{' '}
           <a href="https://www.instagram.com/go_iguide/" target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline">
-            iGUIDE Instagram
+            iGuide Instagram
           </a>{' '}
           page to find out who our two winners are!
         </p>

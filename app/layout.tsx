@@ -24,7 +24,7 @@ const pangea = localFont({
 export const metadata: Metadata = {
   // Makes relative canonical and Open Graph URLs absolute
   metadataBase: new URL('https://goiguide.com'),
-  title: 'iGUIDE',
+  title: 'iGuide',
   description: 'Accurate floor plans and 3D virtual tours from a single scan.',
   // Google Search Console verification tag, on every page of the live site
   verification: {google: 'CWS2Ax14FDHr2m7YFeuvcLwPorLoVtLHyO5XWupBsmU'},

@@ -3,7 +3,7 @@ import type {Block} from '@/components/blocks/Blocks'
 import {competitionDescription, cscAnchors, cscBlocks, tourVideoLinks} from './cscShared'
 
 export const meta = {
-  title: '2018 CSC Student Design Challenge | iGUIDE',
+  title: '2018 CSC Student Design Challenge | iGuide',
   description:
     'Explore the Construction Specifications Canada (CSC) Student Design Competition entry for 2018, 48 Ontario St. N., Kitchener, Ontario.',
   path: '/csc/csc2018',
@@ -23,7 +23,7 @@ export const blocks: Block[] = cscBlocks({
   // Live loads this tour with youriguide.com/js/embedded.js (url //youriguide.com/embed/48ontario?autostart=1, bgcolor FFFFFF)
   tour: {
     src: 'https://youriguide.com/embed/48ontario?autostart=1&bgcolor=FFFFFF',
-    title: 'iGUIDE tour of 48 Ontario Street North',
+    title: 'iGuide tour of 48 Ontario Street North',
     links: tourVideoLinks('Learn how to use advanced measurement'),
   },
   winner: {

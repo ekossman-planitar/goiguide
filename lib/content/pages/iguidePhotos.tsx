@@ -3,25 +3,25 @@ import type {Block} from '@/components/blocks/Blocks'
 import {MediaView} from '@/components/blocks/MediaView'
 
 export const meta = {
-  title: 'iGUIDE Photos | iGUIDE',
+  title: 'iGuide Photos | iGuide',
   // NEW description (live had none)
   description:
-    'iGUIDE Photos is a quick and simple way to share your photos, with hosting for up to 150 photos, automatic MLS resizing, agent branding and analytics.',
+    'iGuide Photos is a quick and simple way to share your photos, with hosting for up to 150 photos, automatic MLS resizing, agent branding and analytics.',
   path: '/get-iguide/rep/iguide-photos',
 }
 
 export const blocks: Block[] = [
   {
     type: 'hero',
-    heading: 'iGUIDE Photos',
+    heading: 'iGuide Photos',
     // Live: header background image
     media: {type: 'image', image: {src: '/assets/Uploads/customer-success-inline-showcase_real_estate_photography.jpg', alt: ''}},
   },
   {
     type: 'split',
     background: 'surface',
-    heading: "It's easy to share your iGUIDE photos",
-    body: <p>iGUIDE Photos is a quick and simple way to share your photos and features:</p>,
+    heading: "It's easy to share your iGuide photos",
+    body: <p>iGuide Photos is a quick and simple way to share your photos and features:</p>,
     list: [
       'Hosting up to 150 Photos',
       'Automatic MLS Resizing',
@@ -33,12 +33,12 @@ export const blocks: Block[] = [
       'Feature Sheet Creator',
       'Neighbourhood Map',
     ],
-    media: {type: 'embed', src: 'https://www.youtube.com/embed/ER5Z2z0TZCI', title: 'iGUIDE Photos video'},
+    media: {type: 'embed', src: 'https://www.youtube.com/embed/ER5Z2z0TZCI', title: 'iGuide Photos video'},
   },
   {
     type: 'cards',
     heading: 'Showcase your photos',
-    subheading: 'iGUIDE Photos is packed with professional features your clients will love.',
+    subheading: 'iGuide Photos is packed with professional features your clients will love.',
     align: 'center',
     cards: [
       {
@@ -48,7 +48,7 @@ export const blocks: Block[] = [
       },
       {
         title: 'Easy to use',
-        text: 'Avoid complicated sharing services and deliver photos to your clients via iGUIDE photos.',
+        text: 'Avoid complicated sharing services and deliver photos to your clients via iGuide photos.',
         icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Content-delivery-system__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
       {
@@ -63,15 +63,15 @@ export const blocks: Block[] = [
       },
     ],
   },
-  // Live: embed script (//iguidephotos.com/js/embedded.js) for this iGUIDE Photos gallery; rendered as an iframe of the same URL
+  // Live: embed script (//iguidephotos.com/js/embedded.js) for this iGuide Photos gallery; rendered as an iframe of the same URL
   {
     type: 'custom',
-    heading: 'Explore iGUIDE photos',
+    heading: 'Explore iGuide photos',
     align: 'center',
     background: 'surface',
     children: (
       <MediaView
-        media={{type: 'embed', src: 'https://iguidephotos.com/embed/mjzi2_301_king_st_e_kitchener_on?bgcolor=FFFFFF', title: 'iGUIDE Photos gallery of 301 King St E, Kitchener, ON'}}
+        media={{type: 'embed', src: 'https://iguidephotos.com/embed/mjzi2_301_king_st_e_kitchener_on?bgcolor=FFFFFF', title: 'iGuide Photos gallery of 301 King St E, Kitchener, ON'}}
       />
     ),
   },

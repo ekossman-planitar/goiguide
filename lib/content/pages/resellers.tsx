@@ -4,8 +4,8 @@ import {ResellerDirectory} from '@/components/pages/ResellerDirectory'
 import {RatingRow} from '@/components/sections/RatingRow'
 
 export const meta = {
-  title: 'Find a iGUIDE reseller in your area | iGUIDE',
-  description: 'Ready to start with iGUIDE? Find your local iGUIDE Reseller and discover the impact the PLANIX R1 system can have on your business.',
+  title: 'Find a iGuide reseller in your area | iGuide',
+  description: 'Ready to start with iGuide? Find your local iGuide Reseller and discover the impact the PLANIX R1 system can have on your business.',
   path: '/resellers',
 }
 
@@ -18,7 +18,7 @@ export const blocks: Block[] = [
         <h1 className="text-balance text-[40px] font-bold leading-[normal] text-ink md:text-[56px]">Find a Reseller in your area</h1>
         <div className="mt-6 mb-8 flex flex-wrap items-center justify-between gap-6">
           <p className="text-xl leading-[30px] text-muted">
-            Ready to start with iGUIDE? Find your local Reseller and explore the PLANIX R1 camera system today.
+            Ready to start with iGuide? Find your local Reseller and explore the PLANIX R1 camera system today.
           </p>
           <div className="hidden md:block">
             <RatingRow />

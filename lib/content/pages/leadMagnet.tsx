@@ -6,13 +6,13 @@ import {FormDialogButton} from '@/components/pages/FormDialogButton'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 
 export const meta = {
-  title: 'Experience iGUIDE: Precise floor plans & 3D virtual tours made easy | iGUIDE',
+  title: 'Experience iGuide: Precise floor plans & 3D virtual tours made easy | iGuide',
   description:
-    'Quickly create 3D virtual tours, CAD floor plans and 3D models with the iGUIDE PLANIX camera system. Take 360° photos and 1,000s of measurements in minutes, capturing rich property data.',
+    'Quickly create 3D virtual tours, CAD floor plans and 3D models with the iGuide PLANIX camera system. Take 360° photos and 1,000s of measurements in minutes, capturing rich property data.',
   path: '/get-iguide/iguide/lead-magnet',
 }
 
-const findProvider = {label: 'Find an iGUIDE Service Provider', href: 'https://ion.goiguide.com/', newTab: true}
+const findProvider = {label: 'Find an iGuide Service Provider', href: 'https://ion.goiguide.com/', newTab: true}
 
 /** Live "Learn more" buttons open this HubSpot form in a pop-up */
 const learnMore = (variant: 'primary' | 'secondary') => (
@@ -30,7 +30,7 @@ export const blocks: Block[] = [
         {learnMore('secondary')}
       </div>
     ),
-    media: {type: 'video', src: '/assets/Uploads/iGUIDE-Lead-Magnet-2.mp4', label: 'iGUIDE Lead Magnet video'},
+    media: {type: 'video', src: '/assets/Uploads/iGUIDE-Lead-Magnet-2.mp4', label: 'iGuide Lead Magnet video'},
   },
   {
     type: 'logos',
@@ -45,13 +45,13 @@ export const blocks: Block[] = [
   },
   {
     type: 'cards',
-    heading: 'Why use iGUIDE Lead Magnet?',
+    heading: 'Why use iGuide Lead Magnet?',
     align: 'center',
     columns: 3,
     cards: [
       {
         title: 'Lead gen',
-        text: 'Interested prospects can connect with you directly via your iGUIDE 3D Virtual Tour.',
+        text: 'Interested prospects can connect with you directly via your iGuide 3D Virtual Tour.',
         icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Content-delivery-system__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
       {
@@ -72,7 +72,7 @@ export const blocks: Block[] = [
     background: 'surface',
     children: (
       <div className="mx-auto max-w-4xl">
-        <MediaView media={{type: 'embed', src: 'https://www.youtube.com/embed/AzHvyH_otyU?si=R86S0_Dc0GWw-eYz', title: 'iGUIDE Lead Magnet video'}} />
+        <MediaView media={{type: 'embed', src: 'https://www.youtube.com/embed/AzHvyH_otyU?si=R86S0_Dc0GWw-eYz', title: 'iGuide Lead Magnet video'}} />
       </div>
     ),
   },
@@ -80,16 +80,16 @@ export const blocks: Block[] = [
     type: 'steps',
     heading: 'How it works',
     subheading:
-      'The iGUIDE Lead Magnet is a quick and simple way to connect with interested buyers and prospects. It instantly captures their details and makes the connection.',
+      'The iGuide Lead Magnet is a quick and simple way to connect with interested buyers and prospects. It instantly captures their details and makes the connection.',
     steps: [
       {
         title: 'Connect',
-        body: 'Your iGUIDE Service Provider creates two views of your iGUIDE 3D Virtual Tour (teaser and detailed).',
+        body: 'Your iGuide Service Provider creates two views of your iGuide 3D Virtual Tour (teaser and detailed).',
         image: {src: '/assets/Uploads/2536825a-5c9e-41a6-bb61-0e810681a7b0.jpg', alt: ''},
       },
       {
         title: 'Get leads',
-        body: 'Prospects are shown the iGUIDE teaser view and complete the form to request access to the detailed view.',
+        body: 'Prospects are shown the iGuide teaser view and complete the form to request access to the detailed view.',
         image: {src: '/assets/Uploads/b19c6449-53f1-4923-a67d-c3576e343345.jpg', alt: ''},
       },
       {
@@ -101,9 +101,9 @@ export const blocks: Block[] = [
   },
   {
     type: 'cta',
-    heading: 'Find an iGUIDE Service Provider',
-    text: 'Ready to experience the power of iGUIDE? Connect with an iGUIDE Service Provider to get started.',
-    ctas: [{label: 'Find an iGUIDE Service Provider', href: 'https://ion.goiguide.com/'}],
+    heading: 'Find an iGuide Service Provider',
+    text: 'Ready to experience the power of iGuide? Connect with an iGuide Service Provider to get started.',
+    ctas: [{label: 'Find an iGuide Service Provider', href: 'https://ion.goiguide.com/'}],
   },
   {
     type: 'custom',
@@ -154,34 +154,34 @@ export const blocks: Block[] = [
     quotes: [
       {
         quote:
-          'It used to take me over two-and-a-half hours to go into a home and just do measurements and manually insert them into floor plans. But, with iGUIDE, it was all so quick and easy. I have been able to grow my business by a whopping 375% using iGUIDE, and the cost of the camera has paid for itself a hundredfold, many times over!',
+          'It used to take me over two-and-a-half hours to go into a home and just do measurements and manually insert them into floor plans. But, with iGuide, it was all so quick and easy. I have been able to grow my business by a whopping 375% using iGuide, and the cost of the camera has paid for itself a hundredfold, many times over!',
         name: 'Julie Pringle',
         company: 'Snap Photography',
         logo: {src: '/assets/Uploads/Tetsimonial-Logo-Snap-Photo.png', alt: ''},
       },
       {
         quote:
-          'Even after working day & night, I was unable to grow my business. With the hours I was working, it was just not scalable. That is when I came across Planitar and decided to buy an iGUIDE Camera. I am six times faster than before, the market is huge, and with iGUIDE by my side, I know I’m ready for it.',
+          'Even after working day & night, I was unable to grow my business. With the hours I was working, it was just not scalable. That is when I came across Planitar and decided to buy an iGuide Camera. I am six times faster than before, the market is huge, and with iGuide by my side, I know I’m ready for it.',
         name: 'Alden Morris',
         company: 'Alden Morris Photo',
         logo: {src: '/assets/Uploads/Tetsimonial-Logo-Alden-Morris.png', alt: ''},
       },
       {
         quote:
-          'Can you imagine the industry and an industry player moving in opposite directions? Well, that’s exactly what iGUIDE did to my business. Even during the Real Estate downturn in 2018, I saw a stupendous 255% upward growth. My clients absolutely loved what I was able to offer - great photography, immersive virtual tours, and that too, with a turnaround of fewer than 24 hours. It is a winning combination!',
+          'Can you imagine the industry and an industry player moving in opposite directions? Well, that’s exactly what iGuide did to my business. Even during the Real Estate downturn in 2018, I saw a stupendous 255% upward growth. My clients absolutely loved what I was able to offer - great photography, immersive virtual tours, and that too, with a turnaround of fewer than 24 hours. It is a winning combination!',
         name: 'Kyle Ketchel',
         company: 'Visual Properties LLC',
         logo: {src: '/assets/Uploads/Tetsimonial-Logo-Visual-Properties.png', alt: ''},
       },
       {
         quote:
-          "Adding iGUIDE virtual tours has helped my Realtor clients sell more properties, save more time by showing fewer properties that fit home buyer's needs that they are excited to see and separate themselves from their competition when doing listing presentations.",
+          "Adding iGuide virtual tours has helped my Realtor clients sell more properties, save more time by showing fewer properties that fit home buyer's needs that they are excited to see and separate themselves from their competition when doing listing presentations.",
         name: 'Paul Maynard',
         company: 'Colorful Virtual Tours',
         logo: {src: '/assets/Uploads/Tetsimonial-Logo-Colorful-Virtual-Tours.png', alt: ''},
       },
       {
-        quote: 'I do photos and iGUIDE 3D tour with floor plan for almost every single listing I do. So, it gives me more revenue.',
+        quote: 'I do photos and iGuide 3D tour with floor plan for almost every single listing I do. So, it gives me more revenue.',
         name: 'Todd Wasylyshyn',
         company: 'Nanaimo Photography',
         logo: {src: '/assets/Uploads/Tetsimonial-Logo-Nanaimo-Photo.png', alt: ''},

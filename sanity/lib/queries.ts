@@ -75,13 +75,16 @@ export const RESOURCE_DETAIL_QUERY = defineQuery(`*[_type == $type && slug.curre
   headerVideoUrl,
   customerName,
   customerLocation,
+  customerFacts[]{_key, label, value},
+  customerCta,
   eventDateText,
   eventCta,
   newsCta,
   body[]{
     ...,
     _type == "image" => {${IMAGE_FIELDS}},
-    _type == "ctaBanner" => {..., image{asset->{_id, url}}}
+    _type == "ctaBanner" => {..., image{asset->{_id, url}}},
+    _type == "testimonial" => {..., image{hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}}
   },
   author->{name, role, bio, linkedin, photo{hotspot, crop, asset->{_id, url}}},
   seo{metaTitle, metaDescription, noIndex, ogImage{hotspot, crop, asset->{_id, url}}},

@@ -56,3 +56,16 @@ export function BuilderIcon({className}: IconProps) {
     </svg>
   )
 }
+
+/** Office building with a checklist */
+export function FacilityIcon({className}: IconProps) {
+  return (
+    <svg {...base} className={className} stroke="currentColor">
+      <path d="M6 48V12h24v36M3 48h34" />
+      <path d="M12 18h4M20 18h4M12 25h4M20 25h4M12 32h4M20 32h4M15 48v-8h6v8" />
+      <rect x="32" y="22" width="20" height="26" rx="2" fill={RED} stroke={RED} />
+      <path d="M37 22v-3h10v3" stroke={RED} />
+      <path d="m36 31 2 2 3.5-3.5M36 40l2 2 3.5-3.5M44 32h4M44 41h4" stroke="#fff" />
+    </svg>
+  )
+}

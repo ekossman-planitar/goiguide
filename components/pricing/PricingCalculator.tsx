@@ -179,7 +179,7 @@ export function PricingCalculator() {
           {!noCalc && (
             <div>
               <label htmlFor="Form_PricingCalculatorForm_Package" className={labelCls}>
-                iGUIDE Selector:
+                iGuide Selector:
               </label>
               <Select
                 id="Form_PricingCalculatorForm_Package"

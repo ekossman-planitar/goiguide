@@ -97,7 +97,7 @@ export const resourceTypes = [
     basePath: '/webinars',
     feedPath: '/webinars',
     linkLabel: 'Watch webinar',
-    categories: {'iguide-solutions': 'iGUIDE Solutions', 'q-and-a': 'Q&A', masterclass: 'Masterclass'},
+    categories: {'iguide-solutions': 'iGuide Solutions', 'q-and-a': 'Q&A', masterclass: 'Masterclass'},
   },
   {
     name: 'newsArticle',
@@ -112,13 +112,13 @@ export const resourceTypes = [
   {
     name: 'galleryItem',
     singular: 'Gallery tour',
-    label: 'iGUIDE Gallery',
+    label: 'iGuide Gallery',
     tab: 'iguide-gallery',
     basePath: '/resources-and-media/iguide-gallery',
     feedPath: '/resources-and-media/iguide-gallery',
     linkLabel: 'View tour',
     categories: {
-      'iguide-offering': 'iGUIDE Offering',
+      'iguide-offering': 'iGuide Offering',
       residential: 'Residential',
       'architecture-and-remodeling': 'Architecture & Remodeling',
       'insurance-and-restoration': 'Insurance & Restoration',
@@ -175,7 +175,7 @@ export const RESOURCE_CENTER_PATH = '/resource-center'
 
 /** Page title for the Resource Center (live title) or one of its listing URLs (new) */
 export function resourceCenterTitle(config?: ResourceTypeConfig) {
-  return config ? `${config.label} | iGUIDE Resource Center` : 'iGUIDE Resource Center | Blog, Videos, Webinars & Stories | iGUIDE'
+  return config ? `${config.label} | iGuide Resource Center` : 'iGuide Resource Center | Blog, Videos, Webinars & Stories | iGuide'
 }
 
 /** Gallery items are tours, not dated posts: no date on the card. */
@@ -184,7 +184,7 @@ export const undatedTypes: ReadonlySet<string> = new Set(['galleryItem'])
 /**
  * How a card/entry opens, from the live CMS "LinkOption":
  * page = the entry's own page, external = another site, video = YouTube/Vimeo,
- * download = a file (PDF, ZIP…), tour = an iGUIDE tour.
+ * download = a file (PDF, ZIP…), tour = an iGuide tour.
  */
 export const linkTypes = ['page', 'external', 'video', 'download', 'tour'] as const
 export type LinkType = (typeof linkTypes)[number]

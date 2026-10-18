@@ -32,7 +32,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const e = await getEvent(slug)
   if (!e) return {}
   const path = eventPath(slug)
-  const title = e.seo?.metaTitle || `${e.title} | iGUIDE Events`
+  const title = e.seo?.metaTitle || `${e.title} | iGuide Events`
   const description = e.seo?.metaDescription || e.shortDescription || undefined
   const share = e.seo?.ogImage?.asset ? e.seo.ogImage : e.featuredImage
   const ogImage = share?.asset ? urlFor(share).width(1200).height(630).fit('crop').auto('format').url() : '/assets/iGUIDE-Meta-Thumbnail.png'
@@ -43,7 +43,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     description,
     alternates: {canonical: path},
     robots: e.seo?.noIndex || ended ? {index: false, follow: true} : undefined,
-    openGraph: {type: 'website', title, description, url: path, siteName: 'iGUIDE', locale: 'en_CA', images: [ogImage]},
+    openGraph: {type: 'website', title, description, url: path, siteName: 'iGuide', locale: 'en_CA', images: [ogImage]},
     twitter: {card: 'summary_large_image', title, description, images: [ogImage]},
   }
 }
@@ -96,7 +96,7 @@ export default async function EventPage({params}: Props) {
     ],
     image: img?.asset ? [urlFor(img).width(1600).height(900).fit('crop').url()] : undefined,
     url,
-    organizer: {'@type': 'Organization', name: 'iGUIDE', url: 'https://goiguide.com'},
+    organizer: {'@type': 'Organization', name: 'iGuide', url: 'https://goiguide.com'},
     ...(e.price ? {offers: {'@type': 'Offer', url: e.registrationUrl || url, price: /free/i.test(e.price) ? '0' : undefined, priceCurrency: /free/i.test(e.price) ? 'CAD' : undefined, availability: 'https://schema.org/InStock', description: e.price}} : {}),
   }
 

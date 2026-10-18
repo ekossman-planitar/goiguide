@@ -16,7 +16,7 @@ type Props = {
 }
 
 /**
- * Live iGUIDE tour demo. Tabs on the left (1/4), the embedded tour on the
+ * Live iGuide tour demo. Tabs on the left (1/4), the embedded tour on the
  * right (3/4). Each tour only loads when its tab is first opened, then stays
  * loaded so switching back is instant.
  */

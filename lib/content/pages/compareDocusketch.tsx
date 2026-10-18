@@ -5,17 +5,17 @@ import {ircLogos} from '@/lib/content/industries/shared'
 import {closingCta, compareHeroFormId, comparePlanixImage, logosHeading, ProList} from './compareShared'
 
 export const meta = {
-  title: 'iGUIDE vs DocuSketch: Comparing camera systems for fire investigators, insurance adjusters, & contractors | iGUIDE',
+  title: 'iGuide vs DocuSketch: Comparing camera systems for fire investigators, insurance adjusters, & contractors | iGuide',
   description:
-    'Compare iGUIDE vs. DocuSketch to see why pros choose iGUIDE -faster scans, accurate measurements, full data ownership, and offline access.',
+    'Compare iGuide vs. DocuSketch to see why pros choose iGuide -faster scans, accurate measurements, full data ownership, and offline access.',
   path: '/compare/iguide-vs-docusketch',
 }
 
 export const hero = {
-  heading: 'iGUIDE vs DocuSketch: laser accuracy, no b.s.',
-  subheading: 'You can’t build accuracy on bad data. iGUIDE\'s LiDAR measurements provide defensible property data that stands up to scrutiny.',
+  heading: 'iGuide vs DocuSketch: laser accuracy, no b.s.',
+  subheading: 'You can’t build accuracy on bad data. iGuide\'s LiDAR measurements provide defensible property data that stands up to scrutiny.',
   rating: true,
-  formHeading: 'See how iGUIDE compares to DocuSketch',
+  formHeading: 'See how iGuide compares to DocuSketch',
   formId: compareHeroFormId,
 }
 
@@ -26,33 +26,33 @@ export const blocks: Block[] = [
     type: 'cards',
     id: 'key-reasons',
     align: 'center',
-    heading: 'Why professionals continue to choose iGUIDE over DocuSketch',
-    subheading: 'From the field to the courtroom, iGUIDE gives adjusters and investigators the speed, precision and reliability they need.',
+    heading: 'Why professionals continue to choose iGuide over DocuSketch',
+    subheading: 'From the field to the courtroom, iGuide gives adjusters and investigators the speed, precision and reliability they need.',
     columns: 3,
     cards: [
       {
         title: 'Better accuracy',
-        text: 'Measurement uncertainty is 2% or better on iGUIDE’s provided area totals. DocuSketch makes no quantifiable claim regarding their sketch accuracy.',
+        text: 'Measurement uncertainty is 2% or better on iGuide’s provided area totals. DocuSketch makes no quantifiable claim regarding their sketch accuracy.',
       },
       {
         title: 'Faster & more comprehensive data capture',
-        text: 'While both iGUIDE and Docusketch have a “place and click” workflow, only iGUIDE can comprehensively capture 360° images and LiDAR data simultaneously.',
+        text: 'While both iGuide and Docusketch have a “place and click” workflow, only iGuide can comprehensively capture 360° images and LiDAR data simultaneously.',
       },
       {
         title: 'Flexible Sketch detail levels',
-        text: 'iGUIDE offers three sketch detail levels so you can choose the right sketch for your needs. DocuSketch is one size fits all.',
+        text: 'iGuide offers three sketch detail levels so you can choose the right sketch for your needs. DocuSketch is one size fits all.',
       },
       {
         title: 'Fast delivery',
-        text: 'iGUIDE allows you to get a simple sketch in minutes or a more detailed sketch in less than 24 hours. DocuSketch will deliver a sketch in 2 business days or overnight for an additional fee.',
+        text: 'iGuide allows you to get a simple sketch in minutes or a more detailed sketch in less than 24 hours. DocuSketch will deliver a sketch in 2 business days or overnight for an additional fee.',
       },
       {
         title: 'Offline data control',
-        text: 'DocuSketch ties their 3D tour to their platform. iGUIDE allows for offline download of all assets, including 3D virtual walkthrough, keeping data under your control for legal reasons and long-term storage.',
+        text: 'DocuSketch ties their 3D tour to their platform. iGuide allows for offline download of all assets, including 3D virtual walkthrough, keeping data under your control for legal reasons and long-term storage.',
       },
       {
         title: 'No subscription traps',
-        text: 'iGUIDE keeps it simple. Pay per project, no subscriptions. DocuSketch runs on a credit-based system with subscription plans.',
+        text: 'iGuide keeps it simple. Pay per project, no subscriptions. DocuSketch runs on a credit-based system with subscription plans.',
       },
     ],
   },
@@ -61,7 +61,7 @@ export const blocks: Block[] = [
     background: 'surface',
     quote: {
       quote:
-        'Accurately documenting fire scenes can be a challenge, but iGUIDE has changed that for us. After extensive research and speaking with industry peers, we chose the PLANIX R1—and we couldn’t be happier. The setup is simple, the deliverables are fast and the value is unmatched.',
+        'Accurately documenting fire scenes can be a challenge, but iGuide has changed that for us. After extensive research and speaking with industry peers, we chose the PLANIX R1, and we couldn’t be happier. The setup is simple, the deliverables are fast and the value is unmatched.',
       name: 'Todd Estes',
       role: 'Division Chief - Planning, Investigations',
       company: 'Noblesville Fire Department',
@@ -102,12 +102,12 @@ export const blocks: Block[] = [
     id: 'compare',
     background: 'surface',
     align: 'center',
-    heading: 'iGUIDE wins where it matters most',
+    heading: 'iGuide wins where it matters most',
     subheading: 'Don’t settle. Choose the platform built for compliance, precision and ownership.',
     children: (
       <VsColumns
         ours={{
-          name: 'iGUIDE',
+          name: 'iGuide',
           image: comparePlanixImage,
           items: [
             {text: 'LiDAR measurements', ok: true},
@@ -137,7 +137,7 @@ export const blocks: Block[] = [
     type: 'quote',
     quote: {
       quote:
-        'I can confidently say that the iGUIDE technology has given Deft a huge competitive advantage. Even a very good adjuster who knows how to use a laser can’t match the accuracy we’ll get from iGUIDE. Simply seeing how much value it’s brought to Deft, we fell in love with it!',
+        'I can confidently say that the iGuide technology has given Deft a huge competitive advantage. Even a very good adjuster who knows how to use a laser can’t match the accuracy we’ll get from iGuide. Simply seeing how much value it’s brought to Deft, we fell in love with it!',
       name: 'Jeremiah Kiefer',
       role: 'Founder & CEO',
       company: 'The Deft Group',
@@ -149,22 +149,22 @@ export const blocks: Block[] = [
     heading: 'Frequently asked questions',
     items: [
       {
-        q: 'What’s the difference between iGUIDE and DocuSketch?',
-        a: 'iGUIDE delivers accurate floor plans / sketches, immersive 3D tours and full data ownership—all with faster turnaround and professional-grade hardware. DocuSketch provides basic floor plans and 360° photos but requires cloud-only access, includes less accurate measurements and operates on a subscription-based pricing model.',
+        q: 'What’s the difference between iGuide and DocuSketch?',
+        a: 'iGuide delivers accurate floor plans / sketches, immersive 3D tours and full data ownership, all with faster turnaround and professional-grade hardware. DocuSketch provides basic floor plans and 360° photos but requires cloud-only access, includes less accurate measurements and operates on a subscription-based pricing model.',
       },
       {
-        q: 'Does iGUIDE support ESX file output for Xactimate?',
-        a: 'Yes. iGUIDE includes optional ESX file exports, making it easy to integrate with estimating software like Verisk Xactimate—ideal for insurance adjusters, restoration contractors and forensic documentation. This helps streamline workflows and ensures deliverables are court-ready when needed.',
+        q: 'Does iGuide support ESX file output for Xactimate?',
+        a: 'Yes. iGuide includes optional ESX file exports, making it easy to integrate with estimating software like Verisk Xactimate, ideal for insurance adjusters, restoration contractors and forensic documentation. This helps streamline workflows and ensures deliverables are court-ready when needed.',
       },
       {
-        q: 'Can I store and access iGUIDE data offline?',
-        a: 'Yes. iGUIDE allows users to download and archive all project files locally. This is a key advantage over DocuSketch, which requires cloud-based access and does not provide raw data storage—raising concerns for chain of custody in legal or insurance workflows.',
+        q: 'Can I store and access iGuide data offline?',
+        a: 'Yes. iGuide allows users to download and archive all project files locally. This is a key advantage over DocuSketch, which requires cloud-based access and does not provide raw data storage, raising concerns for chain of custody in legal or insurance workflows.',
       },
     ],
   },
   closingCta({
     heading: 'Ready to upgrade to a professional solution?',
     text: 'Professional tools mean professional results and that’s what sets you apart.',
-    secondary: {label: 'Find an iGUIDE Pro', href: 'https://ion.goiguide.com/'},
+    secondary: {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
   }),
 ]
