@@ -9,7 +9,10 @@ import {DownloadIcon} from '@sanity/icons/Download'
 import {HomeIcon} from '@sanity/icons/Home'
 import {ImageIcon} from '@sanity/icons/Image'
 import {UsersIcon} from '@sanity/icons/Users'
+import {BlockElementIcon} from '@sanity/icons/BlockElement'
+import {FolderIcon} from '@sanity/icons/Folder'
 import {catalogues} from '../lib/catalogue'
+import {lpLayouts} from '../lib/landingPages/layouts'
 import {resourceTypes} from '../lib/resourceTypes'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -26,7 +29,53 @@ export const structure: StructureResolver = (S) =>
         .title('Landing pages (paid media)')
         .id('landingPages')
         .icon(RocketIcon)
-        .child(S.documentTypeList('landingPage').title('Landing pages').defaultOrdering([{field: 'path', direction: 'asc'}])),
+        .child(
+          S.list()
+            .title('Landing pages')
+            .items([
+              S.listItem()
+                .title('All landing pages')
+                .id('lp-all')
+                .icon(RocketIcon)
+                .child(S.documentTypeList('landingPage').title('All landing pages').defaultOrdering([{field: 'path', direction: 'asc'}])),
+              S.divider(),
+              // Each folder opens the pages in it; "+" there creates the page inside that folder
+              S.listItem()
+                .title('Folders')
+                .id('lp-folders')
+                .icon(FolderIcon)
+                .child(
+                  S.documentTypeList('landingPageFolder')
+                    .title('Folders')
+                    .defaultOrdering([{field: 'title', direction: 'asc'}])
+                    .child((folderId) =>
+                      S.documentList()
+                        .title('Landing pages in this folder')
+                        .schemaType('landingPage')
+                        .filter('_type == "landingPage" && folder._ref == $folderId')
+                        .params({folderId: folderId.replace(/^drafts\./, '')})
+                        .defaultOrdering([{field: 'path', direction: 'asc'}])
+                        .initialValueTemplates(lpLayouts.map((l) => S.initialValueTemplateItem(`landingPage-${l.id}`, {folderId: folderId.replace(/^drafts\./, '')}))),
+                    ),
+                ),
+              S.listItem()
+                .title('Not in a folder')
+                .id('lp-unfiled')
+                .child(
+                  S.documentList()
+                    .title('Not in a folder')
+                    .schemaType('landingPage')
+                    .filter('_type == "landingPage" && !defined(folder)')
+                    .defaultOrdering([{field: 'path', direction: 'asc'}]),
+                ),
+              S.divider(),
+              S.listItem()
+                .title('Edit folders')
+                .id('lp-folder-admin')
+                .icon(FolderIcon)
+                .child(S.documentTypeList('landingPageFolder').title('Edit folders')),
+            ]),
+        ),
       S.divider(),
       S.listItem()
         .title('Resource Center')
@@ -80,6 +129,7 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       S.documentTypeListItem('announcement').title('Announcements').icon(BellIcon),
       S.documentTypeListItem('sitePopup').title('Pop-ups').icon(SparklesIcon),
+      S.documentTypeListItem('sidebarPromo').title('Blog sidebar promos').icon(BlockElementIcon),
       S.listItem()
         .title('Logos')
         .icon(ImageIcon)

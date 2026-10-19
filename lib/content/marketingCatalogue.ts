@@ -7,6 +7,7 @@
  */
 
 export const MARKETING_CATALOGUE_SUPPORT_PATH = '/support/marketing-catalogue'
+export const MARKETING_CATALOGUE_GETTING_STARTED_PATH = `${MARKETING_CATALOGUE_SUPPORT_PATH}/getting-started`
 export const HELP_CENTER_URL = 'https://help.youriguide.com'
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@iGUIDEtv'
 
@@ -79,6 +80,7 @@ export type CatalogueAsset = {
 export const catalogueAssets: CatalogueAsset[] = [
   {
     id: "re-agent-brochure",
+    description: "Leave-behind for agent meetings that shows what iGuide adds to their listings.",
     image: {src: "/assets/marketing-catalogue/re-agent-brochure.webp", width: 960, height: 633},
     title: "Real Estate Agent Brochure",
     category: "brochures",
@@ -95,6 +97,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "listing-flyer-2024",
+    description: "Hand to agents to show how an iGuide listing stands out from photos alone.",
     image: {src: "/assets/marketing-catalogue/listing-flyer-2024.webp", width: 960, height: 617},
     title: "2024 Real Estate Agent Listing Flyer",
     category: "brochures",
@@ -111,6 +114,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "listing-brochure",
+    description: "Editable brochure files you can brand with your logo and contact details.",
     image: {src: "/assets/marketing-catalogue/listing-brochure.webp", width: 960, height: 790},
     title: "iGuide Listing Brochure",
     category: "brochures",
@@ -128,6 +132,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "cad-commercial",
+    description: "Quote commercial CAD work with clear deliverables and pricing.",
     image: {src: "/assets/marketing-catalogue/cad-commercial.webp", width: 960, height: 640},
     title: "Commercial CAD Solutions",
     category: "one-pagers",
@@ -149,6 +154,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "cad-residential",
+    description: "Quote residential CAD work with clear deliverables and pricing.",
     image: {src: "/assets/marketing-catalogue/cad-residential.webp", width: 960, height: 640},
     title: "Residential CAD Solutions",
     category: "one-pagers",
@@ -171,6 +177,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "site-plans-photographers",
+    description: "Pitch Site Plans as an add-on to grow your value per shoot.",
     campaign: "site-plans",
     image: {src: "/assets/marketing-catalogue/site-plans-photographers.webp", width: 960, height: 640},
     title: "Site Plans for Real Estate Photographers & Media Companies",
@@ -188,6 +195,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "site-plans-agents",
+    description: "Show agents how Site Plans add exterior context to their listings.",
     campaign: "site-plans",
     image: {src: "/assets/marketing-catalogue/site-plans-agents.webp", width: 960, height: 640},
     title: "Site Plans for Real Estate Agents",
@@ -205,6 +213,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "au-complete-listing",
+    description: "Show Australian agents how iGuide completes their realestate.com.au listing.",
     campaign: "australia-launch",
     image: {src: "/assets/marketing-catalogue/au-complete-listing.webp", width: 960, height: 392},
     title: "Complete Your Listing on realestate.com.au",
@@ -223,6 +232,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "pres-residential",
+    description: "Ready-made deck for pitching iGuide services to agents and brokerages.",
     image: {src: "/assets/marketing-catalogue/pres-residential.webp", width: 960, height: 455},
     title: "iGuide Residential Services Introduction 2024",
     category: "presentations",
@@ -239,6 +249,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "pres-commercial",
+    description: "Ready-made deck for pitching iGuide to property managers and AEC firms.",
     image: {src: "/assets/marketing-catalogue/pres-commercial.webp", width: 960, height: 455},
     title: "iGuide Commercial Services Introduction 2024",
     category: "presentations",
@@ -255,7 +266,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "pres-measurements",
-    description: "Slides on key points for your next office measurement presentation.",
+    description: "Explain measurement standards and accuracy in your next office presentation.",
     image: {src: "/assets/marketing-catalogue/pres-measurements.webp", width: 960, height: 468},
     title: "iGuide Property Measurements Presentation",
     category: "presentations",
@@ -273,7 +284,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "ebook-revenue",
-    description: "Moneymaking tips to expand your photography services and boost your income.",
+    description: "Ideas for new services that boost your income per property.",
     image: {src: "/assets/marketing-catalogue/ebook-revenue.webp", width: 960, height: 749},
     title: "7 Extra Revenue Streams with iGuide",
     category: "ebooks",
@@ -290,6 +301,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "checklist-staging",
+    description: "Send to sellers before a shoot so every room is ready to capture.",
     image: {src: "/assets/marketing-catalogue/checklist-staging.webp", width: 960, height: 799},
     title: "iGuide Staging Checklist",
     category: "checklists",
@@ -306,6 +318,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "checklist-walkthrough",
+    description: "Use on site so nothing gets missed during a capture.",
     image: {src: "/assets/marketing-catalogue/checklist-walkthrough.webp", width: 960, height: 746},
     title: "iGuide Walkthrough Checklist",
     category: "checklists",
@@ -322,6 +335,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "checklist-elevations",
+    description: "Check site requirements before capturing for elevation drawings.",
     image: {src: "/assets/marketing-catalogue/checklist-elevations.webp", width: 960, height: 711},
     title: "Advanced Capture Requirements for Elevation Drawings",
     category: "checklists",
@@ -338,6 +352,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "photos-rre",
+    description: "Residential imagery for your website, social posts and ads.",
     image: {src: "/assets/marketing-catalogue/photos-rre.webp", width: 960, height: 640},
     title: "Residential Real Estate Photos",
     category: "photos",
@@ -354,6 +369,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "photos-r1",
+    description: "Product shots of the PLANIX R1 for your website and promotions.",
     image: {src: "/assets/marketing-catalogue/photos-r1.webp", width: 960, height: 811},
     title: "PLANIX R1 Photos",
     category: "photos",
@@ -372,6 +388,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "photos-pro",
+    description: "Product shots of the PLANIX Pro camera for your website and promotions.",
     image: {src: "/assets/marketing-catalogue/photos-pro.webp", width: 960, height: 502},
     title: "PLANIX Pro Camera Photos",
     category: "photos",
@@ -390,6 +407,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "photos-irc",
+    description: "Insurance and restoration imagery for pitching adjusters and contractors.",
     image: {src: "/assets/marketing-catalogue/photos-irc.webp", width: 960, height: 639},
     title: "Insurance & Restoration Photos",
     category: "photos",
@@ -406,6 +424,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "photos-ae",
+    description: "Architecture and engineering imagery for pitching AEC clients.",
     image: {src: "/assets/marketing-catalogue/photos-ae.webp", width: 960, height: 571},
     title: "Architecture & Engineering Photos",
     category: "photos",
@@ -422,6 +441,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "yt-agent-campaign",
+    description: "Share with agents to show how iGuide helps them sell faster.",
     campaign: "agent-campaign",
     title: "iGuide Agent Campaign: Sell Smarter. Sell Faster.",
     category: "videos",
@@ -438,6 +458,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "yt-au-launch",
+    description: "Introduce iGuide to Australian agents and vendors.",
     campaign: "australia-launch",
     title: "iGuide Australia Launch",
     category: "videos",
@@ -454,6 +475,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "yt-planix-r1-launch",
+    description: "Introduce the PLANIX R1 camera to clients and prospects.",
     title: "PLANIX R1 Launch Video",
     category: "videos",
     audiences: ["real-estate", "commercial", "insurance"],
@@ -469,6 +491,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "yt-planix-r1-capture",
+    description: "Show clients how a capture works, start to finish.",
     title: "PLANIX R1 Capture Process",
     category: "videos",
     audiences: ["real-estate", "commercial", "insurance"],
@@ -484,6 +507,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-site-plans",
+    description: "Post to social to promote Site Plans to agents.",
     campaign: "site-plans",
     image: {src: "/assets/marketing-catalogue/video-site-plans.webp", width: 960, height: 811},
     title: "Site Plans",
@@ -512,6 +536,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-site-plans-pool",
+    description: "Post to social to show how Site Plans present outdoor spaces.",
     campaign: "site-plans",
     image: {src: "/assets/marketing-catalogue/video-site-plans-pool.webp", width: 960, height: 811},
     title: "Site Plans: Home & Pool",
@@ -540,6 +565,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-agent-listings-with-iguide-sell-39-faster-than-photos-alone",
+    description: "Short reel with a headline stat agents remember.",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-listings-with-iguide-sell-39-faster-than-photos-alone.webp", width: 960, height: 541},
     title: "Listings with iGuide Sell 39% Faster Than Photos Alone",
@@ -558,6 +584,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-agent-get-a-listing-do-over-with-iguide",
+    description: "Short reel for agents whose listings need a refresh.",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-get-a-listing-do-over-with-iguide.webp", width: 960, height: 540},
     title: "Get a Listing Do-over with iGuide",
@@ -576,6 +603,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-agent-start-harnessing-the-power-of-iguide",
+    description: "Short reel that introduces iGuide to agents.",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-start-harnessing-the-power-of-iguide.webp", width: 960, height: 536},
     title: "Start Harnessing the Power of iGuide",
@@ -594,6 +622,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-agent-r1-montage",
+    description: "Quick PLANIX R1 montage for social posts.",
     campaign: "agent-campaign",
     image: {src: "/assets/marketing-catalogue/video-agent-r1-montage.webp", width: 800, height: 450},
     title: "R1 Montage",
@@ -612,7 +641,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-2d-furniture",
-    description: "Instagram reel, ready to post.",
+    description: "Instagram reel showing 2D furniture and objects, ready to post.",
     image: {src: "/assets/marketing-catalogue/video-2d-furniture.webp", width: 679, height: 960},
     title: "iGuide 2D Furniture & Objects Reel",
     category: "videos",
@@ -630,6 +659,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "video-au-launch",
+    description: "Launch videos for Australian social channels, in every format.",
     campaign: "australia-launch",
     title: "iGuide Australia Launch",
     category: "videos",
@@ -657,6 +687,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "drawing-advanced-drawing-package",
+    description: "Show clients the full CAD package before they order.",
     image: {src: "/assets/marketing-catalogue/drawing-advanced-drawing-package.webp", width: 960, height: 768},
     title: "Advanced Drawing Package",
     category: "drawing-samples",
@@ -678,6 +709,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "drawing-floor-plans",
+    description: "Sample CAD floor plans to share with prospective clients.",
     image: {src: "/assets/marketing-catalogue/drawing-floor-plans.webp", width: 960, height: 640},
     title: "Floor Plans",
     category: "drawing-samples",
@@ -699,6 +731,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "drawing-3d-model",
+    description: "Sample 3D model to show what clients receive.",
     image: {src: "/assets/marketing-catalogue/drawing-3d-model.webp", width: 960, height: 640},
     title: "3D Model",
     category: "drawing-samples",
@@ -720,6 +753,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "drawing-exterior-elevations",
+    description: "Sample exterior elevations to share with design and AEC clients.",
     image: {src: "/assets/marketing-catalogue/drawing-exterior-elevations.webp", width: 960, height: 640},
     title: "Exterior Elevations",
     category: "drawing-samples",
@@ -741,6 +775,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "drawing-reflected-ceiling-plans",
+    description: "Sample reflected ceiling plans for fit-out and renovation clients.",
     image: {src: "/assets/marketing-catalogue/drawing-reflected-ceiling-plans.webp", width: 960, height: 640},
     title: "Reflected Ceiling Plans",
     category: "drawing-samples",
@@ -762,6 +797,7 @@ export const catalogueAssets: CatalogueAsset[] = [
   },
   {
     id: "drawing-roof-plans",
+    description: "Sample roof plans for roofing, solar and AEC clients.",
     image: {src: "/assets/marketing-catalogue/drawing-roof-plans.webp", width: 960, height: 640},
     title: "Roof Plans",
     category: "drawing-samples",
@@ -781,4 +817,47 @@ export const catalogueAssets: CatalogueAsset[] = [
       }
     ]
   }
+]
+
+/**
+ * Getting started: demo tours operators can embed on their own website before
+ * they have a property of their own to show. Tours already used as demos on
+ * goiguide.com, shown unbranded (no agent or operator name and photo). Used on
+ * /support/marketing-catalogue/getting-started. Confirm with product which tours
+ * may be shared before launch.
+ */
+export const catalogueDemoTours: {id: string; label: string; description: string; src: string}[] = [
+  {
+    id: 'residential',
+    label: 'Residential home with Site Plan',
+    description: 'A single-family home with interior tour, floor plans and Site Plan.',
+    src: 'https://youriguide.com/embed/334_south_lake_shore_drive_thousand_oaks?unbranded=1&autostart=1&bgcolor=FFFFFF',
+  },
+  {
+    id: 'insurance',
+    label: 'Insurance & restoration sample',
+    description: 'A sample property documented for a claim.',
+    src: 'https://youriguide.com/embed/urwkb_1121_sample_road_kitchener_on?unbranded=1&autostart=1&bgcolor=FFFFFF',
+  },
+  {
+    id: 'commercial',
+    label: 'Commercial facility',
+    description: 'A commercial building captured for facility documentation.',
+    src: 'https://youriguide.com/embed/v4H2RMIUYYJDD1?unbranded=1&autostart=1&bgcolor=FFFFFF',
+  },
+]
+
+/** Getting started: the starter downloads (asset IDs above) for each step */
+export const catalogueStarterKit: {title: string; text: string; assetIds: string[]; links?: {label: string; href: string}[]}[] = [
+  {
+    title: 'Prepare your first clients',
+    text: 'Send the staging checklist before a shoot and use the walkthrough checklist on site.',
+    assetIds: ['checklist-staging', 'checklist-walkthrough'],
+  },
+  {
+    title: 'Start promoting your services',
+    text: 'Leave a brochure with agents and use our photos on your website and social channels.',
+    assetIds: ['re-agent-brochure', 'photos-rre'],
+    links: [{label: 'iGuide Branding Guide', href: 'https://help.youriguide.com/hc/en-us/articles/28224993459730'}],
+  },
 ]

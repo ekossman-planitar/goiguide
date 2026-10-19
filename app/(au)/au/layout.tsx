@@ -1,5 +1,6 @@
 import type {Metadata} from 'next'
 import {AuOfferBar} from '@/components/au/AuOfferBar'
+import {AnnouncementBar} from '@/components/layout/AnnouncementBar'
 import {SiteFooter} from '@/components/layout/SiteFooter'
 import {SiteHeader} from '@/components/layout/SiteHeader'
 import {SitePopups} from '@/components/popup/SitePopups'
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
 export default function AuLayout({children}: {children: React.ReactNode}) {
   return (
     <>
+      {/* Sitewide announcements show here too, as on live */}
+      <AnnouncementBar />
       <AuOfferBar />
       <SiteHeader nav={auNav} homeHref="/au" />
       <main className="flex-1" lang="en-AU">

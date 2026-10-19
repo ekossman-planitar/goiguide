@@ -15,6 +15,13 @@ function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; 
     widths.map((w, i) => <rect key={i} x={x} y={yy + i * 5} width={w} height={h} rx={1} fill={i === 0 ? ink : soft} />)
   switch (type) {
     case 'lpHero':
+      if (heroStyle === 'banner')
+        return (
+          <g>
+            <rect x={0} y={y - 1} width={W} height={34} fill={blue} opacity={0.85} />
+            {[54, 40].map((w, i) => <rect key={i} x={10} y={y + 10 + i * 7} width={w} height={i === 0 ? 4 : 3} rx={1} fill="#fff" opacity={i ? 0.7 : 1} />)}
+          </g>
+        )
       if (heroStyle === 'centered')
         return (
           <g>
@@ -38,6 +45,14 @@ function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; 
               <path d={`M${86} ${y + 13} l8 5 l-8 5 z`} fill="#fff" />
             </g>
           )}
+        </g>
+      )
+    case 'lpTourDemo':
+      return (
+        <g>
+          {lines(8, y + 3, [50])}
+          {[0, 1, 2].map((i) => <rect key={i} x={8 + i * 36} y={y + 10} width={30} height={3} rx={1} fill={soft} />)}
+          <rect x={8} y={y + 16} width={104} height={20} rx={2} fill={soft} />
         </g>
       )
     case 'lpLogos':
@@ -122,6 +137,17 @@ function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; 
           ))}
         </g>
       )
+    case 'lpResources':
+      return (
+        <g>
+          {[0, 1, 2].map((i) => (
+            <g key={i}>
+              <rect x={10 + i * 35} y={y + 4} width={30} height={12} rx={2} fill={soft} />
+              <rect x={10 + i * 35} y={y + 18} width={24} height={2.5} rx={1} fill={soft} />
+            </g>
+          ))}
+        </g>
+      )
     case 'lpForm':
       return (
         <g>
@@ -155,7 +181,7 @@ function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; 
   }
 }
 
-const heights: Partial<Record<LpSectionType, number>> = {lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
+const heights: Partial<Record<LpSectionType, number>> = {lpTourDemo: 40, lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
 
 export function LayoutWireframe({sections, heroStyle, width = 160}: {sections: LpSectionType[]; heroStyle: HeroStyle; width?: number}) {
   // Top of each band, computed up front

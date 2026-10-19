@@ -1,3 +1,4 @@
+import {GLOBAL_SITE_HREF} from './geo'
 import {
   Aperture,
   BookOpen,
@@ -143,6 +144,6 @@ export const headerButtons = {
 export const auNav: NavItem[] = [
   {label: 'For agents', href: '/au/residential-real-estate'},
   {label: 'For photographers', href: '/au/real-estate-photography'},
-  {label: 'Offer terms', href: '/au/immersive-campaign-terms-and-conditions'},
-  {label: 'Global site', href: '/'},
+  // Stops Australian visitors being sent back to /au from the global homepage
+  {label: 'Global site', href: GLOBAL_SITE_HREF},
 ]

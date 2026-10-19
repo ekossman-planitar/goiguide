@@ -1,11 +1,14 @@
 import {ArrowRight} from './icons'
 import {SmartLink} from './SmartLink'
 
-const styles =
-  'inline-flex items-center gap-2 rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink'
+const base = 'inline-flex items-center gap-2 rounded-[28px] px-3 py-2 text-xs leading-[18px] font-semibold text-ink'
 
-/** Cream pill, as used above hero and section headings on the live site. A link when `href` is set. */
-export function Pill({label, href}: {label: string; href?: string}) {
+/**
+ * Callout pill above hero and section headings (light grey). A link when `href` is set.
+ * On a grey section use tone="white" so it stays visible.
+ */
+export function Pill({label, href, tone = 'grey'}: {label: string; href?: string; tone?: 'grey' | 'white'}) {
+  const styles = `${base} ${tone === 'white' ? 'bg-white' : 'bg-cream'}`
   if (!href) return <span className={styles}>{label}</span>
   return (
     <SmartLink href={href} className={`${styles} transition-opacity hover:opacity-85`}>

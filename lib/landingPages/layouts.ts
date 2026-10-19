@@ -15,13 +15,15 @@ export type LpSectionType =
   | 'lpStats'
   | 'lpCompare'
   | 'lpTabs'
+  | 'lpTourDemo'
   | 'lpVideos'
+  | 'lpResources'
   | 'lpForm'
   | 'lpFaq'
   | 'lpCta'
   | 'lpNotice'
 
-export type HeroStyle = 'form' | 'media' | 'centered'
+export type HeroStyle = 'form' | 'media' | 'centered' | 'banner'
 
 export type LpLayout = {
   id: string
@@ -30,6 +32,8 @@ export type LpLayout = {
   bestFor: string
   heroStyle: HeroStyle
   sections: LpSectionType[]
+  /** Page header and footer: the stripped landing page bar (default) or the full site navigation */
+  chrome?: 'landing' | 'site'
 }
 
 export const lpLayouts: LpLayout[] = [
@@ -75,6 +79,14 @@ export const lpLayouts: LpLayout[] = [
     heroStyle: 'centered',
     sections: ['lpHero', 'lpFeatures', 'lpForm'],
   },
+  {
+    id: 'thank-you',
+    name: 'Thank-you page',
+    bestFor: 'After a form or booking: full site navigation, banner, next steps, live tour and testimonials. Hidden from search.',
+    heroStyle: 'banner',
+    chrome: 'site',
+    sections: ['lpHero', 'lpFeatures', 'lpLogos', 'lpTourDemo', 'lpTestimonials'],
+  },
 ]
 
 export const getLpLayout = (id: string | undefined) => lpLayouts.find((l) => l.id === id) ?? lpLayouts[0]
@@ -90,7 +102,9 @@ export const lpSectionLabels: Record<LpSectionType, string> = {
   lpStats: 'Stats',
   lpCompare: 'Comparison table',
   lpTabs: 'Tabs (samples)',
+  lpTourDemo: 'Live tour with tips',
   lpVideos: 'Video row',
+  lpResources: 'Resource cards',
   lpForm: 'Form',
   lpFaq: 'FAQ',
   lpCta: 'Call to action',

@@ -118,6 +118,7 @@ function YouTubeCard({asset}: {asset: CatalogueAsset}) {
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-lg leading-snug font-semibold text-ink">{asset.title}</h3>
         <p className="mt-1 text-sm text-muted">YouTube video</p>
+        {asset.description && <p className="mt-2 text-sm leading-5 text-body">{asset.description}</p>}
         <a
           href={asset.files[0].href}
           target="_blank"
@@ -149,7 +150,7 @@ function AssetCard({asset}: {asset: CatalogueAsset}) {
           {asset.note && ` · ${asset.note}`}
           {!single && ` · ${asset.files.length} versions`}
         </p>
-        {asset.description && <p className="mt-2 line-clamp-2 text-sm leading-5 text-body">{asset.description}</p>}
+        {asset.description && <p className="mt-2 text-sm leading-5 text-body">{asset.description}</p>}
         <div className="mt-auto flex flex-wrap gap-2 pt-5">
           {asset.files.map((file) => (
             <DownloadLink key={file.href} asset={asset} file={file} single={single} />

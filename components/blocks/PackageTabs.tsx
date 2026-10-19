@@ -73,7 +73,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
               <h3 className="text-2xl font-semibold text-ink">{tab.heading}</h3>
-              <p className="mt-4 text-base leading-7 text-body">{tab.text}</p>
+              <p className="mt-4 text-base leading-7 whitespace-pre-line text-body">{tab.text}</p>
               <CheckList items={tab.list} className="mt-6" />
             </div>
             <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6">

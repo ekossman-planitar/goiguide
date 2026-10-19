@@ -1,6 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {CalendarIcon} from '@sanity/icons/Calendar'
-import {attendanceModes, DEFAULT_TIME_ZONE, eventCategories, eventTimeZones, eventTypes} from '../../../lib/events'
+import {attendanceModes, DEFAULT_TIME_ZONE, eventCategories, eventTimeZones, eventTypes, sessionFormats} from '../../../lib/events'
 
 type Doc = {startAt?: string; endAt?: string; attendance?: string}
 const isOnline = (d: Doc | undefined) => d?.attendance === 'online'
@@ -135,8 +135,64 @@ export const event = defineType({
             defineField({name: 'name', title: 'Name', type: 'string', validation: (r) => r.required()}),
             defineField({name: 'role', title: 'Role / company', type: 'string'}),
             defineField({name: 'photo', title: 'Photo', type: 'image', options: {hotspot: true}}),
+            defineField({
+              name: 'linkedin',
+              title: 'LinkedIn profile (optional)',
+              type: 'url',
+              validation: (r) => r.uri({scheme: ['https']}),
+            }),
           ],
           preview: {select: {title: 'name', subtitle: 'role', media: 'photo'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'sessions',
+      title: 'On stage: sessions',
+      type: 'array',
+      group: 'content',
+      description: 'Talks, panels or demos iGuide people are giving at this event. Shown as an "On stage" section, and the speakers get an "On stage" badge.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'session',
+          fields: [
+            defineField({name: 'title', title: 'Session title', type: 'string', validation: (r) => r.required()}),
+            defineField({name: 'format', title: 'Format', type: 'string', options: {list: sessionFormats.map(({value, title}) => ({value, title}))}, initialValue: 'talk'}),
+            defineField({name: 'startAt', title: 'Starts', type: 'datetime', description: 'In the event time zone above.'}),
+            defineField({name: 'endAt', title: 'Ends', type: 'datetime'}),
+            defineField({name: 'stage', title: 'Stage / room', type: 'string', description: 'e.g. Main Stage, Room 204'}),
+            defineField({name: 'description', title: 'Description', type: 'text', rows: 3}),
+            defineField({
+              name: 'presenters',
+              title: 'Presenters',
+              type: 'array',
+              of: [{type: 'string'}],
+              description: 'Type the names exactly as in "Speakers" above so their photos and LinkedIn links show.',
+            }),
+          ],
+          preview: {
+            select: {title: 'title', format: 'format', stage: 'stage'},
+            prepare: ({title, format, stage}) => ({title, subtitle: [sessionFormats.find((f) => f.value === format)?.title, stage].filter(Boolean).join(' · ')}),
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'faq',
+      title: 'FAQ',
+      type: 'array',
+      group: 'content',
+      description: 'Shown at the bottom of the event page.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'faqItem',
+          fields: [
+            defineField({name: 'question', title: 'Question', type: 'string', validation: (r) => r.required()}),
+            defineField({name: 'answer', title: 'Answer', type: 'text', rows: 4, validation: (r) => r.required()}),
+          ],
+          preview: {select: {title: 'question', subtitle: 'answer'}},
         }),
       ],
     }),

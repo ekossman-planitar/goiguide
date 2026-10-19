@@ -6,7 +6,8 @@
  * Never overwrites a page or testimonial that already exists (so Studio edits
  * are safe), unless you pass --overwrite.
  *
- * Needs the logo bands from scripts/seed-cms-library.mjs (run that first).
+ * Needs the logo bands from scripts/seed-cms-library.mjs (run that first): each page gets its
+ * own copy of a band's logo list, so editing a landing page never changes the site's bands.
  * Run from the repo root while logged in to the Sanity CLI:
  *   npx sanity exec scripts/seed-landing-pages.mjs --with-user-token
  */
@@ -39,6 +40,13 @@ async function resolve(value) {
     if ('img' in value) {
       const id = await upload(value.img)
       return id ? {_type: 'image', alt: value.alt, asset: {_type: 'reference', _ref: id}} : undefined
+    }
+    // {logosFrom: '<band id>'}: copy that band's logo list into this section
+    if ('logosFrom' in value) {
+      const {logosFrom, ...rest} = value
+      const band = await client.getDocument(logosFrom)
+      const logos = (band?.logos ?? []).map((r, i) => ({_type: 'reference', _ref: r._ref, _key: `l${i}`}))
+      return {...(await resolve(rest)), logos}
     }
     if ('ref' in value) return {_type: 'reference', _ref: value.ref, ...('_key' in value ? {_key: value._key} : {})}
     const out = {}

@@ -118,6 +118,7 @@ export const lpSections = [
           {title: 'Text left, form right', value: 'form'},
           {title: 'Text left, media right', value: 'media'},
           {title: 'Centred text (form or buttons below)', value: 'centered'},
+          {title: 'Banner: text over a full-width image', value: 'banner'},
         ],
         layout: 'radio',
       },
@@ -129,24 +130,55 @@ export const lpSections = [
     defineField({name: 'buttons', title: 'Buttons', type: 'array', of: [defineArrayMember({type: 'lpButton'})], validation: (rule) => rule.max(2)}),
     defineField({name: 'showRating', title: 'Show the "4.9/5 based on 30+ reviews" line', type: 'boolean', initialValue: false}),
     defineField({name: 'media', title: 'Media', type: 'lpMedia', hidden: ({parent}) => parent?.style !== 'media'}),
+    {...imageWithAlt('backgroundImage', 'Background image', 'Shown behind the text, darkened so the white text stays readable.'), hidden: ({parent}: {parent?: {style?: string}}) => parent?.style !== 'banner'},
     defineField({name: 'formHeading', title: 'Form heading', type: 'string', hidden: ({parent}) => parent?.style === 'media'}),
+    defineField({name: 'formText', title: 'Text under the form heading', type: 'text', rows: 2, hidden: ({parent}) => parent?.style === 'media'}),
+    defineField({
+      name: 'centerText',
+      title: 'Centre the text, with the form below it',
+      type: 'boolean',
+      initialValue: false,
+      hidden: ({parent}) => parent?.style !== 'banner',
+    }),
+    defineField({
+      name: 'meetingsUrl',
+      title: 'HubSpot meetings calendar link (instead of a form)',
+      type: 'url',
+      hidden: ({parent}) => parent?.style !== 'form',
+      description: 'e.g. https://meetings.planitar.com/meetings/iguide-sales/… Shows the booking calendar where the form would be.',
+    }),
     defineField({
       name: 'hubspotFormId',
       title: 'HubSpot form ID',
       type: 'string',
       hidden: ({parent}) => parent?.style === 'media',
-      description: 'From HubSpot → Marketing → Forms → (form) → Share → Embed code: the formId value.',
+      description: 'From HubSpot → Marketing → Forms → (form) → Share → Embed code: the formId value. On a banner hero the form shows in a white card beside the headline; leave empty for a text-only banner.',
     }),
   ]),
   section('lpLogos', [
     heading,
     defineField({
+      name: 'logos',
+      title: 'Logos',
+      type: 'array',
+      description:
+        'Logos for this landing page only: changes here never affect the logo rows on the rest of the site. Pick from the shared logo library (Logos → All client logos). Drag to reorder.',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'clientLogo'}]})],
+      validation: (rule) =>
+        rule.custom((logos, context) =>
+          (logos as unknown[] | undefined)?.length || (context.parent as {band?: unknown} | undefined)?.band ? true : 'Add at least one logo',
+        ),
+    }),
+    // Before 2026-10-19 landing pages pointed at a shared site logo band. Kept only so older
+    // pages keep showing their logos until scripts/detach-landing-logo-bands.mjs copies them in.
+    defineField({
       name: 'band',
-      title: 'Logo band',
+      title: 'Shared logo band (old)',
       type: 'reference',
       to: [{type: 'logoBand'}],
-      description: 'Pick a band from Logos → Logo bands, or create a new one there.',
-      validation: (rule) => rule.required(),
+      readOnly: true,
+      hidden: ({value}) => !value,
+      description: 'Old link to a site-wide logo band. Add logos above to replace it.',
     }),
   ]),
   section('lpFeatures', [
@@ -265,6 +297,19 @@ export const lpSections = [
     heading,
     subheading,
     defineField({
+      name: 'display',
+      title: 'Display',
+      type: 'string',
+      initialValue: 'media',
+      options: {
+        list: [
+          {title: 'Samples: media with text below', value: 'media'},
+          {title: 'Packages: description, checklist and image side by side', value: 'packages'},
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
       name: 'tabs',
       title: 'Tabs',
       type: 'array',
@@ -274,7 +319,9 @@ export const lpSections = [
           type: 'object',
           fields: [
             defineField({name: 'label', title: 'Tab label', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'heading', title: 'Panel heading (packages display; defaults to the tab label)', type: 'string'}),
             defineField({name: 'text', title: 'Text', type: 'text', rows: 3}),
+            defineField({name: 'bullets', title: 'Checklist (packages display)', type: 'array', of: [defineArrayMember({type: 'string'})]}),
             defineField({name: 'media', title: 'Media', type: 'lpMedia'}),
             defineField({name: 'buttons', title: 'Buttons (e.g. sample downloads)', type: 'array', of: [defineArrayMember({type: 'lpButton'})]}),
           ],
@@ -284,8 +331,55 @@ export const lpSections = [
     }),
     background,
   ]),
+  section('lpTourDemo', [
+    defineField({name: 'eyebrow', title: 'Small text above the heading', type: 'string'}),
+    heading,
+    subheading,
+    defineField({
+      name: 'tips',
+      title: 'Tips (icon + short instruction)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'tip',
+          type: 'object',
+          fields: [imageWithAlt('icon', 'Icon'), defineField({name: 'text', title: 'Text', type: 'string', validation: (rule) => rule.required()})],
+          preview: {select: {title: 'text', media: 'icon'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'tours',
+      title: 'Tours',
+      type: 'array',
+      description: 'One tour, or several shown as tabs (e.g. Standard / Radix).',
+      of: [
+        defineArrayMember({
+          name: 'tour',
+          type: 'object',
+          fields: [
+            defineField({name: 'label', title: 'Tab label', type: 'string', description: 'Only needed with more than one tour.'}),
+            defineField({name: 'media', title: 'Tour or video', type: 'lpMedia', validation: (rule) => rule.required()}),
+          ],
+          preview: {select: {title: 'label', subtitle: 'media.url'}},
+        }),
+      ],
+      validation: (rule) => rule.required().min(1),
+    }),
+    defineField({name: 'listHeading', title: 'Below the tour: heading', type: 'string'}),
+    defineField({name: 'list', title: 'Below the tour: checklist', type: 'array', of: [defineArrayMember({type: 'string'})]}),
+    defineField({name: 'closing', title: 'Below the tour: closing text', type: 'text', rows: 2}),
+    background,
+  ]),
   section('lpVideos', [
     heading,
+    defineField({
+      name: 'fullWidth',
+      title: 'One video at full width, no caption',
+      type: 'boolean',
+      initialValue: false,
+      description: 'As on the old ad pages: a single video across the full page width. The video title is still used for screen readers.',
+    }),
     defineField({
       name: 'videos',
       title: 'Videos',
@@ -333,6 +427,18 @@ export const lpSections = [
     heading,
     defineField({name: 'text', title: 'Text', type: 'text', rows: 2}),
     defineField({name: 'buttons', title: 'Buttons', type: 'array', of: [defineArrayMember({type: 'lpButton'})], validation: (rule) => rule.max(2)}),
+  ]),
+  section('lpResources', [
+    heading,
+    defineField({
+      name: 'items',
+      title: 'Resources',
+      type: 'array',
+      description: 'Blog posts, customer stories, brochures and other Resource Center items, shown as cards.',
+      of: [defineArrayMember({type: 'reference', to: ['blogPost', 'whitePaper', 'customerStory', 'brochure', 'video', 'webinar', 'newsArticle', 'galleryItem'].map((type) => ({type}))})],
+      validation: (rule) => rule.max(6),
+    }),
+    background,
   ]),
   section('lpNotice', [defineField({name: 'text', title: 'Small print', type: 'text', rows: 6})], 'text'),
 ]

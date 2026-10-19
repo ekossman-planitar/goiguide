@@ -16,7 +16,7 @@
   --color-line: #e4e4e7;           /* borders */
   --color-surface: #f4f4f5;        /* light grey section background (was blue-grey) */
   --color-sky: #f4f4f5;            /* light grey section background (was light blue #ebfaff) */
-  --color-cream: #ffd6a0;          /* pills and step badges (live site) */
+  --color-cream: #f4f4f5;          /* pills and step badges: light grey offset (was the live site's yellow #ffd6a0; Evan 2026-10-19) */
   --color-star: #f59e0b;
   --color-announce: #2e2c30;       /* announcement bar: brand black (was blue) */
 }

@@ -33,7 +33,7 @@ export const ANNOUNCEMENTS_QUERY = defineQuery(`*[
   && defined(message)
   && (!defined(endAt) || dateTime(endAt) > dateTime(now()))
 ] | order(coalesce(sortOrder, 9999) asc, _createdAt asc){
-  _id, message, link, startAt, endAt
+  _id, message, link, startAt, endAt, region, showOn, paths, excludePaths, includeLandingPages
 }`)
 
 // Types shown in the Resource Center (eBooks have pages but no filter)
@@ -139,15 +139,17 @@ export const CMS_LIBRARY_QUERY = defineQuery(`{
 const LP_IMG = `{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}`
 const LP_MEDIA = `{kind, url, title, "image": image${LP_IMG}}`
 export const LANDING_PAGE_QUERY = defineQuery(`*[_type == "landingPage" && path == $path && live != false][0]{
-  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, headerButton,
+  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, chrome, floatingBookButton, headerButton,
   sections[]{
     ...,
-    _type == "lpHero" => {"media": media${LP_MEDIA}},
-    _type == "lpLogos" => {"logos": band->logos[defined(@->logo.asset)]->{name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}}},
+    _type == "lpHero" => {"media": media${LP_MEDIA}, "backgroundImage": backgroundImage${LP_IMG}},
+    _type == "lpTourDemo" => {"tours": tours[]{..., "media": media${LP_MEDIA}}, "tips": tips[]{..., "icon": icon${LP_IMG}}},
+    _type == "lpLogos" => {"logos": coalesce(logos, band->logos)[defined(@->logo.asset)]->{name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}}},
     _type == "lpFeatures" => {"items": items[]{..., "icon": icon${LP_IMG}}},
     _type == "lpSplit" => {"media": media${LP_MEDIA}},
     _type == "lpSteps" => {"steps": steps[]{..., "image": image${LP_IMG}}},
     _type == "lpTabs" => {"tabs": tabs[]{..., "media": media${LP_MEDIA}}},
+    _type == "lpResources" => {"items": items[defined(@->publishedAt)]->{${RESOURCE_CARD_FIELDS}}},
     _type == "lpTestimonials" => {"quotes": items[@->hidden != true]->{
       quote, detail, name, role, company, link{label, href},
       photo{alt, hotspot, crop, asset->{_id, url}},
@@ -160,6 +162,15 @@ export const LANDING_PATHS_QUERY = defineQuery(`*[_type == "landingPage" && defi
 
 // Site pop-ups that are on and not yet ended. Schedule and page targeting are
 // checked again in the browser (pages are cached for up to a minute).
+// Blog sidebar promos that are on and not yet ended (the start date is checked in the browser)
+export const SIDEBAR_PROMOS_QUERY = defineQuery(`*[
+  _type == "sidebarPromo" && enabled != false && defined(heading)
+  && (!defined(endAt) || dateTime(endAt) > dateTime(now()))
+] | order(_createdAt asc){
+  _id, eyebrow, heading, text, newTab, startAt, endAt, button{label, href},
+  image{alt, hotspot, crop, asset->{_id, url, metadata{lqip, dimensions{width, height}}}}
+}`)
+
 export const POPUPS_QUERY = defineQuery(`*[
   _type == "sitePopup" && enabled == true && defined(image.asset)
   && (!defined(endAt) || dateTime(endAt) > dateTime(now()))
@@ -169,7 +180,7 @@ export const POPUPS_QUERY = defineQuery(`*[
   countdown{endsAt, label, hidePopupWhenDone},
   button{label, href, openBooking, newTab, background, textColour},
   backgroundColour, textColour, highlightColour,
-  startAt, endAt, showOn, paths, excludePaths, includeLandingPages,
+  startAt, endAt, region, showOn, paths, excludePaths, includeLandingPages,
   trigger, delaySeconds, scrollPercent, frequency, frequencyDays
 }`)
 
@@ -185,7 +196,9 @@ export const UPCOMING_EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(
 export const EVENT_QUERY = defineQuery(`*[_type == "event" && slug.current == $slug][0]{
   ${EVENT_CARD_FIELDS},
   _updatedAt, address, eventUrl, eventUrlLabel, registrationUrl, hubspotFormId, formHeading,
-  speakers[]{name, role, photo{hotspot, crop, asset->{_id, url}}},
+  speakers[]{name, role, linkedin, photo{hotspot, crop, asset->{_id, url}}},
+  sessions[]{_key, title, format, startAt, endAt, stage, description, presenters},
+  faq[]{_key, question, answer},
   body[]{
     ...,
     _type == "image" => {${IMAGE_FIELDS}},

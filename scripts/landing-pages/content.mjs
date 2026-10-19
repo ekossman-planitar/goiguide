@@ -105,7 +105,7 @@ const repA = {
       formHeading: 'Connect with an iGuide Specialist!',
       hubspotFormId: '0d755dfc-cbcb-4c65-9344-b0634832680d',
     },
-    {_type: 'lpLogos', _key: k(), band: ref('logoBand-real-estate')},
+    {_type: 'lpLogos', _key: k(), logosFrom: 'logoBand-real-estate'},
     features('Why Real Estate Photographers choose iGuide', repFeaturesA, {background: 'surface'}),
     {
       _type: 'lpStats',
@@ -181,7 +181,7 @@ const repB = {
       formHeading: 'Connect with an iGuide Specialist!',
       hubspotFormId: '0d755dfc-cbcb-4c65-9344-b0634832680d',
     },
-    {_type: 'lpLogos', _key: k(), band: ref('logoBand-real-estate')},
+    {_type: 'lpLogos', _key: k(), logosFrom: 'logoBand-real-estate'},
     features('Why Real Estate Photographers choose iGuide', repFeaturesB, {background: 'surface'}),
     {
       _type: 'lpSplit',
@@ -291,7 +291,7 @@ const aecA = {
   ...shared,
   sections: [
     aecHero(),
-    {_type: 'lpLogos', _key: k(), band: ref('logoBand-aec-customers')},
+    {_type: 'lpLogos', _key: k(), logosFrom: 'logoBand-aec-customers'},
     aecFeatures([
       ['Skip the tape measure', 'Capture 1,000s of measurements in a single scan'],
       ['Quick turnarounds', 'Get accurate floor plans and virtual walkthroughs in 48 hours or less*'],
@@ -352,7 +352,7 @@ const aecB = {
   ...shared,
   sections: [
     aecHero(),
-    {_type: 'lpLogos', _key: k(), band: ref('logoBand-aec-customers')},
+    {_type: 'lpLogos', _key: k(), logosFrom: 'logoBand-aec-customers'},
     aecFeatures([
       ['Fast capture technology', 'Capture 1,000s of LiDAR measurements per scan in a single click.'],
       ['Quick turnarounds', 'CAD-ready DWG + 3D walkthrough in 48 hours or less*.'],
@@ -368,7 +368,7 @@ const aecB = {
       ['Software Compatibility', 'iGuide seamlessly integrates with many popular construction and architecture software solutions.', '/assets/Icons/Icon-300x300_Superior-Navigation__FitMaxWzYwLDYwXQ.png'],
       ['Fast and easy to use', 'The PLANIX camera system captures visuals and measurements with a simple press a button.', '/assets/Icons/Icon-300x300_Compliant-Solution__FitMaxWzYwLDYwXQ.png'],
     ]),
-    {_type: 'lpLogos', _key: k(), heading: 'Files delivered ready for', band: ref('logoBand-cad-software')},
+    {_type: 'lpLogos', _key: k(), heading: 'Files delivered ready for', logosFrom: 'logoBand-cad-software'},
     aecTabs(true),
   ],
 }

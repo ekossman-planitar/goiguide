@@ -23,6 +23,7 @@ export const sitemapPages: string[] = [
   '/solutions',
   '/events',
   '/support/marketing-catalogue',
+  '/support/marketing-catalogue/getting-started',
   '/residential-real-estate',
   '/real-estate-photography',
   '/architecture-engineering-construction',

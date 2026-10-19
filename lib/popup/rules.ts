@@ -15,6 +15,8 @@ export const DEFAULT_COLOURS = {background: '#ffffff', text: '#2e2c30', highligh
 export const HEX_PATTERN = /^#[0-9a-f]{6}$/i
 
 export type PopupTargeting = {
+  /** Global site (default) or the Australia section (/au pages); each only ever shows in its own region */
+  region?: 'global' | 'au' | null
   showOn?: 'all' | 'only' | null
   paths?: string[] | null
   excludePaths?: string[] | null
@@ -33,9 +35,16 @@ export function pathMatches(pattern: string, path: string): boolean {
   return pat === target
 }
 
-/** Should a pop-up with these settings appear on `path`? */
+/** The Australia section: /au and every page under it */
+export const isAustraliaPath = (path: string) => pathMatches('/au/*', path)
+
+/**
+ * Should a pop-up / announcement with these settings appear on `path`?
+ * Australia items only show on /au pages, and global items never do.
+ */
 export function showsOnPath(t: PopupTargeting, path: string, isLandingPage: boolean): boolean {
   if ((t.excludePaths ?? []).some((p) => p && pathMatches(p, path))) return false
+  if ((t.region === 'au') !== isAustraliaPath(path)) return false
   if (t.showOn === 'only') return (t.paths ?? []).some((p) => p && pathMatches(p, path))
   return isLandingPage ? !!t.includeLandingPages : true
 }

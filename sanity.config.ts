@@ -31,7 +31,12 @@ export default defineConfig({
         title: `Landing page: ${layout.name}`,
         description: layout.bestFor,
         schemaType: 'landingPage',
-        value: studioTemplateValue(layout.id),
+        // Opened from a folder in the Studio, the new page goes into that folder
+        parameters: [{name: 'folderId', type: 'string'}],
+        value: ({folderId}: {folderId?: string} = {}) => ({
+          ...studioTemplateValue(layout.id),
+          ...(folderId ? {folder: {_type: 'reference', _ref: folderId}} : {}),
+        }),
       })),
     ],
   },

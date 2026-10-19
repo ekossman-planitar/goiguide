@@ -21,7 +21,10 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
     subheading: 'Scan a 3,000 sq ft home in as little as 15 minutes with deliverables in 24 hours. No monthly subscriptions. No hosting fees.',
     bullets: style === 'centered' ? ['3D tour, floor plans and measurements from one scan', 'Delivered in 24 hours', 'Pay per project'] : undefined,
     buttons: style === 'form' ? undefined : [button(style === 'media' ? 'Book a demo' : 'Get started', style === 'media' ? 'demo' : 'form')],
-    showRating: true,
+    showRating: style !== 'banner',
+    ...(style === 'banner'
+      ? {heading: 'Thanks for getting in touch!', subheading: 'We\'ll reach out shortly.', eyebrow: undefined, buttons: undefined, backgroundImage: img('/assets/Uploads/Real_estate_photographers_150dpi.jpg')}
+      : {}),
     media: style === 'media' ? {kind: 'tour', url: 'https://youriguide.com/100_chattel_st_haverhill_ma', title: 'Sample iGuide 3D tour'} : undefined,
     formHeading: 'Connect with an iGuide Specialist!',
     // Real HubSpot form IDs are added per page (so template previews never send real leads)
@@ -111,6 +114,17 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
       {_type: 'tab', label: 'DWG Add-on', text: 'DWG floor plans for any iGuide Standard or Premium, delivered in 48 hours or less.', media: {kind: 'image', image: img('/assets/Uploads/DWG-v3.png', 'DWG example')}, buttons: [button('Commercial Premium DWG', 'url', '/assets/Sample-Drawing-Packages/Commercial-Premium-DWG.zip')]},
     ],
   }),
+  lpTourDemo: () => ({
+    _type: 'lpTourDemo',
+    heading: 'Experience the power of iGuide for yourself',
+    tips: [
+      {icon: img('/assets/Uploads/Icons_Floorplans-copy.png'), text: 'Click the Main Floor on the iGuide to view different floors of the property.'},
+      {icon: img('/assets/Uploads/Icons_iGUIDE-Embed-2.png'), text: 'Use the green dots on the floor plan to navigate different rooms.'},
+      {icon: img('/assets/Uploads/Icons_iGUIDE-Embed-3.png'), text: 'Click the ruler to try using the measurement feature.'},
+    ],
+    tours: [{media: {kind: 'tour', url: 'https://youriguide.com/embed/100_chattel_st_haverhill_ma?unbranded=1', title: 'Sample iGuide 3D tour'}}],
+    background: 'surface',
+  }),
   lpVideos: () => ({
     _type: 'lpVideos',
     heading: 'Hear it from customers',
@@ -119,6 +133,7 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
       {_type: 'video', title: 'Levco Builders shares their iGuide experience', url: 'https://www.youtube.com/watch?v=MFywiM0oFwc'},
     ],
   }),
+  lpResources: () => ({_type: 'lpResources', heading: 'Learn more', items: []}),
   lpForm: () => ({
     _type: 'lpForm',
     heading: 'Book your demo today',
@@ -169,5 +184,5 @@ function addKeys(value: unknown): unknown {
 
 /** Initial value for "New landing page" from a layout in the Studio */
 export function studioTemplateValue(layoutId: string) {
-  return {layout: layoutId, live: true, sections: addKeys(strip(sampleSections(layoutId)))}
+  return {layout: layoutId, live: true, chrome: getLpLayout(layoutId).chrome ?? 'landing', sections: addKeys(strip(sampleSections(layoutId)))}
 }

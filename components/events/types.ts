@@ -31,7 +31,20 @@ export type EventDetailData = EventCardData & {
   registrationUrl?: string | null
   hubspotFormId?: string | null
   formHeading?: string | null
-  speakers?: {name: string; role?: string | null; photo?: SanityImage | null}[] | null
+  speakers?: {name: string; role?: string | null; linkedin?: string | null; photo?: SanityImage | null}[] | null
+  sessions?:
+    | {
+        _key: string
+        title: string
+        format?: string | null
+        startAt?: string | null
+        endAt?: string | null
+        stage?: string | null
+        description?: string | null
+        presenters?: string[] | null
+      }[]
+    | null
+  faq?: {_key: string; question: string; answer: string}[] | null
   body?: PortableTextBlock[] | null
   seo?: {metaTitle?: string | null; metaDescription?: string | null; noIndex?: boolean | null; ogImage?: SanityImage | null} | null
   more?: EventCardData[] | null

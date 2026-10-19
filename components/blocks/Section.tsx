@@ -10,6 +10,8 @@ type Props = {
   id?: string
   heading?: string
   subheading?: string
+  /** Optional small label above the heading (e.g. a Pill) */
+  eyebrow?: ReactNode
   align?: 'left' | 'center'
   background?: SectionBg
   children: ReactNode
@@ -17,7 +19,7 @@ type Props = {
 }
 
 /** Standard page section: background band, page-width container, optional heading. */
-export function Section({id, heading, subheading, align = 'left', background = 'white', children, className}: Props) {
+export function Section({id, heading, subheading, eyebrow, align = 'left', background = 'white', children, className}: Props) {
   return (
     <section id={id} className={cn(bgs[background], 'scroll-mt-24 py-16 lg:py-[60px]', className)}>
       <Container>
@@ -25,6 +27,7 @@ export function Section({id, heading, subheading, align = 'left', background = '
           <SectionHeading
             heading={heading}
             subheading={subheading}
+            eyebrow={eyebrow}
             align={align}
             className={cn('mb-10', align === 'center' && 'max-w-3xl')}
           />

@@ -7,9 +7,11 @@ import {clientLogo} from './documents/clientLogo'
 import {homePage} from './documents/homePage'
 import {logoBand} from './documents/logoBand'
 import {sitePopup} from './documents/sitePopup'
+import {sidebarPromo} from './documents/sidebarPromo'
 import {event} from './documents/event'
 import {testimonial} from './documents/testimonial'
 import {landingPage} from './landingPages/landingPage'
+import {landingPageFolder} from './landingPages/landingPageFolder'
 import {lpButton, lpMedia} from './landingPages/objects'
 import {heroMedia} from './objects/heroMedia'
 import {link} from './objects/link'
@@ -25,11 +27,13 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     homePage,
     announcement,
     sitePopup,
+    sidebarPromo,
     event,
     clientLogo,
     logoBand,
     testimonial,
     landingPage,
+    landingPageFolder,
     lpButton,
     lpMedia,
     ...resourceDocumentTypes,

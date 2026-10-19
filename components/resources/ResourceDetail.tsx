@@ -13,8 +13,10 @@ import {fetchSanity} from '@/sanity/lib/fetch'
 import {urlFor} from '@/sanity/lib/image'
 import {RESOURCE_DETAIL_QUERY, RESOURCE_SLUGS_QUERY} from '@/sanity/lib/queries'
 import type {ResourceDetailData} from '@/sanity/lib/types'
+import {BlogSidebar} from './BlogSidebar'
 import {CustomerFacts} from './CustomerFacts'
 import {ResourceCard} from './ResourceCard'
+import {StoreCta} from './StoreCta'
 import {StoryToc} from './StoryToc'
 
 /**
@@ -213,6 +215,20 @@ export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; 
             </div>
           </div>
         </Container>
+      ) : type === 'blogPost' ? (
+        // Blog posts: body on the left, "Book a demo" and a rotating promo on the right (below the post on small screens)
+        <Container className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14 xl:grid-cols-[minmax(0,760px)_320px] xl:justify-between">
+          <div className="min-w-0">
+            {sections.length ? <SectionedBody sections={sections} /> : null}
+            {item.author && <AuthorBox author={item.author} />}
+            <ShareLinks share={share} />
+          </div>
+          <div>
+            <div className="lg:sticky lg:top-28">
+              <BlogSidebar />
+            </div>
+          </div>
+        </Container>
       ) : (
         <Container size="narrow">
           {sections.length ? <SectionedBody sections={sections} /> : null}
@@ -220,6 +236,8 @@ export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; 
           <ShareLinks share={share} />
         </Container>
       )}
+
+      {type === 'blogPost' && <StoreCta />}
 
       {item.related?.length ? (
         <section className="mt-20">

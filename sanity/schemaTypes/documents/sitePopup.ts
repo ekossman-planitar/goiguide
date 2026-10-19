@@ -149,6 +149,15 @@ export const sitePopup = defineType({
       validation: (r) => r.custom((v, ctx) => (v && doc(ctx).startAt && Date.parse(v as string) <= Date.parse(doc(ctx).startAt!) ? '"Stop showing after" must be later than "Show from"' : true)),
     }),
     defineField({
+      name: 'region',
+      title: 'Region',
+      type: 'string',
+      group: 'when',
+      initialValue: 'global',
+      options: {list: [{title: 'Global site (never on Australia pages)', value: 'global'}, {title: 'Australia only (/au pages)', value: 'au'}], layout: 'radio'},
+      description: 'Each region is kept separate: Australia items only show on /au pages, global items never do.',
+    }),
+    defineField({
       name: 'showOn',
       title: 'Show on',
       type: 'string',
@@ -169,11 +178,11 @@ export const sitePopup = defineType({
     defineField({name: 'excludePaths', title: 'Never show on', type: 'array', group: 'when', of: [{type: 'string'}], description: 'Pages to skip, same format. /book-a-demo is a good one to leave out.'}),
     defineField({
       name: 'includeLandingPages',
-      title: 'Also show on paid-media landing pages',
+      title: 'Include paid landing pages',
       type: 'boolean',
       group: 'when',
       initialValue: false,
-      description: 'Off by default so ads land on a page without distractions.',
+      description: 'Off by default: paid-media landing pages don\'t show the pop-up unless this is ticked, so ads land on a page without distractions.',
       hidden: ({document}) => (document as Doc)?.showOn === 'only',
     }),
 

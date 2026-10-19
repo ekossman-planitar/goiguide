@@ -51,6 +51,14 @@ export const landingPage = defineType({
         }),
     }),
     defineField({
+      name: 'folder',
+      title: 'Folder',
+      type: 'reference',
+      to: [{type: 'landingPageFolder'}],
+      group: ['content', 'settings'],
+      description: 'For organising pages in the Studio only. Doesn\'t change the URL.',
+    }),
+    defineField({
       name: 'live',
       title: 'Page is live',
       type: 'boolean',
@@ -67,6 +75,28 @@ export const landingPage = defineType({
       options: {list: lpLayouts.map((l) => ({title: l.name, value: l.id}))},
       components: {input: LayoutPicker},
       initialValue: 'lead-form',
+    }),
+    defineField({
+      name: 'chrome',
+      title: 'Header and footer',
+      type: 'string',
+      group: 'settings',
+      initialValue: 'landing',
+      options: {
+        list: [
+          {title: 'Landing page bar (logo + one button, no menu)', value: 'landing'},
+          {title: 'Full site navigation and footer (e.g. thank-you pages)', value: 'site'},
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
+      name: 'floatingBookButton',
+      title: 'Floating "Book your personalized product tour" button',
+      type: 'boolean',
+      group: 'settings',
+      initialValue: false,
+      description: 'Fixed button in the bottom corner that appears once the visitor scrolls, and opens the booking pop-up.',
     }),
     defineField({
       name: 'headerButton',

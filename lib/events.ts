@@ -121,3 +121,24 @@ export function formatEventDate(e: {startAt: string; endAt?: string | null; allD
     d.toLocaleTimeString('en-US', {timeZone, hour: 'numeric', minute: '2-digit', ...(zone ? {timeZoneName: 'short'} : {})})
   return e.endAt && e.endAt !== e.startAt ? `${date} · ${time(start)} – ${time(end, true)}` : `${date} · ${time(start, true)}`
 }
+
+/** Session formats for "On stage" */
+export const sessionFormats = [
+  {value: 'keynote', title: 'Keynote'},
+  {value: 'talk', title: 'Talk'},
+  {value: 'panel', title: 'Panel'},
+  {value: 'workshop', title: 'Workshop'},
+  {value: 'demo', title: 'Live demo'},
+  {value: 'fireside', title: 'Fireside chat'},
+] as const
+
+export const sessionFormatTitle = (v?: string | null) => sessionFormats.find((f) => f.value === v)?.title ?? 'Session'
+
+/** "Tue, Mar 3 · 2:00 – 2:45 PM EST" for a session, in the event's time zone */
+export function formatSessionTime(s: {startAt?: string | null; endAt?: string | null}, timeZone: string) {
+  if (!s.startAt) return null
+  const start = new Date(s.startAt)
+  const day = start.toLocaleDateString('en-US', {timeZone, weekday: 'short', month: 'short', day: 'numeric'})
+  const t = (d: Date, zone = false) => d.toLocaleTimeString('en-US', {timeZone, hour: 'numeric', minute: '2-digit', ...(zone ? {timeZoneName: 'short'} : {})})
+  return s.endAt ? `${day} · ${t(start)} – ${t(new Date(s.endAt), true)}` : `${day} · ${t(start, true)}`
+}

@@ -24,6 +24,8 @@ export type LandingPageData = {
   metaDescription?: string
   shareImage?: string
   layout?: string
+  chrome?: 'landing' | 'site' | null
+  floatingBookButton?: boolean | null
   headerButton?: LpButton | null
   sections: LpSection[]
 }

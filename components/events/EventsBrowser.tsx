@@ -1,10 +1,10 @@
 'use client'
 
-import {CalendarDays, List} from 'lucide-react'
+import {CalendarDays, List, Search, X} from 'lucide-react'
 import {useEffect, useMemo, useState} from 'react'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {cn} from '@/lib/cn'
-import {DEFAULT_TIME_ZONE, eventTypes, isLive, isUpcoming, monthKey, monthLabel} from '@/lib/events'
+import {attendanceModes, categoryTitle, DEFAULT_TIME_ZONE, eventCategories, eventTypes, isLive, isUpcoming, monthKey, monthLabel} from '@/lib/events'
 import {EventCalendar} from './EventCalendar'
 import {EventCard} from './EventCard'
 import type {EventCardData} from './types'
@@ -12,44 +12,81 @@ import type {EventCardData} from './types'
 type View = 'list' | 'calendar'
 
 /**
- * /events: list (grouped by month) or calendar, with a type filter.
+ * /events: list (grouped by month) or calendar, with a filter bar: search
+ * (name, place, description), type, industry, in person / online and country.
+ * Filters only list values that upcoming events actually have.
  * Ended events drop off automatically: the server only sends upcoming ones,
  * and the browser re-checks every minute in case the page was cached.
- * The view is kept in the URL (?view=calendar) so it can be shared.
+ * View and filters are kept in the URL (?view=calendar&type=…&industry=…&attend=…&country=…&q=…) so they can be shared.
+ * GTM: the filter bar is #events-filters; its controls have name attributes (q, type, industry, attend, country).
  */
+type Filters = {q: string; type: string; industry: string; attend: string; country: string}
+const NO_FILTERS: Filters = {q: '', type: 'all', industry: 'all', attend: 'all', country: 'all'}
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+const matches = (e: EventCardData, f: Filters) =>
+  (f.type === 'all' || e.eventType === f.type) &&
+  (f.industry === 'all' || (e.categories ?? []).includes(f.industry)) &&
+  (f.attend === 'all' || (f.attend === 'online' ? e.attendance !== 'in-person' : e.attendance !== 'online')) &&
+  (f.country === 'all' || (e.attendance !== 'online' && e.country === f.country)) &&
+  (!f.q.trim() ||
+    norm([e.title, e.venue, e.city, e.region, e.country, e.shortDescription, ...(e.categories ?? []).map(categoryTitle)].filter(Boolean).join(' ')).includes(
+      norm(f.q.trim()),
+    ))
 export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; renderedAt: number}) {
   const [now, setNow] = useState(renderedAt)
   const [view, setView] = useState<View>('list')
-  const [type, setType] = useState<string>('all')
+  const [filters, setFilters] = useState<Filters>(NO_FILTERS)
   const [month, setMonth] = useState<string>()
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     /* eslint-disable react-hooks/set-state-in-effect -- read the URL once after hydration */
     if (params.get('view') === 'calendar') setView('calendar')
-    const t = params.get('type')
-    if (t && eventTypes.some((x) => x.value === t)) setType(t)
+    setFilters({
+      q: params.get('q') ?? '',
+      type: params.get('type') ?? 'all',
+      industry: params.get('industry') ?? 'all',
+      attend: params.get('attend') ?? 'all',
+      country: params.get('country') ?? 'all',
+    })
     setNow(Date.now())
     /* eslint-enable react-hooks/set-state-in-effect */
     const timer = window.setInterval(() => setNow(Date.now()), 60_000)
     return () => window.clearInterval(timer)
   }, [])
 
-  const updateUrl = (next: {view?: View; type?: string}) => {
+  const updateUrl = (next: {view?: View; filters?: Filters}) => {
     const params = new URLSearchParams(window.location.search)
     const v = next.view ?? view
-    const t = next.type ?? type
+    const f = next.filters ?? filters
     if (v === 'calendar') params.set('view', 'calendar')
     else params.delete('view')
-    if (t !== 'all') params.set('type', t)
-    else params.delete('type')
+    for (const k of ['type', 'industry', 'attend', 'country'] as const) {
+      if (f[k] !== 'all') params.set(k, f[k])
+      else params.delete(k)
+    }
+    if (f.q.trim()) params.set('q', f.q.trim())
+    else params.delete('q')
     const qs = params.toString()
     window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}`)
   }
+  const setFilter = (k: keyof Filters, value: string) => {
+    const next = {...filters, [k]: value}
+    setFilters(next)
+    updateUrl({filters: next})
+  }
 
   const upcoming = useMemo(() => events.filter((e) => isUpcoming(e, now)), [events, now])
+  // Only offer options that upcoming events actually have
   const typesPresent = eventTypes.filter((t) => upcoming.some((e) => e.eventType === t.value))
-  const shown = type === 'all' ? upcoming : upcoming.filter((e) => e.eventType === type)
+  const industriesPresent = eventCategories.filter((c) => upcoming.some((e) => e.categories?.includes(c.value)))
+  const countriesPresent = [...new Set(upcoming.filter((e) => e.attendance !== 'online' && e.country).map((e) => e.country!))].sort()
+  const shown = useMemo(() => upcoming.filter((e) => matches(e, filters)), [upcoming, filters])
+  const filtered = JSON.stringify(filters) !== JSON.stringify(NO_FILTERS)
 
   const groups = useMemo(() => {
     const map = new Map<string, EventCardData[]>()
@@ -73,32 +110,99 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
   })
 
   const toggle = 'inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors'
-  const chip = 'cursor-pointer rounded-full border px-4 py-1.5 text-sm font-medium transition-colors'
+  const select =
+    'h-11 w-full cursor-pointer rounded-lg border border-line bg-white px-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto'
 
   return (
     <div>
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        {typesPresent.length > 1 ? (
-          <div role="group" aria-label="Filter by event type" className="flex flex-wrap gap-2">
-            {[{value: 'all', plural: 'All events'}, ...typesPresent].map((t) => (
-              <button
-                key={t.value}
-                type="button"
-                aria-pressed={type === t.value}
-                onClick={() => {
-                  setType(t.value)
-                  updateUrl({type: t.value})
-                }}
-                className={cn(chip, type === t.value ? 'border-primary bg-primary text-white' : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover')}
-              >
-                {t.plural}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <span />
-        )}
-        <div role="group" aria-label="View" className="inline-flex self-start rounded-xl bg-surface p-1 md:self-auto">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <form
+          id="events-filters"
+          role="search"
+          aria-label="Filter events"
+          onSubmit={(ev) => ev.preventDefault()}
+          className="flex flex-1 flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+        >
+          <label className="relative block sm:min-w-[260px] sm:flex-1 lg:max-w-sm">
+            <span className="sr-only">Search events</span>
+            <Search aria-hidden width={18} height={18} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted" />
+            <input
+              type="search"
+              name="q"
+              value={filters.q}
+              onChange={(ev) => setFilter('q', ev.target.value)}
+              placeholder="Search events, cities or venues"
+              className="h-11 w-full rounded-lg border border-line bg-white pr-3 pl-10 text-sm text-ink placeholder:text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            />
+          </label>
+          {typesPresent.length > 0 && (
+            <label>
+              <span className="sr-only">Event type</span>
+              <select name="type" value={filters.type} onChange={(ev) => setFilter('type', ev.target.value)} className={select}>
+                <option value="all">All types</option>
+                {typesPresent.map((t) => (
+                  <option key={t.value} value={t.value}>
+                    {t.plural}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {industriesPresent.length > 0 && (
+            <label>
+              <span className="sr-only">Industry</span>
+              <select name="industry" value={filters.industry} onChange={(ev) => setFilter('industry', ev.target.value)} className={select}>
+                <option value="all">All industries</option>
+                {industriesPresent.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {upcoming.length > 0 && (
+            <label>
+              <span className="sr-only">In person or online</span>
+              <select name="attend" value={filters.attend} onChange={(ev) => setFilter('attend', ev.target.value)} className={select}>
+                <option value="all">In person &amp; online</option>
+                {attendanceModes
+                  .filter((m) => m.value !== 'hybrid')
+                  .map((m) => (
+                    <option key={m.value} value={m.value}>
+                      {m.title}
+                    </option>
+                  ))}
+              </select>
+            </label>
+          )}
+          {countriesPresent.length > 0 && (
+            <label>
+              <span className="sr-only">Country</span>
+              <select name="country" value={filters.country} onChange={(ev) => setFilter('country', ev.target.value)} className={select}>
+                <option value="all">All countries</option>
+                {countriesPresent.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {filtered && (
+            <button
+              type="button"
+              onClick={() => {
+                setFilters(NO_FILTERS)
+                updateUrl({filters: NO_FILTERS})
+              }}
+              className="inline-flex cursor-pointer items-center gap-1 self-start text-sm font-semibold text-primary hover:text-primary-hover sm:self-center"
+            >
+              <X aria-hidden width={16} height={16} /> Clear filters
+            </button>
+          )}
+        </form>
+        <div role="group" aria-label="View" className="inline-flex self-start rounded-xl bg-surface p-1 lg:self-auto">
           {(
             [
               {v: 'list', label: 'List', icon: List},
@@ -121,12 +225,28 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
           ))}
         </div>
       </div>
+      <p className="mt-4 text-sm text-muted" aria-live="polite">
+        {shown.length} upcoming {shown.length === 1 ? 'event' : 'events'}
+        {filtered ? (shown.length === 1 ? ' matches your filters' : ' match your filters') : ''}
+      </p>
 
       {shown.length === 0 ? (
         <div className="mt-10 rounded-2xl bg-surface px-6 py-12 text-center">
-          <p className="text-xl font-semibold text-ink">No upcoming events right now</p>
-          <p className="mt-2 text-body">Check back soon, or watch past sessions in our webinar library.</p>
-          <SmartLink href="/webinars" className="mt-6 inline-flex rounded-lg border border-primary px-5 py-2.5 font-semibold text-primary hover:border-primary-hover hover:text-primary-hover">
+          {filtered && upcoming.length ? (
+            <>
+              <p className="text-xl font-semibold text-ink">No events match your filters</p>
+              <p className="mt-2 text-body">Try a different search, or clear the filters to see all upcoming events.</p>
+            </>
+          ) : (
+            <>
+              <p className="text-xl font-semibold text-ink">No upcoming events right now</p>
+              <p className="mt-2 text-body">Check back soon, or watch past sessions in our webinar library.</p>
+            </>
+          )}
+          <SmartLink
+            href="/webinars"
+            className="mt-6 inline-flex rounded-lg border border-primary px-5 py-2.5 font-semibold text-primary hover:border-primary-hover hover:text-primary-hover"
+          >
             Browse webinars
           </SmartLink>
         </div>

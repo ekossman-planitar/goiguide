@@ -1,9 +1,11 @@
 'use client'
 
+import {usePathname} from 'next/navigation'
 import {useEffect, useMemo, useState} from 'react'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight, ChevronLeft, ChevronRight} from '@/components/ui/icons'
 import {cn} from '@/lib/cn'
+import {showsOnPath} from '@/lib/popup/rules'
 import type {Announcement} from '@/sanity/lib/types'
 
 const AUTOPLAY_MS = 6000
@@ -20,6 +22,8 @@ type Props = {
   items: Announcement[]
   /** Server render time, so the first client render matches the HTML. */
   renderedAt: number
+  /** Rendered on a paid-media landing page */
+  landingPage?: boolean
 }
 
 /**
@@ -27,7 +31,10 @@ type Props = {
  * with arrows. Rechecks the schedule exactly when a message starts or ends,
  * and hides the bar entirely when nothing is live.
  */
-export function AnnouncementCarousel({items, renderedAt}: Props) {
+export function AnnouncementCarousel({items: allItems, renderedAt, landingPage = false}: Props) {
+  const pathname = usePathname()
+  // Page targeting: all pages (paid landing pages only if included) or the listed pages
+  const items = useMemo(() => allItems.filter((item) => showsOnPath(item, pathname, landingPage)), [allItems, pathname, landingPage])
   const [now, setNow] = useState(renderedAt)
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)

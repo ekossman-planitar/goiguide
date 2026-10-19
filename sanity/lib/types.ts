@@ -40,6 +40,11 @@ export type Announcement = {
   link?: Link | null
   startAt?: string | null
   endAt?: string | null
+  region?: 'global' | 'au' | null
+  showOn?: 'all' | 'only' | null
+  paths?: string[] | null
+  excludePaths?: string[] | null
+  includeLandingPages?: boolean | null
 }
 
 export type SanityImage = {

@@ -2,6 +2,9 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {LandingSections} from '@/components/landing/LandingSections'
 import {LpFooter, LpHeader} from '@/components/landing/LpChrome'
+import {SiteFooter} from '@/components/layout/SiteFooter'
+import {FloatingBookButton} from '@/components/pages/FloatingBookButton'
+import {SiteHeader} from '@/components/layout/SiteHeader'
 import type {LandingPageData} from '@/components/landing/types'
 import {fetchSanity} from '@/sanity/lib/fetch'
 import {LANDING_PAGE_QUERY, LANDING_PATHS_QUERY} from '@/sanity/lib/queries'
@@ -43,13 +46,16 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function LandingPage({params}: Props) {
   const page = await getPage(params)
   if (!page) notFound()
+  // "Full site navigation" pages (e.g. thank-you pages) use the normal site header and footer, as on live
+  const site = page.chrome === 'site'
   return (
     <>
-      <LpHeader button={page.headerButton} />
+      {site ? <SiteHeader /> : <LpHeader button={page.headerButton} />}
       <main className="flex-1">
         <LandingSections sections={page.sections ?? []} />
       </main>
-      <LpFooter />
+      {site ? <SiteFooter /> : <LpFooter />}
+      {page.floatingBookButton && <FloatingBookButton />}
     </>
   )
 }

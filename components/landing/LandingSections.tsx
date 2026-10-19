@@ -1,4 +1,7 @@
+import {PackageTabs, type PackageTab} from '@/components/blocks/PackageTabs'
 import {Blocks, type Block} from '@/components/blocks/Blocks'
+import {Pill} from '@/components/ui/Pill'
+import {CheckList} from '@/components/blocks/CheckList'
 import {LogoBand} from '@/components/blocks/LogoBand'
 import {MediaView} from '@/components/blocks/MediaView'
 import {Section} from '@/components/blocks/Section'
@@ -6,6 +9,8 @@ import {CtaButtons} from '@/components/blocks/CtaButtons'
 import {TabbedMedia} from '@/components/blocks/TabbedMedia'
 import {Testimonials, type Quote} from '@/components/blocks/Testimonials'
 import type {SectionBg} from '@/components/blocks/Section'
+import {ResourceCard} from '@/components/resources/ResourceCard'
+import type {ResourceCardData} from '@/sanity/lib/types'
 import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {urlFor} from '@/sanity/lib/image'
 import {lpCtas, lpImg, lpMedia, tourEmbed, youtubeEmbed} from './convert'
@@ -52,6 +57,29 @@ function Section_({s, formAnchor}: {s: any; formAnchor: boolean}) {
       return quotes.length ? <Testimonials heading={s.heading} quotes={quotes} background={bg(s) ?? 'surface'} /> : null
     }
     case 'lpTabs': {
+      if (s.display === 'packages') {
+        // Live "iGUIDE Packages" tabs (camerasystemcontent): same component as /design-construction
+        const packages = ((s.tabs ?? []) as any[])
+          .map((t, i) => {
+            const media = lpMedia(t.media)
+            if (media?.type !== 'image') return null
+            return {
+              id: `${s._key}-${i}`,
+              label: t.label,
+              heading: t.heading || t.label,
+              text: t.text ?? '',
+              list: (t.bullets ?? []) as string[],
+              image: media.image,
+              links: lpCtas(t.buttons).map((c) => ({label: c.label, href: c.href})),
+            }
+          })
+          .filter(Boolean) as PackageTab[]
+        return packages.length ? (
+          <Section heading={s.heading} subheading={s.subheading} align="center" background={bg(s)}>
+            <PackageTabs tabs={packages} label={s.heading ?? 'Packages'} />
+          </Section>
+        ) : null
+      }
       const tabs = ((s.tabs ?? []) as any[])
         .map((t, i) => {
           const media = lpMedia(t.media)
@@ -76,15 +104,65 @@ function Section_({s, formAnchor}: {s: any; formAnchor: boolean}) {
         </Section>
       ) : null
     }
+    case 'lpTourDemo': {
+      // Live tour(s) with short "how to use it" tips (live: tab-embed element; several tours show as tabs)
+      const tours = ((s.tours ?? []) as {_key?: string; label?: string; media?: any}[])
+        .map((t, i) => ({id: `${s._key}-${i}`, label: t.label || `Tour ${i + 1}`, media: lpMedia(t.media)}))
+        .filter((t): t is {id: string; label: string; media: NonNullable<ReturnType<typeof lpMedia>>} => !!t.media)
+      const tips = ((s.tips ?? []) as {_key?: string; text?: string; icon?: LpImage}[]).filter((t) => t?.text)
+      const list = ((s.list ?? []) as string[]).filter(Boolean)
+      return tours.length ? (
+        <Section heading={s.heading} subheading={s.subheading} eyebrow={s.eyebrow ? <Pill label={s.eyebrow} /> : undefined} align="center" background={bg(s) ?? 'surface'}>
+          {tips.length > 0 && (
+            <ul className="mb-8 grid gap-6 md:grid-cols-3">
+              {tips.map((t, i) => {
+                const icon = lpImg(t.icon)
+                return (
+                  <li key={t._key ?? i} className="flex items-center gap-4">
+                    {icon && (
+                      // eslint-disable-next-line @next/next/no-img-element -- small icon, natural size
+                      <img src={icon.src} alt={icon.alt} className="w-[60px] max-w-[60px] shrink-0" />
+                    )}
+                    <span className="font-medium text-ink">{t.text}</span>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+          {tours.length > 1 ? <TabbedMedia label={s.heading ?? 'Tours'} tabs={tours} /> : <MediaView media={tours[0].media} />}
+          {(s.listHeading || list.length > 0 || s.closing) && (
+            <div className="mx-auto mt-10 max-w-3xl text-center">
+              {s.listHeading && <h3 className="text-2xl font-semibold text-ink">{s.listHeading}</h3>}
+              {list.length > 0 && <CheckList items={list} className="mx-auto mt-6 w-fit text-left" />}
+              {s.closing && <p className="mt-6 text-lg text-body">{s.closing}</p>}
+            </div>
+          )}
+        </Section>
+      ) : null
+    }
     case 'lpVideos': {
       const videos = ((s.videos ?? []) as {title: string; url: string}[]).filter((v) => v?.url)
       return videos.length ? (
         <Section heading={s.heading} align="center" background={bg(s)}>
-          <ul className={videos.length === 1 ? 'mx-auto max-w-3xl' : 'grid gap-6 md:grid-cols-2 lg:grid-cols-3'}>
+          <ul className={s.fullWidth ? '' : videos.length === 1 ? 'mx-auto max-w-3xl' : 'grid gap-6 md:grid-cols-2 lg:grid-cols-3'}>
             {videos.map((v) => (
               <li key={v.url}>
                 <MediaView media={{type: 'embed', src: /youriguide\.com/.test(v.url) ? tourEmbed(v.url) : youtubeEmbed(v.url), title: v.title}} />
-                <p className="mt-3 font-semibold text-ink">{v.title}</p>
+                {!s.fullWidth && <p className="mt-3 font-semibold text-ink">{v.title}</p>}
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null
+    }
+    case 'lpResources': {
+      const items = ((s.items ?? []) as ResourceCardData[]).filter((r) => r?._id)
+      return items.length ? (
+        <Section heading={s.heading} align="center" background={bg(s)}>
+          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {items.map((r) => (
+              <li key={r._id}>
+                <ResourceCard item={r} />
               </li>
             ))}
           </ul>

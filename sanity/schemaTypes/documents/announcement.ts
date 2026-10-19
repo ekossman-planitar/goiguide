@@ -4,6 +4,8 @@ import {BellIcon} from '@sanity/icons/Bell'
 /**
  * One message in the sitewide announcement bar.
  * Only messages inside their schedule window are shown; with none, the bar is hidden.
+ * Each message can show on all pages or only listed ones (same rules as pop-ups);
+ * paid-media landing pages only when "Include paid landing pages" is ticked.
  */
 export const announcement = defineType({
   name: 'announcement',
@@ -41,6 +43,48 @@ export const announcement = defineType({
           }
           return true
         }),
+    }),
+    defineField({
+      name: 'region',
+      title: 'Region',
+      type: 'string',
+      initialValue: 'global',
+      options: {list: [{title: 'Global site (never on Australia pages)', value: 'global'}, {title: 'Australia only (/au pages)', value: 'au'}], layout: 'radio'},
+      description: 'Each region is kept separate: Australia items only show on /au pages, global items never do.',
+    }),
+    defineField({
+      name: 'showOn',
+      title: 'Show on',
+      type: 'string',
+      initialValue: 'all',
+      options: {list: [{title: 'All pages', value: 'all'}, {title: 'Only the pages listed below', value: 'only'}], layout: 'radio'},
+    }),
+    defineField({
+      name: 'paths',
+      title: 'Pages',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'One page per line, e.g. /pricing. End with /* for a whole section, e.g. /blogs/* or /au/*.',
+      hidden: ({document}) => (document as {showOn?: string} | undefined)?.showOn !== 'only',
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          (context.document as {showOn?: string} | undefined)?.showOn === 'only' && !(value as string[] | undefined)?.length ? 'Add at least one page' : true,
+        ),
+    }),
+    defineField({
+      name: 'excludePaths',
+      title: 'Never show on',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'Pages to skip, same format.',
+    }),
+    defineField({
+      name: 'includeLandingPages',
+      title: 'Include paid landing pages',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Off by default: paid-media landing pages don\'t show the bar unless this is ticked.',
+      hidden: ({document}) => (document as {showOn?: string} | undefined)?.showOn === 'only',
     }),
     defineField({
       name: 'sortOrder',
