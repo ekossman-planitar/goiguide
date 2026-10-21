@@ -15,6 +15,7 @@ export async function GET(_req: Request, {params}: {params: Promise<{slug: strin
   if (!e) return new Response('Not found', {status: 404})
   const url = `https://goiguide.com${eventPath(slug)}`
   const location = e.attendance === 'online' ? 'Online' : [e.venue, e.address, e.city, e.region, e.country].filter(Boolean).join(', ')
+  const description = `${e.shortDescription ?? ''}\n\n${url}`
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -26,7 +27,7 @@ export async function GET(_req: Request, {params}: {params: Promise<{slug: strin
     `DTSTART:${stamp(e.startAt)}`,
     `DTEND:${stamp(e.endAt || e.startAt)}`,
     `SUMMARY:${esc(e.title)}`,
-    `DESCRIPTION:${esc(`${e.shortDescription ?? ''}\n\n${url}`)}`,
+    `DESCRIPTION:${esc(description)}`,
     location ? `LOCATION:${esc(location)}` : '',
     `URL:${url}`,
     'END:VEVENT',

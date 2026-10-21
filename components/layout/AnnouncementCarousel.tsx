@@ -51,8 +51,10 @@ export function AnnouncementCarousel({items: allItems, renderedAt, landingPage =
       .map((t) => Date.parse(t))
       .filter((t) => t > now)
     const nextChange = upcoming.length ? Math.min(...upcoming) : null
-    const delay = now === renderedAt ? 0 : nextChange ? Math.min(nextChange - Date.now() + 50, MAX_TIMEOUT) : null
-    if (delay === null) return
+    let delay: number
+    if (now === renderedAt) delay = 0
+    else if (nextChange) delay = Math.min(nextChange - Date.now() + 50, MAX_TIMEOUT)
+    else return
     const timer = setTimeout(() => setNow(Date.now()), Math.max(delay, 0))
     return () => clearTimeout(timer)
   }, [items, now, renderedAt])

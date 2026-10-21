@@ -6,6 +6,7 @@ import {ArrowRight} from '@/components/ui/icons'
 import {cn} from '@/lib/cn'
 import {MediaView} from './MediaView'
 import type {Media} from './types'
+import {wrapIndex} from '@/lib/tabs'
 
 export type FeatureTab = {
   id: string
@@ -48,7 +49,7 @@ export function FeatureTabs({
     const next = {ArrowDown: active + 1, ArrowUp: active - 1, Home: 0, End: last}[e.key]
     if (next === undefined) return
     e.preventDefault()
-    select(next < 0 ? last : next > last ? 0 : next, true)
+    select(wrapIndex(next, last), true)
   }
 
   // Show the nearest item at or before the active one that has media
@@ -58,7 +59,7 @@ export function FeatureTabs({
 
   return (
     <div className={cn('grid items-center gap-10', hasMedia && 'lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14')}>
-      <div role="group" aria-label={label} onKeyDown={onKeyDown} className={cn('space-y-3', mediaSide === 'left' && 'lg:order-2')}>
+      <fieldset aria-label={label} className={cn('min-w-0 space-y-3', mediaSide === 'left' && 'lg:order-2')}>
         {items.map((item, i) => {
           const open = i === active
           return (
@@ -79,6 +80,7 @@ export function FeatureTabs({
                   aria-expanded={open}
                   aria-controls={`feature-text-${item.id}`}
                   onClick={() => select(i)}
+                  onKeyDown={onKeyDown}
                   className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
                 >
                   {item.title}
@@ -110,7 +112,7 @@ export function FeatureTabs({
             </div>
           )
         })}
-      </div>
+      </fieldset>
       {hasMedia && (
         <div className={cn('min-w-0', mediaSide === 'left' && 'lg:order-1')}>
           {items.map((item, i) =>

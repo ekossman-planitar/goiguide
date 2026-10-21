@@ -13,11 +13,14 @@ import {HELP_BASE_PATH, ZENDESK_PUBLIC_ORIGIN} from './zendesk'
  * - lazy-load images and iframes
  * - drop <script>/<style> blocks as a safety net
  */
-const HC_PAGE = /^(?:https?:\/\/(?:help\.youriguide\.com|iguide\.zendesk\.com|support\.youriguide\.com))?\/hc(?:\/[a-z]{2}(?:-[a-z]{2})?)?\/(articles|sections|categories)\/(\d+[^"#?]*)([?#][^"]*)?$/i
+/** Zendesk Help Center origins; stripped before matching HC_PATH */
+const HC_ORIGIN = /^https?:\/\/(?:help\.youriguide\.com|iguide\.zendesk\.com|support\.youriguide\.com)(?=\/)/i
+/** Root-relative Help Center article/section/category path, optional locale */
+const HC_PATH = /^\/hc(?:\/[a-z]{2}(?:-[a-z]{2})?)?\/(articles|sections|categories)\/(\d+[^"#?]*)([?#][^"]*)?$/i
 
 export function rewriteHelpUrl(url: string): string {
   const trimmed = url.trim()
-  const page = HC_PAGE.exec(trimmed)
+  const page = HC_PATH.exec(trimmed.replace(HC_ORIGIN, ''))
   if (page) {
     const [, kind, slug, rest = ''] = page
     // Keep #anchors; drop Zendesk query strings

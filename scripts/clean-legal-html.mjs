@@ -39,31 +39,51 @@ function href(raw) {
   return h
 }
 
+function linkAttrs(node) {
+  const h = node.getAttribute('href')
+  if (!h) return null
+  const link = href(h)
+  let attrs = ` href="${escAttr(link)}"`
+  if (/^https?:\/\//i.test(link)) attrs += ' target="_blank" rel="noopener noreferrer"'
+  return attrs
+}
+
+function cellAttrs(node) {
+  let attrs = ''
+  for (const a of ['colspan', 'rowspan']) if (node.getAttribute(a)) attrs += ` ${a}="${escAttr(node.getAttribute(a))}"`
+  return attrs
+}
+
+const isCell = (tag) => tag === 'td' || tag === 'th'
+
+/** Attributes kept for a tag; null = drop the element but keep its content (a link without href) */
+function tagAttrs(node, tag) {
+  if (tag === 'a') return linkAttrs(node)
+  if (isCell(tag)) return cellAttrs(node)
+  return ''
+}
+
+function wrapElement(tag, attrs, inner) {
+  const body = BLOCK.has(tag) && !['li', 'p'].includes(tag) ? inner.trim() : inner.replace(/^ +| +$/g, (m) => (m ? ' ' : ''))
+  const trimBody = tag === 'p' || tag === 'li' || /^h\d$/.test(tag) || isCell(tag)
+  const out = `<${tag}${attrs}>${trimBody ? body.trim() : body}</${tag}>`
+  return BLOCK.has(tag) ? `\n${out}\n` : out
+}
+
 function serialize(node) {
   if (node.nodeType === 3) return esc(text(node.nodeValue))
   if (node.nodeType !== 1) return ''
-  let tag = node.tagName.toLowerCase()
-  if (DROP.has(tag)) return ''
-  tag = RENAME[tag] ?? tag
+  const raw = node.tagName.toLowerCase()
+  if (DROP.has(raw)) return ''
+  const tag = RENAME[raw] ?? raw
   const inner = [...node.childNodes].map(serialize).join('')
   if (!KEEP.has(tag)) return inner // span, div, font…: keep the text, lose the wrapper
   if (tag === 'br') return '<br>'
   // Empty paragraphs / headings / inline tags (e.g. <p>&nbsp;</p>) carry no content
-  if (tag !== 'td' && tag !== 'th' && !inner.replace(/<br>/g, '').trim()) return ''
-  let attrs = ''
-  if (tag === 'a') {
-    const h = node.getAttribute('href')
-    if (!h) return inner
-    const link = href(h)
-    attrs = ` href="${escAttr(link)}"`
-    if (/^https?:\/\//i.test(link)) attrs += ' target="_blank" rel="noopener noreferrer"'
-  }
-  if (tag === 'td' || tag === 'th') {
-    for (const a of ['colspan', 'rowspan']) if (node.getAttribute(a)) attrs += ` ${a}="${escAttr(node.getAttribute(a))}"`
-  }
-  const body = BLOCK.has(tag) && !['li', 'p'].includes(tag) ? inner.trim() : inner.replace(/^ +| +$/g, (m) => (m ? ' ' : ''))
-  const out = `<${tag}${attrs}>${tag === 'p' || tag === 'li' || /^h\d$/.test(tag) || tag === 'td' || tag === 'th' ? body.trim() : body}</${tag}>`
-  return BLOCK.has(tag) ? `\n${out}\n` : out
+  if (!isCell(tag) && !inner.replace(/<br>/g, '').trim()) return ''
+  const attrs = tagAttrs(node, tag)
+  if (attrs === null) return inner
+  return wrapElement(tag, attrs, inner)
 }
 
 const tidy = (html) =>

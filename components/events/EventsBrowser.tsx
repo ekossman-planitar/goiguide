@@ -73,7 +73,8 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
     if (f.q.trim()) params.set('q', f.q.trim())
     else params.delete('q')
     const qs = params.toString()
-    window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}`)
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname
+    window.history.replaceState(null, '', url)
   }
   const setFilter = (k: keyof Filters, value: string) => {
     const next = {...filters, [k]: value}
@@ -85,7 +86,9 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
   // Only offer options that upcoming events actually have
   const typesPresent = eventTypes.filter((t) => upcoming.some((e) => e.eventType === t.value))
   const industriesPresent = eventCategories.filter((c) => upcoming.some((e) => e.categories?.includes(c.value)))
-  const countriesPresent = [...new Set(upcoming.filter((e) => e.attendance !== 'online' && e.country).map((e) => e.country!))].sort()
+  const countriesPresent = [...new Set(upcoming.filter((e) => e.attendance !== 'online' && e.country).map((e) => e.country!))].sort((a, b) =>
+    a.localeCompare(b),
+  )
   const shown = useMemo(() => upcoming.filter((e) => matches(e, filters)), [upcoming, filters])
   const filtered = JSON.stringify(filters) !== JSON.stringify(NO_FILTERS)
 
@@ -109,6 +112,9 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
     const tz = e.timeZone || DEFAULT_TIME_ZONE
     return monthKey(e.startAt, tz) <= activeMonth && monthKey(e.endAt || e.startAt, tz) >= activeMonth
   })
+
+  let filterSuffix = ''
+  if (filtered) filterSuffix = shown.length === 1 ? ' matches your filters' : ' match your filters'
 
   const toggle = 'inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors'
 
@@ -198,7 +204,7 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
             </button>
           )}
         </form>
-        <div role="group" aria-label="View" className="inline-flex self-start rounded-xl bg-surface p-1 lg:self-auto">
+        <fieldset aria-label="View" className="inline-flex self-start rounded-xl bg-surface p-1 lg:self-auto">
           {(
             [
               {v: 'list', label: 'List', icon: List},
@@ -219,68 +225,79 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
               {label}
             </button>
           ))}
-        </div>
+        </fieldset>
       </div>
       <p className="mt-4 text-sm text-muted" aria-live="polite">
         {shown.length} upcoming {shown.length === 1 ? 'event' : 'events'}
-        {filtered ? (shown.length === 1 ? ' matches your filters' : ' match your filters') : ''}
+        {filterSuffix}
       </p>
 
-      {shown.length === 0 ? (
-        <div className="mt-10 rounded-2xl bg-surface px-6 py-12 text-center">
-          {filtered && upcoming.length ? (
-            <>
-              <p className="text-xl font-semibold text-ink">No events match your filters</p>
-              <p className="mt-2 text-body">Try a different search, or clear the filters to see all upcoming events.</p>
-            </>
-          ) : (
-            <>
-              <p className="text-xl font-semibold text-ink">No upcoming events right now</p>
-              <p className="mt-2 text-body">Check back soon, or watch past sessions in our webinar library.</p>
-            </>
-          )}
-          <SmartLink
-            href="/webinars"
-            className="mt-6 inline-flex rounded-lg border border-primary px-5 py-2.5 font-semibold text-primary hover:border-primary-hover hover:text-primary-hover"
-          >
-            Browse webinars
-          </SmartLink>
-        </div>
-      ) : view === 'list' ? (
-        <div className="mt-10 space-y-12">
-          {groups.map(([key, list]) => (
-            <section key={key} aria-labelledby={`month-${key}`}>
-              <h2 id={`month-${key}`} className="border-b border-line pb-3 text-2xl font-semibold text-ink md:text-[28px]">
-                {monthLabel(key)}
-              </h2>
-              <ul className="mt-6 space-y-5">
-                {list.map((e) => (
-                  <li key={e._id}>
-                    <EventCard event={e} live={isLive(e, now)} />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-      ) : (
+      {shown.length === 0 && <NoEvents filtered={filtered && upcoming.length > 0} />}
+      {shown.length > 0 && view === 'list' && <MonthGroups groups={groups} now={now} />}
+      {shown.length > 0 && view === 'calendar' && (
         <div className="mt-10">
           <EventCalendar events={shown} month={activeMonth} onMonthChange={setMonth} firstMonth={firstMonth} lastMonth={lastMonth} />
           <section className="mt-10" aria-label={`Events in ${monthLabel(activeMonth)}`}>
             {calendarList.length ? (
-              <ul className="space-y-5">
-                {calendarList.map((e) => (
-                  <li key={e._id}>
-                    <EventCard event={e} live={isLive(e, now)} />
-                  </li>
-                ))}
-              </ul>
+              <EventList events={calendarList} now={now} className="space-y-5" />
             ) : (
               <p className="rounded-2xl bg-surface px-6 py-8 text-center text-body">No events in {monthLabel(activeMonth)}.</p>
             )}
           </section>
         </div>
       )}
+    </div>
+  )
+}
+
+function EventList({events, now, className}: {events: EventCardData[]; now: number; className: string}) {
+  return (
+    <ul className={className}>
+      {events.map((e) => (
+        <li key={e._id}>
+          <EventCard event={e} live={isLive(e, now)} />
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function MonthGroups({groups, now}: {groups: [string, EventCardData[]][]; now: number}) {
+  return (
+    <div className="mt-10 space-y-12">
+      {groups.map(([key, list]) => (
+        <section key={key} aria-labelledby={`month-${key}`}>
+          <h2 id={`month-${key}`} className="border-b border-line pb-3 text-2xl font-semibold text-ink md:text-[28px]">
+            {monthLabel(key)}
+          </h2>
+          <EventList events={list} now={now} className="mt-6 space-y-5" />
+        </section>
+      ))}
+    </div>
+  )
+}
+
+/** Empty state; `filtered` = filters are hiding upcoming events (vs. none scheduled at all). */
+function NoEvents({filtered}: {filtered: boolean}) {
+  return (
+    <div className="mt-10 rounded-2xl bg-surface px-6 py-12 text-center">
+      {filtered ? (
+        <>
+          <p className="text-xl font-semibold text-ink">No events match your filters</p>
+          <p className="mt-2 text-body">Try a different search, or clear the filters to see all upcoming events.</p>
+        </>
+      ) : (
+        <>
+          <p className="text-xl font-semibold text-ink">No upcoming events right now</p>
+          <p className="mt-2 text-body">Check back soon, or watch past sessions in our webinar library.</p>
+        </>
+      )}
+      <SmartLink
+        href="/webinars"
+        className="mt-6 inline-flex rounded-lg border border-primary px-5 py-2.5 font-semibold text-primary hover:border-primary-hover hover:text-primary-hover"
+      >
+        Browse webinars
+      </SmartLink>
     </div>
   )
 }

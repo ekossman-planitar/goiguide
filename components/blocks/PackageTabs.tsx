@@ -6,6 +6,7 @@ import {cn} from '@/lib/cn'
 import {CheckList} from './CheckList'
 import {MediaView} from './MediaView'
 import type {Img} from './types'
+import {wrapIndex} from '@/lib/tabs'
 
 export type PackageTab = {
   id: string
@@ -30,7 +31,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
     const next = {ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: last}[e.key]
     if (next === undefined) return
     e.preventDefault()
-    const i = next < 0 ? last : next > last ? 0 : next
+    const i = wrapIndex(next, last)
     setActive(i)
     refs.current[i]?.focus()
   }
@@ -38,7 +39,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
   return (
     <div id="packageTabs">
       <div className="flex justify-center">
-        <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2">
+        <div role="tablist" aria-label={label} className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2">
           {tabs.map((tab, i) => (
             <button
               key={tab.id}
@@ -52,6 +53,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
               aria-controls={`panel-${tab.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
+              onKeyDown={onKeyDown}
               className={cn(
                 'shrink-0 rounded-3xl border px-5 py-2.5 text-base leading-6 font-semibold whitespace-nowrap transition-colors',
                 i === active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',

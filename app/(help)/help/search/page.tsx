@@ -18,6 +18,12 @@ type Props = {searchParams: Promise<{query?: string | string[]; page?: string | 
 
 const one = (v?: string | string[]) => (Array.isArray(v) ? v[0] : v)
 
+function resultsSummary(query: string, failed: boolean, count: number) {
+  if (!query) return 'Enter a word or phrase in the search box above.'
+  if (failed) return 'Search isn’t available right now. Please try again in a moment.'
+  return `${count} ${count === 1 ? 'result' : 'results'} for “${query}”`
+}
+
 export default async function SearchPage({searchParams}: Props) {
   const params = await searchParams
   const query = (one(params.query) ?? '').trim().slice(0, 200)
@@ -46,11 +52,7 @@ export default async function SearchPage({searchParams}: Props) {
         <Container size="medium">
           <h1 className="text-[36px] leading-tight font-semibold text-ink md:text-[48px]">Search results</h1>
           <p className="mt-3 text-lg text-muted" aria-live="polite">
-            {!query
-              ? 'Enter a word or phrase in the search box above.'
-              : failed
-                ? 'Search isn’t available right now. Please try again in a moment.'
-                : `${count} ${count === 1 ? 'result' : 'results'} for “${query}”`}
+            {resultsSummary(query, failed, count)}
           </p>
 
           {results.length > 0 && (
@@ -103,8 +105,7 @@ export default async function SearchPage({searchParams}: Props) {
               Can’t find what you’re looking for?{' '}
               <a href={zendeskLinks.submitRequest} className="help-submit-request font-semibold underline underline-offset-2 hover:text-primary-hover">
                 Submit a request
-              </a>
-              .
+              </a>.
             </p>
           )}
         </Container>

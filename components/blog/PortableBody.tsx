@@ -8,8 +8,26 @@ import type {SanityImage} from '@/sanity/lib/types'
 type FaqValue = {heading?: string; items?: {_key: string; question: string; answer?: PortableTextBlock[]}[]}
 
 /** Screen-reader title for imported embeds that didn't have one */
-const embedTitle = (url: string) =>
-  /youriguide\.com|iguideradix\.com/.test(url) ? 'iGuide 3D virtual tour' : /youtube|vimeo|vidyard/.test(url) ? 'Video' : 'Embedded content'
+function embedTitle(url: string) {
+  if (/youriguide\.com|iguideradix\.com/.test(url)) return 'iGuide 3D virtual tour'
+  if (/youtube|vimeo|vidyard/.test(url)) return 'Video'
+  return 'Embedded content'
+}
+
+type VideoEmbedValue = {url?: string; title?: string; height?: number}
+
+/** Imported embeds: fixed height when the original had one, otherwise 16:9 */
+function VideoEmbed({value}: {value: VideoEmbedValue}) {
+  if (!value?.url) return null
+  if (value.height) {
+    return <iframe src={value.url} title={value.title ?? 'Embedded player'} height={value.height} className="mt-10 w-full rounded-xl" allowFullScreen loading="lazy" />
+  }
+  return (
+    <div className="relative mt-10 aspect-video overflow-hidden rounded-xl bg-surface">
+      <iframe src={value.url} title={value.title ?? embedTitle(value.url)} className="absolute inset-0 h-full w-full" allowFullScreen loading="lazy" />
+    </div>
+  )
+}
 
 export type TestimonialValue = {
   quote?: string
@@ -130,16 +148,7 @@ export const bodyComponents: PortableTextComponents = {
         </figure>
       )
     },
-    videoEmbed: ({value}: {value: {url?: string; title?: string; height?: number}}) =>
-      value?.url ? (
-        value.height ? (
-          <iframe src={value.url} title={value.title ?? 'Embedded player'} height={value.height} className="mt-10 w-full rounded-xl" allowFullScreen loading="lazy" />
-        ) : (
-          <div className="relative mt-10 aspect-video overflow-hidden rounded-xl bg-surface">
-            <iframe src={value.url} title={value.title ?? embedTitle(value.url)} className="absolute inset-0 h-full w-full" allowFullScreen loading="lazy" />
-          </div>
-        )
-      ) : null,
+    videoEmbed: ({value}: {value: VideoEmbedValue}) => <VideoEmbed value={value} />,
     faq: ({value}: {value: FaqValue}) =>
       value?.items?.length ? (
         <section className="mt-12" aria-label={value.heading || 'Frequently asked questions'}>

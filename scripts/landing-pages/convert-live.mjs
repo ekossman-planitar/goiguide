@@ -68,7 +68,7 @@ const buttons = (root, pagePath) => [...(root?.querySelectorAll('a.btn') ?? [])]
 
 /** iframe → lpMedia (iGuide tour / YouTube / other) */
 function iframeMedia(iframe, title) {
-  const raw = iframe?.getAttribute('src') || iframe?.getAttribute('data-src')
+  const raw = iframe?.getAttribute('src') || iframe?.dataset.src
   if (!raw) return undefined
   // A few live embeds join the parameters with "&" but no "?"; the tour still needs a proper query string
   const fixed = !raw.includes('?') && raw.includes('&') ? raw.replace('&', '?') : raw
@@ -83,7 +83,7 @@ function mediaIn(root, title) {
   const vsrc = video?.getAttribute('src') || video?.querySelector('source')?.getAttribute('src')
   if (vsrc) return {_type: 'lpMedia', kind: 'video', url: new URL(vsrc, 'https://goiguide.com').toString(), title: title || 'Video'}
   const im = root.querySelector('img')
-  if (im) return {_type: 'lpMedia', kind: 'image', image: img(im.getAttribute('src') || im.getAttribute('data-src'), im.getAttribute('alt') ?? '')}
+  if (im) return {_type: 'lpMedia', kind: 'image', image: img(im.getAttribute('src') || im.dataset.src, im.getAttribute('alt') ?? '')}
   return undefined
 }
 
@@ -94,7 +94,7 @@ function textAndIcons(el) {
   const intro = el.querySelector('.container .prose')
   const cards = [...el.querySelectorAll('.rounded-xl')].filter((c) => c.querySelector('h3'))
   const grid = cards[0]?.parentElement?.className ?? ''
-  const cols = Number(grid.match(/lg:grid-cols-(\d)/)?.[1]) || (cards.length === 4 ? 4 : cards.length === 2 ? 2 : 3)
+  const cols = Number(grid.match(/lg:grid-cols-(\d)/)?.[1]) || ([2, 4].includes(cards.length) ? cards.length : 3)
   return {
     _type: 'lpFeatures',
     _key: k(),
@@ -329,8 +329,7 @@ function contactContent(el, pagePath) {
   const sub = [...(prose?.querySelectorAll('h3, p') ?? [])].map(text).filter(Boolean).join('\n\n')
   const meetings = el
     .querySelector('.meetings-iframe-container')
-    ?.getAttribute('data-src')
-    ?.replace(/[?&]embed=true/, '')
+    ?.dataset.src?.replace(/[?&]embed=true/, '')
   const formId = el.innerHTML.match(/formId:\s*["']([^"']+)/)?.[1]
   return {
     _type: 'lpHero',
@@ -338,7 +337,7 @@ function contactContent(el, pagePath) {
     style: meetings || formId ? 'form' : 'centered',
     heading,
     subheading: sub || undefined,
-    buttons: buttons(el, pagePath).map((b) => (b.action === 'url' ? b : b)),
+    buttons: buttons(el, pagePath),
     ...(meetings ? {meetingsUrl: meetings} : {}),
     ...(formId ? {hubspotFormId: formId} : {}),
   }
@@ -383,6 +382,66 @@ function banner(doc, html) {
 
 /* ---------------------------------------------------------------- page */
 
+/** Skip the element: it carries no content */
+const SKIP = Symbol('skip')
+
+/** Footnote-only content block (small print under a section) */
+function contentEl(el, {plain}) {
+  if (el.querySelector('sub, small') && plain.length < 400) return {section: {_type: 'lpNotice', _key: k(), text: plain}}
+  return undefined
+}
+
+/** Old theme embed-script elements: quote sliders, a lone YouTube video (ad pages), or style/script-only helpers */
+function embedScriptEl(el, {out}) {
+  const clone = el.cloneNode(true)
+  clone.querySelectorAll('style, script, link, noscript').forEach((n) => n.remove())
+  const noText = !clone.textContent.replace(/\s+/g, '').length
+  if (noText && !clone.querySelector('img, iframe, video')) return SKIP
+  if (clone.querySelector('.slider .slides > div h3')) return {section: quoteSlider(el, out)}
+  const yt = clone.querySelectorAll('iframe[src*="youtube"]')
+  if (yt.length === 1 && noText && !clone.querySelector('img, video')) {
+    const src = yt[0].getAttribute('src').replace(/\?si=[^&]*$/, '')
+    return {section: {_type: 'lpVideos', _key: k(), fullWidth: true, videos: [{_key: k(), title: 'iGuide video', url: src.replace('/embed/', '/watch?v=')}]}}
+  }
+  return undefined
+}
+
+/**
+ * Live element kind → converter. A converter returns {section}, SKIP, or
+ * undefined when it can't map the element (listed as unsupported).
+ */
+const ELEMENT_CONVERTERS = new Map([
+  ['textandicons', (el) => ({section: textAndIcons(el)})],
+  ['logoslider', (el) => ({section: logoSlider(el)})],
+  ['tabembedandbeforeafter', (el) => ({section: tabEmbed(el)})],
+  ['testimonials', (el, ctx) => ({section: testimonialsEl(el, ctx.out)})],
+  ['textandimage', (el, ctx) => ({section: textAndImage(el, ctx.pagePath)})],
+  ['ctafeaturelarge', (el, ctx) => ({section: ctaLarge(el, ctx.pagePath)})],
+  ['ctafeaturenotification', (el, ctx) => ({section: ctaLarge(el, ctx.pagePath)})],
+  ['stepslider', (el) => ({section: stepSlider(el)})],
+  ['faq', (el) => ({section: faqEl(el)})],
+  ['contactcontent', (el, ctx) => ({section: contactContent(el, ctx.pagePath)})],
+  ['camerasystemcontent', (el, ctx) => (el.querySelector('.product-loop') ? {section: packagesEl(el, ctx.pagePath)} : undefined)],
+  ['featuredposts', (el) => ({section: featuredPosts(el)})],
+  ['content', contentEl],
+  ['embedscript', embedScriptEl],
+])
+
+/** Live page elements → landing page sections (unmapped ones go to out.unsupported) */
+function convertElements(doc, pagePath, out) {
+  const sections = []
+  for (const el of doc.querySelectorAll('main .element')) {
+    if (el.parentElement?.closest('.element')) continue
+    const kind = el.className.match(/elements__element(\w+)/)?.[1]
+    const plain = (el.textContent ?? '').replace(/\s+/g, ' ').trim()
+    const result = ELEMENT_CONVERTERS.get(kind)?.(el, {out, pagePath, plain})
+    if (result === SKIP) continue
+    if (result) sections.push(result.section)
+    else out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
+  }
+  return sections
+}
+
 export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
   const out = {testimonials: new Map(), unsupported: []}
   const doc = new JSDOM(html, {virtualConsole: vc}).window.document
@@ -393,83 +452,10 @@ export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
   if (manual) {
     sections.push(...manual.sections)
     for (const t of manual.testimonials ?? []) out.testimonials.set(t._id, t)
-  }
-  const hero = manual ? null : banner(doc, html)
-  if (hero) sections.push(hero)
-  for (const el of manual ? [] : doc.querySelectorAll('main .element')) {
-    if (el.parentElement?.closest('.element')) continue
-    const kind = el.className.match(/elements__element(\w+)/)?.[1]
-    const plain = (el.textContent ?? '').replace(/\s+/g, ' ').trim()
-    switch (kind) {
-      case 'textandicons':
-        sections.push(textAndIcons(el))
-        break
-      case 'logoslider':
-        sections.push(logoSlider(el))
-        break
-      case 'tabembedandbeforeafter':
-        sections.push(tabEmbed(el))
-        break
-      case 'testimonials':
-        sections.push(testimonialsEl(el, out))
-        break
-      case 'textandimage':
-        sections.push(textAndImage(el, pagePath))
-        break
-      case 'ctafeaturelarge':
-      case 'ctafeaturenotification':
-        sections.push(ctaLarge(el, pagePath))
-        break
-      case 'stepslider':
-        sections.push(stepSlider(el))
-        break
-      case 'faq':
-        sections.push(faqEl(el))
-        break
-      case 'contactcontent':
-        sections.push(contactContent(el, pagePath))
-        break
-      case 'camerasystemcontent':
-        if (el.querySelector('.product-loop')) {
-          sections.push(packagesEl(el, pagePath))
-          break
-        }
-        out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
-        break
-      case 'featuredposts':
-        sections.push(featuredPosts(el))
-        break
-      case 'content': {
-        // Footnote-only content block (small print under a section)
-        if (el.querySelector('sub, small') && plain.length < 400) {
-          sections.push({_type: 'lpNotice', _key: k(), text: plain})
-          break
-        }
-        out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
-        break
-      }
-      case 'embedscript': {
-        // Style-only or script-only helpers from the old theme carry no content
-        const clone = el.cloneNode(true)
-        clone.querySelectorAll('style, script, link, noscript').forEach((n) => n.remove())
-        if (!clone.textContent.replace(/\s+/g, '').length && !clone.querySelector('img, iframe, video')) break
-        if (clone.querySelector('.slider .slides > div h3')) {
-          sections.push(quoteSlider(el, out))
-          break
-        }
-        // A lone YouTube embed (ad pages): one full-width video
-        const yt = clone.querySelectorAll('iframe[src*="youtube"]')
-        if (yt.length === 1 && !clone.textContent.replace(/\s+/g, '').length && !clone.querySelector('img, video')) {
-          const src = yt[0].getAttribute('src').replace(/\?si=[^&]*$/, '')
-          sections.push({_type: 'lpVideos', _key: k(), fullWidth: true, videos: [{_key: k(), title: 'iGuide video', url: src.replace('/embed/', '/watch?v=')}]})
-          break
-        }
-        out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
-        break
-      }
-      default:
-        out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
-    }
+  } else {
+    const hero = banner(doc, html)
+    if (hero) sections.push(hero)
+    sections.push(...convertElements(doc, pagePath, out))
   }
   return {
     doc: {

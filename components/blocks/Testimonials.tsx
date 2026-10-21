@@ -27,6 +27,13 @@ export type Quote = {
 
 const bgs: Record<SectionBg, string> = {white: 'bg-white', surface: 'bg-surface', sky: 'bg-sky'}
 
+/** Grid columns for a row of quote cards */
+function gridCols(count: number) {
+  if (count === 2) return 'lg:grid-cols-2'
+  if (count === 3) return 'md:grid-cols-2 lg:grid-cols-3'
+  return 'md:grid-cols-2 xl:grid-cols-4'
+}
+
 /** One large testimonial, or a row of them. */
 export function Testimonials({
   quotes,
@@ -44,7 +51,7 @@ export function Testimonials({
     quotes.length === 1 ? (
       <SingleQuote quote={quotes[0]} />
     ) : (
-      <ul className={cn('grid gap-6', quotes.length === 2 ? 'lg:grid-cols-2' : quotes.length === 3 ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-4')}>
+      <ul className={cn('grid gap-6', gridCols(quotes.length))}>
         {quotes.map((q) => (
           <li key={q.quote} className="flex">
             <QuoteCard quote={q} />
@@ -88,18 +95,7 @@ function SingleQuote({quote}: {quote: Quote}) {
         quote.media ? 'lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]' : quote.photo && 'mx-auto max-w-[1100px] lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]',
       )}
     >
-      {quote.media ? (
-        <MediaView media={quote.media} />
-      ) : quote.photo ? (
-        <FallbackImage
-          src={quote.photo.src}
-          alt={quote.photo.alt}
-          width={quote.photo.width ?? 300}
-          height={quote.photo.height ?? 300}
-          className="mx-auto h-48 w-48 rounded-full object-cover lg:h-64 lg:w-64"
-          fallback={<div className="mx-auto h-48 w-48 rounded-full bg-white lg:h-64 lg:w-64" />}
-        />
-      ) : null}
+      <QuoteVisual quote={quote} />
       <div>
         <span aria-hidden className="block text-6xl leading-none font-bold text-brand">“</span>
         <blockquote className="mt-2 text-2xl leading-[1.35] font-semibold text-ink md:text-[28px]">{quote.quote}</blockquote>
@@ -109,6 +105,22 @@ function SingleQuote({quote}: {quote: Quote}) {
         </div>
       </div>
     </figure>
+  )
+}
+
+/** Video if there is one, otherwise the person's photo */
+function QuoteVisual({quote}: {quote: Quote}) {
+  if (quote.media) return <MediaView media={quote.media} />
+  if (!quote.photo) return null
+  return (
+    <FallbackImage
+      src={quote.photo.src}
+      alt={quote.photo.alt}
+      width={quote.photo.width ?? 300}
+      height={quote.photo.height ?? 300}
+      className="mx-auto h-48 w-48 rounded-full object-cover lg:h-64 lg:w-64"
+      fallback={<div className="mx-auto h-48 w-48 rounded-full bg-white lg:h-64 lg:w-64" />}
+    />
   )
 }
 

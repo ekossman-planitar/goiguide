@@ -42,10 +42,11 @@ export const sidebarPromo = defineType({
   ],
   preview: {
     select: {title: 'name', subtitle: 'heading', media: 'image', enabled: 'enabled', endAt: 'endAt'},
-    prepare: ({title, subtitle, media, enabled, endAt}) => ({
-      title,
-      subtitle: enabled === false ? `Off · ${subtitle}` : endAt && Date.parse(endAt) <= Date.now() ? `Ended · ${subtitle}` : subtitle,
-      media,
-    }),
+    prepare: ({title, subtitle, media, enabled, endAt}) => {
+      let status = ''
+      if (enabled === false) status = 'Off · '
+      else if (endAt && Date.parse(endAt) <= Date.now()) status = 'Ended · '
+      return {title, subtitle: status ? `${status}${subtitle}` : subtitle, media}
+    },
   },
 })

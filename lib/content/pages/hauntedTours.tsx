@@ -52,8 +52,7 @@ export const blocks: Block[] = [
         {copy(
           <>
             <p>
-              Established in 1851, this hotel spans over 13,000 square feet and is filled with unique antiques. It is also known as &quot;
-              <strong>The most haunted hotel in the world</strong>&quot;. Each area of The Historic Jefferson Hotel is rich with stories and ghostly
+              Established in 1851, this hotel spans over 13,000 square feet and is filled with unique antiques. It is also known as &quot;<strong>The most haunted hotel in the world</strong>&quot;. Each area of The Historic Jefferson Hotel is rich with stories and ghostly
               murmurs, providing a distinct and exciting escape from the everyday.
             </p>
             <p>If you&apos;re curious about ghosts, watch the video in this tour. It will give you goosebumps!</p>

@@ -23,7 +23,7 @@ const colour = (name: string, title: string, fallback: string, description?: str
     title,
     type: 'string',
     ...(group ? {group} : {}),
-    description: `${description ? `${description} ` : ''}Empty = ${fallback}.`,
+    description: description ? `${description} Empty = ${fallback}.` : `Empty = ${fallback}.`,
     components: {input: ColourInput},
     validation: (rule) => rule.custom((v) => (!v || HEX_PATTERN.test(v as string) ? true : 'Use a 6-digit hex colour, e.g. #2e2c30')),
   })

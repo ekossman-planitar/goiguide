@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
 import {PortableText} from 'next-sanity'
-import {useCallback, useEffect, useRef, useState, type CSSProperties} from 'react'
+import {createContext, useCallback, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode} from 'react'
 import {cn} from '@/lib/cn'
 import {DEFAULT_COLOURS, inSchedule, showsOnPath} from '@/lib/popup/rules'
 import {urlFor} from '@/sanity/lib/image'
@@ -185,6 +185,20 @@ function ImagePopup({popup, onLinkClick}: {popup: PopupData; onLinkClick: () => 
   )
 }
 
+/** Bold text in the popup description is shown in the popup's highlight colour */
+const HighlightColour = createContext<string>(DEFAULT_COLOURS.highlight)
+
+function HighlightStrong({children}: {children?: ReactNode}) {
+  const colour = useContext(HighlightColour)
+  return (
+    <strong style={{color: colour}} className="font-bold">
+      {children}
+    </strong>
+  )
+}
+
+const DESCRIPTION_COMPONENTS = {marks: {strong: HighlightStrong}}
+
 function SplitPopup({popup, onCta, onExpire}: {popup: PopupData; onCta: () => void; onExpire: () => void}) {
   const bg = popup.backgroundColour || DEFAULT_COLOURS.background
   const text = popup.textColour || DEFAULT_COLOURS.text
@@ -211,10 +225,9 @@ function SplitPopup({popup, onCta, onExpire}: {popup: PopupData; onCta: () => vo
         {popup.title && <h2 className="text-3xl leading-tight font-semibold md:text-4xl">{popup.title}</h2>}
         {popup.description?.length ? (
           <div className="mt-4 space-y-3 text-lg leading-7">
-            <PortableText
-              value={popup.description}
-              components={{marks: {strong: ({children}) => <strong style={{color: highlight}} className="font-bold">{children}</strong>}}}
-            />
+            <HighlightColour value={highlight}>
+              <PortableText value={popup.description} components={DESCRIPTION_COMPONENTS} />
+            </HighlightColour>
           </div>
         ) : null}
         {popup.countdown?.endsAt && !timerDone && (

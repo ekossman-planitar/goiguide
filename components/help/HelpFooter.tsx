@@ -34,8 +34,7 @@ export function HelpFooter() {
             <span className="font-semibold text-ink">Support hours:</span> {supportContact.hours} (except for holidays, view{' '}
             <a href={supportContact.holidays.href} className="underline underline-offset-2 hover:text-primary-hover">
               {supportContact.holidays.label}
-            </a>
-            )
+            </a>)
           </p>
           <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
             <span>

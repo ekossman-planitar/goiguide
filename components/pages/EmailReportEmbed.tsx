@@ -9,8 +9,7 @@ import {ReportScaleFit} from './ReportScaleFit'
 export function EmailReportEmbed({html, label, scaleHeight, className}: {html: string; label: string; scaleHeight?: number; className?: string}) {
   return (
     <>
-      <div
-        role="region"
+      <section
         aria-label={label}
         className={cn('overflow-x-auto', className)}
         // Static markup from the live page; no scripts

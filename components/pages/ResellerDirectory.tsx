@@ -15,38 +15,64 @@ const CSV_PATH = '/assets/resellers.csv'
 
 type Reseller = Record<string, string>
 
-/** Minimal RFC 4180 CSV parser (quoted fields, escaped quotes, CRLF), header row → objects */
-function parseCsv(text: string): Reseller[] {
+/** Reads a quoted run starting just after its opening quote; `""` is an escaped quote. */
+function readQuoted(text: string, start: number) {
+  let value = ''
+  let i = start
+  while (i < text.length) {
+    if (text[i] !== '"') {
+      value += text[i]
+      i++
+    } else if (text[i + 1] === '"') {
+      value += '"'
+      i += 2
+    } else {
+      return {value, end: i + 1}
+    }
+  }
+  return {value, end: i}
+}
+
+/** Splits CSV text into rows of fields (quoted fields, escaped quotes, CRLF) */
+function csvRows(text: string): string[][] {
   const rows: string[][] = []
   let row: string[] = []
   let field = ''
-  let quoted = false
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i]
-    if (quoted) {
-      if (c === '"' && text[i + 1] === '"') {
-        field += '"'
-        i++
-      } else if (c === '"') quoted = false
-      else field += c
-    } else if (c === '"') quoted = true
-    else if (c === ',') {
-      row.push(field)
-      field = ''
-    } else if (c === '\n' || c === '\r') {
-      if (c === '\r' && text[i + 1] === '\n') i++
-      row.push(field)
-      rows.push(row)
-      row = []
-      field = ''
-    } else field += c
-  }
-  if (field || row.length) {
+  const endField = () => {
     row.push(field)
-    rows.push(row)
+    field = ''
   }
-  const [header = [], ...data] = rows
-  const keys = header.map((h) => h.replace(/^﻿/, '').trim())
+  const endRow = () => {
+    endField()
+    rows.push(row)
+    row = []
+  }
+  let i = 0
+  while (i < text.length) {
+    const c = text[i]
+    if (c === '"') {
+      const quoted = readQuoted(text, i + 1)
+      field += quoted.value
+      i = quoted.end
+    } else if (c === ',') {
+      endField()
+      i++
+    } else if (c === '\n' || c === '\r') {
+      i += c === '\r' && text[i + 1] === '\n' ? 2 : 1
+      endRow()
+    } else {
+      field += c
+      i++
+    }
+  }
+  if (field || row.length) endRow()
+  return rows
+}
+
+/** Minimal RFC 4180 CSV parser, header row → objects */
+function parseCsv(text: string): Reseller[] {
+  const [header = [], ...data] = csvRows(text)
+  const keys = header.map((h) => h.replace(/^\uFEFF/, '').trim())
   return data
     .map((r) => Object.fromEntries(keys.map((k, i) => [k, r[i] ?? ''])))
     .filter((r) => Object.values(r).some((v) => v && v.trim() !== ''))
@@ -130,7 +156,7 @@ export function ResellerDirectory() {
             </h2>
             <ul className="flex gap-4 overflow-x-auto pb-4 md:flex-col md:gap-2 md:pb-0">
               {Object.keys(locationCounts)
-                .sort()
+                .sort((a, b) => a.localeCompare(b))
                 .map((loc) => {
                   const active = location === loc
                   return (

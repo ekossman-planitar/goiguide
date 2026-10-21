@@ -7,13 +7,19 @@ export type VsSide = {name: string; image: Img; items: VsItem[]}
 
 function Mark({ok}: {ok: boolean}) {
   return ok ? (
-    <svg aria-label="Yes" role="img" viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
-      <path d="M5 12.5 10 17 19 7" />
-    </svg>
+    <>
+      <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M5 12.5 10 17 19 7" />
+      </svg>
+      <span className="sr-only">Yes</span>
+    </>
   ) : (
-    <svg aria-label="No" role="img" viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-muted" fill="none" stroke="currentColor" strokeWidth="2.5">
-      <path d="M6 6l12 12M18 6 6 18" />
-    </svg>
+    <>
+      <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-muted" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </svg>
+      <span className="sr-only">No</span>
+    </>
   )
 }
 

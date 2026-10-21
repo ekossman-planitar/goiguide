@@ -72,7 +72,7 @@ function Cards({blocks}: {blocks: Block[]}) {
   blocks.forEach((b, i) => {
     const prev = blocks[i - 1]
     // An image directly before a card heading belongs to that card
-    if (startsCard(b, blocks[i + 1]) && !(prev && prev._type === 'image' && cards.at(-1)?.at(-1) === prev && b._type === 'block')) cards.push([b])
+    if (startsCard(b, blocks[i + 1]) && !(prev?._type === 'image' && cards.at(-1)?.at(-1) === prev && b._type === 'block')) cards.push([b])
     else if (cards.length) cards.at(-1)!.push(b)
     else intro.push(b)
   })

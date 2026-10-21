@@ -226,7 +226,7 @@ export function IndustryPicker() {
     const keys: Record<string, number> = {ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1}
     const usable = industries.map((_, i) => i).filter((i) => !industries[i].desktopOnly || isDesktop())
     const pos = usable.indexOf(active)
-    let next = active
+    let next: number
     if (e.key in keys) next = usable[(pos + keys[e.key] + usable.length) % usable.length]
     else if (e.key === 'Home') next = usable[0]
     else if (e.key === 'End') next = usable.at(-1)!
@@ -272,7 +272,6 @@ export function IndustryPicker() {
             role="tablist"
             aria-label="Choose your industry"
             aria-orientation="vertical"
-            onKeyDown={onKey}
             className="grid grid-cols-2 gap-3 lg:grid-cols-1 lg:content-start"
           >
             {industries.map((ind, i) => {
@@ -292,6 +291,7 @@ export function IndustryPicker() {
                   tabIndex={selected ? 0 : -1}
                   data-industry={ind.id}
                   onClick={() => select(i)}
+                  onKeyDown={onKey}
                   className={cn(
                     ind.desktopOnly && 'max-lg:hidden',
                     'industry-picker-tab group relative flex cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary max-lg:flex-col max-lg:items-start lg:px-5 lg:py-5',
@@ -364,8 +364,7 @@ export function IndustryPicker() {
                       data-industry={ind.id}
                       className="industry-picker-cta group inline-flex items-center gap-2 self-start rounded-lg border border-primary bg-primary px-6 py-3 font-semibold text-white transition-colors hover:border-primary-hover hover:bg-primary-hover"
                     >
-                      Learn more
-                      <span className="sr-only"> about iGuide for {ind.name}</span>
+                      Learn more<span className="sr-only"> about iGuide for {ind.name}</span>
                       <ArrowRight width={18} height={18} />
                     </SmartLink>
                   </div>

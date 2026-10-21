@@ -247,6 +247,59 @@ const ptSchema = compileSchema(
   }),
 )
 
+const SUPERSCRIPT_DIGITS = {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+
+/** Whitespace-only text node */
+const isBlankText = (n) => n?.nodeType === 3 && !n.textContent.replace(/\u00a0/g, ' ').trim()
+
+/** Footnote markers: the converter loses the word before a <sup>, so use superscript characters instead */
+function replaceSupSub(body) {
+  for (const sup of [...body.querySelectorAll('sup, sub')]) {
+    const t = sup.textContent.trim()
+    sup.replaceWith(sup.tagName === 'SUP' && /^\d+$/.test(t) ? [...t].map((d) => SUPERSCRIPT_DIGITS[d]).join('') : sup.textContent)
+  }
+}
+
+/** Index just past a run of <br>s and blank text starting at `j` */
+function skipBreaks(nodes, j) {
+  while (nodes[j]?.nodeName === 'BR' || isBlankText(nodes[j])) j++
+  return j
+}
+
+/** Splits a paragraph's child nodes at double line breaks (or trailing breaks) into groups */
+function splitAtDoubleBreaks(nodes) {
+  const parts = [[]]
+  let i = 0
+  while (i < nodes.length) {
+    const n = nodes[i]
+    if (n.nodeName === 'BR') {
+      let j = i + 1
+      while (isBlankText(nodes[j])) j++
+      if (nodes[j]?.nodeName === 'BR' || j >= nodes.length) {
+        // paragraph break (or trailing breaks): start a new paragraph, skip the run of breaks
+        parts.push([])
+        i = skipBreaks(nodes, j)
+        continue
+      }
+    }
+    parts.at(-1).push(n)
+    i++
+  }
+  return parts
+}
+
+function splitParagraph(doc, p) {
+  if (!p.querySelector('br')) return
+  const filled = splitAtDoubleBreaks([...p.childNodes]).filter((ns) => ns.some((n) => !isBlankText(n) && n.nodeName !== 'BR'))
+  if (filled.length < 2) return
+  for (const ns of filled) {
+    const np = doc.createElement('p')
+    np.append(...ns)
+    p.before(np)
+  }
+  p.remove()
+}
+
 /**
  * Clean pasted-from-Word markup before converting: unwrap the plain <span>s
  * (the converter drops text after some nested span/<br> patterns) and turn
@@ -255,42 +308,58 @@ const ptSchema = compileSchema(
 function tidyHtml(html) {
   const doc = jsdom(`<body>${html}</body>`).window.document
   for (const span of [...doc.body.querySelectorAll('span')].reverse()) span.replaceWith(...span.childNodes)
-  // Footnote markers: the converter loses the word before a <sup>, so use superscript characters instead
-  const SUP = {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
-  for (const sup of [...doc.body.querySelectorAll('sup, sub')]) {
-    const t = sup.textContent.trim()
-    sup.replaceWith(sup.tagName === 'SUP' && /^\d+$/.test(t) ? [...t].map((d) => SUP[d]).join('') : sup.textContent)
-  }
-  const blank = (n) => n && n.nodeType === 3 && !n.textContent.replace(/\u00a0/g, ' ').trim()
-  for (const p of [...doc.body.querySelectorAll('p')]) {
-    if (!p.querySelector('br')) continue
-    const parts = [[]]
-    const nodes = [...p.childNodes]
-    for (let i = 0; i < nodes.length; i++) {
-      const n = nodes[i]
-      if (n.nodeName === 'BR') {
-        let j = i + 1
-        while (blank(nodes[j])) j++
-        if (nodes[j]?.nodeName === 'BR' || j >= nodes.length) {
-          // paragraph break (or trailing breaks): start a new paragraph, skip the run of breaks
-          while (nodes[j]?.nodeName === 'BR' || blank(nodes[j])) j++
-          parts.push([])
-          i = j - 1
-          continue
-        }
-      }
-      parts.at(-1).push(n)
-    }
-    const filled = parts.filter((ns) => ns.some((n) => !blank(n) && n.nodeName !== 'BR'))
-    if (filled.length < 2) continue
-    for (const ns of filled) {
-      const np = doc.createElement('p')
-      np.append(...ns)
-      p.before(np)
-    }
-    p.remove()
-  }
+  replaceSupSub(doc.body)
+  for (const p of [...doc.body.querySelectorAll('p')]) splitParagraph(doc, p)
   return doc.body.innerHTML
+}
+
+/** Converter rules for embeds and the markers left by parseElement */
+const PT_RULES = [
+  {
+    deserialize(el, _next, createBlock) {
+      if (el.tagName?.toLowerCase() !== 'iframe') return undefined
+      // Self-hosted videos were wrapped in an iframe srcdoc page: use the video file itself
+      const srcdocVideo = el.getAttribute('srcdoc')?.match(/<(?:video|source)[^>]+src=["']([^"']+)["']/)?.[1]
+      const src = srcdocVideo ? localise(srcdocVideo) : el.getAttribute('src') || el.dataset.src
+      // Short players (Spotify, audio) keep their fixed height; everything else is 16:9
+      const h = Number(el.getAttribute('height'))
+      const height = h > 0 && h <= 400 && /%/.test(el.getAttribute('width') ?? '100%') ? h : undefined
+      return src ? createBlock({_type: 'videoEmbed', url: srcdocVideo ? src : abs(src), title: el.getAttribute('title') || undefined, height}) : undefined
+    },
+  },
+  {
+    deserialize(el, _next, createBlock) {
+      const permalink = el.getAttribute?.('data-instgrm-permalink')
+      if (!permalink) return undefined
+      return createBlock({_type: 'socialEmbed', url: permalink.split('?')[0]})
+    },
+  },
+  {
+    deserialize(el, _next, createBlock) {
+      const formId = el.getAttribute?.('data-hubspot-form')
+      return formId ? createBlock({_type: 'hubspotForm', formId}) : undefined
+    },
+  },
+  {
+    deserialize(el, _next, createBlock) {
+      const index = el.getAttribute?.('data-faq')
+      return index != null ? createBlock({_type: 'faqPlaceholder', index: Number(index)}) : undefined
+    },
+  },
+  {
+    deserialize(el, _next, createBlock) {
+      const index = el.getAttribute?.('data-quote')
+      return index != null ? createBlock({_type: 'quotePlaceholder', index: Number(index)}) : undefined
+    },
+  },
+]
+
+const PT_TYPES = {
+  // "#icon" is added below to small icons so they stay icon-sized
+  image: ({context, value}) =>
+    value.src
+      ? {_key: context.keyGenerator(), _type: 'image', src: stripVariant(value.src.replace(/#icon$/, '')), alt: value.alt || undefined, icon: value.src.endsWith('#icon') || undefined}
+      : undefined,
 }
 
 function htmlToBlocks(html, faqs = [], quotes = []) {
@@ -298,73 +367,32 @@ function htmlToBlocks(html, faqs = [], quotes = []) {
     schema: ptSchema,
     parseHtml: (h) => jsdom(h).window.document,
     whitespaceMode: 'normalize',
-    rules: [
-      {
-        deserialize(el, _next, createBlock) {
-          if (el.tagName?.toLowerCase() !== 'iframe') return undefined
-          // Self-hosted videos were wrapped in an iframe srcdoc page: use the video file itself
-          const srcdocVideo = el.getAttribute('srcdoc')?.match(/<(?:video|source)[^>]+src=["']([^"']+)["']/)?.[1]
-          const src = srcdocVideo ? localise(srcdocVideo) : el.getAttribute('src') || el.getAttribute('data-src')
-          // Short players (Spotify, audio) keep their fixed height; everything else is 16:9
-          const h = Number(el.getAttribute('height'))
-          const height = h > 0 && h <= 400 && /%/.test(el.getAttribute('width') ?? '100%') ? h : undefined
-          return src ? createBlock({_type: 'videoEmbed', url: srcdocVideo ? src : abs(src), title: el.getAttribute('title') || undefined, height}) : undefined
-        },
-      },
-      {
-        deserialize(el, _next, createBlock) {
-          const permalink = el.getAttribute?.('data-instgrm-permalink')
-          if (!permalink) return undefined
-          return createBlock({_type: 'socialEmbed', url: permalink.split('?')[0]})
-        },
-      },
-      {
-        deserialize(el, _next, createBlock) {
-          const formId = el.getAttribute?.('data-hubspot-form')
-          return formId ? createBlock({_type: 'hubspotForm', formId}) : undefined
-        },
-      },
-      {
-        deserialize(el, _next, createBlock) {
-          const index = el.getAttribute?.('data-faq')
-          return index != null ? createBlock({_type: 'faqPlaceholder', index: Number(index)}) : undefined
-        },
-      },
-      {
-        deserialize(el, _next, createBlock) {
-          const index = el.getAttribute?.('data-quote')
-          return index != null ? createBlock({_type: 'quotePlaceholder', index: Number(index)}) : undefined
-        },
-      },
-    ],
-    types: {
-      // "#icon" is added below to small icons so they stay icon-sized
-      image: ({context, value}) =>
-        value.src
-          ? {_key: context.keyGenerator(), _type: 'image', src: stripVariant(value.src.replace(/#icon$/, '')), alt: value.alt || undefined, icon: value.src.endsWith('#icon') || undefined}
-          : undefined,
-    },
+    rules: PT_RULES,
+    types: PT_TYPES,
   })
-  // Fit the site's body styles (h2–h4) and make goiguide.com links relative
-  for (const b of blocks) {
-    if (b._type !== 'block') continue
-    if (b.style === 'h1') b.style = 'h2'
-    if (b.style === 'h5' || b.style === 'h6') b.style = 'h4'
-    for (const def of b.markDefs ?? []) if (def._type === 'link') def.href = localise(def.href)
-  }
-  // Lift images out of paragraphs into their own blocks, then drop empty paragraphs
-  const out = []
-  for (const b of blocks) {
-    if (b._type !== 'block') {
-      out.push(b)
-      continue
-    }
-    const images = (b.children ?? []).filter((c) => c._type === 'image')
-    const spans = (b.children ?? []).filter((c) => c._type !== 'image')
-    if (spans.some((c) => clean(c.text))) out.push({...b, children: spans})
-    for (const img of images) out.push({_type: 'image', _key: img._key, src: img.src, alt: img.alt, size: img.icon ? 'icon' : undefined})
-  }
-  return out.map((b) => (b._type === 'faqPlaceholder' ? faqs[b.index] : b._type === 'quotePlaceholder' ? quotes[b.index] : b)).filter(Boolean)
+  for (const b of blocks) if (b._type === 'block') fitBlockStyles(b)
+  const placeholders = {faqPlaceholder: faqs, quotePlaceholder: quotes}
+  return blocks
+    .flatMap(liftImages)
+    .map((b) => (placeholders[b._type] ? placeholders[b._type][b.index] : b))
+    .filter(Boolean)
+}
+
+/** Fit the site's body styles (h2–h4) and make goiguide.com links relative */
+function fitBlockStyles(b) {
+  if (b.style === 'h1') b.style = 'h2'
+  if (b.style === 'h5' || b.style === 'h6') b.style = 'h4'
+  for (const def of b.markDefs ?? []) if (def._type === 'link') def.href = localise(def.href)
+}
+
+/** Lift images out of a paragraph into their own blocks, and drop it if it's then empty */
+function liftImages(b) {
+  if (b._type !== 'block') return [b]
+  const images = (b.children ?? []).filter((c) => c._type === 'image')
+  const spans = (b.children ?? []).filter((c) => c._type !== 'image')
+  const out = spans.some((c) => clean(c.text)) ? [{...b, children: spans}] : []
+  for (const img of images) out.push({_type: 'image', _key: img._key, src: img.src, alt: img.alt, size: img.icon ? 'icon' : undefined})
+  return out
 }
 
 /* ------------------------------------------------------------------ page furniture */
@@ -431,7 +459,7 @@ function extractQuotes(root) {
   const add = (node, q) => {
     if (!q.quote) return
     const marker = root.ownerDocument.createElement('div')
-    marker.setAttribute('data-quote', String(quotes.length))
+    marker.dataset.quote = String(quotes.length)
     quotes.push({_type: 'testimonial', _key: key(), ...q})
     node.replaceWith(marker)
   }
@@ -470,53 +498,33 @@ function extractQuotes(root) {
 /** Element kinds that get their own section layout on the new site */
 const LAYOUT_BY_KIND = {elementtextandimage: 'split', elementtestimonials: 'split', elementtextandicons: 'cards'}
 
-/**
- * Turns one live content element into Sanity blocks. Text, headings, lists,
- * images and links become rich text; iframes (iGUIDE tours, YouTube, Spotify,
- * Facebook) become embeds; Instagram posts, inline HubSpot forms and FAQ
- * accordions get their own block types. Only the old theme's helper scripts,
- * styles and the "Check out more from iGUIDE" post lists are dropped (the new
- * template shows related posts itself).
- */
-function parseElement(el) {
-  const kind = el.className.match(/elements__(\w+)/)?.[1] ?? 'unknown'
-  if (kind === 'elementctafeaturelarge') {
-    const button = el.querySelector('a[href], button')
-    const scripts = [...el.querySelectorAll('script')].map((s) => s.textContent).join('\n')
-    const formId = scripts.match(/formId:\s*"([^"]+)"/)?.[1]
-    const bg = el.querySelector('[style*="background-image"]')?.getAttribute('style')?.match(/url\(([^)]+)\)/)?.[1]
-    return {
-      kind,
-      blocks: [
-        {
-          _type: 'ctaBanner',
-          _key: key(),
-          heading: clean(el.querySelector('h2, h3')?.textContent) || undefined,
-          text: clean([...el.querySelectorAll('p')].map((p) => p.textContent).join(' ')) || undefined,
-          buttonLabel: clean(button?.textContent) || undefined,
-          buttonUrl: button?.tagName === 'A' ? localise(button.getAttribute('href')) : undefined,
-          hubspotFormId: formId,
-          imageSrc: bg ? stripVariant(bg.replace(/["']/g, '')) : undefined,
-        },
-      ],
-    }
+/** Live "CTA feature" banner element → one ctaBanner block */
+function parseCtaFeature(el, kind) {
+  const button = el.querySelector('a[href], button')
+  const scripts = [...el.querySelectorAll('script')].map((s) => s.textContent).join('\n')
+  const formId = scripts.match(/formId:\s*"([^"]+)"/)?.[1]
+  const bg = el.querySelector('[style*="background-image"]')?.getAttribute('style')?.match(/url\(([^)]+)\)/)?.[1]
+  return {
+    kind,
+    blocks: [
+      {
+        _type: 'ctaBanner',
+        _key: key(),
+        heading: clean(el.querySelector('h2, h3')?.textContent) || undefined,
+        text: clean([...el.querySelectorAll('p')].map((p) => p.textContent).join(' ')) || undefined,
+        buttonLabel: clean(button?.textContent) || undefined,
+        buttonUrl: button?.tagName === 'A' ? localise(button.getAttribute('href')) : undefined,
+        hubspotFormId: formId,
+        imageSrc: bg ? stripVariant(bg.replace(/["']/g, '')) : undefined,
+      },
+    ],
   }
+}
 
-  const root = el.querySelector('section') ?? el
-  const raw = root.innerHTML
-
-  // Page furniture the new template shows itself: author box, customer details box,
-  // date / read-time line
-  const author = readAuthorBox(root)
-  if (author) return {kind, blocks: [], author}
-  const factsBox = readFactsBox(root)
-  if (factsBox) return {kind, blocks: [], ...factsBox}
-  if (root.querySelector('.profile-container') || el.id === 'meta-wrapper') return {kind, blocks: []}
-
-  let layout = LAYOUT_BY_KIND[kind] ?? 'plain'
-  const quotes = extractQuotes(root)
-  // "Key wins" lists (icon + text rows) become a bullet list shown as highlight tiles
-  for (const wins of root.querySelectorAll('.key-wins-inline, .key-wins-stacked')) {
+/** "Key wins" lists (icon + text rows) become a bullet list shown as highlight tiles. Returns true if any were found. */
+function convertKeyWins(root) {
+  const all = [...root.querySelectorAll('.key-wins-inline, .key-wins-stacked')]
+  for (const wins of all) {
     const ul = root.ownerDocument.createElement('ul')
     for (const win of wins.querySelectorAll('.win')) {
       win.querySelectorAll('img, .material-symbols-outlined').forEach((n) => n.remove())
@@ -525,10 +533,14 @@ function parseElement(el) {
       if (li.textContent) ul.append(li)
     }
     wins.replaceWith(ul)
-    layout = 'highlights'
   }
-  // Team member grid: photo, name, role, description per person; the name becomes a heading so each is a card
-  for (const grid of root.querySelectorAll('.team-grid')) {
+  return all.length > 0
+}
+
+/** Team member grid: photo, name, role, description per person; the name becomes a heading so each is a card */
+function convertTeamGrids(root) {
+  const grids = [...root.querySelectorAll('.team-grid')]
+  for (const grid of grids) {
     for (const person of grid.children) {
       const name = person.querySelector('p')
       if (!name) continue
@@ -536,58 +548,56 @@ function parseElement(el) {
       h.textContent = textOf(name)
       name.replaceWith(h)
     }
-    layout = 'cards'
   }
-  // Icon + title + text rows
-  if (root.querySelector('.info-container')) {
-    layout = 'cards'
-    root.querySelectorAll('.info-container img').forEach((img) => img.setAttribute('src', img.getAttribute('src') + '#icon'))
-  }
-  // "Compare iGUIDE vs …" pop-open comparisons: the toggle button becomes the heading, each
-  // feature row a card (the tick / cross columns and header row are decoration)
+  return grids.length > 0
+}
+
+/** Icon + title + text rows: mark the icons so they stay icon-sized */
+function markIconRows(root) {
+  if (!root.querySelector('.info-container')) return false
+  root.querySelectorAll('.info-container img').forEach((img) => img.setAttribute('src', img.getAttribute('src') + '#icon'))
+  return true
+}
+
+/**
+ * "Compare iGUIDE vs …" pop-open comparisons: the toggle button becomes the heading, each
+ * feature row a card (the tick / cross columns and header row are decoration)
+ */
+function convertCompareToggle(root) {
   const toggle = root.querySelector('button.compare-btn, button.expand-btn')
-  if (toggle) {
-    const h = root.ownerDocument.createElement('h3')
-    h.textContent = textOf(toggle).replace(/\s*[▼▾]\s*$/, '')
-    toggle.replaceWith(h)
-    root.querySelectorAll('.comparison-head, .comparison-grid > .cell').forEach((n) => n.remove())
-    layout = 'cards'
-  }
+  if (!toggle) return false
+  const h = root.ownerDocument.createElement('h3')
+  h.textContent = textOf(toggle).replace(/\s*[▼▾]\s*$/, '')
+  toggle.replaceWith(h)
+  root.querySelectorAll('.comparison-head, .comparison-grid > .cell').forEach((n) => n.remove())
+  return true
+}
 
-  // One known pattern swaps the post's header image for a YouTube video
-  if (/post-header/.test(raw)) {
-    const headerVideo = raw.match(/https:\/\/www\.youtube\.com\/embed\/[\w-]+/)?.[0]
-    if (headerVideo) return {kind, headerVideo, blocks: []}
-  }
-
-  // "Check out more from iGUIDE" lists of other posts: the new template has related posts
-  const headings = [...root.querySelectorAll('h2, h3')]
-  if (kind === 'elementfeaturedposts' || headings.some((h) => /check out more from iguide/i.test(h.textContent))) return {kind, blocks: [], dropped: true}
-
-  // Inline HubSpot forms: leave a marker where the form was
+/** Inline HubSpot forms: leave a marker where the form was */
+function markInlineForms(root) {
   for (const script of root.querySelectorAll('script')) {
     const text = script.textContent
     const formId = text.match(/formId:\s*["']([^"']+)["']/)?.[1]
     if (formId && /hbspt\.forms\.create/.test(text) && !/isHubspotForm/.test(text)) {
       const marker = root.ownerDocument.createElement('div')
-      marker.setAttribute('data-hubspot-form', formId)
+      marker.dataset.hubspotForm = formId
       script.replaceWith(marker)
     }
   }
-  // Buttons that open a HubSpot form in a pop-up become a call-to-action banner
-  const popupScript = [...root.querySelectorAll('script')].map((s) => s.textContent).find((t) => /isHubspotForm/.test(t))
-  const popupForm = popupScript?.match(/formId:\s*["']([^"']+)["']/)?.[1]
-  // Old theme helpers and Material icon ligatures ("expand_circle_right", "check") that would show as words
-  root.querySelectorAll('script, style, noscript, link, #meta-info, .material-symbols-outlined, .material-icons').forEach((n) => n.remove())
+}
 
-  // FAQ accordions (Alpine x-data "open" items): question button + answer panel
+/**
+ * FAQ accordions (Alpine x-data "open" items): question button + answer panel.
+ * Each group is replaced by a marker; returns the faq blocks in marker order.
+ */
+function extractFaqs(root, headings) {
   const faqs = []
   const items = [...root.querySelectorAll('[x-data*="open"]')].filter((item) => item.querySelector(':scope > button'))
   const groups = [...new Set(items.map((item) => item.parentElement))]
   for (const group of groups) {
     const groupItems = items.filter((item) => item.parentElement === group)
     // Heading: nearest h2/h3 above the group inside this element
-    const heading = headings.filter((h) => h.compareDocumentPosition(group) & 4 /* group follows heading */ && !group.contains(h) && /faq|frequently asked|questions/i.test(h.textContent)).pop()
+    const heading = headings.findLast((h) => h.compareDocumentPosition(group) & 4 /* group follows heading */ && !group.contains(h) && /faq|frequently asked|questions/i.test(h.textContent))
     const faq = {
       _type: 'faq',
       _key: key(),
@@ -604,22 +614,83 @@ function parseElement(el) {
     }
     if (heading) heading.remove()
     const marker = root.ownerDocument.createElement('div')
-    marker.setAttribute('data-faq', String(faqs.length))
+    marker.dataset.faq = String(faqs.length)
     faqs.push(faq)
     // Replace the outermost wrapper that holds only this FAQ
     let target = group
     while (target.parentElement && target.parentElement !== root && target.parentElement.children.length === 1) target = target.parentElement
     target.replaceWith(marker)
   }
+  return faqs
+}
 
-  let blocks = htmlToBlocks(root.innerHTML, faqs, quotes)
-  if (popupForm) {
-    const label = clean(root.querySelector('button')?.textContent) || 'Book a demo'
-    // The pop-up button's own text came through as a paragraph; the banner replaces it
-    blocks = blocks.filter((b) => !(b._type === 'block' && clean((b.children ?? []).map((c) => c.text).join('')) === label))
-    blocks.push({_type: 'ctaBanner', _key: key(), buttonLabel: label, hubspotFormId: popupForm})
-  }
-  return {kind, blocks, layout, id: el.id}
+/** Buttons that open a HubSpot form in a pop-up become a call-to-action banner */
+function addPopupFormBanner(blocks, root, popupForm) {
+  const label = clean(root.querySelector('button')?.textContent) || 'Book a demo'
+  // The pop-up button's own text came through as a paragraph; the banner replaces it
+  const out = blocks.filter((b) => !(b._type === 'block' && clean((b.children ?? []).map((c) => c.text).join('')) === label))
+  out.push({_type: 'ctaBanner', _key: key(), buttonLabel: label, hubspotFormId: popupForm})
+  return out
+}
+
+/** Page furniture the new template shows itself: author box, customer details box, date / read-time line */
+function readFurniture(el, root, kind) {
+  const author = readAuthorBox(root)
+  if (author) return {kind, blocks: [], author}
+  const factsBox = readFactsBox(root)
+  if (factsBox) return {kind, blocks: [], ...factsBox}
+  if (root.querySelector('.profile-container') || el.id === 'meta-wrapper') return {kind, blocks: []}
+  return undefined
+}
+
+/** Applies the layout-changing conversions in order; the last one that applies sets the layout */
+function convertLayouts(root, kind) {
+  let layout = LAYOUT_BY_KIND[kind] ?? 'plain'
+  if (convertKeyWins(root)) layout = 'highlights'
+  if (convertTeamGrids(root)) layout = 'cards'
+  if (markIconRows(root)) layout = 'cards'
+  if (convertCompareToggle(root)) layout = 'cards'
+  return layout
+}
+
+/**
+ * Turns one live content element into Sanity blocks. Text, headings, lists,
+ * images and links become rich text; iframes (iGUIDE tours, YouTube, Spotify,
+ * Facebook) become embeds; Instagram posts, inline HubSpot forms and FAQ
+ * accordions get their own block types. Only the old theme's helper scripts,
+ * styles and the "Check out more from iGUIDE" post lists are dropped (the new
+ * template shows related posts itself).
+ */
+function parseElement(el) {
+  const kind = el.className.match(/elements__(\w+)/)?.[1] ?? 'unknown'
+  if (kind === 'elementctafeaturelarge') return parseCtaFeature(el, kind)
+
+  const root = el.querySelector('section') ?? el
+  const raw = root.innerHTML
+
+  const furniture = readFurniture(el, root, kind)
+  if (furniture) return furniture
+
+  const quotes = extractQuotes(root)
+  const layout = convertLayouts(root, kind)
+
+  // One known pattern swaps the post's header image for a YouTube video
+  const headerVideo = /post-header/.test(raw) ? raw.match(/https:\/\/www\.youtube\.com\/embed\/[\w-]+/)?.[0] : undefined
+  if (headerVideo) return {kind, headerVideo, blocks: []}
+
+  // "Check out more from iGUIDE" lists of other posts: the new template has related posts
+  const headings = [...root.querySelectorAll('h2, h3')]
+  if (kind === 'elementfeaturedposts' || headings.some((h) => /check out more from iguide/i.test(h.textContent))) return {kind, blocks: [], dropped: true}
+
+  markInlineForms(root)
+  const popupScript = [...root.querySelectorAll('script')].map((s) => s.textContent).find((t) => /isHubspotForm/.test(t))
+  const popupForm = popupScript?.match(/formId:\s*["']([^"']+)["']/)?.[1]
+  // Old theme helpers and Material icon ligatures ("expand_circle_right", "check") that would show as words
+  root.querySelectorAll('script, style, noscript, link, #meta-info, .material-symbols-outlined, .material-icons').forEach((n) => n.remove())
+
+  const faqs = extractFaqs(root, headings)
+  const blocks = htmlToBlocks(root.innerHTML, faqs, quotes)
+  return {kind, blocks: popupForm ? addPopupFormBanner(blocks, root, popupForm) : blocks, layout, id: el.id}
 }
 
 /* ------------------------------------------------------------------ entry pages */
@@ -785,6 +856,79 @@ async function write(doc) {
   return 'written'
 }
 
+/** Sanity document for one live entry page (Resource Center types) */
+async function buildEntryDoc(cfg, path, e, card, sitemap) {
+  const slug = path.split('/').pop()
+  const link = linkTypeFor(card?.href, cfg.base)
+  const dateText = e.headerTexts.find((t) => /^Date:/i.test(t))
+  const summary = e.headerTexts.find((t) => !/^Date:/i.test(t) && !/^[A-Z][a-z]+ \d{1,2}, \d{4}$/.test(t))
+
+  const doc = {
+    _id: docId(cfg.type, slug),
+    _type: cfg.type,
+    title: e.title,
+    slug: {_type: 'slug', current: slug},
+    publishedAt: e.datePublished || (sitemap.get(path) ? new Date(sitemap.get(path)).toISOString() : new Date().toISOString()),
+    excerpt: summary,
+    featuredImage: await imageRef(e.headerImg || card?.thumb || e.ogImage),
+    categories: card?.categories?.length ? card.categories : undefined,
+    ...link,
+    headerVideoUrl: e.headerVideo,
+    body: await resolveImages(e.blocks),
+    seo: {_type: 'seo', metaTitle: e.metaTitle, metaDescription: e.metaDescription},
+    legacy: {
+      url: path,
+      lastModified: lastmodOf(sitemap, path),
+      importedAt: new Date().toISOString(),
+      notes: [
+        e.kinds.some((k) => k === 'unknown') && `Unrecognised blocks on the old page: ${e.kinds.join(', ')}`,
+        e.dropped && 'Old "Check out more from iGUIDE" post list not imported (the page shows related posts)',
+        card?.thumb && e.headerImg && card.thumb !== e.headerImg && `Card thumbnail on the old site: ${card.thumb}`,
+      ]
+        .filter(Boolean)
+        .join('\n') || undefined,
+    },
+  }
+  await addTypeFields(doc, cfg, e, path, dateText)
+  return doc
+}
+
+const isHeaderCta = (l) => !/^back$/i.test(l.label) && !/facebook|twitter|linkedin|mailto/i.test(l.href)
+
+/** First header link that isn't "Back" or a share link, unless it points back at the page itself */
+function headerCta(e, path) {
+  const cta = e.headerLinks.find(isHeaderCta)
+  return cta && localise(cta.href) !== path ? {label: cta.label, href: localise(cta.href)} : undefined
+}
+
+async function addAuthor(doc, cfg, e, path) {
+  if (cfg.type === 'blogPost' || cfg.type === 'customerStory') doc.author = await authorRef(e.author, e.authorBox, doc.publishedAt)
+  else if (e.authorBox) warn(`${path}: author box for ${e.authorBox.name} not imported (${cfg.type} has no author field)`)
+}
+
+function addCustomerFacts(doc, cfg, e, path) {
+  if (!e.facts?.length) return
+  if (cfg.type !== 'customerStory') return warn(`${path}: customer details box not imported (${cfg.type})`)
+  doc.customerFacts = e.facts.map((f) => ({_type: 'fact', _key: key(), ...f}))
+  if (e.factsCta) doc.customerCta = e.factsCta
+}
+
+/** Fields only some types have: author, customer details, webinar date/registration, news link */
+async function addTypeFields(doc, cfg, e, path, dateText) {
+  await addAuthor(doc, cfg, e, path)
+  addCustomerFacts(doc, cfg, e, path)
+  if (cfg.type === 'webinar') {
+    if (dateText) doc.eventDateText = dateText.replace(/^Date:\s*/i, '')
+    // Live sometimes points the header button back at the page itself; that isn't a real registration link
+    const reg = headerCta(e, path)
+    if (reg) doc.eventCta = reg
+  }
+  if (cfg.type === 'newsArticle') {
+    const cta = headerCta(e, path)
+    if (cta) doc.newsCta = cta
+  }
+}
+
 async function importType(cfg, sitemap, stats) {
   log(`\n== ${cfg.type} (${cfg.base})`)
   // 1. Cards, with categories
@@ -814,7 +958,8 @@ async function importType(cfg, sitemap, stats) {
     if (u.origin === SITE && u.pathname.startsWith(cfg.base + '/')) urls.add(u.pathname.replace(/\/$/, ''))
   }
   const list = [...urls].slice(0, LIMIT)
-  log(`  ${urls.size} entry pages${list.length < urls.size ? ` (importing ${list.length})` : ''}`)
+  const importing = list.length < urls.size ? ` (importing ${list.length})` : ''
+  log(`  ${urls.size} entry pages${importing}`)
 
   await pool(list, CONCURRENCY, async (path) => {
     try {
@@ -824,53 +969,7 @@ async function importType(cfg, sitemap, stats) {
       const e = parseEntry(text, path)
       const card = takeCard(path, e.title)
       if (!card) warn(`${path}: no listing card found (title "${e.title}")`)
-      const slug = path.split('/').pop()
-      const link = linkTypeFor(card?.href, cfg.base)
-      const dateText = e.headerTexts.find((t) => /^Date:/i.test(t))
-      const summary = e.headerTexts.find((t) => !/^Date:/i.test(t) && !/^[A-Z][a-z]+ \d{1,2}, \d{4}$/.test(t))
-
-      const doc = {
-        _id: docId(cfg.type, slug),
-        _type: cfg.type,
-        title: e.title,
-        slug: {_type: 'slug', current: slug},
-        publishedAt: e.datePublished || (sitemap.get(path) ? new Date(sitemap.get(path)).toISOString() : new Date().toISOString()),
-        excerpt: summary,
-        featuredImage: await imageRef(e.headerImg || card?.thumb || e.ogImage),
-        categories: card?.categories?.length ? card.categories : undefined,
-        ...link,
-        headerVideoUrl: e.headerVideo,
-        body: await resolveImages(e.blocks),
-        seo: {_type: 'seo', metaTitle: e.metaTitle, metaDescription: e.metaDescription},
-        legacy: {
-          url: path,
-          lastModified: lastmodOf(sitemap, path),
-          importedAt: new Date().toISOString(),
-          notes: [
-            e.kinds.some((k) => k === 'unknown') && `Unrecognised blocks on the old page: ${e.kinds.join(', ')}`,
-            e.dropped && 'Old "Check out more from iGUIDE" post list not imported (the page shows related posts)',
-            card?.thumb && e.headerImg && card.thumb !== e.headerImg && `Card thumbnail on the old site: ${card.thumb}`,
-          ]
-            .filter(Boolean)
-            .join('\n') || undefined,
-        },
-      }
-      if (cfg.type === 'blogPost' || cfg.type === 'customerStory') doc.author = await authorRef(e.author, e.authorBox, doc.publishedAt)
-      else if (e.authorBox) warn(`${path}: author box for ${e.authorBox.name} not imported (${cfg.type} has no author field)`)
-      if (cfg.type === 'customerStory' && e.facts?.length) {
-        doc.customerFacts = e.facts.map((f) => ({_type: 'fact', _key: key(), ...f}))
-        if (e.factsCta) doc.customerCta = e.factsCta
-      } else if (e.facts?.length) warn(`${path}: customer details box not imported (${cfg.type})`)
-      if (cfg.type === 'webinar') {
-        if (dateText) doc.eventDateText = dateText.replace(/^Date:\s*/i, '')
-        const reg = e.headerLinks.find((l) => !/^back$/i.test(l.label) && !/facebook|twitter|linkedin|mailto/i.test(l.href))
-        // Live sometimes points the header button back at the page itself; that isn't a real registration link
-        if (reg && localise(reg.href) !== path) doc.eventCta = {label: reg.label, href: localise(reg.href)}
-      }
-      if (cfg.type === 'newsArticle') {
-        const cta = e.headerLinks.find((l) => !/^back$/i.test(l.label) && !/facebook|twitter|linkedin|mailto/i.test(l.href))
-        if (cta && localise(cta.href) !== path) doc.newsCta = {label: cta.label, href: localise(cta.href)}
-      }
+      const doc = await buildEntryDoc(cfg, path, e, card, sitemap)
       const result = await write(doc)
       stats[result] = (stats[result] ?? 0) + 1
     } catch (err) {
@@ -938,8 +1037,10 @@ async function main() {
 // Tests import the parsing helpers without running the import
 export {parseCards, parseEntry, htmlToBlocks, parseElement, linkTypeFor, readAuthorBox, readFactsBox}
 if (!process.env.IMPORT_LIVE_TEST) {
-  main().catch((err) => {
+  try {
+    await main()
+  } catch (err) {
     console.error(err)
     process.exit(1)
-  })
+  }
 }

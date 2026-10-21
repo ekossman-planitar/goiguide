@@ -57,48 +57,70 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   }
 }
 
-export default async function EventPage({params}: Props) {
-  const {slug} = await params
-  const e = await getEvent(slug)
-  if (!e) notFound()
+type Speaker = NonNullable<EventDetailData['speakers']>[number]
+type Session = NonNullable<EventDetailData['sessions']>[number]
 
-  const ended = hasEnded(e)
-  const tz = e.timeZone || DEFAULT_TIME_ZONE
-  const place = eventPlace(e)
-  const fullAddress = [e.venue, e.address, e.city, e.region, e.country].filter(Boolean).join(', ')
-  const mapUrl = e.attendance !== 'online' && fullAddress ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}` : null
+/** Speaker/presenter names are matched case-insensitively */
+const nameKey = (n: string) => n.trim().toLowerCase()
+
+const ATTENDANCE_MODE: Record<string, string> = {
+  online: 'https://schema.org/OnlineEventAttendanceMode',
+  hybrid: 'https://schema.org/MixedEventAttendanceMode',
+}
+const OFFLINE_ATTENDANCE_MODE = 'https://schema.org/OfflineEventAttendanceMode'
+
+const ldScript = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c')
+
+function googleCalendarUrl(e: EventDetailData, url: string, fullAddress: string, tz: string) {
+  const fmt = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: e.title,
+    dates: `${fmt(e.startAt)}/${fmt(e.endAt || e.startAt)}`,
+    details: `${e.shortDescription ?? ''}\n\n${url}`,
+    location: e.attendance === 'online' ? 'Online' : fullAddress,
+    ctz: tz,
+  })
+  return `https://calendar.google.com/calendar/render?${params}`
+}
+
+function faqJsonLd(e: EventDetailData) {
+  if (!e.faq?.length) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: e.faq.map((f) => ({'@type': 'Question', name: f.question, acceptedAnswer: {'@type': 'Answer', text: f.answer}})),
+  }
+}
+
+function eventLocations(e: EventDetailData, url: string) {
+  const locations: object[] = []
+  if (e.attendance !== 'online') {
+    locations.push({'@type': 'Place', name: e.venue || e.city, address: {'@type': 'PostalAddress', streetAddress: e.address ?? undefined, addressLocality: e.city ?? undefined, addressRegion: e.region ?? undefined, addressCountry: e.country ?? undefined}})
+  }
+  if (e.attendance !== 'in-person') locations.push({'@type': 'VirtualLocation', url: e.registrationUrl || e.eventUrl || url})
+  return locations
+}
+
+function eventPerformers(presenterNames: string[], speakerByName: Map<string, Speaker>) {
+  if (!presenterNames.length) return {}
+  return {
+    performer: presenterNames.map((n) => {
+      const sp = speakerByName.get(nameKey(n))
+      return {'@type': 'Person', name: n, ...(sp?.linkedin ? {sameAs: sp.linkedin} : {})}
+    }),
+  }
+}
+
+function eventOffers(e: EventDetailData, url: string) {
+  if (!e.price) return {}
+  const free = /free/i.test(e.price)
+  return {offers: {'@type': 'Offer', url: e.registrationUrl || url, price: free ? '0' : undefined, priceCurrency: free ? 'CAD' : undefined, availability: 'https://schema.org/InStock', description: e.price}}
+}
+
+function eventJsonLd(e: EventDetailData, url: string, presenterNames: string[], speakerByName: Map<string, Speaker>) {
   const img = e.featuredImage
-  const url = `https://goiguide.com${eventPath(slug)}`
-
-  const googleCal = (() => {
-    const fmt = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
-    const params = new URLSearchParams({
-      action: 'TEMPLATE',
-      text: e.title,
-      dates: `${fmt(e.startAt)}/${fmt(e.endAt || e.startAt)}`,
-      details: `${e.shortDescription ?? ''}\n\n${url}`,
-      location: e.attendance === 'online' ? 'Online' : fullAddress,
-      ctz: tz,
-    })
-    return `https://calendar.google.com/calendar/render?${params}`
-  })()
-
-  // Speakers on stage: matched to sessions by name
-  const key = (n: string) => n.trim().toLowerCase()
-  const speakerByName = new Map((e.speakers ?? []).map((s) => [key(s.name), s]))
-  const onStage = new Map<string, string>()
-  for (const ses of e.sessions ?? []) for (const n of ses.presenters ?? []) if (!onStage.has(key(n))) onStage.set(key(n), ses.title)
-  const presenterNames = [...new Set((e.sessions ?? []).flatMap((ses) => ses.presenters ?? []))]
-
-  const faqLd = e.faq?.length
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: e.faq.map((f) => ({'@type': 'Question', name: f.question, acceptedAnswer: {'@type': 'Answer', text: f.answer}})),
-      }
-    : null
-
-  const jsonLd = {
+  return {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: e.title,
@@ -106,33 +128,18 @@ export default async function EventPage({params}: Props) {
     startDate: e.startAt,
     endDate: e.endAt ?? undefined,
     eventStatus: 'https://schema.org/EventScheduled',
-    eventAttendanceMode:
-      e.attendance === 'online'
-        ? 'https://schema.org/OnlineEventAttendanceMode'
-        : e.attendance === 'hybrid'
-          ? 'https://schema.org/MixedEventAttendanceMode'
-          : 'https://schema.org/OfflineEventAttendanceMode',
-    location: [
-      ...(e.attendance !== 'online'
-        ? [{'@type': 'Place', name: e.venue || e.city, address: {'@type': 'PostalAddress', streetAddress: e.address ?? undefined, addressLocality: e.city ?? undefined, addressRegion: e.region ?? undefined, addressCountry: e.country ?? undefined}}]
-        : []),
-      ...(e.attendance !== 'in-person' ? [{'@type': 'VirtualLocation', url: e.registrationUrl || e.eventUrl || url}] : []),
-    ],
+    eventAttendanceMode: ATTENDANCE_MODE[e.attendance ?? ''] ?? OFFLINE_ATTENDANCE_MODE,
+    location: eventLocations(e, url),
     image: img?.asset ? [urlFor(img).width(1600).height(900).fit('crop').url()] : undefined,
     url,
     organizer: {'@type': 'Organization', name: 'iGuide', url: 'https://goiguide.com'},
-    ...(presenterNames.length
-      ? {
-          performer: presenterNames.map((n) => {
-            const sp = speakerByName.get(key(n))
-            return {'@type': 'Person', name: n, ...(sp?.linkedin ? {sameAs: sp.linkedin} : {})}
-          }),
-        }
-      : {}),
-    ...(e.price ? {offers: {'@type': 'Offer', url: e.registrationUrl || url, price: /free/i.test(e.price) ? '0' : undefined, priceCurrency: /free/i.test(e.price) ? 'CAD' : undefined, availability: 'https://schema.org/InStock', description: e.price}} : {}),
+    ...eventPerformers(presenterNames, speakerByName),
+    ...eventOffers(e, url),
   }
+}
 
-  const details = (
+function EventDetails({e, place, mapUrl}: {e: EventDetailData; place: string; mapUrl: string | null}) {
+  return (
     <dl className="space-y-4 text-base">
       <div className="flex gap-3">
         <dt className="sr-only">Date</dt>
@@ -173,11 +180,165 @@ export default async function EventPage({params}: Props) {
       )}
     </dl>
   )
+}
+
+function EventIntro({e}: {e: EventDetailData}) {
+  if (e.body?.length) return <PortableBody value={e.body} />
+  if (e.shortDescription) return <p className="text-lg leading-8 text-body">{e.shortDescription}</p>
+  return null
+}
+
+function PresenterChip({name, speaker}: {name: string; speaker?: Speaker}) {
+  return (
+    <li className="flex items-center gap-2 rounded-full bg-surface py-1 pr-3 pl-1 text-sm font-semibold text-ink">
+      {speaker?.photo?.asset ? (
+        <Image
+          src={urlFor(speaker.photo).width(64).height(64).fit('crop').auto('format').url()}
+          alt=""
+          width={28}
+          height={28}
+          className="h-7 w-7 rounded-full object-cover"
+        />
+      ) : (
+        <span aria-hidden className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs">
+          {name.charAt(0)}
+        </span>
+      )}
+      {name}
+    </li>
+  )
+}
+
+function SessionItem({ses, tz, speakerByName}: {ses: Session; tz: string; speakerByName: Map<string, Speaker>}) {
+  const when = formatSessionTime(ses, tz)
+  return (
+    <li className="event-session rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
+        <Mic aria-hidden width={13} height={13} />
+        {sessionFormatTitle(ses.format)}
+      </span>
+      <h3 className="mt-3 text-xl font-semibold text-ink">{ses.title}</h3>
+      {(when || ses.stage) && (
+        <p className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-body">
+          {when && (
+            <span className="inline-flex items-center gap-1.5">
+              <Clock aria-hidden width={15} height={15} />
+              <time dateTime={ses.startAt!}>{when}</time>
+            </span>
+          )}
+          {ses.stage && (
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin aria-hidden width={15} height={15} />
+              {ses.stage}
+            </span>
+          )}
+        </p>
+      )}
+      {ses.description && <p className="mt-3 leading-7 text-body">{ses.description}</p>}
+      {ses.presenters?.length ? (
+        <ul className="mt-4 flex flex-wrap gap-3" aria-label="Presenters">
+          {ses.presenters.map((n) => (
+            <PresenterChip key={n} name={n} speaker={speakerByName.get(nameKey(n))} />
+          ))}
+        </ul>
+      ) : null}
+    </li>
+  )
+}
+
+function SessionsSection({sessions, tz, speakerByName}: {sessions: Session[]; tz: string; speakerByName: Map<string, Speaker>}) {
+  return (
+    <section className="mt-14" aria-labelledby="sessions-heading">
+      <h2 id="sessions-heading" className="text-[28px] font-semibold text-ink">
+        On stage
+      </h2>
+      <ul className="mt-6 space-y-4">
+        {sessions.map((ses) => (
+          <SessionItem key={ses._key} ses={ses} tz={tz} speakerByName={speakerByName} />
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+function SpeakersSection({speakers, onStage}: {speakers: Speaker[]; onStage: Map<string, string>}) {
+  return (
+    <section className="mt-14" aria-labelledby="speakers-heading">
+      <h2 id="speakers-heading" className="text-[28px] font-semibold text-ink">
+        Who you’ll meet
+      </h2>
+      <ul className="mt-6 grid gap-6 sm:grid-cols-2">
+        {speakers.map((s) => (
+          <li key={s.name} className="flex items-center gap-4">
+            {s.photo?.asset ? (
+              <Image
+                src={urlFor(s.photo).width(160).height(160).fit('crop').auto('format').url()}
+                alt=""
+                width={80}
+                height={80}
+                className="h-20 w-20 shrink-0 rounded-full object-cover"
+              />
+            ) : (
+              <span aria-hidden className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-surface text-2xl font-semibold text-ink">
+                {s.name.charAt(0)}
+              </span>
+            )}
+            <span>
+              <span className="block text-lg font-semibold text-ink">{s.name}</span>
+              {s.role && <span className="block text-body">{s.role}</span>}
+              {onStage.has(nameKey(s.name)) && (
+                <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary-hover px-2 py-0.5 text-xs font-semibold text-white">
+                  <Mic aria-hidden width={12} height={12} /> On stage
+                  <span className="sr-only">: {onStage.get(nameKey(s.name))}</span>
+                </span>
+              )}
+              {s.linkedin && (
+                <a
+                  href={s.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="event-speaker-linkedin mt-1 flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-hover"
+                >
+                  <LinkedInMark />
+                  LinkedIn
+                  <span className="sr-only"> profile of {s.name} (opens in a new tab)</span>
+                </a>
+              )}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+export default async function EventPage({params}: Props) {
+  const {slug} = await params
+  const e = await getEvent(slug)
+  if (!e) notFound()
+
+  const ended = hasEnded(e)
+  const tz = e.timeZone || DEFAULT_TIME_ZONE
+  const place = eventPlace(e)
+  const fullAddress = [e.venue, e.address, e.city, e.region, e.country].filter(Boolean).join(', ')
+  const mapUrl = e.attendance !== 'online' && fullAddress ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}` : null
+  const img = e.featuredImage
+  const url = `https://goiguide.com${eventPath(slug)}`
+  const googleCal = googleCalendarUrl(e, url, fullAddress, tz)
+
+  // Speakers on stage: matched to sessions by name
+  const speakerByName = new Map((e.speakers ?? []).map((s) => [nameKey(s.name), s]))
+  const onStage = new Map<string, string>()
+  for (const ses of e.sessions ?? []) for (const n of ses.presenters ?? []) if (!onStage.has(nameKey(n))) onStage.set(nameKey(n), ses.title)
+  const presenterNames = [...new Set((e.sessions ?? []).flatMap((ses) => ses.presenters ?? []))]
+
+  const faqLd = faqJsonLd(e)
+  const jsonLd = eventJsonLd(e, url, presenterNames, speakerByName)
 
   return (
     <article className="pb-24">
-      {!ended && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd).replace(/</g, '\\u003c')}} />}
-      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(faqLd).replace(/</g, '\\u003c')}} />}
+      {!ended && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: ldScript(jsonLd)}} />}
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{__html: ldScript(faqLd)}} />}
 
       <header className="bg-surface pt-8 pb-12 lg:pt-12 lg:pb-[60px]">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -195,11 +356,13 @@ export default async function EventPage({params}: Props) {
             </div>
             <h1 className="mt-5 text-balance text-[40px] leading-[1.15] font-semibold text-ink md:text-5xl">{e.title}</h1>
             {ended && (
-              <p className="mt-6 rounded-lg border border-line bg-white px-4 py-3 font-semibold text-ink" role="status">
+              <output className="mt-6 block rounded-lg border border-line bg-white px-4 py-3 font-semibold text-ink">
                 This event has ended. <SmartLink href={EVENTS_PATH} className="underline underline-offset-2 hover:text-primary-hover">See upcoming events</SmartLink>
-              </p>
+              </output>
             )}
-            <div className="mt-6">{details}</div>
+            <div className="mt-6">
+              <EventDetails e={e} place={place} mapUrl={mapUrl} />
+            </div>
             {!ended && (
               <div className="mt-8 flex flex-wrap gap-3">
                 {e.registrationUrl && (
@@ -252,118 +415,9 @@ export default async function EventPage({params}: Props) {
 
       <Container className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16">
         <div className="min-w-0">
-          {e.body?.length ? <PortableBody value={e.body} /> : e.shortDescription ? <p className="text-lg leading-8 text-body">{e.shortDescription}</p> : null}
-          {e.sessions?.length ? (
-            <section className="mt-14" aria-labelledby="sessions-heading">
-              <h2 id="sessions-heading" className="text-[28px] font-semibold text-ink">
-                On stage
-              </h2>
-              <ul className="mt-6 space-y-4">
-                {e.sessions.map((ses) => {
-                  const when = formatSessionTime(ses, tz)
-                  return (
-                    <li key={ses._key} className="event-session rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
-                        <Mic aria-hidden width={13} height={13} />
-                        {sessionFormatTitle(ses.format)}
-                      </span>
-                      <h3 className="mt-3 text-xl font-semibold text-ink">{ses.title}</h3>
-                      {(when || ses.stage) && (
-                        <p className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-body">
-                          {when && (
-                            <span className="inline-flex items-center gap-1.5">
-                              <Clock aria-hidden width={15} height={15} />
-                              <time dateTime={ses.startAt!}>{when}</time>
-                            </span>
-                          )}
-                          {ses.stage && (
-                            <span className="inline-flex items-center gap-1.5">
-                              <MapPin aria-hidden width={15} height={15} />
-                              {ses.stage}
-                            </span>
-                          )}
-                        </p>
-                      )}
-                      {ses.description && <p className="mt-3 leading-7 text-body">{ses.description}</p>}
-                      {ses.presenters?.length ? (
-                        <ul className="mt-4 flex flex-wrap gap-3" aria-label="Presenters">
-                          {ses.presenters.map((n) => {
-                            const sp = speakerByName.get(key(n))
-                            return (
-                              <li key={n} className="flex items-center gap-2 rounded-full bg-surface py-1 pr-3 pl-1 text-sm font-semibold text-ink">
-                                {sp?.photo?.asset ? (
-                                  <Image
-                                    src={urlFor(sp.photo).width(64).height(64).fit('crop').auto('format').url()}
-                                    alt=""
-                                    width={28}
-                                    height={28}
-                                    className="h-7 w-7 rounded-full object-cover"
-                                  />
-                                ) : (
-                                  <span aria-hidden className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs">
-                                    {n.charAt(0)}
-                                  </span>
-                                )}
-                                {n}
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      ) : null}
-                    </li>
-                  )
-                })}
-              </ul>
-            </section>
-          ) : null}
-          {e.speakers?.length ? (
-            <section className="mt-14" aria-labelledby="speakers-heading">
-              <h2 id="speakers-heading" className="text-[28px] font-semibold text-ink">
-                Who you’ll meet
-              </h2>
-              <ul className="mt-6 grid gap-6 sm:grid-cols-2">
-                {e.speakers.map((s) => (
-                  <li key={s.name} className="flex items-center gap-4">
-                    {s.photo?.asset ? (
-                      <Image
-                        src={urlFor(s.photo).width(160).height(160).fit('crop').auto('format').url()}
-                        alt=""
-                        width={80}
-                        height={80}
-                        className="h-20 w-20 shrink-0 rounded-full object-cover"
-                      />
-                    ) : (
-                      <span aria-hidden className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-surface text-2xl font-semibold text-ink">
-                        {s.name.charAt(0)}
-                      </span>
-                    )}
-                    <span>
-                      <span className="block text-lg font-semibold text-ink">{s.name}</span>
-                      {s.role && <span className="block text-body">{s.role}</span>}
-                      {onStage.has(key(s.name)) && (
-                        <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary-hover px-2 py-0.5 text-xs font-semibold text-white">
-                          <Mic aria-hidden width={12} height={12} /> On stage
-                          <span className="sr-only">: {onStage.get(key(s.name))}</span>
-                        </span>
-                      )}
-                      {s.linkedin && (
-                        <a
-                          href={s.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="event-speaker-linkedin mt-1 flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-hover"
-                        >
-                          <LinkedInMark />
-                          LinkedIn
-                          <span className="sr-only"> profile of {s.name} (opens in a new tab)</span>
-                        </a>
-                      )}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
+          <EventIntro e={e} />
+          {e.sessions?.length ? <SessionsSection sessions={e.sessions} tz={tz} speakerByName={speakerByName} /> : null}
+          {e.speakers?.length ? <SpeakersSection speakers={e.speakers} onStage={onStage} /> : null}
         </div>
         {e.hubspotFormId && !ended && (
           <aside id="register" className="scroll-mt-28 self-start rounded-2xl border border-line bg-white p-6 shadow-lg md:p-8 lg:sticky lg:top-28">
@@ -421,4 +475,3 @@ export default async function EventPage({params}: Props) {
     </article>
   )
 }
-

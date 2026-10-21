@@ -29,7 +29,7 @@ const DRAG_THRESHOLD = 6
  * reduced motion. Duplicate copies are hidden from screen readers and keyboard.
  */
 export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label, draggable = true, className}: Props) {
-  const viewportRef = useRef<HTMLDivElement>(null)
+  const viewportRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const setRef = useRef<HTMLDivElement>(null)
 
@@ -92,11 +92,11 @@ export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label,
     return () => cancelAnimationFrame(frame)
   }, [apply, speed])
 
-  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onPointerDown = (e: React.PointerEvent<HTMLElement>) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return
     press.current = {pointerId: e.pointerId, startX: e.clientX, startOffset: offset.current, dragging: false}
   }
-  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onPointerMove = (e: React.PointerEvent<HTMLElement>) => {
     const p = press.current
     if (!p || p.pointerId !== e.pointerId) return
     const dx = e.clientX - p.startX
@@ -110,7 +110,7 @@ export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label,
     offset.current = p.startOffset + dx
     apply()
   }
-  const endPress = (e: React.PointerEvent<HTMLDivElement>) => {
+  const endPress = (e: React.PointerEvent<HTMLElement>) => {
     const p = press.current
     if (!p || p.pointerId !== e.pointerId) return
     if (p.dragging) suppressClick.current = true
@@ -121,9 +121,8 @@ export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label,
   const itemStyle = {width, marginRight: gap}
 
   return (
-    <div
+    <section
       ref={viewportRef}
-      role="region"
       aria-roledescription="carousel"
       aria-label={label}
       className={cn(
@@ -173,6 +172,6 @@ export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label,
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

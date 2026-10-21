@@ -70,8 +70,7 @@ export default function MarketingCataloguePage() {
                   className="font-semibold text-white underline underline-offset-2 hover:text-white/80"
                 >
                   how to add your branding in the iGuide Portal
-                </a>
-                .
+                </a>.
               </p>
             </div>
             <a

@@ -122,6 +122,9 @@ export function Select({
     }
   }
 
+  let borderClass = tone === 'field' ? 'border-muted' : 'border-line'
+  if (open) borderClass = 'border-primary'
+
   return (
     <div ref={root} className={cn('relative', className)}>
       {name && <input type="hidden" name={name} value={value} />}
@@ -144,7 +147,7 @@ export function Select({
           'hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
           'disabled:cursor-not-allowed disabled:border-line disabled:bg-surface disabled:text-muted',
           shape === 'pill' ? 'rounded-full' : 'rounded-lg',
-          open ? 'border-primary' : tone === 'field' ? 'border-muted' : 'border-line',
+          borderClass,
           sizes[size],
           buttonClassName,
         )}

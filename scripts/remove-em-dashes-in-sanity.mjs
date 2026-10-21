@@ -68,7 +68,8 @@ for (const doc of docs) {
     if (JSON.stringify(next) !== JSON.stringify(v)) set[k] = next
   }
   if (!Object.keys(set).length) continue
-  console.log(`\n${doc._type} ${doc._id}${doc.title ? ` (${doc.title})` : ''}`)
+  const title = doc.title ? ` (${doc.title})` : ''
+  console.log(`\n${doc._type} ${doc._id}${title}`)
   for (const [a, b] of changes.slice(before)) {
     const i = a.indexOf('—')
     const from = Math.max(0, i - 50)

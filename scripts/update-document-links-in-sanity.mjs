@@ -80,9 +80,12 @@ function newUrlFor(value) {
   return byFile.get(file) ?? null
 }
 
+/** Path segment for an array item: by _key when it has one, else by index */
+const itemSegment = (v, i) => (v && typeof v === 'object' && v._key ? `_key=="${v._key}"` : i)
+
 function walk(value, path, changes) {
   if (Array.isArray(value)) {
-    value.forEach((v, i) => walk(v, `${path}[${v && typeof v === 'object' && v._key ? `_key=="${v._key}"` : i}]`, changes))
+    value.forEach((v, i) => walk(v, `${path}[${itemSegment(v, i)}]`, changes))
   } else if (value && typeof value === 'object') {
     for (const [k, v] of Object.entries(value)) if (!k.startsWith('_')) walk(v, path ? `${path}.${k}` : k, changes)
   } else {
@@ -91,28 +94,41 @@ function walk(value, path, changes) {
   }
 }
 
+/** Which list a document's card is matched against */
+const CARD_TYPES = new Map([
+  ['brochure', 'brochure'],
+  ['ebook', 'doc'],
+  ['whitePaper', 'doc'],
+])
+
+/** Changes for one document; records its list title in `matched` when it has a card */
+function planDoc(doc, matched) {
+  const set = {}
+  const notes = []
+  const cardType = CARD_TYPES.get(doc._type) ?? null
+  const card = cardType && byTitle[cardType].get(norm(doc.title))
+  if (card) matched.add(card.title)
+  if (card && doc.linkType && doc.linkType !== 'page' && doc.externalUrl !== card.url) {
+    set.linkType = 'download'
+    set.externalUrl = card.url
+    notes.push(`card link: ${doc.linkType} ${doc.externalUrl} → download ${card.url}`)
+  }
+  const changes = []
+  walk(doc, '', changes)
+  for (const c of changes) {
+    if (c.path === 'externalUrl' && set.externalUrl) continue
+    set[c.path] = c.to
+    notes.push(`${c.path}: ${c.from} → ${c.to}`)
+  }
+  return {set, notes}
+}
+
 /** Every change to make: [{doc, set, notes}], plus the list titles with no card in Sanity */
 export function planChanges(docs) {
   const matched = new Set()
   const plan = []
   for (const doc of docs) {
-    const set = {}
-    const notes = []
-    const cardType = doc._type === 'brochure' ? 'brochure' : ['ebook', 'whitePaper'].includes(doc._type) ? 'doc' : null
-    const card = cardType && byTitle[cardType].get(norm(doc.title))
-    if (card) matched.add(card.title)
-    if (card && doc.linkType && doc.linkType !== 'page' && doc.externalUrl !== card.url) {
-      set.linkType = 'download'
-      set.externalUrl = card.url
-      notes.push(`card link: ${doc.linkType} ${doc.externalUrl} → download ${card.url}`)
-    }
-    const changes = []
-    walk(doc, '', changes)
-    for (const c of changes) {
-      if (c.path === 'externalUrl' && set.externalUrl) continue
-      set[c.path] = c.to
-      notes.push(`${c.path}: ${c.from} → ${c.to}`)
-    }
+    const {set, notes} = planDoc(doc, matched)
     if (notes.length) plan.push({doc, set, notes})
   }
   const unmatched = [...brochures, ...ebooks].filter((d) => !matched.has(d.title)).map((d) => d.title)

@@ -88,7 +88,7 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
 
   return (
     <>
-      <div role="group" aria-label="Filter by type" className="flex flex-wrap gap-2">
+      <fieldset aria-label="Filter by type" className="flex min-w-0 flex-wrap gap-2">
         {filters.map((filter) => {
           const isActive = filter.name === active
           return (
@@ -100,10 +100,10 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
             </button>
           )
         })}
-      </div>
+      </fieldset>
 
       {categories.length > 0 && (
-        <div role="group" aria-label="Filter by category" className="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-4">
+        <fieldset aria-label="Filter by category" className="mt-4 flex min-w-0 flex-wrap items-center gap-2 border-t border-line pt-4">
           <span className="mr-1 text-sm font-semibold text-muted">Category:</span>
           {[[ALL, 'All categories'] as const, ...categories].map(([slug, label]) => (
             <button
@@ -119,7 +119,7 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
               {slug === ALL ? label : categoryLabel(type, slug)}
             </button>
           ))}
-        </div>
+        </fieldset>
       )}
 
       <p className="sr-only" aria-live="polite">

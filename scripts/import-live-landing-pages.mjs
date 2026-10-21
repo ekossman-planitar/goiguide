@@ -144,46 +144,95 @@ async function resourceId(href) {
 }
 
 /* ---------------------------------------------------------------- markers → Sanity values */
+/** Plain objects in arrays need a _key; this one is stable for the same content */
+const needsKey = (r) => r && typeof r === 'object' && !Array.isArray(r) && !r._key
+
+async function resolveArray(value) {
+  const items = []
+  for (const [i, v] of value.entries()) {
+    const r = await resolve(v)
+    if (r === undefined) continue
+    items.push(needsKey(r) ? {...r, _key: `k${i}${key(JSON.stringify(r)).slice(0, 6)}`} : r)
+  }
+  return items
+}
+
+/** Client logo images → de-duplicated references to clientLogo documents */
+async function resolveLogoImages(logos) {
+  const refs = []
+  for (const l of logos) {
+    const id = await clientLogo(l)
+    if (id && !refs.some((r) => r._ref === id)) refs.push({_type: 'reference', _ref: id, _key: key(id)})
+  }
+  return refs
+}
+
+async function resolveImageMarker(value) {
+  const id = await uploadImage(value.img)
+  return id ? {_type: 'image', alt: value.alt || undefined, asset: {_type: 'reference', _ref: id}} : undefined
+}
+
+async function resolveResourceMarker(value) {
+  const id = await resourceId(value.resource)
+  return id ? {_type: 'reference', _ref: id} : undefined
+}
+
+async function resolveObject(value) {
+  if ('img' in value) return resolveImageMarker(value)
+  if ('ref' in value) return {_type: 'reference', _ref: value.ref}
+  if ('resource' in value) return resolveResourceMarker(value)
+  const out = {}
+  for (const [k, v] of Object.entries(value)) {
+    if (k === 'logoImages') {
+      out.logos = await resolveLogoImages(v)
+      continue
+    }
+    const r = await resolve(v)
+    if (r !== undefined) out[k] = r
+  }
+  return out
+}
+
+/** Replaces the converter's markers ({img}, {ref}, {resource}, logoImages) with Sanity values, uploading as needed */
 async function resolve(value) {
-  if (Array.isArray(value)) {
-    const items = []
-    for (const [i, v] of value.entries()) {
-      const r = await resolve(v)
-      if (r === undefined) continue
-      items.push(r && typeof r === 'object' && !Array.isArray(r) && !r._key ? {...r, _key: `k${i}${key(JSON.stringify(r)).slice(0, 6)}`} : r)
-    }
-    return items
-  }
-  if (value && typeof value === 'object') {
-    if ('img' in value) {
-      const id = await uploadImage(value.img)
-      return id ? {_type: 'image', alt: value.alt || undefined, asset: {_type: 'reference', _ref: id}} : undefined
-    }
-    if ('ref' in value) return {_type: 'reference', _ref: value.ref}
-    if ('resource' in value) {
-      const id = await resourceId(value.resource)
-      return id ? {_type: 'reference', _ref: id} : undefined
-    }
-    const out = {}
-    for (const [k, v] of Object.entries(value)) {
-      if (k === 'logoImages') {
-        const refs = []
-        for (const l of v) {
-          const id = await clientLogo(l)
-          if (id && !refs.some((r) => r._ref === id)) refs.push({_type: 'reference', _ref: id, _key: key(id)})
-        }
-        out.logos = refs
-        continue
-      }
-      const r = await resolve(v)
-      if (r !== undefined) out[k] = r
-    }
-    return out
-  }
+  if (Array.isArray(value)) return resolveArray(value)
+  if (value && typeof value === 'object') return resolveObject(value)
   return value
 }
 
 /* ---------------------------------------------------------------- main */
+/** Import note on the page: where it came from and what needs a manual look */
+function importNotes(page, unsupported) {
+  const date = new Date().toISOString().slice(0, 10)
+  const review = unsupported.map((u) => `${u.kind} "${u.text.slice(0, 60)}"`).join('; ')
+  const reviewNote = unsupported.length ? ` Not imported (review): ${review}` : ''
+  return `Imported from the live page ${SITE}${page.path} on ${date}.${reviewNote}`
+}
+
+/** Converts one live page and writes it (or its preview); returns the report entry */
+async function importPage(page, _id) {
+  const html = await fetchPage(page.path)
+  const {doc, testimonials, unsupported} = convertPage(html, page.path, {chrome: page.chrome})
+  // Testimonials first (sections reference them)
+  const ids = new Map()
+  for (const t of testimonials) ids.set(t._id, await testimonial(t))
+  for (const s of doc.sections) if (s._type === 'lpTestimonials') s.items = s.items.map((r) => ({ref: ids.get(r.ref) ?? r.ref}))
+  const full = await resolve({
+    ...doc,
+    _id,
+    layout: page.layout ?? 'lead-form',
+    folder: {ref: page.folder},
+    notes: importNotes(page, unsupported),
+  })
+  if (DRY_RUN) {
+    mkdirSync(PREVIEW, {recursive: true})
+    writeFileSync(join(PREVIEW, `${_id}.json`), JSON.stringify({doc: full, testimonials, unsupported}, null, 2))
+  } else await client.createOrReplace(full)
+  const toReview = unsupported.length ? `, ${unsupported.length} to review` : ''
+  log(`${DRY_RUN ? '·' : '+'} ${page.path} (${doc.sections.length} sections${toReview})`)
+  return {path: page.path, sections: doc.sections.map((s) => s._type), unsupported}
+}
+
 async function main() {
   if (!DRY_RUN) for (const f of folders) await client.createIfNotExists({...f, _type: 'landingPageFolder'})
   const stats = {}
@@ -196,26 +245,8 @@ async function main() {
         stats.kept = (stats.kept ?? 0) + 1
         continue
       }
-      const html = await fetchPage(page.path)
-      const {doc, testimonials, unsupported} = convertPage(html, page.path, {chrome: page.chrome})
-      // Testimonials first (sections reference them)
-      const ids = new Map()
-      for (const t of testimonials) ids.set(t._id, await testimonial(t))
-      for (const s of doc.sections) if (s._type === 'lpTestimonials') s.items = s.items.map((r) => ({ref: ids.get(r.ref) ?? r.ref}))
-      const full = await resolve({
-        ...doc,
-        _id,
-        layout: page.layout ?? 'lead-form',
-        folder: {ref: page.folder},
-        notes: `Imported from the live page ${SITE}${page.path} on ${new Date().toISOString().slice(0, 10)}.${unsupported.length ? ` Not imported (review): ${unsupported.map((u) => `${u.kind} "${u.text.slice(0, 60)}"`).join('; ')}` : ''}`,
-      })
-      if (DRY_RUN) {
-        mkdirSync(PREVIEW, {recursive: true})
-        writeFileSync(join(PREVIEW, `${_id}.json`), JSON.stringify({doc: full, testimonials, unsupported}, null, 2))
-      } else await client.createOrReplace(full)
-      log(`${DRY_RUN ? '·' : '+'} ${page.path} (${doc.sections.length} sections${unsupported.length ? `, ${unsupported.length} to review` : ''})`)
+      report.push(await importPage(page, _id))
       stats.written = (stats.written ?? 0) + 1
-      report.push({path: page.path, sections: doc.sections.map((s) => s._type), unsupported})
     } catch (error) {
       console.warn(`! ${page.path}: ${error.message}`)
       stats.failed = (stats.failed ?? 0) + 1
@@ -226,7 +257,9 @@ async function main() {
   log(`\nDone. ${JSON.stringify(stats)}. Report: scripts/.import-preview/landing-pages/report.json`)
 }
 
-main().catch((error) => {
+try {
+  await main()
+} catch (error) {
   console.error(error)
   process.exit(1)
-})
+}

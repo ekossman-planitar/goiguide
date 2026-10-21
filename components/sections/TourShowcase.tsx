@@ -5,6 +5,7 @@ import {Container} from '@/components/ui/Container'
 import {Pill} from '@/components/ui/Pill'
 import {SectionHeading} from '@/components/ui/SectionHeading'
 import {cn} from '@/lib/cn'
+import {wrapIndex} from '@/lib/tabs'
 
 export type Tour = {id: string; label: string; title: string; src: string}
 
@@ -39,7 +40,7 @@ export function TourShowcase({eyebrow, heading, subheading, tours}: Props) {
     ]
     if (next === undefined) return
     e.preventDefault()
-    select(next < 0 ? last : next > last ? 0 : next, true)
+    select(wrapIndex(next, last), true)
   }
 
   return (
@@ -59,7 +60,6 @@ export function TourShowcase({eyebrow, heading, subheading, tours}: Props) {
               role="tablist"
               aria-label="Example tours"
               aria-orientation="vertical"
-              onKeyDown={onKeyDown}
               className="flex gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2 lg:flex-col lg:self-start lg:overflow-visible"
             >
               {tours.map((tour, i) => {
@@ -77,6 +77,7 @@ export function TourShowcase({eyebrow, heading, subheading, tours}: Props) {
                     aria-controls={`tour-panel-${tour.id}`}
                     tabIndex={selected ? 0 : -1}
                     onClick={() => select(i)}
+                    onKeyDown={onKeyDown}
                     // Same pill style as the live site's tabs
                     className={cn(
                       'shrink-0 rounded-3xl border px-6 py-3 text-left text-base leading-6 font-semibold whitespace-nowrap transition-colors lg:whitespace-normal',

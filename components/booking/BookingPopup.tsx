@@ -47,13 +47,13 @@ function loadCalendly() {
       const link = document.createElement('link')
       link.rel = 'stylesheet'
       link.href = 'https://assets.calendly.com/assets/external/widget.css'
-      link.setAttribute('data-calendly-widget-css', 'true')
+      link.dataset.calendlyWidgetCss = 'true'
       document.head.appendChild(link)
     }
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
-    script.setAttribute('data-calendly-widget-js', 'true')
+    script.dataset.calendlyWidgetJs = 'true'
     script.onload = () => resolve()
     script.onerror = reject
     document.body.appendChild(script)
@@ -93,7 +93,7 @@ function loadHubSpotUtmForm() {
     const script = document.createElement('script')
     script.src = `https://js.hsforms.net/forms/embed/developer/${HUBSPOT_PORTAL_ID}.js`
     script.defer = true
-    script.setAttribute('data-hubspot-developer-embed', 'true')
+    script.dataset.hubspotDeveloperEmbed = 'true'
     script.onload = () => waitForForm()
     script.onerror = reject
     document.body.appendChild(script)
@@ -138,6 +138,11 @@ function submitUtmForm(form: HTMLFormElement, email: string) {
   setTimeout(() => form.submit(), 300)
 }
 
+/** Reading a layout property forces a reflow so the following style change animates. */
+function forceReflow(el: HTMLElement) {
+  return el.offsetWidth
+}
+
 async function openPopup(url = CALENDLY_BASE_URL) {
   try {
     await loadCalendly()
@@ -167,7 +172,7 @@ export function BookingPopup() {
       }
     }
     const onMessage = (e: MessageEvent) => {
-      if (!e.data || e.data.event !== 'calendly.event_scheduled') return
+      if (e.data?.event !== 'calendly.event_scheduled') return
       // Live: hide the pop-up and show the thank-you screen
       document.querySelector<HTMLElement>('.calendly-popup')?.style.setProperty('display', 'none')
       document.querySelector<HTMLElement>('.calendly-overlay')?.style.setProperty('display', 'none')
@@ -175,10 +180,10 @@ export function BookingPopup() {
       const progress = document.getElementById('progress-bar')
       if (confirmation) {
         confirmation.style.display = 'flex'
-        void confirmation.offsetWidth
+        forceReflow(confirmation)
         confirmation.style.opacity = '1'
         if (progress) {
-          void progress.offsetWidth
+          forceReflow(progress)
           progress.style.width = '100%'
         }
       }

@@ -34,7 +34,9 @@ const GAP = 24
  */
 export function CustomerStories({heading, subheading, link, stories}: Props) {
   const cardWidth = useCallback((viewport: number) => {
-    const perView = viewport >= 1024 ? 3 : viewport >= 640 ? 2 : 1.15
+    let perView = 1.15
+    if (viewport >= 1024) perView = 3
+    else if (viewport >= 640) perView = 2
     return (viewport - GAP * (Math.ceil(perView) - 1)) / perView
   }, [])
 

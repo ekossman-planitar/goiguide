@@ -33,29 +33,35 @@ async function upload(path) {
   return asset._id
 }
 
+async function resolveImage(value) {
+  const id = await upload(value.img)
+  return id ? {_type: 'image', alt: value.alt, asset: {_type: 'reference', _ref: id}} : undefined
+}
+
+/** {logosFrom: '<band id>'}: copy that band's logo list into this section */
+async function resolveLogosFrom(value) {
+  const {logosFrom, ...rest} = value
+  const band = await client.getDocument(logosFrom)
+  const logos = (band?.logos ?? []).map((r, i) => ({_type: 'reference', _ref: r._ref, _key: `l${i}`}))
+  return {...(await resolve(rest)), logos}
+}
+
+async function resolveObject(value) {
+  if ('img' in value) return resolveImage(value)
+  if ('logosFrom' in value) return resolveLogosFrom(value)
+  if ('ref' in value) return {_type: 'reference', _ref: value.ref, ...('_key' in value ? {_key: value._key} : {})}
+  const out = {}
+  for (const [k, v] of Object.entries(value)) {
+    const r = await resolve(v)
+    if (r !== undefined) out[k] = r
+  }
+  return out
+}
+
 /** Turn {img} and {ref} markers into Sanity values */
 async function resolve(value) {
   if (Array.isArray(value)) return Promise.all(value.map(resolve))
-  if (value && typeof value === 'object') {
-    if ('img' in value) {
-      const id = await upload(value.img)
-      return id ? {_type: 'image', alt: value.alt, asset: {_type: 'reference', _ref: id}} : undefined
-    }
-    // {logosFrom: '<band id>'}: copy that band's logo list into this section
-    if ('logosFrom' in value) {
-      const {logosFrom, ...rest} = value
-      const band = await client.getDocument(logosFrom)
-      const logos = (band?.logos ?? []).map((r, i) => ({_type: 'reference', _ref: r._ref, _key: `l${i}`}))
-      return {...(await resolve(rest)), logos}
-    }
-    if ('ref' in value) return {_type: 'reference', _ref: value.ref, ...('_key' in value ? {_key: value._key} : {})}
-    const out = {}
-    for (const [k, v] of Object.entries(value)) {
-      const r = await resolve(v)
-      if (r !== undefined) out[k] = r
-    }
-    return out
-  }
+  if (value && typeof value === 'object') return resolveObject(value)
   return value
 }
 
@@ -85,7 +91,9 @@ async function main() {
   console.log('\nDone. Open the Studio → Landing pages (paid media) to review.')
 }
 
-main().catch((error) => {
+try {
+  await main()
+} catch (error) {
   console.error(error.message ?? error)
   process.exit(1)
-})
+}

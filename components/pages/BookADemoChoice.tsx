@@ -98,7 +98,10 @@ export function OpenCalendlyFromParam() {
     const fromSite = document.referrer.includes('https://goiguide.com/') || document.referrer.startsWith(`${window.location.origin}/`)
     if (params.get('openCalendly') !== 'true' || !fromSite) return
     const open = () => (window as unknown as {Calendly?: CalendlyApi}).Calendly?.initPopupWidget({url: OPEN_CALENDLY_URL})
-    if ((window as unknown as {Calendly?: CalendlyApi}).Calendly) return void open()
+    if ((window as unknown as {Calendly?: CalendlyApi}).Calendly) {
+      open()
+      return
+    }
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = 'https://assets.calendly.com/assets/external/widget.css'

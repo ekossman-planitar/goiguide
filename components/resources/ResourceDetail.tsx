@@ -94,15 +94,12 @@ export async function ResourceDetail({type, params}: {type: ResourceTypeName} & 
   return <ResourceDetailView type={type} slug={slug} item={item} />
 }
 
-/** The detail page itself, from already-fetched data */
-export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; slug: string; item: NonNullable<ResourceDetailData>}) {
-  const config = getResourceType(type)!
-  const url = `https://goiguide.com${config.basePath}/${slug}`
-  const image = item.featuredImage
-  const action = resourceLink(item)
-  const showDate = !undatedTypes.has(type) && item.publishedAt
+type ResourceItem = NonNullable<ResourceDetailData>
+type ShareLink = {label: string; href: string}
 
-  const jsonLd = {
+function resourceJsonLd(type: ResourceTypeName, item: ResourceItem, url: string) {
+  const image = item.featuredImage
+  return {
     '@context': 'https://schema.org',
     '@type': schemaTypes[type] ?? 'Article',
     headline: item.title,
@@ -114,20 +111,133 @@ export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; 
     publisher: {'@type': 'Organization', name: 'iGuide', url: 'https://goiguide.com'},
     mainEntityOfPage: url,
   }
+}
 
-  // Customer stories: wider layout with the customer details box and an "On this page" menu beside the story
-  const isStory = type === 'customerStory'
-  const sections = item.body?.length ? splitSections(item.body, {splitAtHeadings: isStory}) : []
-  const toc = sections.filter((s): s is typeof s & {id: string; label: string} => !!s.id && !!s.label)
-  const facts = isStory && item.customerFacts?.length ? <CustomerFacts facts={item.customerFacts} cta={item.customerCta} /> : null
-  const showToc = isStory && toc.length >= 3
-
-  const share = [
+function shareLinks(url: string, title: string): ShareLink[] {
+  return [
     {label: 'Facebook', href: `https://www.facebook.com/sharer.php?u=${encodeURIComponent(url)}`},
     {label: 'X (Twitter)', href: `https://twitter.com/share?url=${encodeURIComponent(url)}`},
     {label: 'LinkedIn', href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}`},
-    {label: 'Email', href: `mailto:?subject=${encodeURIComponent(item.title)}&body=${encodeURIComponent(url)}`},
+    {label: 'Email', href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`},
   ]
+}
+
+function HeaderActions({item}: {item: ResourceItem}) {
+  const action = resourceLink(item)
+  return (
+    <div className="mt-8 flex flex-wrap gap-3">
+      {action.external && (
+        <Button href={action.href} size="lg" newTab>
+          {action.label}
+        </Button>
+      )}
+      {item.eventCta?.href && (
+        <Button href={item.eventCta.href} size="lg" variant={action.external ? 'secondary' : 'primary'} newTab>
+          {item.eventCta.label || 'Register'}
+        </Button>
+      )}
+      {item.newsCta?.href && (
+        <Button href={item.newsCta.href} size="lg" variant="secondary" newTab>
+          {item.newsCta.label || 'Read more'}
+        </Button>
+      )}
+    </div>
+  )
+}
+
+/** Header video, else the featured image */
+function HeaderMedia({item}: {item: ResourceItem}) {
+  const image = item.featuredImage
+  if (item.headerVideoUrl) {
+    return (
+      <div className="relative aspect-video overflow-hidden rounded-2xl bg-white shadow-lg">
+        <iframe src={item.headerVideoUrl} title={item.title} className="absolute inset-0 h-full w-full" allowFullScreen />
+      </div>
+    )
+  }
+  if (!image?.asset) return null
+  return (
+    <Image
+      src={urlFor(image).width(1400).fit('max').auto('format').url()}
+      alt={image.alt ?? ''}
+      width={1400}
+      height={788}
+      priority
+      sizes="(min-width: 1024px) 50vw, 100vw"
+      className="h-auto w-full rounded-2xl shadow-lg"
+      placeholder={image.asset.metadata?.lqip ? 'blur' : 'empty'}
+      blurDataURL={image.asset.metadata?.lqip}
+    />
+  )
+}
+
+type Sections = ReturnType<typeof splitSections>
+
+/** Customer stories: wider layout with the customer details box and an "On this page" menu beside the story */
+function StoryBody({item, sections, share}: {item: ResourceItem; sections: Sections; share: ShareLink[]}) {
+  const toc = sections.filter((s): s is typeof s & {id: string; label: string} => !!s.id && !!s.label)
+  const facts = item.customerFacts?.length ? <CustomerFacts facts={item.customerFacts} cta={item.customerCta} /> : null
+  const showToc = toc.length >= 3
+  if (!facts && !showToc) return <PlainBody item={item} sections={sections} share={share} />
+  return (
+    <Container className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[260px_minmax(0,880px)]">
+      <div className="lg:order-2 lg:min-w-0">
+        {facts && <div className="mb-12 lg:hidden">{facts}</div>}
+        <SectionedBody sections={sections} />
+        {item.author && <AuthorBox author={item.author} />}
+        <ShareLinks share={share} />
+      </div>
+      <div className="hidden lg:order-1 lg:block">
+        <div className="sticky top-28 space-y-10">
+          {facts}
+          {showToc && <StoryToc items={toc.map(({id, label}) => ({id, label}))} />}
+        </div>
+      </div>
+    </Container>
+  )
+}
+
+/** Blog posts: body on the left, "Book a demo" and a rotating promo on the right (below the post on small screens) */
+function BlogBody({item, sections, share}: {item: ResourceItem; sections: Sections; share: ShareLink[]}) {
+  return (
+    <Container className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14 xl:grid-cols-[minmax(0,760px)_320px] xl:justify-between">
+      <div className="min-w-0">
+        {sections.length ? <SectionedBody sections={sections} /> : null}
+        {item.author && <AuthorBox author={item.author} />}
+        <ShareLinks share={share} />
+      </div>
+      <div>
+        <div className="lg:sticky lg:top-28">
+          <BlogSidebar />
+        </div>
+      </div>
+    </Container>
+  )
+}
+
+function PlainBody({item, sections, share}: {item: ResourceItem; sections: Sections; share: ShareLink[]}) {
+  return (
+    <Container size="narrow">
+      {sections.length ? <SectionedBody sections={sections} /> : null}
+      {item.author && <AuthorBox author={item.author} />}
+      <ShareLinks share={share} />
+    </Container>
+  )
+}
+
+/** The detail page itself, from already-fetched data */
+export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; slug: string; item: ResourceItem}) {
+  const config = getResourceType(type)!
+  const url = `https://goiguide.com${config.basePath}/${slug}`
+  const showDate = !undatedTypes.has(type) && item.publishedAt
+  const jsonLd = resourceJsonLd(type, item, url)
+
+  const isStory = type === 'customerStory'
+  const sections = item.body?.length ? splitSections(item.body, {splitAtHeadings: isStory}) : []
+  const share = shareLinks(url, item.title)
+  let BodyLayout = PlainBody
+  if (isStory) BodyLayout = StoryBody
+  else if (type === 'blogPost') BodyLayout = BlogBody
 
   return (
     <article className="pb-24">
@@ -160,82 +270,15 @@ export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; 
                 <span className="font-semibold text-ink">Date:</span> <span className="text-body">{item.eventDateText}</span>
               </p>
             )}
-            <div className="mt-8 flex flex-wrap gap-3">
-              {action.external && (
-                <Button href={action.href} size="lg" newTab>
-                  {action.label}
-                </Button>
-              )}
-              {item.eventCta?.href && (
-                <Button href={item.eventCta.href} size="lg" variant={action.external ? 'secondary' : 'primary'} newTab>
-                  {item.eventCta.label || 'Register'}
-                </Button>
-              )}
-              {item.newsCta?.href && (
-                <Button href={item.newsCta.href} size="lg" variant="secondary" newTab>
-                  {item.newsCta.label || 'Read more'}
-                </Button>
-              )}
-            </div>
+            <HeaderActions item={item} />
           </div>
           <div className="min-w-0">
-            {item.headerVideoUrl ? (
-              <div className="relative aspect-video overflow-hidden rounded-2xl bg-white shadow-lg">
-                <iframe src={item.headerVideoUrl} title={item.title} className="absolute inset-0 h-full w-full" allowFullScreen />
-              </div>
-            ) : image?.asset ? (
-              <Image
-                src={urlFor(image).width(1400).fit('max').auto('format').url()}
-                alt={image.alt ?? ''}
-                width={1400}
-                height={788}
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-auto w-full rounded-2xl shadow-lg"
-                placeholder={image.asset.metadata?.lqip ? 'blur' : 'empty'}
-                blurDataURL={image.asset.metadata?.lqip}
-              />
-            ) : null}
+            <HeaderMedia item={item} />
           </div>
         </Container>
       </header>
 
-      {isStory && (facts || showToc) ? (
-        <Container className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[260px_minmax(0,880px)]">
-          <div className="lg:order-2 lg:min-w-0">
-            {facts && <div className="mb-12 lg:hidden">{facts}</div>}
-            <SectionedBody sections={sections} />
-            {item.author && <AuthorBox author={item.author} />}
-            <ShareLinks share={share} />
-          </div>
-          <div className="hidden lg:order-1 lg:block">
-            <div className="sticky top-28 space-y-10">
-              {facts}
-              {showToc && <StoryToc items={toc.map(({id, label}) => ({id, label}))} />}
-            </div>
-          </div>
-        </Container>
-      ) : type === 'blogPost' ? (
-        // Blog posts: body on the left, "Book a demo" and a rotating promo on the right (below the post on small screens)
-        <Container className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14 xl:grid-cols-[minmax(0,760px)_320px] xl:justify-between">
-          <div className="min-w-0">
-            {sections.length ? <SectionedBody sections={sections} /> : null}
-            {item.author && <AuthorBox author={item.author} />}
-            <ShareLinks share={share} />
-          </div>
-          <div>
-            <div className="lg:sticky lg:top-28">
-              <BlogSidebar />
-            </div>
-          </div>
-        </Container>
-      ) : (
-        <Container size="narrow">
-          {sections.length ? <SectionedBody sections={sections} /> : null}
-          {item.author && <AuthorBox author={item.author} />}
-          <ShareLinks share={share} />
-        </Container>
-      )}
+      <BodyLayout item={item} sections={sections} share={share} />
 
       {type === 'blogPost' && <StoreCta />}
 

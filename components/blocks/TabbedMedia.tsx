@@ -4,6 +4,7 @@ import {useRef, useState, type KeyboardEvent, type ReactNode} from 'react'
 import {cn} from '@/lib/cn'
 import {MediaView} from './MediaView'
 import type {Media} from './types'
+import {wrapIndex} from '@/lib/tabs'
 
 export type MediaTab = {id: string; label: string; media: Media; title?: string; text?: ReactNode}
 
@@ -26,7 +27,7 @@ export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; 
     const next = {ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: last}[e.key]
     if (next === undefined) return
     e.preventDefault()
-    select(next < 0 ? last : next > last ? 0 : next, true)
+    select(wrapIndex(next, last), true)
   }
 
   return (
@@ -35,7 +36,6 @@ export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; 
         <div
           role="tablist"
           aria-label={label}
-          onKeyDown={onKeyDown}
           className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2"
         >
           {tabs.map((tab, i) => (
@@ -51,6 +51,7 @@ export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; 
               aria-controls={`panel-${tab.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => select(i)}
+              onKeyDown={onKeyDown}
               className={cn(
                 'shrink-0 rounded-3xl border px-5 py-2.5 text-base leading-6 font-semibold whitespace-nowrap transition-colors',
                 i === active

@@ -31,6 +31,7 @@ export function DeliverableCards({
   /** Shorter image and tighter list, so a row of package cards fits one screen */
   compact?: boolean
 }) {
+  const sectionGap = compact ? 'mt-4' : 'mt-6'
   return (
     <ul className={cn('grid gap-6', cols[columns])}>
       {items.map((item) => (
@@ -55,10 +56,10 @@ export function DeliverableCards({
               <span className="text-2xl leading-8 font-bold text-ink">{item.price.value}</span>
             </p>
           )}
-          {item.includesLabel && <p className={cn('text-sm font-semibold text-ink', compact ? 'mt-4' : 'mt-6')}>{item.includesLabel}</p>}
+          {item.includesLabel && <p className={cn('text-sm font-semibold text-ink', sectionGap)}>{item.includesLabel}</p>}
           <CheckList
             items={item.includes}
-            className={cn(item.includesLabel ? 'mt-3' : compact ? 'mt-4' : 'mt-6', compact && 'space-y-1.5 [&_li]:text-[15px] [&_li]:leading-[22px]')}
+            className={cn(item.includesLabel ? 'mt-3' : sectionGap, compact && 'space-y-1.5 [&_li]:text-[15px] [&_li]:leading-[22px]')}
           />
           <div className={cn('mt-auto', compact ? 'pt-4' : 'pt-6')}>
             {item.note && <p className="text-sm leading-5 font-medium text-muted">{item.note}</p>}

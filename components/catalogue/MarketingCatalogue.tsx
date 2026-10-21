@@ -161,6 +161,13 @@ function AssetCard({asset}: {asset: CatalogueAsset}) {
   )
 }
 
+/** Text a search query is matched against: title, group, file labels/formats and category */
+function assetSearchText(a: CatalogueAsset) {
+  const files = a.files.map((f) => `${f.label} ${f.format}`).join(' ')
+  const category = catalogueCategories.find((c) => c.id === a.category)?.label
+  return normalise(`${a.title} ${a.group ?? ''} ${files} ${category}`)
+}
+
 export function MarketingCatalogue() {
   const [query, setQuery] = useState('')
   const [audience, setAudience] = useState<CatalogueAudience | 'all'>('all')
@@ -174,7 +181,7 @@ export function MarketingCatalogue() {
       (a) =>
         (audience === 'all' || a.audiences.includes(audience)) &&
         (!campaign || a.campaign === campaign) &&
-        (!q || normalise(`${a.title} ${a.group ?? ''} ${a.files.map((f) => `${f.label} ${f.format}`).join(' ')} ${catalogueCategories.find((c) => c.id === a.category)?.label}`).includes(q)),
+        (!q || assetSearchText(a).includes(q)),
     )
   }, [query, audience, campaign])
 

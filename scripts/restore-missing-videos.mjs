@@ -59,8 +59,9 @@ for (const job of jobs) {
   const body = doc.body ?? []
   // Before the trailing "Book a demo" line the import kept at the end of some stories
   const lastText = body.at(-1)?.children?.map((c) => c.text).join('') ?? ''
-  const where =
-    job.at === 'before' ? ['before', 'body[0]'] : /^book a demo$/i.test(lastText.trim()) ? ['before', `body[_key=="${body.at(-1)._key}"]`] : ['after', 'body[-1]']
+  let where = ['after', 'body[-1]']
+  if (job.at === 'before') where = ['before', 'body[0]']
+  else if (/^book a demo$/i.test(lastText.trim())) where = ['before', `body[_key=="${body.at(-1)._key}"]`]
   console.log(`${job.id}: add ${items.map((i) => i._type).join(', ')} ${where[0]} ${where[1]}`)
   if (APPLY) await client.patch(job.id).ifRevisionId(doc._rev).insert(where[0], where[1], items).commit()
 }

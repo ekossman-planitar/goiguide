@@ -71,62 +71,68 @@ async function clientLogo({src, alt}) {
 
 const exists = async (_id) => !DRY_RUN && !!(await client.getDocument(_id))
 
+async function seedBand(band, stats) {
+  if (await exists(band._id)) {
+    await client.patch(band._id).set({usedOn: band.usedOn}).commit()
+    stats.bandsKept++
+    log(`= band ${band.band} (already in Sanity, kept)`)
+    return
+  }
+  const refs = []
+  for (const logo of band.logos) {
+    const ref = await clientLogo(logo)
+    if (ref && !refs.some((r) => r._ref === ref)) refs.push({_key: slugify(ref).slice(-40), _type: 'reference', _ref: ref})
+  }
+  if (!DRY_RUN) await client.createIfNotExists({_id: band._id, _type: 'logoBand', title: `${band.title} (${band.usedOn.join(', ')})`, logos: refs, usedOn: band.usedOn})
+  stats.bandsCreated++
+  log(`+ band ${band.band}: ${refs.length} logos`)
+}
+
+async function seedTestimonial(t, stats) {
+  if (await exists(t._id)) {
+    await client.patch(t._id).set({usedOn: t.usedOn}).commit()
+    stats.testimonialsKept++
+    log(`= testimonial ${t._id} (already in Sanity, kept)`)
+    return
+  }
+  const photoAsset = t.photo ? await upload(t.photo.src) : null
+  const logoRef = t.logo ? await clientLogo(t.logo) : null
+  const doc = {
+    _id: t._id,
+    _type: 'testimonial',
+    hidden: false,
+    quote: t.quote,
+    detail: t.detail,
+    name: t.name,
+    role: t.role,
+    company: t.company,
+    link: t.link?.href ? {_type: 'link', label: t.link.label, href: t.link.href} : undefined,
+    photo: photoAsset ? {_type: 'image', alt: t.photo.alt, asset: {_type: 'reference', _ref: photoAsset}} : undefined,
+    companyLogo: logoRef ? {_type: 'reference', _ref: logoRef} : undefined,
+    usedOn: t.usedOn,
+  }
+  if (!DRY_RUN) await client.createIfNotExists(doc)
+  stats.testimonialsCreated++
+  const who = [t.name, t.company].filter(Boolean).join(', ') || t._id
+  log(`+ testimonial ${who}${t.hasVideo ? ' (video stays in code)' : ''}`)
+}
+
 async function main() {
   const {bands, testimonials, conflicts} = JSON.parse(readFileSync(MANIFEST, 'utf8'))
   if (conflicts.length) throw new Error(`Fix these in lib/content first:\n${conflicts.join('\n')}`)
-  log(`${bands.length} logo bands, ${testimonials.length} testimonials${DRY_RUN ? ' (dry run, nothing written)' : ''}\n`)
+  const dryRunNote = DRY_RUN ? ' (dry run, nothing written)' : ''
+  log(`${bands.length} logo bands, ${testimonials.length} testimonials${dryRunNote}\n`)
 
   const stats = {bandsCreated: 0, bandsKept: 0, testimonialsCreated: 0, testimonialsKept: 0}
-
-  for (const band of bands) {
-    if (await exists(band._id)) {
-      await client.patch(band._id).set({usedOn: band.usedOn}).commit()
-      stats.bandsKept++
-      log(`= band ${band.band} (already in Sanity, kept)`)
-      continue
-    }
-    const refs = []
-    for (const logo of band.logos) {
-      const ref = await clientLogo(logo)
-      if (ref && !refs.some((r) => r._ref === ref)) refs.push({_key: slugify(ref).slice(-40), _type: 'reference', _ref: ref})
-    }
-    if (!DRY_RUN) await client.createIfNotExists({_id: band._id, _type: 'logoBand', title: `${band.title} (${band.usedOn.join(', ')})`, logos: refs, usedOn: band.usedOn})
-    stats.bandsCreated++
-    log(`+ band ${band.band}: ${refs.length} logos`)
-  }
-
-  for (const t of testimonials) {
-    if (await exists(t._id)) {
-      await client.patch(t._id).set({usedOn: t.usedOn}).commit()
-      stats.testimonialsKept++
-      log(`= testimonial ${t._id} (already in Sanity, kept)`)
-      continue
-    }
-    const photoAsset = t.photo ? await upload(t.photo.src) : null
-    const logoRef = t.logo ? await clientLogo(t.logo) : null
-    const doc = {
-      _id: t._id,
-      _type: 'testimonial',
-      hidden: false,
-      quote: t.quote,
-      detail: t.detail,
-      name: t.name,
-      role: t.role,
-      company: t.company,
-      link: t.link?.href ? {_type: 'link', label: t.link.label, href: t.link.href} : undefined,
-      photo: photoAsset ? {_type: 'image', alt: t.photo.alt, asset: {_type: 'reference', _ref: photoAsset}} : undefined,
-      companyLogo: logoRef ? {_type: 'reference', _ref: logoRef} : undefined,
-      usedOn: t.usedOn,
-    }
-    if (!DRY_RUN) await client.createIfNotExists(doc)
-    stats.testimonialsCreated++
-    log(`+ testimonial ${[t.name, t.company].filter(Boolean).join(', ') || t._id}${t.hasVideo ? ' (video stays in code)' : ''}`)
-  }
+  for (const band of bands) await seedBand(band, stats)
+  for (const t of testimonials) await seedTestimonial(t, stats)
 
   log(`\nDone. ${JSON.stringify(stats)}. ${warnings.length} warnings.`)
 }
 
-main().catch((error) => {
+try {
+  await main()
+} catch (error) {
   console.error(error.message ?? error)
   process.exit(1)
-})
+}

@@ -21,13 +21,15 @@ import type {LpImage, LpLogo, LpQuote, LpSection} from './types'
 
 const bg = (s: any): SectionBg | undefined => (['white', 'surface', 'sky'].includes(s.background) ? s.background : undefined)
 
+function quotePhoto(q: LpQuote): Quote['photo'] {
+  if (typeof q.photo === 'string') return {src: q.photo, alt: `photo - ${q.name ?? ''}`}
+  if (q.photo?.asset) {
+    return {src: urlFor(q.photo as any).width(600).height(600).fit('crop').auto('format').url(), alt: q.photo.alt ?? q.name ?? '', width: 600, height: 600}
+  }
+  return undefined
+}
+
 function quoteFrom(q: LpQuote): Quote {
-  const photo =
-    typeof q.photo === 'string'
-      ? {src: q.photo, alt: `photo - ${q.name ?? ''}`}
-      : q.photo?.asset
-        ? {src: urlFor(q.photo as any).width(600).height(600).fit('crop').auto('format').url(), alt: q.photo.alt ?? q.name ?? '', width: 600, height: 600}
-        : undefined
   return {
     quote: q.quote,
     detail: q.detail,
@@ -35,162 +37,216 @@ function quoteFrom(q: LpQuote): Quote {
     role: q.role,
     company: q.company,
     link: q.link?.href && q.link.label ? {label: q.link.label, href: q.link.href} : undefined,
-    photo,
+    photo: quotePhoto(q),
     logo: q.logo?.url ? {src: q.logo.url, alt: q.logo.name, width: q.logo.dims?.width, height: q.logo.dims?.height} : undefined,
   }
 }
 
+type SectionProps = {s: any; formAnchor: boolean}
+
+function LogosSection({s}: SectionProps) {
+  const logos = ((s.logos ?? []) as LpLogo[]).filter((l) => l?.url).map((l) => ({src: l.url!, alt: l.name, width: l.dims?.width, height: l.dims?.height}))
+  const preview = ((s._previewLogos ?? []) as string[]).map((src) => ({src, alt: 'logo'}))
+  const all = logos.length ? logos : preview
+  return all.length ? <LogoBand heading={s.heading} logos={all} variant={all.length > 5 ? 'marquee' : 'row'} background="white" /> : null
+}
+
+function TestimonialsSection({s}: SectionProps) {
+  // Skip missing or unpublished testimonials instead of failing the page
+  const quotes = ((s.quotes ?? s._previewQuotes ?? []) as (LpQuote | null)[]).filter((q): q is LpQuote => !!q?.quote).map(quoteFrom)
+  return quotes.length ? <Testimonials heading={s.heading} quotes={quotes} background={bg(s) ?? 'surface'} /> : null
+}
+
+/** Live "iGUIDE Packages" tabs (camerasystemcontent): same component as /design-construction */
+function PackageTabsSection({s}: SectionProps) {
+  const packages = ((s.tabs ?? []) as any[])
+    .map((t, i) => {
+      const media = lpMedia(t.media)
+      if (media?.type !== 'image') return null
+      return {
+        id: `${s._key}-${i}`,
+        label: t.label,
+        heading: t.heading || t.label,
+        text: t.text ?? '',
+        list: (t.bullets ?? []) as string[],
+        image: media.image,
+        links: lpCtas(t.buttons).map((c) => ({label: c.label, href: c.href})),
+      }
+    })
+    .filter(Boolean) as PackageTab[]
+  return packages.length ? (
+    <Section heading={s.heading} subheading={s.subheading} align="center" background={bg(s)}>
+      <PackageTabs tabs={packages} label={s.heading ?? 'Packages'} />
+    </Section>
+  ) : null
+}
+
+function TabsSection({s, formAnchor}: SectionProps) {
+  if (s.display === 'packages') return <PackageTabsSection s={s} formAnchor={formAnchor} />
+  const tabs = ((s.tabs ?? []) as any[])
+    .map((t, i) => {
+      const media = lpMedia(t.media)
+      if (!media) return null
+      const ctas = lpCtas(t.buttons)
+      return {
+        id: `${s._key}-${i}`,
+        label: t.label,
+        media,
+        text: (
+          <>
+            {t.text && <p>{t.text}</p>}
+            {ctas.length > 0 && <CtaButtons ctas={ctas} className="mt-5 justify-center" />}
+          </>
+        ),
+      }
+    })
+    .filter(Boolean) as Parameters<typeof TabbedMedia>[0]['tabs']
+  return tabs.length ? (
+    <Section heading={s.heading} subheading={s.subheading} align="center" background={bg(s)}>
+      <TabbedMedia label={s.heading ?? 'Samples'} tabs={tabs} />
+    </Section>
+  ) : null
+}
+
+type TourTip = {_key?: string; text?: string; icon?: LpImage}
+
+function TourTips({tips}: {tips: TourTip[]}) {
+  return (
+    <ul className="mb-8 grid gap-6 md:grid-cols-3">
+      {tips.map((t, i) => {
+        const icon = lpImg(t.icon)
+        return (
+          <li key={t._key ?? i} className="flex items-center gap-4">
+            {icon && (
+              // eslint-disable-next-line @next/next/no-img-element -- small icon, natural size
+              <img src={icon.src} alt={icon.alt} className="w-[60px] max-w-[60px] shrink-0" />
+            )}
+            <span className="font-medium text-ink">{t.text}</span>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+function TourClosing({s, list}: {s: any; list: string[]}) {
+  if (!s.listHeading && list.length === 0 && !s.closing) return null
+  return (
+    <div className="mx-auto mt-10 max-w-3xl text-center">
+      {s.listHeading && <h3 className="text-2xl font-semibold text-ink">{s.listHeading}</h3>}
+      {list.length > 0 && <CheckList items={list} className="mx-auto mt-6 w-fit text-left" />}
+      {s.closing && <p className="mt-6 text-lg text-body">{s.closing}</p>}
+    </div>
+  )
+}
+
+/** Live tour(s) with short "how to use it" tips (live: tab-embed element; several tours show as tabs) */
+function TourDemoSection({s}: SectionProps) {
+  const tours = ((s.tours ?? []) as {_key?: string; label?: string; media?: any}[])
+    .map((t, i) => ({id: `${s._key}-${i}`, label: t.label || `Tour ${i + 1}`, media: lpMedia(t.media)}))
+    .filter((t): t is {id: string; label: string; media: NonNullable<ReturnType<typeof lpMedia>>} => !!t.media)
+  const tips = ((s.tips ?? []) as TourTip[]).filter((t) => t?.text)
+  const list = ((s.list ?? []) as string[]).filter(Boolean)
+  if (!tours.length) return null
+  return (
+    <Section heading={s.heading} subheading={s.subheading} eyebrow={s.eyebrow ? <Pill label={s.eyebrow} /> : undefined} align="center" background={bg(s) ?? 'surface'}>
+      {tips.length > 0 && <TourTips tips={tips} />}
+      {tours.length > 1 ? <TabbedMedia label={s.heading ?? 'Tours'} tabs={tours} /> : <MediaView media={tours[0].media} />}
+      <TourClosing s={s} list={list} />
+    </Section>
+  )
+}
+
+function videoListClass(fullWidth: boolean, count: number) {
+  if (fullWidth) return ''
+  return count === 1 ? 'mx-auto max-w-3xl' : 'grid gap-6 md:grid-cols-2 lg:grid-cols-3'
+}
+
+function VideosSection({s}: SectionProps) {
+  const videos = ((s.videos ?? []) as {title: string; url: string}[]).filter((v) => v?.url)
+  return videos.length ? (
+    <Section heading={s.heading} align="center" background={bg(s)}>
+      <ul className={videoListClass(s.fullWidth, videos.length)}>
+        {videos.map((v) => (
+          <li key={v.url}>
+            <MediaView media={{type: 'embed', src: /youriguide\.com/.test(v.url) ? tourEmbed(v.url) : youtubeEmbed(v.url), title: v.title}} />
+            {!s.fullWidth && <p className="mt-3 font-semibold text-ink">{v.title}</p>}
+          </li>
+        ))}
+      </ul>
+    </Section>
+  ) : null
+}
+
+function ResourcesSection({s}: SectionProps) {
+  const items = ((s.items ?? []) as ResourceCardData[]).filter((r) => r?._id)
+  return items.length ? (
+    <Section heading={s.heading} align="center" background={bg(s)}>
+      <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((r) => (
+          <li key={r._id}>
+            <ResourceCard item={r} />
+          </li>
+        ))}
+      </ul>
+    </Section>
+  ) : null
+}
+
+const FORM_BG: Record<string, string> = {sky: 'bg-sky', surface: 'bg-surface'}
+
+function FormSection({s, formAnchor}: SectionProps) {
+  if (!s.hubspotFormId && !s._previewForm) return null
+  const bgClass = FORM_BG[bg(s) ?? ''] ?? 'bg-white'
+  return (
+    <section id={formAnchor ? 'form' : undefined} className={`scroll-mt-24 py-16 lg:py-[60px] ${bgClass}`}>
+      <div className="mx-auto w-full max-w-2xl px-4">
+        {s.heading && <h2 className="text-center text-3xl font-semibold text-ink md:text-4xl">{s.heading}</h2>}
+        {s.subheading && <p className="mt-4 text-center text-lg text-muted">{s.subheading}</p>}
+        <div className="mt-8 rounded-2xl border border-line bg-white p-6 shadow-sm md:p-8">
+          {s.hubspotFormId ? <HubSpotForm formId={s.hubspotFormId} className="min-h-[320px]" /> : <FormPlaceholder />}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function NoticeSection({s}: SectionProps) {
+  return s.text ? (
+    <section className="pb-12">
+      <div className="mx-auto w-full max-w-4xl px-4 text-sm leading-6 whitespace-pre-line text-muted">{s.text}</div>
+    </section>
+  ) : null
+}
+
+function BlockSection({s}: SectionProps) {
+  const block = toBlock(s)
+  return block ? <Blocks blocks={[block]} /> : null
+}
+
 /** One landing page section → page block (most reuse the site's existing blocks). */
-function Section_({s, formAnchor}: {s: any; formAnchor: boolean}) {
+function Section_({s, formAnchor}: SectionProps) {
   switch (s._type) {
     case 'lpHero':
       return <LpHero section={s as LpSection} formAnchor={formAnchor} />
-    case 'lpLogos': {
-      const logos = ((s.logos ?? []) as LpLogo[]).filter((l) => l?.url).map((l) => ({src: l.url!, alt: l.name, width: l.dims?.width, height: l.dims?.height}))
-      const preview = ((s._previewLogos ?? []) as string[]).map((src) => ({src, alt: 'logo'}))
-      const all = logos.length ? logos : preview
-      return all.length ? <LogoBand heading={s.heading} logos={all} variant={all.length > 5 ? 'marquee' : 'row'} background="white" /> : null
-    }
-    case 'lpTestimonials': {
-      // Skip missing or unpublished testimonials instead of failing the page
-      const quotes = ((s.quotes ?? s._previewQuotes ?? []) as (LpQuote | null)[]).filter((q): q is LpQuote => !!q?.quote).map(quoteFrom)
-      return quotes.length ? <Testimonials heading={s.heading} quotes={quotes} background={bg(s) ?? 'surface'} /> : null
-    }
-    case 'lpTabs': {
-      if (s.display === 'packages') {
-        // Live "iGUIDE Packages" tabs (camerasystemcontent): same component as /design-construction
-        const packages = ((s.tabs ?? []) as any[])
-          .map((t, i) => {
-            const media = lpMedia(t.media)
-            if (media?.type !== 'image') return null
-            return {
-              id: `${s._key}-${i}`,
-              label: t.label,
-              heading: t.heading || t.label,
-              text: t.text ?? '',
-              list: (t.bullets ?? []) as string[],
-              image: media.image,
-              links: lpCtas(t.buttons).map((c) => ({label: c.label, href: c.href})),
-            }
-          })
-          .filter(Boolean) as PackageTab[]
-        return packages.length ? (
-          <Section heading={s.heading} subheading={s.subheading} align="center" background={bg(s)}>
-            <PackageTabs tabs={packages} label={s.heading ?? 'Packages'} />
-          </Section>
-        ) : null
-      }
-      const tabs = ((s.tabs ?? []) as any[])
-        .map((t, i) => {
-          const media = lpMedia(t.media)
-          if (!media) return null
-          const ctas = lpCtas(t.buttons)
-          return {
-            id: `${s._key}-${i}`,
-            label: t.label,
-            media,
-            text: (
-              <>
-                {t.text && <p>{t.text}</p>}
-                {ctas.length > 0 && <CtaButtons ctas={ctas} className="mt-5 justify-center" />}
-              </>
-            ),
-          }
-        })
-        .filter(Boolean) as Parameters<typeof TabbedMedia>[0]['tabs']
-      return tabs.length ? (
-        <Section heading={s.heading} subheading={s.subheading} align="center" background={bg(s)}>
-          <TabbedMedia label={s.heading ?? 'Samples'} tabs={tabs} />
-        </Section>
-      ) : null
-    }
-    case 'lpTourDemo': {
-      // Live tour(s) with short "how to use it" tips (live: tab-embed element; several tours show as tabs)
-      const tours = ((s.tours ?? []) as {_key?: string; label?: string; media?: any}[])
-        .map((t, i) => ({id: `${s._key}-${i}`, label: t.label || `Tour ${i + 1}`, media: lpMedia(t.media)}))
-        .filter((t): t is {id: string; label: string; media: NonNullable<ReturnType<typeof lpMedia>>} => !!t.media)
-      const tips = ((s.tips ?? []) as {_key?: string; text?: string; icon?: LpImage}[]).filter((t) => t?.text)
-      const list = ((s.list ?? []) as string[]).filter(Boolean)
-      return tours.length ? (
-        <Section heading={s.heading} subheading={s.subheading} eyebrow={s.eyebrow ? <Pill label={s.eyebrow} /> : undefined} align="center" background={bg(s) ?? 'surface'}>
-          {tips.length > 0 && (
-            <ul className="mb-8 grid gap-6 md:grid-cols-3">
-              {tips.map((t, i) => {
-                const icon = lpImg(t.icon)
-                return (
-                  <li key={t._key ?? i} className="flex items-center gap-4">
-                    {icon && (
-                      // eslint-disable-next-line @next/next/no-img-element -- small icon, natural size
-                      <img src={icon.src} alt={icon.alt} className="w-[60px] max-w-[60px] shrink-0" />
-                    )}
-                    <span className="font-medium text-ink">{t.text}</span>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-          {tours.length > 1 ? <TabbedMedia label={s.heading ?? 'Tours'} tabs={tours} /> : <MediaView media={tours[0].media} />}
-          {(s.listHeading || list.length > 0 || s.closing) && (
-            <div className="mx-auto mt-10 max-w-3xl text-center">
-              {s.listHeading && <h3 className="text-2xl font-semibold text-ink">{s.listHeading}</h3>}
-              {list.length > 0 && <CheckList items={list} className="mx-auto mt-6 w-fit text-left" />}
-              {s.closing && <p className="mt-6 text-lg text-body">{s.closing}</p>}
-            </div>
-          )}
-        </Section>
-      ) : null
-    }
-    case 'lpVideos': {
-      const videos = ((s.videos ?? []) as {title: string; url: string}[]).filter((v) => v?.url)
-      return videos.length ? (
-        <Section heading={s.heading} align="center" background={bg(s)}>
-          <ul className={s.fullWidth ? '' : videos.length === 1 ? 'mx-auto max-w-3xl' : 'grid gap-6 md:grid-cols-2 lg:grid-cols-3'}>
-            {videos.map((v) => (
-              <li key={v.url}>
-                <MediaView media={{type: 'embed', src: /youriguide\.com/.test(v.url) ? tourEmbed(v.url) : youtubeEmbed(v.url), title: v.title}} />
-                {!s.fullWidth && <p className="mt-3 font-semibold text-ink">{v.title}</p>}
-              </li>
-            ))}
-          </ul>
-        </Section>
-      ) : null
-    }
-    case 'lpResources': {
-      const items = ((s.items ?? []) as ResourceCardData[]).filter((r) => r?._id)
-      return items.length ? (
-        <Section heading={s.heading} align="center" background={bg(s)}>
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {items.map((r) => (
-              <li key={r._id}>
-                <ResourceCard item={r} />
-              </li>
-            ))}
-          </ul>
-        </Section>
-      ) : null
-    }
+    case 'lpLogos':
+      return <LogosSection s={s} formAnchor={formAnchor} />
+    case 'lpTestimonials':
+      return <TestimonialsSection s={s} formAnchor={formAnchor} />
+    case 'lpTabs':
+      return <TabsSection s={s} formAnchor={formAnchor} />
+    case 'lpTourDemo':
+      return <TourDemoSection s={s} formAnchor={formAnchor} />
+    case 'lpVideos':
+      return <VideosSection s={s} formAnchor={formAnchor} />
+    case 'lpResources':
+      return <ResourcesSection s={s} formAnchor={formAnchor} />
     case 'lpForm':
-      return s.hubspotFormId || s._previewForm ? (
-        <section id={formAnchor ? 'form' : undefined} className={`scroll-mt-24 py-16 lg:py-[60px] ${bg(s) === 'sky' ? 'bg-sky' : bg(s) === 'surface' ? 'bg-surface' : 'bg-white'}`}>
-          <div className="mx-auto w-full max-w-2xl px-4">
-            {s.heading && <h2 className="text-center text-3xl font-semibold text-ink md:text-4xl">{s.heading}</h2>}
-            {s.subheading && <p className="mt-4 text-center text-lg text-muted">{s.subheading}</p>}
-            <div className="mt-8 rounded-2xl border border-line bg-white p-6 shadow-sm md:p-8">
-              {s.hubspotFormId ? <HubSpotForm formId={s.hubspotFormId} className="min-h-[320px]" /> : <FormPlaceholder />}
-            </div>
-          </div>
-        </section>
-      ) : null
+      return <FormSection s={s} formAnchor={formAnchor} />
     case 'lpNotice':
-      return s.text ? (
-        <section className="pb-12">
-          <div className="mx-auto w-full max-w-4xl px-4 text-sm leading-6 whitespace-pre-line text-muted">{s.text}</div>
-        </section>
-      ) : null
-    default: {
-      const block = toBlock(s)
-      return block ? <Blocks blocks={[block]} /> : null
-    }
+      return <NoticeSection s={s} formAnchor={formAnchor} />
+    default:
+      return <BlockSection s={s} formAnchor={formAnchor} />
   }
 }
 

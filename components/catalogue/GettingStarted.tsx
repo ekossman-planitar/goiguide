@@ -50,8 +50,7 @@ function DemoTour({tour}: {tour: (typeof catalogueDemoTours)[number]}) {
             <span className="inline-flex items-center gap-3 rounded-full bg-white py-2 pr-5 pl-2 font-semibold text-ink shadow-md transition-colors group-hover:text-primary-hover">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white transition-colors group-hover:bg-primary-hover">
                 <Play aria-hidden width={16} height={16} className="ml-0.5" fill="currentColor" />
-              </span>
-              Preview tour
+              </span>Preview tour
             </span>
           </button>
         )}

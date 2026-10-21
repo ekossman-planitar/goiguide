@@ -8,7 +8,7 @@ const img = (path, alt = '') => ({img: path, alt})
 const ref = (id) => ({ref: id})
 let keyCount = 0
 const k = () => `s${(keyCount++).toString(36)}`
-const btn = (label, action = 'form', url) => ({_type: 'lpButton', _key: k(), label, action, ...(url ? {url} : {})})
+const btn = (label, action, url) => ({_type: 'lpButton', _key: k(), label, action: action ?? 'form', ...(url ? {url} : {})})
 const tour = (url, title = 'iGuide 3D virtual tour') => ({_type: 'lpMedia', kind: 'tour', url, title})
 const yt = (url, title) => ({_type: 'lpMedia', kind: 'youtube', url, title})
 const image = (path, alt) => ({_type: 'lpMedia', kind: 'image', image: img(path, alt)})

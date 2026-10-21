@@ -8,6 +8,33 @@ import {calcPackages, calculator} from '@/lib/content/pricing'
 const COST_API = 'https://manage.youriguide.com/apiro/v1/calculator/cost'
 
 type Body = {currency?: string; packageId?: number; addons?: string[]; unit?: string; size?: number}
+type CalcPackage = (typeof calcPackages)[number]
+
+/** Portal task types for a quote: Instant Sketch and Radix have fixed tasks; others are a draft plus add-ons. */
+function taskTypesFor(pkg: CalcPackage, addons: string[]) {
+  if (pkg.iguideType === 'instant-sketch') return ['instant-sketch-init']
+  if (pkg.iguideType === 'radix') return ['radix-init']
+  return [pkg.iguideType === 'premium' ? 'draft-premium' : 'draft', ...addons]
+}
+
+async function fetchCost(item: Record<string, unknown>, currency: string) {
+  try {
+    const res = await fetch(COST_API, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify([item]),
+      signal: AbortSignal.timeout(17_000),
+      cache: 'no-store',
+    })
+    if (!res.ok) return Response.json({status: false}, {status: 502})
+    const data = await res.json()
+    const result = Array.isArray(data) && data.length === 1 ? data[0] : data
+    const dollars = (Number(result?.total) / 1000).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+    return Response.json({status: true, total: `$${dollars}`, currency: result?.currency ?? currency, enableCustomQuote: false})
+  } catch {
+    return Response.json({status: false}, {status: 502})
+  }
+}
 
 export async function POST(request: Request) {
   let body: Body
@@ -34,31 +61,11 @@ export async function POST(request: Request) {
     return Response.json({status: true, total: '$0.00', currency, enableCustomQuote: true})
   }
 
-  const taskTypes =
-    pkg.iguideType === 'instant-sketch'
-      ? ['instant-sketch-init']
-      : pkg.iguideType === 'radix'
-        ? ['radix-init']
-        : [pkg.iguideType === 'premium' ? 'draft-premium' : 'draft', ...addons]
+  const taskTypes = taskTypesFor(pkg, addons)
 
   const item: Record<string, unknown> = {modelName: currency, iguideType: pkg.iguideType, taskTypes}
   if (pkg.iguideType === 'radix') item.panos = sizeFt
   else item.size = sizeFt
 
-  try {
-    const res = await fetch(COST_API, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify([item]),
-      signal: AbortSignal.timeout(17_000),
-      cache: 'no-store',
-    })
-    if (!res.ok) return Response.json({status: false}, {status: 502})
-    const data = await res.json()
-    const result = Array.isArray(data) && data.length === 1 ? data[0] : data
-    const dollars = (Number(result?.total) / 1000).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})
-    return Response.json({status: true, total: `$${dollars}`, currency: result?.currency ?? currency, enableCustomQuote: false})
-  } catch {
-    return Response.json({status: false}, {status: 502})
-  }
+  return fetchCost(item, currency)
 }

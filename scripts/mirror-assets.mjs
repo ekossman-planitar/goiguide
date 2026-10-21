@@ -18,7 +18,8 @@ const PUBLIC_DIR = 'public'
 function walk(dir) {
   return readdirSync(dir).flatMap((name) => {
     const path = join(dir, name)
-    return statSync(path).isDirectory() ? walk(path) : /\.(ts|tsx)$/.test(name) ? [path] : []
+    if (statSync(path).isDirectory()) return walk(path)
+    return /\.(ts|tsx)$/.test(name) ? [path] : []
   })
 }
 
@@ -32,7 +33,7 @@ for (const file of walk(CONTENT_DIR)) {
 let downloaded = 0
 let skipped = 0
 const failed = []
-for (const path of [...paths].sort()) {
+for (const path of [...paths].sort((a, b) => a.localeCompare(b))) {
   const target = join(PUBLIC_DIR, decodeURIComponent(path))
   if (existsSync(target)) {
     skipped++

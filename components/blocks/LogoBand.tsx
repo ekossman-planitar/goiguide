@@ -34,7 +34,7 @@ export function LogoBand({heading, logos, variant = 'row', background = 'white',
     <section className={cn(bgs[background], 'py-10')}>
       <Container>
         {heading && <p className="mb-6 text-center text-base leading-6 text-body">{heading}</p>}
-        {variant === 'marquee' ? (
+        {variant === 'marquee' && (
           <Marquee
             label={heading ?? 'Logos'}
             itemKeys={logos.map((l) => l.src)}
@@ -44,7 +44,8 @@ export function LogoBand({heading, logos, variant = 'row', background = 'white',
               </div>
             ))}
           />
-        ) : cards ? (
+        )}
+        {variant !== 'marquee' && cards && (
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {logos.map((l) => (
               <li key={l.src} className="flex h-24 items-center justify-center rounded-2xl border border-line bg-white px-6 shadow-sm md:h-[120px]">
@@ -62,7 +63,8 @@ export function LogoBand({heading, logos, variant = 'row', background = 'white',
               </li>
             ))}
           </ul>
-        ) : (
+        )}
+        {variant !== 'marquee' && !cards && (
           <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 md:gap-x-14">
             {logos.map((l) => (
               <li key={l.src}>{logo(l)}</li>

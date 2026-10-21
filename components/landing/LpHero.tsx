@@ -36,31 +36,43 @@ export function FormPlaceholder() {
   )
 }
 
-/** Landing page hero: text with a form beside it, text with media, or centred text (with the form below if there is one). */
-export function LpHero({section, formAnchor}: {section: LpSection; formAnchor: boolean}) {
-  const s = section as Hero
-  const style = s.style ?? 'form'
-  if (style === 'banner') return <BannerHero s={s} formAnchor={formAnchor} />
-  const raw = style === 'media' ? lpMedia(s.media) : undefined
-  const media = raw?.type === 'image' ? {...raw, priority: true} : raw
-  const ctas = lpCtas(s.buttons)
-  const meetings = style === 'form' && s.meetingsUrl ? `${s.meetingsUrl}${s.meetingsUrl.includes('?') ? '&' : '?'}embed=true` : null
-  const form = meetings ? (
+/** HubSpot meetings embed URL (form-style heroes only) */
+function meetingsEmbedUrl(s: Hero, style: string) {
+  if (style !== 'form' || !s.meetingsUrl) return null
+  const sep = s.meetingsUrl.includes('?') ? '&' : '?'
+  return `${s.meetingsUrl}${sep}embed=true`
+}
+
+function HeroMeetings({s, url, formAnchor}: {s: Hero; url: string; formAnchor: boolean}) {
+  return (
     // HubSpot meetings booking calendar (live: HubSpot's meetings embed script)
     <div id={formAnchor ? 'form' : undefined} className="scroll-mt-24 min-w-0">
       {s.formHeading && <h2 className="mb-4 text-2xl font-semibold text-ink">{s.formHeading}</h2>}
-      <iframe src={meetings} title="Book a time with an iGuide Specialist" className="h-[690px] w-full rounded-2xl border border-line bg-white" loading="lazy" />
+      <iframe src={url} title="Book a time with an iGuide Specialist" className="h-[690px] w-full rounded-2xl border border-line bg-white" loading="lazy" />
     </div>
-  ) : style !== 'media' && (s.hubspotFormId || s._previewForm) ? (
+  )
+}
+
+function HeroFormCard({s, formAnchor}: {s: Hero; formAnchor: boolean}) {
+  return (
     <div id={formAnchor ? 'form' : undefined} className="scroll-mt-24 rounded-2xl border border-line bg-white p-6 shadow-lg md:p-8">
       {s.formHeading && <h2 className="text-2xl font-semibold text-ink">{s.formHeading}</h2>}
       {s.formText && <p className="mt-2 text-body">{s.formText}</p>}
       {s.hubspotFormId ? <HubSpotForm formId={s.hubspotFormId} className="mt-4 min-h-[320px]" /> : <div className="mt-4"><FormPlaceholder /></div>}
     </div>
-  ) : null
+  )
+}
 
-  const centered = style === 'centered'
-  const text = (
+function heroForm(s: Hero, style: string, formAnchor: boolean) {
+  const meetings = meetingsEmbedUrl(s, style)
+  if (meetings) return <HeroMeetings s={s} url={meetings} formAnchor={formAnchor} />
+  if (style !== 'media' && (s.hubspotFormId || s._previewForm)) return <HeroFormCard s={s} formAnchor={formAnchor} />
+  return null
+}
+
+function HeroText({s, centered}: {s: Hero; centered: boolean}) {
+  const ctas = lpCtas(s.buttons)
+  return (
     <div className={cn('min-w-0', centered && 'mx-auto max-w-3xl text-center')}>
       {s.eyebrow && <p className="font-semibold text-primary">{s.eyebrow}</p>}
       <h1 className="mt-3 text-[40px] leading-[1.15] font-semibold text-balance text-ink md:text-5xl">{s.heading}</h1>
@@ -74,21 +86,38 @@ export function LpHero({section, formAnchor}: {section: LpSection; formAnchor: b
       )}
     </div>
   )
+}
 
+/** Landing page hero: text with a form beside it, text with media, or centred text (with the form below if there is one). */
+export function LpHero({section, formAnchor}: {section: LpSection; formAnchor: boolean}) {
+  const s = section as Hero
+  const style = s.style ?? 'form'
+  if (style === 'banner') return <BannerHero s={s} formAnchor={formAnchor} />
+  const form = heroForm(s, style, formAnchor)
+  const centered = style === 'centered'
+
+  if (centered) {
+    return (
+      <section className="bg-surface py-12 lg:py-20">
+        <Container>
+          <HeroText s={s} centered />
+          {form && <div className="mx-auto mt-10 max-w-xl">{form}</div>}
+        </Container>
+      </section>
+    )
+  }
+
+  const raw = style === 'media' ? lpMedia(s.media) : undefined
+  const media = raw?.type === 'image' ? {...raw, priority: true} : raw
+  let aside = form
+  if (!aside && media) aside = <MediaView media={media} />
   return (
     <section className="bg-surface py-12 lg:py-20">
       <Container>
-        {centered ? (
-          <>
-            {text}
-            {form && <div className="mx-auto mt-10 max-w-xl">{form}</div>}
-          </>
-        ) : (
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            {text}
-            <div className="min-w-0">{form ?? (media ? <MediaView media={media} /> : null)}</div>
-          </div>
-        )}
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <HeroText s={s} centered={false} />
+          <div className="min-w-0">{aside}</div>
+        </div>
       </Container>
     </section>
   )

@@ -19,6 +19,7 @@ export function HeroMedia({media}: {media?: HeroMediaData | null}) {
           playsInline
           preload="metadata"
           aria-hidden
+          tabIndex={-1}
         />
       </div>
     )

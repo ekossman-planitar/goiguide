@@ -105,9 +105,6 @@ export type ResourceDetailData =
     })
   | null
 
-/** @deprecated use ResourceDetailData */
-export type BlogPostData = ResourceDetailData
-
 export type CatalogueItemData = {
   _id: string
   title: string
