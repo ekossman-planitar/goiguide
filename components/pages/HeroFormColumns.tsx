@@ -19,7 +19,7 @@ type Props = {
  * Two-column page hero for a `custom` block: h1 and copy on the left, an inline
  * HubSpot form in a white card on the right (stacked on mobile).
  */
-export function HeroFormColumns({heading, subheading, children, formHeading, formText, formId, formAnchorId}: Props) {
+export function HeroFormColumns({heading, subheading, children, formHeading, formText, formId, formAnchorId}: Readonly<Props>) {
   return (
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
       <div className="min-w-0">

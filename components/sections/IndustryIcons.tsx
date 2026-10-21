@@ -7,7 +7,7 @@ const base = {width: 56, height: 56, viewBox: '0 0 56 56', fill: 'none', 'aria-h
 const RED = 'var(--color-primary-hover)'
 
 /** House with a "sold" sign */
-export function AgentIcon({className}: IconProps) {
+export function AgentIcon({className}: Readonly<IconProps>) {
   return (
     <svg {...base} className={className} stroke="currentColor">
       <path d="M6 27 25 11l19 16" />
@@ -21,7 +21,7 @@ export function AgentIcon({className}: IconProps) {
 }
 
 /** Camera with a floor plan in the lens */
-export function PhotographerIcon({className}: IconProps) {
+export function PhotographerIcon({className}: Readonly<IconProps>) {
   return (
     <svg {...base} className={className} stroke="currentColor">
       <path d="M6 18h9l3.5-5h13l3.5 5h9a3 3 0 0 1 3 3v22a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V21a3 3 0 0 1 3-3Z" />
@@ -33,7 +33,7 @@ export function PhotographerIcon({className}: IconProps) {
 }
 
 /** Floor plan with a set square and pencil */
-export function ArchitectIcon({className}: IconProps) {
+export function ArchitectIcon({className}: Readonly<IconProps>) {
   return (
     <svg {...base} className={className} stroke="currentColor">
       <rect x="5" y="8" width="34" height="40" rx="2" />
@@ -45,7 +45,7 @@ export function ArchitectIcon({className}: IconProps) {
 }
 
 /** Storefront under a crane */
-export function BuilderIcon({className}: IconProps) {
+export function BuilderIcon({className}: Readonly<IconProps>) {
   return (
     <svg {...base} className={className} stroke="currentColor">
       <path d="M8 48V8M8 8h40M8 14h26M44 8v10" />
@@ -58,7 +58,7 @@ export function BuilderIcon({className}: IconProps) {
 }
 
 /** Office building with a checklist */
-export function FacilityIcon({className}: IconProps) {
+export function FacilityIcon({className}: Readonly<IconProps>) {
   return (
     <svg {...base} className={className} stroke="currentColor">
       <path d="M6 48V12h24v36M3 48h34" />

@@ -5,7 +5,7 @@ import type {Img} from '@/components/blocks/types'
 export type VsItem = {text: string; ok: boolean}
 export type VsSide = {name: string; image: Img; items: VsItem[]}
 
-function Mark({ok}: {ok: boolean}) {
+function Mark({ok}: Readonly<{ok: boolean}>) {
   return ok ? (
     <>
       <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -24,7 +24,7 @@ function Mark({ok}: {ok: boolean}) {
 }
 
 /** iGuide vs. a competitor as two cards (image, name, ticked / crossed list), as on the live compare pages. */
-export function VsColumns({ours, theirs}: {ours: VsSide; theirs: VsSide}) {
+export function VsColumns({ours, theirs}: Readonly<{ours: VsSide; theirs: VsSide}>) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {[ours, theirs].map((side, i) => (

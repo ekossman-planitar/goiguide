@@ -25,12 +25,12 @@ export function DeliverableCards({
   items,
   columns = 4,
   compact = false,
-}: {
+}: Readonly<{
   items: Deliverable[]
   columns?: 2 | 3 | 4
   /** Shorter image and tighter list, so a row of package cards fits one screen */
   compact?: boolean
-}) {
+}>) {
   const sectionGap = compact ? 'mt-4' : 'mt-6'
   return (
     <ul className={cn('grid gap-6', cols[columns])}>

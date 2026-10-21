@@ -8,7 +8,7 @@ const base = 'inline-flex items-center gap-2 rounded-[28px] px-3 py-2 text-xs le
  * on hover the text turns red and the arrow nudges right, like every text link.
  * On a grey section use tone="white" so it stays visible.
  */
-export function Pill({label, href, tone = 'grey'}: {label: string; href?: string; tone?: 'grey' | 'white'}) {
+export function Pill({label, href, tone = 'grey'}: Readonly<{label: string; href?: string; tone?: 'grey' | 'white'}>) {
   const styles = `${base} ${tone === 'white' ? 'bg-white' : 'bg-cream'}`
   if (!href) return <span className={styles}>{label}</span>
   return (

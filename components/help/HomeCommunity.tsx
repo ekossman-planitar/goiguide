@@ -27,12 +27,12 @@ export function HomeCommunity({
   stats,
   badges,
   events,
-}: {
+}: Readonly<{
   topics: ForumTopic[]
   stats: ForumStats | null
   badges: ForumBadge[]
   events: EventCardData[]
-}) {
+}>) {
   const hasSide = !!stats || badges.length > 0 || events.length > 0
   if (topics.length === 0 && !hasSide) return null
 

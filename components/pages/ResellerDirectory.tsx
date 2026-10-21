@@ -181,7 +181,7 @@ export function ResellerDirectory() {
           </div>
           <div className="min-w-0">
             <p className="result-count mb-4 font-medium" aria-live="polite">
-              {visible.length} result{visible.length !== 1 ? 's' : ''} found
+              {visible.length} result{visible.length === 1 ? '' : 's'} found
             </p>
             <ul className="grid gap-6 md:grid-cols-2">
               {visible.map((r, i) => {

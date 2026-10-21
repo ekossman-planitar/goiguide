@@ -6,7 +6,7 @@ import {ReportScaleFit} from './ReportScaleFit'
  * inline-styled HTML, copied verbatim from the live capture). `scaleHeight`
  * turns on the fit-to-width script for the annotated analytics canvas.
  */
-export function EmailReportEmbed({html, label, scaleHeight, className}: {html: string; label: string; scaleHeight?: number; className?: string}) {
+export function EmailReportEmbed({html, label, scaleHeight, className}: Readonly<{html: string; label: string; scaleHeight?: number; className?: string}>) {
   return (
     <>
       <section

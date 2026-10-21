@@ -6,7 +6,7 @@ import {lpCta} from './convert'
 import type {LpButton} from './types'
 
 /** Landing page header: the logo (links home) and an optional button. No navigation, so visitors stay on the page. */
-export function LpHeader({button}: {button?: LpButton | null}) {
+export function LpHeader({button}: Readonly<{button?: LpButton | null}>) {
   const cta = button?.label ? lpCta(button) : null
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">

@@ -6,8 +6,8 @@ import {EVENT_QUERY} from '@/sanity/lib/queries'
 /** /event/<slug>/ics: "Add to calendar" file for Outlook, Apple Calendar and others. */
 export const revalidate = 60
 
-const esc = (s: string) => s.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/[,;]/g, (m) => `\\${m}`)
-const stamp = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+const esc = (s: string) => s.replaceAll(/\\/g, String.raw`\\`).replaceAll(/\n/g, String.raw`\n`).replaceAll(/[,;]/g, (m) => `\\${m}`)
+const stamp = (iso: string) => new Date(iso).toISOString().replaceAll(/[-:]/g, '').replace(/\.\d{3}/, '')
 
 export async function GET(_req: Request, {params}: {params: Promise<{slug: string}>}) {
   const {slug} = await params

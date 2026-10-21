@@ -63,7 +63,7 @@ const ebooks = [
 ].map(([title, file]) => ({title, file, url: `${HUB}/eBooks/${encodeURI(file)}`}))
 
 // Titles may already read "iGuide" if the brand rename script has run
-const norm = (s) => (s ?? '').toLowerCase().replace(/\s+/g, ' ').trim()
+const norm = (s) => (s ?? '').toLowerCase().replaceAll(/\s+/g, ' ').trim()
 const byTitle = {brochure: new Map(brochures.map((b) => [norm(b.title), b])), doc: new Map(ebooks.map((e) => [norm(e.title), e]))}
 // Old file names on goiguide.com (and older versions of the same file) → new URL
 const byFile = new Map([...brochures, ...ebooks].map((d) => [d.file.toLowerCase(), d.url]))
@@ -74,7 +74,7 @@ byFile.set('iguide_portal_brochure_final.pdf', byFile.get('iguide_portal_brochur
 /** A link to an old goiguide.com copy of one of the PDFs → its HubSpot URL */
 function newUrlFor(value) {
   if (typeof value !== 'string' || value.includes('hubspotusercontent')) return null
-  const m = value.match(/^(?:https?:\/\/(?:www\.)?goiguide\.com)?(\/(?:assets|support_downloads)\/[^?#]+\.pdf)(?:[?#].*)?$/i)
+  const m = /^(?:https?:\/\/(?:www\.)?goiguide\.com)?(\/(?:assets|support_downloads)\/[^?#]+\.pdf)(?:[?#].*)?$/i.exec(value)
   if (!m) return null
   const file = decodeURIComponent(m[1].split('/').pop()).toLowerCase()
   return byFile.get(file) ?? null

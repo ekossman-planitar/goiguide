@@ -57,7 +57,7 @@ export const cscAnchors = (path: string) => [
 
 const h3 = 'text-2xl font-semibold leading-[normal] text-ink md:text-[30px]'
 
-function Picture({image, href, className}: {image: Img; href?: string; className?: string}) {
+function Picture({image, href, className}: Readonly<{image: Img; href?: string; className?: string}>) {
   const img = (
     <FallbackImage
       src={image.src}

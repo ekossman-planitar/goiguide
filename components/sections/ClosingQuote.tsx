@@ -14,7 +14,7 @@ type Props = {
 }
 
 /** Closing testimonial with headshot and the two main calls to action. */
-export function ClosingQuote({quote, name, role, company, image, primary, secondary}: Props) {
+export function ClosingQuote({quote, name, role, company, image, primary, secondary}: Readonly<Props>) {
   return (
     <section className="py-16 lg:py-[60px]">
       <Container>

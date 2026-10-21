@@ -42,23 +42,24 @@ function quoteFrom(q: LpQuote): Quote {
   }
 }
 
-type SectionProps = {s: any; formAnchor: boolean}
+type SectionData = {s: any}
+type SectionProps = SectionData & {formAnchor: boolean}
 
-function LogosSection({s}: SectionProps) {
+function LogosSection({s}: Readonly<SectionData>) {
   const logos = ((s.logos ?? []) as LpLogo[]).filter((l) => l?.url).map((l) => ({src: l.url!, alt: l.name, width: l.dims?.width, height: l.dims?.height}))
   const preview = ((s._previewLogos ?? []) as string[]).map((src) => ({src, alt: 'logo'}))
   const all = logos.length ? logos : preview
   return all.length ? <LogoBand heading={s.heading} logos={all} variant={all.length > 5 ? 'marquee' : 'row'} background="white" /> : null
 }
 
-function TestimonialsSection({s}: SectionProps) {
+function TestimonialsSection({s}: Readonly<SectionData>) {
   // Skip missing or unpublished testimonials instead of failing the page
   const quotes = ((s.quotes ?? s._previewQuotes ?? []) as (LpQuote | null)[]).filter((q): q is LpQuote => !!q?.quote).map(quoteFrom)
   return quotes.length ? <Testimonials heading={s.heading} quotes={quotes} background={bg(s) ?? 'surface'} /> : null
 }
 
 /** Live "iGUIDE Packages" tabs (camerasystemcontent): same component as /design-construction */
-function PackageTabsSection({s}: SectionProps) {
+function PackageTabsSection({s}: Readonly<SectionData>) {
   const packages = ((s.tabs ?? []) as any[])
     .map((t, i) => {
       const media = lpMedia(t.media)
@@ -81,8 +82,8 @@ function PackageTabsSection({s}: SectionProps) {
   ) : null
 }
 
-function TabsSection({s, formAnchor}: SectionProps) {
-  if (s.display === 'packages') return <PackageTabsSection s={s} formAnchor={formAnchor} />
+function TabsSection({s}: Readonly<SectionData>) {
+  if (s.display === 'packages') return <PackageTabsSection s={s} />
   const tabs = ((s.tabs ?? []) as any[])
     .map((t, i) => {
       const media = lpMedia(t.media)
@@ -110,7 +111,7 @@ function TabsSection({s, formAnchor}: SectionProps) {
 
 type TourTip = {_key?: string; text?: string; icon?: LpImage}
 
-function TourTips({tips}: {tips: TourTip[]}) {
+function TourTips({tips}: Readonly<{tips: TourTip[]}>) {
   return (
     <ul className="mb-8 grid gap-6 md:grid-cols-3">
       {tips.map((t, i) => {
@@ -129,7 +130,7 @@ function TourTips({tips}: {tips: TourTip[]}) {
   )
 }
 
-function TourClosing({s, list}: {s: any; list: string[]}) {
+function TourClosing({s, list}: Readonly<{s: any; list: string[]}>) {
   if (!s.listHeading && list.length === 0 && !s.closing) return null
   return (
     <div className="mx-auto mt-10 max-w-3xl text-center">
@@ -141,7 +142,7 @@ function TourClosing({s, list}: {s: any; list: string[]}) {
 }
 
 /** Live tour(s) with short "how to use it" tips (live: tab-embed element; several tours show as tabs) */
-function TourDemoSection({s}: SectionProps) {
+function TourDemoSection({s}: Readonly<SectionData>) {
   const tours = ((s.tours ?? []) as {_key?: string; label?: string; media?: any}[])
     .map((t, i) => ({id: `${s._key}-${i}`, label: t.label || `Tour ${i + 1}`, media: lpMedia(t.media)}))
     .filter((t): t is {id: string; label: string; media: NonNullable<ReturnType<typeof lpMedia>>} => !!t.media)
@@ -162,7 +163,7 @@ function videoListClass(fullWidth: boolean, count: number) {
   return count === 1 ? 'mx-auto max-w-3xl' : 'grid gap-6 md:grid-cols-2 lg:grid-cols-3'
 }
 
-function VideosSection({s}: SectionProps) {
+function VideosSection({s}: Readonly<SectionData>) {
   const videos = ((s.videos ?? []) as {title: string; url: string}[]).filter((v) => v?.url)
   return videos.length ? (
     <Section heading={s.heading} align="center" background={bg(s)}>
@@ -178,7 +179,7 @@ function VideosSection({s}: SectionProps) {
   ) : null
 }
 
-function ResourcesSection({s}: SectionProps) {
+function ResourcesSection({s}: Readonly<SectionData>) {
   const items = ((s.items ?? []) as ResourceCardData[]).filter((r) => r?._id)
   return items.length ? (
     <Section heading={s.heading} align="center" background={bg(s)}>
@@ -195,7 +196,7 @@ function ResourcesSection({s}: SectionProps) {
 
 const FORM_BG: Record<string, string> = {sky: 'bg-sky', surface: 'bg-surface'}
 
-function FormSection({s, formAnchor}: SectionProps) {
+function FormSection({s, formAnchor}: Readonly<SectionProps>) {
   if (!s.hubspotFormId && !s._previewForm) return null
   const bgClass = FORM_BG[bg(s) ?? ''] ?? 'bg-white'
   return (
@@ -211,7 +212,7 @@ function FormSection({s, formAnchor}: SectionProps) {
   )
 }
 
-function NoticeSection({s}: SectionProps) {
+function NoticeSection({s}: Readonly<SectionData>) {
   return s.text ? (
     <section className="pb-12">
       <div className="mx-auto w-full max-w-4xl px-4 text-sm leading-6 whitespace-pre-line text-muted">{s.text}</div>
@@ -219,34 +220,34 @@ function NoticeSection({s}: SectionProps) {
   ) : null
 }
 
-function BlockSection({s}: SectionProps) {
+function BlockSection({s}: Readonly<SectionData>) {
   const block = toBlock(s)
   return block ? <Blocks blocks={[block]} /> : null
 }
 
 /** One landing page section → page block (most reuse the site's existing blocks). */
-function Section_({s, formAnchor}: SectionProps) {
+function LandingSection({s, formAnchor}: Readonly<SectionProps>) {
   switch (s._type) {
     case 'lpHero':
       return <LpHero section={s as LpSection} formAnchor={formAnchor} />
     case 'lpLogos':
-      return <LogosSection s={s} formAnchor={formAnchor} />
+      return <LogosSection s={s} />
     case 'lpTestimonials':
-      return <TestimonialsSection s={s} formAnchor={formAnchor} />
+      return <TestimonialsSection s={s} />
     case 'lpTabs':
-      return <TabsSection s={s} formAnchor={formAnchor} />
+      return <TabsSection s={s} />
     case 'lpTourDemo':
-      return <TourDemoSection s={s} formAnchor={formAnchor} />
+      return <TourDemoSection s={s} />
     case 'lpVideos':
-      return <VideosSection s={s} formAnchor={formAnchor} />
+      return <VideosSection s={s} />
     case 'lpResources':
-      return <ResourcesSection s={s} formAnchor={formAnchor} />
+      return <ResourcesSection s={s} />
     case 'lpForm':
       return <FormSection s={s} formAnchor={formAnchor} />
     case 'lpNotice':
-      return <NoticeSection s={s} formAnchor={formAnchor} />
+      return <NoticeSection s={s} />
     default:
-      return <BlockSection s={s} formAnchor={formAnchor} />
+      return <BlockSection s={s} />
   }
 }
 
@@ -307,13 +308,13 @@ function toBlock(s: any): Block | null {
 }
 
 /** Renders a landing page's sections. The first form on the page gets id="form" so "scroll to form" buttons work. */
-export function LandingSections({sections}: {sections: LpSection[]}) {
+export function LandingSections({sections}: Readonly<{sections: LpSection[]}>) {
   const hasForm = (s: any) => Boolean(s.hubspotFormId || s._previewForm)
   const firstForm = sections.find((s) => (s._type === 'lpHero' && (s as any).style !== 'media' && hasForm(s)) || (s._type === 'lpForm' && hasForm(s)))?._key
   return (
     <>
       {sections.map((s) => (
-        <Section_ key={s._key} s={s} formAnchor={s._key === firstForm} />
+        <LandingSection key={s._key} s={s} formAnchor={s._key === firstForm} />
       ))}
     </>
   )

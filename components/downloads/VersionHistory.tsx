@@ -8,7 +8,7 @@ import type {Release} from '@/lib/content/downloads'
  * Stitch release notes. Every version is in the HTML; older ones are hidden
  * behind "Show older versions" so the section fits on one screen.
  */
-export function VersionHistory({releases, initiallyVisible = 5}: {releases: Release[]; initiallyVisible?: number}) {
+export function VersionHistory({releases, initiallyVisible = 5}: Readonly<{releases: Release[]; initiallyVisible?: number}>) {
   const [expanded, setExpanded] = useState(false)
   return (
     <div>

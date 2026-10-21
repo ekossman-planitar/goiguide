@@ -28,22 +28,22 @@ const DRAG_THRESHOLD = 6
  * dragged with mouse or touch, and stops autoplaying when the user prefers
  * reduced motion. Duplicate copies are hidden from screen readers and keyboard.
  */
-export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label, draggable = true, className}: Props) {
+export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label, draggable = true, className}: Readonly<Props>) {
   const viewportRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const setRef = useRef<HTMLDivElement>(null)
 
   const offset = useRef(0)
-  const setWidth = useRef(0)
+  const oneSetWidth = useRef(0)
   const paused = useRef(false)
   const press = useRef<{pointerId: number; startX: number; startOffset: number; dragging: boolean} | null>(null)
   const suppressClick = useRef(false)
   const [dragging, setDragging] = useState(false)
   const [copies, setCopies] = useState(2)
-  const [width, setWidthState] = useState<number | undefined>(undefined)
+  const [width, setWidth] = useState<number | undefined>(undefined)
 
   const apply = useCallback(() => {
-    const w = setWidth.current
+    const w = oneSetWidth.current
     if (w > 0) offset.current = ((offset.current % w) - w) % w // keep within (-w, 0]
     if (trackRef.current) trackRef.current.style.transform = `translate3d(${offset.current}px,0,0)`
   }, [])
@@ -54,8 +54,8 @@ export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label,
       const set = setRef.current
       const viewport = viewportRef.current
       if (!set || !viewport) return
-      if (itemWidth) setWidthState(itemWidth(viewport.offsetWidth))
-      setWidth.current = set.offsetWidth
+      if (itemWidth) setWidth(itemWidth(viewport.offsetWidth))
+      oneSetWidth.current = set.offsetWidth
       if (set.offsetWidth > 0) setCopies(Math.max(2, Math.ceil(viewport.offsetWidth / set.offsetWidth) + 1))
       apply()
     }
@@ -76,7 +76,7 @@ export function Marquee({items, itemKeys, speed = 40, gap = 0, itemWidth, label,
 
   // Autoplay
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const reduced = globalThis.matchMedia('(prefers-reduced-motion: reduce)')
     let frame = 0
     let last = performance.now()
     const tick = (time: number) => {

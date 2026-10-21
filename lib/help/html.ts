@@ -35,16 +35,16 @@ export function rewriteHelpUrl(url: string): string {
 
 export function prepareArticleBody(html: string): string {
   return html
-    .replace(/<(script|style)\b[\s\S]*?<\/\1\s*>/gi, '')
-    .replace(/\s(href|src)=(["'])(.*?)\2/gi, (_m, attr: string, q: string, value: string) => ` ${attr}=${q}${rewriteHelpUrl(value)}${q}`)
-    .replace(/<img\b(?![^>]*\bloading=)/gi, '<img loading="lazy" decoding="async"')
-    .replace(/<iframe\b(?![^>]*\bloading=)/gi, '<iframe loading="lazy"')
+    .replaceAll(/<(script|style)\b[\s\S]*?<\/\1\s*>/gi, '')
+    .replaceAll(/\s(href|src)=(["'])(.*?)\2/gi, (_m, attr: string, q: string, value: string) => ` ${attr}=${q}${rewriteHelpUrl(value)}${q}`)
+    .replaceAll(/<img\b(?![^>]*\bloading=)/gi, '<img loading="lazy" decoding="async"')
+    .replaceAll(/<iframe\b(?![^>]*\bloading=)/gi, '<iframe loading="lazy"')
 }
 
 /** Zendesk wraps search matches in <em>; keep only that tag */
 export function safeSnippet(snippet: string): string {
   return snippet
-    .replace(/<(?!\/?em>)[^>]*>/gi, '')
-    .replace(/<em>/gi, '<mark>')
-    .replace(/<\/em>/gi, '</mark>')
+    .replaceAll(/<(?!\/?em>)[^>]*>/gi, '')
+    .replaceAll(/<em>/gi, '<mark>')
+    .replaceAll(/<\/em>/gi, '</mark>')
 }

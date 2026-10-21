@@ -26,9 +26,9 @@ const slugify = (s: string) =>
   s
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
+    .replaceAll(/[̀-ͯ]/g, '')
+    .replaceAll(/[^a-z0-9]+/g, '-')
+    .replaceAll(/^-|-$/g, '')
     .slice(0, 60)
 
 /** Splits a body at its section breaks (and, optionally, at top-level headings). */
@@ -61,7 +61,7 @@ export function splitSections(body: PortableTextBlock[], {splitAtHeadings = fals
     })
 }
 
-function Cards({blocks}: {blocks: Block[]}) {
+function Cards({blocks}: Readonly<{blocks: Block[]}>) {
   // Cards start at the section's deepest heading level (h4 if it has any, else h3); a higher
   // heading is the section title. An image right before a card heading belongs to that card.
   const level = blocks.some((b) => b._type === 'block' && b.style === 'h4') ? 'h4' : 'h3'
@@ -107,11 +107,11 @@ const highlightComponents: PortableTextComponents = {
   },
 }
 
-function Flow({blocks, components = bodyComponents}: {blocks: Block[]; components?: PortableTextComponents}) {
+function Flow({blocks, components = bodyComponents}: Readonly<{blocks: Block[]; components?: PortableTextComponents}>) {
   return <PortableText value={blocks} components={components} />
 }
 
-function SectionContent({section}: {section: BodySection}) {
+function SectionContent({section}: Readonly<{section: BodySection}>) {
   const {layout, blocks} = section
   if (layout === 'split') {
     const text = blocks.filter((b) => !MEDIA.has(b._type))
@@ -140,7 +140,7 @@ function SectionContent({section}: {section: BodySection}) {
 }
 
 /** Renders pre-split sections, separated by a rule and space. */
-export function SectionedBody({sections}: {sections: BodySection[]}) {
+export function SectionedBody({sections}: Readonly<{sections: BodySection[]}>) {
   // A plain body with no breaks renders exactly like before
   if (sections.length === 1 && sections[0].layout === 'plain' && !sections[0].id) return <Flow blocks={sections[0].blocks} />
   return (

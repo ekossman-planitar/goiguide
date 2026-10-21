@@ -17,7 +17,7 @@ function embedTitle(url: string) {
 type VideoEmbedValue = {url?: string; title?: string; height?: number}
 
 /** Imported embeds: fixed height when the original had one, otherwise 16:9 */
-function VideoEmbed({value}: {value: VideoEmbedValue}) {
+function VideoEmbed({value}: Readonly<{value: VideoEmbedValue}>) {
   if (!value?.url) return null
   if (value.height) {
     return <iframe src={value.url} title={value.title ?? 'Embedded player'} height={value.height} className="mt-10 w-full rounded-xl" allowFullScreen loading="lazy" />
@@ -37,7 +37,7 @@ export type TestimonialValue = {
 }
 
 /** A customer quote: the words, then who said it (with their photo or logo). */
-export function Testimonial({value}: {value: TestimonialValue}) {
+export function Testimonial({value}: Readonly<{value: TestimonialValue}>) {
   if (!value?.quote) return null
   const dims = value.image?.asset?.metadata?.dimensions
   // Square-ish pictures are headshots (round); wide ones are logos (shown whole)
@@ -70,7 +70,7 @@ export function Testimonial({value}: {value: TestimonialValue}) {
               <Image
                 src={urlFor(value.image).height(80).fit('max').auto('format').url()}
                 alt=""
-                width={Math.round((dims!.width / dims!.height) * 40)}
+                width={Math.round((dims.width / dims.height) * 40)}
                 height={40}
                 className="h-10 w-auto shrink-0"
               />
@@ -206,6 +206,6 @@ export const bodyComponents: PortableTextComponents = {
 }
 
 /** Renders a Sanity rich text body with site typography. */
-export function PortableBody({value}: {value: PortableTextBlock[]}) {
+export function PortableBody({value}: Readonly<{value: PortableTextBlock[]}>) {
   return <PortableText value={value} components={bodyComponents} />
 }

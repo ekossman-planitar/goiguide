@@ -27,7 +27,7 @@ const norm = (s: string) =>
   s
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replaceAll(/[\u0300-\u036f]/g, '')
 const matches = (e: EventCardData, f: Filters) =>
   (f.type === 'all' || e.eventType === f.type) &&
   (f.industry === 'all' || (e.categories ?? []).includes(f.industry)) &&
@@ -37,14 +37,14 @@ const matches = (e: EventCardData, f: Filters) =>
     norm([e.title, e.venue, e.city, e.region, e.country, e.shortDescription, ...(e.categories ?? []).map(categoryTitle)].filter(Boolean).join(' ')).includes(
       norm(f.q.trim()),
     ))
-export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; renderedAt: number}) {
+export function EventsBrowser({events, renderedAt}: Readonly<{events: EventCardData[]; renderedAt: number}>) {
   const [now, setNow] = useState(renderedAt)
   const [view, setView] = useState<View>('list')
   const [filters, setFilters] = useState<Filters>(NO_FILTERS)
   const [month, setMonth] = useState<string>()
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
+    const params = new URLSearchParams(globalThis.location.search)
     /* eslint-disable react-hooks/set-state-in-effect -- read the URL once after hydration */
     if (params.get('view') === 'calendar') setView('calendar')
     setFilters({
@@ -56,25 +56,25 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
     })
     setNow(Date.now())
     /* eslint-enable react-hooks/set-state-in-effect */
-    const timer = window.setInterval(() => setNow(Date.now()), 60_000)
-    return () => window.clearInterval(timer)
+    const timer = globalThis.setInterval(() => setNow(Date.now()), 60_000)
+    return () => globalThis.clearInterval(timer)
   }, [])
 
   const updateUrl = (next: {view?: View; filters?: Filters}) => {
-    const params = new URLSearchParams(window.location.search)
+    const params = new URLSearchParams(globalThis.location.search)
     const v = next.view ?? view
     const f = next.filters ?? filters
     if (v === 'calendar') params.set('view', 'calendar')
     else params.delete('view')
     for (const k of ['type', 'industry', 'attend', 'country'] as const) {
-      if (f[k] !== 'all') params.set(k, f[k])
-      else params.delete(k)
+      if (f[k] === 'all') params.delete(k)
+      else params.set(k, f[k])
     }
     if (f.q.trim()) params.set('q', f.q.trim())
     else params.delete('q')
     const qs = params.toString()
-    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname
-    window.history.replaceState(null, '', url)
+    const url = qs ? `${globalThis.location.pathname}?${qs}` : globalThis.location.pathname
+    globalThis.history.replaceState(null, '', url)
   }
   const setFilter = (k: keyof Filters, value: string) => {
     const next = {...filters, [k]: value}
@@ -250,7 +250,7 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
   )
 }
 
-function EventList({events, now, className}: {events: EventCardData[]; now: number; className: string}) {
+function EventList({events, now, className}: Readonly<{events: EventCardData[]; now: number; className: string}>) {
   return (
     <ul className={className}>
       {events.map((e) => (
@@ -262,7 +262,7 @@ function EventList({events, now, className}: {events: EventCardData[]; now: numb
   )
 }
 
-function MonthGroups({groups, now}: {groups: [string, EventCardData[]][]; now: number}) {
+function MonthGroups({groups, now}: Readonly<{groups: [string, EventCardData[]][]; now: number}>) {
   return (
     <div className="mt-10 space-y-12">
       {groups.map(([key, list]) => (
@@ -278,7 +278,7 @@ function MonthGroups({groups, now}: {groups: [string, EventCardData[]][]; now: n
 }
 
 /** Empty state; `filtered` = filters are hiding upcoming events (vs. none scheduled at all). */
-function NoEvents({filtered}: {filtered: boolean}) {
+function NoEvents({filtered}: Readonly<{filtered: boolean}>) {
   return (
     <div className="mt-10 rounded-2xl bg-surface px-6 py-12 text-center">
       {filtered ? (

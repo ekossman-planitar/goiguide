@@ -3,7 +3,7 @@ import {cn} from '@/lib/cn'
 export type Stat = {value: string; label?: string; text: string}
 
 /** Large figures with a short explanation each. */
-export function StatGrid({stats}: {stats: Stat[]}) {
+export function StatGrid({stats}: Readonly<{stats: Stat[]}>) {
   return (
     <dl className={cn('grid gap-6', stats.length === 3 ? 'md:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-4')}>
       {stats.map((stat) => (

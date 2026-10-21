@@ -4,7 +4,7 @@ import {SiteHeader} from '@/components/layout/SiteHeader'
 import {SitePopups} from '@/components/popup/SitePopups'
 
 /** Shared chrome for every public page (the Studio at /studio is outside this group). */
-export default function SiteLayout({children}: {children: React.ReactNode}) {
+export default function SiteLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <>
       <AnnouncementBar />

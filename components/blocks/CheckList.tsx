@@ -1,7 +1,7 @@
 import {cn} from '@/lib/cn'
 
 /** Bulleted list with brand checkmarks. */
-export function CheckList({items, className}: {items: string[]; className?: string}) {
+export function CheckList({items, className}: Readonly<{items: string[]; className?: string}>) {
   return (
     <ul className={cn('space-y-2.5', className)}>
       {items.map((item) => (

@@ -19,7 +19,7 @@ export function catalogueMetadata(id: CatalogueId): Metadata {
  * downloadable files, with links to the other catalogues. Each card goes to
  * /<catalogue>/<slug>, which redirects to the file (same URLs as the live site).
  */
-export async function CatalogueListing({id}: {id: CatalogueId}) {
+export async function CatalogueListing({id}: Readonly<{id: CatalogueId}>) {
   const catalogue = getCatalogue(id)!
   const all = await fetchSanity<CatalogueItemData[]>(CATALOGUE_ITEMS_QUERY, [])
   const items = all.filter((item) => item.catalogue === id)

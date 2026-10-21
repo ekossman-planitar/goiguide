@@ -3,7 +3,7 @@ import {cn} from '@/lib/cn'
 import type {Media} from './types'
 
 /** Renders an image, looping muted video or iframe embed. */
-export function MediaView({media, className, sizes = '(min-width: 1024px) 50vw, 100vw'}: {media: Media; className?: string; sizes?: string}) {
+export function MediaView({media, className, sizes = '(min-width: 1024px) 50vw, 100vw'}: Readonly<{media: Media; className?: string; sizes?: string}>) {
   if (media.type === 'video' && media.controls) {
     return (
       <video

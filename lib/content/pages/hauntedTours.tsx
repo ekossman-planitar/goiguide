@@ -13,7 +13,7 @@ export const meta = {
 }
 
 /** Pumpkin border above and spider-web border below each tour, as on live (live alt text kept as is). */
-function HauntedTour({src, title}: {src: string; title: string}) {
+function HauntedTour({src, title}: Readonly<{src: string; title: string}>) {
   return (
     <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
       <FallbackImage src="/assets/02cb574580/pumpkin_bw.png" alt="Girl in a jacket" width={25011} height={2559} sizes="(min-width: 1280px) 1248px, 100vw" className="h-auto w-full" />

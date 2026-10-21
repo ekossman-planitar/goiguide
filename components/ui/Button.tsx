@@ -27,7 +27,7 @@ const sizes = {
 }
 
 /** Link styled as a button. */
-export function Button({href, children, variant = 'primary', size = 'md', className, id, newTab}: ButtonProps) {
+export function Button({href, children, variant = 'primary', size = 'md', className, id, newTab}: Readonly<ButtonProps>) {
   return (
     <SmartLink
       href={href}

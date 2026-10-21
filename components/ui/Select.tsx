@@ -55,7 +55,7 @@ export function Select({
   align = 'left',
   className,
   buttonClassName,
-}: Props) {
+}: Readonly<Props>) {
   const autoId = useId()
   const buttonId = id ?? `${autoId}-button`
   const listId = `${autoId}-list`

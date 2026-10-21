@@ -43,7 +43,7 @@ function meetingsEmbedUrl(s: Hero, style: string) {
   return `${s.meetingsUrl}${sep}embed=true`
 }
 
-function HeroMeetings({s, url, formAnchor}: {s: Hero; url: string; formAnchor: boolean}) {
+function HeroMeetings({s, url, formAnchor}: Readonly<{s: Hero; url: string; formAnchor: boolean}>) {
   return (
     // HubSpot meetings booking calendar (live: HubSpot's meetings embed script)
     <div id={formAnchor ? 'form' : undefined} className="scroll-mt-24 min-w-0">
@@ -53,7 +53,7 @@ function HeroMeetings({s, url, formAnchor}: {s: Hero; url: string; formAnchor: b
   )
 }
 
-function HeroFormCard({s, formAnchor}: {s: Hero; formAnchor: boolean}) {
+function HeroFormCard({s, formAnchor}: Readonly<{s: Hero; formAnchor: boolean}>) {
   return (
     <div id={formAnchor ? 'form' : undefined} className="scroll-mt-24 rounded-2xl border border-line bg-white p-6 shadow-lg md:p-8">
       {s.formHeading && <h2 className="text-2xl font-semibold text-ink">{s.formHeading}</h2>}
@@ -70,7 +70,7 @@ function heroForm(s: Hero, style: string, formAnchor: boolean) {
   return null
 }
 
-function HeroText({s, centered}: {s: Hero; centered: boolean}) {
+function HeroText({s, centered}: Readonly<{s: Hero; centered: boolean}>) {
   const ctas = lpCtas(s.buttons)
   return (
     <div className={cn('min-w-0', centered && 'mx-auto max-w-3xl text-center')}>
@@ -89,7 +89,7 @@ function HeroText({s, centered}: {s: Hero; centered: boolean}) {
 }
 
 /** Landing page hero: text with a form beside it, text with media, or centred text (with the form below if there is one). */
-export function LpHero({section, formAnchor}: {section: LpSection; formAnchor: boolean}) {
+export function LpHero({section, formAnchor}: Readonly<{section: LpSection; formAnchor: boolean}>) {
   const s = section as Hero
   const style = s.style ?? 'form'
   if (style === 'banner') return <BannerHero s={s} formAnchor={formAnchor} />
@@ -128,7 +128,7 @@ export function LpHero({section, formAnchor}: {section: LpSection; formAnchor: b
  * over a full-width photo, darkened by a gradient so the text stays readable.
  * With a HubSpot form ID the form sits in a white card on the right (live ad pages).
  */
-function BannerHero({s, formAnchor}: {s: Hero; formAnchor: boolean}) {
+function BannerHero({s, formAnchor}: Readonly<{s: Hero; formAnchor: boolean}>) {
   const bg = lpImg(s.backgroundImage)
   const ctas = lpCtas(s.buttons)
   const hasForm = !!(s.hubspotFormId || s._previewForm)

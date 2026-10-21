@@ -3,7 +3,7 @@ import {ChevronDown} from '@/components/ui/icons'
 export type SpecGroup = {heading: string; rows: [label: string, value: string][]}
 
 /** Collapsible technical specifications table. */
-export function SpecsAccordion({title, groups}: {title: string; groups: SpecGroup[]}) {
+export function SpecsAccordion({title, groups}: Readonly<{title: string; groups: SpecGroup[]}>) {
   return (
     <details className="group rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-semibold text-ink hover:text-primary-hover [&::-webkit-details-marker]:hidden">

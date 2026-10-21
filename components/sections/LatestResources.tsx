@@ -13,7 +13,7 @@ type Props = {
 }
 
 /** Newest Resource Center items, using the same cards as /resource-center. Hidden when empty. */
-export function LatestResources({heading, subheading, link, items}: Props) {
+export function LatestResources({heading, subheading, link, items}: Readonly<Props>) {
   if (!items.length) return null
   return (
     <section className="py-16 lg:py-[60px]">

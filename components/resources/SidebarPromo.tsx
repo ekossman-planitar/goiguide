@@ -25,7 +25,7 @@ function pick(promos: SidebarPromoData[]) {
   return live.length ? live[Math.floor(Math.random() * live.length)] : null
 }
 
-export function SidebarPromo({promos}: {promos: SidebarPromoData[]}) {
+export function SidebarPromo({promos}: Readonly<{promos: SidebarPromoData[]}>) {
   const [promo, setPromo] = useState<SidebarPromoData | null>(null)
   useEffect(() => setPromo(pick(promos)), [promos]) // eslint-disable-line react-hooks/set-state-in-effect
 

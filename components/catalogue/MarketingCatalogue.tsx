@@ -26,9 +26,9 @@ import {
 const formatIcon: Record<string, LucideIcon> = {PDF: FileText, PPTX: Presentation, ZIP: Archive, MP4: Film, MOV: Film, YOUTUBE: Play}
 const formatLabel: Record<string, string> = {PDF: 'PDF', PPTX: 'PowerPoint', ZIP: 'ZIP', MP4: 'MP4 video', MOV: 'MOV video', YOUTUBE: 'YouTube video'}
 
-const normalise = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+const normalise = (s: string) => s.toLowerCase().normalize('NFD').replaceAll(/[̀-ͯ]/g, '')
 
-function DownloadLink({asset, file, single}: {asset: CatalogueAsset; file: CatalogueFile; single: boolean}) {
+function DownloadLink({asset, file, single}: Readonly<{asset: CatalogueAsset; file: CatalogueFile; single: boolean}>) {
   return (
     <a
       href={file.href}
@@ -56,7 +56,7 @@ function DownloadLink({asset, file, single}: {asset: CatalogueAsset; file: Catal
 }
 
 /** Card preview: the original catalogue image, or the format icon if there is none */
-function Preview({asset, icon: Icon}: {asset: CatalogueAsset; icon: LucideIcon}) {
+function Preview({asset, icon: Icon}: Readonly<{asset: CatalogueAsset; icon: LucideIcon}>) {
   const img = asset.image
   // Tall (reels) and very wide (banners) previews are shown whole rather than cropped
   const fit = img && (img.height > img.width || img.width / img.height > 1.9)
@@ -83,7 +83,7 @@ function Preview({asset, icon: Icon}: {asset: CatalogueAsset; icon: LucideIcon})
 }
 
 /** YouTube card: thumbnail with a play button that loads the video in place (privacy-enhanced embed) */
-function YouTubeCard({asset}: {asset: CatalogueAsset}) {
+function YouTubeCard({asset}: Readonly<{asset: CatalogueAsset}>) {
   const [playing, setPlaying] = useState(false)
   const id = asset.youtubeId!
   return (
@@ -135,7 +135,7 @@ function YouTubeCard({asset}: {asset: CatalogueAsset}) {
   )
 }
 
-function AssetCard({asset}: {asset: CatalogueAsset}) {
+function AssetCard({asset}: Readonly<{asset: CatalogueAsset}>) {
   if (asset.youtubeId) return <YouTubeCard asset={asset} />
   const formats = [...new Set(asset.files.map((f) => f.format))]
   const Icon = formatIcon[formats[0]] ?? FileText

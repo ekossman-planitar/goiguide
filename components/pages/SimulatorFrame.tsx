@@ -1,7 +1,7 @@
 import {cn} from '@/lib/cn'
 
 /** The PLANIX survey simulator iframe, sized to a phone or tablet screen (live: 300×600 and 600×800). */
-export function SimulatorFrame({src, title, device}: {src: string; title: string; device: 'phone' | 'tablet'}) {
+export function SimulatorFrame({src, title, device}: Readonly<{src: string; title: string; device: 'phone' | 'tablet'}>) {
   return (
     <div
       className={cn(

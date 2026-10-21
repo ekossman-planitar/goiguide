@@ -40,13 +40,13 @@ export function Testimonials({
   heading,
   background = 'surface',
   bare = false,
-}: {
+}: Readonly<{
   quotes: Quote[]
   heading?: string
   background?: SectionBg
   /** Render only the quotes, for use inside another section */
   bare?: boolean
-}) {
+}>) {
   const content =
     quotes.length === 1 ? (
       <SingleQuote quote={quotes[0]} />
@@ -70,7 +70,7 @@ export function Testimonials({
   )
 }
 
-function Attribution({quote}: {quote: Quote}) {
+function Attribution({quote}: Readonly<{quote: Quote}>) {
   return (
     <figcaption className="text-base">
       <span className="font-semibold text-ink">{quote.name}</span>
@@ -86,7 +86,7 @@ function Attribution({quote}: {quote: Quote}) {
   )
 }
 
-function SingleQuote({quote}: {quote: Quote}) {
+function SingleQuote({quote}: Readonly<{quote: Quote}>) {
   return (
     <figure
       className={cn(
@@ -109,7 +109,7 @@ function SingleQuote({quote}: {quote: Quote}) {
 }
 
 /** Video if there is one, otherwise the person's photo */
-function QuoteVisual({quote}: {quote: Quote}) {
+function QuoteVisual({quote}: Readonly<{quote: Quote}>) {
   if (quote.media) return <MediaView media={quote.media} />
   if (!quote.photo) return null
   return (
@@ -124,7 +124,7 @@ function QuoteVisual({quote}: {quote: Quote}) {
   )
 }
 
-function QuoteCard({quote}: {quote: Quote}) {
+function QuoteCard({quote}: Readonly<{quote: Quote}>) {
   return (
     <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       {quote.media && <MediaView media={quote.media} className="mb-6" />}

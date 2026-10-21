@@ -5,6 +5,6 @@ export const revalidate = 60
 export const generateStaticParams = resourceStaticParams('customerStory')
 export const generateMetadata = resourceMetadata('customerStory')
 
-export default function Page({params}: {params: Promise<{slug: string}>}) {
+export default function Page({params}: Readonly<{params: Promise<{slug: string}>}>) {
   return <ResourceDetail type="customerStory" params={params} />
 }

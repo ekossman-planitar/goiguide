@@ -7,7 +7,7 @@ import './help.css'
  * Help Center microsite (/help): same brand as goiguide.com, with its own
  * header and footer. Content comes from Zendesk (lib/help/zendesk.ts).
  */
-export default async function HelpLayout({children}: {children: React.ReactNode}) {
+export default async function HelpLayout({children}: Readonly<{children: React.ReactNode}>) {
   let categories: HelpNavCategory[] = []
   try {
     categories = (await getCategories()).map((c) => ({name: c.name, description: c.description, href: categoryPath(c)}))

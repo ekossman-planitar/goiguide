@@ -19,13 +19,13 @@ const addMonths = (key: string, n: number) => {
  * Phones get a dot per day; larger screens list titles in the cells. The list
  * of that month's events is rendered by the parent underneath.
  */
-export function EventCalendar({events, month, onMonthChange, firstMonth, lastMonth}: {
+export function EventCalendar({events, month, onMonthChange, firstMonth, lastMonth}: Readonly<{
   events: EventCardData[]
   month: string
   onMonthChange: (m: string) => void
   firstMonth: string
   lastMonth: string
-}) {
+}>) {
   const [y, m] = month.split('-').map(Number)
   const byDay = useMemo(() => {
     const map = new Map<string, EventCardData[]>()
@@ -40,7 +40,7 @@ export function EventCalendar({events, month, onMonthChange, firstMonth, lastMon
 
   const first = new Date(Date.UTC(y, m - 1, 1))
   const daysInMonth = new Date(Date.UTC(y, m, 0)).getUTCDate()
-  const cells: (number | null)[] = [...Array(first.getUTCDay()).fill(null), ...Array.from({length: daysInMonth}, (_, i) => i + 1)]
+  const cells: (number | null)[] = [...new Array(first.getUTCDay()).fill(null), ...Array.from({length: daysInMonth}, (_, i) => i + 1)]
   while (cells.length % 7) cells.push(null)
   const weeks = Array.from({length: cells.length / 7}, (_, i) => cells.slice(i * 7, i * 7 + 7))
   const [today] = useState(() => {

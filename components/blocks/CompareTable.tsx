@@ -2,7 +2,7 @@ import {cn} from '@/lib/cn'
 
 export type CompareRow = {label: string; ours: string; theirs: string}
 
-function Mark({ok}: {ok: boolean}) {
+function Mark({ok}: Readonly<{ok: boolean}>) {
   return ok ? (
     <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
       <path d="M5 12.5 10 17 19 7" />
@@ -20,12 +20,12 @@ export function CompareTable({
   columns,
   caption,
   footnote,
-}: {
+}: Readonly<{
   rows: CompareRow[]
   columns: {label: string; ours: string; theirs: string}
   caption: string
   footnote?: string
-}) {
+}>) {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <table className="w-full border-collapse text-left text-base leading-6">

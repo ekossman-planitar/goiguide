@@ -6,7 +6,7 @@ import type {Img} from './types'
 export type LogoCard = {name: string; text: string; logo: Img; href: string}
 
 /** Partner cards: logo, name, description and an external "Learn more" link. */
-export function LogoCards({items, columns = 3, headingLevel = 'h3'}: {items: LogoCard[]; columns?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'}) {
+export function LogoCards({items, columns = 3, headingLevel = 'h3'}: Readonly<{items: LogoCard[]; columns?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'}>) {
   const Heading = headingLevel
   return (
     <ul className={cn('grid gap-6 sm:grid-cols-2', columns === 3 && 'lg:grid-cols-3', columns === 4 && 'lg:grid-cols-4')}>

@@ -6,7 +6,7 @@ import {HelpSearchForm} from './HelpSearchForm'
 export type Crumb = {label: string; href: string}
 
 /** Breadcrumbs and the search box, above every inner Help Center page. */
-export function HelpSubnav({crumbs, query}: {crumbs: Crumb[]; query?: string}) {
+export function HelpSubnav({crumbs, query}: Readonly<{crumbs: Crumb[]; query?: string}>) {
   const all: Crumb[] = [{label: 'Help Center', href: '/help'}, ...crumbs]
   return (
     <div className="border-b border-line bg-surface">

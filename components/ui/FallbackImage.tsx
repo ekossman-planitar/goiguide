@@ -7,7 +7,7 @@ import {useCallback, useState, type ReactNode} from 'react'
  * next/image that shows `fallback` instead if the file fails to load
  * (e.g. an image not yet added to /public).
  */
-export function FallbackImage({fallback = null, ...props}: ImageProps & {fallback?: ReactNode}) {
+export function FallbackImage({fallback = null, ...props}: Readonly<ImageProps & {fallback?: ReactNode}>) {
   const [failed, setFailed] = useState(false)
 
   // Catch images that already failed before React hydrated (onError won't fire for those)

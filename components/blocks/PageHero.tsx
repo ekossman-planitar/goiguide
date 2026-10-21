@@ -16,7 +16,7 @@ type Props = {
 }
 
 /** Two-column page hero: copy left, visual right (stacked on mobile). */
-export function PageHero({eyebrow, heading, subheading, children, ctas = [], media}: Props) {
+export function PageHero({eyebrow, heading, subheading, children, ctas = [], media}: Readonly<Props>) {
   return (
     <section className="pt-8 pb-12 lg:pt-12 lg:pb-[60px]">
       <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">

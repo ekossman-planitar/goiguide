@@ -18,7 +18,7 @@ const external = {target: '_blank', rel: 'noopener noreferrer'}
  * marketing site's. Topics menu lists the Zendesk categories. Sign in, My
  * requests and Submit a request stay on Zendesk.
  */
-export function HelpHeader({categories}: {categories: HelpNavCategory[]}) {
+export function HelpHeader({categories}: Readonly<{categories: HelpNavCategory[]}>) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [topicsOpen, setTopicsOpen] = useState(false)
   const topicsRef = useRef<HTMLLIElement>(null)

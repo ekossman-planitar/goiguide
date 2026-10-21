@@ -15,7 +15,7 @@ export const meta = {
 
 type Row = string[]
 
-function PriceTable({head, rows}: {head: string[]; rows: Row[]}) {
+function PriceTable({head, rows}: Readonly<{head: string[]; rows: Row[]}>) {
   return (
     <div className="mt-6 overflow-x-auto rounded-2xl border border-line">
       <table className="w-full min-w-[480px] text-left text-base">
@@ -57,14 +57,14 @@ function Package({
   table,
   after,
   download,
-}: {
+}: Readonly<{
   image: string
   heading: string
   intro: {href: string; text: string}
   table: {head: string[]; rows: Row[]}
   after?: ReactNode
   download?: {label: string; href: string}
-}) {
+}>) {
   return (
     <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
       <FallbackImage

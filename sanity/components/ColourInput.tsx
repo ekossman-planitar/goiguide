@@ -2,7 +2,7 @@ import {set, unset, type StringInputProps} from 'sanity'
 import {BRAND_COLOURS} from '../../lib/popup/rules'
 
 /** Hex colour field with one-click brand swatches. Empty = the default shown in the description. */
-export function ColourInput(props: StringInputProps) {
+export function ColourInput(props: Readonly<StringInputProps>) {
   const {value, onChange, readOnly, elementProps} = props
   return (
     <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8}}>

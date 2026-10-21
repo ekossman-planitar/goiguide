@@ -32,7 +32,7 @@ const GAP = 24
  * the right. Below, an endless auto-scrolling, draggable row of story cards
  * (3 visible on desktop, 2 on tablet, 1 on mobile).
  */
-export function CustomerStories({heading, subheading, link, stories}: Props) {
+export function CustomerStories({heading, subheading, link, stories}: Readonly<Props>) {
   const cardWidth = useCallback((viewport: number) => {
     let perView = 1.15
     if (viewport >= 1024) perView = 3
@@ -84,7 +84,7 @@ export function CustomerStories({heading, subheading, link, stories}: Props) {
   )
 }
 
-function StoryCardView({story}: {story: StoryCard}) {
+function StoryCardView({story}: Readonly<{story: StoryCard}>) {
   return (
     // The whole card links to the story
     <SmartLink

@@ -16,7 +16,7 @@ import {catalogueAssets, catalogueDemoTours, catalogueStarterKit} from '@/lib/co
 const embedCode = (src: string, title: string) =>
   `<iframe src="${src}" title="${title}" width="100%" height="560" style="border:0;" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe>`
 
-function DemoTour({tour}: {tour: (typeof catalogueDemoTours)[number]}) {
+function DemoTour({tour}: Readonly<{tour: (typeof catalogueDemoTours)[number]}>) {
   const [preview, setPreview] = useState(false)
   const [copied, setCopied] = useState(false)
   const code = embedCode(tour.src, `iGuide 3D tour: ${tour.label}`)
@@ -89,7 +89,7 @@ function DemoTour({tour}: {tour: (typeof catalogueDemoTours)[number]}) {
 }
 
 /** Three steps for new operators; step 1 links to the demo tours further down the page */
-export function StarterSteps({demoTourAnchor}: {demoTourAnchor: string}) {
+export function StarterSteps({demoTourAnchor}: Readonly<{demoTourAnchor: string}>) {
   const assets = new Map(catalogueAssets.map((a) => [a.id, a]))
   return (
     <ol className="grid gap-6 lg:grid-cols-3">

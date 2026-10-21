@@ -4,7 +4,7 @@ import type {ReactNode} from 'react'
  * Two-column page-top layout for pages whose right column is a form or
  * interactive widget (PageHero only takes media). Used inside a `custom` block.
  */
-export function HeroColumns({heading, children, aside}: {heading: string; children?: ReactNode; aside: ReactNode}) {
+export function HeroColumns({heading, children, aside}: Readonly<{heading: string; children?: ReactNode; aside: ReactNode}>) {
   return (
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
       <div className="min-w-0">

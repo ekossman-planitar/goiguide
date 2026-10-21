@@ -22,7 +22,7 @@ export function resourceCenterMetadata(type?: ResourceTypeName): Metadata {
 }
 
 /** The Resource Center, optionally opened on one type (e.g. /blogs shows the Blog filter) */
-export async function ResourceCenterPage({type}: {type?: ResourceTypeName}) {
+export async function ResourceCenterPage({type}: Readonly<{type?: ResourceTypeName}>) {
   const items = await fetchSanity<ResourceCardData[]>(RESOURCES_QUERY, [])
 
   return (

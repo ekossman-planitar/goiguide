@@ -31,7 +31,7 @@ type Props = {
  * with arrows. Rechecks the schedule exactly when a message starts or ends,
  * and hides the bar entirely when nothing is live.
  */
-export function AnnouncementCarousel({items: allItems, renderedAt, landingPage = false}: Props) {
+export function AnnouncementCarousel({items: allItems, renderedAt, landingPage = false}: Readonly<Props>) {
   const pathname = usePathname()
   // Page targeting: all pages (paid landing pages only if included) or the listed pages
   const items = useMemo(() => allItems.filter((item) => showsOnPath(item, pathname, landingPage)), [allItems, pathname, landingPage])
@@ -62,7 +62,7 @@ export function AnnouncementCarousel({items: allItems, renderedAt, landingPage =
   // Auto-advance when there is more than one message
   useEffect(() => {
     if (count < 2 || paused) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const timer = setInterval(() => setIndex((i) => i + 1), AUTOPLAY_MS)
     return () => clearInterval(timer)
   }, [count, paused])

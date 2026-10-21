@@ -19,7 +19,7 @@ const HUBSPOT_PORTAL_ID = '6828755'
 const HUBSPOT_FORM_ID = 'be68b69a-fff5-46a0-8dbc-f72dbbb5938f'
 
 type CalendlyApi = {initPopupWidget: (options: {url: string; utm?: Record<string, string>}) => void}
-const calendly = () => (window as unknown as {Calendly?: CalendlyApi}).Calendly
+const calendly = () => (globalThis as unknown as {Calendly?: CalendlyApi}).Calendly
 
 const storage = {
   get: (key: string) => {
@@ -84,7 +84,7 @@ function loadHubSpotUtmForm() {
       container = document.getElementById('hubspot-utm-form')!
     }
     const waitForForm = (retries = 40) => {
-      const form = container!.querySelector('form')
+      const form = container.querySelector('form')
       if (form) return resolve(form)
       if (retries <= 0) return reject(new Error('HubSpot UTM form did not render in time'))
       setTimeout(() => waitForForm(retries - 1), 250)
@@ -102,7 +102,7 @@ function loadHubSpotUtmForm() {
 }
 
 function utmParams() {
-  const params = new URLSearchParams(window.location.search)
+  const params = new URLSearchParams(globalThis.location.search)
   return {
     utm_campaign: params.get('utm_campaign') || '',
     utm_source: params.get('utm_source') || '',
@@ -114,7 +114,7 @@ function utmParams() {
 }
 
 function trackingFields(): Record<string, string> {
-  const params = new URLSearchParams(window.location.search)
+  const params = new URLSearchParams(globalThis.location.search)
   return {
     '0-1/utm_source_calendly': params.get('utm_source') || '',
     '0-1/utm_medium_calendly': params.get('utm_medium') || '',
@@ -122,7 +122,7 @@ function trackingFields(): Record<string, string> {
     '0-1/utm_property_calendly': params.get('utm_content') || '',
     '0-1/utm_term_calendly': params.get('utm_term') || '',
     '0-1/referrer': storage.get('first_referrer') || '',
-    '0-1/page_url': window.location.href,
+    '0-1/page_url': globalThis.location.href,
   }
 }
 
@@ -196,10 +196,10 @@ export function BookingPopup() {
     document.addEventListener('click', onClick)
     document.addEventListener('pointerover', prefetch, {passive: true})
     document.addEventListener('focusin', prefetch)
-    window.addEventListener('message', onMessage)
+    globalThis.addEventListener('message', onMessage)
 
     // ?demo=true opens the pop-up on load (live: 500 ms after load)
-    const params = new URLSearchParams(window.location.search)
+    const params = new URLSearchParams(globalThis.location.search)
     let timer: ReturnType<typeof setTimeout> | undefined
     if (params.get('demo') === 'true') {
       let url = 'https://calendly.com/d/crzd-s6g-v5b?hide_gdpr_banner=1&text_color=000000&primary_color=2e2c30'
@@ -213,7 +213,7 @@ export function BookingPopup() {
       document.removeEventListener('click', onClick)
       document.removeEventListener('pointerover', prefetch)
       document.removeEventListener('focusin', prefetch)
-      window.removeEventListener('message', onMessage)
+      globalThis.removeEventListener('message', onMessage)
     }
   }, [])
 

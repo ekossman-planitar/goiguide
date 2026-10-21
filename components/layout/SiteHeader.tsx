@@ -18,7 +18,7 @@ type HeaderButtons = {findPro: {label: string; href: string}; shop: {label: stri
  * Sticky site header: logo, main nav with full-width mega menus, and the two action buttons.
  * Regional sections (e.g. /au) pass their own nav, buttons and home link.
  */
-export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '/'}: {nav?: NavItem[]; buttons?: HeaderButtons; homeHref?: string} = {}) {
+export function SiteHeader({nav = mainNav, buttons = headerButtons, homeHref = '/'}: Readonly<{nav?: NavItem[]; buttons?: HeaderButtons; homeHref?: string}> = {}) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
@@ -128,8 +128,8 @@ function DesktopNavItem({
   onPointerLeave,
   onPointerEnterPanel,
   onHoverPlainLink,
-}: DesktopNavItemProps) {
-  const panelId = `mega-${item.label.toLowerCase().replace(/\W+/g, '-')}`
+}: Readonly<DesktopNavItemProps>) {
+  const panelId = `mega-${item.label.toLowerCase().replaceAll(/\W+/g, '-')}`
   const linkClass = 'flex items-center gap-1 rounded-lg p-2 text-base leading-6 text-ink hover:text-primary-hover'
 
   if (!item.menu) {
@@ -214,7 +214,7 @@ function DesktopNavItem({
   )
 }
 
-function MobileNav({nav, buttons}: {nav: NavItem[]; buttons: HeaderButtons}) {
+function MobileNav({nav, buttons}: Readonly<{nav: NavItem[]; buttons: HeaderButtons}>) {
   return (
     <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-white lg:hidden">
       <Container className="max-h-[calc(100svh-5rem)] overflow-y-auto py-4">

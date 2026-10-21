@@ -8,7 +8,7 @@ import {AnnouncementCarousel} from './AnnouncementCarousel'
  * messages that include them) paid-media landing pages. Each message's page
  * targeting is applied in the browser bar. Renders nothing when no announcement is live.
  */
-export async function AnnouncementBar({landingPage = false}: {landingPage?: boolean}) {
+export async function AnnouncementBar({landingPage = false}: Readonly<{landingPage?: boolean}>) {
   const {items, fetchedAt} = await getAnnouncements()
   if (!items.length) return null
   return <AnnouncementCarousel items={items} renderedAt={fetchedAt} landingPage={landingPage} />

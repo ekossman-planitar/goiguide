@@ -19,7 +19,7 @@ import {
 } from './shared'
 
 /** Pricing: camera on the left (1/3), packages as an expandable list on the right (2/3). */
-export function PricingSideBySide({data}: {data: PricingData}) {
+export function PricingSideBySide({data}: Readonly<{data: PricingData}>) {
   const {currency, setCurrency, industry, setIndustry, visible} = usePricingFilters(data.packages)
   const [open, setOpen] = useState<string | null>(null)
   const {camera} = data

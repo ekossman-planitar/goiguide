@@ -16,7 +16,7 @@ type Props = {
 }
 
 /** Page hero with copy on the left and an inline HubSpot form in a white card on the right. */
-export function FormHero({heading, subheading, bullets, rating, formHeading, formId}: Props) {
+export function FormHero({heading, subheading, bullets, rating, formHeading, formId}: Readonly<Props>) {
   return (
     <section id="hero" className="bg-surface py-12 lg:py-20">
       <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">

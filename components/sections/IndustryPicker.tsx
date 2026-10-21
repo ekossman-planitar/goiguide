@@ -158,7 +158,7 @@ const industries: Industry[] = [
   },
 ]
 
-const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches
+const isDesktop = () => globalThis.matchMedia('(min-width: 1024px)').matches
 /** Next tab for autoplay, skipping desktop-only tabs on smaller screens */
 const nextIndex = (a: number) => {
   let n = (a + 1) % industries.length
@@ -174,7 +174,7 @@ export function IndustryPicker() {
   const sectionRef = useRef<HTMLElement | null>(null)
   const elapsed = useRef(0)
   const holds = useRef({hover: false, focus: false, touch: false, offscreen: true})
-  const uid = useId().replace(/:/g, '')
+  const uid = useId().replaceAll(/:/g, '')
 
   const select = useCallback((i: number) => {
     elapsed.current = 0
@@ -182,7 +182,7 @@ export function IndustryPicker() {
   }, [])
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setStopped(true) // eslint-disable-line react-hooks/set-state-in-effect
+    if (globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) setStopped(true) // eslint-disable-line react-hooks/set-state-in-effect
   }, [])
 
   // Timer: advances only while nothing is holding it, and keeps its progress when paused

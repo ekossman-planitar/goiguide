@@ -35,13 +35,13 @@ const log = (...a) => console.log(...a)
 const norm = (s) =>
   (s ?? '')
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, ' ')
+    .replaceAll(/[^a-z0-9]+/g, ' ')
     .trim()
 const slugify = (s) =>
   s
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
+    .replaceAll(/[^a-z0-9]+/g, '-')
+    .replaceAll(/^-|-$/g, '')
 const key = (s) => createHash('sha1').update(s).digest('hex').slice(0, 10)
 
 async function fetchPage(path) {

@@ -38,7 +38,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return pageMetadata({title: `${category.name} | iGuide Help Center`, description: category.description || category.name, path: categoryPath(category)})
 }
 
-export default async function CategoryPage({params}: Props) {
+export default async function CategoryPage({params}: Readonly<Props>) {
   const {slug} = await params
   const category = await load(slug)
   if (!category) notFound()

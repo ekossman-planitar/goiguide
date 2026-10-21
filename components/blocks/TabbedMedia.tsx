@@ -12,7 +12,7 @@ export type MediaTab = {id: string; label: string; media: Media; title?: string;
  * Pill tabs (live-site style) switching between images, videos or embeds,
  * each with optional caption. Embeds load only when their tab is first opened.
  */
-export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; label: string; align?: 'left' | 'center'}) {
+export function TabbedMedia({tabs, label, align = 'center'}: Readonly<{tabs: MediaTab[]; label: string; align?: 'left' | 'center'}>) {
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0]))
   const refs = useRef<(HTMLButtonElement | null)[]>([])

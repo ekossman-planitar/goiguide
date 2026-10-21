@@ -27,13 +27,13 @@ export function FeatureTabs({
   label,
   mediaSide = 'right',
   headingLevel = 'h3',
-}: {
+}: Readonly<{
   items: FeatureTab[]
   label: string
   mediaSide?: 'left' | 'right'
   /** Item titles are headings (accordion pattern), h2 when the section has no heading of its own */
   headingLevel?: 'h2' | 'h3'
-}) {
+}>) {
   const Heading = headingLevel
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0]))

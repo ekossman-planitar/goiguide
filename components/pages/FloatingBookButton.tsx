@@ -9,14 +9,14 @@ import {cn} from '@/lib/cn'
  * visitor scrolls past 100px (as on live /iguide-holmes-approved). It keeps the
  * live `openCalendly` class, so the site-wide booking pop-up and GTM triggers match.
  */
-export function FloatingBookButton({label = 'Book your personalized product tour'}: {label?: string}) {
+export function FloatingBookButton({label = 'Book your personalized product tour'}: Readonly<{label?: string}>) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 100)
+    const onScroll = () => setVisible(globalThis.scrollY > 100)
     onScroll()
-    window.addEventListener('scroll', onScroll, {passive: true})
-    return () => window.removeEventListener('scroll', onScroll)
+    globalThis.addEventListener('scroll', onScroll, {passive: true})
+    return () => globalThis.removeEventListener('scroll', onScroll)
   }, [])
 
   return (

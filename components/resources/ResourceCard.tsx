@@ -10,7 +10,7 @@ import type {ResourceCardData} from '@/sanity/lib/types'
  * date, title, short description and link. The whole card is one link (the
  * title link stretches over the card), so it can be clicked anywhere.
  */
-export function ResourceCard({item}: {item: ResourceCardData}) {
+export function ResourceCard({item}: Readonly<{item: ResourceCardData}>) {
   const type = getResourceType(item._type)
   const {href, external, label} = resourceLink(item)
   const linkProps = external ? {target: '_blank', rel: 'noopener noreferrer'} : {}

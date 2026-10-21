@@ -32,7 +32,7 @@ type Props = {
  * Steps auto-advance once the section is on screen, until the visitor
  * hovers, clicks or focuses a step.
  */
-export function StepsTimeline({id, heading, subheading, steps, interval = 4000, showImages = true}: Props) {
+export function StepsTimeline({id, heading, subheading, steps, interval = 4000, showImages = true}: Readonly<Props>) {
   const [active, setActive] = useState(0)
   const [autoplay, setAutoplay] = useState(true)
   const [inView, setInView] = useState(false)
@@ -48,7 +48,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
 
   useEffect(() => {
     if (!autoplay || !inView || steps.length < 2) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const timer = setInterval(() => setActive((i) => (i + 1) % steps.length), interval)
     return () => clearInterval(timer)
   }, [autoplay, inView, steps.length, interval])

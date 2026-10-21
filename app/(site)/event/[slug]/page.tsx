@@ -69,10 +69,10 @@ const ATTENDANCE_MODE: Record<string, string> = {
 }
 const OFFLINE_ATTENDANCE_MODE = 'https://schema.org/OfflineEventAttendanceMode'
 
-const ldScript = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c')
+const ldScript = (data: object) => JSON.stringify(data).replaceAll(/</g, String.raw`\u003c`)
 
 function googleCalendarUrl(e: EventDetailData, url: string, fullAddress: string, tz: string) {
-  const fmt = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+  const fmt = (iso: string) => new Date(iso).toISOString().replaceAll(/[-:]/g, '').replace(/\.\d{3}/, '')
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: e.title,
@@ -138,7 +138,7 @@ function eventJsonLd(e: EventDetailData, url: string, presenterNames: string[], 
   }
 }
 
-function EventDetails({e, place, mapUrl}: {e: EventDetailData; place: string; mapUrl: string | null}) {
+function EventDetails({e, place, mapUrl}: Readonly<{e: EventDetailData; place: string; mapUrl: string | null}>) {
   return (
     <dl className="space-y-4 text-base">
       <div className="flex gap-3">
@@ -182,13 +182,13 @@ function EventDetails({e, place, mapUrl}: {e: EventDetailData; place: string; ma
   )
 }
 
-function EventIntro({e}: {e: EventDetailData}) {
+function EventIntro({e}: Readonly<{e: EventDetailData}>) {
   if (e.body?.length) return <PortableBody value={e.body} />
   if (e.shortDescription) return <p className="text-lg leading-8 text-body">{e.shortDescription}</p>
   return null
 }
 
-function PresenterChip({name, speaker}: {name: string; speaker?: Speaker}) {
+function PresenterChip({name, speaker}: Readonly<{name: string; speaker?: Speaker}>) {
   return (
     <li className="flex items-center gap-2 rounded-full bg-surface py-1 pr-3 pl-1 text-sm font-semibold text-ink">
       {speaker?.photo?.asset ? (
@@ -209,7 +209,7 @@ function PresenterChip({name, speaker}: {name: string; speaker?: Speaker}) {
   )
 }
 
-function SessionItem({ses, tz, speakerByName}: {ses: Session; tz: string; speakerByName: Map<string, Speaker>}) {
+function SessionItem({ses, tz, speakerByName}: Readonly<{ses: Session; tz: string; speakerByName: Map<string, Speaker>}>) {
   const when = formatSessionTime(ses, tz)
   return (
     <li className="event-session rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
@@ -246,7 +246,7 @@ function SessionItem({ses, tz, speakerByName}: {ses: Session; tz: string; speake
   )
 }
 
-function SessionsSection({sessions, tz, speakerByName}: {sessions: Session[]; tz: string; speakerByName: Map<string, Speaker>}) {
+function SessionsSection({sessions, tz, speakerByName}: Readonly<{sessions: Session[]; tz: string; speakerByName: Map<string, Speaker>}>) {
   return (
     <section className="mt-14" aria-labelledby="sessions-heading">
       <h2 id="sessions-heading" className="text-[28px] font-semibold text-ink">
@@ -261,7 +261,7 @@ function SessionsSection({sessions, tz, speakerByName}: {sessions: Session[]; tz
   )
 }
 
-function SpeakersSection({speakers, onStage}: {speakers: Speaker[]; onStage: Map<string, string>}) {
+function SpeakersSection({speakers, onStage}: Readonly<{speakers: Speaker[]; onStage: Map<string, string>}>) {
   return (
     <section className="mt-14" aria-labelledby="speakers-heading">
       <h2 id="speakers-heading" className="text-[28px] font-semibold text-ink">
@@ -312,7 +312,7 @@ function SpeakersSection({speakers, onStage}: {speakers: Speaker[]; onStage: Map
   )
 }
 
-export default async function EventPage({params}: Props) {
+export default async function EventPage({params}: Readonly<Props>) {
   const {slug} = await params
   const e = await getEvent(slug)
   if (!e) notFound()

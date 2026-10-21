@@ -17,7 +17,7 @@ type Props = {
 }
 
 /** Accordion FAQ. All answers are in the HTML (for search engines); extra questions are revealed with "Show more". */
-export function Faq({heading, subheading, items, initiallyVisible = 3, background = 'sky'}: Props) {
+export function Faq({heading, subheading, items, initiallyVisible = 3, background = 'sky'}: Readonly<Props>) {
   const [expanded, setExpanded] = useState(false)
   const hasMore = items.length > initiallyVisible
 

@@ -7,7 +7,7 @@ import {PricingCalculator} from '@/components/pricing/PricingCalculator'
 
 export type RateTable = {heading: string; rows: [size: string, rate: string][]}
 
-function Rates({table}: {table: RateTable}) {
+function Rates({table}: Readonly<{table: RateTable}>) {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <table className="w-full text-left text-base">

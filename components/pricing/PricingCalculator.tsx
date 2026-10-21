@@ -21,13 +21,13 @@ function Segmented<T extends string>({
   value,
   onChange,
   labels,
-}: {
+}: Readonly<{
   name: string
   options: readonly T[]
   value: T
   onChange: (v: T) => void
   labels?: Record<string, string>
-}) {
+}>) {
   return (
     <div className="inline-flex h-12 items-stretch rounded-lg border border-muted bg-white p-1">
       {options.map((opt) => (
@@ -70,7 +70,7 @@ export function PricingCalculator() {
   const requestId = useRef(0)
 
   const isRadix = pkg?.iguideType === 'radix'
-  const sizeNumber = Math.min(Number(size.replace(/\D/g, '')) || 0, isRadix ? 75 : Infinity)
+  const sizeNumber = Math.min(Number(size.replaceAll(/\D/g, '')) || 0, isRadix ? 75 : Infinity)
 
   const selectIndustry = (id: number) => {
     setIndustryId(id)

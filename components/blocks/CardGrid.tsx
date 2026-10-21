@@ -25,7 +25,7 @@ const cols = {
 }
 
 /** Grid of simple cards (icon or image, title, text, optional link). */
-export function CardGrid({cards, columns = 4}: {cards: GridCard[]; columns?: 2 | 3 | 4}) {
+export function CardGrid({cards, columns = 4}: Readonly<{cards: GridCard[]; columns?: 2 | 3 | 4}>) {
   return (
     <ul className={cn('grid gap-6', cols[columns])}>
       {cards.map((card) => (

@@ -1,8 +1,6 @@
 /** Pieces shared by the Australia pages (copy and links from the live AU pages, checked 2026-10-14). */
 import type {Cta} from '@/components/blocks/types'
-import {book} from '@/lib/content/solutions/shared'
-
-export {book}
+export {book} from '@/lib/content/solutions/shared'
 
 export const AU_TERMS_PATH = '/au/immersive-campaign-terms-and-conditions'
 

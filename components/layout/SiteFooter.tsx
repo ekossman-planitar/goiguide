@@ -10,7 +10,7 @@ import {SubscribeForm} from './SubscribeForm'
 
 const newTab = (link: FooterLink) => (link.external ? {target: '_blank', rel: 'noopener noreferrer'} : {})
 
-function FooterLinkItem({link}: {link: FooterLink}) {
+function FooterLinkItem({link}: Readonly<{link: FooterLink}>) {
   return (
     <SmartLink href={link.href} {...newTab(link)} className="text-base leading-6 text-body hover:text-primary-hover">
       {link.label}
@@ -19,7 +19,7 @@ function FooterLinkItem({link}: {link: FooterLink}) {
 }
 
 /** Native <details> accordion: works without JavaScript, and the links stay in the HTML for search engines. */
-function FooterAccordionGroup({group}: {group: FooterAccordion}) {
+function FooterAccordionGroup({group}: Readonly<{group: FooterAccordion}>) {
   return (
     <details className="footer-accordion group">
       <summary className="flex cursor-pointer list-none items-center gap-1.5 text-base leading-6 text-body hover:text-primary-hover [&::-webkit-details-marker]:hidden">
@@ -46,7 +46,7 @@ function FooterAccordionGroup({group}: {group: FooterAccordion}) {
   )
 }
 
-function SocialLinks({className}: {className?: string}) {
+function SocialLinks({className}: Readonly<{className?: string}>) {
   return (
     <ul className={cn('flex gap-5', className)}>
       {socialLinks.map((social) => (

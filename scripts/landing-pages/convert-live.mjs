@@ -21,21 +21,21 @@ const slugify = (s) =>
   s
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
+    .replaceAll(/[̀-ͯ]/g, '')
+    .replaceAll(/[^a-z0-9]+/g, '-')
+    .replaceAll(/^-|-$/g, '')
     .slice(0, 60)
 
 /** Visible-text rules: brand spelling and no em dashes (same rules as the code clean-up) */
 export function copy(s) {
   if (!s) return s
   return s
-    .replace(/(?<![/\-_%0-9@A-Za-z])iGUIDE/g, 'iGuide')
-    .replace(/\s*—\s*(?=(?:it|it’s|it's|they|we|you|this) )/g, '; ')
-    .replace(/\s*—\s*/g, ', ')
-    .replace(/,\s*,/g, ',')
+    .replaceAll(/(?<![/\-_%0-9@A-Za-z])iGUIDE/g, 'iGuide')
+    .replaceAll(/\s*—\s*(?=(?:it|it’s|it's|they|we|you|this) )/g, '; ')
+    .replaceAll(/\s*—\s*/g, ', ')
+    .replaceAll(/,\s*,/g, ',')
 }
-const text = (n) => copy((n?.textContent ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim())
+const text = (n) => copy((n?.textContent ?? '').replaceAll(/ /g, ' ').replaceAll(/\s+/g, ' ').trim())
 /** Paragraph text of a rich-text container, paragraphs separated by blank lines */
 const paras = (root) => {
   if (!root) return ''
@@ -175,8 +175,8 @@ function packagesEl(el, pagePath) {
       .map((t) =>
         copy(
           t
-            .replace(/\u00a0/g, ' ')
-            .replace(/\s+/g, ' ')
+            .replaceAll(/\u00a0/g, ' ')
+            .replaceAll(/\s+/g, ' ')
             .trim(),
         ),
       )
@@ -209,7 +209,7 @@ function packagesEl(el, pagePath) {
 /** Hand-built quote slider (embedscript .slider): headshot, quote, name, company */
 function quoteSlider(el, out) {
   const items = [...el.querySelectorAll('.slider .slides > div')].map((d) => {
-    const quote = text(d.querySelector('h3')).replace(/^["“]|["”]$/g, '')
+    const quote = text(d.querySelector('h3')).replaceAll(/^["“]|["”]$/g, '')
     const name = text(d.querySelector('h5')) || undefined
     const company = text(d.querySelector('p')) || undefined
     const photo = d.querySelector('img')
@@ -359,9 +359,9 @@ function banner(doc, html) {
   const sub = p
     ? copy(
         (p.textContent ?? '')
-          .replace(/\u00a0/g, ' ')
+          .replaceAll(/\u00a0/g, ' ')
           .split('\n')
-          .map((l) => l.replace(/\s+/g, ' ').trim())
+          .map((l) => l.replaceAll(/\s+/g, ' ').trim())
           .filter(Boolean)
           .join('\n')
           .trim(),
@@ -395,7 +395,7 @@ function contentEl(el, {plain}) {
 function embedScriptEl(el, {out}) {
   const clone = el.cloneNode(true)
   clone.querySelectorAll('style, script, link, noscript').forEach((n) => n.remove())
-  const noText = !clone.textContent.replace(/\s+/g, '').length
+  const noText = !clone.textContent.replaceAll(/\s+/g, '').length
   if (noText && !clone.querySelector('img, iframe, video')) return SKIP
   if (clone.querySelector('.slider .slides > div h3')) return {section: quoteSlider(el, out)}
   const yt = clone.querySelectorAll('iframe[src*="youtube"]')
@@ -433,7 +433,7 @@ function convertElements(doc, pagePath, out) {
   for (const el of doc.querySelectorAll('main .element')) {
     if (el.parentElement?.closest('.element')) continue
     const kind = el.className.match(/elements__element(\w+)/)?.[1]
-    const plain = (el.textContent ?? '').replace(/\s+/g, ' ').trim()
+    const plain = (el.textContent ?? '').replaceAll(/\s+/g, ' ').trim()
     const result = ELEMENT_CONVERTERS.get(kind)?.(el, {out, pagePath, plain})
     if (result === SKIP) continue
     if (result) sections.push(result.section)
@@ -465,7 +465,7 @@ export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
       seoTitle: copy(
         doc
           .querySelector('title')
-          ?.textContent?.replace(/iGUIDE/g, 'iGuide')
+          ?.textContent?.replaceAll(/iGUIDE/g, 'iGuide')
           .trim(),
       ),
       metaDescription: copy(meta('description')),

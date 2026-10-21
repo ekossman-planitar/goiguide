@@ -107,8 +107,8 @@ const warn = (msg) => {
 }
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 const key = () => randomBytes(6).toString('hex')
-const clean = (s) => (s ?? '').replace(/\s+/g, ' ').trim()
-const normTitle = (s) => clean(s).toLowerCase().replace(/[’']/g, "'")
+const clean = (s) => (s ?? '').replaceAll(/\s+/g, ' ').trim()
+const normTitle = (s) => clean(s).toLowerCase().replaceAll(/[’']/g, "'")
 const abs = (url) => (url ? new URL(url, SITE).toString() : url)
 /** goiguide.com links become root-relative so they work on any host */
 const localise = (url) => {
@@ -173,8 +173,8 @@ async function readSitemap() {
   for (const sub of subs) {
     const xml = (await fetchText(sub)).text
     for (const m of xml.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
-      const loc = m[1].match(/<loc>([^<]+)<\/loc>/)?.[1]
-      const lastmod = m[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1]
+      const loc = /<loc>([^<]+)<\/loc>/.exec(m[1])?.[1]
+      const lastmod = /<lastmod>([^<]+)<\/lastmod>/.exec(m[1])?.[1]
       if (loc) entries.set(new URL(loc).pathname.replace(/\/$/, ''), lastmod)
     }
   }
@@ -197,7 +197,7 @@ function parseCards(html) {
     }
   })
   const next = doc.querySelector('#pagination')?.getAttribute('x-intersect')?.match(/\$ajax\('([^']+)'/)?.[1]
-  return {cards, next: next?.replace(/&amp;/g, '&')}
+  return {cards, next: next?.replaceAll(/&amp;/g, '&')}
 }
 
 async function readListing(feed, category) {
@@ -250,11 +250,11 @@ const ptSchema = compileSchema(
 const SUPERSCRIPT_DIGITS = {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
 
 /** Whitespace-only text node */
-const isBlankText = (n) => n?.nodeType === 3 && !n.textContent.replace(/\u00a0/g, ' ').trim()
+const isBlankText = (n) => n?.nodeType === 3 && !n.textContent.replaceAll(/\u00a0/g, ' ').trim()
 
 /** Footnote markers: the converter loses the word before a <sup>, so use superscript characters instead */
 function replaceSupSub(body) {
-  for (const sup of [...body.querySelectorAll('sup, sub')]) {
+  for (const sup of body.querySelectorAll('sup, sub')) {
     const t = sup.textContent.trim()
     sup.replaceWith(sup.tagName === 'SUP' && /^\d+$/.test(t) ? [...t].map((d) => SUPERSCRIPT_DIGITS[d]).join('') : sup.textContent)
   }
@@ -309,7 +309,7 @@ function tidyHtml(html) {
   const doc = jsdom(`<body>${html}</body>`).window.document
   for (const span of [...doc.body.querySelectorAll('span')].reverse()) span.replaceWith(...span.childNodes)
   replaceSupSub(doc.body)
-  for (const p of [...doc.body.querySelectorAll('p')]) splitParagraph(doc, p)
+  for (const p of doc.body.querySelectorAll('p')) splitParagraph(doc, p)
   return doc.body.innerHTML
 }
 
@@ -343,13 +343,13 @@ const PT_RULES = [
   {
     deserialize(el, _next, createBlock) {
       const index = el.getAttribute?.('data-faq')
-      return index != null ? createBlock({_type: 'faqPlaceholder', index: Number(index)}) : undefined
+      return index == null ? undefined : createBlock({_type: 'faqPlaceholder', index: Number(index)})
     },
   },
   {
     deserialize(el, _next, createBlock) {
       const index = el.getAttribute?.('data-quote')
-      return index != null ? createBlock({_type: 'quotePlaceholder', index: Number(index)}) : undefined
+      return index == null ? undefined : createBlock({_type: 'quotePlaceholder', index: Number(index)})
     },
   },
 ]
@@ -423,7 +423,7 @@ function readAuthorBox(el) {
     .filter(Boolean)
     .join('\n\n')
   // One post writes the job title as "By <name>, <title>"
-  role = role.replace(new RegExp(`^By\\s+${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')},?\\s*`, 'i'), '')
+  role = role.replace(new RegExp(String.raw`^By\s+${name.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`)},?\s*`, 'i'), '')
   return name ? {name, role: role || undefined, bio: bio || undefined, photo: photo ? stripVariant(photo) : undefined} : undefined
 }
 
@@ -502,7 +502,7 @@ const LAYOUT_BY_KIND = {elementtextandimage: 'split', elementtestimonials: 'spli
 function parseCtaFeature(el, kind) {
   const button = el.querySelector('a[href], button')
   const scripts = [...el.querySelectorAll('script')].map((s) => s.textContent).join('\n')
-  const formId = scripts.match(/formId:\s*"([^"]+)"/)?.[1]
+  const formId = /formId:\s*"([^"]+)"/.exec(scripts)?.[1]
   const bg = el.querySelector('[style*="background-image"]')?.getAttribute('style')?.match(/url\(([^)]+)\)/)?.[1]
   return {
     kind,
@@ -515,7 +515,7 @@ function parseCtaFeature(el, kind) {
         buttonLabel: clean(button?.textContent) || undefined,
         buttonUrl: button?.tagName === 'A' ? localise(button.getAttribute('href')) : undefined,
         hubspotFormId: formId,
-        imageSrc: bg ? stripVariant(bg.replace(/["']/g, '')) : undefined,
+        imageSrc: bg ? stripVariant(bg.replaceAll(/["']/g, '')) : undefined,
       },
     ],
   }
@@ -805,7 +805,7 @@ async function resolveImages(blocks) {
 
 /* ------------------------------------------------------------------ documents */
 
-const docId = (type, slug) => `${type}-${slug}`.replace(/[^a-zA-Z0-9_-]/g, '-').slice(0, 128)
+const docId = (type, slug) => `${type}-${slug}`.replaceAll(/[^a-zA-Z0-9_-]/g, '-').slice(0, 128)
 const authorIds = new Map()
 // Best details seen for each author (from their most recent post), written once the import finishes
 const authorDetails = new Map()
@@ -815,7 +815,7 @@ async function authorRef(name, box, date) {
   // The live JSON-LD writes some names "Last, First"; the author box writes "First Last"
   const m = name.match(/^([^,]+),\s*([^,]+)$/)
   if (m) name = `${m[2]} ${m[1]}`
-  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  const slug = name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-').replaceAll(/^-|-$/g, '')
   const _id = `author-${slug}`
   if (!authorIds.has(_id)) {
     authorIds.set(_id, name)
@@ -881,7 +881,7 @@ async function buildEntryDoc(cfg, path, e, card, sitemap) {
       lastModified: lastmodOf(sitemap, path),
       importedAt: new Date().toISOString(),
       notes: [
-        e.kinds.some((k) => k === 'unknown') && `Unrecognised blocks on the old page: ${e.kinds.join(', ')}`,
+        e.kinds.includes('unknown') && `Unrecognised blocks on the old page: ${e.kinds.join(', ')}`,
         e.dropped && 'Old "Check out more from iGUIDE" post list not imported (the page shows related posts)',
         card?.thumb && e.headerImg && card.thumb !== e.headerImg && `Card thumbnail on the old site: ${card.thumb}`,
       ]

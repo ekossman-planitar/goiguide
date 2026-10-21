@@ -3,7 +3,7 @@ import {lpLayouts, lpSectionLabels} from '../../lib/landingPages/layouts'
 import {LayoutWireframe} from './LayoutWireframe'
 
 /** Layout choice as visual cards with a wireframe of each layout and a link to a full example. */
-export function LayoutPicker(props: StringInputProps) {
+export function LayoutPicker(props: Readonly<StringInputProps>) {
   const {value, onChange, readOnly} = props
   return (
     <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12}}>

@@ -48,7 +48,7 @@ function wireAccordion(trigger: HTMLElement, panel: HTMLElement, index: number) 
   }
 }
 
-export function ArticleBody({html}: {html: string}) {
+export function ArticleBody({html}: Readonly<{html: string}>) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

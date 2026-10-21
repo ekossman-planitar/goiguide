@@ -21,10 +21,10 @@ export function ReportScaleFit({nativeWidth = 1200, nativeHeight}: {nativeWidth?
     fit()
     const observer = new ResizeObserver(fit)
     observer.observe(outer)
-    window.addEventListener('resize', fit)
+    globalThis.addEventListener('resize', fit)
     return () => {
       observer.disconnect()
-      window.removeEventListener('resize', fit)
+      globalThis.removeEventListener('resize', fit)
     }
   }, [nativeWidth, nativeHeight])
   return null

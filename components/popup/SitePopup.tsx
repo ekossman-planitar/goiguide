@@ -24,7 +24,7 @@ const DAY = 86_400_000
 
 function store(kind: 'local' | 'session') {
   try {
-    return kind === 'local' ? window.localStorage : window.sessionStorage
+    return kind === 'local' ? globalThis.localStorage : globalThis.sessionStorage
   } catch {
     return null
   }
@@ -63,7 +63,7 @@ function pick(popups: PopupData[], path: string, landingPage: boolean, now: numb
   )
 }
 
-export function SitePopup({popups, landingPage}: {popups: PopupData[]; landingPage: boolean}) {
+export function SitePopup({popups, landingPage}: Readonly<{popups: PopupData[]; landingPage: boolean}>) {
   const pathname = usePathname()
   const [popup, setPopup] = useState<PopupData>()
   const [open, setOpen] = useState(false)
@@ -71,7 +71,7 @@ export function SitePopup({popups, landingPage}: {popups: PopupData[]; landingPa
 
   // Choose the pop-up for this page and wait for its trigger
   useEffect(() => {
-    const previewId = new URLSearchParams(window.location.search).get('popup-preview')
+    const previewId = new URLSearchParams(globalThis.location.search).get('popup-preview')
     const preview = previewId ? popups.find((p) => p._id === previewId) : undefined
     const chosen = preview ?? pick(popups, pathname, landingPage, Date.now())
     if (!chosen) return
@@ -92,15 +92,15 @@ export function SitePopup({popups, landingPage}: {popups: PopupData[]; landingPa
       return cleanup
     }
     const trigger = chosen.trigger ?? 'delay'
-    const desktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    const desktop = globalThis.matchMedia('(hover: hover) and (pointer: fine)').matches
     if (trigger === 'scroll') {
       const pct = (chosen.scrollPercent ?? 40) / 100
       const onScroll = () => {
-        const max = document.documentElement.scrollHeight - window.innerHeight
-        if (max <= 0 || window.scrollY / max >= pct) show()
+        const max = document.documentElement.scrollHeight - globalThis.innerHeight
+        if (max <= 0 || globalThis.scrollY / max >= pct) show()
       }
-      window.addEventListener('scroll', onScroll, {passive: true})
-      listeners.push(() => window.removeEventListener('scroll', onScroll))
+      globalThis.addEventListener('scroll', onScroll, {passive: true})
+      listeners.push(() => globalThis.removeEventListener('scroll', onScroll))
       onScroll()
     } else if (trigger === 'exit' && desktop) {
       const onOut = (e: MouseEvent) => {
@@ -109,8 +109,8 @@ export function SitePopup({popups, landingPage}: {popups: PopupData[]; landingPa
       document.addEventListener('mouseout', onOut)
       listeners.push(() => document.removeEventListener('mouseout', onOut))
     } else {
-      const timer = window.setTimeout(show, Math.max(0, chosen.delaySeconds ?? 5) * 1000)
-      listeners.push(() => window.clearTimeout(timer))
+      const timer = globalThis.setTimeout(show, Math.max(0, chosen.delaySeconds ?? 5) * 1000)
+      listeners.push(() => globalThis.clearTimeout(timer))
     }
     return cleanup
   }, [popups, pathname, landingPage])
@@ -158,7 +158,7 @@ export function SitePopup({popups, landingPage}: {popups: PopupData[]; landingPa
   )
 }
 
-function ImagePopup({popup, onLinkClick}: {popup: PopupData; onLinkClick: () => void}) {
+function ImagePopup({popup, onLinkClick}: Readonly<{popup: PopupData; onLinkClick: () => void}>) {
   const img = popup.image!
   const dims = img.asset?.metadata?.dimensions
   const picture = (
@@ -188,7 +188,7 @@ function ImagePopup({popup, onLinkClick}: {popup: PopupData; onLinkClick: () => 
 /** Bold text in the popup description is shown in the popup's highlight colour */
 const HighlightColour = createContext<string>(DEFAULT_COLOURS.highlight)
 
-function HighlightStrong({children}: {children?: ReactNode}) {
+function HighlightStrong({children}: Readonly<{children?: ReactNode}>) {
   const colour = useContext(HighlightColour)
   return (
     <strong style={{color: colour}} className="font-bold">
@@ -199,7 +199,7 @@ function HighlightStrong({children}: {children?: ReactNode}) {
 
 const DESCRIPTION_COMPONENTS = {marks: {strong: HighlightStrong}}
 
-function SplitPopup({popup, onCta, onExpire}: {popup: PopupData; onCta: () => void; onExpire: () => void}) {
+function SplitPopup({popup, onCta, onExpire}: Readonly<{popup: PopupData; onCta: () => void; onExpire: () => void}>) {
   const bg = popup.backgroundColour || DEFAULT_COLOURS.background
   const text = popup.textColour || DEFAULT_COLOURS.text
   const highlight = popup.highlightColour || DEFAULT_COLOURS.highlight

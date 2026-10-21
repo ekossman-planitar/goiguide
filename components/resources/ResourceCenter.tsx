@@ -28,7 +28,7 @@ const pill = (active: boolean) =>
  * site (so links such as /customer-stories?category=insurance-and-restoration
  * keep working). Choosing a filter updates the address bar without reloading.
  */
-export function ResourceCenter({items, initialType = ALL}: Props) {
+export function ResourceCenter({items, initialType = ALL}: Readonly<Props>) {
   const [active, setActive] = useState<string>(initialType)
   const [category, setCategory] = useState<string>(ALL)
   const [shown, setShown] = useState(PAGE_SIZE)
@@ -37,7 +37,7 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
 
   // Read ?category= once on load (keeps the page static: no useSearchParams)
   useEffect(() => {
-    const fromUrl = new URLSearchParams(window.location.search).get('category')
+    const fromUrl = new URLSearchParams(globalThis.location.search).get('category')
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (fromUrl) setCategory(fromUrl)
   }, [])
@@ -54,9 +54,9 @@ export function ResourceCenter({items, initialType = ALL}: Props) {
 
   const updateUrl = (typeName: string, cat: string) => {
     const config = getResourceType(typeName)
-    const url = new URL(config?.basePath ?? RESOURCE_CENTER_PATH, window.location.origin)
+    const url = new URL(config?.basePath ?? RESOURCE_CENTER_PATH, globalThis.location.origin)
     if (cat !== ALL) url.searchParams.set('category', cat)
-    window.history.replaceState(null, '', url)
+    globalThis.history.replaceState(null, '', url)
   }
 
   const chooseType = (name: string) => {

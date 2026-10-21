@@ -18,7 +18,7 @@ type Props = {
 const bgs: Record<SectionBg, string> = {white: 'bg-white', surface: 'bg-surface', sky: 'bg-sky'}
 
 /** Band of partner / customer logos. Logos are not links. */
-export function LogoBand({heading, logos, variant = 'row', background = 'white', cards = false}: Props) {
+export function LogoBand({heading, logos, variant = 'row', background = 'white', cards = false}: Readonly<Props>) {
   const logo = (l: Img) => (
     <FallbackImage
       src={l.src}

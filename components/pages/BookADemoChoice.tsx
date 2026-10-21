@@ -30,11 +30,11 @@ export function BookADemoChoice() {
 
   useEffect(() => {
     const check = () => {
-      if (window.location.hash === '#learn-more') setOpen(true)
+      if (globalThis.location.hash === '#learn-more') setOpen(true)
     }
     check()
-    window.addEventListener('hashchange', check)
-    return () => window.removeEventListener('hashchange', check)
+    globalThis.addEventListener('hashchange', check)
+    return () => globalThis.removeEventListener('hashchange', check)
   }, [])
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export function BookADemoChoice() {
           type="button"
           onClick={() => {
             setOpen(true)
-            window.location.hash = 'learn-more'
+            globalThis.location.hash = 'learn-more'
           }}
           className={`toggle-mle-lightbox ${buttonBase} border-primary bg-white text-primary hover:border-primary-hover hover:text-primary-hover`}
         >
@@ -94,11 +94,11 @@ export function BookADemoChoice() {
  */
 export function OpenCalendlyFromParam() {
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const fromSite = document.referrer.includes('https://goiguide.com/') || document.referrer.startsWith(`${window.location.origin}/`)
+    const params = new URLSearchParams(globalThis.location.search)
+    const fromSite = document.referrer.includes('https://goiguide.com/') || document.referrer.startsWith(`${globalThis.location.origin}/`)
     if (params.get('openCalendly') !== 'true' || !fromSite) return
-    const open = () => (window as unknown as {Calendly?: CalendlyApi}).Calendly?.initPopupWidget({url: OPEN_CALENDLY_URL})
-    if ((window as unknown as {Calendly?: CalendlyApi}).Calendly) {
+    const open = () => (globalThis as unknown as {Calendly?: CalendlyApi}).Calendly?.initPopupWidget({url: OPEN_CALENDLY_URL})
+    if ((globalThis as unknown as {Calendly?: CalendlyApi}).Calendly) {
       open()
       return
     }
@@ -121,10 +121,10 @@ export function FloatingDemoButton() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 100)
+    const onScroll = () => setVisible(globalThis.scrollY > 100)
     onScroll()
-    window.addEventListener('scroll', onScroll, {passive: true})
-    return () => window.removeEventListener('scroll', onScroll)
+    globalThis.addEventListener('scroll', onScroll, {passive: true})
+    return () => globalThis.removeEventListener('scroll', onScroll)
   }, [])
 
   return (

@@ -43,7 +43,7 @@ export function usePricingFilters(packages: PackageData[]) {
 }
 
 /** Segmented CAD / USD / AUD switch. */
-export function CurrencySwitch({value, onChange}: {value: Currency; onChange: (c: Currency) => void}) {
+export function CurrencySwitch({value, onChange}: Readonly<{value: Currency; onChange: (c: Currency) => void}>) {
   return (
     <div role="radiogroup" aria-label="Currency" className="inline-flex rounded-full border border-line bg-white p-1">
       {currencies.map((c) => (
@@ -70,11 +70,11 @@ export function IndustryFilter({
   value,
   onChange,
   variant = 'chips',
-}: {
+}: Readonly<{
   value: IndustryId
   onChange: (i: IndustryId) => void
   variant?: 'chips' | 'select'
-}) {
+}>) {
   if (variant === 'select') {
     return (
       <Select
@@ -117,12 +117,12 @@ export function PriceTag({
   prices,
   currency,
   size = 'md',
-}: {
+}: Readonly<{
   label?: string
   prices: Prices
   currency: Currency
   size?: 'sm' | 'md' | 'lg'
-}) {
+}>) {
   const price = prices[currency]
   return (
     <div>
@@ -151,14 +151,14 @@ export function PackageImage({
   className,
   thumb = false,
   bare = false,
-}: {
+}: Readonly<{
   src: string
   alt: string
   className?: string
   thumb?: boolean
   /** No background box or padding around the image */
   bare?: boolean
-}) {
+}>) {
   return (
     <div className={cn('relative overflow-hidden', !bare && 'bg-surface', thumb ? 'rounded-lg' : 'rounded-xl', className)}>
       <FallbackImage
@@ -173,7 +173,7 @@ export function PackageImage({
 }
 
 /** Checkmark list of what a package includes. */
-export function IncludesList({items}: {items: string[]}) {
+export function IncludesList({items}: Readonly<{items: string[]}>) {
   return (
     <ul className="mt-3 space-y-1.5 text-sm leading-[22px] text-body">
       {items.map((item) => (
@@ -189,7 +189,7 @@ export function IncludesList({items}: {items: string[]}) {
 }
 
 /** Camera photo, or an empty panel until the file is added. */
-export function CameraImage({src, alt, sizes}: {src: string; alt: string; sizes: string}) {
+export function CameraImage({src, alt, sizes}: Readonly<{src: string; alt: string; sizes: string}>) {
   return (
     <FallbackImage
       src={src}
@@ -203,7 +203,7 @@ export function CameraImage({src, alt, sizes}: {src: string; alt: string; sizes:
 }
 
 /** Small text link with arrow. */
-export function ArrowLink({href, children, className}: {href: string; children: React.ReactNode; className?: string}) {
+export function ArrowLink({href, children, className}: Readonly<{href: string; children: React.ReactNode; className?: string}>) {
   return (
     <a href={href} className={cn('text-link text-sm', className)}>
       {children}

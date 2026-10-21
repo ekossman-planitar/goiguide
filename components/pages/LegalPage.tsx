@@ -30,7 +30,7 @@ type Props = {
 }
 
 /** Long-form legal / rules page: h1, optional "last updated" line, readable narrow body. */
-export function LegalPage({title, lastUpdated, html, children}: Props) {
+export function LegalPage({title, lastUpdated, html, children}: Readonly<Props>) {
   return (
     <Container as="article" size="narrow" className="py-16 lg:py-20">
       <header className="border-b border-line pb-8">

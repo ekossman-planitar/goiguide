@@ -21,7 +21,7 @@ type Props = {
  * right (3/4). Each tour only loads when its tab is first opened, then stays
  * loaded so switching back is instant.
  */
-export function TourShowcase({eyebrow, heading, subheading, tours}: Props) {
+export function TourShowcase({eyebrow, heading, subheading, tours}: Readonly<Props>) {
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0]))
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])

@@ -110,7 +110,7 @@ export function formatEventDate(e: {startAt: string; endAt?: string | null; allD
   if (days.length <= 1) date = dateFmt(start)
   else {
     const s = zonedDate(e.startAt, timeZone)
-    const last = days[days.length - 1].split('-').map(Number)
+    const last = days.at(-1)!.split('-').map(Number)
     const sameMonth = s.y === last[0] && s.m === last[1]
     date = sameMonth && !opts.weekday
       ? `${start.toLocaleDateString('en-US', {timeZone, month: 'short', day: 'numeric'})}–${last[2]}, ${last[0]}`

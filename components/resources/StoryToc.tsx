@@ -7,24 +7,24 @@ import {cn} from '@/lib/cn'
  * "On this page" menu beside a customer story. Highlights the section being
  * read. Plain #anchor links, so it works without JavaScript too.
  */
-export function StoryToc({items}: {items: {id: string; label: string}[]}) {
+export function StoryToc({items}: Readonly<{items: {id: string; label: string}[]}>) {
   const [active, setActive] = useState<string | undefined>(items[0]?.id)
 
   useEffect(() => {
     const els = items.map((i) => document.getElementById(i.id)).filter((el): el is HTMLElement => !!el)
     // The active section is the last one whose top has scrolled past ~a third of the screen
     const update = () => {
-      const line = window.innerHeight / 3
+      const line = globalThis.innerHeight / 3
       let current = els[0]?.id
       for (const el of els) if (el.getBoundingClientRect().top <= line) current = el.id
       setActive(current)
     }
     update()
-    window.addEventListener('scroll', update, {passive: true})
-    window.addEventListener('resize', update)
+    globalThis.addEventListener('scroll', update, {passive: true})
+    globalThis.addEventListener('resize', update)
     return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
+      globalThis.removeEventListener('scroll', update)
+      globalThis.removeEventListener('resize', update)
     }
   }, [items])
 

@@ -3,7 +3,7 @@ import {urlFor} from '@/sanity/lib/image'
 import type {Author} from '@/sanity/lib/types'
 
 /** "About the author" panel shown at the end of an article. */
-export function AuthorBox({author}: {author: Author}) {
+export function AuthorBox({author}: Readonly<{author: Author}>) {
   return (
     <aside aria-label="About the author" className="mt-16 flex gap-5 rounded-2xl border border-line bg-surface p-6 sm:p-8">
       {author.photo?.asset ? (

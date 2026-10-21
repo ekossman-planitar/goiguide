@@ -2,7 +2,7 @@ import {Button} from '@/components/ui/Button'
 import {cn} from '@/lib/cn'
 import type {Cta} from './types'
 
-export function CtaButtons({ctas, className}: {ctas: Cta[]; className?: string}) {
+export function CtaButtons({ctas, className}: Readonly<{ctas: Cta[]; className?: string}>) {
   if (!ctas.length) return null
   return (
     <div className={cn('flex flex-wrap gap-3', className)}>

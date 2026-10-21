@@ -42,8 +42,8 @@ function clean(value, key) {
     const next = value
       .replace(COLON_AFTER, (_, w) => `${w}: `)
       .replace(SEMI_BEFORE, '; ')
-      .replace(/\s*—\s*/g, ', ')
-      .replace(/,\s*,/g, ',')
+      .replaceAll(/\s*—\s*/g, ', ')
+      .replaceAll(/,\s*,/g, ',')
       .replace(/^,\s*/, '')
     changes.push([value, next])
     return next
@@ -79,13 +79,13 @@ for (const doc of docs) {
 }
 
 console.log(`\n${tx.length} of ${docs.length} documents ${APPLY ? 'updated' : 'would change'} (${changes.length} text fields).`)
-if (!APPLY) {
-  console.log('Dry run only. Add -- --apply to write the changes.')
-} else {
+if (APPLY) {
   for (let i = 0; i < tx.length; i += 50) {
     const batch = client.transaction()
     for (const p of tx.slice(i, i + 50)) batch.patch(p)
     await batch.commit({visibility: 'async'})
   }
   console.log('Done.')
+} else {
+  console.log('Dry run only. Add -- --apply to write the changes.')
 }

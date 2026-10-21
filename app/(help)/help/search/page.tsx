@@ -24,7 +24,7 @@ function resultsSummary(query: string, failed: boolean, count: number) {
   return `${count} ${count === 1 ? 'result' : 'results'} for “${query}”`
 }
 
-export default async function SearchPage({searchParams}: Props) {
+export default async function SearchPage({searchParams}: Readonly<Props>) {
   const params = await searchParams
   const query = (one(params.query) ?? '').trim().slice(0, 200)
   const page = Math.max(1, Number.parseInt(one(params.page) ?? '1', 10) || 1)

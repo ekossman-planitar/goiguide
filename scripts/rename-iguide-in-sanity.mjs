@@ -60,13 +60,13 @@ for (const doc of docs) {
 }
 
 console.log(`\n${changed} of ${docs.length} documents ${APPLY ? 'updated' : 'would change'}:`, byType)
-if (!APPLY) {
-  console.log('\nDry run only. Add -- --apply to write the changes.')
-} else {
+if (APPLY) {
   for (let i = 0; i < tx.length; i += 50) {
     const batch = client.transaction()
     for (const p of tx.slice(i, i + 50)) batch.patch(p)
     await batch.commit({visibility: 'async'})
   }
   console.log('Done.')
+} else {
+  console.log('\nDry run only. Add -- --apply to write the changes.')
 }

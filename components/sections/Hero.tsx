@@ -13,7 +13,7 @@ type HeroProps = {
 }
 
 /** Two-column hero: copy on the left, image or video on the right. */
-export function Hero({data, footer}: HeroProps) {
+export function Hero({data, footer}: Readonly<HeroProps>) {
   const {eyebrow, heading, subheading, cta, secondaryCta, media} = data
   const hasPrimary = Boolean(cta?.href && cta.label)
   const hasSecondary = Boolean(secondaryCta?.href && secondaryCta.label)

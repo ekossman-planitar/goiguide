@@ -108,7 +108,7 @@ export async function getFeaturedBadges(): Promise<ForumBadge[]> {
     .map((b) => ({
       id: b.id,
       name: b.name,
-      description: b.description.replace(/<[^>]+>/g, '').trim(),
+      description: b.description.replaceAll(/<[^>]+>/g, '').trim(),
       tier: TIERS[b.badge_type_id] ?? 'Bronze',
       earnedBy: b.grant_count,
       url: `${FORUM_ORIGIN}/badges/${b.id}/${b.slug}`,

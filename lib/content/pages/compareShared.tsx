@@ -39,7 +39,7 @@ export const lookInsideV2: Img = {src: '/assets/Uploads/look-v2.png', alt: 'logo
 export const comparePlanixImage: Img = {src: '/assets/iguide-vs-competitors-planix-r1.png', alt: 'photo - PLANIX R1 Camera System'}
 
 /** "Trusted by professionals" items: title + one line each */
-export function ProList({items}: {items: {title: string; text: string}[]}) {
+export function ProList({items}: Readonly<{items: {title: string; text: string}[]}>) {
   return (
     <div className="space-y-6">
       {items.map((item) => (

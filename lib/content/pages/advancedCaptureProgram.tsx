@@ -17,7 +17,7 @@ export const meta = {
 
 const training = 'https://planitarexternal.myabsorb.ca/?KeyName=ACPv2Open'
 
-const Eyebrow = ({children}: {children: ReactNode}) => (
+const Eyebrow = ({children}: Readonly<{children: ReactNode}>) => (
   <span className="inline-flex rounded-full bg-cream px-3 py-2 text-xs font-semibold text-ink">{children}</span>
 )
 

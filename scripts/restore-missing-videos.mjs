@@ -14,7 +14,7 @@ import {getCliClient} from 'sanity/cli'
 
 const client = getCliClient({apiVersion: '2026-10-06'})
 const APPLY = process.argv.includes('--apply')
-const key = () => randomUUID().replace(/-/g, '').slice(0, 12)
+const key = () => randomUUID().replaceAll(/-/g, '').slice(0, 12)
 const block = (text, style = 'normal') => ({_type: 'block', _key: key(), style, markDefs: [], children: [{_type: 'span', _key: key(), text, marks: []}]})
 const video = (id, title) => ({_type: 'videoEmbed', _key: key(), url: `https://www.youtube.com/embed/${id}`, title})
 

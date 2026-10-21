@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 /** Australia section: same look as the global site, with its own navigation. */
-export default function AuLayout({children}: {children: React.ReactNode}) {
+export default function AuLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <>
       {/* Sitewide announcements show here too, as on live */}

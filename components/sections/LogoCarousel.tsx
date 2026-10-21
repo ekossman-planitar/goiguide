@@ -34,7 +34,7 @@ function logoSrc(src: string) {
  * Infinite logo strip. Autoplays, pauses on hover, can be dragged with mouse or
  * touch. Logos are not links. Autoplay is off when the user prefers reduced motion.
  */
-export function LogoCarousel({heading, logos, speed = 40}: Props) {
+export function LogoCarousel({heading, logos, speed = 40}: Readonly<Props>) {
   if (!logos.length) return null
 
   return (

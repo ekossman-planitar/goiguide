@@ -10,7 +10,7 @@ const ink = '#a1a1aa'
 const soft = '#e4e4e7'
 const blue = '#2e2c30'
 
-function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; y: number}) {
+function Band({type, heroStyle, y}: Readonly<{type: LpSectionType; heroStyle: HeroStyle; y: number}>) {
   const lines = (x: number, yy: number, widths: number[], h = 2.5) =>
     widths.map((w, i) => <rect key={i} x={x} y={yy + i * 5} width={w} height={h} rx={1} fill={i === 0 ? ink : soft} />)
   switch (type) {
@@ -183,7 +183,7 @@ function Band({type, heroStyle, y}: {type: LpSectionType; heroStyle: HeroStyle; 
 
 const heights: Partial<Record<LpSectionType, number>> = {lpTourDemo: 40, lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
 
-export function LayoutWireframe({sections, heroStyle, width = 160}: {sections: LpSectionType[]; heroStyle: HeroStyle; width?: number}) {
+export function LayoutWireframe({sections, heroStyle, width = 160}: Readonly<{sections: LpSectionType[]; heroStyle: HeroStyle; width?: number}>) {
   // Top of each band, computed up front
   const tops = sections.reduce<number[]>((acc, type, i) => [...acc, i === 0 ? 10 : acc[i - 1] + (heights[sections[i - 1]] ?? 30)], [])
   const total = (tops.at(-1) ?? 10) + (heights[sections.at(-1)!] ?? 30) + 8

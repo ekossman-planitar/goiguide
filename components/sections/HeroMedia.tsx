@@ -3,7 +3,7 @@ import {urlFor} from '@/sanity/lib/image'
 import type {HeroMediaData} from '@/sanity/lib/types'
 
 /** Right side of the hero: Sanity image or autoplaying muted video in a 16:9 frame. */
-export function HeroMedia({media}: {media?: HeroMediaData | null}) {
+export function HeroMedia({media}: Readonly<{media?: HeroMediaData | null}>) {
   const frame = 'relative aspect-video w-full min-w-0 flex-1 overflow-hidden rounded-2xl bg-surface'
 
   if (media?.mediaType === 'video' && media.videoSrc) {
@@ -25,7 +25,7 @@ export function HeroMedia({media}: {media?: HeroMediaData | null}) {
     )
   }
 
-  const image = media?.mediaType !== 'video' ? media?.image : null
+  const image = media?.mediaType === 'video' ? null : media?.image
   if (image?.asset) {
     return (
       <div className={frame}>

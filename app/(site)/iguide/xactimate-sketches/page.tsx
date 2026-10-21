@@ -53,7 +53,7 @@ export default function XactimateSketchesPage() {
   )
 }
 
-function StoryQuotes({quotes}: {quotes: typeof c.stories.quotes}) {
+function StoryQuotes({quotes}: Readonly<{quotes: typeof c.stories.quotes}>) {
   return (
     <ul className="grid gap-6 lg:grid-cols-3">
       {quotes.map((q) => (

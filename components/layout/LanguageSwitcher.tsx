@@ -35,7 +35,7 @@ const OPTIONS = LANGUAGES.map((code) => ({value: code, label: NAME_OVERRIDES[cod
 const noop = () => () => {}
 
 /** Current language from Google Translate's cookie (googtrans=/en/fr) */
-const currentLanguage = () => document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]+\/([^;]+)/)?.[1] ?? 'en'
+const currentLanguage = () => /(?:^|;\s*)googtrans=\/[^/]+\/([^;]+)/.exec(document.cookie)?.[1] ?? 'en'
 
 /**
  * Our styled dropdown drives GTranslate's own (hidden) select: picking a

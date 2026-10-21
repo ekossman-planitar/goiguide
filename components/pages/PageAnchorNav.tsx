@@ -2,7 +2,7 @@ import {SmartLink} from '@/components/ui/SmartLink'
 import {Container} from '@/components/ui/Container'
 
 /** Row of in-page jump links under a hero (the live site's "Sub navigation" bar). */
-export function PageAnchorNav({links, label = 'On this page'}: {links: {label: string; href: string}[]; label?: string}) {
+export function PageAnchorNav({links, label = 'On this page'}: Readonly<{links: {label: string; href: string}[]; label?: string}>) {
   return (
     <div className="border-y border-line bg-white">
       <Container>

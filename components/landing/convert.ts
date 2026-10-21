@@ -13,7 +13,7 @@ export function lpImg(image: LpImage | undefined, fallbackAlt = ''): Img | undef
 
 /** YouTube watch/short links → embed URL */
 export function youtubeEmbed(url: string) {
-  const id = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/)?.[1]
+  const id = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/.exec(url)?.[1]
   return id ? `https://www.youtube.com/embed/${id}` : url
 }
 

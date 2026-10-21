@@ -5,13 +5,13 @@ import {useEffect, useState} from 'react'
 const pad = (n: number) => String(n).padStart(2, '0')
 
 /** Days / hours / minutes / seconds until `endsAt`; calls onDone once at zero. */
-export function Countdown({endsAt, label, colour, onDone}: {endsAt: string; label: string; colour: string; onDone: () => void}) {
+export function Countdown({endsAt, label, colour, onDone}: Readonly<{endsAt: string; label: string; colour: string; onDone: () => void}>) {
   const end = Date.parse(endsAt)
   const [now, setNow] = useState(() => Date.now())
 
   useEffect(() => {
-    const timer = window.setInterval(() => setNow(Date.now()), 1000)
-    return () => window.clearInterval(timer)
+    const timer = globalThis.setInterval(() => setNow(Date.now()), 1000)
+    return () => globalThis.clearInterval(timer)
   }, [])
 
   const left = Math.max(0, end - now)

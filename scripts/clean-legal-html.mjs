@@ -27,10 +27,10 @@ const RENAME = {b: 'strong', i: 'em', h1: 'h2', h6: 'h5'}
 const DROP = new Set(['script', 'style', 'noscript', 'iframe', 'button', 'svg', 'img', 'form', 'input'])
 const BLOCK = new Set(['h2', 'h3', 'h4', 'h5', 'p', 'ul', 'ol', 'li', 'table', 'thead', 'tbody', 'tr'])
 
-const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-const escAttr = (s) => esc(s).replace(/"/g, '&quot;')
-const text = (s) => s.replace(/[ \s]+/g, ' ')
-const words = (s) => s.replace(/[ \s]+/g, ' ').trim().split(' ').filter(Boolean).length
+const esc = (s) => s.replaceAll(/&/g, '&amp;').replaceAll(/</g, '&lt;').replaceAll(/>/g, '&gt;')
+const escAttr = (s) => esc(s).replaceAll(/"/g, '&quot;')
+const text = (s) => s.replaceAll(/[ \s]+/g, ' ')
+const words = (s) => s.replaceAll(/[ \s]+/g, ' ').trim().split(' ').filter(Boolean).length
 
 function href(raw) {
   let h = raw.trim()
@@ -64,7 +64,7 @@ function tagAttrs(node, tag) {
 }
 
 function wrapElement(tag, attrs, inner) {
-  const body = BLOCK.has(tag) && !['li', 'p'].includes(tag) ? inner.trim() : inner.replace(/^ +| +$/g, (m) => (m ? ' ' : ''))
+  const body = BLOCK.has(tag) && !['li', 'p'].includes(tag) ? inner.trim() : inner.replaceAll(/^ +| +$/g, (m) => (m ? ' ' : ''))
   const trimBody = tag === 'p' || tag === 'li' || /^h\d$/.test(tag) || isCell(tag)
   const out = `<${tag}${attrs}>${trimBody ? body.trim() : body}</${tag}>`
   return BLOCK.has(tag) ? `\n${out}\n` : out
@@ -80,7 +80,7 @@ function serialize(node) {
   if (!KEEP.has(tag)) return inner // span, div, font…: keep the text, lose the wrapper
   if (tag === 'br') return '<br>'
   // Empty paragraphs / headings / inline tags (e.g. <p>&nbsp;</p>) carry no content
-  if (!isCell(tag) && !inner.replace(/<br>/g, '').trim()) return ''
+  if (!isCell(tag) && !inner.replaceAll(/<br>/g, '').trim()) return ''
   const attrs = tagAttrs(node, tag)
   if (attrs === null) return inner
   return wrapElement(tag, attrs, inner)
@@ -88,12 +88,12 @@ function serialize(node) {
 
 const tidy = (html) =>
   html
-    .replace(/\n\s*\n+/g, '\n')
-    .replace(/ +\n/g, '\n')
-    .replace(/\n +/g, '\n')
+    .replaceAll(/\n\s*\n+/g, '\n')
+    .replaceAll(/ +\n/g, '\n')
+    .replaceAll(/\n +/g, '\n')
     .trim()
 
-const forTemplate = (s) => s.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${')
+const forTemplate = (s) => s.replaceAll(/\\/g, '\\\\').replaceAll(/`/g, '\\`').replaceAll(/\$\{/g, '\\${')
 
 for (const page of PAGES) {
   const dom = new JSDOM(readFileSync(`${SAMPLES}/${page.file}`, 'utf8'), {virtualConsole: quiet})

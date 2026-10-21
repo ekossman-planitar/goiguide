@@ -61,4 +61,4 @@ export const australiaOrganizationJsonLd = {
   parentOrganization: {'@id': `${SITE}/#organization`, '@type': 'Organization', name: 'iGuide', url: SITE},
 }
 
-export const jsonLdScript = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c')
+export const jsonLdScript = (data: object) => JSON.stringify(data).replaceAll(/</g, String.raw`\u003c`)

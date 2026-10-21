@@ -22,7 +22,7 @@ export type PackageTab = {
  * Pill tabs, one package per panel: description, checklist, preview image and
  * sample links (live: /design-construction "iGuide Packages", #packageTabs).
  */
-export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) {
+export function PackageTabs({tabs, label}: Readonly<{tabs: PackageTab[]; label: string}>) {
   const [active, setActive] = useState(0)
   const refs = useRef<(HTMLButtonElement | null)[]>([])
 

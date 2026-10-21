@@ -19,7 +19,7 @@ type Props = {
  * Button that opens a HubSpot form in a modal, like the live site's lightbox
  * buttons. The form is only created the first time the dialog opens.
  */
-export function FormDialogButton({label, title, formId, id, variant = 'primary', className}: Props) {
+export function FormDialogButton({label, title, formId, id, variant = 'primary', className}: Readonly<Props>) {
   const ref = useRef<HTMLDialogElement>(null)
   const [opened, setOpened] = useState(false)
 

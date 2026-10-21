@@ -140,14 +140,14 @@ export function sectionTrail(section: HelpSection, sections: HelpSection[]): Hel
 /** Plain-text excerpt for meta descriptions (Zendesk uses the opening text too) */
 export function excerpt(html: string, max = 155): string {
   const text = html
-    .replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&rsquo;|&lsquo;/g, "'")
-    .replace(/&[a-z#0-9]+;/gi, ' ')
-    .replace(/\s+/g, ' ')
+    .replaceAll(/<(script|style)[\s\S]*?<\/\1>/gi, ' ')
+    .replaceAll(/<[^>]+>/g, ' ')
+    .replaceAll(/&nbsp;/g, ' ')
+    .replaceAll(/&amp;/g, '&')
+    .replaceAll(/&quot;/g, '"')
+    .replaceAll(/&#39;|&rsquo;|&lsquo;/g, "'")
+    .replaceAll(/&[a-z#0-9]+;/gi, ' ')
+    .replaceAll(/\s+/g, ' ')
     .trim()
   return text.length > max ? `${text.slice(0, max - 1).replace(/\s+\S*$/, '')}…` : text
 }

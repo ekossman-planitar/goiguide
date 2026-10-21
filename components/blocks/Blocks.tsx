@@ -57,7 +57,7 @@ export type Block =
   | {type: 'cta'; heading: string; text?: string; ctas: Cta[]}
   | (Head & {type: 'custom'; children: ReactNode})
 
-function SectionLink({link}: {link: Link}) {
+function SectionLink({link}: Readonly<{link: Link}>) {
   return (
     <SmartLink
       href={link.href}
@@ -70,7 +70,7 @@ function SectionLink({link}: {link: Link}) {
   )
 }
 
-function BlockView({block, index}: {block: Block; index: number}) {
+function BlockView({block, index}: Readonly<{block: Block; index: number}>) {
   switch (block.type) {
     case 'hero':
       return (
@@ -165,7 +165,7 @@ function BlockView({block, index}: {block: Block; index: number}) {
   }
 }
 
-export function Blocks({blocks}: {blocks: Block[]}) {
+export function Blocks({blocks}: Readonly<{blocks: Block[]}>) {
   return (
     <>
       {blocks.map((block, i) => (
@@ -176,7 +176,7 @@ export function Blocks({blocks}: {blocks: Block[]}) {
 }
 
 /** Row of testimonials under a heading; the whole section is left out if every quote is hidden in Sanity. */
-async function QuotesSection({block}: {block: Extract<Block, {type: 'quotes'}>}) {
+async function QuotesSection({block}: Readonly<{block: Extract<Block, {type: 'quotes'}>}>) {
   const quotes = await resolveQuotes(block.quotes)
   if (!quotes.length) return null
   return (

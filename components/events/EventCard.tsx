@@ -8,7 +8,7 @@ import {eventPlace, type EventCardData} from './types'
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 /** One event in the /events list: date tile, details, optional image. */
-export function EventCard({event, live, headingLevel = 'h3'}: {event: EventCardData; live?: boolean; headingLevel?: 'h2' | 'h3'}) {
+export function EventCard({event, live, headingLevel = 'h3'}: Readonly<{event: EventCardData; live?: boolean; headingLevel?: 'h2' | 'h3'}>) {
   const tz = event.timeZone || DEFAULT_TIME_ZONE
   const {m, d} = zonedDate(event.startAt, tz)
   const place = eventPlace(event)

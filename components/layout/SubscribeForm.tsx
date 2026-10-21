@@ -10,11 +10,11 @@ type HubSpotForms = {forms: {create: (options: Record<string, unknown>) => void}
  * Submissions go straight from the browser to HubSpot; this site never sees them.
  * HubSpot's own CSS is turned off; styles live in globals.css (.subscribe-form).
  */
-export function SubscribeForm({portalId, formId}: {portalId: string; formId: string}) {
-  const targetId = `hs-subscribe-${useId().replace(/:/g, '')}`
+export function SubscribeForm({portalId, formId}: Readonly<{portalId: string; formId: string}>) {
+  const targetId = `hs-subscribe-${useId().replaceAll(/:/g, '')}`
 
   const create = useCallback(() => {
-    const hbspt = (window as unknown as {hbspt?: HubSpotForms}).hbspt
+    const hbspt = (globalThis as unknown as {hbspt?: HubSpotForms}).hbspt
     const target = document.getElementById(targetId)
     // Don't render twice (React strict mode / remounts)
     if (!hbspt || !target || target.childElementCount > 0) return

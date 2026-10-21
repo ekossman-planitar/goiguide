@@ -20,7 +20,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 }
 
 /** Full example of one landing page layout, with sample content (not linked from the site). */
-export default async function LandingTemplatePage({params}: Props) {
+export default async function LandingTemplatePage({params}: Readonly<Props>) {
   const {layout: id} = await params
   const layout = lpLayouts.find((l) => l.id === id)
   if (!layout) notFound()

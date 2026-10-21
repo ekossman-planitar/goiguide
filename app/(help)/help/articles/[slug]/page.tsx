@@ -49,7 +49,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return pageMetadata({title: `${article.title} | iGuide Help Center`, description: excerpt(article.body), path: articlePath(article)})
 }
 
-export default async function ArticlePage({params}: Props) {
+export default async function ArticlePage({params}: Readonly<Props>) {
   const {slug} = await params
   const article = await load(slug)
   if (!article) notFound()
@@ -120,7 +120,7 @@ export default async function ArticlePage({params}: Props) {
 }
 
 /** "Articles in this section": sidebar on desktop, collapsible on phones (as on help.youriguide.com) */
-function SectionNav({sectionName, articles, currentId}: {sectionName: string; articles: HelpArticleSummary[]; currentId: number}) {
+function SectionNav({sectionName, articles, currentId}: Readonly<{sectionName: string; articles: HelpArticleSummary[]; currentId: number}>) {
   const list = (
     <ul className="mt-3 space-y-0.5 border-l border-line">
       {articles.map((a) => (

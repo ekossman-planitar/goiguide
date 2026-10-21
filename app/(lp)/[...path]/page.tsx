@@ -43,7 +43,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   }
 }
 
-export default async function LandingPage({params}: Props) {
+export default async function LandingPage({params}: Readonly<Props>) {
   const page = await getPage(params)
   if (!page) notFound()
   // "Full site navigation" pages (e.g. thank-you pages) use the normal site header and footer, as on live

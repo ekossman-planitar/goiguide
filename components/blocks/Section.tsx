@@ -19,7 +19,7 @@ type Props = {
 }
 
 /** Standard page section: background band, page-width container, optional heading. */
-export function Section({id, heading, subheading, eyebrow, align = 'left', background = 'white', children, className}: Props) {
+export function Section({id, heading, subheading, eyebrow, align = 'left', background = 'white', children, className}: Readonly<Props>) {
   return (
     <section id={id} className={cn(bgs[background], 'scroll-mt-24 py-16 lg:py-[60px]', className)}>
       <Container>

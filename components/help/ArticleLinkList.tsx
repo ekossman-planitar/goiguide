@@ -3,7 +3,7 @@ import {FileText} from 'lucide-react'
 import {articlePath, type HelpArticleSummary} from '@/lib/help/zendesk'
 
 /** Plain list of article links (category and section pages) */
-export function ArticleLinkList({articles}: {articles: HelpArticleSummary[]}) {
+export function ArticleLinkList({articles}: Readonly<{articles: HelpArticleSummary[]}>) {
   return (
     <ul className="space-y-1">
       {articles.map((a) => (

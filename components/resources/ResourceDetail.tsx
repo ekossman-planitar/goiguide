@@ -72,7 +72,7 @@ export function resourceMetadata(type: ResourceTypeName) {
   }
 }
 
-function ShareLinks({share}: {share: {label: string; href: string}[]}) {
+function ShareLinks({share}: Readonly<{share: {label: string; href: string}[]}>) {
   return (
     <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-6 text-sm">
       <span className="font-semibold text-ink">Share:</span>
@@ -87,7 +87,7 @@ function ShareLinks({share}: {share: {label: string; href: string}[]}) {
 
 const schemaTypes: Partial<Record<ResourceTypeName, string>> = {blogPost: 'BlogPosting', newsArticle: 'NewsArticle'}
 
-export async function ResourceDetail({type, params}: {type: ResourceTypeName} & RouteProps) {
+export async function ResourceDetail({type, params}: Readonly<{type: ResourceTypeName} & RouteProps>) {
   const {slug} = await params
   const item = await getItem(type, slug)
   if (!item) notFound()
@@ -122,7 +122,7 @@ function shareLinks(url: string, title: string): ShareLink[] {
   ]
 }
 
-function HeaderActions({item}: {item: ResourceItem}) {
+function HeaderActions({item}: Readonly<{item: ResourceItem}>) {
   const action = resourceLink(item)
   return (
     <div className="mt-8 flex flex-wrap gap-3">
@@ -146,7 +146,7 @@ function HeaderActions({item}: {item: ResourceItem}) {
 }
 
 /** Header video, else the featured image */
-function HeaderMedia({item}: {item: ResourceItem}) {
+function HeaderMedia({item}: Readonly<{item: ResourceItem}>) {
   const image = item.featuredImage
   if (item.headerVideoUrl) {
     return (
@@ -174,7 +174,7 @@ function HeaderMedia({item}: {item: ResourceItem}) {
 type Sections = ReturnType<typeof splitSections>
 
 /** Customer stories: wider layout with the customer details box and an "On this page" menu beside the story */
-function StoryBody({item, sections, share}: {item: ResourceItem; sections: Sections; share: ShareLink[]}) {
+function StoryBody({item, sections, share}: Readonly<{item: ResourceItem; sections: Sections; share: ShareLink[]}>) {
   const toc = sections.filter((s): s is typeof s & {id: string; label: string} => !!s.id && !!s.label)
   const facts = item.customerFacts?.length ? <CustomerFacts facts={item.customerFacts} cta={item.customerCta} /> : null
   const showToc = toc.length >= 3
@@ -198,7 +198,7 @@ function StoryBody({item, sections, share}: {item: ResourceItem; sections: Secti
 }
 
 /** Blog posts: body on the left, "Book a demo" and a rotating promo on the right (below the post on small screens) */
-function BlogBody({item, sections, share}: {item: ResourceItem; sections: Sections; share: ShareLink[]}) {
+function BlogBody({item, sections, share}: Readonly<{item: ResourceItem; sections: Sections; share: ShareLink[]}>) {
   return (
     <Container className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14 xl:grid-cols-[minmax(0,760px)_320px] xl:justify-between">
       <div className="min-w-0">
@@ -215,7 +215,7 @@ function BlogBody({item, sections, share}: {item: ResourceItem; sections: Sectio
   )
 }
 
-function PlainBody({item, sections, share}: {item: ResourceItem; sections: Sections; share: ShareLink[]}) {
+function PlainBody({item, sections, share}: Readonly<{item: ResourceItem; sections: Sections; share: ShareLink[]}>) {
   return (
     <Container size="narrow">
       {sections.length ? <SectionedBody sections={sections} /> : null}
@@ -226,7 +226,7 @@ function PlainBody({item, sections, share}: {item: ResourceItem; sections: Secti
 }
 
 /** The detail page itself, from already-fetched data */
-export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; slug: string; item: ResourceItem}) {
+export function ResourceDetailView({type, slug, item}: Readonly<{type: ResourceTypeName; slug: string; item: ResourceItem}>) {
   const config = getResourceType(type)!
   const url = `https://goiguide.com${config.basePath}/${slug}`
   const showDate = !undatedTypes.has(type) && item.publishedAt
@@ -241,7 +241,7 @@ export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; 
 
   return (
     <article className="pb-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd).replace(/</g, '\\u003c')}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd).replaceAll(/</g, String.raw`\u003c`)}} />
 
       {/* Header: title and details left, image or video right */}
       <header className="bg-surface pt-8 pb-12 lg:pt-12 lg:pb-[60px]">

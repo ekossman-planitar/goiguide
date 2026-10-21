@@ -28,7 +28,7 @@ type Props = {
 const bgs: Record<SectionBg, string> = {white: 'bg-white', surface: 'bg-surface', sky: 'bg-sky'}
 
 /** Text beside an image, video or embed. */
-export function SplitSection({id, eyebrow, heading, body, listHeading, list, after, ctas = [], media, mediaSide = 'right', mediaClassName, background = 'white'}: Props) {
+export function SplitSection({id, eyebrow, heading, body, listHeading, list, after, ctas = [], media, mediaSide = 'right', mediaClassName, background = 'white'}: Readonly<Props>) {
   return (
     <section id={id} className={cn(bgs[background], 'scroll-mt-24 py-16 lg:py-[60px]')}>
       <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">

@@ -26,7 +26,7 @@ function toPreview(v: any, quotes: Map<string, any>): any {
   return v
 }
 
-export default async function Page({params}: {params: Promise<{name: string}>}) {
+export default async function Page({params}: Readonly<{params: Promise<{name: string}>}>) {
   if (process.env.NODE_ENV !== 'development') notFound()
   const {name} = await params
   const data = JSON.parse(readFileSync(join(process.cwd(), 'scripts/.import-samples/converted', `${name}.json`), 'utf8'))

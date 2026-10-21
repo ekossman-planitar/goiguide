@@ -21,7 +21,7 @@ export const hero = {
   meet: {label: 'Meet with a Project Manager', title: 'Connect with a Project Manager', formId: '5b0256e9-202f-49a6-abae-16b9e322edc9'},
 }
 
-function Steps({items}: {items: {title: string; text: string}[]}) {
+function Steps({items}: Readonly<{items: {title: string; text: string}[]}>) {
   return (
     <div className="space-y-6">
       {items.map((item) => (
@@ -36,7 +36,7 @@ function Steps({items}: {items: {title: string; text: string}[]}) {
 
 type SampleLink = {label: string; href: string; newTab?: boolean; primary?: boolean}
 
-function PackageText({intro, items, links}: {intro: string[]; items: string[]; links: SampleLink[]}) {
+function PackageText({intro, items, links}: Readonly<{intro: string[]; items: string[]; links: SampleLink[]}>) {
   return (
     <>
       {intro.map((p) => (

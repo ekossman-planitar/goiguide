@@ -166,22 +166,20 @@ export const blocks: Block[] = [
     background: 'surface',
     heading: 'Key trends shaping real estate photography in 2026',
     children: (
-      <>
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {trends.map((t) => (
-            <li key={t.label} className="rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
-              <h3 className="text-xl font-semibold text-ink">{t.label}</h3>
-              <p className="mt-3 text-base leading-6 text-body">{t.text}</p>
-            </li>
-          ))}
-          <li className="flex flex-col justify-center rounded-2xl bg-primary p-6 text-white">
-            <p className="text-xl font-semibold">Dive into the data and continue reading</p>
-            <Button href={REPORT_URL} size="lg" variant="secondary" newTab className="mt-6 w-fit">
-              Download the full report
-            </Button>
+      <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {trends.map((t) => (
+          <li key={t.label} className="rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+            <h3 className="text-xl font-semibold text-ink">{t.label}</h3>
+            <p className="mt-3 text-base leading-6 text-body">{t.text}</p>
           </li>
-        </ul>
-      </>
+        ))}
+        <li className="flex flex-col justify-center rounded-2xl bg-primary p-6 text-white">
+          <p className="text-xl font-semibold">Dive into the data and continue reading</p>
+          <Button href={REPORT_URL} size="lg" variant="secondary" newTab className="mt-6 w-fit">
+            Download the full report
+          </Button>
+        </li>
+      </ul>
     ),
   },
   {

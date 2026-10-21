@@ -14,7 +14,7 @@ const paths = {
 
 export type SocialName = keyof typeof paths
 
-export function SocialIcon({name, ...props}: {name: SocialName} & SVGProps<SVGSVGElement>) {
+export function SocialIcon({name, ...props}: Readonly<{name: SocialName} & SVGProps<SVGSVGElement>>) {
   return (
     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden {...props}>
       <path d={paths[name]} />

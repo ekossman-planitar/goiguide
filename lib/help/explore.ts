@@ -1,6 +1,5 @@
 import {
   Aperture,
-  BookOpen,
   Building2,
   Camera,
   ClipboardList,
@@ -33,7 +32,7 @@ export const categoryIcons: Record<number, LucideIcon> = {
   27801181528210: Ruler, // Accuracy, Standards & Outputs
   27801200307602: Building2, // Industry-Specific Workflows
 }
-export const defaultCategoryIcon = BookOpen
+export {BookOpen as defaultCategoryIcon} from 'lucide-react'
 
 export const productCards: {label: string; sectionId: number; description: string; icon: LucideIcon}[] = [
   {label: 'PLANIX R1', sectionId: 27463239830802, description: 'Set up, use and care for the R1 camera', icon: Camera},

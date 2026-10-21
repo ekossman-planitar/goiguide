@@ -3,7 +3,7 @@ import {CtaButtons} from './CtaButtons'
 import type {Cta} from './types'
 
 /** Closing call-to-action band. */
-export function CtaBanner({heading, text, ctas}: {heading: string; text?: string; ctas: Cta[]}) {
+export function CtaBanner({heading, text, ctas}: Readonly<{heading: string; text?: string; ctas: Cta[]}>) {
   return (
     <section className="py-16 lg:py-[60px]">
       <Container>
