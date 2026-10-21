@@ -5,6 +5,7 @@ import {getResourceType, resourceTypeNames} from '@/lib/resourceTypes'
 import {fetchSanity} from '@/sanity/lib/fetch'
 import {SITEMAP_ENTRIES_QUERY, SITEMAP_EVENTS_QUERY} from '@/sanity/lib/queries'
 import {eventPath} from '@/lib/events'
+import {articlePath, categoryPath, getArticles, getCategories, getSections, sectionPath} from '@/lib/help/zendesk'
 
 const SITE = 'https://goiguide.com'
 
@@ -29,5 +30,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const excluded = new Set(adLandingPages)
   const pages = sitemapPages.filter((p) => !excluded.has(p)).map((p) => ({url: p === '/' ? SITE : `${SITE}${p}`}))
 
-  return [...pages, ...dynamic, ...eventEntries]
+  // Help Center (/help): pages built from the Zendesk Help Center
+  const help = await helpEntries()
+
+  return [...pages, ...dynamic, ...eventEntries, ...help]
+}
+
+async function helpEntries(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const [categories, sections, articles] = await Promise.all([getCategories(), getSections(), getArticles()])
+    return [
+      {url: `${SITE}/help`},
+      ...categories.map((c) => ({url: `${SITE}${categoryPath(c)}`})),
+      ...sections.map((s) => ({url: `${SITE}${sectionPath(s)}`})),
+      ...articles.map((a) => ({url: `${SITE}${articlePath(a)}`, lastModified: a.edited_at})),
+    ]
+  } catch (error) {
+    console.error('[sitemap] Help Center entries skipped', error)
+    return [{url: `${SITE}/help`}]
+  }
 }

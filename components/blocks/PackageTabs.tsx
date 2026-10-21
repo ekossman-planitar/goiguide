@@ -1,5 +1,6 @@
 'use client'
 
+import {ArrowRight} from '@/components/ui/icons'
 import {useRef, useState, type KeyboardEvent} from 'react'
 import {cn} from '@/lib/cn'
 import {CheckList} from './CheckList'
@@ -37,7 +38,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
   return (
     <div id="packageTabs">
       <div className="flex justify-center">
-        <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] bg-[#ececee] p-2">
+        <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2">
           {tabs.map((tab, i) => (
             <button
               key={tab.id}
@@ -53,7 +54,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
               onClick={() => setActive(i)}
               className={cn(
                 'shrink-0 rounded-3xl border px-5 py-2.5 text-base leading-6 font-semibold whitespace-nowrap transition-colors',
-                i === active ? 'border-primary bg-[#dcdcdf] text-primary' : 'border-[#e4e4e7] bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
+                i === active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
               )}
             >
               {tab.label}
@@ -68,7 +69,7 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
           id={`panel-${tab.id}`}
           aria-labelledby={`tab-${tab.id}`}
           hidden={i !== active}
-          className="mx-auto mt-8 max-w-[1080px] rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-sm md:p-12"
+          className="mx-auto mt-8 max-w-[1080px] rounded-2xl border border-line bg-white p-8 shadow-sm md:p-12"
         >
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
@@ -76,15 +77,16 @@ export function PackageTabs({tabs, label}: {tabs: PackageTab[]; label: string}) 
               <p className="mt-4 text-base leading-7 whitespace-pre-line text-body">{tab.text}</p>
               <CheckList items={tab.list} className="mt-6" />
             </div>
-            <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6">
+            <div className="rounded-2xl border border-line bg-white p-6">
               <MediaView media={{type: 'image', image: tab.image}} />
             </div>
           </div>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-base">
             {tab.links.map((l) => (
               <li key={l.label}>
-                <a href={l.href} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
+                <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-link">
                   {l.label}
+                  <ArrowRight width={16} height={16} />
                 </a>
               </li>
             ))}

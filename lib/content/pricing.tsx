@@ -15,7 +15,14 @@ export const hero = {
   included: ['Interactive 3D virtual tour', 'Accurate floor plan', 'Measurement tool', 'Shareable property link'],
   footnote:
     '*Included with all iGuide packages, except iGuide Radix (no floor plan) and iGuide Instant (interactive floor plan only, not downloadable).',
-  image: {src: '/assets/Pricing-w-Chris-Logo.png', alt: 'pricing w chris'},
+  // "Pricing explained" video with Chris. Live opens it from a "Pricing w Chris" button in a lightbox; here it plays in the hero
+  video: {
+    type: 'video' as const,
+    src: '/assets/iGUIDE-Pricing-Explained.mp4',
+    poster: '/assets/iGUIDE-Pricing-Explained-poster.jpg',
+    label: 'iGuide pricing explained, with Chris',
+    controls: true,
+  },
 }
 
 /** Same package data as the homepage pricing section, with this page's heading */

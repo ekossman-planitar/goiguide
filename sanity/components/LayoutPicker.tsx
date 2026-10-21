@@ -16,7 +16,7 @@ export function LayoutPicker(props: StringInputProps) {
               border: `2px solid ${selected ? '#2e2c30' : '#e4e4e7'}`,
               borderRadius: 8,
               padding: 10,
-              background: selected ? '#f4f4f5' : 'transparent',
+              background: selected ? '#f3f2f5' : 'transparent',
             }}
           >
             <button

@@ -220,7 +220,7 @@ export function BookingPopup() {
       style={{display: 'none', opacity: 0, transition: 'opacity 0.3s ease'}}
       className="fixed inset-0 z-[9999] flex-col items-center justify-center bg-white text-center"
     >
-      <div className="absolute inset-x-0 top-0 h-1 bg-[#e0e0e0]">
+      <div className="absolute inset-x-0 top-0 h-1 bg-line">
         <div id="progress-bar" className="h-full bg-primary" style={{width: '0%', transition: 'width 3s linear'}} />
       </div>
       <div className="p-8">

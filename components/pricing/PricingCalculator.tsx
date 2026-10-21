@@ -2,6 +2,7 @@
 
 import {useEffect, useMemo, useRef, useState} from 'react'
 import {Button} from '@/components/ui/Button'
+import {Select} from '@/components/ui/Select'
 import {cn} from '@/lib/cn'
 import {calcAddons, calcIndustries, calcPackages, calculator} from '@/lib/content/pricing'
 
@@ -10,28 +11,8 @@ type Result =
   {state: 'idle' | 'loading' | 'error'} | {state: 'done'; total: string; currency: string; customQuote: boolean}
 
 const field =
-  'h-12 w-full rounded-lg border border-[#d4d4d8] bg-white px-4 text-base text-ink focus:border-primary focus:outline-2 focus:outline-primary/30 disabled:cursor-not-allowed disabled:border-[#e4e4e7] disabled:bg-surface disabled:text-muted'
+  'h-12 w-full rounded-lg border border-muted bg-white px-4 text-base text-ink focus:border-primary focus:outline-2 focus:outline-primary/30 disabled:cursor-not-allowed disabled:border-line disabled:bg-surface disabled:text-muted'
 
-/** Native select with our own chevron, inset from the edge */
-function Select({className, children, ...props}: React.ComponentProps<'select'>) {
-  return (
-    <div className="relative">
-      <select {...props} className={cn(field, 'appearance-none pr-11', className)}>
-        {children}
-      </select>
-      <svg
-        aria-hidden
-        viewBox="0 0 20 20"
-        className="pointer-events-none absolute top-1/2 right-4 h-5 w-5 -translate-y-1/2 text-muted"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-      >
-        <path d="m5 7.5 5 5 5-5" />
-      </svg>
-    </div>
-  )
-}
 const labelCls = 'mb-2 block text-sm font-semibold tracking-wide text-ink uppercase'
 
 function Segmented<T extends string>({
@@ -48,7 +29,7 @@ function Segmented<T extends string>({
   labels?: Record<string, string>
 }) {
   return (
-    <div className="inline-flex h-12 items-stretch rounded-lg border border-[#d4d4d8] bg-white p-1">
+    <div className="inline-flex h-12 items-stretch rounded-lg border border-muted bg-white p-1">
       {options.map((opt) => (
         <label
           key={opt}
@@ -147,7 +128,7 @@ export function PricingCalculator() {
   const total = result.state === 'done' && !result.customQuote ? result.total : '$0.00'
 
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+    <div className="grid overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
       <form
         id="Form_PricingCalculatorForm"
         className="space-y-6 p-6 sm:p-8"
@@ -165,15 +146,12 @@ export function PricingCalculator() {
             </label>
             <Select
               id="Form_PricingCalculatorForm_Industry"
-              value={industryId}
-              onChange={(e) => selectIndustry(Number(e.target.value))}
-            >
-              {calcIndustries.map((i) => (
-                <option key={i.id} value={i.id}>
-                  {i.title}
-                </option>
-              ))}
-            </Select>
+              size="lg"
+              tone="field"
+              options={calcIndustries.map((i) => ({value: String(i.id), label: i.title}))}
+              value={String(industryId)}
+              onChange={(v) => selectIndustry(Number(v))}
+            />
           </div>
           {/* Industries priced by quote (Design & Construction) hide the remaining fields; the panel explains why */}
           {!noCalc && (
@@ -183,16 +161,13 @@ export function PricingCalculator() {
               </label>
               <Select
                 id="Form_PricingCalculatorForm_Package"
-                value={packageId}
-                onChange={(e) => selectPackage(e.target.value === '' ? '' : Number(e.target.value))}
-              >
-                <option value="">-- select one --</option>
-                {industry.packages.map((id) => (
-                  <option key={id} value={id}>
-                    {calcPackages[id].title}
-                  </option>
-                ))}
-              </Select>
+                size="lg"
+                tone="field"
+                placeholder="-- select one --"
+                options={[{value: '', label: '-- select one --'}, ...industry.packages.map((id) => ({value: String(id), label: calcPackages[id].title}))]}
+                value={packageId === '' ? '' : String(packageId)}
+                onChange={(v) => selectPackage(v === '' ? '' : Number(v))}
+              />
             </div>
           )}
         </div>
@@ -213,7 +188,7 @@ export function PricingCalculator() {
                           'inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary',
                           checked
                             ? 'border-primary bg-primary-soft text-primary'
-                            : 'border-[#d4d4d8] text-ink hover:border-primary-hover',
+                            : 'border-muted text-ink hover:border-primary-hover',
                           locked && 'cursor-default',
                         )}
                       >

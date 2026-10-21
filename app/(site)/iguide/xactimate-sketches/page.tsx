@@ -38,9 +38,9 @@ export default function XactimateSketchesPage() {
         <CtaButtons ctas={[c.sketches.cta]} className="mt-8 justify-center" />
       </Section>
       <Section heading={c.stories.heading}>
-        <SmartLink href={c.stories.link.href} className="group -mt-6 mb-10 inline-flex items-center gap-1.5 font-semibold text-primary">
+        <SmartLink href={c.stories.link.href} className="-mt-6 mb-10 text-link">
           {c.stories.link.label}
-          <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
+          <ArrowRight width={16} height={16} />
         </SmartLink>
         <StoryQuotes quotes={c.stories.quotes} />
       </Section>
@@ -57,7 +57,7 @@ function StoryQuotes({quotes}: {quotes: typeof c.stories.quotes}) {
   return (
     <ul className="grid gap-6 lg:grid-cols-3">
       {quotes.map((q) => (
-        <li key={q.name} className="flex flex-col overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+        <li key={q.name} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
           <MediaView media={q.media} className="aspect-video rounded-none object-cover" />
           <figure className="flex flex-1 flex-col p-6">
             <blockquote className="flex-1 text-base leading-6 text-ink">“{q.quote}”</blockquote>

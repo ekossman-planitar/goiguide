@@ -9,7 +9,7 @@ import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {Button} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
 import {SmartLink} from '@/components/ui/SmartLink'
-import {ChevronLeft} from '@/components/ui/icons'
+import {ArrowRight, ChevronLeft} from '@/components/ui/icons'
 import {categoryTitle, DEFAULT_TIME_ZONE, EVENTS_PATH, eventPath, formatEventDate, formatSessionTime, isUpcoming, sessionFormatTitle, typeTitle} from '@/lib/events'
 import {fetchSanity} from '@/sanity/lib/fetch'
 import {urlFor} from '@/sanity/lib/image'
@@ -149,8 +149,9 @@ export default async function EventPage({params}: Props) {
             {place}
             {e.address && e.attendance !== 'online' && <span className="block text-muted">{e.address}</span>}
             {mapUrl && (
-              <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-1 block text-sm font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
+              <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-link text-sm">
                 View map
+                <ArrowRight width={14} height={14} />
               </a>
             )}
           </dd>
@@ -181,7 +182,7 @@ export default async function EventPage({params}: Props) {
       <header className="bg-surface pt-8 pb-12 lg:pt-12 lg:pb-[60px]">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">
-            <SmartLink href={EVENTS_PATH} className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover">
+            <SmartLink href={EVENTS_PATH} className="text-link gap-1 text-sm">
               <ChevronLeft /> All events
             </SmartLink>
             <div className="mt-6 flex flex-wrap items-center gap-2 text-sm">
@@ -221,11 +222,11 @@ export default async function EventPage({params}: Props) {
             {!ended && (
               <p className="mt-5 text-sm text-muted">
                 Add to calendar:{' '}
-                <a href={googleCal} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
+                <a href={googleCal} target="_blank" rel="noopener noreferrer" className="text-link">
                   Google
                 </a>{' '}
                 ·{' '}
-                <a href={`${eventPath(slug)}/ics`} className="font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
+                <a href={`${eventPath(slug)}/ics`} className="text-link">
                   Outlook / Apple (.ics)
                 </a>
               </p>
@@ -379,8 +380,9 @@ export default async function EventPage({params}: Props) {
               <h2 id="more-heading" className="text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
                 More upcoming events
               </h2>
-              <SmartLink href={EVENTS_PATH} className="font-semibold text-primary hover:text-primary-hover">
+              <SmartLink href={EVENTS_PATH} className="text-link">
                 View all events
+                <ArrowRight width={16} height={16} />
               </SmartLink>
             </div>
             <ul className="mt-8 space-y-5">

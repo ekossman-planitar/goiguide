@@ -69,7 +69,7 @@ export async function CatalogueListing({id}: {id: CatalogueId}) {
                   </span>
                   <span className="flex flex-1 flex-col p-6">
                     <span className="text-xl font-bold leading-snug text-ink group-hover:text-primary-hover">{item.title}</span>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-6 font-semibold text-primary">
+                    <span className="mt-auto pt-6 text-link">
                       Download
                       <ArrowRight width={16} height={16} />
                     </span>

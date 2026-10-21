@@ -23,7 +23,7 @@ function BookedConfirmation() {
       id="custom-confirmation"
       className="fixed inset-0 z-[9999] hidden flex-col items-center justify-center bg-white text-center opacity-0 transition-opacity duration-300"
     >
-      <div className="absolute top-0 left-0 h-1 w-full bg-[#e0e0e0]">
+      <div className="absolute top-0 left-0 h-1 w-full bg-line">
         <div id="progress-bar" className="h-full w-0 bg-primary transition-[width] duration-[3000ms] ease-linear" />
       </div>
       <div className="p-8">
@@ -228,7 +228,7 @@ export const blocks: Block[] = [
               ['Size', '9.9 cm × 7.9 cm × 29.0 cm'],
               ['Weight', '725g'],
             ].map(([label, value]) => (
-              <tr key={label} className="border-b border-[#e4e4e7]">
+              <tr key={label} className="border-b border-line">
                 <th scope="row" className="py-3 pr-4 font-semibold text-ink">
                   {label}
                 </th>
@@ -248,7 +248,7 @@ export const blocks: Block[] = [
     id: 'section-10',
     background: 'sky',
     children: (
-      <div id="footer-form" className="mx-auto max-w-2xl rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-lg md:p-10">
+      <div id="footer-form" className="mx-auto max-w-2xl rounded-2xl border border-line bg-white p-6 shadow-lg md:p-10">
         <h2 className="text-center text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">
           Ready to be like Mike and make it right?
         </h2>

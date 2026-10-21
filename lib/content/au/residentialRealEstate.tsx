@@ -42,7 +42,7 @@ export const blocks: Block[] = [
     ),
     after: <p className="text-sm text-muted">Backed by realestate.com.au&apos;s NextGen property search experience.</p>,
     media: {type: 'image', image: {...reaLogo, width: 600, height: 120}},
-    mediaClassName: 'mx-auto max-w-sm rounded-xl bg-[#e4002b] p-8',
+    mediaClassName: 'mx-auto max-w-sm rounded-xl bg-rea-red p-8',
   },
   {
     type: 'split',

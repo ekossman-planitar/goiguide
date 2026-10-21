@@ -17,7 +17,7 @@ type Row = string[]
 
 function PriceTable({head, rows}: {head: string[]; rows: Row[]}) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-2xl border border-[#e4e4e7]">
+    <div className="mt-6 overflow-x-auto rounded-2xl border border-line">
       <table className="w-full min-w-[480px] text-left text-base">
         <thead className="bg-surface">
           <tr>
@@ -30,7 +30,7 @@ function PriceTable({head, rows}: {head: string[]; rows: Row[]}) {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row[0]} className="border-t border-[#e4e4e7]">
+            <tr key={row[0]} className="border-t border-line">
               {row.map((cell, i) =>
                 i === 0 ? (
                   <th key={i} scope="row" className="px-4 py-3 font-medium text-ink">
@@ -115,7 +115,7 @@ export const blocks: Block[] = [
           <SmartLink
             key={href}
             href={href}
-            className="rounded-full border border-[#e4e4e7] bg-white px-5 py-2 text-base font-semibold text-ink no-underline hover:border-primary-hover hover:text-primary-hover"
+            className="rounded-full border border-line bg-white px-5 py-2 text-base font-semibold text-ink no-underline hover:border-primary-hover hover:text-primary-hover"
           >
             {label}
           </SmartLink>
@@ -132,7 +132,7 @@ export const blocks: Block[] = [
       <Package
         image="/assets/Uploads/sketch.jpg"
         heading="Instant Sketch*"
-        intro={{href: '/assets/Uploads/Instant-Sketch.pdf', text: 'to learn more information about what’s included in the iGuide Instant Sketch package.'}}
+        intro={{href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/Instant-Sketch.pdf', text: 'to learn more information about what’s included in the iGuide Instant Sketch package.'}}
         table={{
           head: ['Billable Area', 'ESX Processing'],
           rows: [
@@ -158,7 +158,7 @@ export const blocks: Block[] = [
       <Package
         image="/assets/Uploads/esx-standard_transparent.png"
         heading="iGuide Standard: ESX"
-        intro={{href: '/assets/brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGuide Standard Sketch add-on.'}}
+        intro={{href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGuide Standard Sketch add-on.'}}
         table={{
           head: fullHead,
           rows: [
@@ -180,7 +180,7 @@ export const blocks: Block[] = [
       <Package
         image="/assets/Uploads/esx_premium.jpg"
         heading="iGuide Premium: ESX"
-        intro={{href: '/assets/brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGuide Premium ESX add-on.'}}
+        intro={{href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/ESX-Add-on-Deliverables.pdf', text: 'to learn more information about what’s included in the iGuide Premium ESX add-on.'}}
         table={{
           head: fullHead,
           rows: [

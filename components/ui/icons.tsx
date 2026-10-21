@@ -35,9 +35,10 @@ export function ChevronRight(props: IconProps) {
   )
 }
 
-export function ArrowRight(props: IconProps) {
+/** Trailing link arrow: `link-arrow` nudges it right when its link (or card) is hovered, site-wide (globals.css) */
+export function ArrowRight({className, ...props}: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" width="18" height="18" {...base} {...props}>
+    <svg viewBox="0 0 24 24" width="18" height="18" {...base} {...props} className={className ? `link-arrow ${className}` : 'link-arrow'}>
       <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   )

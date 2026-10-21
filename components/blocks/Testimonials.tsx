@@ -70,7 +70,7 @@ function Attribution({quote}: {quote: Quote}) {
       {quote.role && <span className="text-muted"> / {quote.role}</span>}
       {quote.company && <span className="block text-muted">{quote.company}</span>}
       {quote.link && (
-        <SmartLink href={quote.link.href} className="mt-3 flex w-fit items-center gap-1.5 font-semibold text-primary hover:underline">
+        <SmartLink href={quote.link.href} className="mt-3 text-link w-fit">
           {quote.link.label}
           <ArrowRight width={16} height={16} />
         </SmartLink>
@@ -81,7 +81,13 @@ function Attribution({quote}: {quote: Quote}) {
 
 function SingleQuote({quote}: {quote: Quote}) {
   return (
-    <figure className={cn('grid items-center gap-10', (quote.photo || quote.media) && 'lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]')}>
+    <figure
+      className={cn(
+        'grid items-center gap-10',
+        // Video: wide media column. Photo: narrow photo column and a centred 1100px row, so the quote sits close to the photo
+        quote.media ? 'lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]' : quote.photo && 'mx-auto max-w-[1100px] lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]',
+      )}
+    >
       {quote.media ? (
         <MediaView media={quote.media} />
       ) : quote.photo ? (
@@ -108,7 +114,7 @@ function SingleQuote({quote}: {quote: Quote}) {
 
 function QuoteCard({quote}: {quote: Quote}) {
   return (
-    <figure className="flex w-full flex-col rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       {quote.media && <MediaView media={quote.media} className="mb-6" />}
       {quote.logo && (
         <FallbackImage

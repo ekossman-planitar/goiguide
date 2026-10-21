@@ -1,7 +1,9 @@
 'use client'
 
+import {ArrowRight} from '@/components/ui/icons'
 import {FallbackImage} from '@/components/ui/FallbackImage'
-import {useId, useMemo, useState} from 'react'
+import {useMemo, useState} from 'react'
+import {Select} from '@/components/ui/Select'
 import {cn} from '@/lib/cn'
 import {currencies, industries, type Currency, type IndustryId, type Package, type Prices} from '@/lib/content/homeSections'
 
@@ -73,29 +75,17 @@ export function IndustryFilter({
   onChange: (i: IndustryId) => void
   variant?: 'chips' | 'select'
 }) {
-  const id = useId()
   if (variant === 'select') {
     return (
-      <div className="relative">
-        <label htmlFor={id} className="sr-only">
-          Industry
-        </label>
-        <select
-          id={id}
-          value={value}
-          onChange={(e) => onChange(e.target.value as IndustryId)}
-          className="h-10 appearance-none rounded-full border border-line bg-white pr-10 pl-4 text-sm font-medium text-ink"
-        >
-          {industries.map((i) => (
-            <option key={i.id} value={i.id}>
-              {i.label}
-            </option>
-          ))}
-        </select>
-        <svg aria-hidden viewBox="0 0 24 24" className="pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="m6 9 6 6 6-6" />
-        </svg>
-      </div>
+      <Select
+        label="Industry"
+        shape="pill"
+        options={industries.map((i) => ({value: i.id, label: i.label}))}
+        value={value}
+        onChange={(v) => onChange(v as IndustryId)}
+        className="w-56"
+        align="right"
+      />
     )
   }
   return (
@@ -215,11 +205,9 @@ export function CameraImage({src, alt, sizes}: {src: string; alt: string; sizes:
 /** Small text link with arrow. */
 export function ArrowLink({href, children, className}: {href: string; children: React.ReactNode; className?: string}) {
   return (
-    <a href={href} className={cn('group inline-flex items-center gap-1.5 text-sm font-semibold text-primary', className)}>
+    <a href={href} className={cn('text-link text-sm', className)}>
       {children}
-      <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M5 12h14M13 6l6 6-6 6" />
-      </svg>
+      <ArrowRight aria-hidden width={16} height={16} />
     </a>
   )
 }

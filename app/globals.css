@@ -2,23 +2,33 @@
 
 /* Brand tokens. Tailwind exposes these as utilities, e.g. bg-primary, text-ink, bg-cream */
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  /* Headlines: REA Pangea, with REA's own fallbacks */
+  /* REA Pangea everywhere (brand guide: primary typeface for all brand communications) */
+  --font-sans: var(--font-pangea), Helvetica, Arial, sans-serif;
   --font-display: var(--font-pangea), Helvetica, Arial, sans-serif;
 
-  --color-brand: #2e2c30;          /* brand black (2026 rebrand; was iGUIDE blue #009cde) */
-  --color-primary: #2e2c30;        /* buttons, links: brand black (was #006e9e) */
-  --color-primary-hover: #e31f2e;  /* every hover: brand red */
-  --color-primary-soft: #f4f4f5;   /* tinted backgrounds: light grey (was light blue) */
-  --color-ink: #000000;            /* headings (live site) */
-  --color-body: #000000;           /* body copy (live site) */
-  --color-muted: #58595b;          /* secondary copy (live site) */
-  --color-line: #e4e4e7;           /* borders */
-  --color-surface: #f4f4f5;        /* light grey section background (was blue-grey) */
-  --color-sky: #f4f4f5;            /* light grey section background (was light blue #ebfaff) */
-  --color-cream: #f4f4f5;          /* pills and step badges: light grey offset (was the live site's yellow #ffd6a0; Evan 2026-10-19) */
-  --color-star: #f59e0b;
-  --color-announce: #2e2c30;       /* announcement bar: brand black (was blue) */
+  /* Colours: iGUIDE Brand Quick Guide (2026). Primary: REA Red, Snowgum 700, Snowgum 400, White.
+     Secondary: Blueprint, Laser, Slate, Mist. Red is for accents, highlights and calls to action only. */
+  --color-rea-red: #e4002b;
+  --color-snowgum-700: #2e2c30;
+  --color-snowgum-400: #716e75;
+  --color-blueprint: #5b8fdb;
+  --color-laser: #9fd356;
+  --color-slate: #3e5c76;
+  --color-mist: #f3f2f5;
+
+  --color-brand: #2e2c30;          /* Snowgum 700 */
+  --color-primary: #2e2c30;        /* buttons, links: Snowgum 700 */
+  --color-primary-hover: #e4002b;  /* every hover: REA Red (was #e31f2e) */
+  --color-primary-soft: #f3f2f5;   /* tinted backgrounds: Mist */
+  --color-ink: #2e2c30;            /* headings: Snowgum 700 (was black) */
+  --color-body: #2e2c30;           /* body copy: Snowgum 700 (was black) */
+  --color-muted: #716e75;          /* secondary copy: Snowgum 400 (was #58595b) */
+  --color-line: #e4e4e7;           /* borders (not in the guide; neutral hairline) */
+  --color-surface: #f3f2f5;        /* section background: Mist (was #f4f4f5) */
+  --color-sky: #f3f2f5;            /* section background: Mist */
+  --color-cream: #f3f2f5;          /* pills and step badges: Mist (Evan 2026-10-19: grey, not yellow) */
+  --color-star: #f59e0b;           /* review stars (not in the guide) */
+  --color-announce: #2e2c30;       /* announcement bar: Snowgum 700 */
 }
 
 /* Every headline uses REA Pangea (utility classes like font-sans can still override) */
@@ -35,6 +45,49 @@
   }
   main :is(p, li, dd, td) a:not([class]):hover {
     color: var(--color-primary-hover);
+  }
+  /* Everything clickable shows the hand cursor (Tailwind v4 no longer sets it on buttons) */
+  button:not(:disabled),
+  [role='button'],
+  [role='tab'],
+  summary,
+  select,
+  label[for],
+  input:is([type='checkbox'], [type='radio'], [type='submit'], [type='button']) {
+    cursor: pointer;
+  }
+}
+
+/*
+ * Standard text link (Evan, 2026-10-20): brand black, red on hover, never
+ * underlined. A trailing arrow (.link-arrow, on every <ArrowRight />) nudges
+ * right on hover. Inside a card that is itself a link (.group), hovering the
+ * card does the same. Links inside running sentences keep their underline
+ * (see `main :is(p, li…) a` above) so they stay recognisable as links.
+ */
+@layer components {
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 150ms;
+  }
+  .text-link:hover,
+  .group:hover .text-link,
+  .text-link:focus-visible {
+    color: var(--color-primary-hover);
+  }
+  .link-arrow {
+    flex-shrink: 0;
+    transition: transform 150ms;
+  }
+  .text-link:hover .link-arrow,
+  .group:hover .link-arrow {
+    transform: translateX(4px);
   }
 }
 
@@ -62,7 +115,7 @@ body {
 /* HubSpot newsletter form in the footer (HubSpot's own CSS is disabled) */
 .subscribe-form .hs-form-field > label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .subscribe-form .hs-input[type='email'] {
-  width: 100%; height: 50px; padding: 0 16px; border: 1px solid #d4d4d8; border-radius: 8px;
+  width: 100%; height: 50px; padding: 0 16px; border: 1px solid var(--color-muted); border-radius: 8px;
   font-size: 16px; background: #fff; color: var(--color-ink);
 }
 .subscribe-form .hs-input[type='email']:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; }
@@ -97,12 +150,12 @@ body {
 .hs-form:not(.subscribe-form .hs-form) .hs-form-required { color: var(--color-primary-hover); margin-left: 2px; }
 .hs-form:not(.subscribe-form .hs-form) .hs-input:not([type='checkbox']):not([type='radio']) {
   display: block; width: 100% !important; min-height: 48px; padding: 10px 14px;
-  border: 1px solid #a1a1aa; border-radius: 8px; background: #fff;
+  border: 1px solid var(--color-muted); border-radius: 8px; background: #fff;
   font-size: 16px; line-height: 24px; color: var(--color-ink);
 }
 .hs-form:not(.subscribe-form .hs-form) select.hs-input { appearance: auto; padding-right: 10px; }
 .hs-form:not(.subscribe-form .hs-form) textarea.hs-input { min-height: 120px; resize: vertical; }
-.hs-form:not(.subscribe-form .hs-form) .hs-input::placeholder { color: #71717a; opacity: 1; }
+.hs-form:not(.subscribe-form .hs-form) .hs-input::placeholder { color: var(--color-muted); opacity: 1; }
 .hs-form:not(.subscribe-form .hs-form) .hs-input:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; border-color: var(--color-primary); }
 .hs-form:not(.subscribe-form .hs-form) .hs-input.invalid.error { border-color: #b42318; }
 .hs-form:not(.subscribe-form .hs-form) .hs-error-msgs { list-style: none; margin: 6px 0 0; padding: 0; }

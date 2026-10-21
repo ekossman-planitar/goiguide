@@ -27,7 +27,7 @@ export function CompareTable({
   footnote?: string
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <table className="w-full border-collapse text-left text-base leading-6">
         <caption className="sr-only">{caption}</caption>
         <thead>
@@ -45,7 +45,7 @@ export function CompareTable({
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.label} className="border-t border-[#e4e4e7] align-top">
+            <tr key={row.label} className="border-t border-line align-top">
               <th scope="row" className="px-5 py-3 font-semibold text-ink max-md:hidden">
                 {row.label}
               </th>
@@ -66,7 +66,7 @@ export function CompareTable({
           ))}
         </tbody>
       </table>
-      {footnote && <p className="border-t border-[#e4e4e7] px-5 py-3 text-sm text-muted">{footnote}</p>}
+      {footnote && <p className="border-t border-line px-5 py-3 text-sm text-muted">{footnote}</p>}
     </div>
   )
 }

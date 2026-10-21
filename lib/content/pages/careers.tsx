@@ -143,7 +143,7 @@ export const blocks: Block[] = [
               provide potential buyers with an immersive experience, allowing them to explore properties from the comfort of their own homes. One of
               the most popular platforms for creating these virtual tours is iGuide.
             </p>
-            <p className="text-sm font-semibold text-gray-400">Residential Real Estate, Real Estate Photography</p>
+            <p className="text-sm font-semibold text-muted">Residential Real Estate, Real Estate Photography</p>
           </>
         ),
         link: {label: 'Read more', href: '/blogs/best-practices-for-creating-floor-plans-and-3d-virtual-tours-with-iguide'},
@@ -154,8 +154,8 @@ export const blocks: Block[] = [
           type: 'image',
           image: {src: '/assets/Uploads/Brochure-TNs-iGUIDE-for-Real-Estate-Agents__ScaleMaxWidthWzUzNV0.png', alt: '', width: 535, height: 268},
         },
-        text: <p className="text-sm font-semibold text-gray-400">Residential Real Estate, Real Estate Photography</p>,
-        link: {label: 'Download file', href: '/assets/Uploads/brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', newTab: true},
+        text: <p className="text-sm font-semibold text-muted">Residential Real Estate, Real Estate Photography</p>,
+        link: {label: 'Download file', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', newTab: true},
       },
       {
         title: 'The Deft Group is revolutionizing property assessments with iGuide',
@@ -174,7 +174,7 @@ export const blocks: Block[] = [
               Jeremiah Kiefer of The Deft Group uses iGuide to complete insurance property assessments in a third of the time, cutting costs and
               building client trust with accurate, repeatable data.
             </p>
-            <p className="text-sm font-semibold text-gray-400">Insurance &amp; Restoration</p>
+            <p className="text-sm font-semibold text-muted">Insurance &amp; Restoration</p>
           </>
         ),
         link: {label: 'Read more', href: '/customer-stories/the-deft-group-case-study'},

@@ -1,0 +1,85 @@
+Problem,Resource page,Where on the page,Broken link
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/blogs/10-questions-to-ask-buyers-so-you-can-sell-that-listing-faster,Body text,/assets/Help_Center_Assets/PDF-2024-Listing-Flyer-Real-Estate-Agents.pdf?vid=3
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/blogs/10-questions-to-ask-buyers-so-you-can-sell-that-listing-faster,Body text,/assets/Real_Estate_Showing_Feedback_Form.pdf
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/blogs/are-tradeshows-your-untapped-goldmine-for-real-estate-leads,Body text,/assets/Tradeshow-Survival-Guide-for-Photographers_R1.pdf?vid=7
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/blogs/the-ultimate-8-week-summer-marketing-plan-for-real-estate-agents,Body text,/assets/Help_Center_Assets/PDF-2024-Listing-Flyer-Real-Estate-Agents.pdf
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/customer-stories/cutting-delays-boosting-design-pizza-pizzas-path-to-faster-openings,Body text,/assets/Help_Center_Assets/Commercial-CAD-samples/Commercial-Floor-Plans.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/customer-stories/cutting-delays-boosting-design-pizza-pizzas-path-to-faster-openings,Body text,/assets/Help_Center_Assets/Commercial-CAD-samples/Commercial-Roof-Plans.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/customer-stories/cutting-delays-boosting-design-pizza-pizzas-path-to-faster-openings,Body text,/assets/Help_Center_Assets/Commercial-CAD-samples/Commercial-Reflected-Ceiling-Plans.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/customer-stories/cutting-delays-boosting-design-pizza-pizzas-path-to-faster-openings,Body text,/assets/Help_Center_Assets/Commercial-CAD-samples/Commercial-Exterior-Elevations.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/resources-and-media/iguide-gallery/2d-cad-package,Card link,/assets/Sample-Files/2D-CAD-commercial.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/resources-and-media/iguide-gallery/2d-cad-package-residential,Card link,/assets/Sample-Files/2D-CAD-Residential.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/resources-and-media/iguide-gallery/dwg-add-on-sample,Card link,/assets/Sample-Files/Commercial-Premium-DWG.zip
+File missing on new site (works on live; needs the /assets folder or a new link),https://goiguide.vercel.app/white-papers-and-ebooks/the-ultimate-guide-to-capturing-and-measuring-xl-interior-spaces,Body text,/assets/Help_Center_Assets/iGUIDE-Staging-Checklist.pdf
+Malformed link (fix the URL),https://goiguide.vercel.app/blogs/efficient-insurance-restoration-procedures,Body text,https://Claims%20are pouring in across North America... (the whole article text pasted into a link)
+Malformed link (fix the URL),https://goiguide.vercel.app/blogs/revolutionizing-insurance-claims-green-solutions-for-sustainable-property-rehabilitation,Body text,chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.fs.usda.gov/psw/publications/lake/psw_2006_lake001_senos.pdf
+Malformed link (fix the URL),https://goiguide.vercel.app/blogs/top-buyer-trends-in-the-real-estate-market-for-2024-what-realtors-need-to-know,Body text,http://chrome-extension//efaidnbmnnnibpcajpcglclefindmkaj/https://cdn.nar.realtor//sites/default/files/documents/2022-highlights-from-the-profile-of-home-buyers-and-sellers-report-11-03-2022_0.pdf
+Malformed link (fix the URL),https://goiguide.vercel.app/blogs/top-buyer-trends-in-the-real-estate-market-for-2024-what-realtors-need-to-know,Body text,http://chrome-extension//efaidnbmnnnibpcajpcglclefindmkaj/https://www.nar.realtor/sites/default/files/documents/2023-profile-of-home-buyers-and-sellers-highlights-11-13-2023.pdf
+Malformed link (fix the URL),https://goiguide.vercel.app/customer-stories/calgary-real-estate-photos-scales-from-solo-shoots-to-10-million-sq-ft-and-2000-properties-shot-annually-with-iguide,Body text,https://realestatemagazine.ca/the-high-cost-of-getting-square-footage-wrong/%20The%20high%20cost%20of%20getting%20square%20footage%20wrong... (link text pasted into the URL)
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/buying-real-estate-online,Body text,/blog/proptech-what-does-it-mean-for-real-estate-agents
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/earn-extra-money-as-a-real-estate-photographer,Body text,/facility-management-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/efficient-insurance-restoration-procedures,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/how-to-start-a-real-estate-photography-business,Body text,/tech-videos-2
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/irc-efficient-documentation-insurance-restoration,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/irc-iguide-technology-insurance-restoration,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/irc-natural-disasters-insurance-industry,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/irc-streamlining-the-insurance-restoration-process,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/is-your-realtor-lingo-communicating-the-full-value-of-your-listing,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/open-house-during-the-holidays,Body text,/virtual-showing
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/real-estate-buyer-leads,Body text,/blog/stop-killing-your-listings-with-inaccurate-measurements
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/real-estate-buyer-leads,Body text,/blog/iguide-advantages
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/real-estate-hindsight-analyzing-your-successes-and-failures,Body text,/blog/real-estate-agent-mistakes
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/real-estate-photography-checklist-and-floorplan-tools,Body text,/blog/photography-tips-beginners
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/blogs/the-latest-from-iguide-to-help-you-grow-your-business-what-you-might-have-missed,Body text,/cad-deliverables-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/customer-stories/anita-macpherson,Body text,/blog/grow-your-real-estate-photography-business-coronavirus
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/customer-stories/anita-macpherson,Body text,/blog/3d-tour-virtual-showing
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/customer-stories/from-3-to-6-claims-a-day-how-iguide-helps-this-adjuster-work-smarter-not-harder,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/customer-stories/roxanne-barton,Body text,/blog/3d-tour-virtual-tour-technology
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/customer-stories/roxanne-barton,Body text,/blog/virtual-tour-speed-capture
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/news/celebrating-10-years-of-iguide-a-decade-of-property-digitalization,Body text,/cad-deliverables-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/news/iguide-and-seek-now-have-partnered-with-ams-and-vitality,Body text,/facility-management-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/news/iguide-radix,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/news/iguide-verisk-launch-instant-sketch,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/news/planitar-welcomes-vp-of-marketing-skylar-lawrence-lebel,Body text,/facility-management-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/news/planitar-welcomes-vp-of-marketing-skylar-lawrence-lebel,Body text,/insurance-and-restoration-old
+"Old page link, broken on live too (404/410)",https://goiguide.vercel.app/white-papers-and-ebooks/the-ultimate-guide-to-capturing-and-measuring-xl-interior-spaces,Body text,/support_downloads/DOCS/Project%20Requirments%20Checklist%20.docx
+Outside site page gone (404),https://goiguide.vercel.app/blogs/best-ways-to-get-into-real-estate-photography,Body text,https://www.reca.ca/licensees-learners/tools-resources/residential-measurement-standard/
+Outside site page gone (404),https://goiguide.vercel.app/blogs/buying-real-estate-online,Body text,https://www.realtor.com/advice/buy/how-long-does-it-take-to-buy-a-house/
+Outside site page gone (404),https://goiguide.vercel.app/blogs/earn-extra-money-as-a-real-estate-photographer,Body text,https://www.reca.ca/wp-content/uploads/2018/07/Guide-to-the-Residential-Measurement-Standard-Alberta.pdf
+Outside site page gone (404),https://goiguide.vercel.app/blogs/how-rising-interest-rates-are-affecting-realtors,Body text,https://www.nar.realtor/blogs/economists-outlook/existing-home-sales-fell-steadily-throughout-2022-and-into-december
+Outside site page gone (404),https://goiguide.vercel.app/blogs/how-to-keep-your-real-estate-leads-up-when-the-market-is-heading-down,Body text,https://www.nar.realtor/newsroom/existing-home-sales-retreated-5-9-in-july
+Outside site page gone (404),https://goiguide.vercel.app/blogs/irc-streamlining-the-insurance-restoration-process,Body text,https://www.corelogic.com/intelligence/the-top-four-challenges-facing-the-property-and-casualty-insurance-industry-in-2020/
+Outside site page gone (404),https://goiguide.vercel.app/blogs/open-house-during-the-holidays,Body text,https://www.nar.realtor/blogs/economists-outlook/seasonality-in-the-housing-market
+Outside site page gone (404),https://goiguide.vercel.app/blogs/proptech-in-canada,Body text,https://www.nar.realtor/events/ioi/follow-the-money-why-proptech-is-a-major-focus-for-investors
+Outside site page gone (404),https://goiguide.vercel.app/blogs/proptech-in-canada,Body text,https://www.nar.realtor/blogs/emerging-technology/nars-role-as-a-leader-in-real-estate-technology
+Outside site page gone (404),https://goiguide.vercel.app/blogs/real-estate-hindsight-analyzing-your-successes-and-failures,Body text,https://www.reca.ca/licensees-learners/tools-resources/residential-measurement-standard/
+Outside site page gone (404),https://goiguide.vercel.app/blogs/real-time-feedback-with-virtual-tours,Body text,https://cembs.com/impact-of-effective-data-sharing-and-communication-in-construction/
+Outside site page gone (404),https://goiguide.vercel.app/blogs/residential-measurement-standard-rms-a-solution-to-measurement-discrepancies,Body text,https://www.reca.ca/wp-content/uploads/2018/07/Guide-to-the-Residential-Measurement-Standard-Alberta.pdf
+Outside site page gone (404),https://goiguide.vercel.app/blogs/the-3-step-system-to-optimize-your-online-listing,Body text,https://www.nar.realtor/newsroom/nar-finds-home-staging-helps-buyers-visualize-homes-sell-faster
+Outside site page gone (404),https://goiguide.vercel.app/blogs/the-latest-from-iguide-to-help-you-grow-your-business-what-you-might-have-missed,Body text,https://ion.goiguide.com/join-ion-directory/
+Outside site page gone (404),https://goiguide.vercel.app/blogs/why-use-3d-tours-to-engage-buyers,Body text,https://socialmediaweek.org/blog/2019/10/2020-video-marketing-and-statistics-what-brands-need-to-know/
+Outside site page gone (404),https://goiguide.vercel.app/customer-stories/matt,Body text,https://www.reca.ca/professionals-learners/tools-resources/residential-measurement-standard/
+Outside site page gone (404),https://goiguide.vercel.app/customer-stories/real-estate-photographer-replaces-video-with-virtual-tours,Body text,https://www.nimamohammadi.com/
+Outside site page gone (404),https://goiguide.vercel.app/customer-stories/tracy-sample,Body text,https://www.goflymediallc.com/
+Outside site page gone (404),https://goiguide.vercel.app/news/iguide-2022-year-in-review-highlights,Body text,https://www.digitaljournal.com/pr/iguide-2022-year-in-review-highlights
+Outside site page gone (404),https://goiguide.vercel.app/news/iguide-and-houselens-announce-partnership,Body text,https://www.houselens.com/iguide/
+Outside site page gone (404),https://goiguide.vercel.app/news/iguide-and-houselens-announce-partnership,Body text,https://www.digitaljournal.com/pr/iguide-and-houselens-announce-partnership
+Outside site page gone (404),https://goiguide.vercel.app/news/iguide-and-houselens-announce-partnership,Body text,https://www.likere.com/blog/proptechs-iguide-houselens-enter-into-software-collaboration
+Outside site page gone (404),https://goiguide.vercel.app/news/iguide-revitalizes-the-3d-experience,Body text,https://www.digitaljournal.com/pr/iguide-revitalizes-the-3d-experience
+Outside site page gone (404),https://goiguide.vercel.app/news/mpac-announcement,Body text,https://www.pwc.com/ca/en/industries/real-estate/emerging-trends-in-real-estate-2019/reinvent.html
+Outside site page gone (404),https://goiguide.vercel.app/news/on-point-podcast,Card link,https://www.insurancejournal.tv/videos/23720/
+Outside site page gone (404),https://goiguide.vercel.app/news/planitar-and-seek-now-announce-extension-of-partnership-with-new-seeker-360-program,Body text,https://seek-now.com/seeker-360-technology/
+Outside site page gone (404),https://goiguide.vercel.app/white-papers-and-ebooks/3d-cameras-and-360-cameras-state-of-3d-virtual-tour-technology,Body text,http://bomacanada.ca/resources/standards/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/creative-client-appreciation-ideas-in-2025,Body text,https://www.modsy.com/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/eliminate-confusion-how-iguide-helps-buyers-see-beyond-the-drywall,Body text,https://www.vectorworks.net/architect
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/increase-your-screen-value-for-online-real-estate-listings,Body text,https://iguide-website.zfactorprojects.ca/planix-camera/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/increase-your-screen-value-for-online-real-estate-listings,Body text,https://iguide-website.zfactorprojects.ca/contact/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/increase-your-screen-value-for-online-real-estate-listings,Body text,https://iguide-website.zfactorprojects.ca/blog/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/mastering-technology-in-real-estate,Body text,https://www.realestatetechnews.com/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/mastering-technology-in-real-estate,Body text,https://www.examplelink.com/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/blogs/understanding-reso-common-format-a-guide-for-real-estate-agents,Body text,https://www.realmls.com/what-is-reso/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/customer-stories/logan-ripley,Body text,http://loftlandcreative.com/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/customer-stories/tammy-loverdos,Body text,https://showcasephototours.com/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/ebooks/a-new-definition-of-professionalism,Body text,http://www.lidar-uk.com/how-lidar-works/
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/news/planitar-inc-and-gaitech-intelligence-forge-strategic-alliance-to-redefine-property-documentation-in-china,Body text,https://www.gaitech.net/index.aspx
+Outside site unreachable (site down or blocks checks),https://goiguide.vercel.app/news/planitar-inc-and-gaitech-intelligence-forge-strategic-alliance-to-redefine-property-documentation-in-china,Body text,https://www.goiguide.cn/

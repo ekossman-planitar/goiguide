@@ -27,7 +27,7 @@ export function HeroFormColumns({heading, subheading, children, formHeading, for
         {subheading && <p className="mt-6 text-2xl leading-9 text-muted">{subheading}</p>}
         {children && <div className="mt-6">{children}</div>}
       </div>
-      <div id={formAnchorId} className="min-w-0 scroll-mt-28 rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-lg md:p-8">
+      <div id={formAnchorId} className="min-w-0 scroll-mt-28 rounded-2xl border border-line bg-white p-6 shadow-lg md:p-8">
         {formHeading && <h2 className="text-2xl font-semibold text-ink md:text-[28px]">{formHeading}</h2>}
         {formText && <p className="mt-3 text-base leading-6 text-muted">{formText}</p>}
         <HubSpotForm formId={formId} className="mt-6 min-h-[320px]" />

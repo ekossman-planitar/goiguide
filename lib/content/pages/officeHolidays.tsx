@@ -23,7 +23,7 @@ const holidays: [string, string, string, string][] = [
 
 function HolidayTable() {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[#e4e4e7] shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-x-auto rounded-2xl border border-line shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <table className="w-full min-w-[560px] border-collapse text-left text-base">
         <thead>
           <tr className="bg-brand text-lg font-semibold text-white">
@@ -43,7 +43,7 @@ function HolidayTable() {
         </thead>
         <tbody>
           <tr>
-            <td colSpan={4} className="bg-[#949494] px-6 py-4 text-sm text-white">
+            <td colSpan={4} className="bg-snowgum-400 px-6 py-4 text-sm text-white">
               *Limited iGuide drafts, ESX files and update requests processed. No DWG/RVT processing. No CAD Package processing. No Enterprise/Secure
               Portal processing. Processing will resume the next open day.
             </td>

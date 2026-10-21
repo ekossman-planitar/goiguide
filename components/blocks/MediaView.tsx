@@ -4,6 +4,19 @@ import type {Media} from './types'
 
 /** Renders an image, looping muted video or iframe embed. */
 export function MediaView({media, className, sizes = '(min-width: 1024px) 50vw, 100vw'}: {media: Media; className?: string; sizes?: string}) {
+  if (media.type === 'video' && media.controls) {
+    return (
+      <video
+        className={cn('aspect-video w-full rounded-2xl bg-black', className)}
+        src={media.src}
+        poster={media.poster}
+        controls
+        playsInline
+        preload="none"
+        aria-label={media.label}
+      />
+    )
+  }
   if (media.type === 'video') {
     return (
       <video

@@ -26,7 +26,7 @@ export function Hero({data, footer}: HeroProps) {
           {eyebrow?.href && eyebrow.label && (
             <SmartLink
               href={eyebrow.href}
-              className="mb-6 inline-flex items-center gap-2 rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink transition-opacity hover:opacity-85"
+              className="group mb-6 inline-flex items-center gap-2 rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink transition-colors hover:text-primary-hover"
             >
               {eyebrow.label}
               <ArrowRight width={14} height={14} />

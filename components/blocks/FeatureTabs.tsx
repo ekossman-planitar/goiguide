@@ -66,7 +66,7 @@ export function FeatureTabs({
               key={item.id}
               className={cn(
                 'rounded-2xl border transition-colors',
-                open ? 'border-primary bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]' : 'border-[#e4e4e7] bg-white/60 hover:border-primary-hover',
+                open ? 'border-primary bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]' : 'border-line bg-white/60 hover:border-primary-hover',
               )}
             >
               <Heading className="text-lg leading-7 font-semibold text-ink">
@@ -82,7 +82,7 @@ export function FeatureTabs({
                   className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
                 >
                   {item.title}
-                  <span aria-hidden className={cn('h-2.5 w-2.5 shrink-0 rounded-full', open ? 'bg-primary' : 'bg-[#d4d4d8]')} />
+                  <span aria-hidden className={cn('h-2.5 w-2.5 shrink-0 rounded-full', open ? 'bg-primary' : 'bg-line')} />
                 </button>
               </Heading>
               {/* Text stays in the DOM for search engines; collapsed visually */}
@@ -97,7 +97,7 @@ export function FeatureTabs({
                     {item.link && (
                       <SmartLink
                         href={item.link.href}
-                        className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+                        className="text-link"
                         {...(item.link.newTab ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
                       >
                         {item.link.label}

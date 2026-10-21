@@ -186,9 +186,9 @@ function DesktopNavItem({
               {item.label}
             </SmartLink>
             <p className="mt-3 leading-relaxed text-muted">{menu.description}</p>
-            <SmartLink href={item.href} className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-primary">
+            <SmartLink href={item.href} className="mt-6 text-link">
               {menu.overviewLabel}
-              <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight width={16} height={16} />
             </SmartLink>
           </div>
 

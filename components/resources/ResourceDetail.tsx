@@ -77,7 +77,7 @@ function ShareLinks({share}: {share: {label: string; href: string}[]}) {
     <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-6 text-sm">
       <span className="font-semibold text-ink">Share:</span>
       {share.map((s) => (
-        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">
+        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-link font-medium">
           {s.label}
         </a>
       ))}
@@ -137,7 +137,7 @@ export function ResourceDetailView({type, slug, item}: {type: ResourceTypeName; 
       <header className="bg-surface pt-8 pb-12 lg:pt-12 lg:pb-[60px]">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">
-            <SmartLink href={config.basePath} className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover">
+            <SmartLink href={config.basePath} className="text-link gap-1 text-sm">
               <ChevronLeft /> {config.label}
             </SmartLink>
             <div className="mt-6 flex flex-wrap items-center gap-2 text-sm">

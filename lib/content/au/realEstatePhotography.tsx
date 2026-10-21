@@ -51,7 +51,7 @@ export const blocks: Block[] = [
     ),
     ctas: [auDemo('Book your demo today')],
     media: {type: 'image', image: {...reaLogo, width: 600, height: 120}},
-    mediaClassName: 'mx-auto max-w-sm rounded-xl bg-[#e4002b] p-8',
+    mediaClassName: 'mx-auto max-w-sm rounded-xl bg-rea-red p-8',
   },
   {
     type: 'cards',

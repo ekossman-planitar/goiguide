@@ -42,7 +42,7 @@ export const blocks: Block[] = [
     ),
     ctas: [{label: 'For agents', href: '/au/residential-real-estate'}, {label: 'For photographers', href: '/au/real-estate-photography', variant: 'secondary'}],
     media: {type: 'image', image: {...reaLogo, width: 600, height: 120}},
-    mediaClassName: 'mx-auto max-w-sm rounded-xl bg-[#e4002b] p-8',
+    mediaClassName: 'mx-auto max-w-sm rounded-xl bg-rea-red p-8',
   },
   {
     type: 'cards',

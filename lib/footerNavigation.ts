@@ -1,103 +1,118 @@
 /**
- * Footer links (hard-coded for the demo). Copied from the live goiguide.com
- * footer (checked 2026-10-07), with the nav changes applied:
- * Client Portal added and Marketing Catalogue / Downloads moved to Support,
- * iGuide Gallery also listed under Resources, Find an iGuide Pro added.
+ * Footer links. Every link from the live goiguide.com footer (checked
+ * 2026-10-07) is kept, with the nav changes applied (Client Portal added,
+ * Marketing Catalogue / Downloads under Support, Find an iGuide Pro added).
+ *
+ * 2026-10-20 (Evan): regrouped into four columns. Each column shows a few
+ * top links; longer lists fold into accordions (e.g. Comparisons under
+ * Resources). Accordion links stay in the page HTML, so search engines still
+ * see them.
  */
-export type FooterLink = {label: string; href: string; external?: boolean}
-export type FooterColumn = {heading: FooterLink; links: FooterLink[]}
+import {MARKETING_CATALOGUE_SUPPORT_PATH} from '@/lib/content/marketingCatalogue'
+import {zendeskLinks} from '@/lib/help/navigation'
 
-export const footerColumns: FooterColumn[][] = [
-  // Each inner array is one grid column (iGuide + Compare share a column, as on live)
-  [
-    {
-      // Same target as the "Solutions" nav item
-      heading: {label: 'iGuide', href: '/iguide/floor-plans'},
-      links: [
-        {label: 'Floor Plans', href: '/iguide/floor-plans'},
-        {label: '3D Virtual Tours', href: '/iguide/3d-virtual-tours'},
-        {label: 'CAD Deliverables', href: '/iguide/cad-deliverables'},
-        {label: 'Xactimate Sketches', href: '/iguide/xactimate-sketches'},
-        {label: 'Site Plans', href: '/iguide/site-plans'},
-        {label: 'Integrations', href: '/iguide/integrations'},
-        {label: 'Capture Hardware', href: '/camera-hardware'},
-        {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
-        {label: 'Pricing', href: '/pricing'},
-        {label: 'iGuide Gallery', href: '/resources-and-media/iguide-gallery'},
-      ],
-    },
-    {
-      // New URL: no Compare overview page exists on the live site yet
-      heading: {label: 'Compare iGuide', href: '/compare'},
-      links: [
-        {label: 'iGuide vs Matterport', href: '/compare/iguide-vs-matterport'},
-        {label: 'iGuide vs DocuSketch', href: '/compare/iguide-vs-docusketch'},
-        {label: 'iGuide vs CubiCasa', href: '/compare/iguide-vs-cubicasa'},
-        {label: 'iGuide vs Zillow3D Home', href: '/compare/iguide-vs-zillow3dhome'},
-        {label: 'iGuide vs Manual Measurement', href: '/compare/iguide-vs-manual-measurement'},
-      ],
-    },
-  ],
-  [
-    {
-      heading: {label: 'Company', href: '/about'},
-      links: [
-        {label: 'About Planitar', href: '/about'},
-        {label: 'Office Hours', href: '/office-holidays', external: true},
-        {label: 'Careers', href: '/careers'},
-        {label: 'Partnership', href: '/partnership'},
-        {label: 'Find a Reseller', href: '/resellers'},
-      ],
-    },
-  ],
-  [
-    {
-      heading: {label: 'Resources & Media', href: '/resource-center'},
-      links: [
-        {label: 'Customer Stories', href: '/customer-stories'},
-        {label: 'Blog', href: '/blogs'},
-        {label: 'Webinars', href: '/webinars'},
-        {label: 'Videos', href: '/video'},
-        {label: 'Brochures', href: '/brochures'},
-        {label: 'News', href: '/news'},
-        {label: 'White Papers & eBooks', href: '/white-papers-and-ebooks'},
-        {label: 'iGuide Gallery', href: '/resources-and-media/iguide-gallery'},
-      ],
-    },
-  ],
-  [
-    {
-      // Same target as the "Support" nav item
-      heading: {label: 'Support & Training', href: 'https://help.youriguide.com', external: true},
-      links: [
-        {label: 'Help Center', href: 'https://help.youriguide.com/hc/en-us', external: true},
-        {label: 'Ask for Help', href: 'https://help.youriguide.com/requests/new', external: true},
-        {label: 'iGuide Forum', href: 'https://forum.goiguide.com/', external: true},
-        {label: 'Training', href: 'https://help.youriguide.com/hc/en-us/categories/27462998868498-Getting-Started-with-iGUIDE', external: true},
-        {label: 'Client Portal', href: 'https://manage.youriguide.com/', external: true},
-        {
-          label: 'Marketing Catalogue',
-          href: 'https://help.youriguide.com/hc/en-us/articles/28225392683154-iGUIDE-Marketing-Catalogue',
-        },
-        {label: 'Downloads', href: '/downloads'},
-      ],
-    },
-  ],
-  [
-    {
-      // Same target as the "Industries" nav item (new URL)
-      heading: {label: 'Industries', href: '/industries'},
-      links: [
-        {label: 'Residential Real Estate', href: '/residential-real-estate'},
-        {label: 'Real Estate Photography', href: '/real-estate-photography'},
-        {label: 'Architecture & Remodeling', href: '/architecture-engineering-construction'},
-        {label: 'Design & Construction', href: '/design-construction'},
-        {label: 'Insurance & Restoration', href: '/insurance-restoration'},
-        {label: 'Forensic Investigation', href: '/forensic-investigation'},
-        {label: 'Facility Management', href: '/facility-management'},
-      ],
-    },
-  ],
+export type FooterLink = {label: string; href: string; external?: boolean}
+/** A fold-out group of links; `all` is an optional "view all" link at the end */
+export type FooterAccordion = {accordion: string; links: FooterLink[]; all?: FooterLink}
+export type FooterItem = FooterLink | FooterAccordion
+export type FooterColumn = {heading: FooterLink; items: FooterItem[]}
+
+export const isAccordion = (item: FooterItem): item is FooterAccordion => 'accordion' in item
+
+export const footerColumns: FooterColumn[] = [
+  {
+    // Same target as the "Solutions" nav item
+    heading: {label: 'iGuide', href: '/iguide/floor-plans'},
+    items: [
+      {label: 'Pricing', href: '/pricing'},
+      {label: 'Capture Hardware', href: '/camera-hardware'},
+      {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'},
+      {
+        accordion: 'Solutions',
+        links: [
+          {label: 'Floor Plans', href: '/iguide/floor-plans'},
+          {label: '3D Virtual Tours', href: '/iguide/3d-virtual-tours'},
+          {label: 'CAD Deliverables', href: '/iguide/cad-deliverables'},
+          {label: 'Xactimate Sketches', href: '/iguide/xactimate-sketches'},
+          {label: 'Site Plans', href: '/iguide/site-plans'},
+          {label: 'Integrations', href: '/iguide/integrations'},
+        ],
+      },
+      {
+        // Same target as the "Industries" nav item (new URL)
+        accordion: 'Industries',
+        links: [
+          {label: 'Residential Real Estate', href: '/residential-real-estate'},
+          {label: 'Real Estate Photography', href: '/real-estate-photography'},
+          {label: 'Architecture & Remodeling', href: '/architecture-engineering-construction'},
+          {label: 'Design & Construction', href: '/design-construction'},
+          {label: 'Insurance & Restoration', href: '/insurance-restoration'},
+          {label: 'Forensic Investigation', href: '/forensic-investigation'},
+          {label: 'Facility Management', href: '/facility-management'},
+        ],
+        all: {label: 'All industries', href: '/industries'},
+      },
+    ],
+  },
+  {
+    heading: {label: 'Resources & Media', href: '/resource-center'},
+    items: [
+      {label: 'Blog', href: '/blogs'},
+      {label: 'Customer Stories', href: '/customer-stories'},
+      {label: 'iGuide Gallery', href: '/resources-and-media/iguide-gallery'},
+      {
+        accordion: 'Learn more',
+        links: [
+          {label: 'Webinars', href: '/webinars'},
+          {label: 'Videos', href: '/video'},
+          {label: 'Brochures', href: '/brochures'},
+          {label: 'White Papers & eBooks', href: '/white-papers-and-ebooks'},
+          {label: 'News', href: '/news'},
+        ],
+      },
+      {
+        // New URL: no Compare overview page exists on the live site yet
+        accordion: 'Comparisons',
+        links: [
+          {label: 'iGuide vs Matterport', href: '/compare/iguide-vs-matterport'},
+          {label: 'iGuide vs DocuSketch', href: '/compare/iguide-vs-docusketch'},
+          {label: 'iGuide vs CubiCasa', href: '/compare/iguide-vs-cubicasa'},
+          {label: 'iGuide vs Zillow3D Home', href: '/compare/iguide-vs-zillow3dhome'},
+          {label: 'iGuide vs Manual Measurement', href: '/compare/iguide-vs-manual-measurement'},
+        ],
+        all: {label: 'All comparisons', href: '/compare'},
+      },
+    ],
+  },
+  {
+    // Same target as the "Support" nav item
+    heading: {label: 'Support & Training', href: '/help'},
+    items: [
+      {label: 'Help Center', href: '/help'},
+      // Tickets stay on Zendesk (same link as the Help Center's "Submit a request")
+      {label: 'Ask for Help', href: zendeskLinks.submitRequest, external: true},
+      {label: 'Client Portal', href: 'https://manage.youriguide.com/', external: true},
+      {
+        accordion: 'Training & tools',
+        links: [
+          {label: 'Training', href: '/help/categories/27462998868498-Getting-Started-with-iGUIDE'},
+          {label: 'iGuide Forum', href: 'https://forum.goiguide.com/', external: true},
+          {label: 'Marketing Catalogue', href: MARKETING_CATALOGUE_SUPPORT_PATH},
+          {label: 'Downloads', href: '/downloads'},
+        ],
+      },
+    ],
+  },
+  {
+    heading: {label: 'Company', href: '/about'},
+    items: [
+      {label: 'About Planitar', href: '/about'},
+      {label: 'Careers', href: '/careers'},
+      {label: 'Partnership', href: '/partnership'},
+      {label: 'Find a Reseller', href: '/resellers'},
+      {label: 'Office Hours', href: '/office-holidays', external: true},
+    ],
+  },
 ]
 
 export const socialLinks = [

@@ -1,15 +1,9 @@
 import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
 import localFont from 'next/font/local'
 import {BookingPopup} from '@/components/booking/BookingPopup'
 import './globals.css'
 
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-})
-
-// REA Pangea (REA Group brand typeface) for headlines, as on customer.realestate.com.au
+// REA Pangea (REA Group brand typeface): the only typeface on the site (brand guide)
 const pangea = localFont({
   src: [
     {path: './fonts/REAPangea-Medium.woff2', weight: '500'},
@@ -45,7 +39,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} ${pangea.variable} h-full antialiased`}>
+    <html lang="en" className={`${pangea.variable} h-full antialiased`}>
       <head>
         {/* Google Tag Manager */}
         {loadGtm && <script dangerouslySetInnerHTML={{__html: gtmSnippet}} />}

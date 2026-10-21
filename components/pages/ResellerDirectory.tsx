@@ -161,7 +161,7 @@ export function ResellerDirectory() {
               {visible.map((r, i) => {
                 const site = websiteFor(r)
                 return (
-                  <li key={`${r.Name}-${i}`} className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm">
+                  <li key={`${r.Name}-${i}`} className="rounded-2xl border border-line bg-white p-6 shadow-sm">
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <h3 className="flex-1 text-2xl font-bold break-words text-ink">{r.Name}</h3>
                       {split(r.Locations).length > 0 && (
@@ -203,9 +203,9 @@ export function ResellerDirectory() {
                     </div>
                     {r.Description && <p className="mt-6">{r.Description}</p>}
                     {site && (
-                      <a href={site} target="_blank" rel="noopener noreferrer" className="card-link group mt-6 inline-flex items-center gap-2 font-semibold text-ink hover:text-primary-hover">
+                      <a href={site} target="_blank" rel="noopener noreferrer" className="card-link mt-6 text-link">
                         Visit website
-                        <ArrowRight width={20} height={20} className="transition-transform group-hover:translate-x-1" />
+                        <ArrowRight width={20} height={20} />
                       </a>
                     )}
                   </li>

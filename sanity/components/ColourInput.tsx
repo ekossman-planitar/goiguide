@@ -22,7 +22,7 @@ export function ColourInput(props: StringInputProps) {
               height: 32,
               borderRadius: 6,
               background: c.value,
-              border: selected ? '3px solid #e31f2e' : '1px solid #a1a1aa',
+              border: selected ? '3px solid #e4002b' : '1px solid #a1a1aa',
               cursor: readOnly ? 'default' : 'pointer',
             }}
           />

@@ -35,7 +35,7 @@ export function LpFooter() {
         <ul className="flex flex-wrap gap-x-5 gap-y-1">
           {legal.links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary-hover hover:underline">
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary-hover">
                 {l.label}
               </a>
             </li>

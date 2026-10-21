@@ -1,5 +1,6 @@
 /**
- * Australian visitors to the homepage go to the Australia homepage (/au).
+ * Australian visitors to the homepage, /residential-real-estate and
+ * /real-estate-photography go to the Australian versions (/au, /au/…).
  * The country comes from the hosting platform (Vercel's x-vercel-ip-country
  * header, worked out from the visitor's IP). The IP itself is never read or stored.
  */

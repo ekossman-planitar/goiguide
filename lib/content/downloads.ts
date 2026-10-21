@@ -27,7 +27,7 @@ export const products: ProductDownloads[] = [
     files: [
       {label: 'Camera Manual', action: 'Download', href: '/assets/PLANIX-R1-Assets/PLANIX-R1-Manual-v1.1.pdf'},
       {label: 'Quick Start Guide', action: 'Download', href: '/assets/PLANIX-R1-Assets/PLANIX_R1_QSG.pdf'},
-      {label: 'Tech Specs', action: 'Download', href: '/assets/PLANIX-R1-Assets/PLANIX_R1_Tech_Specs.pdf'},
+      {label: 'Tech Specs', action: 'Download', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/PLANIX_R1_Tech_Specs.pdf'},
     ],
   },
   {

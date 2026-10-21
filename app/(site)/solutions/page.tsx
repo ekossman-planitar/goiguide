@@ -155,9 +155,9 @@ export default function SolutionsPage() {
                         </li>
                       ))}
                     </ul>
-                    <span className="mt-5 inline-flex items-center gap-1.5 font-semibold text-primary">
+                    <span className="mt-5 text-link">
                       Learn more
-                      <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
+                      <ArrowRight width={16} height={16} />
                     </span>
                   </div>
                 </SmartLink>
@@ -198,9 +198,9 @@ export default function SolutionsPage() {
                 <div>
                   <h3 className="text-2xl font-semibold text-ink group-hover:text-primary-hover">{c.title}</h3>
                   <p className="mt-3 text-base leading-6 text-body">{c.text}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-semibold text-primary">
+                  <span className="mt-5 text-link">
                     {c.link}
-                    <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
+                    <ArrowRight width={16} height={16} />
                   </span>
                 </div>
                 <Image src={c.image.src} alt={c.image.alt} width={c.image.width} height={c.image.height} sizes="200px" className="mx-auto h-40 w-auto object-contain" />

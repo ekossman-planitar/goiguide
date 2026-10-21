@@ -15,7 +15,7 @@ export function VersionHistory({releases, initiallyVisible = 5}: {releases: Rele
       <ul className="space-y-3">
         {releases.map((release, i) => (
           <li key={release.version} hidden={!expanded && i >= initiallyVisible}>
-            <details open={i === 0} className="group rounded-xl border border-[#e4e4e7] bg-white">
+            <details open={i === 0} className="group rounded-xl border border-line bg-white">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3.5 [&::-webkit-details-marker]:hidden">
                 <h3 className="text-lg font-semibold text-ink">{release.version}</h3>
                 <ChevronDown width={20} height={20} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
@@ -41,7 +41,7 @@ export function VersionHistory({releases, initiallyVisible = 5}: {releases: Rele
           type="button"
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
-          className="mt-5 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+          className="mt-5 text-link"
         >
           {expanded ? 'Show fewer versions' : `Show older versions (${releases.length - initiallyVisible})`}
           <ChevronDown width={16} height={16} className={expanded ? 'rotate-180' : undefined} />

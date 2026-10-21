@@ -20,7 +20,7 @@ export default function VirtualToursPage() {
         ctas={c.hero.ctas}
         media={<MediaView media={{type: 'embed', ...c.hero.tour}} className="shadow-lg" />}
       />
-      <CmsLogoBand band={c.portals.band} heading={c.portals.heading} logos={c.portals.logos} background="surface" />
+      <CmsLogoBand band={c.portals.band} heading={c.portals.heading} logos={c.portals.logos} background="surface" cards />
       <Section heading={c.deliverables.heading}>
         <CardGrid cards={c.deliverables.cards} columns={3} />
       </Section>

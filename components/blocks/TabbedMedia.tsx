@@ -36,7 +36,7 @@ export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; 
           role="tablist"
           aria-label={label}
           onKeyDown={onKeyDown}
-          className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] bg-[#ececee] p-2"
+          className="flex max-w-full gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2"
         >
           {tabs.map((tab, i) => (
             <button
@@ -54,8 +54,8 @@ export function TabbedMedia({tabs, label, align = 'center'}: {tabs: MediaTab[]; 
               className={cn(
                 'shrink-0 rounded-3xl border px-5 py-2.5 text-base leading-6 font-semibold whitespace-nowrap transition-colors',
                 i === active
-                  ? 'border-primary bg-[#dcdcdf] text-primary'
-                  : 'border-[#e4e4e7] bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
+                  ? 'border-primary bg-primary text-white'
+                  : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
               )}
             >
               {tab.label}

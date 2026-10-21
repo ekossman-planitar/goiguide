@@ -9,7 +9,7 @@ export type RateTable = {heading: string; rows: [size: string, rate: string][]}
 
 function Rates({table}: {table: RateTable}) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <table className="w-full text-left text-base">
         <caption className="bg-surface px-5 py-4 text-left text-xl font-semibold text-ink">{table.heading}</caption>
         <thead>

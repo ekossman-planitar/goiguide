@@ -216,12 +216,12 @@ export const cameraHardware = {
       {
         title: 'iGuide PLANIX R1 Camera System - Technical Specifications',
         image: {src: '/assets/Uploads/2-3__ScaleMaxWidthWzUzNV0.png', alt: ''},
-        link: {label: 'Download file', href: '/assets/Uploads/PLANIX_R1_Tech_Specs.pdf'},
+        link: {label: 'Download file', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/PLANIX_R1_Tech_Specs.pdf'},
       },
       {
         title: 'iGuide PLANIX R1 vs Pro: Comparison',
         image: {src: '/assets/Uploads/3-3__ScaleMaxWidthWzUzNV0.png', alt: ''},
-        link: {label: 'Download file', href: '/assets/Uploads/PLANIX_PRO_R1_Tech_Specs_Comparison-1.pdf'},
+        link: {label: 'Download file', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/PLANIX_PRO_R1_Tech_Specs_Comparison-1.pdf'},
       },
     ],
   },

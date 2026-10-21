@@ -65,7 +65,7 @@ export default function CameraHardwarePage() {
             </ol>
             <h4 className="mt-8 text-lg font-semibold text-ink">{p.extraHeading}</h4>
             <p className="mt-2 text-base text-body">
-              <a href={p.extra.link.href} className="font-semibold text-primary underline underline-offset-2">
+              <a href={p.extra.link.href} className="font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
                 {p.extra.link.label}
               </a>
               {p.extra.after}

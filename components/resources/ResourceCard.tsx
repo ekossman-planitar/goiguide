@@ -7,7 +7,8 @@ import type {ResourceCardData} from '@/sanity/lib/types'
 
 /**
  * Card for any Resource Center item: featured image with a type pill, then
- * date, title, short description and link. Image and title are links too.
+ * date, title, short description and link. The whole card is one link (the
+ * title link stretches over the card), so it can be clicked anywhere.
  */
 export function ResourceCard({item}: {item: ResourceCardData}) {
   const type = getResourceType(item._type)
@@ -17,9 +18,9 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
   const image = item.featuredImage
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-hover/40 hover:shadow-xl hover:shadow-primary/10">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-hover/40 hover:shadow-xl hover:shadow-primary/10 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-primary">
       <div className="relative">
-        <a href={href} {...linkProps} tabIndex={-1} aria-hidden className="relative block aspect-[16/9] overflow-hidden bg-surface">
+        <div className="relative aspect-[16/9] overflow-hidden bg-surface">
           {image?.asset && (
             <Image
               src={urlFor(image).width(800).height(450).fit('crop').auto('format').url()}
@@ -31,7 +32,7 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
               blurDataURL={image.asset.metadata?.lqip}
             />
           )}
-        </a>
+        </div>
         {type && (
           <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary shadow-sm">
             {type.label}
@@ -48,20 +49,21 @@ export function ResourceCard({item}: {item: ResourceCardData}) {
           <span className="text-sm text-muted">Interactive 3D tour</span>
         )}
         <h3 className="mt-3 text-xl font-semibold leading-snug text-ink">
-          <a href={href} {...linkProps} className="transition-colors group-hover:text-primary-hover">
+          {/* Stretched link: its ::after covers the whole card */}
+          <a
+            href={href}
+            {...linkProps}
+            aria-label={`${item.title} (${label})`}
+            className="transition-colors group-hover:text-primary-hover after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
+          >
             {item.title}
           </a>
         </h3>
         {item.excerpt && <p className="mt-3 line-clamp-3 leading-relaxed text-muted">{item.excerpt}</p>}
-        <a
-          href={href}
-          {...linkProps}
-          className="mt-auto inline-flex items-center gap-1.5 pt-6 font-semibold text-primary"
-          aria-label={`${label}: ${item.title}`}
-        >
+        <span aria-hidden className="mt-auto pt-6 text-link">
           {label}
-          <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
-        </a>
+          <ArrowRight width={16} height={16} />
+        </span>
       </div>
     </article>
   )

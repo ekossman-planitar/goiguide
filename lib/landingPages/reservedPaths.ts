@@ -15,7 +15,7 @@ const plannedPages = ['/marketing-catalogue']
 const reservedPrefixes = [
   ...resourceTypes.map((t) => t.basePath),
   ...catalogues.map((c) => c.path),
-  '/iguide', '/au', '/compare', '/csc', '/get-iguide/tools', '/get-iguide/irc', '/project-group', '/reports', '/event', '/events', '/solutions', '/support',
+  '/iguide', '/au', '/compare', '/csc', '/get-iguide/tools', '/get-iguide/irc', '/project-group', '/reports', '/event', '/events', '/solutions', '/support', '/help',
   '/studio', '/api', '/assets', '/_resources', '/_next', '/homepage', '/landing-templates', '/blog',
 ]
 

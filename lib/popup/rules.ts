@@ -4,13 +4,13 @@
  */
 
 export const BRAND_COLOURS = [
-  {title: 'Black', value: '#2e2c30'},
-  {title: 'Red', value: '#e31f2e'},
+  {title: 'Snowgum 700 (brand black)', value: '#2e2c30'},
+  {title: 'REA Red', value: '#e4002b'},
   {title: 'White', value: '#ffffff'},
-  {title: 'Light grey', value: '#f4f4f5'},
+  {title: 'Mist', value: '#f3f2f5'},
 ] as const
 
-export const DEFAULT_COLOURS = {background: '#ffffff', text: '#2e2c30', highlight: '#e31f2e'}
+export const DEFAULT_COLOURS = {background: '#ffffff', text: '#2e2c30', highlight: '#e4002b'}
 
 export const HEX_PATTERN = /^#[0-9a-f]{6}$/i
 

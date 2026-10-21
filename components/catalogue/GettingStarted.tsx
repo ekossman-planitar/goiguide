@@ -1,5 +1,6 @@
 'use client'
 
+import {ArrowRight} from '@/components/ui/icons'
 import {Check, Copy, Download, ExternalLink, Play} from 'lucide-react'
 import {useState} from 'react'
 import {catalogueAssets, catalogueDemoTours, catalogueStarterKit} from '@/lib/content/marketingCatalogue'
@@ -97,8 +98,9 @@ export function StarterSteps({demoTourAnchor}: {demoTourAnchor: string}) {
         <p className="text-sm font-semibold text-muted">Step 1</p>
         <h3 className="mt-1 text-xl font-semibold text-ink">Show a demo tour on your website</h3>
         <p className="mt-2 text-base leading-6 text-body">No property of your own to show yet? Embed one of our demo tours.</p>
-        <a href={`#${demoTourAnchor}`} className="mt-4 inline-block text-sm font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
+        <a href={`#${demoTourAnchor}`} className="mt-4 text-link text-sm">
           Get an embed code
+          <ArrowRight width={14} height={14} />
         </a>
       </li>
       {catalogueStarterKit.map((step, i) => (

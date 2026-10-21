@@ -172,7 +172,7 @@ export const blocks: Block[] = [
             project data can be interpreted into various deliverables, ranging from simple to complex. The iGuide Essentials Portal is used by most
             iGuide users because of its features and lower price. The iGuide Enterprise Portal has enhanced data management and security features in
             addition to what the Essentials Portal offers at a premium price. Download the{' '}
-            <a href="/assets/Uploads/iGUIDE_Portal_Brochure_Final.pdf">the iGuide Portal brochure</a> to learn more.
+            <a href="https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/iGUIDE_Portal_Brochure_Final-1.pdf">the iGuide Portal brochure</a> to learn more.
           </p>
         ),
       },

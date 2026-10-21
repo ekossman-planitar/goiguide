@@ -20,7 +20,7 @@ export default function MarketingCataloguePage() {
     <>
       <section className="bg-surface pt-8 pb-12 lg:pt-12 lg:pb-14">
         <Container>
-          <SmartLink href={HELP_CENTER_URL} className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover">
+          <SmartLink href={HELP_CENTER_URL} className="text-link gap-1 text-sm">
             <ChevronLeft /> Support
           </SmartLink>
           <div className="mt-5 max-w-3xl">
@@ -36,7 +36,7 @@ export default function MarketingCataloguePage() {
             >
               <span className="rounded-full bg-primary-hover px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">New to iGuide?</span>
               Start here
-              <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight width={16} height={16} />
             </SmartLink>
           </div>
         </Container>

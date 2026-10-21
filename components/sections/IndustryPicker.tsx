@@ -366,7 +366,7 @@ export function IndustryPicker() {
                     >
                       Learn more
                       <span className="sr-only"> about iGuide for {ind.name}</span>
-                      <ArrowRight width={18} height={18} className="transition-transform group-hover:translate-x-1" />
+                      <ArrowRight width={18} height={18} />
                     </SmartLink>
                   </div>
                 </div>

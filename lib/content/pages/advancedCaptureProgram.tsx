@@ -18,10 +18,10 @@ export const meta = {
 const training = 'https://planitarexternal.myabsorb.ca/?KeyName=ACPv2Open'
 
 const Eyebrow = ({children}: {children: ReactNode}) => (
-  <span className="inline-flex rounded-full bg-[#ffd6a0] px-3 py-2 text-xs font-semibold text-black">{children}</span>
+  <span className="inline-flex rounded-full bg-cream px-3 py-2 text-xs font-semibold text-ink">{children}</span>
 )
 
-const card = 'flex flex-col rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] md:p-8'
+const card = 'flex flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] md:p-8'
 
 const pros = [
   {
@@ -155,7 +155,7 @@ export const blocks: Block[] = [
               </div>
               <p className="mt-5 text-base leading-6 text-body">{pro.text}</p>
               <div className="mt-5 w-fit rounded-lg bg-sky px-3 py-2 text-sm font-semibold text-primary">{pro.stat}</div>
-              <hr className="my-6 border-[#e4e4e7]" />
+              <hr className="my-6 border-line" />
               <p className="flex-1 text-lg leading-7 font-medium text-ink italic">{pro.quote}</p>
               <SmartLink href={pro.link.href} className="mt-6 font-semibold text-primary">
                 {pro.link.label}
@@ -292,7 +292,7 @@ export const blocks: Block[] = [
     children: (
       <div className="mx-auto max-w-3xl space-y-4">
         {faqs.map((f) => (
-          <details key={f.q} className="group rounded-xl border border-[#e4e4e7] bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+          <details key={f.q} className="group rounded-xl border border-line bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
               {f.q}
               <span aria-hidden className="text-2xl leading-none text-primary transition-transform group-open:rotate-45">

@@ -230,7 +230,7 @@ export function MarketingCatalogue() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="e.g. Site Plans, brochure"
-            className="h-12 w-full rounded-lg border border-[#a1a1aa] bg-white pr-3 pl-10 text-base text-ink focus:border-primary focus:outline-2 focus:outline-offset-1 focus:outline-primary"
+            className="h-12 w-full rounded-lg border border-muted bg-white pr-3 pl-10 text-base text-ink focus:border-primary focus:outline-2 focus:outline-offset-1 focus:outline-primary"
           />
         </div>
 
@@ -338,7 +338,7 @@ export function MarketingCatalogue() {
                         <span className="block text-[15px] leading-snug font-semibold text-ink group-hover:text-primary-hover">{c.label}</span>
                         <span className="mt-1 inline-flex items-center gap-1 text-sm text-muted">
                           {catalogueAssets.filter((a) => a.campaign === c.id).length} items
-                          <ArrowRight width={14} height={14} className="transition-transform group-hover:translate-x-0.5" />
+                          <ArrowRight width={14} height={14} />
                         </span>
                       </span>
                     </button>
@@ -352,7 +352,7 @@ export function MarketingCatalogue() {
         <p className="mb-6 text-sm text-muted" aria-live="polite">
           {filtered ? `${visible.length} of ${catalogueAssets.length} resources match` : `${catalogueAssets.length} resources`}
           {filtered && (
-            <button type="button" onClick={reset} className="ml-3 inline-flex cursor-pointer items-center gap-1 font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
+            <button type="button" onClick={reset} className="ml-3 text-link gap-1">
               <X aria-hidden width={14} height={14} /> Clear filters
             </button>
           )}

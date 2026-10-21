@@ -60,7 +60,7 @@ export function TourShowcase({eyebrow, heading, subheading, tours}: Props) {
               aria-label="Example tours"
               aria-orientation="vertical"
               onKeyDown={onKeyDown}
-              className="flex gap-2 overflow-x-auto rounded-[32px] bg-[#ececee] p-2 lg:flex-col lg:self-start lg:overflow-visible"
+              className="flex gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2 lg:flex-col lg:self-start lg:overflow-visible"
             >
               {tours.map((tour, i) => {
                 const selected = i === active
@@ -81,8 +81,8 @@ export function TourShowcase({eyebrow, heading, subheading, tours}: Props) {
                     className={cn(
                       'shrink-0 rounded-3xl border px-6 py-3 text-left text-base leading-6 font-semibold whitespace-nowrap transition-colors lg:whitespace-normal',
                       selected
-                        ? 'border-primary bg-[#dcdcdf] text-primary'
-                        : 'border-[#e4e4e7] bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
+                        ? 'border-primary bg-primary text-white'
+                        : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
                     )}
                   >
                     {tour.label}

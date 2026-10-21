@@ -20,7 +20,7 @@ const ig = (href: string, handle: string) => (
   </a>
 )
 
-const iconClass = 'mt-0.5 h-5 w-5 shrink-0 text-[#F7941D]'
+const iconClass = 'mt-0.5 h-5 w-5 shrink-0 text-rea-red'
 const prizes: {icon: ReactNode; text: string}[] = [
   {icon: <Ticket className={iconClass} aria-hidden="true" />, text: 'Full-access ticket to PMRE (November 17-19, 2026)'},
   {icon: <Plane className={iconClass} aria-hidden="true" />, text: 'Round-trip flight from anywhere in the continental US or Canada'},
@@ -101,7 +101,7 @@ export const blocks: Block[] = [
                   <li key={i} className="flex items-start gap-3">
                     <span
                       aria-hidden="true"
-                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#F7941D]/50 bg-[#F7941D]/15 text-sm font-semibold text-[#c46a00]"
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-rea-red/40 bg-rea-red/10 text-sm font-semibold text-ink"
                     >
                       {i + 1}
                     </span>

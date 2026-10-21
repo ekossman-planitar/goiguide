@@ -30,7 +30,7 @@ type Head = {id?: string; heading?: string; subheading?: string; align?: 'left' 
 export type Block =
   | {type: 'hero'; heading: string; subheading?: string; extra?: ReactNode; ctas?: Cta[]; media: Media}
   /** `band`: ID of the Sanity logo band that can replace these logos (lib/cmsLibrary.ts) */
-  | {type: 'logos'; band?: string; heading?: string; logos: Img[]; marquee?: boolean; background?: SectionBg}
+  | {type: 'logos'; band?: string; heading?: string; logos: Img[]; marquee?: boolean; background?: SectionBg; cards?: boolean}
   | (Head & {type: 'cards'; cards: GridCard[]; columns?: 2 | 3 | 4; after?: ReactNode; ctas?: Cta[]; link?: Link})
   | {type: 'quote'; quote: Quote; background?: SectionBg}
   | (Head & {type: 'quotes'; quotes: Quote[]; link?: Link})
@@ -61,7 +61,7 @@ function SectionLink({link}: {link: Link}) {
   return (
     <SmartLink
       href={link.href}
-      className="inline-flex items-center gap-1.5 text-base font-semibold text-primary hover:underline"
+      className="text-link text-base"
       {...(link.newTab ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
     >
       {link.label}
@@ -84,7 +84,7 @@ function BlockView({block, index}: {block: Block; index: number}) {
         </PageHero>
       )
     case 'logos':
-      return <CmsLogoBand band={block.band} heading={block.heading} logos={block.logos} variant={block.marquee === false ? 'row' : 'marquee'} background={block.background ?? 'surface'} />
+      return <CmsLogoBand band={block.band} heading={block.heading} logos={block.logos} variant={block.marquee === false ? 'row' : 'marquee'} background={block.background ?? 'surface'} cards={block.cards} />
     case 'cards':
       return (
         <Section id={block.id} heading={block.heading} subheading={block.subheading} align={block.align} background={block.background}>

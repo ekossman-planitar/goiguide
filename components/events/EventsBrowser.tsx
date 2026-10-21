@@ -2,6 +2,7 @@
 
 import {CalendarDays, List, Search, X} from 'lucide-react'
 import {useEffect, useMemo, useState} from 'react'
+import {Select} from '@/components/ui/Select'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {cn} from '@/lib/cn'
 import {attendanceModes, categoryTitle, DEFAULT_TIME_ZONE, eventCategories, eventTypes, isLive, isUpcoming, monthKey, monthLabel} from '@/lib/events'
@@ -110,8 +111,6 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
   })
 
   const toggle = 'inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors'
-  const select =
-    'h-11 w-full cursor-pointer rounded-lg border border-line bg-white px-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto'
 
   return (
     <div>
@@ -136,58 +135,55 @@ export function EventsBrowser({events, renderedAt}: {events: EventCardData[]; re
             />
           </label>
           {typesPresent.length > 0 && (
-            <label>
-              <span className="sr-only">Event type</span>
-              <select name="type" value={filters.type} onChange={(ev) => setFilter('type', ev.target.value)} className={select}>
-                <option value="all">All types</option>
-                {typesPresent.map((t) => (
-                  <option key={t.value} value={t.value}>
-                    {t.plural}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Select
+              name="type"
+              label="Event type"
+              size="sm"
+              className="w-full sm:w-auto sm:min-w-[170px]"
+              buttonClassName="h-11"
+              options={[{value: 'all', label: 'All types'}, ...typesPresent.map((t) => ({value: t.value, label: t.plural}))]}
+              value={filters.type}
+              onChange={(v) => setFilter('type', v)}
+            />
           )}
           {industriesPresent.length > 0 && (
-            <label>
-              <span className="sr-only">Industry</span>
-              <select name="industry" value={filters.industry} onChange={(ev) => setFilter('industry', ev.target.value)} className={select}>
-                <option value="all">All industries</option>
-                {industriesPresent.map((c) => (
-                  <option key={c.value} value={c.value}>
-                    {c.title}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Select
+              name="industry"
+              label="Industry"
+              size="sm"
+              className="w-full sm:w-auto sm:min-w-[170px]"
+              buttonClassName="h-11"
+              options={[{value: 'all', label: 'All industries'}, ...industriesPresent.map((c) => ({value: c.value, label: c.title}))]}
+              value={filters.industry}
+              onChange={(v) => setFilter('industry', v)}
+            />
           )}
           {upcoming.length > 0 && (
-            <label>
-              <span className="sr-only">In person or online</span>
-              <select name="attend" value={filters.attend} onChange={(ev) => setFilter('attend', ev.target.value)} className={select}>
-                <option value="all">In person &amp; online</option>
-                {attendanceModes
-                  .filter((m) => m.value !== 'hybrid')
-                  .map((m) => (
-                    <option key={m.value} value={m.value}>
-                      {m.title}
-                    </option>
-                  ))}
-              </select>
-            </label>
+            <Select
+              name="attend"
+              label="In person or online"
+              size="sm"
+              className="w-full sm:w-auto sm:min-w-[170px]"
+              buttonClassName="h-11"
+              options={[
+                {value: 'all', label: 'In person & online'},
+                ...attendanceModes.filter((m) => m.value !== 'hybrid').map((m) => ({value: m.value, label: m.title})),
+              ]}
+              value={filters.attend}
+              onChange={(v) => setFilter('attend', v)}
+            />
           )}
           {countriesPresent.length > 0 && (
-            <label>
-              <span className="sr-only">Country</span>
-              <select name="country" value={filters.country} onChange={(ev) => setFilter('country', ev.target.value)} className={select}>
-                <option value="all">All countries</option>
-                {countriesPresent.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Select
+              name="country"
+              label="Country"
+              size="sm"
+              className="w-full sm:w-auto sm:min-w-[170px]"
+              buttonClassName="h-11"
+              options={[{value: 'all', label: 'All countries'}, ...countriesPresent.map((c) => ({value: c, label: c}))]}
+              value={filters.country}
+              onChange={(v) => setFilter('country', v)}
+            />
           )}
           {filtered && (
             <button

@@ -20,9 +20,9 @@ export function LatestResources({heading, subheading, link, items}: Props) {
       <Container>
         <SectionHeading align="center" heading={heading} subheading={subheading} className="max-w-3xl" />
         <div className="mt-4 flex justify-center">
-          <SmartLink href={link.href} className="group inline-flex items-center gap-1.5 font-semibold text-primary">
+          <SmartLink href={link.href} className="text-link">
             {link.label}
-            <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight width={16} height={16} />
           </SmartLink>
         </div>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">

@@ -28,7 +28,7 @@ export function Faq({heading, subheading, items, initiallyVisible = 3, backgroun
         <ul className="mt-10 space-y-3">
           {items.map((item, i) => (
             <li key={item.q} hidden={!expanded && i >= initiallyVisible}>
-              <details className="group rounded-xl border border-[#e4e4e7] bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+              <details className="group rounded-xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-lg leading-7 font-semibold text-ink [&::-webkit-details-marker]:hidden">
                   {item.q}
                   <ChevronDown width={20} height={20} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
@@ -46,7 +46,7 @@ export function Faq({heading, subheading, items, initiallyVisible = 3, backgroun
               type="button"
               aria-expanded={expanded}
               onClick={() => setExpanded((v) => !v)}
-              className="inline-flex items-center gap-1.5 font-semibold text-primary"
+              className="text-link"
             >
               {expanded ? 'Show less' : 'Show more'}
               <ChevronDown width={16} height={16} className={expanded ? 'rotate-180' : ''} />

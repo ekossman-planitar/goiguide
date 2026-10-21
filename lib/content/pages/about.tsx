@@ -42,7 +42,7 @@ function LeadershipGrid() {
   return (
     <ul className="grid grid-cols-2 gap-6 lg:grid-cols-4">
       {leaders.map((l) => (
-        <li key={l.name} className="flex flex-col rounded-2xl border border-[#e4e4e7] bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)] sm:p-6">
+        <li key={l.name} className="flex flex-col rounded-2xl border border-line bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)] sm:p-6">
           <FallbackImage
             src={l.photo.src}
             alt={l.photo.alt}

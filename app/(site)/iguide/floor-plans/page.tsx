@@ -28,7 +28,7 @@ export default function FloorPlansPage() {
           />
         }
       />
-      <CmsLogoBand band={c.software.band} heading={c.software.heading} logos={c.software.logos} background="surface" />
+      <CmsLogoBand band={c.software.band} heading={c.software.heading} logos={c.software.logos} background="surface" cards />
       <Section heading={c.workflows.heading} subheading={c.workflows.subheading}>
         <CardGrid cards={c.workflows.cards} />
       </Section>

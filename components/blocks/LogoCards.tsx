@@ -11,7 +11,7 @@ export function LogoCards({items, columns = 3, headingLevel = 'h3'}: {items: Log
   return (
     <ul className={cn('grid gap-6 sm:grid-cols-2', columns === 3 && 'lg:grid-cols-3', columns === 4 && 'lg:grid-cols-4')}>
       {items.map((item) => (
-        <li key={item.name} className="flex flex-col rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+        <li key={item.name} className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
           <div className="flex h-14 items-center">
             <FallbackImage
               src={item.logo.src}
@@ -29,10 +29,10 @@ export function LogoCards({items, columns = 3, headingLevel = 'h3'}: {items: Log
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Learn more about ${item.name} (opens in a new tab)`}
-            className="group mt-5 inline-flex items-center gap-1.5 font-semibold text-primary"
+            className="mt-5 text-link"
           >
             Learn more
-            <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight width={16} height={16} />
           </a>
         </li>
       ))}

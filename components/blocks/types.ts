@@ -12,7 +12,7 @@ export type Cta = {
 }
 export type Media =
   | {type: 'image'; image: Img; priority?: boolean}
-  | {type: 'video'; src: string; poster?: string; label: string}
+  | {type: 'video'; src: string; poster?: string; label: string; /** Talking video with sound: player controls, no autoplay or loop */ controls?: boolean}
   | {type: 'embed'; src: string; title: string; aspect?: string}
 
 export type RichText = ReactNode

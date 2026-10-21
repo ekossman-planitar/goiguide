@@ -17,7 +17,7 @@ export const blocks: Block[] = [
       'From accurate floor plans to immersive 360° visuals, iGuide provides everything you need to market, sell and stand out in a competitive real estate market.',
     ctas: [
       findPro,
-      {label: 'Download real estate brochure', href: '/assets/Uploads/brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', variant: 'secondary'},
+      {label: 'Download real estate brochure', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', variant: 'secondary'},
     ],
     media: {
       type: 'embed',

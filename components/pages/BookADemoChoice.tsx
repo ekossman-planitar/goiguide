@@ -45,7 +45,7 @@ export function BookADemoChoice() {
   }, [open])
 
   return (
-    <div className="rounded-2xl border border-[#e4e4e7] bg-white p-8 text-center shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="rounded-2xl border border-line bg-white p-8 text-center shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
       <h2 className="text-2xl font-semibold text-ink">What would you like to do?</h2>
       <div className="mt-6 flex flex-col items-center gap-3">
         <SmartLink href="/book-a-demo" className={`book-demo ${buttonBase} border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover`}>
@@ -67,7 +67,7 @@ export function BookADemoChoice() {
         ref={dialogRef}
         onClose={() => setOpen(false)}
         aria-labelledby="learn-more-heading"
-        className="mle-lightbox m-auto w-[calc(100%-2rem)] max-w-4xl bg-white p-0 text-left shadow-xl backdrop:bg-gray-500/75"
+        className="mle-lightbox m-auto w-[calc(100%-2rem)] max-w-4xl bg-white p-0 text-left shadow-xl backdrop:bg-black/50"
       >
         <div className="relative p-8">
           <button
