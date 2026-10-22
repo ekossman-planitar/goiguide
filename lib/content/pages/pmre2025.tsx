@@ -1,4 +1,4 @@
-/** /pmre-2025 — copy and images from the live page (scripts/.import-samples/pg-pmre-2025.html, checked 2026-10-14).
+/** /pmre-2025 — copy and images from the live page (checked 2026-10-14).
  *  On live, the prize list and key dates were injected by inline scripts; they are plain content here. */
 import type {Block} from '@/components/blocks/Blocks'
 import {FallbackImage} from '@/components/ui/FallbackImage'

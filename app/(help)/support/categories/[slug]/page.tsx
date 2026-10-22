@@ -42,7 +42,7 @@ export default async function CategoryPage({params}: Readonly<Props>) {
   const {slug} = await params
   const category = await load(slug)
   if (!category) notFound()
-  // Old or shortened slugs (e.g. /help/categories/123) go to the current URL, like Zendesk does
+  // Old or shortened slugs (e.g. /support/categories/123) go to the current URL, like Zendesk does
   if (decodeURIComponent(slug) !== zendeskSlug(category.html_url)) permanentRedirect(categoryPath(category))
 
   const [sections, articles] = await Promise.all([getSections(), getArticles()])

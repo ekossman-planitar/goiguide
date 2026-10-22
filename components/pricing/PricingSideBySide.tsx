@@ -19,13 +19,13 @@ import {
 } from './shared'
 
 /** Pricing: camera on the left (1/3), packages as an expandable list on the right (2/3). */
-export function PricingSideBySide({data}: Readonly<{data: PricingData}>) {
+export function PricingSideBySide({id, data}: Readonly<{id?: string; data: PricingData}>) {
   const {currency, setCurrency, industry, setIndustry, visible} = usePricingFilters(data.packages)
   const [open, setOpen] = useState<string | null>(null)
   const {camera} = data
 
   return (
-    <section className="py-10 lg:py-[60px]">
+    <section id={id} className="scroll-mt-24 py-10 lg:py-[60px]">
       <Container>
         <div className="rounded-2xl bg-surface px-4 py-12 sm:px-8 lg:px-12">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

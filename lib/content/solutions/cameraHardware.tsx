@@ -1,4 +1,5 @@
 /** /camera-hardware — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {SmartLink} from '@/components/ui/SmartLink'
 import type {SpecGroup} from '@/components/blocks/SpecsAccordion'
 
 const bookDemo = {label: 'Book a demo', href: '/book-a-demo'}
@@ -175,7 +176,7 @@ export const cameraHardware = {
         a: (
           <p>
             We have an online training library with videos, articles and step-by-step instructions hosted on our{' '}
-            <a href="https://help.youriguide.com/">iGuide Help Center</a>.
+            <SmartLink href="/support">iGuide Help Center</SmartLink>.
           </p>
         ),
       },

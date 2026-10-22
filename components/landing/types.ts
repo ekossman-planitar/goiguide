@@ -29,6 +29,8 @@ export type LandingPageData = {
   /** Unset on pages made before this setting existed: hidden, as before */
   noindex?: boolean | null
   nofollow?: boolean | null
+  /** Set when the page is a copy of another one (as on live) */
+  canonical?: string | null
   headerButton?: LpButton | null
   sections: LpSection[]
 }

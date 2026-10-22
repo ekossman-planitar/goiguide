@@ -9,6 +9,10 @@ import {FallbackImage} from '@/components/ui/FallbackImage'
 import {cn} from '@/lib/cn'
 import {RegionSwitch} from './RegionSwitch'
 import {reportSampleHtml} from '@/lib/landingPages/reportSampleHtml'
+import {agreementHtml} from '@/lib/landingPages/agreementHtml'
+import {LegalPage} from '@/components/pages/LegalPage'
+import {HubSpotForm} from '@/components/forms/HubSpotForm'
+import {FormPlaceholder} from './LpHero'
 import {reportSampleLabel} from '@/lib/landingPages/reportSamples'
 import {lpCtas, lpImg} from './convert'
 import type {LpImage} from './types'
@@ -209,5 +213,24 @@ export function FeatureCardsSection({s}: Readonly<{s: any}>) {
       {lpCtas(s.buttons).length > 0 && <CtaButtons ctas={lpCtas(s.buttons)} className="mt-8 justify-center" />}
       {s.footnote && <p className="mt-8 text-sm whitespace-pre-line text-muted">{s.footnote}</p>}
     </Section>
+  )
+}
+
+/**
+ * Camera usage agreement (live: /get-iguide/form/…): heading, date line, the shared legal text, then the
+ * partner's HubSpot signing form. The page's only h1.
+ */
+export async function AgreementSection({s}: Readonly<{s: any}>) {
+  const html = s.agreement ? await agreementHtml(s.agreement) : null
+  if (!s.heading || !html) return null
+  return (
+    <>
+      <LegalPage title={s.heading} lastUpdated={s.effectiveDate} html={html} />
+      <div className="mx-auto w-full max-w-3xl px-4 pb-16 lg:pb-20">
+        <div className="rounded-2xl border border-line bg-white p-6 shadow-sm md:p-8">
+          {s.hubspotFormId ? <HubSpotForm formId={s.hubspotFormId} className="min-h-[320px]" /> : <FormPlaceholder />}
+        </div>
+      </div>
+    </>
   )
 }

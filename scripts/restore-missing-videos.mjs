@@ -1,8 +1,8 @@
 /**
  * Adds back three videos the content import left out (found by comparing every
  * live page's videos with the new site, 2026-10-20):
- *  - "The latest from iGUIDE…" blog: the "2024 Wrapped Webinar" heading, intro and video at the top
- *  - "Why I use both iGUIDE and CubiCasa…" blog and the Northern Spruce Media story:
+ *  - "The latest from iGuide…" blog: the "2024 Wrapped Webinar" heading, intro and video at the top
+ *  - "Why I use both iGuide and CubiCasa…" blog and the Northern Spruce Media story:
  *    "Want to hear more from Alex?" and the Ask Alex Anything video (live: thumbnail opening it in a lightbox)
  * Text is copied from live. Skips a document that already has the video.
  *
@@ -31,7 +31,7 @@ const jobs = [
     blocks: () => [
       block('2024 Wrapped Webinar', 'h3'),
       block(
-        'From standout stats and customer wins to exciting launches like the PLANIX R1 system, Advanced CAD Packages, and the new iGUIDE Operator Network (ION), this webinar has it all. Watch our year-in-review now!',
+        'From standout stats and customer wins to exciting launches like the PLANIX R1 system, Advanced CAD Packages, and the new iGuide Operator Network (ION), this webinar has it all. Watch our year-in-review now!',
       ),
       video('EDXIk4UJgGY', '2024 Wrapped Webinar'),
     ],

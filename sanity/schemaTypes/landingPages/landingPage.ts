@@ -137,6 +137,14 @@ export const landingPage = defineType({
       group: 'settings',
       initialValue: false,
     }),
+    defineField({
+      name: 'canonical',
+      title: 'Canonical URL (optional)',
+      type: 'string',
+      group: 'settings',
+      description: 'Only when this page is a copy of another page: that page\'s path, e.g. /get-iguide/form/iguide-camera-reseller-agreement-ares. Leave empty normally.',
+      validation: (rule) => rule.custom((v) => (!v || /^\/[\w\-/]*$/.test(v) ? true : 'A path on goiguide.com, starting with /')),
+    }),
     defineField({name: 'metaDescription', title: 'Share description', type: 'text', rows: 2, group: 'settings', validation: (rule) => rule.max(160).warning('Keep it under 160 characters')}),
     defineField({
       name: 'shareImage',

@@ -1,4 +1,4 @@
-/** /haunted-tours — copy, tours, images and form from the live page (scripts/.import-samples/pg-haunted-tours.html, checked 2026-10-14). */
+/** /haunted-tours — copy, tours, images and form from the live page (checked 2026-10-14). */
 import type {ReactNode} from 'react'
 import type {Block} from '@/components/blocks/Blocks'
 import {HubSpotForm} from '@/components/forms/HubSpotForm'

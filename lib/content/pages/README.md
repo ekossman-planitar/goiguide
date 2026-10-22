@@ -3,4 +3,4 @@
 One file per page: `export const meta = {title, description, path}` (copied from the live
 page) and `export const blocks: Block[]` (see components/blocks/Blocks.tsx). The route
 file in app/(site)/<path>/page.tsx renders `<Blocks blocks={blocks} />` with
-`pageMetadata(meta)`. Source captures of the live pages: scripts/.import-samples/ (not in git).
+`pageMetadata(meta)`.

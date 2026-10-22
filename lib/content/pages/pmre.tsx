@@ -1,4 +1,4 @@
-/** /pmre — copy, images and entry form from the live page (scripts/.import-samples/pg-pmre.html, checked 2026-10-14). */
+/** /pmre — copy, images and entry form from the live page (checked 2026-10-14). */
 import type {ReactNode} from 'react'
 import {BedDouble, Car, Gift, Plane, Presentation, Ticket} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'

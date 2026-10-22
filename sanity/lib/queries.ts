@@ -139,7 +139,7 @@ export const CMS_LIBRARY_QUERY = defineQuery(`{
 const LP_IMG = `{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}`
 const LP_MEDIA = `{kind, url, title, "image": image${LP_IMG}}`
 export const LANDING_PAGE_QUERY = defineQuery(`*[_type == "landingPage" && path == $path && live != false][0]{
-  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, chrome, floatingBookButton, headerButton, noindex, nofollow,
+  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, chrome, floatingBookButton, headerButton, noindex, nofollow, canonical,
   sections[]{
     ...,
     _type == "lpHero" => {"media": media${LP_MEDIA}, "backgroundImage": backgroundImage${LP_IMG}},

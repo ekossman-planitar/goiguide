@@ -1,4 +1,4 @@
-/** /pmre-rules-regulations — body copied from the live page (scripts/.import-samples/pg-pmre-rules-regulations.html) by scripts/clean-legal-html.mjs. Legal text: do not edit by hand without sign-off. */
+/** /pmre-rules-regulations — body copied from the live page. Legal text: do not edit by hand without sign-off. */
 export const title = "iGUIDE Tour to PMRE Rules and Regulations"
 
 export const html = `

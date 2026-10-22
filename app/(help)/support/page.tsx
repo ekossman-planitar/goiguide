@@ -22,7 +22,7 @@ export const revalidate = 120
 export const metadata: Metadata = pageMetadata({
   title: 'iGuide Help Center',
   description: 'How-to guides and answers for iGuide cameras, the PLANIX app, Stitch, the iGuide Portal, pricing and billing.',
-  path: '/help',
+  path: '/support',
 })
 
 const compact = new Intl.NumberFormat('en', {notation: 'compact', maximumFractionDigits: 1})

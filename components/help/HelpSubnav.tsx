@@ -7,7 +7,7 @@ export type Crumb = {label: string; href: string}
 
 /** Breadcrumbs and the search box, above every inner Help Center page. */
 export function HelpSubnav({crumbs, query}: Readonly<{crumbs: Crumb[]; query?: string}>) {
-  const all: Crumb[] = [{label: 'Help Center', href: '/help'}, ...crumbs]
+  const all: Crumb[] = [{label: 'Help Center', href: '/support'}, ...crumbs]
   return (
     <div className="border-b border-line bg-surface">
       <Container className="flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">

@@ -1,4 +1,4 @@
-/** /discover — copy, links and asset paths from the live page (scripts/.import-samples/unlisted/discover.html, checked 2026-10-21). */
+/** /discover — copy, links and asset paths from the live page (checked 2026-10-21). */
 import type {Block} from '@/components/blocks/Blocks'
 
 export const meta = {

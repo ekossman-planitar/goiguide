@@ -32,6 +32,8 @@ function rename(value, key) {
     return value.replace(BRAND, 'iGuide')
   }
   if (Array.isArray(value)) return value.map((v) => rename(v, key))
+  // Camera agreement headings are legal copy: kept word for word, as on live
+  if (value && typeof value === 'object' && value._type === 'lpAgreement') return value
   if (value && typeof value === 'object') {
     const out = {}
     for (const [k, v] of Object.entries(value)) out[k] = SKIP_KEYS.has(k) && k !== 'link' ? v : rename(v, k)

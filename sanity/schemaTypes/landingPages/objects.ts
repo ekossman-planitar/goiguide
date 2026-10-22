@@ -1,6 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {lpSectionLabels} from '../../../lib/landingPages/layouts'
 import {reportSampleOptions} from '../../../lib/landingPages/reportSamples'
+import {agreementTextOptions} from '../../../lib/landingPages/agreementTexts'
 
 /* Shared pieces ------------------------------------------------------------ */
 
@@ -656,6 +657,32 @@ export const lpSections = [
     }),
     defineField({name: 'footnote', title: 'Footnote', type: 'text', rows: 2}),
     background,
+  ]),
+  section('lpAgreement', [
+    defineField({
+      name: 'heading',
+      title: 'Heading',
+      type: 'string',
+      description: 'Usually "<Company> iGuide Camera Usage Agreement". The page\'s main heading.',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({name: 'effectiveDate', title: 'Date line under the heading', type: 'string', description: 'e.g. Effective date: January 10, 2022'}),
+    defineField({
+      name: 'agreement',
+      title: 'Agreement text',
+      type: 'string',
+      description: 'The legal text is stored with the site and shared by every page that uses it. Changes go through legal sign-off.',
+      options: {list: agreementTextOptions, layout: 'radio'},
+      initialValue: 'cameraAgreement',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'hubspotFormId',
+      title: 'HubSpot form ID',
+      type: 'string',
+      description: 'The signing form shown under the agreement. From HubSpot → Marketing → Forms → (form) → Share → Embed code: the formId value.',
+      validation: (rule) => rule.required(),
+    }),
   ]),
   section('lpReport', [
     heading,

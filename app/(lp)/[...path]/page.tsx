@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {LandingSections} from '@/components/landing/LandingSections'
+import {H1_FROM_FIRST_SPLIT} from '@/lib/landingPages/h1FromFirstSplit'
 import {LpFooter, LpHeader} from '@/components/landing/LpChrome'
 import {SiteFooter} from '@/components/layout/SiteFooter'
 import {FloatingBookButton} from '@/components/pages/FloatingBookButton'
@@ -36,7 +37,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   return {
     title: {absolute: title},
     description: page.metaDescription,
-    alternates: {canonical: page.path},
+    alternates: {canonical: page.canonical || page.path},
     // Hidden from search engines unless the page says otherwise (pages from the old site keep its setting)
     robots: {index: page.noindex === false, follow: page.nofollow !== true},
     openGraph: {title, description: page.metaDescription, url: page.path, siteName: 'iGuide', locale: 'en_CA', type: 'website', images: [image]},
@@ -52,7 +53,7 @@ export default async function LandingPage({params}: Readonly<Props>) {
     <>
       {site ? <SiteHeader /> : <LpHeader button={page.headerButton} />}
       <main className="flex-1">
-        <LandingSections sections={page.sections ?? []} />
+        <LandingSections sections={page.sections ?? []} h1FromFirstSplit={H1_FROM_FIRST_SPLIT.has(page.path)} />
       </main>
       {site ? <SiteFooter /> : <LpFooter />}
       {page.floatingBookButton && <FloatingBookButton />}

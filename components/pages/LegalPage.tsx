@@ -38,7 +38,7 @@ export function LegalPage({title, lastUpdated, html, children}: Readonly<Props>)
         {lastUpdated && <p className="mt-4 text-base text-muted">{lastUpdated}</p>}
       </header>
       <div className={`mt-10 ${prose}`}>
-        {/* Our own legal copy, generated from the live page by scripts/clean-legal-html.mjs */}
+        {/* Our own legal copy, copied from the live page */}
         {html && <div dangerouslySetInnerHTML={{__html: html}} />}
         {children}
       </div>

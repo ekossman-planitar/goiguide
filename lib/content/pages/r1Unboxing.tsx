@@ -1,4 +1,4 @@
-/** /r1-unboxing — copy and video from the live page (scripts/.import-samples/pg-r1-unboxing.html, checked 2026-10-14). */
+/** /r1-unboxing — copy and video from the live page (checked 2026-10-14). */
 import type {Block} from '@/components/blocks/Blocks'
 
 export const meta = {

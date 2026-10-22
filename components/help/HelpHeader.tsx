@@ -14,7 +14,7 @@ export type HelpNavCategory = {name: string; description: string; href: string}
 const external = {target: '_blank', rel: 'noopener noreferrer'}
 
 /**
- * Help Center microsite header (/help): its own navigation, separate from the
+ * Help Center microsite header (/support): its own navigation, separate from the
  * marketing site's. Topics menu lists the Zendesk categories. Sign in, My
  * requests and Submit a request stay on Zendesk.
  */
@@ -46,7 +46,7 @@ export function HelpHeader({categories}: Readonly<{categories: HelpNavCategory[]
       <Container className="flex h-20 items-center justify-between gap-6">
         {/* Native <a> on purpose: full page loads keep GTM triggers working */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- full page loads for GTM */}
-        <a href="/help" className="flex shrink-0 items-center gap-3" aria-label="iGuide Help Center home">
+        <a href="/support" className="flex shrink-0 items-center gap-3" aria-label="iGuide Help Center home">
           <Image src="/iGUIDE-Logo.svg" alt="" width={1330} height={368} priority className="h-auto w-[132px]" />
           <span aria-hidden className="h-7 w-px bg-line" />
           <span className="font-display text-lg leading-none font-semibold text-ink">Help Center</span>
@@ -82,7 +82,7 @@ export function HelpHeader({categories}: Readonly<{categories: HelpNavCategory[]
                     </li>
                   ))}
                 </ul>
-                <SmartLink href="/help" className="mt-2 px-3 py-2 text-link">
+                <SmartLink href="/support" className="mt-2 px-3 py-2 text-link">
                   All topics
                   <ArrowRight width={16} height={16} />
                 </SmartLink>

@@ -1,4 +1,4 @@
-/** /no-subscription-alternative — copy, links and asset paths from the live page (scripts/.import-samples/unlisted/no-subscription-alternative.html, checked 2026-10-21). */
+/** /no-subscription-alternative — copy, links and asset paths from the live page (checked 2026-10-21). */
 import type {Block} from '@/components/blocks/Blocks'
 import type {Quote} from '@/components/blocks/Testimonials'
 import {FormDialogButton} from '@/components/pages/FormDialogButton'

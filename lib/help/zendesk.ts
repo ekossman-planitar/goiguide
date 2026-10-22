@@ -1,3 +1,5 @@
+import {helpArticleRedirects} from './redirects'
+
 /**
  * Help Center content, read from Zendesk Guide's public Help Center API.
  * Zendesk stays the CMS: the support team keeps writing articles there, and
@@ -15,7 +17,7 @@ export const ZENDESK_PUBLIC_ORIGIN = 'https://help.youriguide.com'
 export const HELP_LOCALE = 'en-us'
 /** Seconds a Zendesk response is reused before it is fetched again. */
 export const HELP_REVALIDATE = 120
-export const HELP_BASE_PATH = '/help'
+export const HELP_BASE_PATH = '/support'
 
 export type HelpCategory = {id: number; name: string; description: string; position: number; created_at: string; html_url: string}
 export type HelpSection = HelpCategory & {category_id: number; parent_section_id: number | null; sorting: string}
@@ -109,12 +111,15 @@ export async function searchArticles(query: string, page = 1): Promise<{results:
   return {results: data.results.map(withoutBody), count: data.count, pageCount: data.page_count}
 }
 
-/* ---------- URLs: same "id-slug" segments as Zendesk, under /help ---------- */
+/* ---------- URLs: same "id-slug" segments as Zendesk, under /support ---------- */
 
 /** "27340515503506-Your-First-Scan" from a Zendesk html_url */
 export const zendeskSlug = (htmlUrl: string) => decodeURIComponent(htmlUrl.split('/').pop() ?? '')
 
-export const articlePath = (a: {html_url: string}) => `${HELP_BASE_PATH}/articles/${zendeskSlug(a.html_url)}`
+/** An article's /support page, or its new home if it moved (lib/help/redirects.ts) */
+export const articlePath = (a: {id: number; html_url: string}) =>
+  helpArticleRedirects[a.id] ?? `${HELP_BASE_PATH}/articles/${zendeskSlug(a.html_url)}`
+export const isRedirectedArticle = (a: {id: number}) => a.id in helpArticleRedirects
 export const sectionPath = (s: {html_url: string}) => `${HELP_BASE_PATH}/sections/${zendeskSlug(s.html_url)}`
 export const categoryPath = (c: {html_url: string}) => `${HELP_BASE_PATH}/categories/${zendeskSlug(c.html_url)}`
 

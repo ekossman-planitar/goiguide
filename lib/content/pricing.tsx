@@ -101,17 +101,17 @@ export const faq = {
           </p>
           <ul>
             <li>
-              <a href="https://help.youriguide.com/hc/en-us/articles/31597372907154-US-and-Rest-of-World-Pricing" target="_blank" rel="noopener noreferrer">
+              <a href="/support/articles/31597372907154-US-and-Rest-of-World-Pricing" target="_blank" rel="noopener noreferrer">
                 USD Imperial
               </a>
             </li>
             <li>
-              <a href="https://help.youriguide.com/hc/en-us/articles/31597338688658-Canada-Pricing" target="_blank" rel="noopener noreferrer">
+              <a href="/support/articles/31597338688658-Canada-Pricing" target="_blank" rel="noopener noreferrer">
                 CAD Imperial
               </a>
             </li>
             <li>
-              <a href="https://help.youriguide.com/hc/en-us/articles/31538722129682-Australia-Pricing" target="_blank" rel="noopener noreferrer">
+              <a href="/support/articles/31538722129682-Australia-Pricing" target="_blank" rel="noopener noreferrer">
                 AUD Metric
               </a>
             </li>
@@ -143,7 +143,7 @@ export const faq = {
             </li>
             <li>
               You can read additional details regarding{' '}
-              <a href="https://help.youriguide.com/hc/en-us/articles/27362487646098-iGUIDE-Delivery-Time-Estimates" target="_blank" rel="noopener noreferrer">
+              <a href="/support/articles/27362487646098-iGUIDE-Delivery-Time-Estimates" target="_blank" rel="noopener noreferrer">
                 iGuide delivery time estimates
               </a>{' '}
               in our help center.

@@ -18,6 +18,7 @@ import {
   getCategories,
   getSections,
   idFromSlug,
+  isRedirectedArticle,
   sectionPath,
   sectionTrail,
   zendeskSlug,
@@ -32,7 +33,7 @@ type Props = {params: Promise<{slug: string}>}
 
 export async function generateStaticParams() {
   try {
-    return (await getArticles()).map((a) => ({slug: zendeskSlug(a.html_url)}))
+    return (await getArticles()).filter((a) => !isRedirectedArticle(a)).map((a) => ({slug: zendeskSlug(a.html_url)}))
   } catch {
     return [] // Zendesk unreachable at build: pages render on first visit instead
   }

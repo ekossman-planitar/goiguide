@@ -109,7 +109,6 @@ export function SiteFooter() {
             <div className="mt-6">
               <SubscribeForm {...subscribeForm} />
             </div>
-            <SocialLinks className="mt-8" />
           </div>
         </div>
 

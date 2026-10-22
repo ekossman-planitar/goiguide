@@ -1,3 +1,4 @@
+import {helpArticleRedirects} from './redirects'
 import {HELP_BASE_PATH, ZENDESK_PUBLIC_ORIGIN} from './zendesk'
 
 /**
@@ -6,7 +7,7 @@ import {HELP_BASE_PATH, ZENDESK_PUBLIC_ORIGIN} from './zendesk'
  * The body is HTML written by the support team in Zendesk's editor (Zendesk
  * already strips unsafe markup on save). We only:
  * - point links to other Help Center articles, sections and categories at
- *   their /help page (anchors kept), so readers stay on goiguide.com
+ *   their /support page (anchors kept), so readers stay on goiguide.com
  * - keep everything else that is Zendesk's (requests, sign-in, attachments)
  *   on help.youriguide.com, made absolute
  * - load protocol-relative embeds (YouTube, tours) over https
@@ -25,6 +26,8 @@ export function rewriteHelpUrl(url: string): string {
     const [, kind, slug, rest = ''] = page
     // Keep #anchors; drop Zendesk query strings
     const hash = rest.includes('#') ? rest.slice(rest.indexOf('#')) : ''
+    const moved = kind.toLowerCase() === 'articles' ? helpArticleRedirects[Number.parseInt(slug, 10)] : undefined
+    if (moved) return moved
     return `${HELP_BASE_PATH}/${kind.toLowerCase()}/${slug}${hash}`
   }
   if (trimmed.startsWith('//')) return `https:${trimmed}`

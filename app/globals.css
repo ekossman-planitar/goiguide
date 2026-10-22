@@ -5,6 +5,7 @@
   /* REA Pangea everywhere (brand guide: primary typeface for all brand communications) */
   --font-sans: var(--font-pangea), Helvetica, Arial, sans-serif;
   --font-display: var(--font-pangea), Helvetica, Arial, sans-serif;
+  --font-text: var(--font-pangea-text), Helvetica, Arial, sans-serif;
 
   /* Colours: iGUIDE Brand Quick Guide (2026). Primary: REA Red, Snowgum 700, Snowgum 400, White.
      Secondary: Blueprint, Laser, Slate, Mist. Red is for accents, highlights and calls to action only. */
@@ -191,4 +192,10 @@ body {
 /* Landing page USD / CAD switch (components/landing/RegionSwitch.tsx): CAD hides US-only items */
 html[data-region='ca'] [data-us-only] {
   display: none !important;
+}
+
+/* REA Pangea is the only typeface: HubSpot's own form stylesheet sets Helvetica/Arial on its fields and labels */
+.hs-form,
+.hs-form :is(input, select, textarea, button, label, legend, p, span, li, a, div) {
+  font-family: var(--font-sans) !important;
 }

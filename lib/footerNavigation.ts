@@ -86,16 +86,16 @@ export const footerColumns: FooterColumn[] = [
   },
   {
     // Same target as the "Support" nav item
-    heading: {label: 'Support & Training', href: '/help'},
+    heading: {label: 'Support & Training', href: '/support'},
     items: [
-      {label: 'Help Center', href: '/help'},
+      {label: 'Help Center', href: '/support'},
       // Tickets stay on Zendesk (same link as the Help Center's "Submit a request")
       {label: 'Ask for Help', href: zendeskLinks.submitRequest, external: true},
       {label: 'Client Portal', href: 'https://manage.youriguide.com/', external: true},
       {
         accordion: 'Training & tools',
         links: [
-          {label: 'Training', href: '/help/categories/27462998868498-Getting-Started-with-iGUIDE'},
+          {label: 'Training', href: '/support/categories/27462998868498-Getting-Started-with-iGUIDE'},
           {label: 'iGuide Forum', href: 'https://forum.goiguide.com/', external: true},
           {label: 'Marketing Catalogue', href: MARKETING_CATALOGUE_SUPPORT_PATH},
           {label: 'Downloads', href: '/downloads'},

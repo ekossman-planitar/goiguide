@@ -48,6 +48,7 @@ export type Block =
       mediaSide?: 'left' | 'right'
       mediaClassName?: string
       background?: SectionBg
+      asH1?: boolean
     }
   | (Head & {type: 'featureTabs'; label: string; items: FeatureTab[]; mediaSide?: 'left' | 'right'; ctas?: Cta[]})
   | (Head & {type: 'packages'; items: Deliverable[]; columns?: 2 | 3 | 4; after?: ReactNode})

@@ -15,6 +15,18 @@ const CSV_PATH = '/assets/resellers.csv'
 
 type Reseller = Record<string, string>
 
+/**
+ * The CSV is saved from Excel, which writes Windows-1252, not UTF-8: read as UTF-8, names like
+ * "Fermín Díaz" showed as "Fermin D?az". Read it as UTF-8 when it is, otherwise as Windows-1252.
+ */
+function decodeCsv(buffer: ArrayBuffer) {
+  try {
+    return new TextDecoder('utf-8', {fatal: true}).decode(buffer)
+  } catch {
+    return new TextDecoder('windows-1252').decode(buffer)
+  }
+}
+
 /** Reads a quoted run starting just after its opening quote; `""` is an escaped quote. */
 function readQuoted(text: string, start: number) {
   let value = ''
@@ -90,8 +102,9 @@ export function ResellerDirectory() {
     fetch(`${CSV_PATH}?ts=${Date.now()}`, {cache: 'no-store'})
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        return res.text()
+        return res.arrayBuffer()
       })
+      .then(decodeCsv)
       .then((text) => {
         const rows = parseCsv(text)
         rows.sort((a, b) => (split(a.Locations)[0] ?? '').toLowerCase().localeCompare((split(b.Locations)[0] ?? '').toLowerCase()))

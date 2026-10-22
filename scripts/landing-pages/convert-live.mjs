@@ -475,6 +475,13 @@ function convertElements(doc, pagePath, out, showcase) {
   return sections
 }
 
+function canonicalOf(doc, pagePath) {
+  const href = doc.querySelector('link[rel="canonical"]')?.getAttribute('href')
+  if (!href) return {}
+  const path = new URL(href, 'https://goiguide.com').pathname.replace(/\/$/, '') || '/'
+  return path !== pagePath && path !== '/page-not-found' ? {canonical: path} : {}
+}
+
 function robotsOf(content) {
   const tokens = (content ?? '').toLowerCase().split(',').map((t) => t.trim())
   return {noindex: tokens.includes('noindex') || tokens.includes('none'), nofollow: tokens.includes('nofollow') || tokens.includes('none')}
@@ -491,6 +498,8 @@ export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
   if (manual) {
     sections.push(...manual.sections)
     for (const t of manual.testimonials ?? []) out.testimonials.set(t._id, t)
+  } else if (showcase?.page) {
+    sections.push(...showcase.page(doc, pagePath, out))
   } else if (showcase) {
     const hero = banner(doc, html)
     if (hero) sections.push(hero)
@@ -518,6 +527,8 @@ export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
       // Same search engine setting as the live page. Only real directives count: live's "no-follow" isn't one,
       // so search engines ignore it and follow the links (e.g. "noindex,no-follow" = noindex, links followed)
       ...robotsOf(meta('robots')),
+      // Live points some pages' canonical at another page (e.g. one agreement page at another): keep it
+      ...canonicalOf(doc, pagePath),
       ...manual?.extra,
       ...showcase?.extra,
       sections,

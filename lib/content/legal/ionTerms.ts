@@ -1,4 +1,4 @@
-/** /ion-terms-and-conditions — body copied from the live page (scripts/.import-samples/unlisted/ion-terms-and-conditions.html) by scripts/clean-legal-html.mjs. Legal text: do not edit by hand without sign-off. */
+/** /ion-terms-and-conditions — body copied from the live page. Legal text: do not edit by hand without sign-off. */
 export const title = "iGUIDE OPERATOR NETWORK (ION)"
 
 export const html = `

@@ -6,7 +6,7 @@ const card = (name: string, logo: string, alt: string, text: string, href: strin
 const flexmls = '/assets/Uploads/flexmls-logo_1.jpg'
 const reau = '/assets/Uploads/realestate_au_1.png'
 const realtorCom = '/assets/Uploads/Integrations-and-PartnershipsRealtor_com.png'
-const zillow = '/assets/Uploads/Integrations-and-Partnershipszillow.png'
+const zillow = '/assets/zillow-logo.png'
 
 export const integrations = {
   meta: {
@@ -50,7 +50,7 @@ export const integrations = {
         text: 'Your tour and floor plan appear with your listing on the marketplaces buyers already search, residential and commercial.',
         items: [
           card('Domain', '/assets/Uploads/domain.png', 'Domain logo', 'Your iGuide tours appear on Domain, a leading Australian property marketplace, helping buyers shortlist your listings with confidence.', 'https://www.domain.com.au'),
-          card('Funda', '/assets/Uploads/funda_logo.png', 'Funda logo', 'Your iGuide tours display on Funda, a leading Dutch home search platform, so buyers can walk the property before they call.', 'https://www.funda.nl'),
+          card('Funda', '/assets/funda-logo.png', 'Funda logo', 'Your iGuide tours display on Funda, a leading Dutch home search platform, so buyers can walk the property before they call.', 'https://www.funda.nl'),
           card('Homes.com', '/assets/Integrations-and-Partnerships-Homes.webp', 'Homes.com logo', 'Your iGuide tours and floor plans embed directly into Homes.com listings, one of the largest U.S. property marketplaces, so buyers can walk the home before they book a showing.', 'https://www.homes.com'),
           card('idealista', '/assets/Uploads/Integrations-and-Partnershipsidealista.png', 'idealista logo', 'Embed iGuides directly into idealista listing pages and stand out among more than 1.7 million listings for sale or rent in Spain.', 'https://www.idealista.com/'),
           card('JamesEdition', '/assets/Uploads/james_edition.png', 'JamesEdition logo', 'Showcase luxury properties with iGuide tours on JamesEdition, a global marketplace connecting buyers and sellers of high-end real estate.', 'https://www.jamesedition.com'),

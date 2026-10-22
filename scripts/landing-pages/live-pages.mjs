@@ -3,11 +3,14 @@
  * scripts/import-live-landing-pages.mjs (unlisted-pages audit, 2026-10-19).
  * folder: Studio folder ID; chrome: 'site' = full site navigation (as on live).
  */
+import {agreementPages} from './showcase.mjs'
+
 export const folders = [
   {_id: 'landingPageFolder-thank-you', title: 'Thank-you pages', description: 'Shown after a form or booking. Hidden from search.'},
   {_id: 'landingPageFolder-showcase', title: 'Showcase pages', description: 'Demo / showcase pages shared by sales.'},
   {_id: 'landingPageFolder-ads', title: 'Ad pages', description: 'Paid-media landing pages.'},
   {_id: 'landingPageFolder-surveys', title: 'Survey pages', description: 'Customer feedback surveys (HubSpot forms).'},
+  {_id: 'landingPageFolder-agreements', title: 'Camera agreements', description: 'Partner camera usage agreements with their HubSpot signing forms.'},
 ]
 
 const thankYou = [
@@ -71,4 +74,7 @@ const surveys = ['/get-iguide/survey/tell-us-how-we-did', '/get-iguide/survey/te
   layout: 'minimal',
 }))
 
-export const livePages = [...thankYou, ...ads, ...showcase, ...surveys]
+// Camera usage agreements: one per partner, landing page header and footer (slim top bar on live)
+const agreements = agreementPages.map((path) => ({path, folder: 'landingPageFolder-agreements', chrome: 'landing', layout: 'agreement'}))
+
+export const livePages = [...thankYou, ...ads, ...showcase, ...surveys, ...agreements]

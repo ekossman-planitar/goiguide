@@ -1,4 +1,4 @@
-/** /blacklisted-cameras — copy and serial numbers from the live page (scripts/.import-samples/unlisted/blacklisted-cameras.html, checked 2026-10-21). */
+/** /blacklisted-cameras — copy and serial numbers from the live page (checked 2026-10-21). */
 
 export const meta = {
   title: 'Blacklisted Camera | iGuide',

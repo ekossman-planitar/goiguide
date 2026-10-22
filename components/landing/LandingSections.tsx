@@ -17,7 +17,7 @@ import {lpCtas, lpImg, lpMedia, tourEmbed, youtubeEmbed} from './convert'
 import {FormPlaceholder, LpHero} from './LpHero'
 import {SampleGallery} from './SampleGallery'
 import {ChevronDown} from '@/components/ui/icons'
-import {AnchorNavSection, FeatureCardsSection, ReportSection, TablesSection} from './ShowcaseSections'
+import {AgreementSection, AnchorNavSection, FeatureCardsSection, ReportSection, TablesSection} from './ShowcaseSections'
 import type {LpImage, LpLogo, LpQuote, LpSection} from './types'
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- section fields come from Sanity as loose objects */
@@ -266,6 +266,8 @@ function LandingSection({s, formAnchor}: Readonly<SectionProps>) {
       return <TablesSection s={s} />
     case 'lpReport':
       return <ReportSection s={s} />
+    case 'lpAgreement':
+      return <AgreementSection s={s} />
     case 'lpFeatures':
       return usesFeatureCards(s) ? <FeatureCardsSection s={s} /> : <BlockSection s={s} />
     default:
@@ -350,6 +352,7 @@ function toBlock(s: any): Block | null {
         // Product shots beside a spec table are tall: keep them to a sensible height
         mediaClassName: specs.length ? 'mx-auto max-h-[560px] w-auto! max-w-full' : undefined,
         background: bg(s),
+        asH1: s._asH1 === true,
       }
     }
     case 'lpSteps':
@@ -381,7 +384,10 @@ function toBlock(s: any): Block | null {
 }
 
 /** Renders a landing page's sections. The first form on the page gets id="form" so "scroll to form" buttons work. */
-export function LandingSections({sections}: Readonly<{sections: LpSection[]}>) {
+export function LandingSections({sections: all, h1FromFirstSplit = false}: Readonly<{sections: LpSection[]; h1FromFirstSplit?: boolean}>) {
+  // Pages with no hero (e.g. the AEC and FM showcases): the first split heading is the page's h1
+  const firstSplit = h1FromFirstSplit && !all.some((s) => s._type === 'lpHero') ? all.find((s) => s._type === 'lpSplit')?._key : undefined
+  const sections = all.map((s) => (s._key === firstSplit ? {...s, _asH1: true} : s))
   const hasForm = (s: any) => Boolean(s.hubspotFormId || s._previewForm)
   const firstForm = sections.find((s) => (s._type === 'lpHero' && (s as any).style !== 'media' && hasForm(s)) || (s._type === 'lpForm' && hasForm(s)))?._key
   return (

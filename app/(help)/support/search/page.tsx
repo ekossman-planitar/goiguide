@@ -11,7 +11,7 @@ import {articlePath, getSections, searchArticles, sectionPath, type HelpSearchRe
 export const metadata: Metadata = {
   title: 'Search results | iGuide Help Center',
   robots: {index: false, follow: true},
-  alternates: {canonical: '/help/search'},
+  alternates: {canonical: '/support/search'},
 }
 
 type Props = {searchParams: Promise<{query?: string | string[]; page?: string | string[]}>}
@@ -43,11 +43,11 @@ export default async function SearchPage({searchParams}: Readonly<Props>) {
   }
   const sections = results.length ? await getSections().catch(() => []) : []
   const sectionById = new Map(sections.map((s) => [s.id, s]))
-  const pageHref = (p: number) => `/help/search?${new URLSearchParams({query, page: String(p)})}`
+  const pageHref = (p: number) => `/support/search?${new URLSearchParams({query, page: String(p)})}`
 
   return (
     <>
-      <HelpSubnav crumbs={[{label: 'Search results', href: '/help/search'}]} query={query} />
+      <HelpSubnav crumbs={[{label: 'Search results', href: '/support/search'}]} query={query} />
       <section className="py-12 lg:py-16">
         <Container size="medium">
           <h1 className="text-[36px] leading-tight font-semibold text-ink md:text-[48px]">Search results</h1>

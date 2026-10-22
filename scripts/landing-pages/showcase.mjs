@@ -7,6 +7,7 @@
  *
  * Markers as in convert-live.mjs: {img} images, {resource} resource cards, logoImages logo lists.
  */
+import {createHash} from 'node:crypto'
 import {assetPath, button, copy, img, k, text, textAndIcons as ELEMENT_TEXT_AND_ICONS, textAndImage} from './convert-live.mjs'
 
 /* ---------------------------------------------------------------- reading helpers */
@@ -648,6 +649,85 @@ function surveyHero(el) {
   }
 }
 
+/**
+ * Camera usage agreement pages (/get-iguide/form/…): heading + date, the agreement text, the HubSpot signing form.
+ * The agreement text is stored with the site (lib/content/legal/); the live text is matched to it by a checksum so
+ * a changed text on live is flagged instead of silently showing the old one. Heading and date stay word for word
+ * (legal copy: no brand-spelling changes).
+ */
+const AGREEMENT_TEXTS = {'489110bd': 'cameraAgreement', '41727e3a': 'cameraAgreementUsed', ada8661f: 'cameraAgreementItalian'}
+
+function agreementPage(doc, pagePath, out) {
+  const els = all(doc, 'main .element')
+  const raw = (n) => (n?.textContent ?? '').replaceAll(/\s+/g, ' ').trim()
+  const head = els[0]
+  const bodyText = els
+    .slice(1, -1)
+    .map((e) => e.textContent)
+    .join('')
+    .replaceAll(/\s+/g, ' ')
+    .trim()
+  const agreement = AGREEMENT_TEXTS[createHash('sha1').update(bodyText).digest('hex').slice(0, 8)]
+  if (!agreement)
+    out.unsupported.push({kind: 'agreement', id: els[1]?.id ?? '', text: `Agreement text on live differs from the stored versions: ${bodyText.slice(0, 80)}`})
+  const formId = /formId:\s*"([\w-]+)"/.exec(
+    all(els.at(-1), 'script')
+      .map((sc) => sc.textContent)
+      .join('\n'),
+  )?.[1]
+  return [
+    {
+      _type: 'lpAgreement',
+      _key: k(),
+      heading: raw(head.querySelector('h1, h2')),
+      effectiveDate: raw(head.querySelector('p')) || undefined,
+      agreement: agreement ?? 'cameraAgreement',
+      ...(formId ? {hubspotFormId: formId} : {}),
+    },
+  ]
+}
+
+/** Every live camera agreement page uses the same reader */
+const agreementPaths = [
+  ...[
+    '3d-geosolutions',
+    'angst-vermessung',
+    'arc360',
+    'ares',
+    'ats',
+    'blinqlab',
+    'cartogalicia',
+    'difex-consulting-engineers',
+    'equinox',
+    'gec',
+    'geo-3d',
+    'geodeet',
+    'geospace',
+    'krogstrup',
+    'landmark',
+    'max3design',
+    'mena3d',
+    'mendilur-position',
+    'multipathinspection',
+    'placio',
+    'pro-gis-solutions',
+    'propscan-360',
+    'redtec',
+    'referent-solutions',
+    'sedra-it',
+    'slb-distribution',
+    'som-survey-instruments',
+    'therichpixel',
+    'topomatix',
+    'virefin',
+    'virtualpro',
+  ].map((slug) => `/get-iguide/form/iguide-camera-reseller-agreement-${slug}`),
+  '/get-iguide/form/digitwin-iguide-camera-usage-agreement',
+  '/get-iguide/form/scan3d-iguide-camera-usage-agreement',
+  '/get-iguide/form/used-iguide-camera-agreement',
+]
+export const agreementPages = agreementPaths
+
 export const showcasePages = {
   '/get-iguide/aec/showcase': drawingShowcase('e2185', 'e2187', 'e2380', 'e2195'),
   '/get-iguide/fm/showcase': drawingShowcase('banner', 'e2483', 'e2487', 'e2493'),
@@ -724,6 +804,8 @@ export const showcasePages = {
       e3152: skip,
     },
   },
+
+  ...Object.fromEntries(agreementPaths.map((path) => [path, {page: agreementPage}])),
 
   // Survey pages (HubSpot forms on live)
   '/get-iguide/survey/tell-us-how-we-did': {elements: {e568: surveyHero, e570: skip}},

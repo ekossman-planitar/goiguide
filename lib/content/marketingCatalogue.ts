@@ -8,7 +8,7 @@
 
 export const MARKETING_CATALOGUE_SUPPORT_PATH = '/support/marketing-catalogue'
 export const MARKETING_CATALOGUE_GETTING_STARTED_PATH = `${MARKETING_CATALOGUE_SUPPORT_PATH}/getting-started`
-export const HELP_CENTER_URL = 'https://help.youriguide.com'
+export const HELP_CENTER_URL = '/support'
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@iGUIDEtv'
 
 export type CatalogueCategoryId = 'brochures' | 'one-pagers' | 'presentations' | 'ebooks' | 'checklists' | 'photos' | 'videos' | 'drawing-samples'
@@ -858,6 +858,6 @@ export const catalogueStarterKit: {title: string; text: string; assetIds: string
     title: 'Start promoting your services',
     text: 'Leave a brochure with agents and use our photos on your website and social channels.',
     assetIds: ['re-agent-brochure', 'photos-rre'],
-    links: [{label: 'iGuide Branding Guide', href: 'https://help.youriguide.com/hc/en-us/articles/28224993459730'}],
+    links: [{label: 'iGuide Branding Guide', href: '/support/articles/28224993459730-iGUIDE-Branding-Guide'}],
   },
 ]

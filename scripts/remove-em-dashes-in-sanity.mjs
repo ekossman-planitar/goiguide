@@ -49,6 +49,8 @@ function clean(value, key) {
     return next
   }
   if (Array.isArray(value)) return value.map((v) => clean(v, key))
+  // Camera agreement headings are legal copy: kept word for word, as on live
+  if (value && typeof value === 'object' && value._type === 'lpAgreement') return value
   if (value && typeof value === 'object') {
     const out = {}
     for (const [k, v] of Object.entries(value)) out[k] = clean(v, k)

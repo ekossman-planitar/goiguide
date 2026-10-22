@@ -3,9 +3,12 @@ import localFont from 'next/font/local'
 import {BookingPopup} from '@/components/booking/BookingPopup'
 import './globals.css'
 
-// REA Pangea (REA Group brand typeface): the only typeface on the site (brand guide)
+// REA Pangea (REA Group brand typeface): the only typeface on the site (brand guide).
+// Display cut, used site-wide (all five weights)
 const pangea = localFont({
   src: [
+    {path: './fonts/REAPangea-Light.woff2', weight: '300'},
+    {path: './fonts/REAPangea-Regular.woff2', weight: '400'},
     {path: './fonts/REAPangea-Medium.woff2', weight: '500'},
     {path: './fonts/REAPangea-SemiBold.woff2', weight: '600'},
     {path: './fonts/REAPangea-Bold.woff2', weight: '700'},
@@ -13,6 +16,21 @@ const pangea = localFont({
   variable: '--font-pangea',
   display: 'swap',
   adjustFontFallback: 'Arial',
+})
+
+// Text cut (for small sizes), available as the font-text utility; not preloaded
+const pangeaText = localFont({
+  src: [
+    {path: './fonts/REAPangeaText-Light.woff2', weight: '300'},
+    {path: './fonts/REAPangeaText-Regular.woff2', weight: '400'},
+    {path: './fonts/REAPangeaText-Medium.woff2', weight: '500'},
+    {path: './fonts/REAPangeaText-SemiBold.woff2', weight: '600'},
+    {path: './fonts/REAPangeaText-Bold.woff2', weight: '700'},
+  ],
+  variable: '--font-pangea-text',
+  display: 'swap',
+  adjustFontFallback: 'Arial',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -39,7 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
-    <html lang="en" className={`${pangea.variable} h-full antialiased`}>
+    <html lang="en" className={`${pangea.variable} ${pangeaText.variable} h-full antialiased`}>
       <head>
         {/* Google Tag Manager */}
         {loadGtm && <script dangerouslySetInnerHTML={{__html: gtmSnippet}} />}

@@ -187,6 +187,14 @@ function Band({type, heroStyle, y}: Readonly<{type: LpSectionType; heroStyle: He
           {[0, 1, 2, 3].map((i) => <rect key={i} x={20} y={y + 10 + i * 5} width={80} height={3} rx={1} fill={i === 0 ? ink : soft} />)}
         </g>
       )
+    case 'lpAgreement':
+      return (
+        <g>
+          {lines(30, y + 3, [60, 30])}
+          {lines(20, y + 15, [80, 80, 80, 60], 1.5)}
+          <rect x={35} y={y + 36} width={50} height={14} rx={2} fill="#fff" stroke={soft} />
+        </g>
+      )
     case 'lpReport':
       return (
         <g>
@@ -198,7 +206,7 @@ function Band({type, heroStyle, y}: Readonly<{type: LpSectionType; heroStyle: He
   }
 }
 
-const heights: Partial<Record<LpSectionType, number>> = {lpAnchorNav: 9, lpTourDemo: 40, lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
+const heights: Partial<Record<LpSectionType, number>> = {lpAgreement: 56, lpAnchorNav: 9, lpTourDemo: 40, lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
 
 export function LayoutWireframe({sections, heroStyle, width = 160}: Readonly<{sections: LpSectionType[]; heroStyle: HeroStyle; width?: number}>) {
   // Top of each band, computed up front

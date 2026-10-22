@@ -175,6 +175,13 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
     ],
     background: 'surface',
   }),
+  lpAgreement: () => ({
+    _type: 'lpAgreement',
+    heading: 'Example Partner iGuide Camera Usage Agreement',
+    effectiveDate: 'Effective date: January 10, 2022',
+    agreement: 'cameraAgreement',
+    _previewForm: true,
+  }),
   lpReport: () => ({_type: 'lpReport', heading: 'iGuide Report', subheading: 'All of your iGuide links and measurement information.', samples: ['reportCommercial']}),
 }
 

@@ -1,4 +1,4 @@
-/** /au-agent-offers — copy, links and asset paths from the live page (scripts/.import-samples/unlisted/au-agent-offers.html, checked 2026-10-21). */
+/** /au-agent-offers — copy, links and asset paths from the live page (checked 2026-10-21). */
 import type {Block} from '@/components/blocks/Blocks'
 import {MediaView} from '@/components/blocks/MediaView'
 import {FaqTabs} from '@/components/sections/FaqTabs'

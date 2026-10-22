@@ -110,12 +110,12 @@ export const mainNav: NavItem[] = [
   },
   {
     label: 'Support',
-    href: '/help',
+    href: '/support',
     menu: {
       description: 'Help, training and tools for iGuide customers.',
       overviewLabel: 'Visit the Help Center',
       links: [
-        {label: 'Training & Support', href: '/help', description: 'Help articles and training for customers', icon: LifeBuoy},
+        {label: 'Training & Support', href: '/support', description: 'Help articles and training for customers', icon: LifeBuoy},
         {label: 'Client Portal', href: 'https://manage.youriguide.com/', description: 'Manage your iGuides, orders and account', icon: LayoutDashboard},
         {label: 'Forum', href: 'https://forum.goiguide.com/', description: 'Ask questions and learn from peers', icon: MessagesSquare},
         {

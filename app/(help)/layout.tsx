@@ -4,7 +4,7 @@ import {categoryPath, getCategories} from '@/lib/help/zendesk'
 import './help.css'
 
 /**
- * Help Center microsite (/help): same brand as goiguide.com, with its own
+ * Help Center microsite (/support): same brand as goiguide.com, with its own
  * header and footer. Content comes from Zendesk (lib/help/zendesk.ts).
  */
 export default async function HelpLayout({children}: Readonly<{children: React.ReactNode}>) {

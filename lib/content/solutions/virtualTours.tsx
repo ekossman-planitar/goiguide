@@ -25,9 +25,9 @@ export const virtualTours = {
     logos: [
       {src: '/assets/realtor-v2.ca.png', alt: 'Realtor.ca', width: 133, height: 45},
       {src: '/assets/realtor.com.png', alt: 'Realtor.com', width: 133, height: 26},
-      {src: '/assets/zillow-v2.png', alt: 'Zillow', width: 100, height: 25},
+      {src: '/assets/zillow-logo.png', alt: 'Zillow', width: 100, height: 22},
       {src: '/assets/flexmls-v2.png', alt: 'FlexMLS', width: 120, height: 52},
-      {src: '/assets/funda-v3.png', alt: 'Funda', width: 100, height: 36},
+      {src: '/assets/funda-logo.png', alt: 'Funda', width: 100, height: 35},
       {src: '/assets/realestate.com.au.png', alt: 'Real Estate AU', width: 167, height: 27},
     ],
   },
@@ -50,7 +50,7 @@ export const virtualTours = {
         title: 'Room Measurements',
         text: 'Reliable room and object measurements with real world accuracy.',
         image: {src: '/assets/measurement-mode-480.png', alt: 'iGuide measurement mode showing live room dimensions inside the virtual tour', width: 480, height: 480},
-        link: {label: 'Using the measurement tool', href: 'https://help.youriguide.com/hc/en-us/articles/29058226468882-Using-the-Measurement-Tool'},
+        link: {label: 'Using the measurement tool', href: '/support/articles/29058226468882-Using-the-Measurement-Tool'},
       },
       {
         title: 'Reports & Analytics',

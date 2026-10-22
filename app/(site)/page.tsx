@@ -52,7 +52,8 @@ export default async function HomePage() {
 
       <CmsCustomerStories {...customerStories} />
 
-      <PricingSideBySide data={pricing} />
+      {/* id from live: "See camera options" and "Compare packages" link to /#pricingTabs */}
+      <PricingSideBySide id="pricingTabs" data={pricing} />
 
       <LatestResources {...latestResources} items={resources} />
 

@@ -1,4 +1,4 @@
-/** /ulta-beauty — copy, links and asset paths from the live page (scripts/.import-samples/unlisted/ulta-beauty.html, checked 2026-10-21). */
+/** /ulta-beauty — copy, links and asset paths from the live page (checked 2026-10-21). */
 import type {Block} from '@/components/blocks/Blocks'
 import {PackageTabs, type PackageTab} from '@/components/blocks/PackageTabs'
 import {FormHero} from '@/components/pages/FormHero'

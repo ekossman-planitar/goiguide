@@ -25,6 +25,7 @@ export type LpSectionType =
   | 'lpAnchorNav'
   | 'lpTables'
   | 'lpReport'
+  | 'lpAgreement'
 
 export type HeroStyle = 'form' | 'media' | 'centered' | 'banner'
 
@@ -90,6 +91,13 @@ export const lpLayouts: LpLayout[] = [
     chrome: 'site',
     sections: ['lpHero', 'lpFeatures', 'lpLogos', 'lpTourDemo', 'lpTestimonials'],
   },
+  {
+    id: 'agreement',
+    name: 'Camera agreement',
+    bestFor: 'A partner\'s camera usage agreement: heading, date, the agreement text and its HubSpot signing form.',
+    heroStyle: 'centered',
+    sections: ['lpAgreement'],
+  },
 ]
 
 export const getLpLayout = (id: string | undefined) => lpLayouts.find((l) => l.id === id) ?? lpLayouts[0]
@@ -115,4 +123,5 @@ export const lpSectionLabels: Record<LpSectionType, string> = {
   lpAnchorNav: 'In-page menu',
   lpTables: 'Tables (e.g. pricing)',
   lpReport: 'Sample report',
+  lpAgreement: 'Agreement + signing form',
 }

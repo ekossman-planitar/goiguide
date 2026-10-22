@@ -2,7 +2,7 @@ import {MARKETING_CATALOGUE_SUPPORT_PATH} from '@/lib/content/marketingCatalogue
 import {HELP_BASE_PATH, ZENDESK_PUBLIC_ORIGIN} from './zendesk'
 
 /**
- * Help Center microsite (/help) navigation and fixed copy.
+ * Help Center microsite (/support) navigation and fixed copy.
  * Ported from the help.youriguide.com theme (checked 2026-10-20). Categories,
  * sections and articles come from Zendesk; the items here were hard-coded in
  * the Zendesk theme, so they live in code here too.

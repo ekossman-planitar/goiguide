@@ -1,4 +1,4 @@
-/** /calculator-contact — copy, links and asset paths from the live page (scripts/.import-samples/unlisted/calculator-contact.html, checked 2026-10-21). */
+/** /calculator-contact — copy, links and asset paths from the live page (checked 2026-10-21). */
 import type {Block} from '@/components/blocks/Blocks'
 import type {Quote} from '@/components/blocks/Testimonials'
 

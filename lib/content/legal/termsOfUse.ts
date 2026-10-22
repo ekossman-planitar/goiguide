@@ -1,4 +1,4 @@
-/** /terms-of-use — body copied from the live page (scripts/.import-samples/pg-terms-of-use.html) by scripts/clean-legal-html.mjs. Legal text: do not edit by hand without sign-off. */
+/** /terms-of-use — body copied from the live page. Legal text: do not edit by hand without sign-off. */
 export const title = "LEGAL INFORMATION"
 export const lastUpdated = "Last updated: January 29, 2026."
 

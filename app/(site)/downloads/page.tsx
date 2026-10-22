@@ -31,7 +31,7 @@ export default function DownloadsPage() {
               the <SmartLink href="/camera-hardware" className="font-medium text-primary underline">iGuide Camera System</SmartLink> and update
               firmware to the latest version. If you are new to creating iGuides start by downloading Stitch. Stitch will automatically update once
               installed and will notify you when your camera needs the newest firmware. Firmware update instructions are available on the{' '}
-              <SmartLink href="https://help.youriguide.com/" className="font-medium text-primary underline">
+              <SmartLink href="/support" className="font-medium text-primary underline">
                 iGuide Support Desk
               </SmartLink>
               .

@@ -58,19 +58,19 @@ export default function MarketingCataloguePage() {
               </p>
               <p className="mt-4 text-base text-white/85">
                 Using these materials? See the{' '}
-                <a
-                  href="https://help.youriguide.com/hc/en-us/articles/28224993459730"
+                <SmartLink
+                  href="/support/articles/28224993459730-iGUIDE-Branding-Guide"
                   className="font-semibold text-white underline underline-offset-2 hover:text-white/80"
                 >
                   iGuide Branding Guide
-                </a>{' '}
+                </SmartLink>{' '}
                 and{' '}
-                <a
-                  href="https://help.youriguide.com/hc/en-us/articles/27696902963858"
+                <SmartLink
+                  href="/support/articles/27696902963858"
                   className="font-semibold text-white underline underline-offset-2 hover:text-white/80"
                 >
                   how to add your branding in the iGuide Portal
-                </a>.
+                </SmartLink>.
               </p>
             </div>
             <a

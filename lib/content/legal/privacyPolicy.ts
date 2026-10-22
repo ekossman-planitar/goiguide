@@ -1,4 +1,4 @@
-/** /privacy-policy — body copied from the live page (scripts/.import-samples/pg-privacy-policy.html) by scripts/clean-legal-html.mjs. Legal text: do not edit by hand without sign-off. */
+/** /privacy-policy — body copied from the live page. Legal text: do not edit by hand without sign-off. */
 export const title = "Planitar Privacy Policy"
 
 export const html = `

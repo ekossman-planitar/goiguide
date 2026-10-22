@@ -23,18 +23,21 @@ type Props = {
   /** Extra classes for the media (e.g. limit a portrait video's width) */
   mediaClassName?: string
   background?: SectionBg
+  /** The page has no hero: this heading is its h1 */
+  asH1?: boolean
 }
 
 const bgs: Record<SectionBg, string> = {white: 'bg-white', surface: 'bg-surface', sky: 'bg-sky'}
 
 /** Text beside an image, video or embed. */
-export function SplitSection({id, eyebrow, heading, body, listHeading, list, after, ctas = [], media, mediaSide = 'right', mediaClassName, background = 'white'}: Readonly<Props>) {
+export function SplitSection({id, eyebrow, heading, body, listHeading, list, after, ctas = [], media, mediaSide = 'right', mediaClassName, background = 'white', asH1 = false}: Readonly<Props>) {
+  const Heading = asH1 ? 'h1' : 'h2'
   return (
     <section id={id} className={cn(bgs[background], 'scroll-mt-24 py-16 lg:py-[60px]')}>
       <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className={cn('min-w-0', mediaSide === 'left' && 'lg:order-2')}>
           {eyebrow && <p className="mb-3 text-sm font-semibold text-primary">{eyebrow}</p>}
-          <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
+          <Heading className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</Heading>
           {body && <div className="mt-5 space-y-4 text-lg leading-7 text-body">{body}</div>}
           {listHeading && <h3 className="mt-8 text-lg font-semibold text-ink">{listHeading}</h3>}
           {list && <CheckList items={list} className={listHeading ? 'mt-4' : 'mt-6'} />}

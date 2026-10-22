@@ -1,10 +1,10 @@
 import {Search} from 'lucide-react'
 import {cn} from '@/lib/cn'
 
-/** Search box: a plain GET form to /help/search, so it works without JavaScript. */
+/** Search box: a plain GET form to /support/search, so it works without JavaScript. */
 export function HelpSearchForm({defaultValue, size = 'md', className}: Readonly<{defaultValue?: string; size?: 'md' | 'lg'; className?: string}>) {
   return (
-    <form role="search" action="/help/search" method="get" className={cn('help-search relative', className)}>
+    <form role="search" action="/support/search" method="get" className={cn('help-search relative', className)}>
       <label htmlFor={`help-query-${size}`} className="sr-only">
         Search the Help Center
       </label>
