@@ -15,6 +15,9 @@ import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {urlFor} from '@/sanity/lib/image'
 import {lpCtas, lpImg, lpMedia, tourEmbed, youtubeEmbed} from './convert'
 import {FormPlaceholder, LpHero} from './LpHero'
+import {SampleGallery} from './SampleGallery'
+import {ChevronDown} from '@/components/ui/icons'
+import {AnchorNavSection, FeatureCardsSection, ReportSection, TablesSection} from './ShowcaseSections'
 import type {LpImage, LpLogo, LpQuote, LpSection} from './types'
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- section fields come from Sanity as loose objects */
@@ -93,6 +96,7 @@ function TabsSection({s}: Readonly<SectionData>) {
         id: `${s._key}-${i}`,
         label: t.label,
         media,
+        href: typeof t.link === 'string' ? t.link : undefined,
         text: (
           <>
             {t.text && <p>{t.text}</p>}
@@ -104,7 +108,8 @@ function TabsSection({s}: Readonly<SectionData>) {
     .filter(Boolean) as Parameters<typeof TabbedMedia>[0]['tabs']
   return tabs.length ? (
     <Section heading={s.heading} subheading={s.subheading} align="center" background={bg(s)}>
-      <TabbedMedia label={s.heading ?? 'Samples'} tabs={tabs} />
+      {/* Drawings and screenshots keep a readable size instead of stretching to the full page width */}
+      <TabbedMedia label={s.heading ?? 'Samples'} tabs={tabs} mediaClassName="mx-auto max-w-4xl" zoom={s.zoom === true} />
     </Section>
   ) : null
 }
@@ -143,17 +148,26 @@ function TourClosing({s, list}: Readonly<{s: any; list: string[]}>) {
 
 /** Live tour(s) with short "how to use it" tips (live: tab-embed element; several tours show as tabs) */
 function TourDemoSection({s}: Readonly<SectionData>) {
-  const tours = ((s.tours ?? []) as {_key?: string; label?: string; media?: any}[])
-    .map((t, i) => ({id: `${s._key}-${i}`, label: t.label || `Tour ${i + 1}`, media: lpMedia(t.media)}))
-    .filter((t): t is {id: string; label: string; media: NonNullable<ReturnType<typeof lpMedia>>} => !!t.media)
+  const tours = ((s.tours ?? []) as {_key?: string; label?: string; media?: any; usOnly?: boolean}[])
+    .map((t, i) => ({id: `${s._key}-${i}`, label: t.label || `Tour ${i + 1}`, media: lpMedia(t.media), usOnly: t.usOnly === true}))
+    .filter((t): t is {id: string; label: string; media: NonNullable<ReturnType<typeof lpMedia>>; usOnly: boolean} => !!t.media)
   const tips = ((s.tips ?? []) as TourTip[]).filter((t) => t?.text)
   const list = ((s.list ?? []) as string[]).filter(Boolean)
+  const ctas = lpCtas(s.buttons).map((c) => ({...c, variant: 'secondary' as const}))
+  const samples = ((s.samples ?? []) as {_key?: string; label?: string; url?: string; image?: LpImage}[])
+    .filter((x) => x?.label && x.url)
+    .map((x, i) => ({key: x._key ?? String(i), label: x.label!, url: x.url!, image: lpImg(x.image)}))
   if (!tours.length) return null
+  const closingButtons = ctas.length > 0 && !samples.length && (list.length > 0 || Boolean(s.closing))
   return (
     <Section heading={s.heading} subheading={s.subheading} eyebrow={s.eyebrow ? <Pill label={s.eyebrow} /> : undefined} align="center" background={bg(s) ?? 'surface'}>
       {tips.length > 0 && <TourTips tips={tips} />}
       {tours.length > 1 ? <TabbedMedia label={s.heading ?? 'Tours'} tabs={tours} /> : <MediaView media={tours[0].media} />}
+      {/* Buttons sit under the tour; on a section that ends with a checklist and no gallery they close the section (live: Site Plans) */}
+      {ctas.length > 0 && !closingButtons && <CtaButtons ctas={ctas} className="mt-6 justify-center" />}
+      {samples.length > 0 && <SampleGallery samples={samples} heading={s.samplesHeading} />}
       <TourClosing s={s} list={list} />
+      {closingButtons && <CtaButtons ctas={ctas} className="mt-8 justify-center" />}
     </Section>
   )
 }
@@ -246,9 +260,44 @@ function LandingSection({s, formAnchor}: Readonly<SectionProps>) {
       return <FormSection s={s} formAnchor={formAnchor} />
     case 'lpNotice':
       return <NoticeSection s={s} />
+    case 'lpAnchorNav':
+      return <AnchorNavSection s={s} />
+    case 'lpTables':
+      return <TablesSection s={s} />
+    case 'lpReport':
+      return <ReportSection s={s} />
+    case 'lpFeatures':
+      return usesFeatureCards(s) ? <FeatureCardsSection s={s} /> : <BlockSection s={s} />
     default:
       return <BlockSection s={s} />
   }
+}
+
+/** Features with large images, buttons or the rows display use the showcase cards; plain ones keep the site's card grid */
+const usesFeatureCards = (s: any) =>
+  s.display === 'rows' ||
+  (s.buttons as unknown[] | undefined)?.length ||
+  ((s.items ?? []) as any[]).some((it) => lpImg(it?.image) || (it?.buttons as unknown[] | undefined)?.length || (it?.bullets as unknown[] | undefined)?.length)
+
+/** Spec rows under a split section's text (live: PLANIX R1 specs) */
+function SpecTable({specs}: Readonly<{specs: {_key?: string; label: string; value?: string}[]}>) {
+  return (
+    <dl className="divide-y divide-line border-y border-line text-base">
+      {specs.map((sp, i) =>
+        sp.value ? (
+          <div key={sp._key ?? i} className="grid grid-cols-2 gap-4 py-2.5">
+            <dt className="font-semibold text-ink">{sp.label}</dt>
+            <dd className="text-body">{sp.value}</dd>
+          </div>
+        ) : (
+          // A label without a value starts a group (e.g. Performance, Mechanical)
+          <div key={sp._key ?? i} className="pt-6 pb-2.5 text-sm font-semibold tracking-wide text-muted uppercase">
+            <dt>{sp.label}</dt>
+          </div>
+        ),
+      )}
+    </dl>
+  )
 }
 
 /** Sections that map straight onto existing page blocks */
@@ -267,15 +316,39 @@ function toBlock(s: any): Block | null {
       }
     case 'lpSplit': {
       const media = lpMedia(s.media)
+      const specs = ((s.specs ?? []) as any[]).filter((sp) => sp?.label)
       return {
         type: 'split',
+        eyebrow: s.eyebrow,
         heading: s.heading ?? '',
         body: s.body ? <p className="whitespace-pre-line">{s.body}</p> : undefined,
+        listHeading: s.bulletsHeading,
         list: s.bullets?.length ? s.bullets : undefined,
-        after: s.footnote ? <p className="text-sm text-muted">{s.footnote}</p> : undefined,
+        after:
+          specs.length || s.footnote ? (
+            <>
+              {specs.length > 0 &&
+                (s.specsHeading ? (
+                  <details className="group rounded-xl border border-line bg-white px-5 py-1">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                      {s.specsHeading}
+                      <ChevronDown width={18} height={18} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
+                    </summary>
+                    <div className="pb-4">
+                      <SpecTable specs={specs} />
+                    </div>
+                  </details>
+                ) : (
+                  <SpecTable specs={specs} />
+                ))}
+              {s.footnote && <p className="text-sm text-muted">{s.footnote}</p>}
+            </>
+          ) : undefined,
         ctas: lpCtas(s.buttons),
         media: media ?? {type: 'image', image: {src: '/assets/iGUIDE-Meta-Thumbnail.png', alt: ''}},
         mediaSide: s.mediaSide === 'left' ? 'left' : 'right',
+        // Product shots beside a spec table are tall: keep them to a sensible height
+        mediaClassName: specs.length ? 'mx-auto max-h-[560px] w-auto! max-w-full' : undefined,
         background: bg(s),
       }
     }
@@ -313,9 +386,19 @@ export function LandingSections({sections}: Readonly<{sections: LpSection[]}>) {
   const firstForm = sections.find((s) => (s._type === 'lpHero' && (s as any).style !== 'media' && hasForm(s)) || (s._type === 'lpForm' && hasForm(s)))?._key
   return (
     <>
-      {sections.map((s) => (
-        <LandingSection key={s._key} s={s} formAnchor={s._key === firstForm} />
-      ))}
+      {sections.map((s) => {
+        const section = <LandingSection key={s._key} s={s} formAnchor={s._key === firstForm} />
+        // Optional anchor for in-page links; scroll margin clears the sticky header and in-page menu
+        // (not on the in-page menu: a wrapper would stop it sticking to the top while scrolling)
+        const anchor = typeof s.anchor === 'string' && s._type !== 'lpAnchorNav' ? s.anchor : undefined
+        return anchor ? (
+          <div key={s._key} id={anchor} className="scroll-mt-32">
+            {section}
+          </div>
+        ) : (
+          section
+        )
+      })}
     </>
   )
 }

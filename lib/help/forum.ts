@@ -57,11 +57,11 @@ type DiscourseTopic = {
   id: number
   title: string
   slug: string
-  reply_count: number
+  posts_count: number
   views: number
   like_count: number
   last_posted_at: string | null
-  bumped_at: string
+  bumped_at: string | null
   pinned: boolean
   visible: boolean
   category_id: number
@@ -81,10 +81,12 @@ export async function getLatestTopics(limit = 8): Promise<ForumTopic[]> {
       title: t.title.trim(),
       url: `${FORUM_ORIGIN}/t/${t.slug}/${t.id}`,
       categoryName: names.get(t.category_id)!,
-      replies: t.reply_count,
+      // Same as the forum's Replies column: every post after the first (Discourse's reply_count only counts direct replies to replies)
+      replies: Math.max(0, t.posts_count - 1),
       views: t.views,
       likes: t.like_count,
-      lastActivity: t.last_posted_at ?? t.bumped_at,
+      // Same as the forum's Activity column
+      lastActivity: (t.bumped_at ?? t.last_posted_at)!,
     }))
     .sort((a, b) => b.lastActivity.localeCompare(a.lastActivity))
     .slice(0, limit)

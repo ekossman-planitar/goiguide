@@ -1,7 +1,7 @@
 /** Shapes of landing page content as returned by LANDING_PAGE_QUERY (and the /landing-templates samples). */
 export type LpImage = {alt?: string; asset?: {url: string; metadata?: {dimensions?: {width: number; height: number}}}; _preview?: string} | null
-export type LpButton = {label: string; action?: 'form' | 'demo' | 'url'; url?: string}
-export type LpMedia = {kind?: 'image' | 'tour' | 'youtube' | 'video'; url?: string; title?: string; image?: LpImage} | null
+export type LpButton = {label: string; action?: 'form' | 'demo' | 'url' | 'popup'; url?: string; hubspotFormId?: string; popupTitle?: string}
+export type LpMedia = {kind?: 'image' | 'tour' | 'youtube' | 'video' | 'embed'; url?: string; title?: string; image?: LpImage} | null
 export type LpLogo = {name: string; url?: string; dims?: {width: number; height: number}}
 export type LpQuote = {
   quote: string
@@ -26,6 +26,9 @@ export type LandingPageData = {
   layout?: string
   chrome?: 'landing' | 'site' | null
   floatingBookButton?: boolean | null
+  /** Unset on pages made before this setting existed: hidden, as before */
+  noindex?: boolean | null
+  nofollow?: boolean | null
   headerButton?: LpButton | null
   sections: LpSection[]
 }

@@ -384,6 +384,11 @@ export const legacyRedirects: {source: string; destination: string}[] = [
   {source: '/assets/:folder*/iGUIDE-Winning-in-Insurance-Restoration-Final-28June2023.pdf', destination: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/eBooks/iGUIDE-Winning-in-Insurance-Restoration-Final-28June2023.pdf'},
   {source: '/assets/:folder*/iGUIDE-State-of-3D-Tour-Technology.pdf', destination: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/eBooks/iGUIDE-State-of-3D-Tour-Technology.pdf'},
   {source: '/assets/:folder*/iGUIDE-Guide-to-Capturing-and-Measuring-XL-Interior-Spaces.pdf', destination: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/eBooks/iGUIDE-Guide-to-Capturing-and-Measuring-XL-Interior-Spaces.pdf'},
+  // Old (renamed) URLs of the showcase pages: live still answers them with the page and a canonical to the new URL
+  {source: '/get-iguide/aec/showcase-new', destination: '/get-iguide/aec/showcase'},
+  {source: '/get-iguide/fm/showcase-new', destination: '/get-iguide/fm/showcase'},
+  {source: '/get-iguide/rep/showcase-new', destination: '/get-iguide/rep/showcase'},
+  {source: '/get-iguide/irc/showcase-2', destination: '/get-iguide/irc/show'},
   // broken on live (target 404s): kept as live
   {source: '/aec-3-rvt', destination: '/cad-floor-plans-3d-models#rvt'},
   {source: '/integrations', destination: '/integrations-partnerships'},

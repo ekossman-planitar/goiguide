@@ -9,6 +9,8 @@ export type Cta = {
   /** Keeps the live site's class (e.g. openCalendly) so existing GTM triggers keep matching */
   className?: string
   newTab?: boolean
+  /** Opens this HubSpot form in a pop-up instead of following href (live: lightbox form buttons) */
+  form?: {id: string; title: string}
 }
 export type Media =
   | {type: 'image'; image: Img; priority?: boolean}

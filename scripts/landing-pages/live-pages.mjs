@@ -7,6 +7,7 @@ export const folders = [
   {_id: 'landingPageFolder-thank-you', title: 'Thank-you pages', description: 'Shown after a form or booking. Hidden from search.'},
   {_id: 'landingPageFolder-showcase', title: 'Showcase pages', description: 'Demo / showcase pages shared by sales.'},
   {_id: 'landingPageFolder-ads', title: 'Ad pages', description: 'Paid-media landing pages.'},
+  {_id: 'landingPageFolder-surveys', title: 'Survey pages', description: 'Customer feedback surveys (HubSpot forms).'},
 ]
 
 const thankYou = [
@@ -35,11 +36,39 @@ const adsWithSiteNav = [
   '/get-iguide/rep/iguide-instant',
   '/get-iguide/rep/planix-theta',
 ]
-const adsStripped = ['/get-iguide/cd/learn-more', '/get-iguide/iguide/real-estate-agents', '/get-iguide/site-plans']
+const adsStripped = [
+  '/get-iguide/cd/learn-more',
+  '/get-iguide/iguide/real-estate-agents',
+  '/get-iguide/site-plans',
+  // Found after the 2026-10-19 audit (linked from old redirects / events); same slim top bar on live
+  '/get-iguide/rep/learn-more-2025-07-24',
+  '/get-iguide/aec/learn-more-old',
+  '/get-iguide/rep/nar',
+]
 const ads = [...adsWithSiteNav.map((path) => ({path, chrome: 'site'})), ...adsStripped.map((path) => ({path, chrome: 'landing'}))].map((p) => ({
   ...p,
   folder: 'landingPageFolder-ads',
   layout: 'lead-form',
 }))
 
-export const livePages = [...thankYou, ...ads]
+// Showcase pages shared by sales (noindex on live). Their hand-built sections are read by showcase.mjs.
+// Live shows only a slim top bar on these, so they use the landing page header and footer.
+const showcase = [
+  '/get-iguide/aec/showcase',
+  '/get-iguide/fm/showcase',
+  '/get-iguide/irc/showcase',
+  '/get-iguide/irc/showcase-forensic',
+  '/get-iguide/irc/show',
+  '/get-iguide/rep/showcase',
+  '/get-iguide/rep-au/showcase',
+].map((path) => ({path, folder: 'landingPageFolder-showcase', chrome: 'landing', layout: 'product-showcase'}))
+
+// Customer surveys: a HubSpot form under a short intro, slim top bar on live
+const surveys = ['/get-iguide/survey/tell-us-how-we-did', '/get-iguide/survey/tell-us-how-we-did-non-re'].map((path) => ({
+  path,
+  folder: 'landingPageFolder-surveys',
+  chrome: 'landing',
+  layout: 'minimal',
+}))
+
+export const livePages = [...thankYou, ...ads, ...showcase, ...surveys]

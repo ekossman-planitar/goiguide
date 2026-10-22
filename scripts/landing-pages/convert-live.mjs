@@ -11,6 +11,7 @@
  */
 import {createHash} from 'node:crypto'
 import {manualPages} from './manual.mjs'
+import {showcasePages} from './showcase.mjs'
 import {JSDOM, VirtualConsole} from 'jsdom'
 
 const vc = new VirtualConsole()
@@ -64,7 +65,21 @@ function button(a, pagePath) {
   const url = u.hostname === 'goiguide.com' ? decodeURI(u.pathname) + u.search : u.toString()
   return {_type: 'lpButton', _key: k(), label, action: 'url', url}
 }
-const buttons = (root, pagePath) => [...(root?.querySelectorAll('a.btn') ?? [])].filter((a) => text(a)).map((a) => button(a, pagePath))
+/** Live lightbox button (x-data="buttonDataNNN"): opens a HubSpot form in a pop-up; returns null for other pop-ups */
+function popupButton(b) {
+  const name = b.getAttribute('x-data')
+  const script = [...b.ownerDocument.querySelectorAll('script')].map((sc) => sc.textContent).find((t) => t.includes(`const ${name} =`)) ?? ''
+  const block = script.slice(script.indexOf(`const ${name} =`))
+  const formId = /formId:\s*["']([\w-]+)["']/.exec(block)?.[1]
+  if (!formId) return null
+  const title = /title:\s*'([^']*)'/.exec(block)?.[1]
+  return {_type: 'lpButton', _key: k(), label: text(b), action: 'popup', hubspotFormId: formId, ...(title ? {popupTitle: copy(title)} : {})}
+}
+const buttons = (root, pagePath) =>
+  [...(root?.querySelectorAll('a.btn, button[x-data^="buttonData"]') ?? [])]
+    .filter((a) => text(a))
+    .map((a) => (a.tagName === 'BUTTON' ? popupButton(a) : button(a, pagePath)))
+    .filter(Boolean)
 
 /** iframe → lpMedia (iGuide tour / YouTube / other) */
 function iframeMedia(iframe, title) {
@@ -427,19 +442,42 @@ const ELEMENT_CONVERTERS = new Map([
   ['embedscript', embedScriptEl],
 ])
 
-/** Live page elements → landing page sections (unmapped ones go to out.unsupported) */
-function convertElements(doc, pagePath, out) {
+/**
+ * Live page elements → landing page sections (unmapped ones go to out.unsupported).
+ * `showcase` (showcase.mjs) can replace any element's sections by its id ("id" or "id:2" for a repeated id)
+ * and gives sections an anchor so the page's in-page menu keeps working.
+ */
+function convertElements(doc, pagePath, out, showcase) {
   const sections = []
+  const seen = new Map()
   for (const el of doc.querySelectorAll('main .element')) {
     if (el.parentElement?.closest('.element')) continue
     const kind = el.className.match(/elements__element(\w+)/)?.[1]
     const plain = (el.textContent ?? '').replaceAll(/\s+/g, ' ').trim()
-    const result = ELEMENT_CONVERTERS.get(kind)?.(el, {out, pagePath, plain})
+    const n = (seen.get(el.id) ?? 0) + 1
+    seen.set(el.id, n)
+    const ctx = {out, pagePath, plain, doc}
+    const override = showcase?.elements?.[n > 1 ? `${el.id}:${n}` : el.id]
+    if (override !== undefined) {
+      const produced = [override?.(el, ctx)].flat().filter(Boolean)
+      const anchor = showcase.anchor?.(el.id, n)
+      if (produced[0] && anchor) produced[0].anchor = anchor
+      sections.push(...produced)
+      continue
+    }
+    const result = ELEMENT_CONVERTERS.get(kind)?.(el, ctx)
     if (result === SKIP) continue
-    if (result) sections.push(result.section)
-    else out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
+    if (result) {
+      const anchor = showcase?.anchor?.(el.id, n)
+      sections.push(anchor ? {...result.section, anchor} : result.section)
+    } else out.unsupported.push({kind, id: el.id, text: plain.slice(0, 160)})
   }
   return sections
+}
+
+function robotsOf(content) {
+  const tokens = (content ?? '').toLowerCase().split(',').map((t) => t.trim())
+  return {noindex: tokens.includes('noindex') || tokens.includes('none'), nofollow: tokens.includes('nofollow') || tokens.includes('none')}
 }
 
 export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
@@ -449,9 +487,15 @@ export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
   const title = (doc.querySelector('title')?.textContent ?? '').replace(/\s*\|\s*iGUIDE\s*$/i, '').trim()
   const sections = []
   const manual = manualPages[pagePath]?.()
+  const showcase = showcasePages[pagePath]
   if (manual) {
     sections.push(...manual.sections)
     for (const t of manual.testimonials ?? []) out.testimonials.set(t._id, t)
+  } else if (showcase) {
+    const hero = banner(doc, html)
+    if (hero) sections.push(hero)
+    sections.push(...[showcase.top?.(doc, pagePath)].flat().filter(Boolean))
+    sections.push(...convertElements(doc, pagePath, out, showcase))
   } else {
     const hero = banner(doc, html)
     if (hero) sections.push(hero)
@@ -471,10 +515,17 @@ export function convertPage(html, pagePath, {chrome = 'landing'} = {}) {
       metaDescription: copy(meta('description')),
       chrome,
       live: true,
+      // Same search engine setting as the live page. Only real directives count: live's "no-follow" isn't one,
+      // so search engines ignore it and follow the links (e.g. "noindex,no-follow" = noindex, links followed)
+      ...robotsOf(meta('robots')),
       ...manual?.extra,
+      ...showcase?.extra,
       sections,
     },
     testimonials: [...out.testimonials.values()],
     unsupported: out.unsupported,
   }
 }
+
+/* Shared with showcase.mjs (used inside its functions only: the two modules import each other) */
+export {SKIP, assetPath, bgUrl, button, featuredPosts, faqEl, iframeMedia, img, k, paras, tabEmbed, text, textAndIcons, textAndImage}

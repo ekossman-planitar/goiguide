@@ -22,6 +22,9 @@ export type LpSectionType =
   | 'lpFaq'
   | 'lpCta'
   | 'lpNotice'
+  | 'lpAnchorNav'
+  | 'lpTables'
+  | 'lpReport'
 
 export type HeroStyle = 'form' | 'media' | 'centered' | 'banner'
 
@@ -109,4 +112,7 @@ export const lpSectionLabels: Record<LpSectionType, string> = {
   lpFaq: 'FAQ',
   lpCta: 'Call to action',
   lpNotice: 'Small print',
+  lpAnchorNav: 'In-page menu',
+  lpTables: 'Tables (e.g. pricing)',
+  lpReport: 'Sample report',
 }

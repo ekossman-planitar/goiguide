@@ -7,6 +7,7 @@
  * https://goiguide.com links relative. Prints a word-count check (live vs cleaned).
  *
  * Run from the repo root:  node scripts/clean-legal-html.mjs
+ * One page only:            node scripts/clean-legal-html.mjs --only ionTerms
  */
 import {readFileSync, writeFileSync} from 'node:fs'
 import {JSDOM, VirtualConsole} from 'jsdom'
@@ -20,7 +21,11 @@ const PAGES = [
   {name: 'privacyPolicy', file: 'pg-privacy-policy.html', body: '#e3551 .prose', title: '#e3551 .prose > h1', path: '/privacy-policy'},
   {name: 'termsOfUse', file: 'pg-terms-of-use.html', body: '#content .prose', title: '#content h2.mb-8', path: '/terms-of-use', lastUpdated: true},
   {name: 'pmreRules', file: 'pg-pmre-rules-regulations.html', body: '#e2001 .prose', title: '#e2001 h2.mb-8', path: '/pmre-rules-regulations'},
+  {name: 'ionTerms', file: 'unlisted/ion-terms-and-conditions.html', body: '#e593 .prose', title: 'h1', path: '/ion-terms-and-conditions'},
 ]
+
+const onlyIndex = process.argv.indexOf('--only')
+const only = onlyIndex === -1 ? null : process.argv[onlyIndex + 1]
 
 const KEEP = new Set(['h2', 'h3', 'h4', 'h5', 'p', 'ul', 'ol', 'li', 'strong', 'em', 'a', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'br'])
 const RENAME = {b: 'strong', i: 'em', h1: 'h2', h6: 'h5'}
@@ -95,7 +100,7 @@ const tidy = (html) =>
 
 const forTemplate = (s) => s.replaceAll(/\\/g, '\\\\').replaceAll(/`/g, '\\`').replaceAll(/\$\{/g, '\\${')
 
-for (const page of PAGES) {
+for (const page of PAGES.filter((p) => !only || p.name === only)) {
   const dom = new JSDOM(readFileSync(`${SAMPLES}/${page.file}`, 'utf8'), {virtualConsole: quiet})
   const doc = dom.window.document
   const root = doc.querySelector(page.body)

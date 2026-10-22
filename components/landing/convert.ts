@@ -14,7 +14,10 @@ export function lpImg(image: LpImage | undefined, fallbackAlt = ''): Img | undef
 /** YouTube watch/short links → embed URL */
 export function youtubeEmbed(url: string) {
   const id = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/.exec(url)?.[1]
-  return id ? `https://www.youtube.com/embed/${id}` : url
+  if (!id) return url
+  // Keep a start time given in seconds (?start=288 or ?t=288)
+  const start = /[?&](?:start|t)=(\d+)/.exec(url)?.[1]
+  return `https://www.youtube.com/embed/${id}${start ? `?start=${start}` : ''}`
 }
 
 /** iGuide tour links → embed URL with the live site's flags */
@@ -32,6 +35,7 @@ export function lpMedia(media: LpMedia | undefined): Media | undefined {
   if (!media.url) return undefined
   if (media.kind === 'video') return {type: 'video', src: media.url, label: media.title ?? 'Video'}
   if (media.kind === 'youtube') return {type: 'embed', src: youtubeEmbed(media.url), title: media.title ?? 'Video'}
+  if (media.kind === 'embed') return {type: 'embed', src: media.url, title: media.title ?? 'Embedded content', aspect: 'aspect-[4/3] md:aspect-video'}
   return {type: 'embed', src: tourEmbed(media.url), title: media.title ?? 'iGuide 3D virtual tour'}
 }
 
@@ -40,6 +44,7 @@ export function lpCta(button: LpButton, secondary = false): Cta {
   const variant = secondary ? ('secondary' as const) : undefined
   if (button.action === 'demo') return {...book(button.label), variant}
   if (button.action === 'url' && button.url) return {label: button.label, href: button.url, newTab: true, variant}
+  if (button.action === 'popup' && button.hubspotFormId) return {label: button.label, href: '#form', variant, form: {id: button.hubspotFormId, title: button.popupTitle || button.label}}
   return {label: button.label, href: '#form', variant}
 }
 

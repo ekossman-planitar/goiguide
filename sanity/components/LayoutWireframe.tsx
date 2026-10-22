@@ -178,10 +178,27 @@ function Band({type, heroStyle, y}: Readonly<{type: LpSectionType; heroStyle: He
       )
     case 'lpNotice':
       return <g>{lines(10, y + 3, [100, 100, 70], 1.5)}</g>
+    case 'lpAnchorNav':
+      return <g>{[0, 1, 2, 3, 4].map((i) => <rect key={i} x={10 + i * 21} y={y + 3} width={16} height={2.5} rx={1} fill={ink} />)}</g>
+    case 'lpTables':
+      return (
+        <g>
+          {lines(30, y + 3, [60])}
+          {[0, 1, 2, 3].map((i) => <rect key={i} x={20} y={y + 10 + i * 5} width={80} height={3} rx={1} fill={i === 0 ? ink : soft} />)}
+        </g>
+      )
+    case 'lpReport':
+      return (
+        <g>
+          {lines(30, y + 3, [60])}
+          <rect x={35} y={y + 9} width={50} height={20} rx={2} fill="#fff" stroke={soft} />
+          <rect x={35} y={y + 9} width={50} height={4} fill={ink} />
+        </g>
+      )
   }
 }
 
-const heights: Partial<Record<LpSectionType, number>> = {lpTourDemo: 40, lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
+const heights: Partial<Record<LpSectionType, number>> = {lpAnchorNav: 9, lpTourDemo: 40, lpHero: 36, lpLogos: 16, lpNotice: 14, lpCta: 22, lpFaq: 24, lpStats: 20}
 
 export function LayoutWireframe({sections, heroStyle, width = 160}: Readonly<{sections: LpSectionType[]; heroStyle: HeroStyle; width?: number}>) {
   // Top of each band, computed up front

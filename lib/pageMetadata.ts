@@ -11,7 +11,8 @@ export function pageMetadata({
   ogImage = defaultOgImage,
 }: {
   title: string
-  description: string
+  /** Left out when the live page has none */
+  description?: string
   path: string
   ogImage?: string
 }): Metadata {

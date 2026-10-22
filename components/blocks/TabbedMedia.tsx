@@ -3,16 +3,41 @@
 import {useRef, useState, type KeyboardEvent, type ReactNode} from 'react'
 import {cn} from '@/lib/cn'
 import {MediaView} from './MediaView'
+import {ZoomImage} from './ZoomImage'
 import type {Media} from './types'
 import {wrapIndex} from '@/lib/tabs'
 
-export type MediaTab = {id: string; label: string; media: Media; title?: string; text?: ReactNode}
+export type MediaTab = {
+  id: string
+  label: string
+  media: Media
+  title?: string
+  text?: ReactNode
+  /** Hidden when a landing page's USD / CAD switch is on CAD */
+  usOnly?: boolean
+  /** Clicking the image opens this URL in a new tab */
+  href?: string
+}
 
 /**
  * Pill tabs (live-site style) switching between images, videos or embeds,
  * each with optional caption. Embeds load only when their tab is first opened.
  */
-export function TabbedMedia({tabs, label, align = 'center'}: Readonly<{tabs: MediaTab[]; label: string; align?: 'left' | 'center'}>) {
+export function TabbedMedia({
+  tabs,
+  label,
+  align = 'center',
+  mediaClassName,
+  zoom = false,
+}: Readonly<{
+  tabs: MediaTab[]
+  label: string
+  align?: 'left' | 'center'
+  /** e.g. keep small drawings from stretching */
+  mediaClassName?: string
+  /** Images open full screen when clicked */
+  zoom?: boolean
+}>) {
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0]))
   const refs = useRef<(HTMLButtonElement | null)[]>([])
@@ -47,6 +72,7 @@ export function TabbedMedia({tabs, label, align = 'center'}: Readonly<{tabs: Med
               type="button"
               role="tab"
               id={`tab-${tab.id}`}
+              data-us-only={tab.usOnly || undefined}
               aria-selected={i === active}
               aria-controls={`panel-${tab.id}`}
               tabIndex={i === active ? 0 : -1}
@@ -65,8 +91,16 @@ export function TabbedMedia({tabs, label, align = 'center'}: Readonly<{tabs: Med
         </div>
       </div>
       {tabs.map((tab, i) => (
-        <div key={tab.id} role="tabpanel" id={`panel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} hidden={i !== active} className="mt-8">
-          {(tab.media.type !== 'embed' || loaded.has(i)) && <MediaView media={tab.media} />}
+        <div
+          key={tab.id}
+          role="tabpanel"
+          id={`panel-${tab.id}`}
+          aria-labelledby={`tab-${tab.id}`}
+          hidden={i !== active}
+          data-us-only={tab.usOnly || undefined}
+          className="mt-8"
+        >
+          {(tab.media.type !== 'embed' || loaded.has(i)) && <TabMedia tab={tab} zoom={zoom} className={tab.media.type === 'image' ? mediaClassName : undefined} />}
           {(tab.title || tab.text) && (
             <div className={cn('mt-6', align === 'center' && 'mx-auto max-w-3xl text-center')}>
               {tab.title && <h4 className="text-xl font-semibold text-ink">{tab.title}</h4>}
@@ -77,4 +111,17 @@ export function TabbedMedia({tabs, label, align = 'center'}: Readonly<{tabs: Med
       ))}
     </div>
   )
+}
+
+/** A tab's media: linked image, zoomable image, or the plain media */
+function TabMedia({tab, zoom, className}: Readonly<{tab: MediaTab; zoom: boolean; className?: string}>) {
+  if (tab.media.type === 'image' && tab.href) {
+    return (
+      <a href={tab.href} target="_blank" rel="noopener noreferrer" className="block">
+        <MediaView media={tab.media} className={className} />
+      </a>
+    )
+  }
+  if (tab.media.type === 'image' && zoom) return <ZoomImage image={tab.media.image} className={className} />
+  return <MediaView media={tab.media} className={className} />
 }

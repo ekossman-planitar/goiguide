@@ -4,7 +4,7 @@ import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight} from '@/components/ui/icons'
 import {cn} from '@/lib/cn'
 import {eventPath, typeTitle, zonedDate, DEFAULT_TIME_ZONE} from '@/lib/events'
-import {timeAgo} from '@/lib/help/format'
+import {forumAge} from '@/lib/help/format'
 import {forumLinks, type ForumBadge, type ForumStats, type ForumTopic} from '@/lib/help/forum'
 import type {EventCardData} from '@/components/events/types'
 
@@ -77,7 +77,7 @@ export function HomeCommunity({
                         {t.replies}
                         <span className="sr-only">replies</span>
                       </span>
-                      <span className="w-24 text-right whitespace-nowrap">{timeAgo(t.lastActivity)}</span>
+                      <span className="w-16 text-right whitespace-nowrap" title="Last activity">{forumAge(t.lastActivity)}</span>
                     </div>
                   </li>
                 ))}

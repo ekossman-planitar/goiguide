@@ -37,8 +37,8 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     title: {absolute: title},
     description: page.metaDescription,
     alternates: {canonical: page.path},
-    // Paid-media pages are never indexed (live: noindex)
-    robots: {index: false, follow: false},
+    // Hidden from search engines unless the page says otherwise (pages from the old site keep its setting)
+    robots: {index: page.noindex === false, follow: page.nofollow !== true},
     openGraph: {title, description: page.metaDescription, url: page.path, siteName: 'iGuide', locale: 'en_CA', type: 'website', images: [image]},
   }
 }

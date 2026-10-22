@@ -151,6 +151,31 @@ const samples: Record<LpSectionType, (heroStyle: string) => Sample> = {
   }),
   lpCta: () => ({_type: 'lpCta', heading: 'Ready to grow your business?', text: 'See iGuide in action with a personalized product tour.', buttons: [button('Book your demo', 'demo')]}),
   lpNotice: () => ({_type: 'lpNotice', text: 'Offer valid for new customers only. Terms and conditions apply. Prices in CAD/USD exclude applicable taxes.'}),
+  lpAnchorNav: () => ({
+    _type: 'lpAnchorNav',
+    links: [
+      {_type: 'navLink', label: 'Samples', href: '#samples'},
+      {_type: 'navLink', label: 'Processing', href: '#processing'},
+      {_type: 'navLink', label: 'Resources', href: '#resources'},
+    ],
+  }),
+  lpTables: () => ({
+    _type: 'lpTables',
+    heading: 'iGuide Processing',
+    tables: [
+      {
+        _type: 'table',
+        label: 'iGuide Premium',
+        columns: ['', 'Processing - USD', 'Processing - CAD'],
+        rows: [
+          {_type: 'row', cells: ['Up to 1,500 ft²', '$46.50 USD', '$66 CAD']},
+          {_type: 'row', cells: ['1,501-10,000 ft²', '$0.031 USD per ft²', '$0.044 CAD per ft²']},
+        ],
+      },
+    ],
+    background: 'surface',
+  }),
+  lpReport: () => ({_type: 'lpReport', heading: 'iGuide Report', subheading: 'All of your iGuide links and measurement information.', samples: ['reportCommercial']}),
 }
 
 /** Full sample page for a layout (preview fields included) */

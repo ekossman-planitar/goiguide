@@ -39,6 +39,14 @@ export const sitemapPages: string[] = [
   '/au/residential-real-estate',
   '/au/real-estate-photography',
   '/au/immersive-campaign-terms-and-conditions',
+  // Standalone pages (indexable on live, not in the nav)
+  '/discover',
+  '/au-agent-offers',
+  '/blacklisted-cameras',
+  '/calculator-contact',
+  '/ion-terms-and-conditions',
+  '/no-subscription-alternative',
+  '/ulta-beauty',
   // Company, legal and event pages
   '/about',
   '/careers',

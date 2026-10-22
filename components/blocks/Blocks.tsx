@@ -37,6 +37,7 @@ export type Block =
   | {
       type: 'split'
       id?: string
+      eyebrow?: string
       heading: string
       body?: ReactNode
       listHeading?: string

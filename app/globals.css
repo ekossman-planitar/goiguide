@@ -187,3 +187,8 @@ body {
 }
 /* Forms set to "placeholder text only" in HubSpot output empty labels: don't leave a gap */
 .hs-form:not(.subscribe-form .hs-form) .hs-form-field > label:has(> span:empty:only-child) { display: none; }
+
+/* Landing page USD / CAD switch (components/landing/RegionSwitch.tsx): CAD hides US-only items */
+html[data-region='ca'] [data-us-only] {
+  display: none !important;
+}

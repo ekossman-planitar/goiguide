@@ -139,16 +139,17 @@ export const CMS_LIBRARY_QUERY = defineQuery(`{
 const LP_IMG = `{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}`
 const LP_MEDIA = `{kind, url, title, "image": image${LP_IMG}}`
 export const LANDING_PAGE_QUERY = defineQuery(`*[_type == "landingPage" && path == $path && live != false][0]{
-  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, chrome, floatingBookButton, headerButton,
+  _id, title, path, seoTitle, metaDescription, "shareImage": shareImage.asset->url, layout, chrome, floatingBookButton, headerButton, noindex, nofollow,
   sections[]{
     ...,
     _type == "lpHero" => {"media": media${LP_MEDIA}, "backgroundImage": backgroundImage${LP_IMG}},
-    _type == "lpTourDemo" => {"tours": tours[]{..., "media": media${LP_MEDIA}}, "tips": tips[]{..., "icon": icon${LP_IMG}}},
+    _type == "lpTourDemo" => {"tours": tours[]{..., "media": media${LP_MEDIA}}, "tips": tips[]{..., "icon": icon${LP_IMG}}, "samples": samples[]{..., "image": image${LP_IMG}}},
     _type == "lpLogos" => {"logos": coalesce(logos, band->logos)[defined(@->logo.asset)]->{name, "url": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}}},
-    _type == "lpFeatures" => {"items": items[]{..., "icon": icon${LP_IMG}}},
+    _type == "lpFeatures" => {"items": items[]{..., "icon": icon${LP_IMG}, "image": image${LP_IMG}}},
     _type == "lpSplit" => {"media": media${LP_MEDIA}},
     _type == "lpSteps" => {"steps": steps[]{..., "image": image${LP_IMG}}},
     _type == "lpTabs" => {"tabs": tabs[]{..., "media": media${LP_MEDIA}}},
+    _type == "lpTables" => {"tables": tables[]{..., "image": image${LP_IMG}}},
     _type == "lpResources" => {"items": items[defined(@->publishedAt)]->{${RESOURCE_CARD_FIELDS}}},
     _type == "lpTestimonials" => {"quotes": items[@->hidden != true]->{
       quote, detail, name, role, company, link{label, href},

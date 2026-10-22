@@ -1,6 +1,10 @@
 import {cn} from '@/lib/cn'
 
-export type CompareRow = {label: string; ours: string; theirs: string}
+/**
+ * A text cell shows ✓ (ours) or ✗ (theirs) beside the text; `marks: false` shows the text alone.
+ * A true/false cell shows only ✓ or ✗ (e.g. both columns ✓ for a shared feature).
+ */
+export type CompareRow = {label: string; ours: string | boolean; theirs: string | boolean; marks?: boolean}
 
 function Mark({ok}: Readonly<{ok: boolean}>) {
   return ok ? (
@@ -50,16 +54,23 @@ export function CompareTable({
                 {row.label}
               </th>
               {[
-                {text: row.ours, ok: true},
-                {text: row.theirs, ok: false},
+                {key: 'ours', value: row.ours, ours: true},
+                {key: 'theirs', value: row.theirs, ours: false},
               ].map((cell) => (
-                <td key={cell.text} className={cn('px-5 py-3', cell.ok ? 'text-ink' : 'text-muted')}>
+                <td key={cell.key} className={cn('px-5 py-3', cell.ours ? 'text-ink' : 'text-muted')}>
                   {/* On phones the row label sits above each value */}
                   <span className="mb-1 block text-xs font-semibold text-muted uppercase md:hidden">{row.label}</span>
-                  <span className="flex gap-2.5">
-                    <Mark ok={cell.ok} />
-                    {cell.text}
-                  </span>
+                  {typeof cell.value === 'boolean' ? (
+                    <span className="flex gap-2.5">
+                      <Mark ok={cell.value} />
+                      <span className="sr-only">{cell.value ? 'Yes' : 'No'}</span>
+                    </span>
+                  ) : (
+                    <span className="flex gap-2.5">
+                      {row.marks !== false && <Mark ok={cell.ours} />}
+                      {cell.value}
+                    </span>
+                  )}
                 </td>
               ))}
             </tr>

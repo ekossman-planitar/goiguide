@@ -7,9 +7,10 @@ import {LandingPathInput} from '../../components/LandingPathInput'
 import {lpSections} from './objects'
 
 /**
- * Paid-media landing page at any URL the editor chooses. Always noindex,
- * left out of the sitemap, and shown with the stripped landing-page header
- * and footer (logo only).
+ * Paid-media landing page at any URL the editor chooses. Hidden from search
+ * engines by default (pages brought over from the old site keep that page's
+ * setting), left out of the sitemap, and shown with the stripped landing-page
+ * header and footer (logo only).
  */
 export const landingPage = defineType({
   name: 'landingPage',
@@ -118,8 +119,23 @@ export const landingPage = defineType({
       title: 'Browser tab title',
       type: 'string',
       group: 'settings',
-      description: 'Also used when the page is shared. Landing pages are always hidden from search engines.',
+      description: 'Also used when the page is shared.',
       validation: (rule) => rule.required().max(70).warning('Keep it under 70 characters'),
+    }),
+    defineField({
+      name: 'noindex',
+      title: 'Hide from search engines (noindex)',
+      type: 'boolean',
+      group: 'settings',
+      initialValue: true,
+      description: 'On for paid-media and thank-you pages. Pages brought over from the old site keep the setting they had there.',
+    }),
+    defineField({
+      name: 'nofollow',
+      title: 'Ask search engines not to follow the links (nofollow)',
+      type: 'boolean',
+      group: 'settings',
+      initialValue: false,
     }),
     defineField({name: 'metaDescription', title: 'Share description', type: 'text', rows: 2, group: 'settings', validation: (rule) => rule.max(160).warning('Keep it under 160 characters')}),
     defineField({
