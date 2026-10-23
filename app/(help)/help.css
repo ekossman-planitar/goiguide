@@ -33,17 +33,37 @@
 .help-article-body blockquote { margin: 0 0 16px; border-left: 3px solid var(--color-line); padding-left: 16px; color: var(--color-muted); }
 .help-article-body hr { margin: 32px 0; border: 0; border-top: 1px solid var(--color-line); }
 
-/* Images and figures (same rules as the Zendesk theme) */
+/*
+ * Images and figures. Zendesk's editor wraps images as
+ * <figure class="wysiwyg-image [wysiwyg-image-resized] [align class]" style="width: N%">
+ *   <img><figcaption>…</figcaption></figure>
+ * Same layout rules as help.youriguide.com (checked 2026-10-23); captions sit
+ * under the image as a full-width block, not a narrow table column.
+ */
 .help-article-body img { display: inline-block; height: auto; max-width: 100%; border-radius: 8px; }
 .help-article-body figure { margin: 24px 0; }
-.help-article-body figure.image { display: table; margin: 24px auto; }
+.help-article-body figure.wysiwyg-image { display: table; clear: both; max-width: 100%; margin: 24px auto; }
+.help-article-body figure.wysiwyg-image > img { display: block; margin: 0 auto; }
+.help-article-body figure.wysiwyg-image-resized > img { width: 100%; }
+.help-article-body figure.wysiwyg-image-block-align-left { margin-left: 0; margin-right: auto; }
+.help-article-body figure.wysiwyg-image-block-align-right { margin-left: auto; margin-right: 0; }
+.help-article-body figure.wysiwyg-image-align-left { float: left; clear: none; margin: 8px 24px 16px 0; }
+.help-article-body figure.wysiwyg-image-align-right { float: right; clear: none; margin: 8px 0 16px 24px; }
+/* Older editor markup (figure.image) */
+.help-article-body figure.image { display: table; max-width: 100%; margin: 24px auto; }
 .help-article-body figure.image > img { display: block; width: 100%; }
 .help-article-body figure.image.image-style-align-left { float: left; margin: 8px 20px 6px 0; }
 .help-article-body figure.image.image-style-align-right { float: right; margin: 8px 0 6px 20px; }
 .help-article-body figure.image.image-style-block-align-left { margin-left: 0; margin-right: auto; }
 .help-article-body figure.image.image-style-block-align-right { margin-left: auto; margin-right: 0; }
-.help-article-body figcaption { display: table-caption; caption-side: bottom; padding-top: 8px; font-size: 14px; line-height: 20px; color: var(--color-muted); text-align: center; }
+.help-article-body figcaption { display: block; margin-top: 8px; font-size: 14px; line-height: 20px; color: var(--color-muted); text-align: center; overflow-wrap: normal; }
 .help-article-body :is(h2, h3, h4) { clear: both; }
+/* Phones: no side-floated images */
+@media (max-width: 639px) {
+  .help-article-body figure:is(.wysiwyg-image-align-left, .wysiwyg-image-align-right, .image-style-align-left, .image-style-align-right) {
+    float: none; margin: 24px auto; width: 100% !important;
+  }
+}
 
 /* Embeds: YouTube, Scribe, tours */
 .help-article-body iframe { display: block; max-width: 100%; border: 0; border-radius: 8px; }
@@ -53,16 +73,40 @@
 .help-article-body iframe[src*='vidyard'] { width: 100%; height: auto; aspect-ratio: 16 / 9; }
 .help-article-body iframe[src*='scribehow.com'] { width: 100%; min-height: 640px; }
 
-/* Tables */
-.help-article-body table { display: block; max-width: 100%; overflow-x: auto; margin: 24px 0; border-collapse: collapse; font-size: 15px; line-height: 22px; }
+/* Tables (Zendesk wraps them in <figure class="wysiwyg-table" style="width: N%">) */
+.help-article-body figure.wysiwyg-table { display: block; max-width: 100%; overflow-x: auto; margin: 24px auto; }
+.help-article-body figure.wysiwyg-table-align-left { margin-left: 0; margin-right: auto; }
+.help-article-body figure.wysiwyg-table-align-right { margin-left: auto; margin-right: 0; }
+.help-article-body table { width: 100%; margin: 24px 0; border-collapse: collapse; font-size: 15px; line-height: 22px; }
+.help-article-body figure.wysiwyg-table > table { margin: 0; }
 .help-article-body :is(td, th) { border: 1px solid var(--color-line); padding: 10px 12px; vertical-align: top; text-align: left; }
 .help-article-body th, .help-article-body thead td { background: var(--color-surface); font-weight: 600; color: var(--color-ink); }
 .help-article-body :is(td, th) > :last-child { margin-bottom: 0; }
 
-/* Callouts */
-.help-article-body .wysiwyg-callout { margin: 24px 0; border-radius: 12px; border-left: 4px solid var(--color-primary); background: var(--color-surface); padding: 16px 20px; }
-.help-article-body .wysiwyg-callout > :last-child { margin-bottom: 0; }
-.help-article-body .wysiwyg-callout-icon { display: none; }
+/*
+ * Callouts: Zendesk's editor outputs <zd-callout class="wysiwyg-callout wysiwyg-callout-info">
+ * (a custom element, inline by default) with an icon span and the content.
+ * Laid out as on help.youriguide.com: icon column + content column.
+ */
+.help-article-body :is(zd-callout, .wysiwyg-callout) {
+  display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px;
+  margin: 24px 0; border-radius: 12px; border-left: 4px solid var(--color-primary);
+  background: var(--color-surface); padding: 16px 20px;
+}
+.help-article-body :is(zd-callout, .wysiwyg-callout) > * { grid-column: 2; }
+.help-article-body :is(zd-callout, .wysiwyg-callout) > :last-child { margin-bottom: 0; }
+.help-article-body .wysiwyg-callout-icon {
+  grid-column: 1; grid-row: 1 / span 20; display: block; width: 20px; height: 20px; margin-top: 4px;
+  background: var(--color-primary);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 1.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Zm0 1.5a7 7 0 1 1 0 14 7 7 0 0 1 0-14Zm-.75 6v5.5h1.5V9h-1.5Zm.75-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 1.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Zm0 1.5a7 7 0 1 1 0 14 7 7 0 0 1 0-14Zm-.75 6v5.5h1.5V9h-1.5Zm.75-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.help-article-body .wysiwyg-callout-warning { border-left-color: #b45309; }
+.help-article-body .wysiwyg-callout-warning .wysiwyg-callout-icon { background: #b45309; }
+.help-article-body .wysiwyg-callout-error { border-left-color: var(--color-primary-hover); }
+.help-article-body .wysiwyg-callout-error .wysiwyg-callout-icon { background: var(--color-primary-hover); }
+.help-article-body .wysiwyg-callout-success { border-left-color: #15803d; }
+.help-article-body .wysiwyg-callout-success .wysiwyg-callout-icon { background: #15803d; }
 
 /* Accordions (.accordion heading + .panel), behaviour in components/help/ArticleBody.tsx */
 .help-article-body .accordion {

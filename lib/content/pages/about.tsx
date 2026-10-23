@@ -3,9 +3,9 @@ import type {Block} from '@/components/blocks/Blocks'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 
 export const meta = {
-  title: 'Meet Planitar | The Team Behind iGuide | iGuide',
+  title: 'Meet iGuide | The Team Behind iGuide | iGuide',
   description:
-    'Learn about Planitar, the makers of iGuide. Discover our vision, values, and commitment to sustainability, meet our leadership team, and explore how we’re shaping the future of real estate technology.',
+    'Learn about iGuide, the makers of iGuide. Discover our vision, values, and commitment to sustainability, meet our leadership team, and explore how we’re shaping the future of real estate technology.',
   path: '/about',
 }
 
@@ -74,9 +74,9 @@ function LeadershipGrid() {
 export const blocks: Block[] = [
   {
     type: 'hero',
-    heading: 'Meet Planitar, the team behind iGuide',
+    heading: 'Meet iGuide, the team behind iGuide',
     subheading:
-      'At Planitar, we believe every space tells a story. iGuide was born in 2013 when co-founders Alex Likholyot and Kevin Klages decided there had to be a better way than misleading floor plans. Their idea paired rock-solid measurements with immersive 3D tours, a simple fix that changed how properties were shared and understood.',
+      'At iGuide, we believe every space tells a story. iGuide was born in 2013 when co-founders Alex Likholyot and Kevin Klages decided there had to be a better way than misleading floor plans. Their idea paired rock-solid measurements with immersive 3D tours, a simple fix that changed how properties were shared and understood.',
     extra: (
       <p>
         What began with just a handful of projects has grown into over 1 billion ft² mapped, helping people experience spaces in ways that are
@@ -117,16 +117,16 @@ export const blocks: Block[] = [
   {
     type: 'custom',
     id: 'leadership',
-    heading: 'Leadership at Planitar',
+    heading: 'Leadership at iGuide',
     subheading:
-      'Behind Planitar is a group of leaders who blend experience in technology, real estate, and business with a genuine passion for helping people. Their support and vision keep our mission on track and our team inspired.',
+      'Behind iGuide is a group of leaders who blend experience in technology, real estate, and business with a genuine passion for helping people. Their support and vision keep our mission on track and our team inspired.',
     background: 'surface',
     children: <LeadershipGrid />,
   },
   {
     type: 'split',
     id: 'join',
-    heading: 'Become a Planitarian and join our mission',
+    heading: 'Become an iGuider and join our mission',
     body: (
       <p>
         We’re looking for passionate people who want to help shape the future of real estate technology. Join our team and be part of making 3D

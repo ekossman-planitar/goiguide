@@ -120,7 +120,7 @@ export const blocks: Block[] = [
         'Our competitors generate sketches with AI. Some run that output past a reviewer and call it human-checked. We employ drafters, and on Standard and Premium a person draws your property from the LiDAR data and turns it around inside 24 hours.',
       name: 'Roman Barrett',
       role: 'Sr. Draft Operations Manager',
-      company: 'Planitar',
+      company: 'iGuide',
       photo: {src: '/assets/Testimonial-Headshots/Roman.jpeg', alt: 'photo - Roman'},
     },
   },

@@ -1,4 +1,5 @@
 import {FallbackImage} from '@/components/ui/FallbackImage'
+import {QuoteMark} from '@/components/ui/QuoteMark'
 import {Button} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
 
@@ -30,8 +31,8 @@ export function ClosingQuote({quote, name, role, company, image, primary, second
             />
           </div>
           <div className="pb-10 md:pb-12">
-            <span aria-hidden className="block text-6xl leading-none font-bold text-brand">“</span>
-            <blockquote className="mt-2 text-2xl leading-[1.35] font-semibold text-ink md:text-[32px] md:leading-[1.3]">
+            <QuoteMark />
+            <blockquote className="mt-4 text-2xl leading-[1.35] font-semibold text-ink md:text-[32px] md:leading-[1.3]">
               {quote}
             </blockquote>
             <figcaption className="mt-6 text-base">

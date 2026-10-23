@@ -1,5 +1,6 @@
 import {HelpFooter} from '@/components/help/HelpFooter'
 import {HelpHeader, type HelpNavCategory} from '@/components/help/HelpHeader'
+import {ZendeskChat} from '@/components/help/ZendeskChat'
 import {categoryPath, getCategories} from '@/lib/help/zendesk'
 import './help.css'
 
@@ -20,6 +21,8 @@ export default async function HelpLayout({children}: Readonly<{children: React.R
       <HelpHeader categories={categories} />
       <main className="flex-1">{children}</main>
       <HelpFooter />
+      {/* Chat bubble, as on help.youriguide.com */}
+      <ZendeskChat />
     </>
   )
 }

@@ -103,8 +103,8 @@ export async function getArticle(id: number): Promise<HelpArticle | null> {
 }
 
 /** Zendesk's own article search, so results match the Help Center's relevance */
-export async function searchArticles(query: string, page = 1): Promise<{results: HelpSearchResult[]; count: number; pageCount: number}> {
-  const params = new URLSearchParams({query, locale: HELP_LOCALE, per_page: '20', page: String(page)})
+export async function searchArticles(query: string, page = 1, perPage = 20): Promise<{results: HelpSearchResult[]; count: number; pageCount: number}> {
+  const params = new URLSearchParams({query, locale: HELP_LOCALE, per_page: String(perPage), page: String(page)})
   const data = await zendesk<{results: (HelpArticle & {snippet: string})[]; count: number; page_count: number}>(
     `/api/v2/help_center/articles/search.json?${params}`,
   )

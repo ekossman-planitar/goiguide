@@ -1,6 +1,7 @@
 import {Container} from '@/components/ui/Container'
 import {SectionHeading} from '@/components/ui/SectionHeading'
 import {FallbackImage} from '@/components/ui/FallbackImage'
+import {QuoteMark} from '@/components/ui/QuoteMark'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight} from '@/components/ui/icons'
 import {cn} from '@/lib/cn'
@@ -97,8 +98,8 @@ function SingleQuote({quote}: Readonly<{quote: Quote}>) {
     >
       <QuoteVisual quote={quote} />
       <div>
-        <span aria-hidden className="block text-6xl leading-none font-bold text-brand">“</span>
-        <blockquote className="mt-2 text-2xl leading-[1.35] font-semibold text-ink md:text-[28px]">{quote.quote}</blockquote>
+        <QuoteMark />
+        <blockquote className="mt-4 text-2xl leading-[1.35] font-semibold text-ink md:text-[28px]">{quote.quote}</blockquote>
         {quote.detail && <p className="mt-4 text-lg leading-7 text-body">{quote.detail}</p>}
         <div className="mt-6">
           <Attribution quote={quote} />
@@ -138,7 +139,8 @@ function QuoteCard({quote}: Readonly<{quote: Quote}>) {
           fallback={null}
         />
       )}
-      <blockquote className="flex-1 text-lg leading-7 font-medium text-ink">“{quote.quote}”</blockquote>
+      <QuoteMark className="mb-4" />
+      <blockquote className="flex-1 text-lg leading-7 font-medium text-ink">{quote.quote}</blockquote>
       <div className="mt-6 flex items-center gap-4 border-t border-line pt-5">
         {quote.photo && (
           <FallbackImage

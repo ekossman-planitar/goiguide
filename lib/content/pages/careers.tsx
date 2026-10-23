@@ -3,8 +3,8 @@ import type {Block} from '@/components/blocks/Blocks'
 import {BambooHrJobs} from '@/components/pages/BambooHrJobs'
 
 export const meta = {
-  title: 'Join Planitar: Lead the Way in PropTech Innovation | iGuide',
-  description: "Join Planitar's team and lead PropTech innovation. Transform industries with cutting-edge tech. Start your journey today!",
+  title: 'Join iGuide: Lead the Way in PropTech Innovation | iGuide',
+  description: "Join iGuide's team and lead PropTech innovation. Transform industries with cutting-edge tech. Start your journey today!",
   path: '/careers',
 }
 
@@ -13,7 +13,7 @@ const deptImage = (src: string, alt: string) => ({type: 'image' as const, image:
 export const blocks: Block[] = [
   {
     type: 'hero',
-    heading: 'Careers at Planitar',
+    heading: 'Careers at iGuide',
     subheading: 'Be at the forefront of property technology innovation',
     // Live hero background (/assets/Uploads/Careers-ImagesHeader.png) is not in /public; first department image used instead
     media: deptImage('/assets/Uploads/Careers-ImagesFull-wdith-image.png', ''),
@@ -21,20 +21,20 @@ export const blocks: Block[] = [
   {
     type: 'split',
     id: 'why-planitar',
-    heading: 'Why work at Planitar?',
+    heading: 'Why work at iGuide?',
     body: (
       <>
-        <p>With humble roots as a start-up in the Waterloo region, Planitar Inc. has become a global leader in the 3D tour and floor plan space.</p>
+        <p>With humble roots as a start-up in the Waterloo region, iGuide has become a global leader in the 3D tour and floor plan space.</p>
         <p>
-          By leveraging state-of-the-art technologies like AI, lidar scanning, and 360° imagery, Planitar has taken iGuide to every corner of the
+          By leveraging state-of-the-art technologies like AI, lidar scanning, and 360° imagery, we have taken iGuide to every corner of the
           world in a short time span.
         </p>
         <p>
-          If you want to be a part of an exciting company with a modern, futuristic scope, look no further than Planitar! Join Planitar today and
+          If you want to be a part of an exciting company with a modern, futuristic scope, look no further than iGuide! Join iGuide today and
           enjoy our hybrid work model, flexible hours, friendly people, open-door policy plus so much more.
         </p>
         <p>
-          Planitar Inc. is an up-and-coming company with an upward trajectory that offers you, the employee, all the space you need to grow.
+          iGuide is an up-and-coming company with an upward trajectory that offers you, the employee, all the space you need to grow.
         </p>
       </>
     ),
@@ -47,7 +47,7 @@ export const blocks: Block[] = [
     body: (
       <>
         <p>
-          In the center of Southern Ontario’s bustling tech corridor in Waterloo is Planitar Inc. headquarters. Our beautiful, chic office in the
+          In the center of Southern Ontario’s bustling tech corridor in Waterloo is iGuide headquarters. Our beautiful, chic office in the
           heart of the region’s tech hub sports a modern, open-floor design with a large, bright atrium cafeteria at its core with a fully stocked
           kitchen with tons of healthy snacks.
         </p>
@@ -55,7 +55,7 @@ export const blocks: Block[] = [
           Did we mention we’re dog-friendly? Our forward-thinking office has a wellness room and plenty of games for our employees’ enjoyment
           including a big-screen TV with an Xbox.
         </p>
-        <p>As Planitar continues to grow, our office provides our team with the perfect environment to grow with it.</p>
+        <p>As iGuide continues to grow, our office provides our team with the perfect environment to grow with it.</p>
       </>
     ),
     media: {type: 'image', image: {src: '/assets/Uploads/Careers-ImagesImage-2-Temp.png', alt: '', width: 900, height: 760}},
@@ -65,8 +65,8 @@ export const blocks: Block[] = [
   {
     type: 'featureTabs',
     id: 'departments',
-    heading: 'Explore positions at Planitar by department',
-    label: 'Departments at Planitar',
+    heading: 'Explore positions at iGuide by department',
+    label: 'Departments at iGuide',
     items: [
       {
         id: 'drafting-operations',
@@ -85,7 +85,7 @@ export const blocks: Block[] = [
         title: 'Research & Development',
         text: (
           <p>
-            Have a hand in the development of our cutting-edge technology. Planitar’s ever-evolving hardware and software products provide
+            Have a hand in the development of our cutting-edge technology. iGuide’s ever-evolving hardware and software products provide
             tech-minded individuals with the canvas to dream and to dream BIG.
           </p>
         ),

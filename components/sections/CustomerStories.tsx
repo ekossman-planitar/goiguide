@@ -4,6 +4,7 @@ import {useCallback} from 'react'
 import {Container} from '@/components/ui/Container'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 import {Marquee} from '@/components/ui/Marquee'
+import {QuoteMark} from '@/components/ui/QuoteMark'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight} from '@/components/ui/icons'
 
@@ -94,16 +95,9 @@ function StoryCardView({story}: Readonly<{story: StoryCard}>) {
       className="group flex w-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-shadow group-hover:shadow-lg">
+        <QuoteMark className="mb-4" />
         <blockquote className="flex-1">
-          <p className="text-2xl leading-[1.35] font-semibold text-ink">
-            <span aria-hidden className="mr-1 text-brand">
-              “
-            </span>
-            {story.quote}
-            <span aria-hidden className="text-brand">
-              ”
-            </span>
-          </p>
+          <p className="text-2xl leading-[1.35] font-semibold text-ink">{story.quote}</p>
         </blockquote>
 
         <figcaption className="mt-8 border-t border-line pt-6">

@@ -106,7 +106,7 @@ export const footerColumns: FooterColumn[] = [
   {
     heading: {label: 'Company', href: '/about'},
     items: [
-      {label: 'About Planitar', href: '/about'},
+      {label: 'About iGuide', href: '/about'},
       {label: 'Careers', href: '/careers'},
       {label: 'Partnership', href: '/partnership'},
       {label: 'Find a Reseller', href: '/resellers'},

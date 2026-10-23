@@ -9,6 +9,7 @@ import {Section} from '@/components/blocks/Section'
 import {CmsTestimonials} from '@/components/cms/CmsTestimonials'
 import {StepsTimeline} from '@/components/sections/StepsTimeline'
 import {SmartLink} from '@/components/ui/SmartLink'
+import {QuoteMark} from '@/components/ui/QuoteMark'
 import {ArrowRight} from '@/components/ui/icons'
 import {xactimateSketches as c} from '@/lib/content/solutions/xactimateSketches'
 import {pageMetadata} from '@/lib/pageMetadata'
@@ -60,7 +61,8 @@ function StoryQuotes({quotes}: Readonly<{quotes: typeof c.stories.quotes}>) {
         <li key={q.name} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
           <MediaView media={q.media} className="aspect-video rounded-none object-cover" />
           <figure className="flex flex-1 flex-col p-6">
-            <blockquote className="flex-1 text-base leading-6 text-ink">“{q.quote}”</blockquote>
+            <QuoteMark className="mb-4" />
+            <blockquote className="flex-1 text-base leading-6 text-ink">{q.quote}</blockquote>
             <figcaption className="mt-5 border-t border-line pt-4 text-sm">
               <span className="font-semibold text-ink">{q.name}</span>
               <span className="text-muted"> / {q.role}</span>

@@ -26,6 +26,11 @@ const sizes = {
   lg: 'px-6 py-3 text-base leading-6',
 }
 
+/** Button classes, for a real <button> (form submit, toggle) that must look like the site's buttons. */
+export function buttonClass(variant: 'primary' | 'secondary' = 'primary', size: 'md' | 'lg' = 'md') {
+  return cn(base, variants[variant], sizes[size])
+}
+
 /** Link styled as a button. */
 export function Button({href, children, variant = 'primary', size = 'md', className, id, newTab}: Readonly<ButtonProps>) {
   return (
