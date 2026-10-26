@@ -71,7 +71,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h3 className="text-2xl font-semibold text-ink">Here’s why you don’t want to miss it</h3>
+          <h3 className="type-heading-md text-ink">Here’s why you don’t want to miss it</h3>
           <p className="mt-4 text-lg leading-7 text-body">
             This isn’t your typical “how to get started” webinar. It’s a real-world session for real estate photographers who want to scale a
             business that’s creative, client-focused, and built to last.
@@ -89,7 +89,7 @@ export const blocks: Block[] = [
           />
         </div>
         <div>
-          <h3 className="text-2xl font-semibold text-ink">Is this for you?</h3>
+          <h3 className="type-heading-md text-ink">Is this for you?</h3>
           <div className="mt-4 space-y-4 text-lg leading-7 text-body">
             <p>
               Whether you’re just getting started or already shooting 100+ listings a year, this session is packed with tools, tactics, and real

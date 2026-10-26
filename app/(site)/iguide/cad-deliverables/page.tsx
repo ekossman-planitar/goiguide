@@ -35,16 +35,16 @@ export default function CadDeliverablesPage() {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <MediaView media={{type: 'image', image: c.adp.image}} />
           <div>
-            <h3 className="text-[28px] leading-tight font-semibold text-ink">{c.adp.subheading}</h3>
+            <h3 className="type-heading-md text-ink">{c.adp.subheading}</h3>
             <p className="mt-4 text-lg leading-7 text-body">{c.adp.body}</p>
-            <p className="mt-6 font-bold text-ink">{c.adp.listHeading}</p>
+            <p className="mt-6 font-semibold text-ink">{c.adp.listHeading}</p>
             <CheckList items={c.adp.list} className="mt-4" />
             <CtaButtons ctas={[c.adp.cta]} className="mt-8" />
           </div>
         </div>
         <div className="mt-16 rounded-2xl bg-white p-6 md:p-10">
           <div className="mx-auto max-w-3xl text-center">
-            <h3 className="text-[28px] leading-tight font-semibold text-ink">{c.addOns.heading}</h3>
+            <h3 className="type-heading-md text-ink">{c.addOns.heading}</h3>
             <p className="mt-3 text-lg leading-7 text-muted">{c.addOns.subheading}</p>
           </div>
           <div className="mt-8">

@@ -1,4 +1,30 @@
+import {
+  Archive,
+  Award,
+  CalendarDays,
+  Camera,
+  Check,
+  Clock,
+  Copy,
+  Download,
+  ExternalLink,
+  FileText,
+  Globe,
+  Heart,
+  MapPin,
+  Mic,
+  Play,
+  Search,
+  Share2,
+  Store,
+  Ticket,
+  Users,
+  X,
+  ZoomIn,
+  type LucideIcon,
+} from 'lucide-react'
 import type {Metadata} from 'next'
+import Image from 'next/image'
 import type {ReactNode} from 'react'
 import {CardGrid} from '@/components/blocks/CardGrid'
 import {CheckList} from '@/components/blocks/CheckList'
@@ -23,9 +49,10 @@ export const metadata: Metadata = {
 
 const nav = [
   ['principles', 'Principles'],
+  ['logo', 'Logo'],
   ['colour', 'Colour'],
   ['type', 'Typography'],
-  ['layout', 'Layout'],
+  ['layout', 'Layout & spacing'],
   ['buttons', 'Buttons'],
   ['links', 'Links'],
   ['pills', 'Pills'],
@@ -34,10 +61,44 @@ const nav = [
   ['accordions', 'Accordions'],
   ['cards', 'Cards'],
   ['quotes', 'Quotes'],
-  ['icons', 'Icons & lists'],
+  ['icons', 'Icons'],
   ['states', 'States & motion'],
-  ['audit', 'Not yet consistent'],
+  ['accessibility', 'Accessibility'],
+  ['resources', 'Resources'],
 ] as const
+
+/** Lucide icons the site uses today (the wrappers in components/ui/icons are Lucide too) */
+const iconSet: [string, LucideIcon | typeof ArrowRight][] = [
+  ['Arrow', ArrowRight],
+  ['Chevron down', ChevronDown],
+  ['Chevron left', ChevronLeft],
+  ['Chevron right', ChevronRight],
+  ['Menu', MenuIcon],
+  ['Close', CloseIcon],
+  ['Check', Check],
+  ['Cross', X],
+  ['Search', Search],
+  ['Zoom', ZoomIn],
+  ['Download', Download],
+  ['Copy', Copy],
+  ['External link', ExternalLink],
+  ['Calendar', CalendarDays],
+  ['Time', Clock],
+  ['Location', MapPin],
+  ['Language', Globe],
+  ['Play', Play],
+  ['Document', FileText],
+  ['Archive', Archive],
+  ['Camera', Camera],
+  ['Store', Store],
+  ['Ticket', Ticket],
+  ['Speaker', Mic],
+  ['People', Users],
+  ['Award', Award],
+  ['Share', Share2],
+  ['Favourite', Heart],
+  ['Rating', Star],
+]
 
 const colours = [
   {
@@ -98,60 +159,6 @@ const typeScale = [
   {cls: 'type-overline', size: '14px caps', lh: '20px', use: 'Small group label above a list (Snowgum 400).', sample: 'Resources'},
 ]
 
-const audit: {area: string; now: string; proposal: string}[] = [
-  {
-    area: 'Page titles (h1)',
-    now: '26 page titles use 9 different size and line-height pairs: 34/44, 36/48, 40/48 and 40/56px with leading 1.15, 1.25 or normal, plus 48–72px bold on the ad landing hero.',
-    proposal: 'Heroes use type-display (40/56). Text-led pages (legal, Help Center, articles, events, resource listings) use type-title (36/48).',
-  },
-  {
-    area: 'Headings (h2, h3)',
-    now: 'About 45 h2s in about 20 combinations (22 to 48px), and h3s in 15+ combinations.',
-    proposal: 'Section headings: type-h2. Banners and panels: type-heading-lg. Sub-sections and forms: type-heading-md. Card titles: type-heading-sm or -xs.',
-  },
-  {
-    area: 'Hand-built buttons',
-    now: '6 buttons copy the button styles by hand with different padding and sizes: industry picker CTA, catalogue “copy code”, pricing calculator submit, Help “Join the forum”, Help “Submit a request”, cookie preferences.',
-    proposal: 'Use <Button> or buttonClass(). Their own IDs and class names stay, so GTM keeps working.',
-  },
-  {
-    area: 'Search fields',
-    now: '4 styles: events (44px, 14px text, hairline border), catalogue (48px, strong border), reseller directory (pill, red border on hover), Help Center search.',
-    proposal:
-      'One search field: 48px, 8px radius, Snowgum 400 border, 16px text, icon on the left, 2px focus outline. The Help Center hero search can stay larger.',
-  },
-  {
-    area: 'Accordions',
-    now: '3 styles: FAQs (12px radius, no hover colour), specs (16px radius, red hover), landing page FAQs (compact 16px text).',
-    proposal: 'One accordion: 16px radius, card shadow, 18px question that turns red on hover, chevron rotates when open.',
-  },
-  {
-    area: 'Clickable cards',
-    now: '5 hover behaviours: red border, red border + lift + large shadow, lift + shadow tint, shadow only, none.',
-    proposal: 'Whole-card links: shadow grows (shadow-lg), title and text link turn red, arrow nudges right. No lift, no red border.',
-  },
-  {
-    area: 'Card shadows',
-    now: 'Resting cards use the card shadow (31 places), shadow-sm (14) or shadow-lg (some static cards).',
-    proposal: 'Resting cards: shadow-card. Larger shadows only on hover, open menus and dialogs.',
-  },
-  {
-    area: 'Bold (700)',
-    now: 'font-bold appears in 23 files (stat numbers, prices, step numbers, mega-menu titles, announcement bar, pop-ups).',
-    proposal: 'SemiBold (600) everywhere. Bold only for big figures: stats, prices, countdown digits.',
-  },
-  {
-    area: 'Section spacing',
-    now: '6 vertical padding pairs on sections (py-10, 12, 14, 16, 20 with lg 16, 20 or 60px).',
-    proposal: 'Standard section: 64px → 60px (py-16 lg:py-[60px]). Compact band (logo strips, CTA banners): 40px → 60px.',
-  },
-  {
-    area: 'Tabs',
-    now: 'The tour showcase tabs are 24×12px padding; every other tab set is 20×10px.',
-    proposal: 'All pill tabs 20×10px.',
-  },
-]
-
 function Demo({label, children, className}: Readonly<{label: string; children: ReactNode; className?: string}>) {
   return (
     <div className={cn('rounded-2xl border border-line bg-white p-6 shadow-card', className)}>
@@ -194,6 +201,7 @@ export default function BrandGuidelinePage() {
         <CheckList
           className="max-w-3xl"
           items={[
+            'Design values: clarity, simplicity, efficiency, honest design and empathy (from the iGuide Foundations design system).',
             'REA Pangea is the only typeface, everywhere: headings, body, buttons and HubSpot forms.',
             'Snowgum 700 is the “black”. Red is for accents only: every hover and active highlight is REA Red.',
             'One way to do each thing: one button set, one tab style, one dropdown, one accordion, one card.',
@@ -205,7 +213,29 @@ export default function BrandGuidelinePage() {
         />
       </Section>
 
-      <Section id="colour" heading="Colour" subheading="From the iGuide Brand Quick Guide (2026). Use the token, never a hex value." background="surface">
+      <Section id="logo" heading="Logo" subheading="Always use the supplied logo file. Never redraw, retype or edit it." background="surface">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Demo label="Primary logo">
+            <div className="flex h-40 items-center justify-center rounded-2xl border border-line bg-white">
+              <Image src="/iGUIDE-Logo.svg" alt="iGuide" width={1330} height={368} className="h-auto w-[200px]" />
+            </div>
+            <Spec>Website file: /iGUIDE-Logo.svg. Shown 150px wide in the site header. Place it on white or Mist.</Spec>
+          </Demo>
+          <Demo label="Logo rules">
+            <CheckList
+              items={[
+                'Use the supplied file only. Ask Marketing for other formats.',
+                'Keep clear space around it; never crowd it with text or images.',
+                'Never stretch, rotate, recolour, outline or add shadows or effects.',
+                'Never rebuild the wordmark in a font or place it on a busy photo.',
+                'In running text, write the name as “iGuide”.',
+              ]}
+            />
+          </Demo>
+        </div>
+      </Section>
+
+      <Section id="colour" heading="Colour" subheading="From the iGuide Brand Quick Guide (2026). Use the token, never a hex value.">
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {colours.map((c) => (
             <li key={c.name} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
@@ -222,7 +252,12 @@ export default function BrandGuidelinePage() {
         </ul>
       </Section>
 
-      <Section id="type" heading="Typography" subheading="REA Pangea. Display cut for everything; the Text cut (font-text) is available for very small sizes.">
+      <Section
+        id="type"
+        heading="Typography"
+        subheading="REA Pangea. Display cut for everything; the Text cut (font-text) is available for very small sizes."
+        background="surface"
+      >
         <div className="grid gap-4 sm:grid-cols-5">
           {[300, 400, 500, 600, 700].map((w) => (
             <div key={w} className="rounded-2xl border border-line p-5">
@@ -255,21 +290,29 @@ export default function BrandGuidelinePage() {
         </div>
       </Section>
 
-      <Section id="layout" heading="Layout and spacing" background="surface">
+      <Section id="layout" heading="Layout, spacing and elevation">
         <div className="grid gap-6 lg:grid-cols-2">
-          <Demo label="Page width">
+          <Demo label="Page width and grid">
             <ul className="type-body space-y-2 text-body">
               <li>Default container: 640 / 768 / 1024 / 1280 / 1536px at each breakpoint, 16px side padding.</li>
-              <li>Reading width (legal, articles): 768px (narrow). Medium 896px, wide 1024px.</li>
+              <li>Reading width (legal, articles): 768px. Medium 896px, wide 1024px.</li>
               <li>Breakpoints: sm 640, md 768, lg 1024, xl 1280, 2xl 1536px.</li>
+              <li>Card grids: 1 column on phones, 2 on tablets, 3 or 4 on desktop, 24px gap.</li>
             </ul>
           </Demo>
-          <Demo label="Vertical rhythm">
-            <ul className="type-body space-y-2 text-body">
-              <li>Section: 64px top and bottom on mobile, 60px on desktop.</li>
-              <li>Section heading to content: 40px. Pill to heading: 24px. Heading to subheading: 16px.</li>
-              <li>Card grids: 24px gap. Card padding: 24px (32px on large cards).</li>
-            </ul>
+          <Demo label="Spacing (8-point grid)">
+            <div className="flex flex-wrap items-end gap-3">
+              {[4, 8, 16, 24, 32, 40, 48, 64].map((n) => (
+                <div key={n} className="text-center">
+                  <div className="bg-rea-red/15" style={{width: n, height: n}} />
+                  <p className="type-caption mt-1 text-muted">{n}</p>
+                </div>
+              ))}
+            </div>
+            <Spec>
+              Every size, padding and gap is a multiple of 8px (4px for fine adjustments). Sections: 64px top and bottom on phones, 60px on desktop. Heading to
+              content 40px, pill to heading 24px, heading to subheading 16px. Card padding 24px (32px on large cards).
+            </Spec>
           </Demo>
           <Demo label="Corner radius">
             <div className="flex flex-wrap items-end gap-6">
@@ -285,25 +328,40 @@ export default function BrandGuidelinePage() {
                 </div>
               ))}
             </div>
+            <Spec>Only these three. Rows inside a card or menu may use 12px.</Spec>
           </Demo>
-          <Demo label="Elevation">
+          <Demo label="Elevation (three levels)">
             <div className="flex flex-wrap gap-6">
               {[
-                ['shadow-card', 'Resting card'],
-                ['shadow-lg', 'Hover, open menu, dialog'],
-              ].map(([s, use]) => (
-                <div key={s} className="w-40">
+                ['shadow-card', 'Low', 'Resting cards, panels, accordions'],
+                ['shadow-lg', 'Medium', 'Hovered cards, open dropdowns and menus'],
+                ['shadow-xl', 'High', 'Pop-ups, dialogs, the mega menu'],
+              ].map(([s, level, use]) => (
+                <div key={s} className="w-36">
                   <div className={cn('h-16 rounded-2xl border border-line bg-white', s)} />
-                  <p className="type-small mt-3 font-semibold text-ink">{s}</p>
+                  <p className="type-small mt-3 font-semibold text-ink">
+                    {level} · <code>{s}</code>
+                  </p>
                   <p className="type-small text-muted">{use}</p>
                 </div>
               ))}
             </div>
           </Demo>
+          <Demo label="Effects" className="lg:col-span-2">
+            <p className="type-body text-body">
+              One effect only: sticky bars (landing page header, in-page menus) are 95% white with a background blur, so content scrolls softly underneath. No
+              gradients on buttons, no glows, no drop shadows on text.
+            </p>
+          </Demo>
         </div>
       </Section>
 
-      <Section id="buttons" heading="Buttons" subheading="Two styles, two sizes. Snowgum 700 at rest, REA Red on hover. 8px radius, SemiBold 16px.">
+      <Section
+        id="buttons"
+        heading="Buttons"
+        subheading="Two styles, two sizes. Snowgum 700 at rest, REA Red on hover. 8px radius, SemiBold 16px."
+        background="surface"
+      >
         <div className="grid gap-6 lg:grid-cols-2">
           <Demo label="Primary">
             <div className="flex flex-wrap items-center gap-4">
@@ -361,7 +419,7 @@ export default function BrandGuidelinePage() {
         </Demo>
       </Section>
 
-      <Section id="links" heading="Links" background="surface">
+      <Section id="links" heading="Links">
         <div className="grid gap-6 lg:grid-cols-2">
           <Demo label="Text link (standalone)">
             <div className="flex flex-col items-start gap-4">
@@ -388,7 +446,7 @@ export default function BrandGuidelinePage() {
         </div>
       </Section>
 
-      <Section id="pills" heading="Pills">
+      <Section id="pills" heading="Pills" background="surface">
         <Demo label="Callout pill above a heading">
           <div className="flex flex-wrap items-center gap-4">
             <Pill label="New" />
@@ -401,7 +459,7 @@ export default function BrandGuidelinePage() {
         </Demo>
       </Section>
 
-      <Section id="tabs" heading="Tabs" background="surface">
+      <Section id="tabs" heading="Tabs">
         <Demo label="Pill tabs">
           <PillTabs
             label="Package"
@@ -422,7 +480,12 @@ export default function BrandGuidelinePage() {
         </Demo>
       </Section>
 
-      <Section id="forms" heading="Forms and dropdowns" subheading="HubSpot forms are restyled to match. Labels above fields, never inside only.">
+      <Section
+        id="forms"
+        heading="Forms and dropdowns"
+        subheading="HubSpot forms are restyled to match. Labels above fields, never inside only."
+        background="surface"
+      >
         <div className="grid gap-6 lg:grid-cols-2">
           <Demo label="Form fields">
             <form className="hs-form" action="#">
@@ -468,17 +531,7 @@ export default function BrandGuidelinePage() {
             </Spec>
             <p className="type-overline mt-8 mb-3 text-muted">Search field</p>
             <div className="relative">
-              <svg
-                aria-hidden
-                viewBox="0 0 24 24"
-                className="pointer-events-none absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-muted"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
+              <Search aria-hidden className="pointer-events-none absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-muted" />
               <input
                 type="search"
                 aria-label="Search (example)"
@@ -491,7 +544,7 @@ export default function BrandGuidelinePage() {
         </div>
       </Section>
 
-      <Section id="accordions" heading="Accordions" background="surface">
+      <Section id="accordions" heading="Accordions">
         <ul className="max-w-3xl space-y-3">
           {[
             [
@@ -517,7 +570,7 @@ export default function BrandGuidelinePage() {
         <Spec>16px radius, card shadow, 18px SemiBold question that turns red on hover, chevron rotates when open. FAQs show 3, then “Show more”.</Spec>
       </Section>
 
-      <Section id="cards" heading="Cards" subheading="White, hairline border, 16px radius, card shadow.">
+      <Section id="cards" heading="Cards" subheading="White, hairline border, 16px radius, card shadow." background="surface">
         <CardGrid
           columns={3}
           cards={[
@@ -532,7 +585,7 @@ export default function BrandGuidelinePage() {
         </Spec>
       </Section>
 
-      <Section id="quotes" heading="Quotes" background="surface">
+      <Section id="quotes" heading="Quotes">
         <div className="mb-8 flex items-center gap-4">
           <QuoteMark />
           <p className="type-small text-muted">The one quote mark: REA Red, 32px, above the quote. Never typed “quotes” around the text.</p>
@@ -556,35 +609,70 @@ export default function BrandGuidelinePage() {
         />
       </Section>
 
-      <Section id="icons" heading="Icons and lists">
+      <Section id="icons" heading="Icons" subheading="One icon set for everything: Lucide." background="surface">
         <div className="grid gap-6 lg:grid-cols-2">
-          <Demo label="Interface icons">
-            <ul className="flex flex-wrap gap-6 text-ink">
-              {[
-                ['Chevron down', <ChevronDown key="d" width={24} height={24} />],
-                ['Chevron left', <ChevronLeft key="l" width={24} height={24} />],
-                ['Chevron right', <ChevronRight key="r" width={24} height={24} />],
-                ['Arrow', <ArrowRight key="a" width={24} height={24} />],
-                ['Menu', <MenuIcon key="m" width={24} height={24} />],
-                ['Close', <CloseIcon key="c" width={24} height={24} />],
-                ['Star', <Star key="s" width={24} height={24} className="text-star" />],
-              ].map(([name, icon]) => (
-                <li key={name as string} className="flex w-20 flex-col items-center gap-2 text-center">
-                  {icon}
-                  <span className="type-caption text-muted">{name}</span>
-                </li>
-              ))}
+          <Demo label="Why Lucide">
+            <ul className="type-body space-y-2 text-body">
+              <li>
+                Free for any use, including commercial, under the ISC open-source licence. Any team can use it on the website, in decks, documents, ads and
+                print.
+              </li>
+              <li>Over 1,500 icons in one consistent line style, matching REA Pangea’s weight. Download SVG or PNG from lucide.dev.</li>
+              <li>
+                Apple SF Symbols (used in the old product foundation) are licensed for Apple-platform apps only, so they must not be used on the website or in
+                marketing.
+              </li>
             </ul>
-            <Spec>Line icons, 2px stroke, rounded ends, currentColor. 16px next to text, 20–24px on their own.</Spec>
+            <SmartLink href="https://lucide.dev/icons/" className="text-link mt-4" target="_blank" rel="noopener noreferrer">
+              Browse the icon set
+              <ArrowRight width={16} height={16} />
+            </SmartLink>
           </Demo>
-          <Demo label="Check list">
-            <CheckList items={['No subscriptions', 'Pay per project', 'A 3D virtual tour with every iGuide']} />
-            <Spec>Benefit lists use the Snowgum 700 tick. Plain lists use standard bullets.</Spec>
+          <Demo label="Rules">
+            <CheckList
+              items={[
+                'Lucide only. Never mix in another set or draw a one-off icon.',
+                'Line style as supplied: 2px stroke (2.5px for ticks), rounded ends. Don’t fill, outline or add effects.',
+                'Sizes: 16px next to text, 20px in fields and buttons, 24px on their own.',
+                'Colour: Snowgum 700 (or white on dark). Red only on hover or for the active state.',
+                'Icons support words, never replace them. An icon on its own needs a hidden label.',
+                'Use each icon for one meaning everywhere (a calendar always means booking or dates).',
+              ]}
+            />
           </Demo>
         </div>
+        <Demo label="Icons in use on the site" className="mt-6">
+          <ul className="grid grid-cols-3 gap-4 text-ink sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+            {iconSet.map(([name, Icon]) => (
+              <li key={name} className="flex flex-col items-center gap-2 rounded-lg p-2 text-center">
+                <Icon width={24} height={24} aria-hidden />
+                <span className="type-caption text-muted">{name}</span>
+              </li>
+            ))}
+          </ul>
+        </Demo>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          <Demo label="Brand and partner logos">
+            <p className="type-body text-body">Social, partner and integration logos are not icons: use each company’s official logo file, unaltered.</p>
+          </Demo>
+          <Demo label="Product tag icons">
+            <p className="type-body text-body">
+              The PLANIX and iGuide tag icons (utilities, safety, rooms) belong to the product. Use them only to show the product itself.
+            </p>
+          </Demo>
+          <Demo label="Illustrations">
+            <p className="type-body text-body">
+              Larger drawings, like the homepage industry pictures, are illustrations, not icons. Line work in Snowgum 700 with a red accent.
+            </p>
+          </Demo>
+        </div>
+        <Demo label="Check list" className="mt-6">
+          <CheckList items={['No subscriptions', 'Pay per project', 'A 3D virtual tour with every iGuide']} />
+          <Spec>Benefit lists use the Snowgum 700 tick. Plain lists use standard bullets.</Spec>
+        </Demo>
       </Section>
 
-      <Section id="states" heading="States and motion" background="surface">
+      <Section id="states" heading="States and motion">
         <div className="grid gap-6 md:grid-cols-3">
           <Demo label="Hover">
             <p className="type-body text-body">
@@ -612,30 +700,52 @@ export default function BrandGuidelinePage() {
       </Section>
 
       <Section
-        id="audit"
-        heading="Not yet consistent"
-        subheading="Where the site differs from this guideline today (checked 2026-10-23). Approve or adjust, and the site is brought in line in one pass."
+        id="accessibility"
+        heading="Accessibility"
+        subheading="Every page must work for everyone, by keyboard and screen reader (WCAG 2.2 AA)."
+        background="surface"
       >
-        <div className="overflow-x-auto rounded-2xl border border-line">
-          <table className="type-small w-full min-w-[720px] text-left">
-            <thead className="bg-surface text-ink">
-              <tr>
-                <th className="px-4 py-3 font-semibold">Area</th>
-                <th className="px-4 py-3 font-semibold">On the site now</th>
-                <th className="px-4 py-3 font-semibold">Proposed standard</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line text-body">
-              {audit.map((row) => (
-                <tr key={row.area} className="align-top">
-                  <td className="px-4 py-4 font-semibold text-ink">{row.area}</td>
-                  <td className="px-4 py-4">{row.now}</td>
-                  <td className="px-4 py-4">{row.proposal}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            ['Contrast', 'Body text Snowgum 700 on white or Mist. Secondary text Snowgum 400 on white only, never on Mist or photos.'],
+            ['Links', 'Links in sentences are underlined. Never use colour alone to show something is clickable.'],
+            ['Images', 'Every meaningful image has alt text that says what it shows. Decorative images have empty alt text.'],
+            ['Headings', 'One h1 per page, then h2, h3 in order. Never pick a heading level for its size; use the type classes.'],
+            ['Forms', 'Every field has a visible label. Errors say what to fix. Consent boxes are never pre-ticked.'],
+            ['Motion', 'Nothing flashes. Animation stops for visitors who ask for reduced motion.'],
+          ].map(([title, text]) => (
+            <Demo key={title} label={title}>
+              <p className="type-body text-body">{text}</p>
+            </Demo>
+          ))}
         </div>
+      </Section>
+
+      <Section id="resources" heading="Resources" subheading="Everything here is free for every team to use.">
+        <ul className="grid gap-6 md:grid-cols-3">
+          {[
+            ['Icons', 'Lucide icon set (ISC licence).', 'https://lucide.dev/icons/', 'lucide.dev'],
+            ['Logo and fonts', 'Logo files and the REA Pangea font come from Marketing. Check the font licence before using it outside the website.', '', ''],
+            [
+              'This page',
+              'Bookmark /brand-guideline. It shows the live components, so it is always current.',
+              '/brand-guideline',
+              'goiguide.com/brand-guideline',
+            ],
+          ].map(([title, text, href, linkLabel]) => (
+            <li key={title}>
+              <Demo label={title} className="h-full">
+                <p className="type-body text-body">{text}</p>
+                {href && (
+                  <SmartLink href={href} className="text-link mt-4" {...(href.startsWith('http') ? {target: '_blank', rel: 'noopener noreferrer'} : {})}>
+                    {linkLabel}
+                    <ArrowRight width={16} height={16} />
+                  </SmartLink>
+                )}
+              </Demo>
+            </li>
+          ))}
+        </ul>
       </Section>
     </>
   )

@@ -28,10 +28,10 @@ export function Faq({heading, subheading, items, initiallyVisible = 3, backgroun
         <ul className="mt-10 space-y-3">
           {items.map((item, i) => (
             <li key={item.q} hidden={!expanded && i >= initiallyVisible}>
-              <details className="group rounded-xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-lg leading-7 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+              <details className="group rounded-2xl border border-line bg-white shadow-card">
+                <summary className="type-heading-xs flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-ink transition-colors hover:text-primary-hover [&::-webkit-details-marker]:hidden">
                   {item.q}
-                  <ChevronDown width={20} height={20} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
+                  <ChevronDown width={20} height={20} className="shrink-0 transition-transform group-open:rotate-180" />
                 </summary>
                 <div className="px-6 pb-6 text-base leading-6 text-body [&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_li]:ml-5 [&_li]:list-disc [&_p+p]:mt-3 [&_ul]:mt-3">
                   {typeof item.a === 'string' ? <p>{item.a}</p> : item.a}

@@ -48,9 +48,9 @@ export default async function SearchPage({searchParams}: Readonly<Props>) {
   return (
     <>
       <HelpSubnav crumbs={[{label: 'Search results', href: '/support/search'}]} query={query} />
-      <section className="py-12 lg:py-16">
+      <section className="py-16 lg:py-[60px]">
         <Container size="medium">
-          <h1 className="text-[36px] leading-tight font-semibold text-ink md:text-[48px]">Search results</h1>
+          <h1 className="type-title text-ink">Search results</h1>
           <p className="mt-3 text-lg text-muted" aria-live="polite">
             {resultsSummary(query, failed, count)}
           </p>

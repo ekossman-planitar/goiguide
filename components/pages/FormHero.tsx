@@ -21,7 +21,7 @@ export function FormHero({heading, subheading, bullets, rating, formHeading, for
     <section id="hero" className="bg-surface py-12 lg:py-20">
       <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="min-w-0">
-          <h1 className="text-balance text-[40px] font-semibold leading-[1.15] text-ink md:text-5xl">{heading}</h1>
+          <h1 className="type-display text-ink">{heading}</h1>
           {subheading && <p className="mt-6 text-xl leading-[30px] text-muted">{subheading}</p>}
           {bullets?.length ? <CheckList items={bullets} className="mt-6" /> : null}
           {rating && (
@@ -30,8 +30,8 @@ export function FormHero({heading, subheading, bullets, rating, formHeading, for
             </div>
           )}
         </div>
-        <div className="min-w-0 rounded-2xl border border-line bg-white p-6 shadow-lg md:p-8">
-          {formHeading && <h2 className="text-center text-2xl font-semibold text-ink md:text-[28px]">{formHeading}</h2>}
+        <div className="min-w-0 rounded-2xl border border-line bg-white p-6 shadow-card md:p-8">
+          {formHeading && <h2 className="type-heading-md text-center text-ink">{formHeading}</h2>}
           <HubSpotForm formId={formId} className="mt-6 min-h-[320px]" />
         </div>
       </Container>

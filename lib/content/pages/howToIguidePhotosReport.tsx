@@ -48,7 +48,7 @@ export const blocks: Block[] = [
       <EmailReportEmbed
         html={photosReportEmail}
         label="Sample iGuide Photos Report email"
-        className="mx-auto max-w-[680px] rounded-2xl bg-white shadow-[0_8px_32px_rgba(20,24,28,0.12)]"
+        className="mx-auto max-w-[680px] rounded-2xl bg-white shadow-card"
       />
     ),
   },

@@ -1,5 +1,6 @@
 'use client'
 
+import {Check} from 'lucide-react'
 import {ArrowRight} from '@/components/ui/icons'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 import {useMemo, useState} from 'react'
@@ -178,9 +179,7 @@ export function IncludesList({items}: Readonly<{items: string[]}>) {
     <ul className="mt-3 space-y-1.5 text-sm leading-[22px] text-body">
       {items.map((item) => (
         <li key={item} className="flex gap-2">
-          <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M5 12.5 10 17 19 7" />
-          </svg>
+          <Check aria-hidden strokeWidth={2.5} className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
           {item}
         </li>
       ))}

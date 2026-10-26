@@ -126,7 +126,7 @@ export function cscBlocks(p: CscPage): Block[] {
                     className="h-40 w-auto self-start object-contain"
                     fallback={<span className="block h-40 w-28 rounded-xl bg-white" aria-hidden />}
                   />
-                  <h4 className="text-2xl font-semibold text-ink">{d.title}</h4>
+                  <h4 className="type-heading-md text-ink">{d.title}</h4>
                   <Button href={d.href} size="lg" newTab={d.newTab} className="mt-auto self-start">
                     Download
                   </Button>

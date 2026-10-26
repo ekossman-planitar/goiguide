@@ -20,7 +20,7 @@ export const blocks: Block[] = [
     type: 'custom',
     children: (
       <>
-        <h1 className="text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">embed</h1>
+        <h1 className="type-display text-ink">embed</h1>
         <MediaView
           media={{
             type: 'embed',

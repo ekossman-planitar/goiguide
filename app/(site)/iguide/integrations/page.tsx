@@ -35,7 +35,7 @@ export default function IntegrationsPage() {
         <div className="space-y-16">
           {c.supported.groups.map((g) => (
             <div key={g.id} id={g.id} className="scroll-mt-28">
-              <h3 className="text-[28px] leading-tight font-semibold text-ink">{g.heading}</h3>
+              <h3 className="type-heading-md text-ink">{g.heading}</h3>
               <p className="mt-2 max-w-3xl text-lg leading-7 text-muted">{g.text}</p>
               <div className="mt-6">
                 <LogoCards items={g.items} headingLevel="h4" />

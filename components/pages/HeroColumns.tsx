@@ -8,7 +8,7 @@ export function HeroColumns({heading, children, aside}: Readonly<{heading: strin
   return (
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
       <div className="min-w-0">
-        <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">{heading}</h1>
+        <h1 className="type-display text-ink">{heading}</h1>
         {children && <div className="mt-6 space-y-4 text-lg leading-7 text-muted">{children}</div>}
       </div>
       <div className="min-w-0">{aside}</div>

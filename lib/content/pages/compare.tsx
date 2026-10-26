@@ -32,15 +32,15 @@ export const blocks: Block[] = [
     background: 'surface',
     children: (
       <>
-        <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">Compare</h1>
+        <h1 className="type-display text-ink">Compare</h1>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {pages.map((page) => (
             <li key={page.href} className="flex">
               <SmartLink
                 href={page.href}
-                className="group flex w-full flex-col justify-between gap-6 rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover"
+                className="group flex w-full flex-col justify-between gap-6 rounded-2xl border border-line bg-white p-6 shadow-card transition-colors hover:border-primary-hover"
               >
-                <h2 className="text-xl leading-7 font-semibold text-ink group-hover:text-primary-hover">{page.title}</h2>
+                <h2 className="type-heading-sm text-ink group-hover:text-primary-hover">{page.title}</h2>
                 <ArrowRight width={20} height={20} className="text-primary group-hover:text-primary-hover" aria-hidden />
               </SmartLink>
             </li>

@@ -104,7 +104,7 @@ export function SiteFooter() {
 
           {/* Connect with Us: newsletter, then social (also in the bottom row, while Evan compares the two spots) */}
           <div>
-            <h2 className="text-xl leading-7 font-semibold text-ink">Connect with Us</h2>
+            <h2 className="type-heading-sm text-ink">Connect with Us</h2>
             <p className="mt-2 text-base leading-6 text-body">Receive information on the latest releases, tips and updates.</p>
             <div className="mt-6">
               <SubscribeForm {...subscribeForm} />

@@ -42,7 +42,7 @@ function LeadershipGrid() {
   return (
     <ul className="grid grid-cols-2 gap-6 lg:grid-cols-4">
       {leaders.map((l) => (
-        <li key={l.name} className="flex flex-col rounded-2xl border border-line bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)] sm:p-6">
+        <li key={l.name} className="flex flex-col rounded-2xl border border-line bg-white p-4 shadow-card sm:p-6">
           <FallbackImage
             src={l.photo.src}
             alt={l.photo.alt}
@@ -52,7 +52,7 @@ function LeadershipGrid() {
             className="aspect-[189/271] h-auto w-full rounded-xl object-cover"
             fallback={<div className="aspect-[189/271] w-full rounded-xl bg-surface" />}
           />
-          <h3 className="mt-5 text-xl leading-7 font-semibold text-ink">{l.name}</h3>
+          <h3 className="type-heading-sm mt-5 text-ink">{l.name}</h3>
           <p className="mt-1 flex-1 text-base text-muted">{l.role}</p>
           <a
             href={l.linkedin}

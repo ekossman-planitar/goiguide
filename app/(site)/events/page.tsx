@@ -29,7 +29,7 @@ export default async function EventsPage() {
       <section className="pt-8 pb-16 lg:pt-12 lg:pb-[60px]">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-balance text-[40px] leading-[normal] font-semibold text-ink md:text-[56px]">Events</h1>
+            <h1 className="type-display text-ink">Events</h1>
             <p className="mt-6 text-xl leading-[30px] text-muted">
               Meet the iGuide team at conferences and trade shows, or join us online for live webinars and workshops.
             </p>

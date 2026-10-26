@@ -21,7 +21,7 @@ export function StoreCta() {
         <div className="relative px-8 py-12 text-white md:w-7/12 md:px-14">
           <div className="flex flex-col items-start gap-3 lg:flex-row lg:items-baseline">
             <Image src="/iGUIDE-Logo.svg" alt="iGuide" width={1330} height={368} className="h-9 w-auto brightness-0 invert" />
-            <h2 className="text-[32px] leading-tight font-semibold md:text-5xl">Store</h2>
+            <h2 className="type-h2">Store</h2>
           </div>
           <p className="mt-4 text-2xl leading-snug text-white/90">Start taking control of your environments, digitally. Shop the iGuide store for latest products and pricing.</p>
           <Button href="https://store.goiguide.com/" size="lg" variant="secondary" className="mt-8 border-white!">

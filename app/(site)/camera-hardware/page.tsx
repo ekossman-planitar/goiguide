@@ -45,25 +45,25 @@ export default function CameraHardwarePage() {
       <Section heading={p.heading}>
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-16">
           <div>
-            <h3 className="text-[28px] leading-tight font-semibold text-primary">{p.name}</h3>
-            <p className="mt-3 text-2xl leading-snug font-bold text-ink">{p.lead}</p>
+            <h3 className="type-heading-md text-primary">{p.name}</h3>
+            <p className="mt-3 text-2xl leading-snug font-semibold text-ink">{p.lead}</p>
             <p className="mt-4 text-lg leading-7 text-body">{p.body}</p>
             <figure className="mt-6 border-l-4 border-brand pl-5">
               <blockquote className="text-lg italic leading-7 text-ink">{p.quote.text}</blockquote>
               <figcaption className="mt-2 text-sm text-muted">– {p.quote.by}</figcaption>
             </figure>
-            <h4 className="mt-8 text-lg font-semibold text-ink">{p.stepsHeading}</h4>
+            <h4 className="type-heading-xs mt-8 text-ink">{p.stepsHeading}</h4>
             <ol className="mt-3 space-y-3">
               {p.steps.map(([title, text], i) => (
                 <li key={title} className="flex gap-3 text-base leading-6 text-body">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">{i + 1}</span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">{i + 1}</span>
                   <span>
                     <strong className="text-ink">{title}:</strong> {text}
                   </span>
                 </li>
               ))}
             </ol>
-            <h4 className="mt-8 text-lg font-semibold text-ink">{p.extraHeading}</h4>
+            <h4 className="type-heading-xs mt-8 text-ink">{p.extraHeading}</h4>
             <p className="mt-2 text-base text-body">
               <a href={p.extra.link.href} className="font-semibold text-primary underline underline-offset-2 hover:text-primary-hover">
                 {p.extra.link.label}

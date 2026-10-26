@@ -53,7 +53,7 @@ export function EventCalendar({events, month, onMonthChange, firstMonth, lastMon
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <h2 className="text-2xl font-semibold text-ink md:text-[28px]" aria-live="polite">
+        <h2 className="type-heading-md text-ink" aria-live="polite">
           {monthLabel(month)}
         </h2>
         <div className="flex gap-2">
@@ -65,7 +65,7 @@ export function EventCalendar({events, month, onMonthChange, firstMonth, lastMon
           </button>
         </div>
       </div>
-      <table className="mt-6 w-full table-fixed border-collapse overflow-hidden rounded-2xl bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+      <table className="mt-6 w-full table-fixed border-collapse overflow-hidden rounded-2xl bg-white shadow-card">
         <caption className="sr-only">Events in {monthLabel(month)}</caption>
         <thead>
           <tr>

@@ -8,7 +8,7 @@ export function HelpCta() {
       <Container>
         <div className="flex flex-col items-start gap-6 rounded-2xl bg-primary px-6 py-10 text-white md:flex-row md:items-center md:justify-between md:px-12">
           <div className="max-w-2xl">
-            <h2 className="text-[28px] leading-tight font-semibold md:text-[32px]">Looking for more assistance?</h2>
+            <h2 className="type-heading-lg">Looking for more assistance?</h2>
             <p className="mt-3 text-lg leading-7 text-white/85">Our support team is available {supportContact.hours}.</p>
           </div>
           <div className="flex flex-wrap gap-3">

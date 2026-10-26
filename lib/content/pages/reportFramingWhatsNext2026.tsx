@@ -168,8 +168,8 @@ export const blocks: Block[] = [
     children: (
       <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {trends.map((t) => (
-          <li key={t.label} className="rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
-            <h3 className="text-xl font-semibold text-ink">{t.label}</h3>
+          <li key={t.label} className="rounded-2xl border border-line bg-white p-6 shadow-card">
+            <h3 className="type-heading-sm text-ink">{t.label}</h3>
             <p className="mt-3 text-base leading-6 text-body">{t.text}</p>
           </li>
         ))}
@@ -196,10 +196,10 @@ export const blocks: Block[] = [
             <MediaView key={src} media={{type: 'embed', src, title: `Creator insights video ${i + 1}`}} />
           ))}
         </div>
-        <h3 className="mt-16 text-[28px] font-semibold text-ink md:text-[32px]">Contributors</h3>
+        <h3 className="type-heading-md mt-16 text-ink">Contributors</h3>
         <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {contributors.map((c) => (
-            <li key={c.name} className="flex flex-col rounded-2xl border border-line bg-white p-5 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+            <li key={c.name} className="flex flex-col rounded-2xl border border-line bg-white p-5 shadow-card">
               <FallbackImage
                 src={c.photo}
                 alt={c.name}

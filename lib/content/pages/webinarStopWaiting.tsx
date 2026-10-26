@@ -52,7 +52,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">
+          <h2 className="type-h2 text-ink">
             Made for architects, engineers and builders who need reliable data and visual clarity
           </h2>
           {/* Live: the link points at https://youtu.be/AbQ4W_Ikn1s, but a page script cancels it and scrolls back up to the form */}
@@ -61,7 +61,7 @@ export const blocks: Block[] = [
           </Button>
         </div>
         <div className="rounded-2xl bg-sky p-6 md:p-8">
-          <h3 className="text-2xl font-semibold text-ink">What you&apos;ll learn...</h3>
+          <h3 className="type-heading-md text-ink">What you&apos;ll learn...</h3>
           <ul className="mt-6 space-y-4">
             {learn.map(([lead, text]) => (
               <li key={lead} className="flex gap-3 text-base leading-6 text-body">

@@ -37,9 +37,9 @@ export function SplitSection({id, eyebrow, heading, body, listHeading, list, aft
       <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className={cn('min-w-0', mediaSide === 'left' && 'lg:order-2')}>
           {eyebrow && <p className="mb-3 text-sm font-semibold text-primary">{eyebrow}</p>}
-          <Heading className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</Heading>
+          <Heading className="type-h2 text-ink">{heading}</Heading>
           {body && <div className="mt-5 space-y-4 text-lg leading-7 text-body">{body}</div>}
-          {listHeading && <h3 className="mt-8 text-lg font-semibold text-ink">{listHeading}</h3>}
+          {listHeading && <h3 className="type-heading-xs mt-8 text-ink">{listHeading}</h3>}
           {list && <CheckList items={list} className={listHeading ? 'mt-4' : 'mt-6'} />}
           {after && <div className="mt-6 space-y-4 text-lg leading-7 text-body">{after}</div>}
           <CtaButtons ctas={ctas} className="mt-8" />

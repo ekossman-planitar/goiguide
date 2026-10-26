@@ -66,9 +66,9 @@ export default async function SectionPage({params}: Readonly<Props>) {
           ...sectionTrail(section, sections).map((s) => ({label: s.name, href: sectionPath(s)})),
         ]}
       />
-      <section className="py-12 lg:py-16">
+      <section className="py-16 lg:py-[60px]">
         <Container size="medium">
-          <h1 className="text-balance text-[36px] leading-tight font-semibold text-ink md:text-[48px]">{section.name}</h1>
+          <h1 className="type-title text-ink">{section.name}</h1>
           {section.description && <p className="mt-4 text-xl leading-[30px] text-muted">{section.description}</p>}
 
           {children.length > 0 && (
@@ -77,7 +77,7 @@ export default async function SectionPage({params}: Readonly<Props>) {
                 <li key={c.id}>
                   <SmartLink
                     href={sectionPath(c)}
-                    className="help-subsection group flex items-center justify-between gap-3 rounded-xl border border-line bg-white px-5 py-4 font-semibold text-ink transition-colors hover:border-primary-hover hover:text-primary-hover"
+                    className="help-subsection group flex items-center justify-between gap-3 rounded-2xl border border-line bg-white px-5 py-4 font-semibold text-ink shadow-card transition-shadow hover:shadow-lg hover:text-primary-hover"
                   >
                     {c.name}
                     <ChevronRight aria-hidden width={18} height={18} className="shrink-0 transition-transform group-hover:translate-x-0.5" />

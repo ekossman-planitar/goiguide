@@ -71,7 +71,7 @@ export default async function HelpHome() {
         <Container className="py-10 lg:py-12">
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
             <div className="max-w-3xl">
-              <h1 className="text-balance text-[36px] leading-tight font-semibold md:text-[48px]">Welcome to the iGuide Help Center</h1>
+              <h1 className="type-title">Welcome to the iGuide Help Center</h1>
               <p className="mt-3 text-lg leading-7 text-white/80">Find articles and discussions to help answer your iGuide questions</p>
               <HelpSearchForm size="lg" className="mt-6 max-w-2xl" />
               <div className="mt-4 flex flex-wrap items-center gap-2 text-[15px]">
@@ -120,7 +120,7 @@ export default async function HelpHome() {
       {/* Row 1: Zendesk categories */}
       <section aria-labelledby="help-categories" className="pt-10 pb-12 lg:pb-14">
         <Container>
-          <h2 id="help-categories" className="text-[24px] leading-tight font-semibold text-ink md:text-[28px]">
+          <h2 id="help-categories" className="type-heading-md text-ink">
             Browse by topic
           </h2>
           <ul className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
@@ -131,7 +131,7 @@ export default async function HelpHome() {
                 <li key={c.id}>
                   <SmartLink
                     href={categoryPath(c)}
-                    className="help-category-card group flex h-full flex-col rounded-2xl border border-line bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover"
+                    className="help-category-card group flex h-full flex-col rounded-2xl border border-line bg-white p-4 shadow-card transition-shadow hover:shadow-lg"
                   >
                     <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary-hover group-hover:text-white">
                       <Icon aria-hidden size={20} strokeWidth={1.75} />
@@ -151,7 +151,7 @@ export default async function HelpHome() {
       {products.length > 0 && (
         <section aria-labelledby="help-products" className="pb-14 lg:pb-16">
           <Container>
-            <h2 id="help-products" className="text-[24px] leading-tight font-semibold text-ink md:text-[28px]">
+            <h2 id="help-products" className="type-heading-md text-ink">
               Explore by product
             </h2>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -160,7 +160,7 @@ export default async function HelpHome() {
                   <SmartLink
                     href={p.href}
                     data-product={p.label}
-                    className="help-product-card group flex h-full items-start gap-4 rounded-2xl border border-line bg-white p-4 transition-colors hover:border-primary-hover"
+                    className="help-product-card group flex h-full items-start gap-4 rounded-2xl border border-line bg-white p-4 shadow-card transition-shadow hover:shadow-lg"
                   >
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary transition-colors group-hover:bg-primary-hover group-hover:text-white">
                       <p.icon aria-hidden size={20} strokeWidth={1.75} />
@@ -182,9 +182,9 @@ export default async function HelpHome() {
 
       {/* Product updates spotlight */}
       {spotlight.length > 0 && (
-        <section aria-labelledby="help-spotlight" className="py-14 lg:py-16">
+        <section aria-labelledby="help-spotlight" className="py-16 lg:py-[60px]">
           <Container>
-            <h2 id="help-spotlight" className="text-[28px] leading-tight font-semibold text-ink md:text-[36px]">
+            <h2 id="help-spotlight" className="type-heading-lg text-ink">
               Product updates
             </h2>
             <ul className="mt-6 grid gap-4 md:grid-cols-3">
@@ -212,7 +212,7 @@ export default async function HelpHome() {
       {recent.length > 0 && (
         <section aria-labelledby="help-recent" className={spotlight.length > 0 ? 'pb-14 lg:pb-16' : 'py-14 lg:py-16'}>
           <Container>
-            <h2 id="help-recent" className="text-[28px] leading-tight font-semibold text-ink md:text-[36px]">
+            <h2 id="help-recent" className="type-heading-lg text-ink">
               Recently added articles
             </h2>
             <ul className="mt-6 divide-y divide-line border-y border-line">

@@ -44,7 +44,7 @@ export function ProList({items}: Readonly<{items: {title: string; text: string}[
     <div className="space-y-6">
       {items.map((item) => (
         <div key={item.title}>
-          <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
+          <h3 className="type-heading-sm text-ink">{item.title}</h3>
           <p className="mt-2">{item.text}</p>
         </div>
       ))}
@@ -63,7 +63,7 @@ export function closingCta({heading, text, secondary}: {heading: string; text?: 
     background: 'sky',
     children: (
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
+        <h2 className="type-h2 text-ink">{heading}</h2>
         {text && <p className="mt-5 text-xl leading-[30px] text-muted">{text}</p>}
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <FormDialogButton id="gsbtn" label="Let’s chat about iGuide" title="Get in touch" formId={getInTouchFormId} />

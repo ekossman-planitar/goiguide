@@ -21,7 +21,7 @@ const Eyebrow = ({children}: Readonly<{children: ReactNode}>) => (
   <span className="inline-flex rounded-full bg-cream px-3 py-2 text-xs font-semibold text-ink">{children}</span>
 )
 
-const card = 'flex flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] md:p-8'
+const card = 'flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card md:p-8'
 
 const pros = [
   {
@@ -98,7 +98,7 @@ export const blocks: Block[] = [
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="min-w-0">
           <Eyebrow>For iGuide Pros</Eyebrow>
-          <h1 className="mt-6 text-balance text-[40px] font-semibold leading-[1.15] text-ink md:text-[56px]">Become an Advanced Capture Pro</h1>
+          <h1 className="type-display mt-6 text-ink">Become an Advanced Capture Pro</h1>
           <p className="mt-6 text-xl leading-[30px] text-muted">
             Commercial work pays more per capture, repeats more often and doesn&apos;t swing with the housing market. This program shows you how to
             win it, and iGuide backs you with the tools, the directory and the support to grow.
@@ -149,7 +149,7 @@ export const blocks: Block[] = [
               <div className="flex items-center gap-4">
                 <FallbackImage src={pro.photo.src} alt={pro.photo.alt} width={128} height={128} className="h-16 w-16 rounded-full object-cover" />
                 <div>
-                  <h3 className="text-xl font-semibold text-ink">{pro.name}</h3>
+                  <h3 className="type-heading-sm text-ink">{pro.name}</h3>
                   <p className="text-sm text-muted">{pro.business}</p>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid gap-6 lg:grid-cols-2">
         <div className={card}>
-          <h3 className="text-2xl font-semibold text-ink">Build the skills to take on commercial and AEC work</h3>
+          <h3 className="type-heading-md text-ink">Build the skills to take on commercial and AEC work</h3>
           <p className="mt-4 text-base leading-6 text-body">
             Learn how to choose the right deliverables and run a CAD workflow that holds up to AEC standards, so you can take on your next
             commercial project with confidence.
@@ -216,7 +216,7 @@ export const blocks: Block[] = [
           </Button>
         </div>
         <div className={card}>
-          <h3 className="text-2xl font-semibold text-ink">Interactive CAD Example</h3>
+          <h3 className="type-heading-md text-ink">Interactive CAD Example</h3>
           <MediaView
             media={{
               type: 'embed',
@@ -243,13 +243,13 @@ export const blocks: Block[] = [
         />
         <ul className="grid gap-6 md:grid-cols-2">
           <li className={card}>
-            <h3 className="text-xl font-semibold text-ink">A toolkit that sells for you</h3>
+            <h3 className="type-heading-sm text-ink">A toolkit that sells for you</h3>
             <p className="mt-3 text-base leading-6 text-body">
               Outreach templates, a deliverables menu and a 30-day plan for landing commercial clients. Free, no sign-up needed.
             </p>
           </li>
           <li className={card}>
-            <h3 className="text-xl font-semibold text-ink">A profile clients can find</h3>
+            <h3 className="type-heading-sm text-ink">A profile clients can find</h3>
             <p className="mt-3 text-base leading-6 text-body">
               Set up your{' '}
               <a href="https://ion.goiguide.com/signup/" target="_blank" rel="noopener noreferrer">
@@ -273,7 +273,7 @@ export const blocks: Block[] = [
         {downloads.map((d, i) => (
           <li key={d.title} className={card}>
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-semibold text-white">{i + 1}</span>
-            <h3 className="mt-5 text-xl font-semibold text-ink">{d.title}</h3>
+            <h3 className="type-heading-sm mt-5 text-ink">{d.title}</h3>
             <p className="mt-3 flex-1 text-base leading-6 text-body">{d.text}</p>
             <Button href={d.cta.href} size="lg" newTab className="mt-6 w-fit">
               {d.cta.label}
@@ -292,7 +292,7 @@ export const blocks: Block[] = [
     children: (
       <div className="mx-auto max-w-3xl space-y-4">
         {faqs.map((f) => (
-          <details key={f.q} className="group rounded-xl border border-line bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+          <details key={f.q} className="group rounded-xl border border-line bg-white p-4 shadow-card">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
               {f.q}
               <span aria-hidden className="text-2xl leading-none text-primary transition-transform group-open:rotate-45">

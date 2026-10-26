@@ -1,3 +1,4 @@
+import {Download} from 'lucide-react'
 import {VersionHistory} from '@/components/downloads/VersionHistory'
 import {Section} from '@/components/blocks/Section'
 import {Button} from '@/components/ui/Button'
@@ -12,9 +13,7 @@ const external = (href: string) => (href.startsWith('http') ? {target: '_blank',
 
 function DownloadIcon() {
   return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.25">
-      <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" />
-    </svg>
+    <Download aria-hidden className="h-4 w-4" />
   )
 }
 
@@ -25,7 +24,7 @@ export default function DownloadsPage() {
       <section className="pt-8 pb-12 lg:pt-12 lg:pb-[60px]">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
-            <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">{heading}</h1>
+            <h1 className="type-display text-ink">{heading}</h1>
             <p className="mt-6 text-lg leading-7 text-muted">
               Welcome to the software and documentation downloads area. Here you will find the software required to work with data captured with
               the <SmartLink href="/camera-hardware" className="font-medium text-primary underline">iGuide Camera System</SmartLink> and update
@@ -39,7 +38,7 @@ export default function DownloadsPage() {
           </div>
           <div className="rounded-2xl bg-sky p-8 lg:p-10">
             <p className="text-sm font-semibold text-primary">New to iGuide? Start here</p>
-            <h2 className="mt-2 text-[32px] font-semibold leading-tight text-ink">Stitch v{stitch.version}</h2>
+            <h2 className="type-h2 mt-2 text-ink">Stitch v{stitch.version}</h2>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={stitch.pc} size="lg">
                 <DownloadIcon />
@@ -61,9 +60,9 @@ export default function DownloadsPage() {
             <li
               key={product.id}
               id={product.id}
-              className="flex scroll-mt-24 flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
+              className="flex scroll-mt-24 flex-col rounded-2xl border border-line bg-white p-6 shadow-card"
             >
-              <h2 className="text-xl font-semibold text-ink">{product.name}</h2>
+              <h2 className="type-heading-sm text-ink">{product.name}</h2>
               <ul className="mt-4 divide-y divide-line">
                 {product.files.map((file) => (
                   <li key={file.label} className="flex items-center justify-between gap-4 py-3">
@@ -88,7 +87,7 @@ export default function DownloadsPage() {
       <section id="e169" className="scroll-mt-24 py-16 lg:py-[60px]">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
           <div>
-            <h2 className="text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">Other Downloads</h2>
+            <h2 className="type-h2 text-ink">Other Downloads</h2>
             <p className="mt-5 text-base leading-6 text-muted">
               Notice: Stitch software uses{' '}
               <SmartLink href="https://download.qt.io/archive/qt/5.12/" className="font-medium text-primary underline">
@@ -120,7 +119,7 @@ export default function DownloadsPage() {
       <Section id="e170" background="surface">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
           <div>
-            <h2 className="text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">Stitch Version History</h2>
+            <h2 className="type-h2 text-ink">Stitch Version History</h2>
             <p className="mt-5 text-lg leading-7 text-muted">Release notes for every Stitch version, newest first.</p>
           </div>
           <VersionHistory releases={stitchHistory} />

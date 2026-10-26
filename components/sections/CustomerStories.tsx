@@ -45,7 +45,7 @@ export function CustomerStories({heading, subheading, link, stories}: Readonly<P
     <section className="bg-sky py-16 lg:py-[60px]">
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-12">
-          <h2 className="text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal] lg:flex-1">
+          <h2 className="type-h2 text-ink lg:flex-1">
             {heading.map((line, i) => (
               <span key={line}>
                 {i > 0 && <br className="hidden lg:block" />}
@@ -94,7 +94,7 @@ function StoryCardView({story}: Readonly<{story: StoryCard}>) {
       aria-label={`Read ${story.company}'s story: ${story.quote}`}
       className="group flex w-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
-      <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-shadow group-hover:shadow-lg">
+      <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-card transition-shadow group-hover:shadow-lg">
         <QuoteMark className="mb-4" />
         <blockquote className="flex-1">
           <p className="text-2xl leading-[1.35] font-semibold text-ink">{story.quote}</p>
@@ -115,7 +115,7 @@ function StoryCardView({story}: Readonly<{story: StoryCard}>) {
                 height={40}
                 draggable={false}
                 className="h-8 w-auto max-w-[104px] object-contain object-right sm:h-10 sm:max-w-[128px]"
-                fallback={<span className="text-sm font-bold text-ink">{story.company}</span>}
+                fallback={<span className="text-sm font-semibold text-ink">{story.company}</span>}
               />
             </div>
           </div>

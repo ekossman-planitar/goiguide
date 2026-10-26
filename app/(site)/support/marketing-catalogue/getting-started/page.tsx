@@ -31,13 +31,13 @@ export default function GettingStartedPage() {
           </SmartLink>
           <div className="mt-5 max-w-3xl">
             <p className="text-sm font-semibold tracking-wide text-primary-hover uppercase">New to iGuide?</p>
-            <h1 className="mt-2 text-[40px] leading-[normal] font-semibold text-balance text-ink md:text-[56px]">Getting started</h1>
+            <h1 className="type-display mt-2 text-ink">Getting started</h1>
             <p className="mt-5 text-xl leading-[30px] text-muted">Three things that help new operators win their first clients.</p>
           </div>
         </Container>
       </section>
 
-      <section aria-labelledby="gs-steps" className="py-12 lg:py-16">
+      <section aria-labelledby="gs-steps" className="py-16 lg:py-[60px]">
         <Container>
           <h2 id="gs-steps" className="sr-only">
             Three steps
@@ -48,7 +48,7 @@ export default function GettingStartedPage() {
 
       <section id={DEMO_TOURS} aria-labelledby="gs-tours" className="scroll-mt-28 pb-12 lg:pb-16">
         <Container>
-          <h2 id="gs-tours" className="text-[28px] leading-tight font-semibold text-ink md:text-[36px]">
+          <h2 id="gs-tours" className="type-heading-lg text-ink">
             Demo tours for your website
           </h2>
           <p className="mt-3 max-w-2xl text-lg leading-7 text-body">
@@ -64,7 +64,7 @@ export default function GettingStartedPage() {
         <Container>
           <div className="flex flex-col items-start gap-6 rounded-2xl bg-primary px-6 py-10 text-white md:flex-row md:items-center md:justify-between md:px-12">
             <div className="max-w-2xl">
-              <h2 className="text-[28px] leading-tight font-semibold md:text-[32px]">Ready for more?</h2>
+              <h2 className="type-heading-lg">Ready for more?</h2>
               <p className="mt-3 text-lg leading-7 text-white/85">Browse every brochure, presentation, photo and video in the Marketing Catalogue.</p>
             </div>
             <SmartLink

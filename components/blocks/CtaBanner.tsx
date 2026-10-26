@@ -9,7 +9,7 @@ export function CtaBanner({heading, text, ctas}: Readonly<{heading: string; text
       <Container>
         <div className="flex flex-col items-start gap-6 rounded-2xl bg-sky px-6 py-10 md:flex-row md:items-center md:justify-between md:px-12">
           <div className="max-w-2xl">
-            <h2 className="text-[28px] leading-tight font-semibold text-ink md:text-[32px]">{heading}</h2>
+            <h2 className="type-heading-lg text-ink">{heading}</h2>
             {text && <p className="mt-3 text-lg leading-7 text-muted">{text}</p>}
           </div>
           <CtaButtons ctas={ctas} className="shrink-0" />

@@ -87,7 +87,7 @@ function YouTubeCard({asset}: Readonly<{asset: CatalogueAsset}>) {
   const [playing, setPlaying] = useState(false)
   const id = asset.youtubeId!
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <article className="flex h-full flex-col rounded-2xl border border-line bg-white shadow-card">
       <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-ink">
         {playing ? (
           <iframe
@@ -116,7 +116,7 @@ function YouTubeCard({asset}: Readonly<{asset: CatalogueAsset}>) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-lg leading-snug font-semibold text-ink">{asset.title}</h3>
+        <h3 className="type-heading-xs text-ink">{asset.title}</h3>
         <p className="mt-1 text-sm text-muted">YouTube video</p>
         {asset.description && <p className="mt-2 text-sm leading-5 text-body">{asset.description}</p>}
         <a
@@ -141,10 +141,10 @@ function AssetCard({asset}: Readonly<{asset: CatalogueAsset}>) {
   const Icon = formatIcon[formats[0]] ?? FileText
   const single = asset.files.length === 1
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <article className="group flex h-full flex-col rounded-2xl border border-line bg-white shadow-card">
       <Preview asset={asset} icon={Icon} />
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-lg leading-snug font-semibold text-ink">{asset.title}</h3>
+        <h3 className="type-heading-xs text-ink">{asset.title}</h3>
         <p className="mt-1 text-sm text-muted">
           {formats.map((f) => formatLabel[f] ?? f).join(' / ')}
           {asset.note && ` · ${asset.note}`}
@@ -315,7 +315,7 @@ export function MarketingCatalogue() {
             <div className="mb-8 flex flex-col gap-4 rounded-2xl bg-surface p-5 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold tracking-wide text-muted uppercase">Campaign kit</p>
-                <h2 className="mt-1 text-2xl leading-tight font-semibold text-ink">{activeCampaign.label}</h2>
+                <h2 className="type-heading-md mt-1 text-ink">{activeCampaign.label}</h2>
                 <p className="mt-2 text-base text-body">{activeCampaign.description}</p>
               </div>
               <button
@@ -328,7 +328,7 @@ export function MarketingCatalogue() {
             </div>
           ) : (
             <div className="mb-10">
-              <h2 className="text-sm font-semibold tracking-wide text-muted uppercase">Campaign kits</h2>
+              <h2 className="type-overline text-muted">Campaign kits</h2>
               <ul className="mt-3 grid gap-3 md:grid-cols-3">
                 {catalogueCampaigns.map((c) => (
                   <li key={c.id}>
@@ -336,7 +336,7 @@ export function MarketingCatalogue() {
                       type="button"
                       onClick={() => pickCampaign(c.id)}
                       data-campaign={c.id}
-                      className="catalogue-campaign group flex h-full w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white p-3 text-left transition-colors hover:border-primary-hover"
+                      className="catalogue-campaign group flex h-full w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-white p-3 text-left shadow-card transition-shadow hover:shadow-lg"
                     >
                       <span className="relative h-16 w-20 shrink-0 overflow-hidden rounded-lg bg-surface">
                         <Image src={c.image} alt="" fill sizes="80px" className="object-cover" />
@@ -380,7 +380,7 @@ export function MarketingCatalogue() {
               return (
                 <section key={c.id} id={`mc-${c.id}`} data-mc-section aria-labelledby={`mc-${c.id}-h`} className="scroll-mt-36 lg:scroll-mt-28">
                   <div className="border-b border-line pb-3">
-                    <h2 id={`mc-${c.id}-h`} className="text-[26px] leading-tight font-semibold text-ink md:text-[32px]">
+                    <h2 id={`mc-${c.id}-h`} className="type-heading-lg text-ink">
                       {c.label}
                     </h2>
                     <p className="mt-1 text-base text-muted">{c.description}</p>
@@ -398,7 +398,7 @@ export function MarketingCatalogue() {
                   </div>
                   {groups.map((g) => (
                     <div key={g || 'all'} className="mt-6">
-                      {g && groups.length > 1 && <h3 className="mb-3 text-sm font-semibold tracking-wide text-muted uppercase">{g}</h3>}
+                      {g && groups.length > 1 && <h3 className="type-overline mb-3 text-muted">{g}</h3>}
                       <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                         {c.assets
                           .filter((a) => (a.group ?? '') === g)

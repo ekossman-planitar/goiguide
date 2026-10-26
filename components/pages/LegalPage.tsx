@@ -34,7 +34,7 @@ export function LegalPage({title, lastUpdated, html, children}: Readonly<Props>)
   return (
     <Container as="article" size="narrow" className="py-16 lg:py-20">
       <header className="border-b border-line pb-8">
-        <h1 className="text-balance text-4xl font-semibold leading-tight text-ink md:text-5xl">{title}</h1>
+        <h1 className="type-title text-ink">{title}</h1>
         {lastUpdated && <p className="mt-4 text-base text-muted">{lastUpdated}</p>}
       </header>
       <div className={`mt-10 ${prose}`}>

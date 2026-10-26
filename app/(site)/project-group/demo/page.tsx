@@ -16,7 +16,7 @@ export default function ProjectGroupDemoPage() {
       >
         <div aria-hidden className="absolute inset-0 bg-black/30 bg-gradient-to-b from-black/75" />
         <Container className="relative">
-          <h1 className="max-w-4xl text-balance text-[40px] font-semibold leading-[1.15] text-white md:text-[56px]">{hero.heading}</h1>
+          <h1 className="type-display max-w-4xl text-white">{hero.heading}</h1>
           <div className="mt-8 flex flex-col items-start gap-3 md:flex-row md:items-center">
             <Button href={hero.request.href} size="lg" newTab>
               {hero.request.label}

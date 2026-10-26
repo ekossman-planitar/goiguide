@@ -65,7 +65,7 @@ export const blocks: Block[] = [
         icon: {src: '/assets/Icons/Icon-300x300_Superior-Navigation__FitMaxWzYwLDYwXQ.png', alt: ''},
       },
     ],
-    after: <h3 className="text-2xl font-semibold text-ink">The best part? It’s INSTANT!</h3>,
+    after: <h3 className="type-heading-md text-ink">The best part? It’s INSTANT!</h3>,
   },
   {
     type: 'custom',
@@ -110,7 +110,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="min-w-0">
-          <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">Your lead generation machine</h2>
+          <h2 className="type-h2 text-ink">Your lead generation machine</h2>
           <p className="mt-5 text-lg leading-7 text-body">
             We&apos;ve built it with you in mind. During peak seasons, use the automated response to provide everything they need without missing
             a beat. Buyers have the information they’re looking for in seconds and an introduction is made each time!
@@ -136,7 +136,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="min-w-0">
-          <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">Download our Free Brochure:</h2>
+          <h2 className="type-h2 text-ink">Download our Free Brochure:</h2>
           <p className="mt-4 text-xl leading-[30px] text-muted">Start generating more leads today</p>
           <div className="mt-8">
             <FormDialogButton label="Get the brochure" title="Download our free brochure" formId="1b53d8ab-4d1d-47b7-8d15-2b0e38f94053" />

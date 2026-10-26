@@ -58,7 +58,7 @@ function StoryQuotes({quotes}: Readonly<{quotes: typeof c.stories.quotes}>) {
   return (
     <ul className="grid gap-6 lg:grid-cols-3">
       {quotes.map((q) => (
-        <li key={q.name} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+        <li key={q.name} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card">
           <MediaView media={q.media} className="aspect-video rounded-none object-cover" />
           <figure className="flex flex-1 flex-col p-6">
             <QuoteMark className="mb-4" />

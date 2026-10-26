@@ -26,7 +26,7 @@ function Steps({items}: Readonly<{items: {title: string; text: string}[]}>) {
     <div className="space-y-6">
       {items.map((item) => (
         <div key={item.title}>
-          <h3 className="text-2xl font-semibold text-primary">{item.title}</h3>
+          <h3 className="type-heading-md text-primary">{item.title}</h3>
           <p className="mt-2">{item.text}</p>
         </div>
       ))}

@@ -61,10 +61,10 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
   const progress = steps.length > 1 ? (active / (steps.length - 1)) * 100 : 100
 
   return (
-    <section ref={sectionRef} id={id} className="scroll-mt-24 py-20 lg:py-[60px]">
+    <section ref={sectionRef} id={id} className="scroll-mt-24 py-16 lg:py-[60px]">
       <Container>
         <div>
-          <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
+          <h2 className="type-h2 text-ink">{heading}</h2>
           {subheading && <p className="mt-5 text-xl leading-[30px] text-muted">{subheading}</p>}
         </div>
 
@@ -87,7 +87,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
                   tabIndex={-1}
                   onClick={() => select(i)}
                   className={cn(
-                    'relative flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-bold transition-all duration-500',
+                    'relative flex h-12 w-12 items-center justify-center rounded-full border-2 text-lg font-semibold transition-all duration-500',
                     i < active && 'border-primary bg-primary text-white',
                     i === active && 'scale-110 border-primary bg-primary text-white shadow-lg shadow-primary/30',
                     i > active && 'border-line bg-white text-muted hover:border-primary-hover hover:text-primary-hover',
@@ -119,7 +119,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
                 <span
                   aria-hidden
                   className={cn(
-                    'absolute left-0 top-6 flex h-10 w-10 items-center justify-center rounded-full border-2 font-bold transition-colors lg:hidden',
+                    'absolute left-0 top-6 flex h-10 w-10 items-center justify-center rounded-full border-2 font-semibold transition-colors lg:hidden',
                     i <= active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-muted',
                   )}
                 >
@@ -175,7 +175,7 @@ export function StepsTimeline({id, heading, subheading, steps, interval = 4000, 
                     <span className="w-fit rounded-[28px] bg-cream px-3 py-2 text-xs leading-[18px] font-semibold text-ink">
                       Step {i + 1}
                     </span>
-                    <h3 className="mt-4 text-2xl font-semibold leading-[normal] text-ink">{step.title}</h3>
+                    <h3 className="type-heading-md mt-4 text-ink">{step.title}</h3>
                     <div className="mt-3 flex-1 text-base leading-6 text-body [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary">
                       {step.body}
                     </div>

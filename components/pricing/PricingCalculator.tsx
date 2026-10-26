@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useMemo, useRef, useState} from 'react'
-import {Button} from '@/components/ui/Button'
+import {Button, buttonClass} from '@/components/ui/Button'
 import {Select} from '@/components/ui/Select'
 import {cn} from '@/lib/cn'
 import {calcAddons, calcIndustries, calcPackages, calculator} from '@/lib/content/pricing'
@@ -128,7 +128,7 @@ export function PricingCalculator() {
   const total = result.state === 'done' && !result.customQuote ? result.total : '$0.00'
 
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+    <div className="grid overflow-hidden rounded-2xl border border-line bg-white shadow-card lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
       <form
         id="Form_PricingCalculatorForm"
         className="space-y-6 p-6 sm:p-8"
@@ -237,7 +237,7 @@ export function PricingCalculator() {
                 type="submit"
                 id="Form_PricingCalculatorForm_action_doCalculate"
                 disabled={!payload}
-                className="h-12 rounded-lg border border-primary bg-primary px-6 font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-50"
+                className={cn(buttonClass('primary', 'lg'), 'disabled:pointer-events-none disabled:opacity-50')}
               >
                 Calculate
               </button>
@@ -249,12 +249,12 @@ export function PricingCalculator() {
       <div id="calculator-content" className="flex flex-col bg-sky p-6 sm:p-8" aria-live="polite">
         {noCalc ? (
           <>
-            <h3 className="text-2xl font-semibold text-ink">{noCalc.title}</h3>
+            <h3 className="type-heading-md text-ink">{noCalc.title}</h3>
             <p className="mt-3 text-lg leading-7 text-body">{noCalc.message}</p>
           </>
         ) : (
           <>
-            <h3 className="text-sm font-semibold tracking-wide text-muted uppercase">Estimated Cost</h3>
+            <h3 className="type-overline text-muted">Estimated Cost</h3>
             <p className="mt-2 flex items-baseline gap-2">
               <span
                 id="calculator-calculated-cost"

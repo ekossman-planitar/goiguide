@@ -108,7 +108,7 @@ export function AnnouncementCarousel({items: allItems, renderedAt, landingPage =
                   aria-label={`${i + 1} of ${count}`}
                   aria-hidden={hidden}
                   inert={hidden}
-                  className="flex h-full w-full shrink-0 items-center justify-center px-2 text-center text-sm leading-[21px] font-bold lg:text-base lg:leading-6"
+                  className="flex h-full w-full shrink-0 items-center justify-center px-2 text-center text-sm leading-[21px] font-semibold lg:text-base lg:leading-6"
                 >
                   <p className="truncate">
                     <span>{item.message}</span>

@@ -39,7 +39,7 @@ export default function PricingPage() {
           {addOns.map((addOn) => (
             <li
               key={addOn.title}
-              className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-2xl border border-line bg-white p-5 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
+              className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-2xl border border-line bg-white p-5 shadow-card"
             >
               <FallbackImage
                 src={addOn.image.src}
@@ -50,7 +50,7 @@ export default function PricingPage() {
                 fallback={<div className="aspect-square w-full rounded-xl bg-surface" />}
               />
               <div>
-                <h3 className="text-lg leading-6 font-semibold text-ink">{addOn.title}</h3>
+                <h3 className="type-heading-xs text-ink">{addOn.title}</h3>
                 <p className="mt-1.5 text-sm leading-5 text-body">{addOn.summary}</p>
                 <p className="mt-3 text-sm text-muted">
                   iGuide package + <span className="text-base font-bold text-ink">{addOn.priceCAD}</span>

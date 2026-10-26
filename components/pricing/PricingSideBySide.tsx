@@ -35,9 +35,9 @@ export function PricingSideBySide({id, data}: Readonly<{id?: string; data: Prici
 
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {/* Step 1: camera */}
-            <article className="flex min-w-0 flex-col rounded-2xl bg-white p-6 shadow-sm sm:p-8">
+            <article className="flex min-w-0 flex-col rounded-2xl bg-white p-6 shadow-card sm:p-8">
               <p className="text-sm font-semibold text-primary">Step 1 · Get the camera</p>
-              <h3 className="mt-1 text-2xl font-semibold text-ink">{camera.name}</h3>
+              <h3 className="type-heading-md mt-1 text-ink">{camera.name}</h3>
               <div className="relative my-6 h-56">
                 <CameraImage src={camera.image} alt={camera.name} sizes="(min-width: 1024px) 25vw, 80vw" />
               </div>
@@ -54,11 +54,11 @@ export function PricingSideBySide({id, data}: Readonly<{id?: string; data: Prici
             </article>
 
             {/* Step 2: packages */}
-            <div className="min-w-0 rounded-2xl bg-white p-5 shadow-sm sm:p-6 lg:col-span-2 lg:p-8">
+            <div className="min-w-0 rounded-2xl bg-white p-5 shadow-card sm:p-6 lg:col-span-2 lg:p-8">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-primary">Step 2 · Choose a package</p>
-                  <h3 className="mt-1 text-2xl font-semibold text-ink">iGuide packages</h3>
+                  <h3 className="type-heading-md mt-1 text-ink">iGuide packages</h3>
                 </div>
                 <IndustryFilter value={industry} onChange={setIndustry} variant="select" />
               </div>

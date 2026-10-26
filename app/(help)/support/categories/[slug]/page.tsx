@@ -51,10 +51,10 @@ export default async function CategoryPage({params}: Readonly<Props>) {
   return (
     <>
       <HelpSubnav crumbs={[{label: category.name, href: categoryPath(category)}]} />
-      <section className="py-12 lg:py-16">
+      <section className="py-16 lg:py-[60px]">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-balance text-[36px] leading-tight font-semibold text-ink md:text-[48px]">{category.name}</h1>
+            <h1 className="type-title text-ink">{category.name}</h1>
             {category.description && <p className="mt-4 text-xl leading-[30px] text-muted">{category.description}</p>}
           </div>
           <div className="mt-10 grid gap-x-10 gap-y-12 md:grid-cols-2">
@@ -62,7 +62,7 @@ export default async function CategoryPage({params}: Readonly<Props>) {
               const own = articles.filter((a) => a.section_id === s.id)
               return (
                 <section key={s.id} aria-labelledby={`sec-${s.id}`}>
-                  <h2 id={`sec-${s.id}`} className="border-b border-line pb-3 text-[22px] leading-tight font-semibold text-ink">
+                  <h2 id={`sec-${s.id}`} className="type-heading-md border-b border-line pb-3 text-ink">
                     <SmartLink href={sectionPath(s)} className="hover:text-primary-hover">
                       {s.name}
                     </SmartLink>

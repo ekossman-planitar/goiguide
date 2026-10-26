@@ -5,10 +5,10 @@ export type SpecGroup = {heading: string; rows: [label: string, value: string][]
 /** Collapsible technical specifications table. */
 export function SpecsAccordion({title, groups}: Readonly<{title: string; groups: SpecGroup[]}>) {
   return (
-    <details className="group rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-semibold text-ink hover:text-primary-hover [&::-webkit-details-marker]:hidden">
+    <details className="group rounded-2xl border border-line bg-white shadow-card">
+      <summary className="type-heading-xs flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-ink transition-colors hover:text-primary-hover [&::-webkit-details-marker]:hidden">
         {title}
-        <ChevronDown width={20} height={20} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
+        <ChevronDown width={20} height={20} className="shrink-0 transition-transform group-open:rotate-180" />
       </summary>
       <div className="grid gap-8 px-6 pb-8 md:grid-cols-2">
         {groups.map((g) => (

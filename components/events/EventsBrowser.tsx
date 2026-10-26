@@ -130,23 +130,22 @@ export function EventsBrowser({events, renderedAt}: Readonly<{events: EventCardD
         >
           <label className="relative block sm:min-w-[260px] sm:flex-1 lg:max-w-sm">
             <span className="sr-only">Search events</span>
-            <Search aria-hidden width={18} height={18} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted" />
+            <Search aria-hidden width={20} height={20} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted" />
             <input
               type="search"
               name="q"
               value={filters.q}
               onChange={(ev) => setFilter('q', ev.target.value)}
               placeholder="Search events, cities or venues"
-              className="h-11 w-full rounded-lg border border-line bg-white pr-3 pl-10 text-sm text-ink placeholder:text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="h-12 w-full rounded-lg border border-muted bg-white pr-3 pl-10 text-base text-ink placeholder:text-muted focus:border-primary focus:outline-2 focus:outline-offset-1 focus:outline-primary"
             />
           </label>
           {typesPresent.length > 0 && (
             <Select
               name="type"
               label="Event type"
-              size="sm"
+              size="lg"
               className="w-full sm:w-auto sm:min-w-[170px]"
-              buttonClassName="h-11"
               options={[{value: 'all', label: 'All types'}, ...typesPresent.map((t) => ({value: t.value, label: t.plural}))]}
               value={filters.type}
               onChange={(v) => setFilter('type', v)}
@@ -156,9 +155,8 @@ export function EventsBrowser({events, renderedAt}: Readonly<{events: EventCardD
             <Select
               name="industry"
               label="Industry"
-              size="sm"
+              size="lg"
               className="w-full sm:w-auto sm:min-w-[170px]"
-              buttonClassName="h-11"
               options={[{value: 'all', label: 'All industries'}, ...industriesPresent.map((c) => ({value: c.value, label: c.title}))]}
               value={filters.industry}
               onChange={(v) => setFilter('industry', v)}
@@ -168,9 +166,8 @@ export function EventsBrowser({events, renderedAt}: Readonly<{events: EventCardD
             <Select
               name="attend"
               label="In person or online"
-              size="sm"
+              size="lg"
               className="w-full sm:w-auto sm:min-w-[170px]"
-              buttonClassName="h-11"
               options={[
                 {value: 'all', label: 'In person & online'},
                 ...attendanceModes.filter((m) => m.value !== 'hybrid').map((m) => ({value: m.value, label: m.title})),
@@ -183,9 +180,8 @@ export function EventsBrowser({events, renderedAt}: Readonly<{events: EventCardD
             <Select
               name="country"
               label="Country"
-              size="sm"
+              size="lg"
               className="w-full sm:w-auto sm:min-w-[170px]"
-              buttonClassName="h-11"
               options={[{value: 'all', label: 'All countries'}, ...countriesPresent.map((c) => ({value: c, label: c}))]}
               value={filters.country}
               onChange={(v) => setFilter('country', v)}
@@ -267,7 +263,7 @@ function MonthGroups({groups, now}: Readonly<{groups: [string, EventCardData[]][
     <div className="mt-10 space-y-12">
       {groups.map(([key, list]) => (
         <section key={key} aria-labelledby={`month-${key}`}>
-          <h2 id={`month-${key}`} className="border-b border-line pb-3 text-2xl font-semibold text-ink md:text-[28px]">
+          <h2 id={`month-${key}`} className="type-heading-md border-b border-line pb-3 text-ink">
             {monthLabel(key)}
           </h2>
           <EventList events={list} now={now} className="mt-6 space-y-5" />

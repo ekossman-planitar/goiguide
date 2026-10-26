@@ -71,11 +71,11 @@ export function PackageTabs({tabs, label}: Readonly<{tabs: PackageTab[]; label: 
           id={`panel-${tab.id}`}
           aria-labelledby={`tab-${tab.id}`}
           hidden={i !== active}
-          className="mx-auto mt-8 max-w-[1080px] rounded-2xl border border-line bg-white p-8 shadow-sm md:p-12"
+          className="mx-auto mt-8 max-w-[1080px] rounded-2xl border border-line bg-white p-8 shadow-card md:p-12"
         >
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
-              <h3 className="text-2xl font-semibold text-ink">{tab.heading}</h3>
+              <h3 className="type-heading-md text-ink">{tab.heading}</h3>
               <p className="mt-4 text-base leading-7 whitespace-pre-line text-body">{tab.text}</p>
               <CheckList items={tab.list} className="mt-6" />
             </div>

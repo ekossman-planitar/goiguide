@@ -25,7 +25,7 @@ export default function IndustriesPage() {
       <section className="pt-8 pb-16 lg:pt-12 lg:pb-[60px]">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">One capture. Every industry.</h1>
+            <h1 className="type-display text-ink">One capture. Every industry.</h1>
             <p className="mt-6 text-xl leading-[30px] text-muted">{industries.description}</p>
           </div>
           <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -33,12 +33,12 @@ export default function IndustriesPage() {
               <li key={href}>
                 <SmartLink
                   href={href}
-                  className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover"
+                  className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-card transition-shadow hover:shadow-lg"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
                     <Icon aria-hidden width={24} height={24} />
                   </span>
-                  <span className="mt-5 text-xl leading-7 font-bold text-ink">{label}</span>
+                  <span className="type-heading-sm mt-5 text-ink transition-colors group-hover:text-primary-hover">{label}</span>
                   <span className="mt-2 flex-1 text-base leading-6 text-body">{description}</span>
                   <span className="mt-5 text-link">
                     Learn more

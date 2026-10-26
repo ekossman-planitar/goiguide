@@ -7,6 +7,7 @@ import {eventPath, typeTitle, zonedDate, DEFAULT_TIME_ZONE} from '@/lib/events'
 import {forumAge} from '@/lib/help/format'
 import {forumLinks, type ForumBadge, type ForumStats, type ForumTopic} from '@/lib/help/forum'
 import type {EventCardData} from '@/components/events/types'
+import {buttonClass} from '@/components/ui/Button'
 
 const external = {target: '_blank', rel: 'noopener noreferrer'}
 const compact = new Intl.NumberFormat('en', {notation: 'compact', maximumFractionDigits: 1})
@@ -37,11 +38,11 @@ export function HomeCommunity({
   if (topics.length === 0 && !hasSide) return null
 
   return (
-    <section aria-labelledby="help-community" className="bg-surface py-14 lg:py-16">
+    <section aria-labelledby="help-community" className="bg-surface py-16 lg:py-[60px]">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 id="help-community" className="text-[28px] leading-tight font-semibold text-ink md:text-[36px]">
+            <h2 id="help-community" className="type-heading-lg text-ink">
               Community conversations
             </h2>
             <p className="mt-2 text-lg text-muted">Ask questions, share tips and suggest features with other iGuide operators.</p>
@@ -56,7 +57,7 @@ export function HomeCommunity({
           {topics.length > 0 && (
             <div className="rounded-2xl border border-line bg-white">
               <div className="flex items-center justify-between border-b border-line px-5 py-3">
-                <h3 className="text-sm font-semibold tracking-wide text-muted uppercase">Latest</h3>
+                <h3 className="type-overline text-muted">Latest</h3>
                 <a href={forumLinks.latest} className="text-link text-sm" {...external}>
                   See all
                   <ArrowRight width={14} height={14} />
@@ -91,7 +92,7 @@ export function HomeCommunity({
                 <div className="rounded-2xl border border-line bg-white p-5">
                   {stats && (
                     <>
-                      <h3 className="font-display text-lg font-semibold text-ink">Community at a glance</h3>
+                      <h3 className="type-heading-xs font-display text-ink">Community at a glance</h3>
                       <dl className="mt-4 grid grid-cols-2 gap-3">
                         {[
                           {label: 'Members', value: stats.members, icon: Users},
@@ -113,7 +114,7 @@ export function HomeCommunity({
 
                   {badges.length > 0 && (
                     <div className={cn(stats && 'mt-6 border-t border-line pt-5')}>
-                      <h3 className="font-display text-lg font-semibold text-ink">Earn badges</h3>
+                      <h3 className="type-heading-xs font-display text-ink">Earn badges</h3>
                       <p className="mt-1 text-sm text-muted">Get involved on the forum to collect badges and level up.</p>
                       <ul className="mt-4 space-y-3">
                         {badges.map((b) => (
@@ -134,7 +135,7 @@ export function HomeCommunity({
                           </li>
                         ))}
                       </ul>
-                      <a href={forumLinks.signUp} className="help-join-forum mt-5 inline-flex w-full items-center justify-center rounded-lg border border-primary bg-primary px-4 py-2.5 font-semibold text-white hover:border-primary-hover hover:bg-primary-hover" {...external}>
+                      <a href={forumLinks.signUp} className={cn('help-join-forum mt-5 w-full', buttonClass('primary', 'lg'))} {...external}>
                         Join the forum
                       </a>
                     </div>
@@ -145,7 +146,7 @@ export function HomeCommunity({
               {events.length > 0 && (
                 <div className="rounded-2xl border border-line bg-white p-5">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-display text-lg font-semibold text-ink">Upcoming events</h3>
+                    <h3 className="type-heading-xs font-display text-ink">Upcoming events</h3>
                     <SmartLink href="/events" className="text-link text-sm">
                       See all
                       <ArrowRight width={14} height={14} />

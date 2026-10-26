@@ -23,7 +23,7 @@ const holidays: [string, string, string, string][] = [
 
 function HolidayTable() {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-line shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
       <table className="w-full min-w-[560px] border-collapse text-left text-base">
         <thead>
           <tr className="bg-brand text-lg font-semibold text-white">
@@ -69,7 +69,7 @@ export const blocks: Block[] = [
     type: 'custom',
     children: (
       <div className="mx-auto max-w-5xl">
-        <h1 className="text-balance text-[40px] font-bold leading-[normal] text-ink md:text-[56px]">2026 Holiday Hours and Service Delivery Updates</h1>
+        <h1 className="type-display text-ink">2026 Holiday Hours and Service Delivery Updates</h1>
         <div className="mt-6 space-y-4 text-lg leading-7 text-body">
           <p>
             As we observe the following holidays in 2026, please note that our office closures may impact service delivery times. We encourage you to

@@ -66,9 +66,9 @@ function PriceTable({table, caption, heading}: Readonly<{table: Table; caption: 
   const ctas = lpCtas(table.buttons).map((c) => ({...c, variant: 'secondary' as const}))
   return (
     <div className="mx-auto max-w-4xl">
-      {heading && table.label && <h3 className="mb-5 text-2xl font-semibold text-ink">{table.label}</h3>}
+      {heading && table.label && <h3 className="type-heading-md mb-5 text-ink">{table.label}</h3>}
       {image && <MediaView media={{type: 'image', image}} className="mb-8 rounded-2xl" sizes="(min-width: 1024px) 896px, 100vw" />}
-      <div className="overflow-x-auto rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+      <div className="overflow-x-auto rounded-2xl border border-line bg-white shadow-card">
         <table className="w-full min-w-[480px] border-collapse text-left text-base leading-6">
           <caption className="sr-only">{caption}</caption>
           {columns.some(Boolean) && (
@@ -178,7 +178,7 @@ function FeatureText({f}: Readonly<{f: Feature}>) {
   const ctas = lpCtas(f.buttons).map((c) => ({...c, variant: 'secondary' as const}))
   return (
     <>
-      <h3 className="text-xl leading-7 font-semibold text-ink md:text-2xl">{f.title}</h3>
+      <h3 className="type-heading-sm text-ink">{f.title}</h3>
       {f.text && <p className="mt-2 text-base leading-7 whitespace-pre-line text-body">{f.text}</p>}
       {f.bullets?.length ? <CheckList items={f.bullets} className="mt-4" /> : null}
       {ctas.length > 0 && <CtaButtons ctas={ctas} className="mt-auto pt-5" />}
@@ -198,7 +198,7 @@ export function FeatureCardsSection({s}: Readonly<{s: any}>) {
           <li
             key={f._key ?? i}
             className={cn(
-              'rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]',
+              'rounded-2xl border border-line bg-white p-6 shadow-card',
               rows ? 'grid items-center gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10' : 'flex flex-col',
             )}
           >
@@ -227,7 +227,7 @@ export async function AgreementSection({s}: Readonly<{s: any}>) {
     <>
       <LegalPage title={s.heading} lastUpdated={s.effectiveDate} html={html} />
       <div className="mx-auto w-full max-w-3xl px-4 pb-16 lg:pb-20">
-        <div className="rounded-2xl border border-line bg-white p-6 shadow-sm md:p-8">
+        <div className="rounded-2xl border border-line bg-white p-6 shadow-card md:p-8">
           {s.hubspotFormId ? <HubSpotForm formId={s.hubspotFormId} className="min-h-[320px]" /> : <FormPlaceholder />}
         </div>
       </div>

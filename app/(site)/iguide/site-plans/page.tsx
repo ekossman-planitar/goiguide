@@ -38,7 +38,7 @@ export default function SitePlansPage() {
       <Section background="sky">
         <div className="mx-auto max-w-3xl text-center">
           <Pill label={c.explore.eyebrow} tone="white" />
-          <h2 className="mt-6 text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{c.explore.heading}</h2>
+          <h2 className="type-h2 mt-6 text-ink">{c.explore.heading}</h2>
           <p className="mt-4 text-xl leading-[30px] text-muted">{c.explore.subheading}</p>
         </div>
         <MediaView media={{type: 'embed', ...c.explore.tour}} className="mt-10 shadow-lg" />

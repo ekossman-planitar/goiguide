@@ -83,7 +83,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
         <div>
-          <h2 className="text-balance text-[32px] leading-[normal] font-semibold text-ink md:text-5xl md:leading-[normal]">
+          <h2 className="type-h2 text-ink">
             For specific questions, get in touch below
           </h2>
           <dl className="mt-8 space-y-6 text-lg leading-7 text-body">
@@ -98,7 +98,7 @@ export const blocks: Block[] = [
           </dl>
         </div>
         <div className="min-w-0">
-          <h2 className="mb-6 text-[28px] leading-tight font-semibold text-ink md:text-[32px]">Meet with an iGuide Specialist</h2>
+          <h2 className="type-heading-lg mb-6 text-ink">Meet with an iGuide Specialist</h2>
           {/* HubSpot meetings booking calendar (live: HubSpot's meetings embed script) */}
           <iframe
             src="https://meetings.planitar.com/meetings/iguidesales/meet-with-iguide?embed=true"

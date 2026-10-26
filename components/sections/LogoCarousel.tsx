@@ -16,7 +16,7 @@ type Props = {
 function renderHeading(text: string) {
   return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
     part.startsWith('**') && part.endsWith('**') ? (
-      <strong key={i} className="font-bold text-ink">
+      <strong key={i} className="font-semibold text-ink">
         {part.slice(2, -2)}
       </strong>
     ) : (

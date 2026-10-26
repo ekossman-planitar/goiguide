@@ -1,5 +1,6 @@
 'use client'
 
+import {Check} from 'lucide-react'
 import {useEffect, useId, useRef, useState, type KeyboardEvent} from 'react'
 import {cn} from '@/lib/cn'
 import {ChevronDown} from './icons'
@@ -186,9 +187,7 @@ export function Select({
               >
                 {o.label}
                 {isSelected && (
-                  <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="m5 12 5 5 9-10" />
-                  </svg>
+                  <Check aria-hidden strokeWidth={2.5} className="h-4 w-4 shrink-0" />
                 )}
               </li>
             )

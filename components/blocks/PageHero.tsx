@@ -26,7 +26,7 @@ export function PageHero({eyebrow, heading, subheading, children, ctas = [], med
               <Pill {...eyebrow} />
             </div>
           )}
-          <h1 className="text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">{heading}</h1>
+          <h1 className="type-display text-ink">{heading}</h1>
           {subheading && <p className="mt-6 text-xl leading-[30px] text-muted">{subheading}</p>}
           {children && <div className="mt-4 text-lg leading-7 text-muted">{children}</div>}
           <CtaButtons ctas={ctas} className="mt-8" />

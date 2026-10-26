@@ -53,7 +53,7 @@ const photos = [
   {src: '/assets/PMRE/2025/IMG_1247.jpg', width: 1170, height: 1398},
 ]
 
-const card = 'rounded-2xl border border-line bg-white p-6 shadow-sm md:p-8'
+const card = 'rounded-2xl border border-line bg-white p-6 shadow-card md:p-8'
 const cardHeading = 'text-2xl font-semibold text-ink'
 
 export const blocks: Block[] = [

@@ -25,10 +25,10 @@ export async function CatalogueListing({id}: Readonly<{id: CatalogueId}>) {
   const items = all.filter((item) => item.catalogue === id)
 
   return (
-    <section className="py-16 lg:py-20">
+    <section className="py-16 lg:py-[60px]">
       <Container>
         <p className="font-semibold text-primary">Marketing Catalogue</p>
-        <h1 className="mt-3 text-4xl font-semibold text-ink sm:text-5xl">{catalogue.label}</h1>
+        <h1 className="type-title mt-3 text-ink">{catalogue.label}</h1>
         <p className="mt-5 max-w-2xl text-lg text-muted sm:text-xl">Ready-made marketing files to promote your iGuide services.</p>
 
         <nav aria-label="Catalogues" className="mt-10 flex flex-wrap gap-2">
@@ -54,7 +54,7 @@ export async function CatalogueListing({id}: Readonly<{id: CatalogueId}>) {
               <li key={item._id}>
                 <a
                   href={`${catalogue.path}/${item.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:border-primary-hover/40 hover:shadow-xl"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card transition-shadow hover:shadow-lg"
                 >
                   <span className="relative block aspect-[16/9] bg-surface">
                     {item.thumbnail?.asset && (
@@ -68,7 +68,7 @@ export async function CatalogueListing({id}: Readonly<{id: CatalogueId}>) {
                     )}
                   </span>
                   <span className="flex flex-1 flex-col p-6">
-                    <span className="text-xl font-bold leading-snug text-ink group-hover:text-primary-hover">{item.title}</span>
+                    <span className="text-xl font-semibold leading-snug text-ink group-hover:text-primary-hover">{item.title}</span>
                     <span className="mt-auto pt-6 text-link">
                       Download
                       <ArrowRight width={16} height={16} />

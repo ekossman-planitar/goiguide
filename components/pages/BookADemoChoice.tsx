@@ -1,5 +1,6 @@
 'use client'
 
+import {CalendarDays} from 'lucide-react'
 import {useEffect, useRef, useState} from 'react'
 import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {SmartLink} from '@/components/ui/SmartLink'
@@ -45,8 +46,8 @@ export function BookADemoChoice() {
   }, [open])
 
   return (
-    <div className="rounded-2xl border border-line bg-white p-8 text-center shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
-      <h2 className="text-2xl font-semibold text-ink">What would you like to do?</h2>
+    <div className="rounded-2xl border border-line bg-white p-8 text-center shadow-card">
+      <h2 className="type-heading-md text-ink">What would you like to do?</h2>
       <div className="mt-6 flex flex-col items-center gap-3">
         <SmartLink href="/book-a-demo" className={`book-demo ${buttonBase} border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover`}>
           I’d like to book a personalized demo
@@ -78,7 +79,7 @@ export function BookADemoChoice() {
           >
             <CloseIcon width={24} height={24} />
           </button>
-          <h3 id="learn-more-heading" className="mb-4 text-2xl font-semibold text-ink">
+          <h3 id="learn-more-heading" className="type-heading-md mb-4 text-ink">
             Get in touch
           </h3>
           {open && <HubSpotForm formId={LEARN_MORE_FORM_ID} />}
@@ -137,10 +138,8 @@ export function FloatingDemoButton() {
         visible ? 'opacity-100' : 'pointer-events-none opacity-0'
       }`}
     >
-      {/* Calendar icon (live: Material Symbols "event") */}
-      <svg aria-hidden width="24" height="24" viewBox="0 -960 960 960" fill="currentColor">
-        <path d="M580-240q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z" />
-      </svg>
+      {/* Calendar icon (Lucide; live used Material Symbols "event") */}
+      <CalendarDays aria-hidden width={24} height={24} />
     </SmartLink>
   )
 }

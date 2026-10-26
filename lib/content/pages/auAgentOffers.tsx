@@ -46,10 +46,10 @@ const offers: Offer[] = [
 
 function OfferCard({offer}: Readonly<{offer: Offer}>) {
   return (
-    <li className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] md:p-8">
+    <li className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card md:p-8">
       {/* eslint-disable-next-line @next/next/no-img-element -- small brand SVG */}
       <img src={offer.icon} alt={offer.iconAlt} width={151} height={20} className="h-5 w-auto self-start" />
-      <h3 className="mt-5 text-2xl font-semibold text-ink">{offer.title}</h3>
+      <h3 className="type-heading-md mt-5 text-ink">{offer.title}</h3>
       <p className="mt-2 text-lg leading-7 text-body">{offer.text}</p>
       <MediaView media={{type: 'embed', src: offer.video, title: offer.title}} className="mt-6" />
       <dl className="mt-6 space-y-4 text-base leading-6 text-body">
@@ -127,10 +127,10 @@ const icon = (src: string) => ({src, alt: '', width: 60, height: 60})
 /** Live: white REA logo and heading on a red band */
 export function AuOffersHero() {
   return (
-    <section className="bg-rea-red py-16 text-white lg:py-20">
+    <section className="bg-rea-red py-16 text-white lg:py-[60px]">
       <Container size="medium" className="text-center">
         <FallbackImage src="/assets/rea.png" alt="REA Group" width={280} height={25} priority className="mx-auto h-auto w-[280px] max-w-full" fallback={null} />
-        <h1 className="mt-8 text-[40px] leading-[normal] font-semibold text-balance md:text-[56px]">Your agents can save by adding an iGuide Tour</h1>
+        <h1 className="type-display mt-8">Your agents can save by adding an iGuide Tour</h1>
         <p className="mt-6 text-xl leading-[30px]">Two offers running across realestate.com.au and realcommercial.com.au</p>
       </Container>
     </section>

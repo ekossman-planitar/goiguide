@@ -15,7 +15,7 @@ export const meta = {
 /** Pumpkin border above and spider-web border below each tour, as on live (live alt text kept as is). */
 function HauntedTour({src, title}: Readonly<{src: string; title: string}>) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl bg-white shadow-card">
       <FallbackImage src="/assets/02cb574580/pumpkin_bw.png" alt="Girl in a jacket" width={25011} height={2559} sizes="(min-width: 1280px) 1248px, 100vw" className="h-auto w-full" />
       <div className="relative aspect-[100/57] w-full">
         <iframe src={src} title={title} className="absolute inset-0 h-full w-full border-0" allowFullScreen loading="lazy" />
@@ -143,8 +143,8 @@ export const blocks: Block[] = [
     background: 'sky',
     children: (
       <div className="grid items-start gap-8 lg:grid-cols-2">
-        <div className="rounded-2xl bg-white p-6 shadow-sm md:p-8">
-          <h3 className="text-2xl font-semibold text-ink">Let us know!</h3>
+        <div className="rounded-2xl bg-white p-6 shadow-card md:p-8">
+          <h3 className="type-heading-md text-ink">Let us know!</h3>
           <HubSpotForm formId="850a3110-157b-4f6f-8e0b-b1f40880eda4" className="mt-6 min-h-[320px]" />
         </div>
         <FallbackImage src="/assets/haunted-places-google-maps-2.png" alt="Map Image" width={628} height={468} sizes="(min-width: 1024px) 50vw, 100vw" className="h-auto w-full rounded-2xl" />

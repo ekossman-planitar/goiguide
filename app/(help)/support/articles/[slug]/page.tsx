@@ -25,6 +25,7 @@ import {
   type HelpArticleSummary,
 } from '@/lib/help/zendesk'
 import {pageMetadata} from '@/lib/pageMetadata'
+import {buttonClass} from '@/components/ui/Button'
 
 // Refresh from Zendesk every 2 minutes (must be a literal; keep in step with HELP_REVALIDATE)
 export const revalidate = 120
@@ -78,7 +79,7 @@ export default async function ArticlePage({params}: Readonly<Props>) {
 
         <article className={cn('min-w-0 max-w-[800px]', !(section && inSection.length > 1) && 'lg:col-span-2 lg:mx-auto lg:w-full')}>
           <header className="border-b border-line pb-6">
-            <h1 id="top" className="text-balance text-[34px] leading-tight font-semibold text-ink md:text-[44px]">
+            <h1 id="top" className="type-title text-ink">
               {article.title}
             </h1>
             <p className="mt-3 text-sm text-muted">
@@ -92,7 +93,7 @@ export default async function ArticlePage({params}: Readonly<Props>) {
 
           <div className="mt-12 flex flex-col gap-4 rounded-2xl bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-xl font-semibold text-ink">Still need help?</h2>
+              <h2 className="type-heading-sm text-ink">Still need help?</h2>
               <p className="mt-1 text-[15px] text-body">
                 Call us at{' '}
                 <a href={supportContact.phone.href} className="help-call underline underline-offset-2 hover:text-primary-hover">
@@ -103,7 +104,7 @@ export default async function ArticlePage({params}: Readonly<Props>) {
             </div>
             <a
               href={zendeskLinks.submitRequest}
-              className="help-submit-request inline-flex shrink-0 items-center justify-center rounded-lg border border-primary bg-primary px-5 py-2.5 font-semibold text-white transition-colors hover:border-primary-hover hover:bg-primary-hover"
+              className={cn('help-submit-request shrink-0', buttonClass('primary', 'lg'))}
             >
               Submit a request
             </a>

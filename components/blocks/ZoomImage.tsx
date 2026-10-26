@@ -1,5 +1,6 @@
 'use client'
 
+import {ZoomIn} from 'lucide-react'
 import {useRef} from 'react'
 import {MediaView} from './MediaView'
 import type {Img} from './types'
@@ -17,10 +18,7 @@ export function ZoomImage({image, className}: Readonly<{image: Img; className?: 
       >
         <MediaView media={{type: 'image', image}} className={className} />
         <span aria-hidden className="absolute right-3 bottom-3 rounded-full bg-white/90 p-2 text-ink shadow transition-colors group-hover:text-primary-hover">
-          <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth={2}>
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5M11 8v6M8 11h6" />
-          </svg>
+          <ZoomIn aria-hidden width={20} height={20} />
         </span>
       </button>
       <dialog

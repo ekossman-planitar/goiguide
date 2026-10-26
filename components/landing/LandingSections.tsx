@@ -139,7 +139,7 @@ function TourClosing({s, list}: Readonly<{s: any; list: string[]}>) {
   if (!s.listHeading && list.length === 0 && !s.closing) return null
   return (
     <div className="mx-auto mt-10 max-w-3xl text-center">
-      {s.listHeading && <h3 className="text-2xl font-semibold text-ink">{s.listHeading}</h3>}
+      {s.listHeading && <h3 className="type-heading-md text-ink">{s.listHeading}</h3>}
       {list.length > 0 && <CheckList items={list} className="mx-auto mt-6 w-fit text-left" />}
       {s.closing && <p className="mt-6 text-lg text-body">{s.closing}</p>}
     </div>
@@ -216,9 +216,9 @@ function FormSection({s, formAnchor}: Readonly<SectionProps>) {
   return (
     <section id={formAnchor ? 'form' : undefined} className={`scroll-mt-24 py-16 lg:py-[60px] ${bgClass}`}>
       <div className="mx-auto w-full max-w-2xl px-4">
-        {s.heading && <h2 className="text-center text-3xl font-semibold text-ink md:text-4xl">{s.heading}</h2>}
+        {s.heading && <h2 className="type-heading-lg text-center text-ink">{s.heading}</h2>}
         {s.subheading && <p className="mt-4 text-center text-lg text-muted">{s.subheading}</p>}
-        <div className="mt-8 rounded-2xl border border-line bg-white p-6 shadow-sm md:p-8">
+        <div className="mt-8 rounded-2xl border border-line bg-white p-6 shadow-card md:p-8">
           {s.hubspotFormId ? <HubSpotForm formId={s.hubspotFormId} className="min-h-[320px]" /> : <FormPlaceholder />}
         </div>
       </div>
@@ -331,12 +331,12 @@ function toBlock(s: any): Block | null {
             <>
               {specs.length > 0 &&
                 (s.specsHeading ? (
-                  <details className="group rounded-xl border border-line bg-white px-5 py-1">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                  <details className="group rounded-2xl border border-line bg-white shadow-card">
+                    <summary className="type-heading-xs flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-ink transition-colors hover:text-primary-hover [&::-webkit-details-marker]:hidden">
                       {s.specsHeading}
-                      <ChevronDown width={18} height={18} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
+                      <ChevronDown width={20} height={20} className="shrink-0 transition-transform group-open:rotate-180" />
                     </summary>
-                    <div className="pb-4">
+                    <div className="px-6 pb-6">
                       <SpecTable specs={specs} />
                     </div>
                   </details>

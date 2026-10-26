@@ -9,7 +9,7 @@ export type RateTable = {heading: string; rows: [size: string, rate: string][]}
 
 function Rates({table}: Readonly<{table: RateTable}>) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
       <table className="w-full text-left text-base">
         <caption className="bg-surface px-5 py-4 text-left text-xl font-semibold text-ink">{table.heading}</caption>
         <thead>
@@ -44,7 +44,7 @@ export function costsCalcBlocks({heading, tables}: {heading: string; tables: Rat
       children: (
         <>
           {/* Live page has no h1; this uses the live page title */}
-          <h1 className="mb-10 text-balance text-[40px] font-semibold leading-[normal] text-ink md:text-[56px]">{heading}</h1>
+          <h1 className="type-display mb-10 text-ink">{heading}</h1>
           {/* Live calculator also opens in CAD on this page */}
           <PricingCalculator />
         </>

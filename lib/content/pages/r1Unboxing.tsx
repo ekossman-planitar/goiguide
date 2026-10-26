@@ -16,7 +16,7 @@ export const blocks: Block[] = [
     heading: 'R1 Unboxing Social Contest Rules & Regulations',
     extra: (
       <>
-        <h2 className="text-xl font-semibold text-ink">Rules &amp; Regulations:</h2>
+        <h2 className="type-heading-sm text-ink">Rules &amp; Regulations:</h2>
         <ol className="mt-4 list-decimal space-y-3 pl-6 text-body marker:font-semibold marker:text-primary">
           <li>Eligibility: Anyone who purchased the PLANIX R1.</li>
           <li>Record a short video of you unboxing your brand-new PLANIX R1 and share it to your Instagram story.</li>

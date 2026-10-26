@@ -77,7 +77,7 @@ function Package({
         fallback={<div className="aspect-[4/3] w-full rounded-2xl bg-surface" />}
       />
       <div className="min-w-0">
-        <h2 className="text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">{heading}</h2>
+        <h2 className="type-h2 text-ink">{heading}</h2>
         <p className="mt-5 text-lg leading-7 text-body">
           <a href={intro.href} target="_blank" rel="noopener noreferrer">
             Click here

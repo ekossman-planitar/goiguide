@@ -23,12 +23,12 @@ export const blocks: Block[] = [
         heading="Turn your passion into revenue"
         aside={
           <div id="request-to-join" className="scroll-mt-28 rounded-2xl bg-surface p-8">
-            <h2 className="pb-6 text-[32px] font-semibold text-ink">Request to join</h2>
+            <h2 className="type-h2 pb-6 text-ink">Request to join</h2>
             <HubSpotForm formId={PARTNER_FORM_ID} />
           </div>
         }
       >
-        <h2 className="form-title text-[28px] leading-tight font-semibold text-ink md:text-[32px]">Grow your business by partnering with iGuide</h2>
+        <h2 className="type-heading-lg form-title text-ink">Grow your business by partnering with iGuide</h2>
         <p>
           Are you interested in expanding your product offering and growing your business? iGuide is actively seeking partners across the globe to
           join our network as part of our Affiliate and Reseller programs.
@@ -80,7 +80,7 @@ export const blocks: Block[] = [
     children: (
       <div className="grid gap-6 md:grid-cols-2 lg:gap-16">
         <div className="rounded-2xl bg-surface p-8">
-          <h3 className="text-2xl font-semibold text-ink">Affiliate Program</h3>
+          <h3 className="type-heading-md text-ink">Affiliate Program</h3>
           <p className="mt-2 text-lg leading-7 text-body">For iGuide enthusiasts looking to grow their business without carrying inventory.</p>
           <CheckList
             className="mt-6"
@@ -95,7 +95,7 @@ export const blocks: Block[] = [
           />
         </div>
         <div className="rounded-2xl bg-surface p-8">
-          <h3 className="text-2xl font-semibold text-ink">Reseller Program</h3>
+          <h3 className="type-heading-md text-ink">Reseller Program</h3>
           <p className="mt-2 text-lg leading-7 text-body">An excellent opportunity for businesses with an established storefront.</p>
           <CheckList
             className="mt-6"

@@ -11,7 +11,7 @@ export function LogoCards({items, columns = 3, headingLevel = 'h3'}: Readonly<{i
   return (
     <ul className={cn('grid gap-6 sm:grid-cols-2', columns === 3 && 'lg:grid-cols-3', columns === 4 && 'lg:grid-cols-4')}>
       {items.map((item) => (
-        <li key={item.name} className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+        <li key={item.name} className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card">
           <div className="flex h-14 items-center">
             <FallbackImage
               src={item.logo.src}
@@ -19,7 +19,7 @@ export function LogoCards({items, columns = 3, headingLevel = 'h3'}: Readonly<{i
               width={item.logo.width ?? 200}
               height={item.logo.height ?? 56}
               className="h-12 w-auto max-w-[180px] object-contain object-left"
-              fallback={<span className="text-lg font-bold text-ink">{item.name}</span>}
+              fallback={<span className="text-lg font-semibold text-ink">{item.name}</span>}
             />
           </div>
           <Heading className="mt-5 text-lg leading-7 font-semibold text-ink">{item.name}</Heading>

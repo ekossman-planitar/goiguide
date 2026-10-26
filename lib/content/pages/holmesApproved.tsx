@@ -27,7 +27,7 @@ function BookedConfirmation() {
         <div id="progress-bar" className="h-full w-0 bg-primary transition-[width] duration-[3000ms] ease-linear" />
       </div>
       <div className="p-8">
-        <h3 className="mb-4 text-2xl font-semibold text-ink">Thanks! You’re booked.</h3>
+        <h3 className="type-heading-md mb-4 text-ink">Thanks! You’re booked.</h3>
         <p className="text-lg text-body">We’ll follow up with you shortly. Check your inbox for confirmation.</p>
       </div>
     </div>
@@ -248,8 +248,8 @@ export const blocks: Block[] = [
     id: 'section-10',
     background: 'sky',
     children: (
-      <div id="footer-form" className="mx-auto max-w-2xl rounded-2xl border border-line bg-white p-6 shadow-lg md:p-10">
-        <h2 className="text-center text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">
+      <div id="footer-form" className="mx-auto max-w-2xl rounded-2xl border border-line bg-white p-6 shadow-card md:p-10">
+        <h2 className="type-h2 text-center text-ink">
           Ready to be like Mike and make it right?
         </h2>
         <HubSpotForm formId="4f4ebe1c-b17d-46b5-ae39-898a4d9be2a8" className="mt-8 min-h-[320px]" />

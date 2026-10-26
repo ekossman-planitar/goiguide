@@ -191,7 +191,7 @@ const HighlightColour = createContext<string>(DEFAULT_COLOURS.highlight)
 function HighlightStrong({children}: Readonly<{children?: ReactNode}>) {
   const colour = useContext(HighlightColour)
   return (
-    <strong style={{color: colour}} className="font-bold">
+    <strong style={{color: colour}} className="font-semibold">
       {children}
     </strong>
   )
@@ -222,7 +222,7 @@ function SplitPopup({popup, onCta, onExpire}: Readonly<{popup: PopupData; onCta:
         />
       </div>
       <div className="flex flex-col justify-center p-7 md:p-10">
-        {popup.title && <h2 className="text-3xl leading-tight font-semibold md:text-4xl">{popup.title}</h2>}
+        {popup.title && <h2 className="type-heading-lg">{popup.title}</h2>}
         {popup.description?.length ? (
           <div className="mt-4 space-y-3 text-lg leading-7">
             <HighlightColour value={highlight}>

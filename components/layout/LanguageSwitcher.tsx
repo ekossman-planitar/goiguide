@@ -1,5 +1,6 @@
 'use client'
 
+import {Globe} from 'lucide-react'
 import Script from 'next/script'
 import {useState, useSyncExternalStore} from 'react'
 import {Select} from '@/components/ui/Select'
@@ -60,10 +61,7 @@ export function LanguageSwitcher() {
 
   return (
     <div className="notranslate flex items-center gap-2 text-sm text-body">
-      <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-muted" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
-      </svg>
+      <Globe aria-hidden className="h-4 w-4 text-muted" />
       <Select label="Language" size="sm" placement="top" align="right" options={OPTIONS} value={language} onChange={choose} className="w-48" />
       {/* GTranslate's widget renders here; hidden, driven by the dropdown above */}
       <div className="gtranslate_wrapper hidden" aria-hidden />

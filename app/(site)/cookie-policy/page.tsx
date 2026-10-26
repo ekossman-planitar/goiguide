@@ -1,6 +1,8 @@
 import {LegalPage} from '@/components/pages/LegalPage'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {pageMetadata} from '@/lib/pageMetadata'
+import {buttonClass} from '@/components/ui/Button'
+import {cn} from '@/lib/cn'
 
 /** /cookie-policy — TITLE/DESC and copy from the live page (checked 2026-10-14). */
 export const metadata = pageMetadata({
@@ -26,7 +28,7 @@ export default function CookiePolicyPage() {
         <button
           type="button"
           data-cookie-preferences
-          className="cookie-preference-toggle inline-flex items-center justify-center rounded-lg border border-primary bg-primary px-6 py-3 text-base leading-6 font-semibold text-white transition-colors hover:border-primary-hover hover:bg-primary-hover"
+          className={cn('cookie-preference-toggle', buttonClass('primary', 'lg'))}
         >
           Adjust my preferences
         </button>

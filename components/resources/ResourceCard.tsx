@@ -18,7 +18,7 @@ export function ResourceCard({item}: Readonly<{item: ResourceCardData}>) {
   const image = item.featuredImage
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary-hover/40 hover:shadow-xl hover:shadow-primary/10 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-primary">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card transition-shadow hover:shadow-lg has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-primary">
       <div className="relative">
         <div className="relative aspect-[16/9] overflow-hidden bg-surface">
           {image?.asset && (
@@ -48,7 +48,7 @@ export function ResourceCard({item}: Readonly<{item: ResourceCardData}>) {
         ) : (
           <span className="text-sm text-muted">Interactive 3D tour</span>
         )}
-        <h3 className="mt-3 text-xl font-semibold leading-snug text-ink">
+        <h3 className="type-heading-sm mt-3 text-ink">
           {/* Stretched link: its ::after covers the whole card */}
           <a
             href={href}

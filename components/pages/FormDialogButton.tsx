@@ -59,7 +59,7 @@ export function FormDialogButton({label, title, formId, id, variant = 'primary',
           >
             ×
           </button>
-          <h3 className="mb-4 pr-8 text-2xl font-semibold text-ink">{title}</h3>
+          <h3 className="type-heading-md mb-4 pr-8 text-ink">{title}</h3>
           {opened && <HubSpotForm formId={formId} className="min-h-[320px]" />}
         </div>
       </dialog>

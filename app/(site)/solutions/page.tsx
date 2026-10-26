@@ -78,7 +78,7 @@ export default function SolutionsPage() {
       <section className="pt-8 pb-12 lg:pt-12 lg:pb-[60px]">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">
-            <h1 className="text-balance text-[40px] leading-[normal] font-semibold text-ink md:text-[56px]">One scan. Every deliverable.</h1>
+            <h1 className="type-display text-ink">One scan. Every deliverable.</h1>
             <p className="mt-6 text-xl leading-[30px] text-muted">
               Floor plans, 3D virtual tours, CAD files, Xactimate sketches and site plans, all from a single iGuide capture.
             </p>
@@ -99,19 +99,19 @@ export default function SolutionsPage() {
       </section>
 
       {/* How it works */}
-      <section className="bg-surface py-16 lg:py-20" aria-labelledby="how-heading">
+      <section className="bg-surface py-16 lg:py-[60px]" aria-labelledby="how-heading">
         <Container>
-          <h2 id="how-heading" className="text-center text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
+          <h2 id="how-heading" className="type-h2 text-center text-ink">
             How iGuide works
           </h2>
           <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {steps.map(({icon: Icon, title, text}, i) => (
-              <li key={title} className="relative rounded-2xl bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+              <li key={title} className="relative rounded-2xl bg-white p-8 shadow-card">
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
                   <Icon aria-hidden width={24} height={24} />
                 </span>
                 <p className="mt-5 text-sm font-semibold tracking-wide text-muted uppercase">Step {i + 1}</p>
-                <h3 className="mt-1 text-2xl font-semibold text-ink">{title}</h3>
+                <h3 className="type-heading-md mt-1 text-ink">{title}</h3>
                 <p className="mt-3 text-base leading-6 text-body">{text}</p>
               </li>
             ))}
@@ -120,10 +120,10 @@ export default function SolutionsPage() {
       </section>
 
       {/* Deliverables */}
-      <section className="py-16 lg:py-20" aria-labelledby="deliverables-heading">
+      <section className="py-16 lg:py-[60px]" aria-labelledby="deliverables-heading">
         <Container>
           <div className="max-w-3xl">
-            <h2 id="deliverables-heading" className="text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
+            <h2 id="deliverables-heading" className="type-h2 text-ink">
               What you get from every scan
             </h2>
             <p className="mt-4 text-xl leading-[30px] text-muted">Pick the deliverables your workflow needs. Add more any time from the same capture.</p>
@@ -133,7 +133,7 @@ export default function SolutionsPage() {
               <li key={d.href} className={i < 2 ? 'lg:col-span-3' : 'lg:col-span-2'}>
                 <SmartLink
                   href={d.href}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card transition-shadow hover:shadow-lg"
                 >
                   <div className={`relative overflow-hidden bg-surface ${i < 2 ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
                     <Image
@@ -145,7 +145,7 @@ export default function SolutionsPage() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-2xl font-semibold text-ink group-hover:text-primary-hover">{d.title}</h3>
+                    <h3 className="type-heading-md text-ink group-hover:text-primary-hover">{d.title}</h3>
                     <p className="mt-2 flex-1 text-base leading-6 text-body">{d.description}</p>
                     <p className="sr-only">Popular with:</p>
                     <ul className="mt-4 flex flex-wrap gap-2">
@@ -168,9 +168,9 @@ export default function SolutionsPage() {
       </section>
 
       {/* Capture & connect */}
-      <section className="bg-surface py-16 lg:py-20" aria-labelledby="platform-heading">
+      <section className="bg-surface py-16 lg:py-[60px]" aria-labelledby="platform-heading">
         <Container>
-          <h2 id="platform-heading" className="text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
+          <h2 id="platform-heading" className="type-h2 text-ink">
             Built to capture. Made to connect.
           </h2>
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -193,10 +193,10 @@ export default function SolutionsPage() {
               <SmartLink
                 key={c.href}
                 href={c.href}
-                className="group grid items-center gap-6 rounded-2xl bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] sm:grid-cols-[1fr_200px] md:p-8"
+                className="group grid items-center gap-6 rounded-2xl bg-white p-6 shadow-card sm:grid-cols-[1fr_200px] md:p-8"
               >
                 <div>
-                  <h3 className="text-2xl font-semibold text-ink group-hover:text-primary-hover">{c.title}</h3>
+                  <h3 className="type-heading-md text-ink group-hover:text-primary-hover">{c.title}</h3>
                   <p className="mt-3 text-base leading-6 text-body">{c.text}</p>
                   <span className="mt-5 text-link">
                     {c.link}

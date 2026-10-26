@@ -189,9 +189,9 @@ export const blocks: Block[] = [
     children: (
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {team.map((p) => (
-          <li key={p.name} className="flex flex-col items-center rounded-2xl border border-line bg-white p-6 text-center shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+          <li key={p.name} className="flex flex-col items-center rounded-2xl border border-line bg-white p-6 text-center shadow-card">
             <FallbackImage src={p.photo} alt={p.name} width={160} height={158} className="h-40 w-40 rounded-full object-cover" fallback={null} />
-            <h3 className="mt-5 text-xl font-semibold text-ink">{p.name}</h3>
+            <h3 className="type-heading-sm mt-5 text-ink">{p.name}</h3>
             <p className="mt-1 text-base text-muted">{p.role}</p>
             <p className="text-base text-muted">{p.phone}</p>
             <p className="text-base text-muted">{p.email}</p>

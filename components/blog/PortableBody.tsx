@@ -2,6 +2,7 @@ import Image from 'next/image'
 import {PortableText, type PortableTextBlock, type PortableTextComponents} from 'next-sanity'
 import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {Button} from '@/components/ui/Button'
+import {ChevronDown} from '@/components/ui/icons'
 import {QuoteMark} from '@/components/ui/QuoteMark'
 import {urlFor} from '@/sanity/lib/image'
 import type {SanityImage} from '@/sanity/lib/types'
@@ -44,7 +45,7 @@ export function Testimonial({value}: Readonly<{value: TestimonialValue}>) {
   // Square-ish pictures are headshots (round); wide ones are logos (shown whole)
   const headshot = !dims || (dims.width / dims.height > 0.75 && dims.width / dims.height < 1.35)
   return (
-    <figure className="testimonial mt-10 rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+    <figure className="testimonial mt-10 rounded-2xl border border-line bg-white p-6 shadow-card sm:p-8">
       <QuoteMark />
       <blockquote className="mt-4 space-y-4 text-xl font-medium leading-relaxed text-ink">
         {value.quote.split(/\n{2,}/).map((para, i) => (
@@ -93,9 +94,9 @@ type CtaBannerValue = {
 export const bodyComponents: PortableTextComponents = {
   block: {
     normal: ({children}) => <p className="mt-6 text-lg leading-relaxed text-body">{children}</p>,
-    h2: ({children}) => <h2 className="mt-12 text-3xl font-semibold text-ink">{children}</h2>,
-    h3: ({children}) => <h3 className="mt-10 text-2xl font-semibold text-ink">{children}</h3>,
-    h4: ({children}) => <h4 className="mt-8 text-xl font-semibold text-ink">{children}</h4>,
+    h2: ({children}) => <h2 className="type-heading-lg mt-12 text-ink">{children}</h2>,
+    h3: ({children}) => <h3 className="type-heading-md mt-10 text-ink">{children}</h3>,
+    h4: ({children}) => <h4 className="type-heading-sm mt-8 text-ink">{children}</h4>,
     blockquote: ({children}) => (
       <blockquote className="mt-8 border-l-4 border-brand pl-6 text-xl italic leading-relaxed text-ink">{children}</blockquote>
     ),
@@ -148,15 +149,15 @@ export const bodyComponents: PortableTextComponents = {
     faq: ({value}: {value: FaqValue}) =>
       value?.items?.length ? (
         <section className="mt-12" aria-label={value.heading || 'Frequently asked questions'}>
-          {value.heading && <h2 className="text-3xl font-semibold text-ink">{value.heading}</h2>}
-          <div className="mt-6 divide-y divide-line border-y border-line">
+          {value.heading && <h2 className="type-heading-lg text-ink">{value.heading}</h2>}
+          <div className="mt-6 space-y-3">
             {value.items.map((item) => (
-              <details key={item._key} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
+              <details key={item._key} className="group rounded-2xl border border-line bg-white shadow-card">
+                <summary className="type-heading-xs flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-ink transition-colors hover:text-primary-hover [&::-webkit-details-marker]:hidden">
                   {item.question}
-                  <span aria-hidden className="mt-1 shrink-0 text-primary transition-transform group-open:rotate-45">+</span>
+                  <ChevronDown width={20} height={20} className="shrink-0 transition-transform group-open:rotate-180" />
                 </summary>
-                <div className="[&>p:first-child]:mt-3">
+                <div className="px-6 pb-6 [&>p:first-child]:mt-0">
                   <PortableText value={item.answer ?? []} components={bodyComponents} />
                 </div>
               </details>
@@ -182,7 +183,7 @@ export const bodyComponents: PortableTextComponents = {
         className="relative mt-12 overflow-hidden rounded-2xl bg-primary px-8 py-10 text-white"
         style={value.image?.asset?.url ? {backgroundImage: `linear-gradient(rgba(46,44,48,.85),rgba(46,44,48,.85)), url(${value.image.asset.url})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}
       >
-        {value.heading && <p className="text-2xl font-bold">{value.heading}</p>}
+        {value.heading && <p className="text-2xl font-semibold">{value.heading}</p>}
         {value.text && <p className="mt-2 text-lg text-white/90">{value.text}</p>}
         {value.buttonLabel && (
           // Live: buttons with a HubSpot form open it in a pop-up; until that's ported they go to the booking page

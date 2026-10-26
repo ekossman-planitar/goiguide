@@ -15,7 +15,7 @@ export const blocks: Block[] = [
     background: 'sky',
     children: (
       <>
-        <h1 className="text-balance text-[40px] font-bold leading-[normal] text-ink md:text-[56px]">Find a Reseller in your area</h1>
+        <h1 className="type-display text-ink">Find a Reseller in your area</h1>
         <div className="mt-6 mb-8 flex flex-wrap items-center justify-between gap-6">
           <p className="text-xl leading-[30px] text-muted">
             Ready to start with iGuide? Find your local Reseller and explore the PLANIX R1 camera system today.

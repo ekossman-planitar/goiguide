@@ -127,7 +127,7 @@ function QuoteVisual({quote}: Readonly<{quote: Quote}>) {
 
 function QuoteCard({quote}: Readonly<{quote: Quote}>) {
   return (
-    <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <figure className="flex w-full flex-col rounded-2xl border border-line bg-white p-8 shadow-card">
       {quote.media && <MediaView media={quote.media} className="mb-6" />}
       {quote.logo && (
         <FallbackImage

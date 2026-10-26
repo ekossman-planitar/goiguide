@@ -1,3 +1,4 @@
+import {Check, X} from 'lucide-react'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 import {cn} from '@/lib/cn'
 import type {Img} from '@/components/blocks/types'
@@ -8,16 +9,12 @@ export type VsSide = {name: string; image: Img; items: VsItem[]}
 function Mark({ok}: Readonly<{ok: boolean}>) {
   return ok ? (
     <>
-      <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
-        <path d="M5 12.5 10 17 19 7" />
-      </svg>
+      <Check aria-hidden strokeWidth={2.5} className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
       <span className="sr-only">Yes</span>
     </>
   ) : (
     <>
-      <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-muted" fill="none" stroke="currentColor" strokeWidth="2.5">
-        <path d="M6 6l12 12M18 6 6 18" />
-      </svg>
+      <X aria-hidden strokeWidth={2.5} className="mt-0.5 h-5 w-5 shrink-0 text-muted" />
       <span className="sr-only">No</span>
     </>
   )
@@ -31,7 +28,7 @@ export function VsColumns({ours, theirs}: Readonly<{ours: VsSide; theirs: VsSide
         <div
           key={side.name}
           className={cn(
-            'flex flex-col rounded-2xl border p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)] md:p-8',
+            'flex flex-col rounded-2xl border p-6 shadow-card md:p-8',
             i === 0 ? 'border-primary bg-white' : 'border-line bg-surface',
           )}
         >
@@ -46,7 +43,7 @@ export function VsColumns({ours, theirs}: Readonly<{ours: VsSide; theirs: VsSide
               fallback={<div className="h-full w-40" />}
             />
           </div>
-          <h3 className={cn('mt-6 text-2xl font-semibold', i === 0 ? 'text-primary' : 'text-ink')}>{side.name}</h3>
+          <h3 className={cn('type-heading-md mt-6', i === 0 ? 'text-primary' : 'text-ink')}>{side.name}</h3>
           <ul className="mt-5 space-y-3">
             {side.items.map((item) => (
               <li key={item.text} className={cn('flex gap-3 text-base leading-6', item.ok ? 'text-ink' : 'text-muted')}>

@@ -1,5 +1,6 @@
 'use client'
 
+import {Search} from 'lucide-react'
 import {useEffect, useMemo, useState} from 'react'
 import {ArrowRight} from '@/components/ui/icons'
 import {cn} from '@/lib/cn'
@@ -142,13 +143,10 @@ export function ResellerDirectory() {
         <label htmlFor="reseller-search" className="sr-only">
           Search by country or region
         </label>
-        <svg aria-hidden className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="11" cy="11" r="7" />
-          <path d="m20 20-3.5-3.5" />
-        </svg>
+        <Search aria-hidden className="pointer-events-none absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-muted" />
         <input
           id="reseller-search"
-          className="search w-full rounded-[28px] border border-line bg-white py-3 pr-4 pl-[42px] text-base transition hover:border-primary-hover focus:border-primary focus:outline-none"
+          className="search h-12 w-full rounded-lg border border-muted bg-white pr-3 pl-10 text-base text-ink placeholder:text-muted focus:border-primary focus:outline-2 focus:outline-offset-1 focus:outline-primary"
           type="text"
           placeholder="Search by country or region"
           value={term}
@@ -164,7 +162,7 @@ export function ResellerDirectory() {
       {resellers && (
         <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,15%)_minmax(0,85%)] lg:gap-12">
           <div className="min-w-0">
-            <h2 className="mb-3 text-lg font-semibold text-ink">
+            <h2 className="type-heading-xs mb-3 text-ink">
               Locations <span>({Object.keys(locationCounts).length})</span>
             </h2>
             <ul className="flex gap-4 overflow-x-auto pb-4 md:flex-col md:gap-2 md:pb-0">
@@ -182,7 +180,7 @@ export function ResellerDirectory() {
                       >
                         {loc} ({locationCounts[loc]})
                         {active && (
-                          <span className="chip-close ml-2 font-bold text-ink" aria-hidden>
+                          <span className="chip-close ml-2 font-semibold text-ink" aria-hidden>
                             ×
                           </span>
                         )}
@@ -200,9 +198,9 @@ export function ResellerDirectory() {
               {visible.map((r, i) => {
                 const site = websiteFor(r)
                 return (
-                  <li key={`${r.Name}-${i}`} className="rounded-2xl border border-line bg-white p-6 shadow-sm">
+                  <li key={`${r.Name}-${i}`} className="rounded-2xl border border-line bg-white p-6 shadow-card">
                     <div className="flex flex-wrap items-start justify-between gap-4">
-                      <h3 className="flex-1 text-2xl font-bold break-words text-ink">{r.Name}</h3>
+                      <h3 className="type-heading-md flex-1 break-words text-ink">{r.Name}</h3>
                       {split(r.Locations).length > 0 && (
                         <div className="flex flex-wrap items-center gap-1">
                           {split(r.Locations).map((loc) => (

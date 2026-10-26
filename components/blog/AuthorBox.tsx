@@ -17,14 +17,14 @@ export function AuthorBox({author}: Readonly<{author: Author}>) {
       ) : (
         <span
           aria-hidden
-          className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary-soft text-2xl font-bold text-primary sm:h-20 sm:w-20"
+          className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary-soft text-2xl font-semibold text-primary sm:h-20 sm:w-20"
         >
           {author.name.charAt(0)}
         </span>
       )}
       <div>
         <p className="text-sm font-semibold uppercase tracking-wide text-muted">Written by</p>
-        <p className="mt-1 text-xl font-bold text-ink">{author.name}</p>
+        <p className="mt-1 text-xl font-semibold text-ink">{author.name}</p>
         {author.role && <p className="text-muted">{author.role}</p>}
         {author.bio && <p className="mt-3 leading-relaxed text-body">{author.bio}</p>}
         {author.linkedin && (

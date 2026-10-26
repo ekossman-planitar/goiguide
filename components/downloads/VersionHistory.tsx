@@ -15,12 +15,12 @@ export function VersionHistory({releases, initiallyVisible = 5}: Readonly<{relea
       <ul className="space-y-3">
         {releases.map((release, i) => (
           <li key={release.version} hidden={!expanded && i >= initiallyVisible}>
-            <details open={i === 0} className="group rounded-xl border border-line bg-white">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3.5 [&::-webkit-details-marker]:hidden">
-                <h3 className="text-lg font-semibold text-ink">{release.version}</h3>
-                <ChevronDown width={20} height={20} className="shrink-0 text-primary transition-transform group-open:rotate-180" />
+            <details open={i === 0} className="group rounded-2xl border border-line bg-white shadow-card">
+              <summary className="type-heading-xs flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-ink transition-colors hover:text-primary-hover [&::-webkit-details-marker]:hidden">
+                <h3 className="type-heading-xs">{release.version}</h3>
+                <ChevronDown width={20} height={20} className="shrink-0 transition-transform group-open:rotate-180" />
               </summary>
-              <div className="space-y-4 px-5 pb-5">
+              <div className="space-y-4 px-6 pb-6">
                 {release.groups.map((group, g) => (
                   <div key={g}>
                     {group.title && <h4 className="mb-2 font-semibold text-ink">{group.title}</h4>}

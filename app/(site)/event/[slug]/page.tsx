@@ -9,7 +9,7 @@ import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {Button} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
 import {SmartLink} from '@/components/ui/SmartLink'
-import {ArrowRight, ChevronLeft} from '@/components/ui/icons'
+import {ArrowRight, ChevronDown, ChevronLeft} from '@/components/ui/icons'
 import {categoryTitle, DEFAULT_TIME_ZONE, EVENTS_PATH, eventPath, formatEventDate, formatSessionTime, isUpcoming, sessionFormatTitle, typeTitle} from '@/lib/events'
 import {fetchSanity} from '@/sanity/lib/fetch'
 import {urlFor} from '@/sanity/lib/image'
@@ -212,12 +212,12 @@ function PresenterChip({name, speaker}: Readonly<{name: string; speaker?: Speake
 function SessionItem({ses, tz, speakerByName}: Readonly<{ses: Session; tz: string; speakerByName: Map<string, Speaker>}>) {
   const when = formatSessionTime(ses, tz)
   return (
-    <li className="event-session rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <li className="event-session rounded-2xl border border-line bg-white p-6 shadow-card">
       <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
         <Mic aria-hidden width={13} height={13} />
         {sessionFormatTitle(ses.format)}
       </span>
-      <h3 className="mt-3 text-xl font-semibold text-ink">{ses.title}</h3>
+      <h3 className="type-heading-sm mt-3 text-ink">{ses.title}</h3>
       {(when || ses.stage) && (
         <p className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-body">
           {when && (
@@ -249,7 +249,7 @@ function SessionItem({ses, tz, speakerByName}: Readonly<{ses: Session; tz: strin
 function SessionsSection({sessions, tz, speakerByName}: Readonly<{sessions: Session[]; tz: string; speakerByName: Map<string, Speaker>}>) {
   return (
     <section className="mt-14" aria-labelledby="sessions-heading">
-      <h2 id="sessions-heading" className="text-[28px] font-semibold text-ink">
+      <h2 id="sessions-heading" className="type-heading-lg text-ink">
         On stage
       </h2>
       <ul className="mt-6 space-y-4">
@@ -264,7 +264,7 @@ function SessionsSection({sessions, tz, speakerByName}: Readonly<{sessions: Sess
 function SpeakersSection({speakers, onStage}: Readonly<{speakers: Speaker[]; onStage: Map<string, string>}>) {
   return (
     <section className="mt-14" aria-labelledby="speakers-heading">
-      <h2 id="speakers-heading" className="text-[28px] font-semibold text-ink">
+      <h2 id="speakers-heading" className="type-heading-lg text-ink">
         Who you’ll meet
       </h2>
       <ul className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -354,7 +354,7 @@ export default async function EventPage({params}: Readonly<Props>) {
                 </span>
               ))}
             </div>
-            <h1 className="mt-5 text-balance text-[40px] leading-[1.15] font-semibold text-ink md:text-5xl">{e.title}</h1>
+            <h1 className="type-title mt-5 text-ink">{e.title}</h1>
             {ended && (
               <output className="mt-6 block rounded-lg border border-line bg-white px-4 py-3 font-semibold text-ink">
                 This event has ended. <SmartLink href={EVENTS_PATH} className="underline underline-offset-2 hover:text-primary-hover">See upcoming events</SmartLink>
@@ -420,8 +420,8 @@ export default async function EventPage({params}: Readonly<Props>) {
           {e.speakers?.length ? <SpeakersSection speakers={e.speakers} onStage={onStage} /> : null}
         </div>
         {e.hubspotFormId && !ended && (
-          <aside id="register" className="scroll-mt-28 self-start rounded-2xl border border-line bg-white p-6 shadow-lg md:p-8 lg:sticky lg:top-28">
-            <h2 className="text-2xl font-semibold text-ink md:text-[28px]">{e.formHeading || 'Register now'}</h2>
+          <aside id="register" className="scroll-mt-28 self-start rounded-2xl border border-line bg-white p-6 shadow-card md:p-8 lg:sticky lg:top-28">
+            <h2 className="type-heading-md text-ink">{e.formHeading || 'Register now'}</h2>
             <HubSpotForm formId={e.hubspotFormId} className="mt-6 min-h-[320px]" />
           </aside>
         )}
@@ -431,7 +431,7 @@ export default async function EventPage({params}: Readonly<Props>) {
         <section className="mt-20" aria-labelledby="more-heading">
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <h2 id="more-heading" className="text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
+              <h2 id="more-heading" className="type-h2 text-ink">
                 More upcoming events
               </h2>
               <SmartLink href={EVENTS_PATH} className="text-link">
@@ -453,19 +453,17 @@ export default async function EventPage({params}: Readonly<Props>) {
       {e.faq?.length ? (
         <section className="mt-20" aria-labelledby="faq-heading">
           <Container size="narrow">
-            <h2 id="faq-heading" className="text-[32px] leading-tight font-semibold text-ink md:text-[40px]">
+            <h2 id="faq-heading" className="type-h2 text-ink">
               Frequently asked questions
             </h2>
-            <div className="mt-8 divide-y divide-line border-y border-line">
+            <div className="mt-8 space-y-3">
               {e.faq.map((f) => (
-                <details key={f._key} className="event-faq group py-5">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                <details key={f._key} className="event-faq group rounded-2xl border border-line bg-white shadow-card">
+                  <summary className="type-heading-xs flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-ink transition-colors hover:text-primary-hover [&::-webkit-details-marker]:hidden">
                     {f.question}
-                    <span aria-hidden className="mt-1 shrink-0 text-primary transition-transform group-open:rotate-45">
-                      +
-                    </span>
+                    <ChevronDown width={20} height={20} className="shrink-0 transition-transform group-open:rotate-180" />
                   </summary>
-                  <p className="mt-3 leading-7 whitespace-pre-line text-body">{f.answer}</p>
+                  <p className="type-body px-6 pb-6 whitespace-pre-line text-body">{f.answer}</p>
                 </details>
               ))}
             </div>

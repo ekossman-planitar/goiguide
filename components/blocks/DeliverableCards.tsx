@@ -37,9 +37,9 @@ export function DeliverableCards({
       {items.map((item) => (
         <li
           key={item.title}
-          className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.075)]"
+          className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card"
         >
-          <h3 className="text-xl leading-7 font-semibold text-ink">{item.title}</h3>
+          <h3 className="type-heading-sm text-ink">{item.title}</h3>
           {item.summary && <p className="mt-2 text-base leading-6 text-muted">{item.summary}</p>}
           <FallbackImage
             src={item.image.src}

@@ -31,7 +31,7 @@ export function LogoBand({heading, logos, variant = 'row', background = 'white',
     />
   )
   return (
-    <section className={cn(bgs[background], 'py-10')}>
+    <section className={cn(bgs[background], 'py-10 lg:py-[60px]')}>
       <Container>
         {heading && <p className="mb-6 text-center text-base leading-6 text-body">{heading}</p>}
         {variant === 'marquee' && (
@@ -48,7 +48,7 @@ export function LogoBand({heading, logos, variant = 'row', background = 'white',
         {variant !== 'marquee' && cards && (
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {logos.map((l) => (
-              <li key={l.src} className="flex h-24 items-center justify-center rounded-2xl border border-line bg-white px-6 shadow-sm md:h-[120px]">
+              <li key={l.src} className="flex h-24 items-center justify-center rounded-2xl border border-line bg-white px-6 shadow-card md:h-[120px]">
                 {/* Same display size as live (its width attribute), so small logo files aren't stretched further */}
                 <FallbackImage
                   src={l.src}

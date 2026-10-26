@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 export default async function EbooksPage() {
   const items = await fetchSanity<ResourceCardData[]>(RESOURCES_OF_TYPE_QUERY, [], {type: 'ebook'})
   return (
-    <section className="py-16 lg:py-20">
+    <section className="py-16 lg:py-[60px]">
       <Container>
-        <h1 className="text-4xl font-semibold text-ink sm:text-5xl">eBooks</h1>
+        <h1 className="type-title text-ink">eBooks</h1>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {items.map((item) => (
             <li key={item._id}>

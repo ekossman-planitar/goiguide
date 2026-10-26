@@ -15,7 +15,7 @@ export function HelpFooter() {
         <nav aria-label="Help Center footer" className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {helpFooterColumns.map((col) => (
             <div key={col.heading}>
-              <h2 className="text-base leading-6 font-semibold text-ink">{col.heading}</h2>
+              <h2 className="type-heading-sm text-ink">{col.heading}</h2>
               <ul className="mt-4 space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>

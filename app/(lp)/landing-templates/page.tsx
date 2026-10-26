@@ -16,7 +16,7 @@ export default function LandingTemplatesPage() {
       <LpHeader />
       <main className="flex-1 bg-surface py-16">
         <Container>
-          <h1 className="text-4xl font-semibold text-ink">Landing page templates</h1>
+          <h1 className="type-title text-ink">Landing page templates</h1>
           <p className="mt-4 max-w-2xl text-lg text-muted">
             Pick one of these when you create a landing page in the Studio (Landing pages → +). Each starts with the sections shown; you can add,
             remove and reorder sections afterwards.
@@ -25,7 +25,7 @@ export default function LandingTemplatesPage() {
             {lpLayouts.map((l) => (
               <li key={l.id} className="rounded-2xl border border-line bg-white p-6">
                 <LayoutWireframe sections={l.sections} heroStyle={l.heroStyle} width={220} />
-                <h2 className="mt-5 text-xl font-semibold text-ink">{l.name}</h2>
+                <h2 className="type-heading-sm mt-5 text-ink">{l.name}</h2>
                 <p className="mt-2 text-base text-body">{l.bestFor}</p>
                 <p className="mt-3 text-sm text-muted">{l.sections.map((s) => lpSectionLabels[s]).join(' · ')}</p>
                 <a href={`/landing-templates/${l.id}`} className="mt-4 inline-block font-semibold text-primary hover:underline">

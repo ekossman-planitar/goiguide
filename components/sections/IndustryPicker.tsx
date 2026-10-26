@@ -1,7 +1,7 @@
 'use client'
 
 import {useCallback, useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent} from 'react'
-import {Button} from '@/components/ui/Button'
+import {Button, buttonClass} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight} from '@/components/ui/icons'
@@ -260,7 +260,7 @@ export function IndustryPicker() {
     >
       <Container>
         <div className="flex items-center justify-between gap-6">
-          <h2 id={`${uid}-heading`} className="text-[32px] leading-tight font-semibold text-ink md:text-[48px]">
+          <h2 id={`${uid}-heading`} className="type-h2 text-ink">
             Built for the way you work
           </h2>
           <div className="hidden md:block">{allIndustries}</div>
@@ -323,7 +323,7 @@ export function IndustryPicker() {
                 hidden={i !== active}
                 className={cn(
                   ind.desktopOnly && 'max-lg:hidden',
-                  'overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)] lg:grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:[&[hidden]]:hidden',
+                  'overflow-hidden rounded-2xl border border-line bg-white shadow-card lg:grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:[&[hidden]]:hidden',
                 )}
               >
                 {/* Tour on the left, words on the right (stacked on small screens) */}
@@ -336,7 +336,7 @@ export function IndustryPicker() {
                 <div className="flex flex-col gap-6 p-6 md:p-8 lg:justify-center">
                   <div>
                     <p className="text-sm font-semibold tracking-wide text-primary-hover uppercase">{ind.name}</p>
-                    <h3 className="mt-2 text-[24px] leading-tight font-semibold text-ink lg:text-[26px]">{ind.headline}</h3>
+                    <h3 className="type-heading-md mt-2 text-ink">{ind.headline}</h3>
                     <ul className="mt-5 space-y-2.5">
                       {ind.points.map((p) => (
                         <li key={p.strong} className="flex gap-3 text-base leading-6 text-body">
@@ -362,7 +362,7 @@ export function IndustryPicker() {
                     <SmartLink
                       href={ind.href}
                       data-industry={ind.id}
-                      className="industry-picker-cta group inline-flex items-center gap-2 self-start rounded-lg border border-primary bg-primary px-6 py-3 font-semibold text-white transition-colors hover:border-primary-hover hover:bg-primary-hover"
+                      className={cn('industry-picker-cta group self-start', buttonClass('primary', 'lg'))}
                     >
                       Learn more<span className="sr-only"> about iGuide for {ind.name}</span>
                       <ArrowRight width={18} height={18} />

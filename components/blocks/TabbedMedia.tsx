@@ -103,7 +103,7 @@ export function TabbedMedia({
           {(tab.media.type !== 'embed' || loaded.has(i)) && <TabMedia tab={tab} zoom={zoom} className={tab.media.type === 'image' ? mediaClassName : undefined} />}
           {(tab.title || tab.text) && (
             <div className={cn('mt-6', align === 'center' && 'mx-auto max-w-3xl text-center')}>
-              {tab.title && <h4 className="text-xl font-semibold text-ink">{tab.title}</h4>}
+              {tab.title && <h4 className="type-heading-sm text-ink">{tab.title}</h4>}
               {tab.text && <div className="mt-2 text-lg leading-7 text-body">{tab.text}</div>}
             </div>
           )}

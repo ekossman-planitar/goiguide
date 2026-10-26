@@ -1,9 +1,11 @@
 'use client'
 
+import {buttonClass} from '@/components/ui/Button'
 import {ArrowRight} from '@/components/ui/icons'
 import {Check, Copy, Download, ExternalLink, Play} from 'lucide-react'
 import {useState} from 'react'
 import {catalogueAssets, catalogueDemoTours, catalogueStarterKit} from '@/lib/content/marketingCatalogue'
+import {cn} from '@/lib/cn'
 
 /*
  * Sections of /support/marketing-catalogue/getting-started: three steps for new
@@ -30,7 +32,7 @@ function DemoTour({tour}: Readonly<{tour: (typeof catalogueDemoTours)[number]}>)
     }
   }
   return (
-    <article className="flex flex-col rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <article className="flex flex-col rounded-2xl border border-line bg-white shadow-card">
       <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-surface">
         {preview ? (
           <iframe
@@ -56,7 +58,7 @@ function DemoTour({tour}: Readonly<{tour: (typeof catalogueDemoTours)[number]}>)
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-lg leading-snug font-semibold text-ink">{tour.label}</h3>
+        <h3 className="type-heading-xs text-ink">{tour.label}</h3>
         <p className="mt-1 text-sm leading-5 text-body">{tour.description}</p>
         <div className="mt-auto flex flex-col pt-4">
           <label className="text-xs font-semibold tracking-wide text-muted uppercase" htmlFor={`embed-${tour.id}`}>
@@ -74,7 +76,7 @@ function DemoTour({tour}: Readonly<{tour: (typeof catalogueDemoTours)[number]}>)
             type="button"
             onClick={copy}
             data-tour={tour.id}
-            className="catalogue-embed-copy mt-3 inline-flex cursor-pointer items-center gap-1.5 self-start rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-primary-hover hover:bg-primary-hover"
+            className={cn('catalogue-embed-copy mt-3 self-start', buttonClass('primary', 'md'))}
           >
             {copied ? <Check aria-hidden width={16} height={16} /> : <Copy aria-hidden width={16} height={16} />}
             {copied ? 'Copied' : 'Copy embed code'}
@@ -95,7 +97,7 @@ export function StarterSteps({demoTourAnchor}: Readonly<{demoTourAnchor: string}
     <ol className="grid gap-6 lg:grid-cols-3">
       <li className="rounded-2xl bg-surface p-6">
         <p className="text-sm font-semibold text-muted">Step 1</p>
-        <h3 className="mt-1 text-xl font-semibold text-ink">Show a demo tour on your website</h3>
+        <h3 className="type-heading-sm mt-1 text-ink">Show a demo tour on your website</h3>
         <p className="mt-2 text-base leading-6 text-body">No property of your own to show yet? Embed one of our demo tours.</p>
         <a href={`#${demoTourAnchor}`} className="mt-4 text-link text-sm">
           Get an embed code
@@ -105,7 +107,7 @@ export function StarterSteps({demoTourAnchor}: Readonly<{demoTourAnchor: string}
       {catalogueStarterKit.map((step, i) => (
         <li key={step.title} className="rounded-2xl bg-surface p-6">
           <p className="text-sm font-semibold text-muted">Step {i + 2}</p>
-          <h3 className="mt-1 text-xl font-semibold text-ink">{step.title}</h3>
+          <h3 className="type-heading-sm mt-1 text-ink">{step.title}</h3>
           <p className="mt-2 text-base leading-6 text-body">{step.text}</p>
           <ul className="mt-4 space-y-2">
             {step.assetIds.map((id) => {

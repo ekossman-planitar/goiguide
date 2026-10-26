@@ -15,7 +15,7 @@ export function EventCard({event, live, headingLevel = 'h3'}: Readonly<{event: E
   const Heading = headingLevel
   const img = event.featuredImage
   return (
-    <article className="group relative grid gap-5 rounded-2xl border border-line bg-white p-5 shadow-[0_2px_4px_rgba(0,0,0,0.075)] transition-colors hover:border-primary-hover sm:grid-cols-[72px_1fr] md:p-6 lg:grid-cols-[72px_1fr_240px]">
+    <article className="group relative grid gap-5 rounded-2xl border border-line bg-white p-5 shadow-card transition-shadow hover:shadow-lg sm:grid-cols-[72px_1fr] md:p-6 lg:grid-cols-[72px_1fr_240px]">
       <div aria-hidden className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-xl bg-primary text-white">
         <span className="text-xs font-semibold tracking-wide uppercase">{MONTHS[m - 1]}</span>
         <span className="text-[28px] leading-none font-bold">{d}</span>

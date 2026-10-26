@@ -67,7 +67,7 @@ export function FeatureTabs({
               key={item.id}
               className={cn(
                 'rounded-2xl border transition-colors',
-                open ? 'border-primary bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]' : 'border-line bg-white/60 hover:border-primary-hover',
+                open ? 'border-primary bg-white shadow-card' : 'border-line bg-white/60 hover:border-primary-hover',
               )}
             >
               <Heading className="text-lg leading-7 font-semibold text-ink">

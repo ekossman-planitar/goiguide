@@ -1,3 +1,4 @@
+import {Check, X} from 'lucide-react'
 import {cn} from '@/lib/cn'
 
 /**
@@ -8,13 +9,9 @@ export type CompareRow = {label: string; ours: string | boolean; theirs: string 
 
 function Mark({ok}: Readonly<{ok: boolean}>) {
   return ok ? (
-    <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5">
-      <path d="M5 12.5 10 17 19 7" />
-    </svg>
+    <Check aria-hidden strokeWidth={2.5} className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
   ) : (
-    <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-muted" fill="none" stroke="currentColor" strokeWidth="2.5">
-      <path d="M6 6l12 12M18 6 6 18" />
-    </svg>
+    <X aria-hidden strokeWidth={2.5} className="mt-0.5 h-5 w-5 shrink-0 text-muted" />
   )
 }
 
@@ -31,7 +28,7 @@ export function CompareTable({
   footnote?: string
 }>) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_2px_4px_rgba(0,0,0,0.075)]">
+    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
       <table className="w-full border-collapse text-left text-base leading-6">
         <caption className="sr-only">{caption}</caption>
         <thead>

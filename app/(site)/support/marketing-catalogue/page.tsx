@@ -24,7 +24,7 @@ export default function MarketingCataloguePage() {
             <ChevronLeft /> Support
           </SmartLink>
           <div className="mt-5 max-w-3xl">
-            <h1 className="text-balance text-[40px] leading-[normal] font-semibold text-ink md:text-[56px]">Marketing Catalogue</h1>
+            <h1 className="type-display text-ink">Marketing Catalogue</h1>
             <p className="mt-5 text-xl leading-[30px] text-muted">
               Ready-to-use iGuide marketing materials for your listings, website, presentations and social channels. Find what you need and download it in one
               click.
@@ -42,7 +42,7 @@ export default function MarketingCataloguePage() {
         </Container>
       </section>
 
-      <section className="py-12 lg:py-16">
+      <section className="py-16 lg:py-[60px]">
         <Container>
           <MarketingCatalogue />
         </Container>
@@ -52,7 +52,7 @@ export default function MarketingCataloguePage() {
         <Container>
           <div className="flex flex-col items-start gap-6 rounded-2xl bg-primary px-6 py-10 text-white md:flex-row md:items-center md:justify-between md:px-12">
             <div className="max-w-2xl">
-              <h2 className="text-[28px] leading-tight font-semibold md:text-[32px]">Looking for help articles, training or product updates?</h2>
+              <h2 className="type-heading-lg">Looking for help articles, training or product updates?</h2>
               <p className="mt-3 text-lg leading-7 text-white/85">
                 The iGuide Help Center has how-to guides, release notes and support for every iGuide product.
               </p>

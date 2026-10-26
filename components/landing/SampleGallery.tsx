@@ -13,7 +13,7 @@ export function SampleGallery({samples, heading, visible = 4}: Readonly<{samples
   const hasMore = samples.length > visible
   return (
     <div className="mt-10">
-      {heading && <h3 className="mb-6 text-2xl font-semibold text-ink">{heading}</h3>}
+      {heading && <h3 className="type-heading-md mb-6 text-ink">{heading}</h3>}
       <ul className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
         {samples.map((s, i) => (
           <li key={s.key} hidden={!open && i >= visible}>

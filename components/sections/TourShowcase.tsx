@@ -80,7 +80,7 @@ export function TourShowcase({eyebrow, heading, subheading, tours}: Readonly<Pro
                     onKeyDown={onKeyDown}
                     // Same pill style as the live site's tabs
                     className={cn(
-                      'shrink-0 rounded-3xl border px-6 py-3 text-left text-base leading-6 font-semibold whitespace-nowrap transition-colors lg:whitespace-normal',
+                      'shrink-0 rounded-3xl border px-5 py-2.5 text-left text-base leading-6 font-semibold whitespace-nowrap transition-colors lg:whitespace-normal',
                       selected
                         ? 'border-primary bg-primary text-white'
                         : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',

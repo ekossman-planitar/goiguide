@@ -182,7 +182,7 @@ function DesktopNavItem({
         <Container className="grid grid-cols-4 gap-10 py-10">
           {/* Left 1/4: the top-level item */}
           <div className="border-r border-line pr-10">
-            <SmartLink href={item.href} className="text-2xl font-bold text-ink hover:text-primary-hover">
+            <SmartLink href={item.href} className="text-2xl font-semibold text-ink hover:text-primary-hover">
               {item.label}
             </SmartLink>
             <p className="mt-3 leading-relaxed text-muted">{menu.description}</p>

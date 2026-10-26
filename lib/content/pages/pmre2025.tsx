@@ -38,8 +38,8 @@ export const blocks: Block[] = [
     id: 'e1990',
     background: 'sky',
     children: (
-      <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-8 text-center shadow-sm md:p-10">
-        <h2 className="text-balance text-[32px] font-semibold leading-[normal] text-ink md:text-5xl md:leading-[normal]">The Sweepstakes is now closed.</h2>
+      <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-8 text-center shadow-card md:p-10">
+        <h2 className="type-h2 text-ink">The Sweepstakes is now closed.</h2>
         <p className="mt-5 text-lg leading-7 text-body">
           Good luck to everyone who entered. Stay tuned to the{' '}
           <a href="https://www.instagram.com/go_iguide/" target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline">

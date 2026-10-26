@@ -136,7 +136,7 @@ function BlockView({block, index}: Readonly<{block: Block; index: number}>) {
             <CompareTable rows={block.rows} columns={block.columns} caption={block.heading ?? 'Comparison'} footnote={block.footnote} />
             {block.aside && (
               <div className="rounded-2xl bg-sky p-8">
-                <h3 className="text-2xl font-semibold text-ink">{block.aside.heading}</h3>
+                <h3 className="type-heading-md text-ink">{block.aside.heading}</h3>
                 <p className="mt-4 text-lg leading-7 text-body">{block.aside.text}</p>
               </div>
             )}

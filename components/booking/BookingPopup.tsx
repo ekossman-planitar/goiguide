@@ -229,7 +229,7 @@ export function BookingPopup() {
         <div id="progress-bar" className="h-full bg-primary" style={{width: '0%', transition: 'width 3s linear'}} />
       </div>
       <div className="p-8">
-        <h3 className="mb-4 text-2xl font-semibold text-ink">Thanks! You&apos;re booked.</h3>
+        <h3 className="type-heading-md mb-4 text-ink">Thanks! You&apos;re booked.</h3>
         <p>We&apos;ll follow up with you shortly. Check your inbox for confirmation.</p>
       </div>
     </div>
