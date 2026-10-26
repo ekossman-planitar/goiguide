@@ -127,5 +127,5 @@ export const cadDeliverables = {
     ],
   },
   // "Starting designing" is the live wording
-  cta: {heading: 'Starting designing sooner with accurate CAD drawings', ctas: [book('Book a 15-minute walkthrough')]},
+  cta: {heading: 'Starting designing sooner with accurate CAD drawings', ctas: [book('Book a walkthrough')]},
 }

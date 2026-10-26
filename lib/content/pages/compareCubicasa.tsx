@@ -140,6 +140,6 @@ export const blocks: Block[] = [
   closingCta({
     heading: 'Ready to upgrade to a professional solution?',
     text: 'Professional tools mean professional results and that’s what sets you apart.',
-    secondary: {label: 'Buy the iGuide PLANIX camera', href: 'https://store.goiguide.com'},
+    secondary: {label: 'Shop cameras', href: 'https://store.goiguide.com'},
   }),
 ]

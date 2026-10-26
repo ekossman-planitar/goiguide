@@ -1,4 +1,5 @@
 /** /au-agent-offers — copy, links and asset paths from the live page (checked 2026-10-21). */
+import {Camera, DoorOpen, Receipt, Sparkles} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {MediaView} from '@/components/blocks/MediaView'
 import {FaqTabs} from '@/components/sections/FaqTabs'
@@ -122,7 +123,6 @@ const faqGroups = [
   },
 ]
 
-const icon = (src: string) => ({src, alt: '', width: 60, height: 60})
 
 /** Live: white REA logo and heading on a red band */
 export function AuOffersHero() {
@@ -155,10 +155,10 @@ export const blocks: Block[] = [
     heading: 'How iGuide fits your workflow',
     columns: 4,
     cards: [
-      {title: 'One capture', text: 'Capture floor plans, 3D Tour and Site Plans in a single property.', icon: icon('/assets/Floor_plans_re-imagined.png')},
-      {title: 'Pay per project', text: 'No subscriptions. You own your data and can download it anytime.', icon: icon('/assets/policy.svg')},
-      {title: 'Elevated listings', text: 'Offer the immersive assets that serious buyers engage with.', icon: icon('/assets/forensics.svg')},
-      {title: '24/7 open house', text: 'Let buyers explore your listing any time, from anywhere.', icon: icon('/assets/247_open_house.png')},
+      {title: 'One capture', text: 'Capture floor plans, 3D Tour and Site Plans in a single property.', icon: Camera},
+      {title: 'Pay per project', text: 'No subscriptions. You own your data and can download it anytime.', icon: Receipt},
+      {title: 'Elevated listings', text: 'Offer the immersive assets that serious buyers engage with.', icon: Sparkles},
+      {title: '24/7 open house', text: 'Let buyers explore your listing any time, from anywhere.', icon: DoorOpen},
     ],
   },
   {

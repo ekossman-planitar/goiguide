@@ -24,7 +24,7 @@ export const blocks: Block[] = cscBlocks({
   tour: {
     src: 'https://youriguide.com/embed/48ontario?autostart=1&bgcolor=FFFFFF',
     title: 'iGuide tour of 48 Ontario Street North',
-    links: tourVideoLinks('Learn how to use advanced measurement'),
+    links: tourVideoLinks('Measurement guide'),
   },
   winner: {
     team: 'House of Tech & Blues',
@@ -53,7 +53,7 @@ export const blocks: Block[] = cscBlocks({
     // Live shows the 1655 Dupont image here (same file as the 2019 page)
     website: {src: '/assets/csc/1655-Dupont.jpg', alt: 'CSC Student Design Challenge website', width: 1431, height: 430},
     description: <p>{competitionDescription}</p>,
-    ctas: [{label: 'Download competition instructions', href: '/assets/csc/2018_Design_Challenge_Documents.pdf', newTab: true}],
+    ctas: [{label: 'Get instructions', href: '/assets/csc/2018_Design_Challenge_Documents.pdf', newTab: true}],
     image: {src: '/assets/csc/2018_csc_instructions_image-800x661.jpg', alt: '2018 CSC Design Challenge instructions', width: 800, height: 661},
   },
 })

@@ -1,4 +1,5 @@
 /** /residential-real-estate — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {Images, Magnet, Tag, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {findPro, instantPackage, premiumPackage, realEstateLogos, standardPackage, tour} from './shared'
 
@@ -17,7 +18,7 @@ export const blocks: Block[] = [
       'From accurate floor plans to immersive 360° visuals, iGuide provides everything you need to market, sell and stand out in a competitive real estate market.',
     ctas: [
       findPro,
-      {label: 'Download real estate brochure', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', variant: 'secondary'},
+      {label: 'Download brochure', href: 'https://6828755.fs1.hubspotusercontent-na1.net/hubfs/6828755/Marketing%20Catalogue/Brochures/iGUIDE_for_Real_Estate_Agents_Brochure.pdf', variant: 'secondary'},
     ],
     media: {
       type: 'embed',
@@ -36,22 +37,22 @@ export const blocks: Block[] = [
       {
         title: 'Generate leads',
         text: 'Gather feedback and qualified leads through immersive tours, Site Plans and Branded Property Overviews.',
-        icon: {src: '/assets/Capture_qualified_leads.png', alt: 'icon - maginet'},
+        icon: Magnet,
       },
       {
         title: 'Save time',
         text: 'Deliver property details in one platform with floor plans, Site Plans, dimensions and square footage.',
-        icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'},
+        icon: Timer,
       },
       {
         title: 'Increase exposure',
         text: 'Stand out. Properties listed with iGuide receive more online exposure and attract a larger pool of potential buyers.',
-        icon: {src: '/assets/forensics.svg', alt: 'icon - Photos'},
+        icon: Images,
       },
       {
         title: 'Reduce costs',
         text: 'iGuide is a cost-effective way to deliver immersive tours, Site Plans and branded listing assets.',
-        icon: {src: '/assets/Icons/tag.png', alt: 'icon - tag'},
+        icon: Tag,
       },
     ],
   },
@@ -78,9 +79,9 @@ export const blocks: Block[] = [
     ],
     after: <p>When everything comes from one capture, buyers trust what they’re seeing and agents spend less time explaining.</p>,
     ctas: [
-      {label: 'Hire an iGuide Pro to capture a Site Plan for you', href: 'https://ion.goiguide.com/'},
+      {label: 'Hire an iGuide Pro', href: 'https://ion.goiguide.com/'},
       {
-        label: 'Download Site Plans & Branded Property Overview brochure',
+        label: 'Download the brochure',
         href: '/assets/brochures/1-PAGER-REAL-ESTATE-PHOTOGRAPHERS-MEDIA-COMPANIES.pdf',
         variant: 'secondary',
       },

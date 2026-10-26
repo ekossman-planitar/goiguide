@@ -6,7 +6,7 @@ import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {CloseIcon} from '@/components/ui/icons'
 
-/** "Get in touch" form shown by "I'm just looking to learn more" (live: HubSpot form in a lightbox) */
+/** "Get in touch" form shown by "Just browsing" (live: HubSpot form in a lightbox) */
 const LEARN_MORE_FORM_ID = 'ab373579-0755-4f0f-a53c-a04f1ff89266'
 
 /** Live /book-a-demo opens this Calendly URL when arriving with ?openCalendly=true from goiguide.com */
@@ -20,9 +20,9 @@ const buttonBase =
 
 /**
  * The "What would you like to do?" card from the live /book-a-demo page.
- * - "I’d like to book a personalized demo" keeps the live `book-demo` class, so the
+ * - "Book a demo" keeps the live `book-demo` class, so the
  *   site-wide BookingPopup opens Calendly (and GTM triggers keep matching).
- * - "I'm just looking to learn more" opens the HubSpot "Get in touch" form; it also
+ * - "Just browsing" opens the HubSpot "Get in touch" form; it also
  *   opens when the URL hash is #learn-more, as on live.
  */
 export function BookADemoChoice() {
@@ -50,7 +50,7 @@ export function BookADemoChoice() {
       <h2 className="type-heading-md text-ink">What would you like to do?</h2>
       <div className="mt-6 flex flex-col items-center gap-3">
         <SmartLink href="/book-a-demo" className={`book-demo ${buttonBase} border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover`}>
-          I’d like to book a personalized demo
+          Book a demo
         </SmartLink>
         <button
           type="button"
@@ -60,7 +60,7 @@ export function BookADemoChoice() {
           }}
           className={`toggle-mle-lightbox ${buttonBase} border-primary bg-white text-primary hover:border-primary-hover hover:text-primary-hover`}
         >
-          I&apos;m just looking to learn more
+          Just browsing
         </button>
       </div>
 
@@ -131,7 +131,7 @@ export function FloatingDemoButton() {
   return (
     <SmartLink
       href="/book-a-demo"
-      aria-label="Book your personalized product tour"
+      aria-label="Book a product tour"
       tabIndex={visible ? undefined : -1}
       aria-hidden={visible ? undefined : true}
       className={`book-demo fixed-button fixed right-6 bottom-6 z-40 inline-flex h-[52px] w-[52px] items-center justify-center rounded-lg bg-primary text-white shadow-sm transition-opacity hover:bg-primary-hover ${

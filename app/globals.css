@@ -14,7 +14,7 @@
   --color-snowgum-400: #716e75;
   --color-blueprint: #5b8fdb;
   --color-laser: #9fd356;
-  --color-slate: #3e5c76;
+  --color-slate: #333f48;
   --color-mist: #f3f2f5;
 
   --color-brand: #2e2c30;          /* Snowgum 700 */
@@ -220,3 +220,19 @@ html[data-region='ca'] [data-us-only] {
 @utility type-small { font-size: 14px; line-height: 20px; }
 @utility type-caption { font-size: 12px; line-height: 18px; }
 @utility type-overline { font-size: 14px; line-height: 20px; font-weight: 600; letter-spacing: 0.025em; text-transform: uppercase; }
+
+/*
+ * Contrast (WCAG 2.2 AA): Snowgum 400 secondary text is 5.0:1 on white but only
+ * 4.49:1 on Mist, so on Mist backgrounds secondary text uses Slate (9.7:1).
+ * White cards inside a Mist section go back to Snowgum 400; Mist inside those cards to Slate.
+ */
+:is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) .text-muted,
+.text-muted:is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) {
+  color: var(--color-slate);
+}
+:is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) .bg-white .text-muted {
+  color: var(--color-muted);
+}
+:is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) .bg-white :is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) .text-muted {
+  color: var(--color-slate);
+}

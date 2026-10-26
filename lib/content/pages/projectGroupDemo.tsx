@@ -1,4 +1,5 @@
 /** /project-group/demo — copy, links and asset paths from the live page (checked 2026-10-14). */
+import {Cloud, Lock, Receipt, Rotate3d, Ruler, ShieldCheck, Timer, Users, Workflow} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {cn} from '@/lib/cn'
@@ -17,8 +18,8 @@ export const hero = {
   /** Live hero background (file not yet in public/; the section falls back to the brand colour) */
   background: '/assets/Uploads/Commercial_design_150dpi.jpg',
   request: {label: 'Request a Project', href: '/projectrequest'},
-  /** "Meet with a Project Manager" opens this HubSpot form in a pop-up titled "Connect with a Project Manager" */
-  meet: {label: 'Meet with a Project Manager', title: 'Connect with a Project Manager', formId: '5b0256e9-202f-49a6-abae-16b9e322edc9'},
+  /** "Book a meeting" opens this HubSpot form in a pop-up titled "Connect with a Project Manager" */
+  meet: {label: 'Book a meeting', title: 'Connect with a Project Manager', formId: '5b0256e9-202f-49a6-abae-16b9e322edc9'},
 }
 
 function Steps({items}: Readonly<{items: {title: string; text: string}[]}>) {
@@ -202,27 +203,27 @@ export const blocks: Block[] = [
       {
         title: 'Enhanced Speed',
         text: 'Take site data collection from weeks to days.',
-        icon: {src: '/assets/Uploads/Icons_Processing-Time__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Timer,
       },
       {
         title: 'Improved Accuracy',
         text: 'Ensure measurements and drawings are up-to-date and accurate.',
-        icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Accurate-measurements__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Ruler,
       },
       {
         title: 'Immersive Visuals',
         text: 'Provide your design team with 360° visualization of the space inside and out.',
-        icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Superior-navigation__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Rotate3d,
       },
       {
         title: 'Streamlined Execution',
         text: 'Avoid return trips to site for missing and incorrect information.',
-        icon: {src: '/assets/Icons/Icon-300x300_Superior-Navigation__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Workflow,
       },
       {
         title: 'Strengthened Collaboration',
         text: 'We ensure everyone on the project team is working from the same data set.',
-        icon: {src: '/assets/Icons/Icon-300x300_Value_Own-your-data__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Users,
       },
     ],
   },
@@ -252,22 +253,22 @@ export const blocks: Block[] = [
       {
         title: 'Data ownership',
         text: 'Rest assured you own the data from each of your projects.',
-        icon: {src: '/assets/Uploads/data-v2__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: ShieldCheck,
       },
       {
         title: 'No recurring fees',
         text: 'Pay for your project with no additional subscription fees attached.',
-        icon: {src: '/assets/Uploads/Picture1-v2__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Receipt,
       },
       {
         title: 'Hosting flexibility',
         text: 'We can host your project at no cost or download and host yourself.',
-        icon: {src: '/assets/Uploads/cloud__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Cloud,
       },
       {
         title: 'Data protection',
         text: 'Our information security program incorporates control principles from SOC 2.',
-        icon: {src: '/assets/Uploads/privacy__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Lock,
       },
     ],
   },

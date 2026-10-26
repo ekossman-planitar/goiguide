@@ -147,7 +147,7 @@ export const blocks: Block[] = [
             loss event. iGuide Instant Sketch is limited to properties no greater than 5000 sq ft and projects with no more than 75 scans.
           </p>
         }
-        download={{label: 'Download Instant Sketch Sample', href: '/assets/downloads/iGUIDE_ESX_Sketch_Samples.zip'}}
+        download={{label: 'Download sample', href: '/assets/downloads/iGUIDE_ESX_Sketch_Samples.zip'}}
       />
     ),
   },

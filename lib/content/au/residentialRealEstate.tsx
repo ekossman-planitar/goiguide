@@ -2,6 +2,7 @@
  * /au/residential-real-estate (was /residential-real-estate-au) — copy, links
  * and asset paths from the live page (checked 2026-10-14).
  */
+import {Award, ChartColumn, DoorOpen, LayoutGrid, Magnet, Trophy} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {tour} from '@/lib/content/industries/shared'
 import {AU_TERMS_PATH, book, danielNik, launchVideo, rea, reaLogo} from './shared'
@@ -54,8 +55,8 @@ export const blocks: Block[] = [
       </p>
     ),
     ctas: [
-      {label: 'Download Branded Property Overview', href: 'https://youriguide.com/141_harris_st_sydney_nsw/doc/branded_property_overview_metric_en.pdf', newTab: true},
-      {label: 'Download iGuide Floor Plans', href: '/assets/iGUIDE-Floor-Plans.pdf', variant: 'secondary', newTab: true},
+      {label: 'Download sample', href: 'https://youriguide.com/141_harris_st_sydney_nsw/doc/branded_property_overview_metric_en.pdf', newTab: true},
+      {label: 'Download samples', href: '/assets/iGUIDE-Floor-Plans.pdf', variant: 'secondary', newTab: true},
     ],
     media: {type: 'embed', src: tour('https://youriguide.com/141_harris_st_sydney_nsw?autostart=1&bgcolor=FFFFFF'), title: 'iGuide 3D tour of 141 Harris St, Sydney NSW'},
   },
@@ -65,12 +66,12 @@ export const blocks: Block[] = [
     subheading: 'It’s time your listings worked harder for you.',
     columns: 3,
     cards: [
-      {title: 'Give vendors a reason to choose you', text: 'Show vendors you’re committed to marketing their home at its best.', icon: {src: '/assets/2db7f667fb/Win_more_listings.png', alt: ''}},
-      {title: 'Stand out on realestate.com.au', text: 'The only 3D tour provider fully integrated into Australia’s #1 property portal.', icon: {src: '/assets/Lead_the_pack.png', alt: ''}},
-      {title: 'Capture interest from serious buyers', text: 'Serious buyers explore 3D tours 9.7x more than other users.¹', icon: {src: '/assets/Capture_qualified_leads.png', alt: ''}},
-      {title: '24/7 open house', text: 'Let buyers explore your listing any time, from anywhere.', icon: {src: '/assets/247_open_house.png', alt: ''}},
-      {title: 'Floor plans re-imagined', text: 'LiDAR-accurate, branded floor plans delivered within 24 hours.', icon: {src: '/assets/Floor_plans_re-imagined.png', alt: ''}},
-      {title: 'Stats that sell', text: 'Show vendors the proof of impact with iGuide Analytics.', icon: {src: '/assets/Stats_that_sell.png', alt: ''}},
+      {title: 'Give vendors a reason to choose you', text: 'Show vendors you’re committed to marketing their home at its best.', icon: Award},
+      {title: 'Stand out on realestate.com.au', text: 'The only 3D tour provider fully integrated into Australia’s #1 property portal.', icon: Trophy},
+      {title: 'Capture interest from serious buyers', text: 'Serious buyers explore 3D tours 9.7x more than other users.¹', icon: Magnet},
+      {title: '24/7 open house', text: 'Let buyers explore your listing any time, from anywhere.', icon: DoorOpen},
+      {title: 'Floor plans re-imagined', text: 'LiDAR-accurate, branded floor plans delivered within 24 hours.', icon: LayoutGrid},
+      {title: 'Stats that sell', text: 'Show vendors the proof of impact with iGuide Analytics.', icon: ChartColumn},
     ],
     after: <p className="text-sm text-muted">¹ REA internal data, Jan–Oct 2025</p>,
   },
@@ -166,6 +167,6 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: 'Get on board early and ride the accurate property data wave',
     text: 'iGuide is the only 3D tour experience fully integrated into your realestate.com.au listing, giving serious buyers an immersive way to explore your properties and helping you convert more browsers into buyers.',
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 ]

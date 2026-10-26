@@ -20,7 +20,7 @@ export default function PricingPage() {
     <>
       <PageHero
         heading={hero.heading}
-        ctas={[{label: 'Estimate your project cost', href: '#calculator'}]}
+        ctas={[{label: 'Estimate cost', href: '#calculator'}]}
         media={<MediaView media={hero.video} className="rounded-2xl" />}
       >
         <p className="font-semibold text-ink">Included with every iGuide*</p>

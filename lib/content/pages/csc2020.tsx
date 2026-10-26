@@ -22,7 +22,7 @@ export const blocks: Block[] = cscBlocks({
   tour: {
     src: 'https://youriguide.com/embed/321_courtland_ave_e_kitchener_on?autostart=1&?unbranded=1&bgcolor=FFFFFF',
     title: 'iGuide tour of 321 Courtland Avenue East',
-    links: tourVideoLinks('Learn how to use advanced measurement'),
+    links: tourVideoLinks('Measurement guide'),
   },
   winner: {
     team: 'OKO',
@@ -50,7 +50,7 @@ export const blocks: Block[] = cscBlocks({
   competition: {
     website: {src: '/assets/csc_2020.jpg', alt: 'CSC Student Design Challenge website', width: 1200, height: 361},
     description: <p>{competitionDescription}</p>,
-    ctas: [{label: 'Download competition instructions', href: '/assets/csc/2020_Design_Challenge_Documents.pdf', newTab: true}],
+    ctas: [{label: 'Get instructions', href: '/assets/csc/2020_Design_Challenge_Documents.pdf', newTab: true}],
     image: {src: '/assets/Uploads/csc_instructions.jpg', alt: '2020 CSC Design Challenge instructions', width: 845, height: 698},
   },
   past: pastCompetitions,

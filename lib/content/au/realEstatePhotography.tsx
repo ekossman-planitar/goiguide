@@ -2,6 +2,7 @@
  * /au/real-estate-photography (was /real-estate-photography-au) — copy, links
  * and asset paths from the live page (checked 2026-10-14).
  */
+import {Camera, Images, Timer, Users} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {premiumPackage, standardPackage} from '@/lib/content/industries/shared'
 import {AU_TERMS_PATH, auDemo, book, danielNik, launchVideo, rea, reaLogo} from './shared'
@@ -63,22 +64,22 @@ export const blocks: Block[] = [
       {
         title: 'Simple, repeatable capture workflow',
         text: 'Capture floor plans, Site Plans and visuals in a single property visit using a consistent, easy-to-learn workflow you can rely on every time.',
-        icon: {src: '/assets/Icons/camera-v2.png', alt: 'icon - camera'},
+        icon: Camera,
       },
       {
         title: 'Faster turnaround, less post',
         text: 'Spend less time editing and reworking files so you can deliver faster, take on more shoots each week and grow your revenue.',
-        icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'},
+        icon: Timer,
       },
       {
         title: 'Elevated listings',
         text: 'Offer the immersive assets that serious buyers engage with on realestate.com.au, while giving your agents a powerful reason to keep booking you.',
-        icon: {src: '/assets/forensics.svg', alt: 'icon - Photos'},
+        icon: Images,
       },
       {
         title: 'Support built for growing businesses',
         text: 'Access training, resources and support designed to help you price confidently, work faster and scale your photography business sustainably.',
-        icon: {src: '/assets/Icons/photographers.png', alt: 'icon - photographers'},
+        icon: Users,
       },
     ],
   },
@@ -103,7 +104,7 @@ export const blocks: Block[] = [
         that exterior context in a single visit alongside your interior work. No return trips. No extra time.
       </p>
     ),
-    ctas: [{label: 'Learn more about Site Plans', href: '/iguide/site-plans'}],
+    ctas: [{label: 'Explore Site Plans', href: '/iguide/site-plans'}],
     media: {type: 'video', src: '/assets/Site-Plans-Feature-Launch-Video.mp4', label: 'iGuide Site Plans feature video'},
     mediaSide: 'left',
     background: 'surface',
@@ -178,6 +179,6 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: 'Agents expect immersive listings. Deliver them.',
     text: 'See how iGuide helps you stand out, increase your value per shoot, and scale your services, backed by realestate.com.au’s NextGen listing experience.',
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 ]

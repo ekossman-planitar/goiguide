@@ -1,4 +1,5 @@
 /** /camera-hardware — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {BadgeCheck, Crosshair, Eye, Lock, Package, Ruler, Timer} from 'lucide-react'
 import {SmartLink} from '@/components/ui/SmartLink'
 import type {SpecGroup} from '@/components/blocks/SpecsAccordion'
 
@@ -30,16 +31,16 @@ export const cameraHardware = {
     heading: 'Experience every angle',
     body: 'Use the iGuide PLANIX R1 camera system to accurately document spaces and create an iGuide in minutes. Each iGuide provides:',
     list: ['An immersive 3D tour', 'Accurate lidar measurement within 0.5%', 'ANSI-Z765-2021 2D floor plans', 'Comprehensive documentation'],
-    ctas: [{label: 'Book a Demo', href: '/book-a-demo'}, buyNow],
+    ctas: [{label: 'Book a demo', href: '/book-a-demo'}, buyNow],
     video: {src: 'https://www.youtube.com/embed/waROUizarks?autoplay=1&mute=1', title: 'iGuide PLANIX R1 camera system video'},
   },
   why: {
     heading: 'Why choose iGuide?',
     cards: [
-      {title: 'Fast', text: '3D virtual tours and 2D floor plans.', icon: {src: '/assets/Uploads/Icons_Processing-Time__FitMaxWzYwLDYwXQ.png', alt: ''}},
-      {title: 'Accurate', text: 'Measurement within 0.5%.', icon: {src: '/assets/Uploads/Icons_Accurate__FitMaxWzYwLDYwXQ.png', alt: ''}},
-      {title: 'Reliable', text: 'Easy one-button capture.', icon: {src: '/assets/Uploads/Icons_Reliable__FitMaxWzYwLDYwXQ.png', alt: ''}},
-      {title: 'Secure', text: 'You control your data.', icon: {src: '/assets/Uploads/Icons_Secure__FitMaxWzYwLDYwXQ.png', alt: ''}},
+      {title: 'Fast', text: '3D virtual tours and 2D floor plans.', icon: Timer},
+      {title: 'Accurate', text: 'Measurement within 0.5%.', icon: Ruler},
+      {title: 'Reliable', text: 'Easy one-button capture.', icon: BadgeCheck},
+      {title: 'Secure', text: 'You control your data.', icon: Lock},
     ],
   },
   steps: {
@@ -53,9 +54,9 @@ export const cameraHardware = {
   elevate: {
     heading: 'Elevate your workflow with PLANIX R1!',
     cards: [
-      {title: 'Improved visuals', text: 'Capture stunning visuals with improved color and contrast.', icon: {src: '/assets/Uploads/Home-Images-Superior-navigation-icon__FitMaxWzYwLDYwXQ.png', alt: ''}},
-      {title: 'Compact & rugged design', text: 'Explore the compact and rugged design that easily integrates with the gear you love.', icon: {src: '/assets/Uploads/noun-compact-6130284-009CDE__FitMaxWzYwLDYwXQ.png', alt: ''}},
-      {title: 'Effortless precision', text: 'Intuitive and easy to use, delivering the precise, accurate data you trust from iGuide.', icon: {src: '/assets/Uploads/Icon-Property-Detail__FitMaxWzYwLDYwXQ.png', alt: ''}},
+      {title: 'Improved visuals', text: 'Capture stunning visuals with improved color and contrast.', icon: Eye},
+      {title: 'Compact & rugged design', text: 'Explore the compact and rugged design that easily integrates with the gear you love.', icon: Package},
+      {title: 'Effortless precision', text: 'Intuitive and easy to use, delivering the precise, accurate data you trust from iGuide.', icon: Crosshair},
     ],
   },
   digitize: {heading: 'See how iGuide can digitize any space!', ctas: [bookDemo]},

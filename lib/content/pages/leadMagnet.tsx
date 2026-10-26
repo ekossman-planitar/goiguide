@@ -1,4 +1,5 @@
 /** /get-iguide/iguide/lead-magnet — copy, links and asset paths from the live page (checked 2026-10-14). */
+import {Magnet, MessageSquare, Smartphone} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {CtaButtons} from '@/components/blocks/CtaButtons'
 import {MediaView} from '@/components/blocks/MediaView'
@@ -12,7 +13,7 @@ export const meta = {
   path: '/get-iguide/iguide/lead-magnet',
 }
 
-const findProvider = {label: 'Find an iGuide Service Provider', href: 'https://ion.goiguide.com/', newTab: true}
+const findProvider = {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/', newTab: true}
 
 /** Live "Learn more" buttons open this HubSpot form in a pop-up */
 const learnMore = (variant: 'primary' | 'secondary') => (
@@ -52,17 +53,17 @@ export const blocks: Block[] = [
       {
         title: 'Lead gen',
         text: 'Interested prospects can connect with you directly via your iGuide 3D Virtual Tour.',
-        icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Content-delivery-system__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Magnet,
       },
       {
         title: 'Real-time feedback',
         text: 'Level up your listing reports and include real-time feedback from buyers.',
-        icon: {src: '/assets/Icons/Icon_300x300_Reseller_Marketing-tools__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: MessageSquare,
       },
       {
         title: 'Easy access',
         text: 'Boost your digital footprint, making your online listing more discoverable to potential buyers.',
-        icon: {src: '/assets/Icons/Icon-300x300_Superior-Navigation__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Smartphone,
       },
     ],
     after: <h3 className="type-heading-md text-ink">The best part? It’s INSTANT!</h3>,
@@ -103,7 +104,7 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: 'Find an iGuide Service Provider',
     text: 'Ready to experience the power of iGuide? Connect with an iGuide Service Provider to get started.',
-    ctas: [{label: 'Find an iGuide Service Provider', href: 'https://ion.goiguide.com/'}],
+    ctas: [{label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/'}],
   },
   {
     type: 'custom',

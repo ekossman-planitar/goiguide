@@ -383,7 +383,7 @@ const auRep = {
   ...shared,
   seoTitle: 'iGuide for Real Estate Photographers Australia | Virtual Tours & Floor Plans | iGuide',
   metaDescription: undefined,
-  headerButton: btn('Book your personalized product tour', 'demo'),
+  headerButton: btn('Book a product tour', 'demo'),
   sections: [
     {
       _type: 'lpHero',
@@ -458,7 +458,7 @@ const auRep = {
       _key: k(),
       heading: 'Ready to see it in action?',
       text: 'Book a 15-minute walkthrough and see how iGuide fits your workflow.',
-      buttons: [btn('Book a 15-minute walkthrough', 'demo'), btn('Shop cameras', 'url', 'https://store.goiguide.com/')],
+      buttons: [btn('Book a walkthrough', 'demo'), btn('Shop cameras', 'url', 'https://store.goiguide.com/')],
     },
   ],
 }

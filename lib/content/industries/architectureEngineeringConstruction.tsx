@@ -1,4 +1,5 @@
 /** /architecture-engineering-construction — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {Clock, DraftingCompass, FileCheck, Globe, Pointer, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {book, findPro, shopCameras, tour} from './shared'
 
@@ -51,12 +52,12 @@ export const blocks: Block[] = [
     subheading: 'Inaccurate as-builts. Missed dimensions. Repeat site visits. iGuide eliminates what slows you down.',
     columns: 3,
     cards: [
-      {title: 'Spend less time on-site', text: 'Reduce field time by up to 50%', icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'}},
-      {title: 'Capture comprehensive data', text: 'Capture 1000s of measurements per scan', icon: {src: '/assets/capture-comprehensive-data.svg', alt: 'icon - Stamped Document'}},
-      {title: 'Fast-track your CAD workflow', text: 'Generate CAD-ready files faster', icon: {src: '/assets/fasttrack-your-cad-workflow.svg', alt: 'icon - CAD File'}},
-      {title: 'Work together from anywhere', text: 'Collaborate remotely with 3D walkthroughs', icon: {src: '/assets/work-together-from-anywhere.svg', alt: 'icon - Globe'}},
-      {title: 'Stay on top of progress', text: 'Track build progress and tag walkthroughs with trade notes', icon: {src: '/assets/stay-on-top-of-progress.svg', alt: 'icon - Wall Clock'}},
-      {title: 'Say goodbye to rework', text: 'Eliminate manual drafting and rework', icon: {src: '/assets/say-goodbye-to-rework.svg', alt: 'icon - Finger Point'}},
+      {title: 'Spend less time on-site', text: 'Reduce field time by up to 50%', icon: Timer},
+      {title: 'Capture comprehensive data', text: 'Capture 1000s of measurements per scan', icon: FileCheck},
+      {title: 'Fast-track your CAD workflow', text: 'Generate CAD-ready files faster', icon: DraftingCompass},
+      {title: 'Work together from anywhere', text: 'Collaborate remotely with 3D walkthroughs', icon: Globe},
+      {title: 'Stay on top of progress', text: 'Track build progress and tag walkthroughs with trade notes', icon: Clock},
+      {title: 'Say goodbye to rework', text: 'Eliminate manual drafting and rework', icon: Pointer},
     ],
   },
   {
@@ -218,5 +219,5 @@ export const blocks: Block[] = [
     ],
   },
   // Live: "Talk to a product expert" opens a contact pop-up
-  {type: 'cta', heading: 'Learn how iGuide can accelerate your projects with better site data', ctas: [book('Talk to a product expert')]},
+  {type: 'cta', heading: 'Learn how iGuide can accelerate your projects with better site data', ctas: [book('Talk to an expert')]},
 ]

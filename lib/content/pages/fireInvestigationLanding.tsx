@@ -1,4 +1,5 @@
 /** /get-iguide/irc/fire-investigation — copy, links and asset paths from the live page (checked 2026-10-14). */
+import {Camera, Cog, Plug, Receipt, Ruler, Share2, ShieldCheck, Tag, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {MediaView} from '@/components/blocks/MediaView'
 import {HeroFormColumns} from '@/components/pages/HeroFormColumns'
@@ -46,32 +47,32 @@ export const blocks: Block[] = [
       {
         title: 'Quick capture technology',
         text: 'Spend less time on-site. iGuide’s PLANIX R1 captures high-resolution visuals and thousands of LiDAR measurements per scan.',
-        icon: {src: '/assets/Uploads/Icons_Processing-Time__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Timer,
       },
       {
         title: 'Accurate and reliable',
         text: 'Eliminate guesswork and reduce human error. Automate sketch creation and capture critical data with precision.',
-        icon: {src: '/assets/Uploads/Home-Images-Accurate-measurements-icon__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Ruler,
       },
       {
         title: 'Real-Time Tagging feature',
         text: 'Add photos, notes, and videos directly to your iGuide 3D Walkthrough during the scan. Capture every critical detail effortlessly.',
-        icon: {src: '/assets/Icons/Real-time_Tagging__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Tag,
       },
       {
         title: 'Data ownership',
         text: 'The choice is yours – keep a digital download of your files or host them on our secure hosting platform.',
-        icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Security__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: ShieldCheck,
       },
       {
         title: 'Pay-per project pricing',
         text: 'No recurring fees. Pay only for the processing and files you need instead of an expensive subscription.',
-        icon: {src: '/assets/Uploads/Icons-_No-Fees__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Receipt,
       },
       {
         title: 'Verisk Xactimate integration',
         text: 'Instantly convert your iGuide data into Xactimate-compatible formats to streamline reporting and claims.',
-        icon: {src: '/assets/Icons/Icon-300x300_Superior-Navigation__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Plug,
       },
     ],
   },
@@ -120,17 +121,17 @@ export const blocks: Block[] = [
       {
         title: 'Capture',
         text: 'Connect the iGuide PLANIX R1 to your smart device, scan the property, and gather visuals and measurements simultaneously.',
-        icon: {src: '/assets/Icons/1__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Camera,
       },
       {
         title: 'Process',
         text: 'Automatically generate floor plans with Instant Sketch. Upgrade to iGuide Standard or Premium ESX files for enhanced capabilities.',
-        icon: {src: '/assets/Icons/2__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Cog,
       },
       {
         title: 'Use',
         text: 'Share your comprehensive iGuide report with adjusters, clients, and teams to expedite claim resolutions.',
-        icon: {src: '/assets/Icons/3__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Share2,
       },
     ],
   },

@@ -33,7 +33,7 @@ export type CscPage = {
 
 /** Links shared by every CSC page's tour section (live: venobox video pop-ups; here they open in a new tab). */
 export const tourVideoLinks = (measureLabel: string): Cta[] => [
-  {label: 'How to use an iGuide tour?', href: 'https://youtu.be/vxHUsp8DDtg', newTab: true},
+  {label: 'Tour tips', href: 'https://youtu.be/vxHUsp8DDtg', newTab: true},
   {label: measureLabel, href: 'https://youtu.be/iUYMj5L5i7A?si=pEL5iWd-9k_bzXF5', variant: 'secondary', newTab: true},
 ]
 

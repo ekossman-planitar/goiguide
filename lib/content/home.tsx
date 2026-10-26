@@ -11,7 +11,7 @@ export const heroFallback: HeroData = {
   eyebrow: null,
   heading: 'Your fastest path to accurate floor plans and 3D virtual tours',
   subheading: 'Own your data, floor plans and virtual tour, all from a single scan.',
-  cta: {label: 'Book a Demo', href: '/book-a-demo'},
+  cta: {label: 'Book a demo', href: '/book-a-demo'},
   secondaryCta: {label: 'Learn more', href: '#how-it-works'},
   media: null,
 }

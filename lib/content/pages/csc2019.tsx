@@ -22,7 +22,7 @@ export const blocks: Block[] = cscBlocks({
   tour: {
     src: 'https://youriguide.com/embed/1655_dupont_st_toronto_on?autostart=1&?unbranded=1&bgcolor=FFFFFF',
     title: 'iGuide tour of 1655 Dupont Street',
-    links: tourVideoLinks('Learn how to use advanced measurements'),
+    links: tourVideoLinks('Measurement guide'),
   },
   downloads: [
     {title: 'PDF Floor Plans', icon: {src: '/assets/Uploads/floor_plans_pdf.png', alt: 'PDF floor plans', ...plans}, href: '/assets/csc/Dupont.pdf'},
@@ -46,7 +46,7 @@ export const blocks: Block[] = cscBlocks({
   competition: {
     website: {src: '/assets/csc/1655-Dupont.jpg', alt: 'CSC Student Design Challenge website', width: 1431, height: 430},
     description: <p>{competitionDescription}</p>,
-    ctas: [{label: 'Download competition instructions', href: '/assets/csc/2019_Design_Challenge_Documents.pdf'}],
+    ctas: [{label: 'Get instructions', href: '/assets/csc/2019_Design_Challenge_Documents.pdf'}],
     image: {src: '/assets/csc/2019-csc-cover.jpg', alt: '2019 CSC Design Challenge instructions', width: 600, height: 496},
   },
   past: pastCompetitions,

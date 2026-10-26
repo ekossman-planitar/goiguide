@@ -117,6 +117,6 @@ export const virtualTours = {
   cta: {
     heading: 'Get started with iGuide 3D virtual tours',
     text: 'See how iGuide 3D virtual tours help you explore, document and share spaces.',
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 }

@@ -42,7 +42,7 @@ export default async function EventsPage() {
       <CtaBanner
         heading="Can’t make it to an event?"
         text="Book a one-on-one demo and see iGuide in action at a time that suits you."
-        ctas={[book(), {label: 'Watch on-demand webinars', href: '/webinars', variant: 'secondary'}]}
+        ctas={[book(), {label: 'Watch webinars', href: '/webinars', variant: 'secondary'}]}
       />
     </>
   )

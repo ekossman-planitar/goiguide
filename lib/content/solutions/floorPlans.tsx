@@ -116,5 +116,5 @@ export const floorPlans = {
       },
     ],
   },
-  cta: {heading: 'Get the floor plan that fits your needs', ctas: [book('Talk to a product expert')]},
+  cta: {heading: 'Get the floor plan that fits your needs', ctas: [book('Talk to an expert')]},
 }

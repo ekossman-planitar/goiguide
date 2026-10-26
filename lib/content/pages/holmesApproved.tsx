@@ -240,7 +240,7 @@ export const blocks: Block[] = [
         <p className="text-sm text-muted">*Scanning speed varies depending on chosen settings and lighting conditions.</p>
       </>
     ),
-    ctas: [{...shopCameras, label: 'Shop PLANIX Camera Systems', variant: 'primary', newTab: true}],
+    ctas: [{...shopCameras, label: 'Shop cameras', variant: 'primary', newTab: true}],
     media: {type: 'image', image: {src: '/assets/Uploads/PLANIX_R1_Front_72dpi.png', alt: 'photo - iGuide PLANIX R1'}},
   },
   {

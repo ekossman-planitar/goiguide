@@ -134,7 +134,7 @@ export const mainNav: NavItem[] = [
 
 export const headerButtons = {
   findPro: {label: 'Find a Pro', href: 'https://ion.goiguide.com/'},
-  shop: {label: 'Shop Now', href: 'https://store.goiguide.com/products/iguide-planix-r1'},
+  shop: {label: 'Shop now', href: 'https://store.goiguide.com/products/iguide-planix-r1'},
 }
 
 /**

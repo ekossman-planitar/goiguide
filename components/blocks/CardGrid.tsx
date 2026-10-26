@@ -1,3 +1,4 @@
+import type {LucideIcon} from 'lucide-react'
 import type {ReactNode} from 'react'
 import {FallbackImage} from '@/components/ui/FallbackImage'
 import {SmartLink} from '@/components/ui/SmartLink'
@@ -9,8 +10,8 @@ import type {Img, Media} from './types'
 export type GridCard = {
   title: string
   text?: ReactNode
-  /** Small icon above the title */
-  icon?: Img
+  /** Small icon above the title: a Lucide icon (the site's one icon set) or, for Sanity content, an image */
+  icon?: Img | LucideIcon
   /** Larger image at the top of the card */
   image?: Img
   /** Video or embed at the top of the card (instead of an image) */
@@ -30,10 +31,7 @@ export function CardGrid({cards, columns = 4}: Readonly<{cards: GridCard[]; colu
   return (
     <ul className={cn('grid gap-6', cols[columns])}>
       {cards.map((card) => (
-        <li
-          key={card.title}
-          className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card"
-        >
+        <li key={card.title} className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card">
           {card.image && (
             <div className="relative mb-5 overflow-hidden rounded-xl bg-surface">
               <FallbackImage
@@ -48,7 +46,7 @@ export function CardGrid({cards, columns = 4}: Readonly<{cards: GridCard[]; colu
             </div>
           )}
           {card.media && <MediaView media={card.media} className="mb-5 rounded-xl" sizes="(min-width: 1024px) 33vw, 100vw" />}
-          {card.icon && (
+          {card.icon && 'src' in card.icon ? (
             <FallbackImage
               src={card.icon.src}
               alt=""
@@ -57,15 +55,15 @@ export function CardGrid({cards, columns = 4}: Readonly<{cards: GridCard[]; colu
               className="mb-5 h-12 w-12 object-contain"
               fallback={<span className="mb-5 block h-12 w-12 rounded-xl bg-primary-soft" aria-hidden />}
             />
-          )}
+          ) : card.icon ? (
+            <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
+              <card.icon width={24} height={24} aria-hidden />
+            </span>
+          ) : null}
           <h3 className="type-heading-sm text-ink">{card.title}</h3>
           {card.text && <div className="mt-2 flex-1 text-base leading-6 text-body [&_p+p]:mt-3 [&_strong]:text-ink">{card.text}</div>}
           {card.link && (
-            <SmartLink
-              href={card.link.href}
-              {...(card.link.newTab ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
-              className="mt-5 text-link"
-            >
+            <SmartLink href={card.link.href} {...(card.link.newTab ? {target: '_blank', rel: 'noopener noreferrer'} : {})} className="mt-5 text-link">
               {card.link.label}
               <ArrowRight width={16} height={16} />
             </SmartLink>

@@ -260,6 +260,6 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: "One visit. One complete file. Let's talk.",
     text: "Book a 15-minute product walkthrough to see how iGuide's IRC Bundle can pay for itself in just your first few cases.",
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 ]

@@ -212,7 +212,7 @@ export const blocks: Block[] = [
             newTab
             className="mt-8 w-fit"
           >
-            Download CAD sample files
+            Download CAD samples
           </Button>
         </div>
         <div className={card}>

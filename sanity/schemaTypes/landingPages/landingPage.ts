@@ -93,7 +93,7 @@ export const landingPage = defineType({
     }),
     defineField({
       name: 'floatingBookButton',
-      title: 'Floating "Book your personalized product tour" button',
+      title: 'Floating "Book a product tour" button',
       type: 'boolean',
       group: 'settings',
       initialValue: false,

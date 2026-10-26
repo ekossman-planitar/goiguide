@@ -120,45 +120,129 @@ const iconSet: [string, LucideIcon | typeof ArrowRight][] = [
   ['Rating', Star],
 ]
 
-const colours = [
+type Colour = {name: string; token: string; hex: string; uses: string[]; swatch: string; websiteOnly?: boolean}
+
+const colours: Colour[] = [
   {
     name: 'REA Red',
-    token: 'primary-hover / rea-red',
+    token: 'rea-red / primary-hover',
     hex: '#E4002B',
-    use: 'Hover and active highlights, quote marks, required-field marks. Accents only, never large areas.',
     swatch: 'bg-rea-red',
+    uses: [
+      'Hover state of every button, link, tab, pill and card title',
+      'Quote marks',
+      'Required-field asterisks',
+      'The accent in industry illustrations',
+      'Accents only: never large areas or extra red elements',
+    ],
   },
   {
     name: 'Snowgum 700',
     token: 'primary / ink / body',
     hex: '#2E2C30',
-    use: 'Buttons, links, headings and body text. The default “black”.',
     swatch: 'bg-snowgum-700',
+    uses: [
+      'Headings and body text',
+      'Primary button fill; secondary button border and text',
+      'Text links and links in sentences',
+      'Active tab, filter and selected states',
+      'Focus outlines and the announcement bar',
+    ],
   },
-  {name: 'Snowgum 400', token: 'muted', hex: '#716E75', use: 'Secondary text: subheadings, captions, roles, form field borders.', swatch: 'bg-snowgum-400'},
-  {name: 'White', token: 'white', hex: '#FFFFFF', use: 'Page and card background.', swatch: 'bg-white border border-line'},
-  {name: 'Mist', token: 'surface / sky / cream', hex: '#F3F2F5', use: 'Alternating section background, pills, tab tracks, step badges.', swatch: 'bg-mist'},
+  {
+    name: 'Snowgum 400',
+    token: 'muted',
+    hex: '#716E75',
+    swatch: 'bg-snowgum-400',
+    uses: [
+      'Subheadings and lead text on white',
+      'Captions, dates, roles and other meta text on white',
+      'Form field borders and placeholder text',
+      'Never on Mist: use Slate there',
+    ],
+  },
+  {
+    name: 'White',
+    token: 'white',
+    hex: '#FFFFFF',
+    swatch: 'bg-white border-b border-line',
+    uses: ['Page background', 'Cards, panels, accordions and dropdowns', 'Secondary button fill', 'Text and icons on Snowgum 700 or red'],
+  },
+  {
+    name: 'Mist',
+    token: 'surface / sky / cream',
+    hex: '#F3F2F5',
+    swatch: 'bg-mist border-b border-line',
+    uses: ['Alternating section backgrounds', 'Tab and filter tracks', 'Pills, step badges and icon squares', 'Table headers'],
+  },
+  {
+    name: 'Slate',
+    token: 'slate',
+    hex: '#333F48',
+    swatch: 'bg-slate',
+    uses: ['Secondary text on Mist backgrounds (applied automatically)', 'Charts and illustrations'],
+  },
+  {
+    name: 'Blueprint',
+    token: 'blueprint',
+    hex: '#5B8FDB',
+    swatch: 'bg-blueprint',
+    uses: ['Charts and data visualisation', 'Illustrations', 'Never for text, buttons or links'],
+  },
+  {
+    name: 'Laser',
+    token: 'laser',
+    hex: '#9FD356',
+    swatch: 'bg-laser',
+    uses: ['Charts and data visualisation', 'Illustrations', 'Never for text, buttons or links'],
+  },
   {
     name: 'Hairline',
     token: 'line',
     hex: '#E4E4E7',
-    use: 'Website only: borders and dividers. Not part of the brand palette, so never use it in print or other brand work.',
-    websiteOnly: true,
     swatch: 'bg-line',
+    websiteOnly: true,
+    uses: ['Website only', 'Card, field and table borders', 'Dividers between rows and sections'],
   },
-  {name: 'Blueprint', token: 'blueprint', hex: '#5B8FDB', use: 'Secondary palette: charts and illustrations only.', swatch: 'bg-blueprint'},
-  {name: 'Laser', token: 'laser', hex: '#9FD356', use: 'Secondary palette: charts and illustrations only.', swatch: 'bg-laser'},
-  {name: 'Slate', token: 'slate', hex: '#3E5C76', use: 'Secondary palette: charts and illustrations only.', swatch: 'bg-slate'},
   {
     name: 'Error',
     token: 'error',
     hex: '#B42318',
-    use: 'Website only: form error messages and invalid fields. Not part of the brand palette.',
-    websiteOnly: true,
     swatch: 'bg-error',
+    websiteOnly: true,
+    uses: ['Website only', 'Form error messages', 'Borders of fields with an error'],
   },
-  {name: 'Star', token: 'star', hex: '#F59E0B', use: 'Website only: review stars. Not part of the brand palette.', websiteOnly: true, swatch: 'bg-star'},
+  {
+    name: 'Star',
+    token: 'star',
+    hex: '#F59E0B',
+    swatch: 'bg-star',
+    websiteOnly: true,
+    uses: ['Website only', 'Review rating stars'],
+  },
 ]
+
+function ColourCard({c}: Readonly<{c: Colour}>) {
+  return (
+    <li className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+      <div className={cn('h-12', c.swatch)} />
+      <div className="p-4">
+        <p className="flex items-baseline justify-between gap-2">
+          <span className="type-heading-xs text-ink">{c.name}</span>
+          <span className="type-small font-semibold text-ink tabular-nums">{c.hex}</span>
+        </p>
+        <p className="type-caption text-muted">
+          <code>{c.token}</code>
+        </p>
+        <ul className="type-small mt-2 ml-4 list-disc space-y-0.5 text-body">
+          {c.uses.map((u) => (
+            <li key={u}>{u}</li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  )
+}
 
 const typeScale = [
   {cls: 'type-display', size: '40 → 56px', lh: '1.15', use: 'Page title in a hero (h1). One per page.', sample: 'Accurate floor plans & 3D tours'},
@@ -244,12 +328,18 @@ export default async function BrandGuidelinePage() {
       </Section>
 
       <Section id="logo" heading="Logo" subheading="Always use the supplied logo file. Never redraw, retype or edit it." background="surface">
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-3">
           <Demo label="Primary logo">
             <div className="flex h-40 items-center justify-center rounded-2xl border border-line bg-white">
               <Image src="/iGUIDE-Logo.svg" alt="iGuide" width={1330} height={368} className="h-auto w-[200px]" />
             </div>
             <Spec>Website file: /iGUIDE-Logo.svg. Shown 150px wide in the site header. Place it on white or Mist.</Spec>
+          </Demo>
+          <Demo label="Brand mark">
+            <div className="flex h-40 items-center justify-center rounded-2xl border border-line bg-white">
+              <Image src="/brand/iGuide-Brand-Mark.svg" alt="iGuide brand mark" width={400} height={400} className="h-24 w-24" />
+            </div>
+            <Spec>Website file: /brand/iGuide-Brand-Mark.svg (also the website icon, favicon.ico). For small square spaces where the full logo won’t fit.</Spec>
           </Demo>
           <Demo label="Logo rules">
             <CheckList
@@ -266,40 +356,22 @@ export default async function BrandGuidelinePage() {
       </Section>
 
       <Section id="colour" heading="Colour" subheading="From the iGuide Brand Quick Guide (2026). Use the token, never a hex value.">
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {colours
             .filter((c) => !c.websiteOnly)
             .map((c) => (
-              <li key={c.name} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-                <div className={cn('h-20', c.swatch)} />
-                <div className="p-5">
-                  <p className="type-heading-xs text-ink">{c.name}</p>
-                  <p className="type-small text-muted">
-                    {c.hex} · <code>{c.token}</code>
-                  </p>
-                  <p className="type-small mt-2 text-body">{c.use}</p>
-                </div>
-              </li>
+              <ColourCard key={c.name} c={c} />
             ))}
         </ul>
-        <h3 className="type-heading-md mt-12 text-ink">Website only</h3>
-        <p className="type-body mt-2 max-w-3xl text-muted">
-          These colours exist only for the website’s interface. They are not brand colours: never use them in print, decks, ads or other brand work.
+        <h3 className="type-heading-sm mt-8 text-ink">Website only</h3>
+        <p className="type-small mt-1 text-muted">
+          Interface colours for goiguide.com only. Not brand colours: never use them in print, decks, ads or other brand work.
         </p>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {colours
             .filter((c) => c.websiteOnly)
             .map((c) => (
-              <li key={c.name} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-                <div className={cn('h-20', c.swatch)} />
-                <div className="p-5">
-                  <p className="type-heading-xs text-ink">{c.name}</p>
-                  <p className="type-small text-muted">
-                    {c.hex} · <code>{c.token}</code>
-                  </p>
-                  <p className="type-small mt-2 text-body">{c.use}</p>
-                </div>
-              </li>
+              <ColourCard key={c.name} c={c} />
             ))}
         </ul>
       </Section>
@@ -815,7 +887,10 @@ export default async function BrandGuidelinePage() {
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
-            ['Contrast', 'Body text Snowgum 700 on white or Mist. Secondary text Snowgum 400 on white only, never on Mist or photos.'],
+            [
+              'Contrast',
+              'Body text Snowgum 700 on white or Mist. Secondary text Snowgum 400 on white, Slate on Mist (the site switches automatically). Never on photos.',
+            ],
             ['Links', 'Links in sentences are underlined. Never use colour alone to show something is clickable.'],
             ['Images', 'Every meaningful image has alt text that says what it shows. Decorative images have empty alt text.'],
             ['Headings', 'One h1 per page, then h2, h3 in order. Never pick a heading level for its size; use the type classes.'],

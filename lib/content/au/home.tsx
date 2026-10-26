@@ -4,6 +4,7 @@
  * metric sizes) so it isn't duplicate content. NEW DRAFT COPY: review before launch.
  * Facts are taken from the live AU pages (checked 2026-10-14).
  */
+import {ChartColumn, LayoutGrid, Map, Rotate3d} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {tour} from '@/lib/content/industries/shared'
 import {AU_TERMS_PATH, book, danielNik, launchVideo, rea, reaLogo} from './shared'
@@ -68,7 +69,7 @@ export const blocks: Block[] = [
     type: 'split',
     heading: 'Explore an Australian iGuide',
     body: <p>Walk through a Sydney property the way buyers do on realestate.com.au: move room to room, check dimensions and jump straight to the spaces that matter.</p>,
-    ctas: [{label: 'Download sample floor plans', href: '/assets/iGUIDE-Floor-Plans.pdf', newTab: true}],
+    ctas: [{label: 'Download samples', href: '/assets/iGUIDE-Floor-Plans.pdf', newTab: true}],
     media: {type: 'embed', src: tour('https://youriguide.com/141_harris_st_sydney_nsw?autostart=1&bgcolor=FFFFFF'), title: 'iGuide 3D tour of 141 Harris St, Sydney NSW'},
     mediaSide: 'left',
   },
@@ -78,10 +79,10 @@ export const blocks: Block[] = [
     heading: 'Everything a modern listing needs, from one visit',
     columns: 4,
     cards: [
-      {title: '3D virtual tour', text: 'An immersive walkthrough that opens right inside the realestate.com.au listing.', icon: {src: '/assets/247_open_house.png', alt: ''}},
-      {title: 'Accurate floor plans', text: 'LiDAR-accurate, branded floor plans with room dimensions in metric.', icon: {src: '/assets/Floor_plans_re-imagined.png', alt: ''}},
-      {title: 'Site Plans', text: 'Show how the home sits on the block, with outdoor areas in context.', icon: {src: '/assets/Lead_the_pack.png', alt: ''}},
-      {title: 'Listing analytics', text: 'Show vendors how buyers engage with the tour.', icon: {src: '/assets/Stats_that_sell.png', alt: ''}},
+      {title: '3D virtual tour', text: 'An immersive walkthrough that opens right inside the realestate.com.au listing.', icon: Rotate3d},
+      {title: 'Accurate floor plans', text: 'LiDAR-accurate, branded floor plans with room dimensions in metric.', icon: LayoutGrid},
+      {title: 'Site Plans', text: 'Show how the home sits on the block, with outdoor areas in context.', icon: Map},
+      {title: 'Listing analytics', text: 'Show vendors how buyers engage with the tour.', icon: ChartColumn},
     ],
   },
   {type: 'quote', quote: danielNik},
@@ -107,6 +108,6 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: 'See iGuide on a realestate.com.au listing',
     text: 'Book a short walkthrough with our Australian team.',
-    ctas: [book('Book your personalized product tour')],
+    ctas: [book('Book a product tour')],
   },
 ]

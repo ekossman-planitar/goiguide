@@ -22,7 +22,7 @@ export const blocks: Block[] = cscBlocks({
   tour: {
     src: 'https://youriguide.com/embed/498_eagle_st_n_cambridge_on?unbranded=1&autostart=1&bgcolor=FFFFFF',
     title: 'iGuide tour of 498 Eagle Street North',
-    links: tourVideoLinks('Learn how to use advanced measurement'),
+    links: tourVideoLinks('Measurement guide'),
   },
   downloads: [
     {title: 'PDF Floor Plans', icon: {src: '/assets/csc/pdf_icon.png', alt: 'PDF floor plans', ...plans}, href: '/assets/csc/Woollen_Mills_PDF.pdf'},
@@ -48,7 +48,7 @@ export const blocks: Block[] = cscBlocks({
   competition: {
     website: {src: '/assets/csc/csc_2021.jpg', alt: 'CSC Student Design Challenge website', width: 1200, height: 361},
     description: <p>{competitionDescription}</p>,
-    ctas: [{label: 'Download Competition Instructions', href: '/assets/csc/2021_Design_Challenge_Documents.pdf'}],
+    ctas: [{label: 'Get instructions', href: '/assets/csc/2021_Design_Challenge_Documents.pdf'}],
     image: {src: '/assets/csc/csc_instructions_2021.jpg', alt: '2021 CSC Design Challenge instructions', width: 800, height: 661},
   },
   past: pastCompetitions,

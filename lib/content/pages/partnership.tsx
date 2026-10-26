@@ -1,4 +1,5 @@
 /** /partnership — copy, links and asset paths from the live page (checked 2026-10-14). */
+import {Headset, KeyRound, Library, Megaphone, TrendingUp} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {HubSpotForm} from '@/components/forms/HubSpotForm'
 import {CheckList} from '@/components/blocks/CheckList'
@@ -13,7 +14,6 @@ export const meta = {
 /** "Request to join" HubSpot form (inline on live, and in the pop-up opened by the Partner Program banner button) */
 const PARTNER_FORM_ID = 'd798b8e8-6887-49df-9378-a24e0a6b2069'
 
-const icon = (src: string) => ({src, alt: '', width: 60, height: 60})
 
 export const blocks: Block[] = [
   {
@@ -48,27 +48,27 @@ export const blocks: Block[] = [
       {
         title: 'Potential increased revenue',
         text: 'Partnering with iGuide means a potential increase in revenue for your business. As a partner, you’ll also enjoy exclusive discounts and benefits.',
-        icon: icon('/assets/Uploads/Icons_Revenue-Growth__FitMaxWzYwLDYwXQ.png'),
+        icon: TrendingUp,
       },
       {
         title: 'Library of resources',
         text: 'Gain access to a wealth of tools designed to support your sales efforts including sales enablement materials.',
-        icon: icon('/assets/Uploads/Icons-_Detailed-Reports__FitMaxWzYwLDYwXQ.png'),
+        icon: Library,
       },
       {
         title: 'Dedicated support',
         text: 'Connect with our best-in-class support team and get equipped with valuable resources, instructional videos and dedicated assistance to ensure your success.',
-        icon: icon('/assets/Uploads/Icons_Support__FitMaxWzYwLDYwXQ.png'),
+        icon: Headset,
       },
       {
         title: 'Marketing tools',
         text: 'Seize the chance to be showcased in co-branded social content, tap into our collection of iGuide branded assets, utilize templated emails and content and elevate your marketing efforts.',
-        icon: icon('/assets/Uploads/Icons_Marketing-tools__FitMaxWzYwLDYwXQ.png'),
+        icon: Megaphone,
       },
       {
         title: 'Inside access',
         text: 'Join us in shaping iGuide innovation. Participate in technology and hardware testing, provide valuable feedback and enjoy partner discounts.',
-        icon: icon('/assets/Uploads/Icons_Troubleshooting__FitMaxWzYwLDYwXQ.png'),
+        icon: KeyRound,
       },
     ],
   },

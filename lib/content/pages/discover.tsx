@@ -1,4 +1,5 @@
 /** /discover — copy, links and asset paths from the live page (checked 2026-10-21). */
+import {ChartColumn, LayoutGrid, Megaphone, Rotate3d} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 
 export const meta = {
@@ -8,7 +9,6 @@ export const meta = {
   path: '/discover',
 }
 
-const icon = (src: string) => ({src, alt: '', width: 60, height: 60})
 
 export const blocks: Block[] = [
   {
@@ -26,22 +26,22 @@ export const blocks: Block[] = [
       {
         title: 'Floor plans',
         text: 'Accurate, interactive, digital floor plans that adhere to the ANSI-Z765-2021 and RECA RMS 2017 standards make it easy to visualize the space.',
-        icon: icon('/assets/Uploads/Icons-Floor-Plans__FitMaxWzYwLDYwXQ.png'),
+        icon: LayoutGrid,
       },
       {
         title: '3D virtual tours',
         text: 'An interactive 3D virtual tour gives potential buyers a sense of being there, helping them understand the fit and flow of the space.',
-        icon: icon('/assets/Uploads/Icons_3D-Tour__FitMaxWzYwLDYwXQ.png'),
+        icon: Rotate3d,
       },
       {
         title: 'Turn-key marketing tool',
         text: 'Real-time leads, listing feedback, custom agent branding, essential neighborhood information and embed tools.',
-        icon: icon('/assets/Uploads/Icons-Marketing__FitMaxWzYwLDYwXQ.png'),
+        icon: Megaphone,
       },
       {
         title: 'Analytics',
         text: 'Engagement stats show traffic, visitor numbers and browsing time, helping agents showcase marketing success to sellers.',
-        icon: icon('/assets/Uploads/Icons-_Your-Data__FitMaxWzYwLDYwXQ.png'),
+        icon: ChartColumn,
       },
     ],
   },

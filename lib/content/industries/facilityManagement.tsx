@@ -1,4 +1,5 @@
 /** /facility-management — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {ClipboardList, Files, Ruler, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {book, shopCameras, tour} from './shared'
 
@@ -43,22 +44,22 @@ export const blocks: Block[] = [
       {
         title: 'Create reliable building records',
         text: 'Capture accurate floor plans, measurements and visual documentation in one system, so teams can validate layouts and reference trusted building data anytime.',
-        icon: {src: '/assets/policy.svg', alt: 'icon - Documents in hand'},
+        icon: Files,
       },
       {
         title: 'Reduce repeat site visits',
         text: 'Access detailed building data remotely to verify conditions, quantify assets and scope work, without returning to site or disrupting active facilities.',
-        icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'},
+        icon: Timer,
       },
       {
         title: 'Support assessments & capital planning',
         text: 'Thousands of lidar-based measurements per scan reduce human error and improve confidence in your documentation.',
-        icon: {src: '/assets/contractors.svg', alt: 'icon - Measurements'},
+        icon: Ruler,
       },
       {
         title: 'Scale across portfolios securely',
         text: 'Maintain consistent documentation across locations with controlled access and secure data sharing, supporting collaboration without exposing sensitive information.',
-        icon: {src: '/assets/capture-comprehensive-data.svg', alt: 'icon - Clipboard'},
+        icon: ClipboardList,
       },
     ],
     after: (
@@ -193,6 +194,6 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: 'See how iGuide supports facilities workflows',
     text: 'Get a walkthrough of how iGuide helps facilities teams document buildings, support assessments and plan projects with accurate, reusable building records.',
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 ]

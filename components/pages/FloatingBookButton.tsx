@@ -6,11 +6,11 @@ import {SmartLink} from '@/components/ui/SmartLink'
 import {cn} from '@/lib/cn'
 
 /**
- * Fixed "Book your personalized product tour" button that fades in once the
+ * Fixed "Book a product tour" button that fades in once the
  * visitor scrolls past 100px (as on live /iguide-holmes-approved). It keeps the
  * live `openCalendly` class, so the site-wide booking pop-up and GTM triggers match.
  */
-export function FloatingBookButton({label = 'Book your personalized product tour'}: Readonly<{label?: string}>) {
+export function FloatingBookButton({label = 'Book a product tour'}: Readonly<{label?: string}>) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {

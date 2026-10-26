@@ -1,4 +1,5 @@
 /** /design-construction — copy, links and asset paths from the live page (checked 2026-10-07; packages tabs 2026-10-14). */
+import {Clock, DraftingCompass, FileCheck, Pointer, Rotate3d, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {CheckList} from '@/components/blocks/CheckList'
 import {PackageTabs, type PackageTab} from '@/components/blocks/PackageTabs'
@@ -12,7 +13,7 @@ export const meta = {
 }
 
 // Live: "Request an iGuide Site Survey" opens a request pop-up
-const requestSurvey = book('Request an iGuide Site Survey')
+const requestSurvey = book('Request a survey')
 const packageSample = '/assets/183-Weber-Advanced-Drawing-Package.zip'
 
 const sharedWalkthrough = [
@@ -113,7 +114,7 @@ export const blocks: Block[] = [
         />
       </>
     ),
-    ctas: [requestSurvey, {label: 'View iGuide CAD Package sample', href: packageSample, variant: 'secondary'}],
+    ctas: [requestSurvey, {label: 'View CAD sample', href: packageSample, variant: 'secondary'}],
     media: {
       type: 'image',
       image: {src: '/assets/d772616a36/iguidespotlight_high.gif', alt: 'Photo - Advanced Drawing Packages Sample Package'},
@@ -194,12 +195,12 @@ export const blocks: Block[] = [
     subheading: 'Accurate base information reduces uncertainty, prevents re-visits and supports confident planning at every stage of your project.',
     columns: 3,
     cards: [
-      {title: 'Enhanced speed', text: 'Fast turnaround times help teams stay ahead of tight commercial schedules.', icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'}},
-      {title: 'Improved consistency', text: 'Standardized survey outputs ensure consistency across every project and location.', icon: {src: '/assets/capture-comprehensive-data.svg', alt: 'icon - Stamped Document'}},
-      {title: 'Immersive visuals', text: 'A 3D walkthrough gives your team the context needed to design accurately.', icon: {src: '/assets/Icons/tour.png', alt: 'icon - Tour'}},
-      {title: 'Streamlined execution', text: 'A predictable workflow from kickoff to delivery keeps projects moving forward smoothly.', icon: {src: '/assets/stay-on-top-of-progress.svg', alt: 'icon - Wall Clock'}},
-      {title: 'Organized deliverables', text: 'Everything you need: measurements, CAD files and visuals in one place.', icon: {src: '/assets/fasttrack-your-cad-workflow.svg', alt: 'icon - CAD File'}},
-      {title: 'No project re-visits', text: 'Comprehensive capture reduces the risk of missing critical information and costly oversights.', icon: {src: '/assets/say-goodbye-to-rework.svg', alt: 'icon - Finger Point'}},
+      {title: 'Enhanced speed', text: 'Fast turnaround times help teams stay ahead of tight commercial schedules.', icon: Timer},
+      {title: 'Improved consistency', text: 'Standardized survey outputs ensure consistency across every project and location.', icon: FileCheck},
+      {title: 'Immersive visuals', text: 'A 3D walkthrough gives your team the context needed to design accurately.', icon: Rotate3d},
+      {title: 'Streamlined execution', text: 'A predictable workflow from kickoff to delivery keeps projects moving forward smoothly.', icon: Clock},
+      {title: 'Organized deliverables', text: 'Everything you need: measurements, CAD files and visuals in one place.', icon: DraftingCompass},
+      {title: 'No project re-visits', text: 'Comprehensive capture reduces the risk of missing critical information and costly oversights.', icon: Pointer},
     ],
   },
   {

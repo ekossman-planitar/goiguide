@@ -1,4 +1,5 @@
 /** /forensic-investigation — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {Cloud, FileCheck, FileSpreadsheet, Images} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {book, findPro, instantPackage, ircLogos, premiumPackage, standardPackage, tour} from './shared'
 
@@ -14,7 +15,7 @@ export const blocks: Block[] = [
     heading: 'Document fire and crime scenes with speed, accuracy and detail',
     subheading:
       'Capture accurate measurements, floor plans and immersive visuals in a single visit. Ready for analysis, reporting or courtroom presentation.',
-    ctas: [book(), {label: 'Download iGuide Premium sample', href: '/assets/PREMIUM_SKETCH.ESX.zip', variant: 'secondary'}],
+    ctas: [book(), {label: 'Download sample', href: '/assets/PREMIUM_SKETCH.ESX.zip', variant: 'secondary'}],
     media: {
       type: 'embed',
       src: tour('https://youriguide.com/embed/664e7263-4c29-4c6a-9b35-b4b98cf8bf57?unbranded=1&autostart=1&bgcolor=FFFFFF'),
@@ -28,10 +29,10 @@ export const blocks: Block[] = [
     heading: 'Who benefits from accurate floor plans with an integrated iGuide virtual walkthrough',
     subheading: 'Accurate measurements, floor plans and comprehensive images benefit anyone who needs to document a scene precisely.',
     cards: [
-      {title: 'Get to analysis faster', text: 'Fast turnaround so you can move to analysis sooner', icon: {src: '/assets/fasttrack-your-cad-workflow.svg', alt: 'icon - Property Data Sheet'}},
-      {title: 'Defensible, court-ready reports', text: 'LiDAR-accurate measurements stand up in court', icon: {src: '/assets/capture-comprehensive-data.svg', alt: 'icon - Stamped Document'}},
-      {title: 'Preserve evidence for the long term', text: 'Detailed visual records for long-term storage and review', icon: {src: '/assets/forensics.svg', alt: 'icon - Photos'}},
-      {title: 'Own your data with no ongoing fees', text: 'Pay per project with full data ownership and download rights', icon: {src: '/assets/Icons/cloud.png', alt: 'icon - Connected to the Cloud'}},
+      {title: 'Get to analysis faster', text: 'Fast turnaround so you can move to analysis sooner', icon: FileSpreadsheet},
+      {title: 'Defensible, court-ready reports', text: 'LiDAR-accurate measurements stand up in court', icon: FileCheck},
+      {title: 'Preserve evidence for the long term', text: 'Detailed visual records for long-term storage and review', icon: Images},
+      {title: 'Own your data with no ongoing fees', text: 'Pay per project with full data ownership and download rights', icon: Cloud},
     ],
   },
   {
@@ -60,7 +61,7 @@ export const blocks: Block[] = [
     ],
     ctas: [
       {
-        label: 'Listen - Fire Investigation Podcast',
+        label: 'Listen to the podcast',
         href: 'https://podcasts.apple.com/ca/podcast/s2-ep-9-iguide-3d-camera-efficient-fire-investigation/id1739288903?i=1000706642586',
         variant: 'secondary',
         newTab: true,
@@ -110,7 +111,7 @@ export const blocks: Block[] = [
       },
     ],
     // Live: "Lets chat about iGuide" opens a "Get in touch" pop-up
-    ctas: [book('Lets chat about iGuide'), {...findPro, variant: 'secondary'}],
+    ctas: [book('Let’s chat'), {...findPro, variant: 'secondary'}],
   },
   {
     type: 'quotes',
@@ -179,5 +180,5 @@ export const blocks: Block[] = [
     ],
   },
   // Live: "Talk to a product expert" opens a contact pop-up
-  {type: 'cta', heading: 'Start your next investigation with better site data', ctas: [book('Talk to a product expert')]},
+  {type: 'cta', heading: 'Start your next investigation with better site data', ctas: [book('Talk to an expert')]},
 ]

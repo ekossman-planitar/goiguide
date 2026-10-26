@@ -5,7 +5,7 @@ import type {Cta} from '@/components/blocks/types'
  * opens the Calendly + HubSpot booking pop-up. The class is kept so GTM triggers
  * keep matching; until that script is ported they fall back to /book-a-demo.
  */
-export const book = (label = 'Book your personalized product tour'): Cta => ({
+export const book = (label = 'Book a product tour'): Cta => ({
   label,
   href: '/book-a-demo',
   className: 'openCalendly',

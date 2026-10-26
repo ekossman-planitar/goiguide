@@ -1,4 +1,5 @@
 /** /get-iguide/rep/iguide-photos — copy, links and asset paths from the live page (checked 2026-10-14). */
+import {ChartColumn, MousePointerClick, Presentation, Scaling} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {MediaView} from '@/components/blocks/MediaView'
 
@@ -44,22 +45,22 @@ export const blocks: Block[] = [
       {
         title: 'Elegant Presentation',
         text: 'Present your images in an attractive slideshow.',
-        icon: {src: '/assets/Icons/Icon_300x300_Reseller_Marketing-tools__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Presentation,
       },
       {
         title: 'Easy to use',
         text: 'Avoid complicated sharing services and deliver photos to your clients via iGuide photos.',
-        icon: {src: '/assets/Icons/Icon-Master_300x300_Value_Content-delivery-system__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: MousePointerClick,
       },
       {
         title: 'Automatic photo resizing',
         text: 'No editing required. Your images are automatically resized.',
-        icon: {src: '/assets/Uploads/Icons_Photos__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: Scaling,
       },
       {
         title: 'Advanced analytics',
         text: 'Track image views, sources, and view duration.',
-        icon: {src: '/assets/Icons/Icon-300x300_Value_Flexible-file-formats__FitMaxWzYwLDYwXQ.png', alt: ''},
+        icon: ChartColumn,
       },
     ],
   },

@@ -1,4 +1,5 @@
 /** /real-estate-photography — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {Camera, Images, Timer, Users} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import {SmartLink} from '@/components/ui/SmartLink'
 import {book, instantPackage, premiumPackage, realEstateLogos, standardPackage, tour} from './shared'
@@ -44,22 +45,22 @@ export const blocks: Block[] = [
       {
         title: 'Simple, repeatable capture workflow',
         text: 'Capture floor plans, Site Plans and visuals in a single visit using a consistent workflow you can rely on.',
-        icon: {src: '/assets/Icons/camera-v2.png', alt: 'icon - camera'},
+        icon: Camera,
       },
       {
         title: 'Faster turnaround, less post',
         text: 'Spend less time stitching, editing and reworking files so you can deliver faster and take on more shoots each week.',
-        icon: {src: '/assets/spend-less-time-on-site.svg', alt: 'icon - Stop Watch'},
+        icon: Timer,
       },
       {
         title: 'Stand out in listing presentations',
         text: 'Offer interactive floor plans, virtual tours and Site Plans that help agents stand out, and give you more to deliver.',
-        icon: {src: '/assets/forensics.svg', alt: 'icon - Photos'},
+        icon: Images,
       },
       {
         title: 'Support built for growing businesses',
         text: 'Access training, resources and support designed to help you price confidently, work faster and scale sustainably.',
-        icon: {src: '/assets/Icons/photographers.png', alt: 'icon - photographers'},
+        icon: Users,
       },
     ],
     after: (
@@ -92,7 +93,7 @@ export const blocks: Block[] = [
     listHeading: 'From the same source of truth, buyers get:',
     list: ['Fewer return visits or separate exterior captures', 'Fewer revisions and client follow-ups', 'Faster delivery with higher-value deliverables'],
     after: <p>One capture means fewer tools, less post-production, and the ability to deliver more on every job.</p>,
-    ctas: [{label: 'Learn more about Site Plans', href: '/iguide/site-plans'}],
+    ctas: [{label: 'Explore Site Plans', href: '/iguide/site-plans'}],
     media: {
       type: 'embed',
       src: tour('https://youriguide.com/334_south_lake_shore_drive_thousand_oaks?branded=1&minfp=1&autostart=1&bgcolor=FFFFFF'),
@@ -248,6 +249,6 @@ export const blocks: Block[] = [
     type: 'cta',
     heading: 'Grow your real estate photography business with iGuide',
     text: 'See how iGuide fits into your workflow to help you deliver more value, stand out to realtors and scale your services.',
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 ]

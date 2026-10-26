@@ -16,7 +16,7 @@ export const meta = {
 /** Live: HubSpot CTA tracking redirect to the report download */
 const REPORT_URL =
   'https://cta-service-cms2.hubspot.com/web-interactives/public/v1/track/redirect?encryptedPayload=AVxigLLKKdFIdAae2dSX2bEfFr%2FtRxDnkMBr5GhhijVKhltjO0LnC0F%2B3nGliehHoG8SJvkxby2iTeZhKiqQGa1nkC0B51UPod2ed2GkHd8CiQLOYV4%3D&webInteractiveContentId=206886030187&portalId=6828755'
-const download: Cta = {label: 'Download the full report', href: REPORT_URL, newTab: true}
+const download: Cta = {label: 'Get the report', href: REPORT_URL, newTab: true}
 const cover = {src: '/assets/Framing-Whats-Next-Industry-Report-iGUIDE-1.jpg', alt: 'Real estate photography industry outlook 2026 report cover'}
 
 const trends: {label: string; text: ReactNode}[] = [
@@ -176,7 +176,7 @@ export const blocks: Block[] = [
         <li className="flex flex-col justify-center rounded-2xl bg-primary p-6 text-white">
           <p className="text-xl font-semibold">Dive into the data and continue reading</p>
           <Button href={REPORT_URL} size="lg" variant="secondary" newTab className="mt-6 w-fit">
-            Download the full report
+            Get the report
           </Button>
         </li>
       </ul>

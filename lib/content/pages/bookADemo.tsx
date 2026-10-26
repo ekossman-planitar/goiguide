@@ -13,7 +13,7 @@ export const meta = {
 }
 
 /** Live buttons on this page carry class `book-demo` (opens Calendly via the site-wide BookingPopup) */
-const bookDemo: Cta = {label: 'Book your personalized product tour', href: '/book-a-demo', className: 'book-demo'}
+const bookDemo: Cta = {label: 'Book a product tour', href: '/book-a-demo', className: 'book-demo'}
 
 export const blocks: Block[] = [
   {

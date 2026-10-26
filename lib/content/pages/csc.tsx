@@ -24,7 +24,7 @@ export const blocks: Block[] = cscBlocks({
     src: 'https://iguideradix.com/embed/50_grand_ave_s_cambridge_on?unbranded=1&bgcolor=FFFFFF',
     title: 'iGuide tour of 50 Grand Avenue South',
     links: [
-      ...tourVideoLinks('Learn how to use advanced measurement.'),
+      ...tourVideoLinks('Measurement guide'),
       {label: 'Vertical Measurements', href: 'https://share.vidyard.com/watch/PU6x61tafD5Wj3hCRi15HA', variant: 'secondary', newTab: true},
     ],
   },
@@ -68,7 +68,7 @@ export const blocks: Block[] = cscBlocks({
     ),
     ctas: [
       register,
-      {label: 'Download Competition Instructions', href: '/assets/csc/CSC-Student-Design-Challenge-2026-Documents.pdf', newTab: true},
+      {label: 'Get instructions', href: '/assets/csc/CSC-Student-Design-Challenge-2026-Documents.pdf', newTab: true},
     ],
     image: {src: '/assets/Uploads/csc2026.jpg', alt: '2026 CSC Student Design Challenge', width: 800, height: 661},
   },

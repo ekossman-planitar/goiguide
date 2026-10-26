@@ -1,4 +1,5 @@
 /** /no-subscription-alternative — copy, links and asset paths from the live page (checked 2026-10-21). */
+import {Receipt, Rotate3d, Ruler, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import type {Quote} from '@/components/blocks/Testimonials'
 import {FormDialogButton} from '@/components/pages/FormDialogButton'
@@ -14,7 +15,6 @@ export const meta = {
 const DEMO_FORM_ID = '6bf33ceb-7b32-4f75-82da-77775523ae33'
 const BROCHURE_FORM_ID = 'a9c05de6-a150-4940-91c6-b6d1e2982ee5'
 
-const icon = (src: string) => ({src, alt: '', width: 60, height: 60})
 const logo = (file: string, alt: string, width: number) => ({src: `/assets/Uploads/Tetsimonial-Logo-${file}.png`, alt, width, height: 44})
 
 const quotes: Quote[] = [
@@ -120,22 +120,22 @@ export const blocks: Block[] = [
       {
         title: 'Speed of capture',
         text: 'Shoot 3,000 sq ft in just 15 minutes: 3-5x faster than other cameras.',
-        icon: icon('/assets/Icons/20-icon__FitMaxWzYwLDYwXQ.png'),
+        icon: Timer,
       },
       {
         title: 'Immersive experience',
         text: 'Explore every corner with an interactive floor plan and 360° visuals.',
-        icon: icon('/assets/Icons/Icon_300x300_Reseller_Marketing-tools__FitMaxWzYwLDYwXQ.png'),
+        icon: Rotate3d,
       },
       {
         title: 'Measurements & floor plans',
         text: 'Each iGuide includes room dimensions, total floor area and expert-drafted floor plans.',
-        icon: icon('/assets/Icons/Icon-300x300_Value_Accurate-floor-plans__FitMaxWzYwLDYwXQ.png'),
+        icon: Ruler,
       },
       {
         title: 'No subscription',
         text: 'No monthly fee means no extra fixed cost for your business. Pay as you go with hosting included.',
-        icon: icon('/assets/Icons/Icon-300x300_Value_No-monthly-fees__FitMaxWzYwLDYwXQ.png'),
+        icon: Receipt,
       },
     ],
   },

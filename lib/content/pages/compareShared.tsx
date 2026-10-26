@@ -6,7 +6,7 @@ import {Button} from '@/components/ui/Button'
 
 /** Inline hero form on every compare page (live submit label is changed to "Let's chat about iGuide" by a page script) */
 export const compareHeroFormId = '51daa83c-c4d0-4527-9255-881d29543aab'
-/** Form in the "Get in touch" pop-up behind the closing "Let’s chat about iGuide" button */
+/** Form in the "Get in touch" pop-up behind the closing "Let’s chat" button */
 export const getInTouchFormId = 'ab373579-0755-4f0f-a53c-a04f1ff89266'
 
 export const logosHeading = 'Top industry professionals trust iGuide as their go-to solution'
@@ -53,7 +53,7 @@ export function ProList({items}: Readonly<{items: {title: string; text: string}[
 }
 
 /**
- * Closing section: "Let’s chat about iGuide" (id gsbtn, opens the Get in touch form)
+ * Closing section: "Let’s chat" (id gsbtn, opens the Get in touch form)
  * and a second button (id fapbtn). IDs kept from live for GTM.
  */
 export function closingCta({heading, text, secondary}: {heading: string; text?: string; secondary: {label: string; href: string}}): Block {
@@ -66,7 +66,7 @@ export function closingCta({heading, text, secondary}: {heading: string; text?: 
         <h2 className="type-h2 text-ink">{heading}</h2>
         {text && <p className="mt-5 text-xl leading-[30px] text-muted">{text}</p>}
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <FormDialogButton id="gsbtn" label="Let’s chat about iGuide" title="Get in touch" formId={getInTouchFormId} />
+          <FormDialogButton id="gsbtn" label="Let’s chat" title="Get in touch" formId={getInTouchFormId} />
           <Button id="fapbtn" href={secondary.href} variant="secondary" size="lg" newTab>
             {secondary.label}
           </Button>

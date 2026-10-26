@@ -1,4 +1,5 @@
 /** /iguide/xactimate-sketches — copy, links and asset paths from the live page (checked 2026-10-07). */
+import {FileCheck, Files, Images, Ruler} from 'lucide-react'
 import {book} from './shared'
 
 export const xactimateSketches = {
@@ -33,10 +34,10 @@ export const xactimateSketches = {
     heading: 'Who benefits from accurate Sketch files with an integrated iGuide virtual walkthrough?',
     subheading: 'Accurate measurements, area totals, sketch files and comprehensive images benefit anyone documenting a loss.',
     cards: [
-      {title: 'Adjusters', text: 'Capture and submit claims documentation faster to speed up processing', icon: {src: '/assets/adjusters.svg', alt: 'icon - Stamped Document'}},
-      {title: 'Restoration contractors', text: 'Produce more accurate repair estimates with precise measurements and visuals', icon: {src: '/assets/contractors.svg', alt: 'icon - Ruler'}},
-      {title: 'Policy holders', text: 'Receive timely updates and have claims resolved faster', icon: {src: '/assets/policy.svg', alt: 'icon - Documents in hand'}},
-      {title: 'Forensics investigators', text: 'Access comprehensive visual records for detailed analysis', icon: {src: '/assets/forensics.svg', alt: 'icon - Photos'}},
+      {title: 'Adjusters', text: 'Capture and submit claims documentation faster to speed up processing', icon: FileCheck},
+      {title: 'Restoration contractors', text: 'Produce more accurate repair estimates with precise measurements and visuals', icon: Ruler},
+      {title: 'Policy holders', text: 'Receive timely updates and have claims resolved faster', icon: Files},
+      {title: 'Forensics investigators', text: 'Access comprehensive visual records for detailed analysis', icon: Images},
     ],
   },
   testimonials: [
@@ -142,7 +143,7 @@ export const xactimateSketches = {
       {title: 'Deliver', body: 'Receive your Sketch, files and walkthrough within the listed turnaround time.', image: {src: '/assets/irc-sketch-step-4.png', alt: 'image - Verisk Xactimate Sketch'}},
     ],
     // Live "Lets chat about iGuide" opens a "Get in touch" pop-up with these options
-    ctas: [book('Lets chat about iGuide'), {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/', variant: 'secondary' as const}],
+    ctas: [book('Let’s chat'), {label: 'Find an iGuide Pro', href: 'https://ion.goiguide.com/', variant: 'secondary' as const}],
   },
   cta: {
     heading: 'Start capturing your own jobs and streamline your workflow',

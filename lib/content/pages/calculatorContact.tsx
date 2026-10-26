@@ -1,4 +1,5 @@
 /** /calculator-contact — copy, links and asset paths from the live page (checked 2026-10-21). */
+import {BadgeCheck, Lock, Ruler, Timer} from 'lucide-react'
 import type {Block} from '@/components/blocks/Blocks'
 import type {Quote} from '@/components/blocks/Testimonials'
 
@@ -8,7 +9,6 @@ export const meta = {
   path: '/calculator-contact',
 }
 
-const icon = (src: string) => ({src, alt: '', width: 60, height: 60})
 const logo = (file: string, alt: string, width: number) => ({src: `/assets/Uploads/Tetsimonial-Logo-${file}.png`, alt, width, height: 44})
 
 const quotes: Quote[] = [
@@ -71,10 +71,10 @@ export const blocks: Block[] = [
     background: 'surface',
     columns: 4,
     cards: [
-      {title: 'Fast', text: '3D virtual tours and 2D floor plans', icon: icon('/assets/Uploads/Icons_Processing-Time__FitMaxWzYwLDYwXQ.png')},
-      {title: 'Accurate', text: 'Measurement within 0.5%', icon: icon('/assets/Uploads/Icons-Floor-Plans__FitMaxWzYwLDYwXQ.png')},
-      {title: 'Reliable', text: 'Easy one-button capture', icon: icon('/assets/Uploads/Icons_Reliable__FitMaxWzYwLDYwXQ.png')},
-      {title: 'Secure', text: 'You control your data', icon: icon('/assets/Uploads/Icons_Secure__FitMaxWzYwLDYwXQ.png')},
+      {title: 'Fast', text: '3D virtual tours and 2D floor plans', icon: Timer},
+      {title: 'Accurate', text: 'Measurement within 0.5%', icon: Ruler},
+      {title: 'Reliable', text: 'Easy one-button capture', icon: BadgeCheck},
+      {title: 'Secure', text: 'You control your data', icon: Lock},
     ],
   },
   {

@@ -106,6 +106,6 @@ export const sitePlans = {
   cta: {
     heading: 'See how Site Plans fit into your listings',
     text: 'Take a quick look at how Site Plans add exterior context and pair with floor plans, no prep required.',
-    ctas: [book('Book a 15-minute walkthrough')],
+    ctas: [book('Book a walkthrough')],
   },
 }
