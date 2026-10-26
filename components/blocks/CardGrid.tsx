@@ -19,13 +19,14 @@ export type GridCard = {
 }
 
 const cols = {
+  1: '',
   2: 'sm:grid-cols-2',
   3: 'sm:grid-cols-2 lg:grid-cols-3',
   4: 'sm:grid-cols-2 lg:grid-cols-4',
 }
 
 /** Grid of simple cards (icon or image, title, text, optional link). */
-export function CardGrid({cards, columns = 4}: Readonly<{cards: GridCard[]; columns?: 2 | 3 | 4}>) {
+export function CardGrid({cards, columns = 4}: Readonly<{cards: GridCard[]; columns?: 1 | 2 | 3 | 4}>) {
   return (
     <ul className={cn('grid gap-6', cols[columns])}>
       {cards.map((card) => (

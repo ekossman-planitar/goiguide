@@ -31,6 +31,7 @@ import {CheckList} from '@/components/blocks/CheckList'
 import {PillTabs} from '@/components/blocks/PillTabs'
 import {Section} from '@/components/blocks/Section'
 import {Testimonials} from '@/components/blocks/Testimonials'
+import {ResourceCard} from '@/components/resources/ResourceCard'
 import {SelectDemos} from '@/components/pages/BrandGuideDemos'
 import {Button, buttonClass} from '@/components/ui/Button'
 import {Container} from '@/components/ui/Container'
@@ -40,6 +41,9 @@ import {SmartLink} from '@/components/ui/SmartLink'
 import {ArrowRight, ChevronDown, ChevronLeft, ChevronRight, CloseIcon, MenuIcon, Star} from '@/components/ui/icons'
 import {cn} from '@/lib/cn'
 import {pageMetadata} from '@/lib/pageMetadata'
+import {fetchSanity} from '@/sanity/lib/fetch'
+import {RESOURCES_OF_TYPE_QUERY} from '@/sanity/lib/queries'
+import type {ResourceCardData} from '@/sanity/lib/types'
 
 /** Internal reference page: never indexed, not in the sitemap (Evan, 2026-10-23). */
 export const metadata: Metadata = {
@@ -66,6 +70,22 @@ const nav = [
   ['accessibility', 'Accessibility'],
   ['resources', 'Resources'],
 ] as const
+
+const principleList = [
+  'Design values: clarity, simplicity, efficiency, honest design and empathy (from the iGuide Foundations design system).',
+  'REA Pangea is the only typeface, everywhere: headings, body, buttons and HubSpot forms.',
+  'Snowgum 700 is the “black”. Red is for accents only: every hover and active highlight is REA Red.',
+  'One way to do each thing: one button set, one tab style, one dropdown, one accordion, one card.',
+  'Sentence case for headings and buttons. Buttons start with a verb and are 2 to 4 words.',
+  'Plain links in sentences are underlined. Standalone text links are not; they carry an arrow.',
+  'Everything clickable shows a hand cursor and a visible focus outline for keyboard users.',
+  'White and Mist sections alternate; never two Mist sections in a row.',
+  'Avoid introducing additional red elements that compete with the primary red brand mark. Reserve red for key highlights to maintain visual hierarchy.',
+  'Preserve the existing WCAG accessibility notes throughout the design system.',
+  'Use WCAG 2.2 as the baseline for design decisions, particularly when evaluating visual treatments or proposed styling changes.',
+  'Ensure text links, colour contrast, focus states and other interactive elements meet accessibility requirements.',
+]
+const principles = [principleList.slice(0, 6), principleList.slice(6)]
 
 /** Lucide icons the site uses today (the wrappers in components/ui/icons are Lucide too) */
 const iconSet: [string, LucideIcon | typeof ArrowRight][] = [
@@ -118,12 +138,26 @@ const colours = [
   {name: 'Snowgum 400', token: 'muted', hex: '#716E75', use: 'Secondary text: subheadings, captions, roles, form field borders.', swatch: 'bg-snowgum-400'},
   {name: 'White', token: 'white', hex: '#FFFFFF', use: 'Page and card background.', swatch: 'bg-white border border-line'},
   {name: 'Mist', token: 'surface / sky / cream', hex: '#F3F2F5', use: 'Alternating section background, pills, tab tracks, step badges.', swatch: 'bg-mist'},
-  {name: 'Hairline', token: 'line', hex: '#E4E4E7', use: 'Borders and dividers (not in the brand guide).', swatch: 'bg-line'},
+  {
+    name: 'Hairline',
+    token: 'line',
+    hex: '#E4E4E7',
+    use: 'Website only: borders and dividers. Not part of the brand palette, so never use it in print or other brand work.',
+    websiteOnly: true,
+    swatch: 'bg-line',
+  },
   {name: 'Blueprint', token: 'blueprint', hex: '#5B8FDB', use: 'Secondary palette: charts and illustrations only.', swatch: 'bg-blueprint'},
   {name: 'Laser', token: 'laser', hex: '#9FD356', use: 'Secondary palette: charts and illustrations only.', swatch: 'bg-laser'},
   {name: 'Slate', token: 'slate', hex: '#3E5C76', use: 'Secondary palette: charts and illustrations only.', swatch: 'bg-slate'},
-  {name: 'Error', token: 'error', hex: '#B42318', use: 'Form error messages and invalid fields only (not in the brand guide).', swatch: 'bg-error'},
-  {name: 'Star', token: 'star', hex: '#F59E0B', use: 'Review stars only (not in the brand guide).', swatch: 'bg-star'},
+  {
+    name: 'Error',
+    token: 'error',
+    hex: '#B42318',
+    use: 'Website only: form error messages and invalid fields. Not part of the brand palette.',
+    websiteOnly: true,
+    swatch: 'bg-error',
+  },
+  {name: 'Star', token: 'star', hex: '#F59E0B', use: 'Website only: review stars. Not part of the brand palette.', websiteOnly: true, swatch: 'bg-star'},
 ]
 
 const typeScale = [
@@ -172,7 +206,11 @@ function Spec({children}: Readonly<{children: ReactNode}>) {
   return <p className="type-small mt-3 text-muted">{children}</p>
 }
 
-export default function BrandGuidelinePage() {
+export const revalidate = 60
+
+export default async function BrandGuidelinePage() {
+  // Three newest blog posts, shown with the real blog card
+  const posts = (await fetchSanity<ResourceCardData[]>(RESOURCES_OF_TYPE_QUERY, [], {type: 'blogPost'})).slice(0, 3)
   return (
     <>
       <section className="bg-surface py-16 lg:py-20">
@@ -198,19 +236,11 @@ export default function BrandGuidelinePage() {
       </section>
 
       <Section id="principles" heading="Principles" subheading="The rules every page follows.">
-        <CheckList
-          className="max-w-3xl"
-          items={[
-            'Design values: clarity, simplicity, efficiency, honest design and empathy (from the iGuide Foundations design system).',
-            'REA Pangea is the only typeface, everywhere: headings, body, buttons and HubSpot forms.',
-            'Snowgum 700 is the “black”. Red is for accents only: every hover and active highlight is REA Red.',
-            'One way to do each thing: one button set, one tab style, one dropdown, one accordion, one card.',
-            'Sentence case for headings and buttons. Buttons start with a verb and are 2 to 4 words.',
-            'Plain links in sentences are underlined. Standalone text links are not; they carry an arrow.',
-            'Everything clickable shows a hand cursor and a visible focus outline for keyboard users.',
-            'White and Mist sections alternate; never two Mist sections in a row.',
-          ]}
-        />
+        <div className="grid gap-x-10 gap-y-2.5 md:grid-cols-2">
+          {principles.map((col, i) => (
+            <CheckList key={i} items={col} />
+          ))}
+        </div>
       </Section>
 
       <Section id="logo" heading="Logo" subheading="Always use the supplied logo file. Never redraw, retype or edit it." background="surface">
@@ -237,18 +267,40 @@ export default function BrandGuidelinePage() {
 
       <Section id="colour" heading="Colour" subheading="From the iGuide Brand Quick Guide (2026). Use the token, never a hex value.">
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {colours.map((c) => (
-            <li key={c.name} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-              <div className={cn('h-20', c.swatch)} />
-              <div className="p-5">
-                <p className="type-heading-xs text-ink">{c.name}</p>
-                <p className="type-small text-muted">
-                  {c.hex} · <code>{c.token}</code>
-                </p>
-                <p className="type-small mt-2 text-body">{c.use}</p>
-              </div>
-            </li>
-          ))}
+          {colours
+            .filter((c) => !c.websiteOnly)
+            .map((c) => (
+              <li key={c.name} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+                <div className={cn('h-20', c.swatch)} />
+                <div className="p-5">
+                  <p className="type-heading-xs text-ink">{c.name}</p>
+                  <p className="type-small text-muted">
+                    {c.hex} · <code>{c.token}</code>
+                  </p>
+                  <p className="type-small mt-2 text-body">{c.use}</p>
+                </div>
+              </li>
+            ))}
+        </ul>
+        <h3 className="type-heading-md mt-12 text-ink">Website only</h3>
+        <p className="type-body mt-2 max-w-3xl text-muted">
+          These colours exist only for the website’s interface. They are not brand colours: never use them in print, decks, ads or other brand work.
+        </p>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {colours
+            .filter((c) => c.websiteOnly)
+            .map((c) => (
+              <li key={c.name} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+                <div className={cn('h-20', c.swatch)} />
+                <div className="p-5">
+                  <p className="type-heading-xs text-ink">{c.name}</p>
+                  <p className="type-small text-muted">
+                    {c.hex} · <code>{c.token}</code>
+                  </p>
+                  <p className="type-small mt-2 text-body">{c.use}</p>
+                </div>
+              </li>
+            ))}
         </ul>
       </Section>
 
@@ -570,18 +622,74 @@ export default function BrandGuidelinePage() {
         <Spec>16px radius, card shadow, 18px SemiBold question that turns red on hover, chevron rotates when open. FAQs show 3, then “Show more”.</Spec>
       </Section>
 
-      <Section id="cards" heading="Cards" subheading="White, hairline border, 16px radius, card shadow." background="surface">
-        <CardGrid
-          columns={3}
-          cards={[
-            {title: 'Floor plans', text: 'One or two sentences of card text.', link: {label: 'Explore floor plans', href: '#cards'}},
-            {title: '3D virtual tours', text: 'One or two sentences of card text.', link: {label: 'Explore 3D tours', href: '#cards'}},
-            {title: 'CAD deliverables', text: 'One or two sentences of card text.', link: {label: 'Explore CAD', href: '#cards'}},
-          ]}
-        />
+      <Section id="cards" heading="Cards" subheading="White, hairline border, 16px radius, card shadow. Five types, one look." background="surface">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="type-overline mb-3 text-muted">Image card</p>
+            <CardGrid
+              columns={1}
+              cards={[
+                {
+                  title: 'PLANIX camera',
+                  image: {src: '/assets/iguide_camera.png', alt: 'iGuide PLANIX camera'},
+                  text: 'One or two sentences of card text.',
+                  link: {label: 'Shop cameras', href: '#cards'},
+                },
+              ]}
+            />
+          </div>
+          <div>
+            <p className="type-overline mb-3 text-muted">Icon card</p>
+            <div className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-card">
+              <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
+                <FileText width={24} height={24} aria-hidden />
+              </span>
+              <h3 className="type-heading-sm text-ink">Reports</h3>
+              <p className="type-body mt-2 flex-1 text-body">One or two sentences of card text.</p>
+              <SmartLink href="#cards" className="text-link mt-5">
+                Learn more
+                <ArrowRight width={16} height={16} />
+              </SmartLink>
+            </div>
+            <Spec>A Lucide icon, 24px, in a 48px Mist square.</Spec>
+          </div>
+          <div>
+            <p className="type-overline mb-3 text-muted">Video card</p>
+            <CardGrid
+              columns={1}
+              cards={[
+                {
+                  title: 'Site Plans',
+                  media: {type: 'video', src: '/assets/Site-Plans-Feature-Launch-Video.mp4', label: 'iGuide Site Plans feature video', controls: true},
+                  text: 'One or two sentences of card text.',
+                },
+              ]}
+            />
+          </div>
+          <div>
+            <p className="type-overline mb-3 text-muted">Text-only card</p>
+            <CardGrid
+              columns={1}
+              cards={[{title: 'Floor plans', text: 'One or two sentences of card text.', link: {label: 'Explore floor plans', href: '#cards'}}]}
+            />
+          </div>
+        </div>
+        <p className="type-overline mt-10 mb-3 text-muted">Blog card</p>
+        {posts.length > 0 ? (
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => (
+              <li key={post._id}>
+                <ResourceCard item={post} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="type-body text-muted">The latest blog posts appear here.</p>
+        )}
         <Spec>
-          A card that is one big link: on hover the shadow grows to shadow-lg, the title and text link turn red and the arrow nudges right. Cards with several
-          links do not change on hover; only their links do.
+          Blog cards are the same for every Resource Center type: image with a type pill, date, title, short description and link. A card that is one big link:
+          on hover the shadow grows to shadow-lg, the title and text link turn red and the arrow nudges right. Cards with several links don&apos;t change on
+          hover; only their links do.
         </Spec>
       </Section>
 
