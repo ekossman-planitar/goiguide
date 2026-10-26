@@ -1,8 +1,19 @@
 'use client'
 
+import {Search, X} from 'lucide-react'
 import {useEffect, useMemo, useRef, useState} from 'react'
+import {buttonClass} from '@/components/ui/Button'
+import {Select} from '@/components/ui/Select'
 import {cn} from '@/lib/cn'
-import {categoryLabel, getResourceType, listedResourceTypes, RESOURCE_CENTER_PATH, resourceCenterTitle} from '@/lib/resourceTypes'
+import {
+  categoryLabel,
+  getResourceType,
+  isIndustry,
+  listedResourceTypes,
+  RESOURCE_CENTER_PATH,
+  resourceCenterTitle,
+  resourceIndustries,
+} from '@/lib/resourceTypes'
 import type {ResourceCardData} from '@/sanity/lib/types'
 import {ResourceCard} from './ResourceCard'
 
@@ -15,61 +26,93 @@ type Props = {
   initialType?: string
 }
 
-const pill = (active: boolean) =>
-  cn(
-    'inline-flex h-10 items-center gap-2 rounded-full border px-4 text-[15px] font-medium transition-colors',
-    active ? 'border-primary bg-primary text-white' : 'border-line bg-white text-body hover:border-primary-hover hover:text-primary-hover',
-  )
+/** Content types, alphabetical after "All" */
+const typeFilters = [{name: ALL, label: 'All'}].concat(
+  [...listedResourceTypes].map((t) => ({name: t.name as string, label: t.label as string})).sort((a, b) => a.label.localeCompare(b.label)),
+)
+
+const industryOptions = [{value: ALL, label: 'All industries'}, ...resourceIndustries.map((i) => ({value: i.slug as string, label: i.label as string}))]
 
 /**
- * Filter pills + card grid. Each type filter has its own clean URL: "All" is
- * /resource-center, Blog is /blogs, Videos is /video, etc. Types with
- * categories get a second row of filters, kept in ?category= like the live
- * site (so links such as /customer-stories?category=insurance-and-restoration
- * keep working). Choosing a filter updates the address bar without reloading.
+ * Resource Center filters: a search box, an industry dropdown, content-type tabs
+ * (alphabetical) and, for types that have them, topic chips. Each type keeps its
+ * own clean URL ("All" is /resource-center, Blog is /blogs…). Industry and topic
+ * are kept in ?category= like the live site, so links such as
+ * /customer-stories?category=insurance-and-restoration keep working; when both
+ * are set the industry moves to ?industry=. Filtering updates the address bar
+ * without reloading.
  */
 export function ResourceCenter({items, initialType = ALL}: Readonly<Props>) {
   const [active, setActive] = useState<string>(initialType)
-  const [category, setCategory] = useState<string>(ALL)
+  const [industry, setIndustry] = useState<string>(ALL)
+  const [topic, setTopic] = useState<string>(ALL)
+  const [query, setQuery] = useState('')
   const [shown, setShown] = useState(PAGE_SIZE)
   const type = getResourceType(active)
-  const categories = Object.entries((type?.categories ?? {}) as Record<string, string>)
+  const topics = Object.entries((type?.categories ?? {}) as Record<string, string>)
+    .filter(([slug]) => !isIndustry(slug))
+    .sort((a, b) => a[1].localeCompare(b[1]))
 
-  // Read ?category= once on load (keeps the page static: no useSearchParams)
+  // Read ?category= / ?industry= once on load (keeps the page static: no useSearchParams)
   useEffect(() => {
-    const fromUrl = new URLSearchParams(globalThis.location.search).get('category')
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (fromUrl) setCategory(fromUrl)
+    const params = new URLSearchParams(globalThis.location.search)
+    const category = params.get('category')
+    const ind = params.get('industry')
+    /* eslint-disable react-hooks/set-state-in-effect */
+    if (category && isIndustry(category)) setIndustry(category)
+    else if (category) setTopic(category)
+    if (ind && isIndustry(ind)) setIndustry(ind)
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [])
 
-  const counts = useMemo(() => {
-    const map = new Map<string, number>()
-    for (const item of items) map.set(item._type, (map.get(item._type) ?? 0) + 1)
-    return map
-  }, [items])
+  const searching = query.trim().length > 0
+  const visible = useMemo(() => {
+    const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean)
+    return items.filter((item) => {
+      if (active !== ALL && item._type !== active) return false
+      if (industry !== ALL && !item.categories?.includes(industry)) return false
+      if (topic !== ALL && !item.categories?.includes(topic)) return false
+      if (!words.length) return true
+      const text = `${item.title ?? ''} ${item.excerpt ?? ''}`.toLowerCase()
+      return words.every((w) => text.includes(w))
+    })
+  }, [items, active, industry, topic, query])
 
-  const visible = items.filter(
-    (item) => (active === ALL || item._type === active) && (category === ALL || item.categories?.includes(category)),
-  )
-
-  const updateUrl = (typeName: string, cat: string) => {
+  const updateUrl = (typeName: string, ind: string, top: string) => {
     const config = getResourceType(typeName)
     const url = new URL(config?.basePath ?? RESOURCE_CENTER_PATH, globalThis.location.origin)
-    if (cat !== ALL) url.searchParams.set('category', cat)
+    if (top !== ALL) url.searchParams.set('category', top)
+    if (ind !== ALL) url.searchParams.set(top !== ALL ? 'industry' : 'category', ind)
     globalThis.history.replaceState(null, '', url)
   }
 
   const chooseType = (name: string) => {
     setActive(name)
-    setCategory(ALL)
+    setTopic(ALL)
     setShown(PAGE_SIZE)
-    updateUrl(name, ALL)
+    updateUrl(name, industry, ALL)
   }
 
-  const chooseCategory = (cat: string) => {
-    setCategory(cat)
+  const chooseIndustry = (slug: string) => {
+    setIndustry(slug)
     setShown(PAGE_SIZE)
-    updateUrl(active, cat)
+    updateUrl(active, slug, topic)
+  }
+
+  const chooseTopic = (slug: string) => {
+    setTopic(slug)
+    setShown(PAGE_SIZE)
+    updateUrl(active, industry, slug)
+  }
+
+  const filtered = active !== ALL || industry !== ALL || topic !== ALL || searching
+  const clearAll = () => {
+    setQuery('')
+    setActive(ALL)
+    setIndustry(ALL)
+    setTopic(ALL)
+    setShown(PAGE_SIZE)
+    updateUrl(ALL, ALL, ALL)
   }
 
   // Keep the tab title in step with the URL after a filter change
@@ -82,53 +125,84 @@ export function ResourceCenter({items, initialType = ALL}: Readonly<Props>) {
     document.title = resourceCenterTitle(getResourceType(active))
   }, [active])
 
-  const filters = [{name: ALL, label: 'All', count: items.length}].concat(
-    listedResourceTypes.map((t) => ({name: t.name, label: t.label, count: counts.get(t.name) ?? 0})),
-  )
-
   return (
     <>
-      <fieldset aria-label="Filter by type" className="flex min-w-0 flex-wrap gap-2">
-        {filters.map((filter) => {
+      <div className="flex flex-col gap-3 md:flex-row">
+        <div className="relative flex-1">
+          <label htmlFor="resource-search" className="sr-only">
+            Search resources
+          </label>
+          <Search aria-hidden className="pointer-events-none absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-muted" />
+          <input
+            id="resource-search"
+            type="search"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value)
+              setShown(PAGE_SIZE)
+            }}
+            placeholder="Search articles, stories, videos…"
+            className="resource-search h-12 w-full rounded-lg border border-muted bg-white pr-3 pl-10 text-base text-ink placeholder:text-muted focus:border-primary focus:outline-2 focus:outline-offset-1 focus:outline-primary"
+          />
+        </div>
+        <Select id="resource-industry" label="Industry" options={industryOptions} value={industry} onChange={chooseIndustry} size="lg" className="md:w-72" />
+      </div>
+
+      <div role="group" aria-label="Filter by type" className="mt-6 flex max-w-full gap-2 overflow-x-auto rounded-[32px] border border-line bg-surface p-2">
+        {typeFilters.map((filter) => {
           const isActive = filter.name === active
           return (
-            <button key={filter.name} type="button" aria-pressed={isActive} onClick={() => chooseType(filter.name)} className={pill(isActive)}>
+            <button
+              key={filter.name}
+              type="button"
+              aria-pressed={isActive}
+              data-type={filter.name}
+              onClick={() => chooseType(filter.name)}
+              className={cn(
+                'resource-type-filter shrink-0 rounded-3xl border px-5 py-2.5 text-base leading-6 font-semibold whitespace-nowrap transition-colors',
+                isActive ? 'border-primary bg-primary text-white' : 'border-transparent text-ink hover:text-primary-hover',
+              )}
+            >
               {filter.label}
-              <span className={cn('rounded-full px-2 text-xs tabular-nums', isActive ? 'bg-white/20 text-white' : 'bg-surface text-muted')}>
-                {filter.count}
-              </span>
             </button>
           )
         })}
-      </fieldset>
+      </div>
 
-      {categories.length > 0 && (
-        <fieldset aria-label="Filter by category" className="mt-4 flex min-w-0 flex-wrap items-center gap-2 border-t border-line pt-4">
-          <span className="mr-1 text-sm font-semibold text-muted">Category:</span>
-          {[[ALL, 'All categories'] as const, ...categories].map(([slug, label]) => (
+      {topics.length > 0 && (
+        <div role="group" aria-label="Filter by topic" className="mt-4 flex min-w-0 flex-wrap items-center gap-2">
+          {[[ALL, 'All topics'] as const, ...topics].map(([slug, label]) => (
             <button
               key={slug}
               type="button"
-              aria-pressed={category === slug}
-              onClick={() => chooseCategory(slug)}
+              aria-pressed={topic === slug}
+              onClick={() => chooseTopic(slug)}
               className={cn(
-                'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
-                category === slug ? 'bg-primary-soft text-primary' : 'text-body hover:text-primary-hover',
+                'type-small rounded-full border px-3 py-1.5 font-semibold transition-colors',
+                topic === slug ? 'border-primary bg-primary text-white' : 'border-line bg-white text-ink hover:border-primary-hover hover:text-primary-hover',
               )}
             >
               {slug === ALL ? label : categoryLabel(type, slug)}
             </button>
           ))}
-        </fieldset>
+        </div>
       )}
 
-      <p className="sr-only" aria-live="polite">
-        {visible.length} {visible.length === 1 ? 'resource' : 'resources'} shown
-      </p>
+      <div className="mt-8 flex items-center justify-between gap-4">
+        <p className="type-small text-muted" aria-live="polite">
+          {visible.length} {visible.length === 1 ? 'resource' : 'resources'}
+        </p>
+        {filtered && (
+          <button type="button" onClick={clearAll} className="text-link type-small">
+            <X aria-hidden width={16} height={16} />
+            Clear filters
+          </button>
+        )}
+      </div>
 
       {visible.length ? (
         <>
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {visible.slice(0, shown).map((item) => (
               <li key={item._id}>
                 <ResourceCard item={item} />
@@ -137,18 +211,21 @@ export function ResourceCenter({items, initialType = ALL}: Readonly<Props>) {
           </ul>
           {visible.length > shown && (
             <div className="mt-10 text-center">
-              <button
-                type="button"
-                onClick={() => setShown((n) => n + PAGE_SIZE)}
-                className="rounded-lg border border-primary bg-white px-6 py-3 font-semibold text-primary transition-colors hover:border-primary-hover hover:text-primary-hover"
-              >
+              <button type="button" onClick={() => setShown((n) => n + PAGE_SIZE)} className={buttonClass('secondary', 'lg')}>
                 Show more ({visible.length - shown} more)
               </button>
             </div>
           )}
         </>
       ) : (
-        <p className="mt-10 rounded-2xl border border-dashed border-line p-12 text-center text-muted">Nothing here yet. Check back soon.</p>
+        <div className="mt-4 rounded-2xl border border-dashed border-line p-12 text-center">
+          <p className="type-body text-muted">Nothing matches these filters yet.</p>
+          {filtered && (
+            <button type="button" onClick={clearAll} className="text-link mt-3">
+              Clear filters
+            </button>
+          )}
+        </div>
       )}
     </>
   )

@@ -151,6 +151,26 @@ export const resourceTypeNames = resourceTypes.map((t) => t.name) as ResourceTyp
 /** Types with a Resource Center filter */
 export const listedResourceTypes = resourceTypes.filter((t) => !('hidden' in t && t.hidden))
 
+/**
+ * Industry categories shared across Resource Center types (same slugs as the
+ * live ?category= links). The Resource Center offers these as a top-level
+ * filter; every other category is a type-specific topic. Alphabetical.
+ */
+export const resourceIndustries = [
+  {slug: 'architecture-and-remodeling', label: 'Architecture & Remodeling'},
+  {slug: 'design-and-construction', label: 'Design & Construction'},
+  {slug: 'facility-management', label: 'Facility Management'},
+  {slug: 'insurance-and-restoration', label: 'Insurance & Restoration'},
+  {slug: 'real-estate-photography', label: 'Real Estate Photography'},
+  {slug: 'residential-real-estate', label: 'Residential Real Estate'},
+] as const
+
+const industrySlugs: ReadonlySet<string> = new Set(resourceIndustries.map((i) => i.slug))
+
+export function isIndustry(slug: string) {
+  return industrySlugs.has(slug)
+}
+
 export function getResourceType(name: string): ResourceTypeConfig | undefined {
   return resourceTypes.find((t) => t.name === name)
 }

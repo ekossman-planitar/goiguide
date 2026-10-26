@@ -367,15 +367,15 @@ export default async function BrandGuidelinePage() {
             </Spec>
           </Demo>
           <Demo label="Corner radius">
-            <div className="flex flex-wrap items-end gap-6">
+            <div className="flex flex-wrap items-start gap-6">
               {[
                 ['rounded-lg', '8px', 'Buttons, fields, dropdowns'],
                 ['rounded-2xl', '16px', 'Cards, accordions, panels, media'],
                 ['rounded-full', 'Full', 'Pills, tabs, avatars'],
               ].map(([r, px, use]) => (
                 <div key={r} className="w-36">
-                  <div className={cn('h-16 w-16 border-2 border-primary bg-mist', r)} />
-                  <p className="type-small mt-2 font-semibold text-ink">{px}</p>
+                  <div className={cn('h-14 w-28 border-2 border-primary bg-mist', r)} />
+                  <p className="type-small mt-3 font-semibold text-ink">{px}</p>
                   <p className="type-small text-muted">{use}</p>
                 </div>
               ))}
@@ -630,8 +630,8 @@ export default async function BrandGuidelinePage() {
               columns={1}
               cards={[
                 {
-                  title: 'PLANIX camera',
-                  image: {src: '/assets/iguide_camera.png', alt: 'iGuide PLANIX camera'},
+                  title: 'PLANIX R1',
+                  image: {src: '/assets/PLANIX-R1.png', alt: 'iGuide PLANIX R1 camera'},
                   text: 'One or two sentences of card text.',
                   link: {label: 'Shop cameras', href: '#cards'},
                 },
