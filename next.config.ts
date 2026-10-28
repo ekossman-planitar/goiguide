@@ -5,6 +5,11 @@ import {legacyRedirects} from './lib/legacyRedirects'
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{protocol: 'https', hostname: 'cdn.sanity.io'}],
+    // Image quality (Evan, 2026-10-27): Next.js defaults to 75, which softens photos and fine lines. With one allowed
+    // value, every next/image on the site is served at 90 (a value not in the list snaps to the closest one).
+    // AVIF first (sharper at the same weight), WebP as fallback.
+    qualities: [90],
+    formats: ['image/avif', 'image/webp'],
   },
   // Live serves the 3D virtual tours page at this second address too (canonical points to /iguide/3d-virtual-tours)
   async rewrites() {

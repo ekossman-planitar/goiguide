@@ -84,7 +84,8 @@ export const RESOURCE_DETAIL_QUERY = defineQuery(`*[_type == $type && slug.curre
     ...,
     _type == "image" => {${IMAGE_FIELDS}},
     _type == "ctaBanner" => {..., image{asset->{_id, url}}},
-    _type == "testimonial" => {..., image{hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}}
+    _type == "testimonial" => {..., image{hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}},
+    _type == "table" => {..., rows[]{..., cells[]{..., image{hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}}}}}
   },
   author->{name, role, bio, linkedin, photo{hotspot, crop, asset->{_id, url}}},
   seo{metaTitle, metaDescription, noIndex, ogImage{hotspot, crop, asset->{_id, url}}},
@@ -133,6 +134,11 @@ export const CMS_LIBRARY_QUERY = defineQuery(`{
     photo{alt, hotspot, crop, asset->{_id, url, metadata{dimensions{width, height}}}},
     "companyLogo": companyLogo->{${LOGO_FIELDS}}
   }
+}`)
+
+// "As seen in" press and event logos on the Leadership page
+export const PRESS_QUERY = defineQuery(`*[_type == "pressMention" && hidden != true && defined(logo.asset)] | order(coalesce(order, 9999) asc, name asc){
+  _id, name, kind, url, "logo": logo.asset->url, "dims": logo.asset->metadata.dimensions{width, height}
 }`)
 
 // Paid-media landing pages (any URL; see lib/landingPages)

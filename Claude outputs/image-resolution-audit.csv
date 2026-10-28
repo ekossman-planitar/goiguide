@@ -1,0 +1,399 @@
+Image,Width px,Height px,Type,Flag,Used in
+/assets/02cb574580/pumpkin_bw.png,25011,2559,photo/graphic,,lib/content/pages/hauntedTours.tsx
+/assets/0807955cff/moyo.png,656,649,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/ultaBeauty.tsx
+/assets/17cc011157/iguide-report.png,2436,4135,photo/graphic,,lib/content/pages/howToIguideReport.tsx
+/assets/2020_csc_winner.jpg,1431,430,photo/graphic,,lib/content/pages/csc2018.tsx;lib/content/pages/csc2020.tsx
+/assets/3-clients.jpg,750,450,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/leadMagnet.tsx
+/assets/3D-Model-Floor-Plan-462.png,462,462,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/floorPlans.tsx
+/assets/3D-model-floorplan.png,2373,1581,photo/graphic,,lib/content/solutions/floorPlans.tsx
+/assets/433a5b944e/pav.png,656,649,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/ultaBeauty.tsx
+/assets/48ontario-1.jpg,1923,671,photo/graphic,,lib/content/pages/csc2018.tsx
+/assets/4c9b44d922/kevin.png,656,649,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/ultaBeauty.tsx
+/assets/8f8319eeb6/spide.png,26005,2775,photo/graphic,,lib/content/pages/hauntedTours.tsx
+/assets/941f1db70d/USA_Map.png,1612,975,photo/graphic,,lib/content/pages/ultaBeauty.tsx
+/assets/AEC_June-24_Webinar_Facebook.png,1200,628,photo/graphic,,lib/content/pages/webinarStopWaiting.tsx
+/assets/Advanced_Course2.jpg,1129,966,photo/graphic,,lib/content/pages/advancedCaptureProgram.tsx
+/assets/Australia/AUS-Branded-Property-Overview.png,1054,814,photo/graphic,,lib/content/au/home.tsx;lib/content/au/realEstatePhotography.tsx
+/assets/Australia/Hook-Serious-Buyers.webp,1400,976,photo/graphic,,lib/content/au/realEstatePhotography.tsx
+/assets/Australia/iGUIDE-REA-Chris-Original.png,489,410,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/au/residentialRealEstate.tsx
+/assets/Australia/iGUIDE-REA-Chris.webp,750,572,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/au/residentialRealEstate.tsx
+/assets/Australia/iGUIDE-REA-StandOut.png,489,410,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/au/home.tsx;lib/content/au/residentialRealEstate.tsx
+/assets/Barnaby-Decam-headshot-transparent.png,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareZillow3dHome.tsx
+/assets/Branded-Property-Overviews-Small.png,530,410,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/residentialRealEstate.tsx
+/assets/Branded-Property-Overviews.png,1920,1029,photo/graphic,,lib/content/solutions/floorPlans.tsx
+/assets/Brandon_Cooper.jpg,605,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/CAD-Floor-Plan-462.png,462,462,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/floorPlans.tsx
+/assets/CS0001-3DModel-DWG.png,2373,1581,photo/graphic,,lib/content/home.tsx;lib/content/pricing.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/CS0001-Exterior-Elevations.png,3879,2586,photo/graphic,,lib/content/pricing.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/CS0001-Premium-Floor-Plans.png,3001,2000,photo/graphic,,app/(site)/solutions/page.tsx;lib/content/pricing.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/CS0001-Roof-Plan.png,2975,1984,photo/graphic,,lib/content/pricing.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/CSC_website.png,1920,578,photo/graphic,,lib/content/pages/csc.tsx
+/assets/Chirs_R1_Living_Room.png,1080,1283,photo/graphic,,app/(site)/solutions/page.tsx
+/assets/Chris-Howell.png,745,745,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/insuranceRestoration.tsx
+/assets/Chris_Fernandes_Design_Corp.png,1280,720,photo/graphic,,lib/content/industries/designConstruction.tsx
+/assets/CubiCasa.png,2167,2673,photo/graphic,,lib/content/pages/compareCubicasa.tsx
+/assets/Customer-Stories-Updates-Aug-2025/Customer-Case-Study-Header-Deft-Dec-13__ScaleMaxWidthWzUzNV0.png,400,226,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/careers.tsx
+/assets/ESX-Floor-Plan-462.png,462,462,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/floorPlans.tsx
+/assets/Framing-Whats-Next-Industry-Report-iGUIDE-1.jpg,2400,2925,photo/graphic,,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/Glen_M_Transparent-Headshot.png,512,511,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareMatterport.tsx;lib/content/pages/compareZillow3dHome.tsx
+/assets/Homepage-PLANIX-R1.jpg,1094,1258,photo/graphic,,app/(site)/solutions/page.tsx
+/assets/Homepage-iguide-Radix__FitMaxWzkzMCwzMzZd.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/industries/forensicInvestigation.tsx
+/assets/Icons/all-seasons-adjusting-logo.png,150,150,logo/icon,,lib/content/industries/shared.ts;lib/content/solutions/xactimateSketches.tsx
+/assets/Icons/radix-v2.png,976,684,logo/icon,,lib/content/industries/designConstruction.tsx;lib/content/pages/projectGroupDemo.tsx
+/assets/Instant-Sketch.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/xactimateSketches.tsx
+/assets/Integrations-and-Partnerships-Homes.webp,588,114,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/integrations.ts
+/assets/Jeremy-Murray.jpg,400,380,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/industries/insuranceRestoration.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/John-McKenna.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/architectureEngineeringConstruction.tsx
+/assets/Julie-Pringle.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/realEstatePhotography.tsx
+/assets/Matthew_Anderson.jpg,1080,1080,photo/graphic,,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/Michael-Construction.png,2731,2731,photo/graphic,,lib/content/pages/holmesApproved.tsx
+/assets/Mike-Construction.png,2731,2731,photo/graphic,,lib/content/pages/holmesApproved.tsx
+/assets/Mobile-App_App-Store_300x100__ResizedImageWzIwMiw2OF0.png,202,68,logo/icon,,lib/content/pages/downloadIguidePlanixApp.tsx
+/assets/Mobile-App_Google-Play_300x100__ResizedImageWzIwNyw2OV0.png,207,69,logo/icon,,lib/content/pages/downloadIguidePlanixApp.tsx
+/assets/PLANIX-R1.png,901,667,photo/graphic,UNDER 1000px wide: may look soft if shown large,app/(site)/brand-guideline/page.tsx;lib/content/industries/designConstruction.tsx;lib/content/preview/about.ts
+/assets/PMRE/2025/IMG_1203.jpg,844,769,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/pmre.tsx
+/assets/PMRE/2025/IMG_1204.jpg,1009,828,photo/graphic,,lib/content/pages/pmre.tsx
+/assets/PMRE/2025/IMG_1247.jpg,1170,1398,photo/graphic,,lib/content/pages/pmre.tsx
+/assets/PMRE/2025/IMG_1250.jpeg,3024,4032,photo/graphic,,lib/content/pages/pmre.tsx
+/assets/PMRE/2025/IMG_1256.jpeg,3024,4032,photo/graphic,,lib/content/pages/pmre.tsx
+/assets/PMRE/2025/IMG_1262.jpeg,3024,4032,photo/graphic,,lib/content/pages/pmre.tsx
+/assets/PMRE/2025/IMG_1272.jpg,3024,3125,photo/graphic,,lib/content/pages/pmre.tsx
+/assets/Picture_Profits_1280x400-Export-V2-2.jpg,800,250,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/webinarPhotographyBusiness2025.tsx
+/assets/Pizza-Pizza-Logo.png,400,300,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/industries/designConstruction.tsx;lib/content/pages/bookADemo.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Premium-Sketch_Pricing.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/xactimateSketches.tsx
+/assets/Premium_Pricing.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/industries/shared.ts
+/assets/R1-Camera.png,1080,1282,photo/graphic,,lib/content/home.tsx;lib/content/pages/compareMatterport.tsx
+/assets/RS0001-Reflected-Ceiling-Plans.png,2865,1910,photo/graphic,,lib/content/pricing.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Sample-Drawing-Packages/bryan.jpg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/designConstruction.tsx
+/assets/Schematic-PDF-Floor-Plan-462.png,462,462,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/floorPlans.tsx
+/assets/Screenshot-2024-06-16-at-11.08.30PM.png,2456,1336,photo/graphic,,lib/content/pages/csc2020.tsx
+/assets/Screenshot-2024-06-16-at-11.24.20PM.png,1962,1602,photo/graphic,,lib/content/pages/csc2020.tsx
+/assets/Screenshot-2024-07-14-at-10.43.56AM.png,1952,1592,photo/graphic,,lib/content/pages/csc.tsx
+/assets/Sherry-Construction.png,2731,2731,photo/graphic,,lib/content/pages/holmesApproved.tsx
+/assets/Site_Plans_Add-On.jpg,3001,2000,photo/graphic,,app/(site)/solutions/page.tsx;lib/content/pricing.tsx
+/assets/Solutions_Site-Plans.png,2773,3336,photo/graphic,,lib/content/solutions/cadDeliverables.tsx;lib/content/solutions/sitePlans.tsx;lib/content/solutions/virtualTours.tsx
+/assets/Standard-Sketch_Pricing.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/xactimateSketches.tsx
+/assets/Standard_Pricing__FitMaxWzkzMCwzMzZd.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/industries/shared.ts
+/assets/Tayyab-.jpg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/designConstruction.tsx;lib/content/pages/ultaBeauty.tsx
+/assets/Testimonial-Headshots/Daniel-Nik-Logic-Media.png,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/au/shared.tsx
+/assets/Testimonial-Headshots/Mike-Martin.jpg,4012,4908,photo/graphic,,lib/content/solutions/sitePlans.tsx
+/assets/Testimonial-Headshots/Roman.jpeg,512,512,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/insuranceRestoration.tsx
+/assets/Testimonial-Headshots/Ron-Elias.png,600,600,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/virtualTours.tsx
+/assets/Testimonial-Headshots/Saad-Khan.png,301,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/compareManualMeasurement.tsx
+/assets/Todd-Estes.png,1779,1733,photo/graphic,,lib/content/industries/forensicInvestigation.tsx;lib/content/pages/compareDocusketch.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/1655DUPONT.jpg,625,470,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/cscShared.tsx
+/assets/Uploads/183-Weber.png,2821,1982,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/2-3__ScaleMaxWidthWzUzNV0.png,535,268,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/2023-csc.jpg,3469,1477,photo/graphic,,lib/content/pages/csc.tsx
+/assets/Uploads/2536825a-5c9e-41a6-bb61-0e810681a7b0.jpg,1613,1075,photo/graphic,,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/3-2.png,1600,800,photo/graphic,,lib/content/pages/hauntedTours.tsx
+/assets/Uploads/3-3__ScaleMaxWidthWzUzNV0.png,535,268,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/498Eagle_banner.jpg,1280,572,photo/graphic,,lib/content/pages/csc2021.tsx
+/assets/Uploads/AEC-Images-After.png,900,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/architectureEngineeringConstruction.tsx
+/assets/Uploads/AEC-Images-Before.png,900,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/architectureEngineeringConstruction.tsx
+/assets/Uploads/AEC-Webinar_July-3-2025_Headshots_John-Mckenna_V2.png,1080,1080,photo/graphic,,lib/content/pages/webinarStopWaiting.tsx
+/assets/Uploads/AEC-Webinar_July-3-2025_Headshots_Kevin-Klages_V2-v2.png,1080,1080,photo/graphic,,lib/content/pages/webinarStopWaiting.tsx
+/assets/Uploads/AEC-Webinar_July-3-2025_Headshots_Scott-Hanson_V2.png,1080,1080,photo/graphic,,lib/content/pages/webinarStopWaiting.tsx
+/assets/Uploads/Advanced_Drawing_Package_Commercial-v2.png,4000,3200,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/Advanced_Drawing_Package_Commercial.png,4000,3200,photo/graphic,,lib/content/industries/facilityManagement.tsx
+/assets/Uploads/ApartmentGuide.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzUzNV0.png,535,285,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/careers.tsx
+/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzY1OF0.png,658,350,photo/graphic,UNDER 1000px wide: may look soft if shown large,app/(site)/solutions/page.tsx
+/assets/Uploads/Brochure-TNs-iGUIDE-for-Real-Estate-Agents__ScaleMaxWidthWzUzNV0.png,535,268,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/careers.tsx
+/assets/Uploads/Broker-Bay.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/CCS-Logo.png,62,44,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/pages/projectGroupDemo.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/Camera_Hardware_Header_72dpi-1.jpg,1200,600,photo/graphic,,lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/Capture_and_processing_150dpi.jpg,3504,2336,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/industries/designConstruction.tsx;lib/content/pages/holmesApproved.tsx
+/assets/Uploads/Careers-Images-Client-Success.png,1600,800,photo/graphic,,lib/content/pages/careers.tsx
+/assets/Uploads/Careers-Images-Research-Dev.png,1600,800,photo/graphic,,lib/content/pages/careers.tsx;lib/content/preview/careers.ts
+/assets/Uploads/Careers-Images-Sales-Marketing.png,1600,800,photo/graphic,,lib/content/pages/careers.tsx;lib/content/preview/careers.ts
+/assets/Uploads/Careers-ImagesFull-wdith-image.png,1600,800,photo/graphic,,lib/content/pages/careers.tsx
+/assets/Uploads/Careers-ImagesImage-1.png,900,760,photo/graphic,UNDER 1000px wide: may look soft if shown large,app/(site)/careers-preview/page.tsx;lib/content/pages/careers.tsx
+/assets/Uploads/Careers-ImagesImage-2-Temp.png,900,760,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/careers.tsx;lib/content/preview/careers.ts
+/assets/Uploads/Commercial_design_150dpi.jpg,3333,1667,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/Comprehensive_CAD_Package_r1_cd.png,1798,1523,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/Contact-Header-Image.png,1600,800,photo/graphic,,lib/content/pages/calculatorContact.tsx
+/assets/Uploads/Customer-Story-header-image-Gale-Force-Adjusters-LLC-July-14.png,1280,720,photo/graphic,,lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/DWG-v3.png,2846,1600,photo/graphic,,lib/landingPages/samples.ts
+/assets/Uploads/DWG.png,565,1077,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc.tsx
+/assets/Uploads/Dan-Richard.jpg,1254,1254,photo/graphic,,lib/content/pages/advancedCaptureProgram.tsx
+/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-CS-Construction.png,300,150,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Harder-Build-Construction.png,300,150,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Hills-Group.png,300,150,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-Levitech-Acrchitects-Builders.png,300,150,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-MC3-Design.png,300,150,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/industries/designConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/IGU-119-WEB-AEC-Industry-Page-Logos-UCGC.png,300,150,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/IRC_iGUIDE_Showcase-2.png,900,760,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/Icons-_No-Fees__FitMaxWzYwLDYwXQ.png,60,60,logo/icon,,lib/landingPages/samples.ts
+/assets/Uploads/Icons-_Your-Data__FitMaxWzYwLDYwXQ.png,60,60,logo/icon,,lib/landingPages/samples.ts
+/assets/Uploads/Icons_3D-Tour__FitMaxWzYwLDYwXQ.png,60,60,logo/icon,,lib/landingPages/samples.ts
+/assets/Uploads/Icons_Floorplans-copy.png,260,261,logo/icon,,lib/landingPages/samples.ts
+/assets/Uploads/Icons_iGUIDE-Embed-2.png,260,261,logo/icon,,lib/landingPages/samples.ts
+/assets/Uploads/Icons_iGUIDE-Embed-3.png,260,261,logo/icon,,lib/landingPages/samples.ts
+/assets/Uploads/Industries-Facility-Managementmonitor-progress.png,900,499,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/facilityManagement.tsx
+/assets/Uploads/Industries-Real-Estate-Header.png,1600,800,photo/graphic,,lib/content/pages/discover.tsx
+/assets/Uploads/Industries-Real-Estate-Lower-Image-1.png,1875,1458,photo/graphic,,lib/content/industries/residentialRealEstate.tsx
+/assets/Uploads/Industries-Real-Estate-Lower-Image-3.png,1800,1418,photo/graphic,,lib/content/industries/residentialRealEstate.tsx
+/assets/Uploads/Insurance-Header-Image.png,1600,800,photo/graphic,,lib/content/pages/esxPricing.tsx
+/assets/Uploads/Integrations-and-PartnershipsCSC.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsFloorplanner.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsHDPhotoHub.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsITSO.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsRealtor_ca.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsRealtor_com.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsRentBoard.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsRoyalLePage.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsSeekNow.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-PartnershipsVeiwIt.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-Partnershipsidealista.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-Partnershipslovely.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-Partnershipsrent.com.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Integrations-and-Partnershipsrentals_com.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/Max-Returns-44.png,294,44,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/Mobile_App_Lander_Image_x1600.png,1600,1153,photo/graphic,,lib/content/pages/downloadIguidePlanixApp.tsx
+/assets/Uploads/Order-iGUIDE-Store-CTA.png,1600,800,photo/graphic,,lib/content/pages/partnership.tsx
+/assets/Uploads/PDF.png,565,1077,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc.tsx
+/assets/Uploads/PLANIX_R1_Footer.png,619,1282,photo/graphic,UNDER 1000px wide: may look soft if shown large,components/resources/StoreCta.tsx;lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/PLANIX_R1_Front_72dpi.png,1065,3177,photo/graphic,,lib/content/pages/holmesApproved.tsx;lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/PMRE_Confetti_May-15th_2025.png,6000,4000,photo/graphic,,lib/content/pages/pmre2025.tsx
+/assets/Uploads/PR_Header_Editorial_Image_1_300dpi-1__ScaleMaxWidthWzUzNV0.jpg,535,281,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/Page_Header.png,1440,960,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/Pricing-iGUIDE-Instant-updated-v2__ScaleMaxWidthWzMwMF0.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/industries/shared.ts
+/assets/Uploads/Process_72dpi.jpg,1682,1121,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/industries/forensicInvestigation.tsx;lib/content/pages/holmesApproved.tsx
+/assets/Uploads/RJM-Logo.png,82,39,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/RVT-v2.png,565,1077,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc.tsx
+/assets/Uploads/Real_estate_photographers_150dpi.jpg,3334,1667,photo/graphic,,lib/landingPages/samples.ts
+/assets/Uploads/Reseller-How-to-Start.png,1600,800,photo/graphic,,lib/content/pages/howToIguidePhotosReport.tsx;lib/content/pages/howToIguideReport.tsx
+/assets/Uploads/Riley-Mackey-BGIS-headshot.jpg,500,500,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/facilityManagement.tsx
+/assets/Uploads/Road-to-PMRE_-Export.png,1440,600,photo/graphic,,lib/content/pages/pmre.tsx;lib/content/pages/pmre2025.tsx
+/assets/Uploads/Scrolling-LogosColonial-Claims.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/compareShared.tsx;lib/content/pages/fireInvestigationLanding.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/Scrolling-LogosDeft.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/fireInvestigationLanding.tsx;lib/content/solutions/cameraHardware.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/Scrolling-LogosGrindley.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/fireInvestigationLanding.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/Scrolling-LogosKW.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/leadMagnet.tsx;lib/content/pages/noSubscriptionAlternative.tsx;lib/content/solutions/sitePlans.tsx
+/assets/Uploads/Scrolling-LogosLevco.png,300,150,logo/icon,,lib/content/pages/compareShared.tsx;lib/content/solutions/cadDeliverables.tsx;lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/Scrolling-LogosLevco.png.png,300,150,logo/icon,,lib/content/pages/compareShared.tsx
+/assets/Uploads/Scrolling-LogosNoontide.png,300,150,logo/icon,,lib/content/pages/compareShared.tsx
+/assets/Uploads/Scrolling-LogosPrepTours-v2.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/fireInvestigationLanding.tsx;lib/content/solutions/cameraHardware.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/Scrolling-LogosPrepTours.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/leadMagnet.tsx;lib/content/pages/noSubscriptionAlternative.tsx;lib/content/solutions/cameraHardware.tsx;lib/content/solutions/sitePlans.tsx
+/assets/Uploads/Scrolling-LogosRemax.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/leadMagnet.tsx;lib/content/pages/noSubscriptionAlternative.tsx;lib/content/solutions/sitePlans.tsx
+/assets/Uploads/Scrolling-LogosRoyalLePage.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/leadMagnet.tsx;lib/content/pages/noSubscriptionAlternative.tsx;lib/content/solutions/sitePlans.tsx
+/assets/Uploads/Scrolling-LogosSeeknow.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/fireInvestigationLanding.tsx;lib/content/solutions/sitePlans.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/Scrolling-LogosVisual.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareShared.tsx;lib/content/pages/leadMagnet.tsx;lib/content/pages/noSubscriptionAlternative.tsx;lib/content/solutions/sitePlans.tsx
+/assets/Uploads/Sheffield-Homes-logo-v3.png,163,44,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/Tetsimonial-Logo-${file}.png,,,MISSING FILE,,lib/content/pages/calculatorContact.tsx;lib/content/pages/noSubscriptionAlternative.tsx
+/assets/Uploads/Tetsimonial-Logo-Alden-Morris.png,78,44,logo/icon,,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/Tetsimonial-Logo-Colorful-Virtual-Tours.png,163,44,logo/icon,,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/Tetsimonial-Logo-Master-Trades-Group.png,53,44,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/Tetsimonial-Logo-Nanaimo-Photo.png,236,44,logo/icon,,lib/content/pages/leadMagnet.tsx;lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/Tetsimonial-Logo-Nashua-Video-Tours.png,166,44,logo/icon,,lib/content/pages/leadMagnet.tsx;lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/Tetsimonial-Logo-Snap-Photo.png,170,44,logo/icon,,lib/content/pages/leadMagnet.tsx;lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/Tetsimonial-Logo-Visual-Properties.png,166,44,logo/icon,,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/Unleash-the-power-of-iGUIDE_Brochure_-67.jpg,1746,1120,photo/graphic,,lib/content/pages/discover.tsx
+/assets/Uploads/Utilize_72dpi.jpg,1682,1121,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/pages/holmesApproved.tsx
+/assets/Uploads/Verisk_Logo.png,200,57,logo/icon,,lib/content/solutions/integrations.ts
+/assets/Uploads/a.png,587,587,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/webinarPhotographyBusiness2025.tsx
+/assets/Uploads/agent-analytics-meeting-v2.jpg,750,450,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/howToIguideAnalytics.tsx
+/assets/Uploads/aryeo.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/b19c6449-53f1-4923-a67d-c3576e343345.jpg,1981,1321,photo/graphic,,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/bar_burrito-v3.png,586,172,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/industries/designConstruction.tsx;lib/content/pages/bookADemo.tsx;lib/content/pages/projectGroupDemo.tsx;lib/content/solutions/cadDeliverables.tsx
+/assets/Uploads/chris.png,587,587,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/webinarPhotographyBusiness2025.tsx
+/assets/Uploads/compass.png,300,150,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/compareShared.tsx;lib/content/pages/fireInvestigationLanding.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/csc2026.jpg,800,661,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc.tsx
+/assets/Uploads/csc_2019_banner.jpeg,1920,1080,photo/graphic,,lib/content/pages/csc2019.tsx
+/assets/Uploads/csc_2020_banner.jpg,1920,509,photo/graphic,,lib/content/pages/csc2020.tsx
+/assets/Uploads/csc_instructions.jpg,845,698,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2020.tsx
+/assets/Uploads/customer-success-inline-showcase_real_estate_photography.jpg,736,472,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/iguidePhotos.tsx
+/assets/Uploads/domain.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/esx-standard_transparent.png,2976,837,photo/graphic,,lib/content/pages/esxPricing.tsx
+/assets/Uploads/esx_premium.jpg,2976,837,photo/graphic,,lib/content/pages/esxPricing.tsx
+/assets/Uploads/flexmls-logo_1.jpg,374,115,logo/icon,,lib/content/solutions/integrations.ts
+/assets/Uploads/floor_plans_dfx2.png,623,974,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2018.tsx;lib/content/pages/csc2019.tsx;lib/content/pages/csc2020.tsx
+/assets/Uploads/floor_plans_pdf.png,623,974,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2018.tsx;lib/content/pages/csc2019.tsx;lib/content/pages/csc2020.tsx
+/assets/Uploads/floor_plans_svg.png,623,974,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2018.tsx;lib/content/pages/csc2019.tsx;lib/content/pages/csc2020.tsx
+/assets/Uploads/house_2.jpg,900,603,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/iGUIDE_Contractor_900x760-copy.jpg,900,760,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/img_003.jpg,1920,1080,photo/graphic,,lib/content/pages/csc2018.tsx
+/assets/Uploads/iris_fire_customerstory.png,1280,720,photo/graphic,,lib/content/industries/forensicInvestigation.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/Uploads/j.png,587,587,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/webinarPhotographyBusiness2025.tsx
+/assets/Uploads/james_edition.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/joseph_myers.png,300,150,logo/icon,,lib/content/pages/fireInvestigationLanding.tsx
+/assets/Uploads/laptop.png,2229,1434,photo/graphic,,lib/content/pages/leadMagnet.tsx
+/assets/Uploads/leading_image-v2.png,300,150,logo/icon,,lib/content/pages/compareShared.tsx
+/assets/Uploads/london_Ron.png,1536,801,photo/graphic,,lib/content/pages/advancedCaptureProgram.tsx
+/assets/Uploads/look-v2.png,300,150,logo/icon,,lib/content/pages/compareShared.tsx;lib/content/pages/leadMagnet.tsx
+/assets/Uploads/loookinside-logo-v2.png,400,203,logo/icon,,lib/content/pages/noSubscriptionAlternative.tsx
+/assets/Uploads/loookinside-logo.png,400,203,logo/icon,,lib/content/industries/shared.ts;lib/content/pages/bookADemo.tsx;lib/content/pages/compareZillow3dHome.tsx;lib/content/solutions/sitePlans.tsx
+/assets/Uploads/luxury_presence_3.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/map7.png,3218,2137,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/master_trade_group.png,586,172,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/past_events_321_courtland.jpg,625,470,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/cscShared.tsx
+/assets/Uploads/past_events_489_eagle.jpg,625,470,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/cscShared.tsx
+/assets/Uploads/portrait-of-architects-having-discussion-in-office-2023-11-27-05-12-19-utc.jpg,5472,3648,photo/graphic,,lib/content/pages/discover.tsx
+/assets/Uploads/premium_dentist.png,1675,1241,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/realestate_au_1.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/scend-media.png,249,44,logo/icon,,lib/content/solutions/cameraHardware.tsx
+/assets/Uploads/sketch.jpg,2976,837,photo/graphic,,lib/content/pages/esxPricing.tsx
+/assets/Uploads/smis.png,300,150,logo/icon,,lib/content/pages/fireInvestigationLanding.tsx
+/assets/Uploads/spacelist-v2.png,400,150,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/integrations.ts
+/assets/Uploads/standard_dentist-v2.png,1675,1241,photo/graphic,,lib/content/pages/projectGroupDemo.tsx
+/assets/Uploads/video-call-conference-online-meeting-virtual-peopl-2023-11-27-05-36-42-utc-v2.jpg,994,663,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/designConstruction.tsx
+/assets/Xactimate_72dpi.jpg,1682,1121,photo/graphic,,app/(site)/solutions/page.tsx;lib/content/industries/forensicInvestigation.tsx
+/assets/about-group-shot-image.jpg,1080,608,photo/graphic,,app/(site)/careers-preview/page.tsx;lib/content/pages/about.tsx;lib/content/preview/careers.ts
+/assets/about-jarrad-image.png,189,271,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/about.tsx;lib/content/preview/leadership.ts
+/assets/about-kyle-image.png,3840,2160,photo/graphic,,lib/content/pages/about.tsx;lib/content/preview/careers.ts
+/assets/about-mb-image.png,189,271,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/about.tsx;lib/content/preview/leadership.ts
+/assets/about-mi.png,635,911,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/about.tsx;lib/content/preview/leadership.ts
+/assets/about-skylar-image.png,189,271,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/about.tsx;lib/content/preview/leadership.ts
+/assets/about-team-image.png,4096,2009,photo/graphic,,app/(site)/about-preview/page.tsx;lib/content/pages/about.tsx;lib/content/preview/careers.ts
+/assets/advanced.png,1068,837,photo/graphic,,lib/content/pages/ultaBeauty.tsx
+/assets/alex-coombs-northern-spruce-media.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/alex_photo.jpg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareCubicasa.tsx
+/assets/analytics.jpg,480,480,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/auburn_developer.jpg,1431,430,photo/graphic,,lib/content/pages/csc2020.tsx
+/assets/autocad-logo-aec.png,136,43,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/floorPlans.tsx
+/assets/barburrito-block.png,600,600,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/designConstruction.tsx
+/assets/cabinets-and-tray-ceiling__ResizedImageWzYwMCwzMzhd.jpg,600,338,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/esxPricing.tsx
+/assets/capture_72dpi.jpg,1682,1121,photo/graphic,,lib/content/industries/forensicInvestigation.tsx
+/assets/cheyenne-crawford-infinite-views.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/chief-architect-logo-aec.png,150,39,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/floorPlans.tsx
+/assets/chris-white-iguide.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/chris1.png,363,363,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/fireInvestigationLanding.tsx
+/assets/csc/1655-Dupont.jpg,1431,430,photo/graphic,,lib/content/pages/csc2018.tsx;lib/content/pages/csc2019.tsx
+/assets/csc/2018_csc_instructions_image-800x661.jpg,800,661,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2018.tsx
+/assets/csc/2019-csc-cover.jpg,600,496,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2019.tsx
+/assets/csc/Screenshot-2024-07-16-at-1.09.53AM.png,1946,1582,photo/graphic,,lib/content/pages/csc2018.tsx
+/assets/csc/Screenshot-2024-07-16-at-1.10.15AM.png,1948,1590,photo/graphic,,lib/content/pages/csc2019.tsx
+/assets/csc/Screenshot-2024-07-16-at-1.12.04AM.png,1952,1592,photo/graphic,,lib/content/pages/csc2021.tsx
+/assets/csc/Screenshot-2024-07-16-at-1.47.51AM.png,2180,1768,photo/graphic,,lib/content/pages/csc2021.tsx
+/assets/csc/csc_2021.jpg,1200,361,photo/graphic,,lib/content/pages/csc2021.tsx
+/assets/csc/csc_instructions_2021.jpg,800,661,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/csc2021.tsx
+/assets/csc/dxf_icon.png,623,858,logo/icon,,lib/content/pages/csc2021.tsx
+/assets/csc/forge_foster_developer.jpg,1431,430,photo/graphic,,lib/content/pages/csc2021.tsx
+/assets/csc/pdf_icon.png,623,858,logo/icon,,lib/content/pages/csc2021.tsx
+/assets/csc/ras_buildr_2.jpg,1431,430,photo/graphic,,lib/content/pages/csc2019.tsx
+/assets/csc/svg_icon.png,623,858,logo/icon,,lib/content/pages/csc2021.tsx
+/assets/csc_2020.jpg,1200,361,photo/graphic,,lib/content/pages/csc2020.tsx
+/assets/cubicasa-professional.png,850,1081,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareCubicasa.tsx
+/assets/deft-logo-demo.png,1376,544,logo/icon,,lib/content/pages/bookADemo.tsx
+/assets/demo.jpg,900,760,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/au/residentialRealEstate.tsx
+/assets/dominic-wilkerson-dom-does-media.jpeg,299,299,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/ea289cd8b1/lauren.png,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareCubicasa.tsx
+/assets/esx-floorplan-sample.png,2242,1140,photo/graphic,,lib/content/solutions/floorPlans.tsx
+/assets/esx_premium.png,616,600,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/insuranceRestoration.tsx
+/assets/esx_standard.png,600,600,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/insuranceRestoration.tsx
+/assets/flexmls-v2.png,135,59,logo/icon,,lib/content/solutions/virtualTours.tsx
+/assets/floorplan-480.png,480,480,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/fraser-almeida-luxury-homes.jpeg,450,450,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/funda-logo.png,360,127,logo/icon,,lib/content/solutions/integrations.ts;lib/content/solutions/virtualTours.tsx
+/assets/haunted-places-google-maps-2.png,628,468,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/hauntedTours.tsx
+/assets/hp.jpg,3707,1675,photo/graphic,,lib/content/pages/csc.tsx
+/assets/iGUIDE-Meta-Thumbnail.png,2500,1313,photo/graphic,,app/(lp)/[...path]/page.tsx;app/(site)/ebooks/page.tsx;app/(site)/event/[slug]/page.tsx;components/catalogue/CatalogueListing.tsx;components/landing/LandingSections.tsx;components/resources/ResourceCenterPage.tsx;components/resources/ResourceDetail.tsx;lib/content/solutions/cameraHardware.tsx;lib/content/solutions/floorPlans.tsx;lib/content/solutions/integrations.ts;lib/content/solutions/xactimateSketches.tsx;lib/pageMetadata.ts
+/assets/iGUIDE-Pricing-Explained-poster.jpg,1280,720,photo/graphic,,lib/content/pricing.tsx
+/assets/iGUIDE-case-study-Wild-and-Free-Cafe-exterior.png,1080,720,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx
+/assets/iGUIDE_Hand_Sketching.png,928,1145,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareManualMeasurement.tsx
+/assets/iGUIDE_Haunted_Tours_72dpi.jpg,1200,630,photo/graphic,,lib/content/pages/hauntedTours.tsx
+/assets/iGUIDE_upmarket_Logos-v2.png,2447,523,logo/icon,,lib/content/pages/pmre.tsx
+/assets/iguide-photos-report.png,2436,1650,photo/graphic,,lib/content/pages/howToIguidePhotosReport.tsx
+/assets/iguide-viewer-480.png,480,480,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/iguide-viewer-photos-480.png,478,476,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/iguide-vs-competitors-planix-r1.png,2167,2673,photo/graphic,,lib/content/pages/compareShared.tsx;lib/content/pages/compareZillow3dHome.tsx
+/assets/iguide-vs-docusketch-ds1.png,2167,2673,photo/graphic,,lib/content/pages/compareDocusketch.tsx
+/assets/iguide-vs-docusketch-jeremiah.jpg,690,672,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/insuranceRestoration.tsx;lib/content/pages/compareDocusketch.tsx
+/assets/iguide-vs-docusketch-r1.png,820,1080,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareDocusketch.tsx
+/assets/iguide-vs-matterport-bob.png,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/compareMatterport.tsx
+/assets/iguide-vs-matterport-pro2.png,2167,2673,photo/graphic,,lib/content/pages/compareMatterport.tsx
+/assets/iguide-vs-zillow-360.png,2167,2673,photo/graphic,,lib/content/pages/compareZillow3dHome.tsx
+/assets/integrations-hub-new.png,2464,1280,photo/graphic,,app/(site)/solutions/page.tsx;lib/content/solutions/integrations.ts
+/assets/irc-sketch-step-3.png,489,410,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/au/residentialRealEstate.tsx;lib/content/solutions/xactimateSketches.tsx
+/assets/irc-sketch-step-4.png,290,243,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/xactimateSketches.tsx
+/assets/irc.jpg,788,630,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/forensicInvestigation.tsx
+/assets/lead-magnet.jpg,1950,650,photo/graphic,,lib/content/pages/leadMagnet.tsx
+/assets/list-on-spotify-logo.png,509,186,logo/icon,,lib/content/pages/holmesApproved.tsx
+/assets/marketing-catalogue/au-complete-listing.webp,960,392,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/cad-commercial.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/cad-residential.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/checklist-elevations.webp,960,711,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/checklist-staging.webp,960,799,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/checklist-walkthrough.webp,960,746,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/drawing-3d-model.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/drawing-advanced-drawing-package.webp,960,768,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/drawing-exterior-elevations.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/drawing-floor-plans.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/drawing-reflected-ceiling-plans.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/drawing-roof-plans.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/ebook-revenue.webp,960,749,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/listing-brochure.webp,960,790,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/listing-flyer-2024.webp,960,617,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/photos-ae.webp,960,571,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/photos-irc.webp,960,639,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/photos-pro.webp,960,502,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/photos-r1.webp,960,811,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/photos-rre.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/pres-commercial.webp,960,455,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/pres-measurements.webp,960,468,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/pres-residential.webp,960,455,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/re-agent-brochure.webp,960,633,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/site-plans-agents.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/site-plans-photographers.webp,960,640,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-2d-furniture.webp,679,960,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-agent-get-a-listing-do-over-with-iguide.webp,960,540,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-agent-listings-with-iguide-sell-39-faster-than-photos-alone.webp,960,541,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-agent-r1-montage.webp,800,450,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-agent-start-harnessing-the-power-of-iguide.webp,960,536,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-site-plans-pool.webp,960,811,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/marketing-catalogue/video-site-plans.webp,960,811,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/marketingCatalogue.ts
+/assets/measurement-mode-480.png,476,475,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/mike-holmes-cta.png,2731,2731,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/pages/holmesApproved.tsx
+/assets/mike-holmes-hero.png,3687,2274,photo/graphic,,lib/content/pages/holmesApproved.tsx
+/assets/mike_holmes.png,1280,720,photo/graphic,,lib/content/industries/architectureEngineeringConstruction.tsx
+/assets/nathan-cool-photography.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/noblesville-fire-department.png,3172,2307,photo/graphic,,lib/content/industries/shared.ts;lib/content/solutions/xactimateSketches.tsx
+/assets/paul.png,363,363,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/landingPages/samples.ts
+/assets/pds-logo.png,251,150,logo/icon,,lib/content/industries/designConstruction.tsx
+/assets/phil-maurion-visual-advantage.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/plotted-cropped.png,2421,1905,photo/graphic,,lib/content/solutions/cadDeliverables.tsx;lib/content/solutions/floorPlans.tsx
+/assets/plotted.png,2821,1982,photo/graphic,,lib/content/industries/designConstruction.tsx
+/assets/pmre-2026-thumbnail.png,830,647,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/pmre.tsx
+/assets/premium_rest.png,800,592,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/designConstruction.tsx
+/assets/professionals-zillow.png,1080,1372,photo/graphic,,lib/content/pages/compareZillow3dHome.tsx
+/assets/rachel_morgab.png,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/residentialRealEstate.tsx
+/assets/rea.png,5801,523,photo/graphic,,lib/content/pages/auAgentOffers.tsx
+/assets/real-time-tags.png,480,480,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/realestate.com.au.png,334,45,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/solutions/virtualTours.tsx
+/assets/realestate_logo_h_rev_rgb.png,1386,185,logo/icon,,lib/content/au/shared.tsx
+/assets/realtor-v2.ca.png,167,57,logo/icon,,lib/content/solutions/virtualTours.tsx
+/assets/realtor.com.png,860,170,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/virtualTours.tsx
+/assets/reed-fish-upmarket.jpeg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/reportFramingWhatsNext2026.tsx
+/assets/remax-logo-demo__FitMaxWzkzMCwzMzZd.png,930,171,logo/icon,,lib/content/pages/bookADemo.tsx
+/assets/revit-logo-aec.png,102,43,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/floorPlans.tsx
+/assets/roger1.png,363,363,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/pages/fireInvestigationLanding.tsx
+/assets/royal-lepage-logo-demo.png,2400,884,logo/icon,,lib/content/pages/bookADemo.tsx
+/assets/ryan.jpg,800,800,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/solutions/floorPlans.tsx
+/assets/schematic-pdf-floorplan.png,2160,1668,photo/graphic,,app/(site)/solutions/page.tsx;lib/content/home.tsx;lib/content/solutions/floorPlans.tsx
+/assets/sketch.png,600,600,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/insuranceRestoration.tsx
+/assets/sketchup-logo-aec.png,120,25,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/floorPlans.tsx
+/assets/space-planning.png,770,522,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/home.tsx;lib/content/industries/designConstruction.tsx
+/assets/standard_restaurant.png,800,592,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/industries/designConstruction.tsx
+/assets/tablet.png,2193,1708,photo/graphic,,lib/content/industries/residentialRealEstate.tsx
+/assets/todd.png,363,363,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/landingPages/samples.ts
+/assets/ulta-prem.jpg,1079,835,photo/graphic,,lib/content/pages/ultaBeauty.tsx
+/assets/ulta_addons.png,865,678,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/ultaBeauty.tsx
+/assets/ulta_prem.png,970,719,photo/graphic,UNDER 1000px wide: may look soft if shown large,lib/content/pages/ultaBeauty.tsx
+/assets/vectorworks-logo-aec.png,163,32,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/floorPlans.tsx
+/assets/watch-on-youtube-logo.png,507,186,logo/icon,,lib/content/pages/holmesApproved.tsx
+/assets/xacimate-logo-aec.png,167,27,logo/icon,,lib/content/industries/architectureEngineeringConstruction.tsx;lib/content/solutions/floorPlans.tsx
+/assets/zillow-logo.png,480,105,logo/icon,,lib/content/solutions/integrations.ts;lib/content/solutions/virtualTours.tsx
+/homepage/glen-macisaac.png,,,MISSING FILE,,lib/content/homeSections.ts
+/homepage/pricing/advanced-drawing.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/pricing/instant-sketch.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/pricing/instant.png,,,MISSING FILE,,lib/content/homeSections.ts
+/homepage/pricing/planix-r1.jpg,1094,1258,photo/graphic,,lib/content/homeSections.ts
+/homepage/pricing/premium-sketch.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/pricing/premium.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/pricing/radix.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/pricing/standard-sketch.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/pricing/standard.png,300,300,photo/graphic,UNDER 500px wide: will look pixelated if shown large,lib/content/homeSections.ts
+/homepage/stories/deft.png,295,148,logo/icon,,lib/content/homeSections.ts;lib/content/preview/about.ts
+/homepage/stories/mc3-design.png,309,92,logo/icon,,lib/content/homeSections.ts;lib/content/preview/about.ts
+/homepage/stories/monster-media-house.png,233,64,logo/icon,,lib/content/homeSections.ts;lib/content/preview/about.ts
+/homepage/stories/morgan-wasley.png,243,84,logo/icon,,lib/content/homeSections.ts;lib/content/preview/about.ts

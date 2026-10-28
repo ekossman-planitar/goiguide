@@ -82,6 +82,71 @@ export function Testimonial({value}: Readonly<{value: TestimonialValue}>) {
   )
 }
 
+type TableCellValue = {_key: string; text?: string; bold?: boolean; image?: SanityImage; alt?: string}
+type TableValue = {headerRow?: boolean; firstColumnHeader?: boolean; rows?: {_key: string; cells?: TableCellValue[]}[]}
+
+/** Comparison / spec table. Icon cells (tick, cross) keep their own small size. */
+function TableBlock({value}: Readonly<{value: TableValue}>) {
+  const rows = value?.rows?.filter((r) => r.cells?.length) ?? []
+  if (!rows.length) return null
+  const head = value.headerRow === false ? undefined : rows[0]
+  const bodyRows = head ? rows.slice(1) : rows
+  const rowLabels = value.firstColumnHeader !== false
+
+  const content = (c: TableCellValue) => {
+    const dims = c.image?.asset?.metadata?.dimensions
+    return (
+      <span className={c.image ? 'flex items-center gap-2' : undefined}>
+        {c.image?.asset && (
+          <Image
+            src={urlFor(c.image).height(64).fit('max').auto('format').url()}
+            alt={c.alt ?? ''}
+            width={dims ? Math.round((dims.width / dims.height) * 24) : 24}
+            height={24}
+            className="h-6 w-auto shrink-0"
+          />
+        )}
+        {c.text && <span className={c.bold ? 'whitespace-pre-line font-semibold' : 'whitespace-pre-line'}>{c.text}</span>}
+      </span>
+    )
+  }
+
+  return (
+    <div className="mt-10 overflow-x-auto rounded-xl border border-line">
+      <table className="w-full min-w-[32rem] border-collapse text-left text-base">
+        {head && (
+          <thead className="bg-surface text-ink">
+            <tr>
+              {head.cells?.map((c) => (
+                <th key={c._key} scope="col" className="px-4 py-3 align-bottom font-semibold">
+                  {content(c)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {bodyRows.map((r) => (
+            <tr key={r._key} className="border-t border-line">
+              {r.cells?.map((c, i) =>
+                rowLabels && i === 0 ? (
+                  <th key={c._key} scope="row" className="px-4 py-3 align-middle font-semibold text-ink">
+                    {content(c)}
+                  </th>
+                ) : (
+                  <td key={c._key} className="px-4 py-3 align-middle text-body">
+                    {content(c)}
+                  </td>
+                ),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 type CtaBannerValue = {
   heading?: string
   text?: string
@@ -146,6 +211,7 @@ export const bodyComponents: PortableTextComponents = {
       )
     },
     videoEmbed: ({value}: {value: VideoEmbedValue}) => <VideoEmbed value={value} />,
+    table: ({value}: {value: TableValue}) => <TableBlock value={value} />,
     faq: ({value}: {value: FaqValue}) =>
       value?.items?.length ? (
         <section className="mt-12" aria-label={value.heading || 'Frequently asked questions'}>

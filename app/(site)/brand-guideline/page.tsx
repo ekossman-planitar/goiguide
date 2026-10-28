@@ -183,20 +183,6 @@ const colours: Colour[] = [
     uses: ['Secondary text on Mist backgrounds (applied automatically)', 'Charts and illustrations'],
   },
   {
-    name: 'Blueprint',
-    token: 'blueprint',
-    hex: '#5B8FDB',
-    swatch: 'bg-blueprint',
-    uses: ['Charts and data visualisation', 'Illustrations', 'Never for text, buttons or links'],
-  },
-  {
-    name: 'Laser',
-    token: 'laser',
-    hex: '#9FD356',
-    swatch: 'bg-laser',
-    uses: ['Charts and data visualisation', 'Illustrations', 'Never for text, buttons or links'],
-  },
-  {
     name: 'Hairline',
     token: 'line',
     hex: '#E4E4E7',
@@ -337,9 +323,16 @@ export default async function BrandGuidelinePage() {
           </Demo>
           <Demo label="Brand mark">
             <div className="flex h-40 items-center justify-center rounded-2xl border border-line bg-white">
-              <Image src="/brand/iGuide-Brand-Mark.svg" alt="iGuide brand mark" width={400} height={400} className="h-24 w-24" />
+              <div className="flex items-center gap-8">
+                <Image src="/brand/iGuide-Brand-Mark.svg" alt="iGuide brand mark, red" width={400} height={400} className="h-24 w-24" />
+                <Image src="/brand/iGuide-Brand-Mark-Red.svg" alt="iGuide brand mark, white on red" width={400} height={400} className="h-24 w-24" />
+              </div>
             </div>
-            <Spec>Website file: /brand/iGuide-Brand-Mark.svg (also the website icon, favicon.ico). For small square spaces where the full logo won’t fit.</Spec>
+            <Spec>
+              Red on white: /brand/iGuide-Brand-Mark.svg.
+              <br />
+              White on red: /brand/iGuide-Brand-Mark-Red.svg.
+            </Spec>
           </Demo>
           <Demo label="Logo rules">
             <CheckList

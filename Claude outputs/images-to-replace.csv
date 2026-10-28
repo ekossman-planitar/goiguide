@@ -1,0 +1,226 @@
+Priority,Image,Current size (px),Type,What design should send,Used on
+Needed,Jessica Creces headshot,none,Headshot,"Headshot, at least 1000px on the short side, same grey backdrop as the other leaders",/about-preview/leadership
+Needed,Press and event logos (Sanity: Logos > As seen in),none,Logos,"SVG preferred, or transparent PNG at least 600px wide",/about-preview/leadership
+Needed,"Milestone photos or logos (optional, one per milestone that has one)",none,Photo,At least 1600px wide,/about-preview
+Needed,"Careers team quote headshots (4 slots: long-timer, recent hire, field or support, product/engineering/drafting)",none,Headshot,At least 800px square,/careers-preview
+Needed,"Careers photo wall: candid team photos (trade shows, town halls, lunches, capture days, office dog)",none,Photo,"At least 1600px wide, original files",/careers-preview
+High,/assets/Barnaby-Decam-headshot-transparent.png,800x800,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: compareZillow3dHome
+High,/assets/Glen_M_Transparent-Headshot.png,512x511,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: compareMatterport; page content: compareZillow3dHome
+High,/assets/Jeremy-Murray.jpg,400x380,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/industries/insuranceRestoration.tsx; lib/content/solutions/xactimateSketches.tsx
+High,/assets/Testimonial-Headshots/Daniel-Nik-Logic-Media.png,800x800,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/au/shared.tsx
+High,/assets/Testimonial-Headshots/Roman.jpeg,512x512,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/industries/insuranceRestoration.tsx
+High,/assets/Testimonial-Headshots/Ron-Elias.png,600x600,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/solutions/virtualTours.tsx
+High,/assets/Testimonial-Headshots/Saad-Khan.png,301x300,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: compareManualMeasurement
+High,/assets/Uploads/Riley-Mackey-BGIS-headshot.jpg,500x500,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/industries/facilityManagement.tsx
+High,/assets/about-jarrad-image.png,189x271,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/preview/leadership.ts; page content: about
+High,/assets/about-mb-image.png,189x271,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/preview/leadership.ts; page content: about
+High,/assets/about-mi.png,635x911,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/preview/leadership.ts; page content: about
+High,/assets/about-skylar-image.png,189x271,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/content/preview/leadership.ts; page content: about
+High,/assets/chris1.png,363x363,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: fireInvestigationLanding
+High,/assets/dominic-wilkerson-dom-does-media.jpeg,299x299,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: reportFramingWhatsNext2026
+High,/assets/fraser-almeida-luxury-homes.jpeg,450x450,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: reportFramingWhatsNext2026
+High,/assets/paul.png,363x363,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/landingPages/samples.ts
+High,/assets/roger1.png,363x363,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",page content: fireInvestigationLanding
+High,/assets/todd.png,363x363,Headshot,"Headshot, at least 1000px on the short side (1200px+ ideal)",lib/landingPages/samples.ts
+High,/assets/3D-Model-Floor-Plan-462.png,462x462,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/floorPlans.tsx
+High,/assets/Australia/iGUIDE-REA-Chris-Original.png,489x410,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/au/residentialRealEstate.tsx
+High,/assets/Australia/iGUIDE-REA-StandOut.png,489x410,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/au/home.tsx; lib/content/au/residentialRealEstate.tsx
+High,/assets/CAD-Floor-Plan-462.png,462x462,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/floorPlans.tsx
+High,/assets/Customer-Stories-Updates-Aug-2025/Customer-Case-Study-Header-Deft-Dec-13__ScaleMaxWidthWzUzNV0.png,400x226,Photo or graphic,At least 1200px wide (2x the largest size it shows at),page content: careers
+High,/assets/ESX-Floor-Plan-462.png,462x462,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/floorPlans.tsx
+High,/assets/Homepage-iguide-Radix__FitMaxWzkzMCwzMzZd.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/industries/forensicInvestigation.tsx
+High,/assets/Instant-Sketch.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/xactimateSketches.tsx
+High,/assets/Premium-Sketch_Pricing.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/xactimateSketches.tsx
+High,/assets/Premium_Pricing.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/industries/shared.ts
+High,/assets/Schematic-PDF-Floor-Plan-462.png,462x462,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/floorPlans.tsx
+High,/assets/Standard-Sketch_Pricing.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/xactimateSketches.tsx
+High,/assets/Standard_Pricing__FitMaxWzkzMCwzMzZd.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/industries/shared.ts
+High,/assets/Uploads/ApartmentGuide.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Broker-Bay.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsCSC.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsFloorplanner.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsHDPhotoHub.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsITSO.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsRealtor_ca.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsRealtor_com.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsRentBoard.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsRoyalLePage.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsSeekNow.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-PartnershipsVeiwIt.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-Partnershipsidealista.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-Partnershipslovely.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-Partnershipsrent.com.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Integrations-and-Partnershipsrentals_com.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/Pricing-iGUIDE-Instant-updated-v2__ScaleMaxWidthWzMwMF0.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/industries/shared.ts
+High,/assets/Uploads/aryeo.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/domain.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/james_edition.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/luxury_presence_3.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/realestate_au_1.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/Uploads/spacelist-v2.png,400x150,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/integrations.ts
+High,/assets/analytics.jpg,480x480,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/assets/floorplan-480.png,480x480,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/assets/iguide-viewer-480.png,480x480,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/assets/iguide-viewer-photos-480.png,478x476,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/assets/irc-sketch-step-3.png,489x410,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/au/residentialRealEstate.tsx; lib/content/solutions/xactimateSketches.tsx
+High,/assets/irc-sketch-step-4.png,290x243,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/xactimateSketches.tsx
+High,/assets/measurement-mode-480.png,476x475,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/assets/real-time-tags.png,480x480,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/assets/realestate.com.au.png,334x45,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/solutions/virtualTours.tsx
+High,/homepage/pricing/advanced-drawing.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+High,/homepage/pricing/instant-sketch.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+High,/homepage/pricing/premium-sketch.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+High,/homepage/pricing/premium.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+High,/homepage/pricing/radix.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+High,/homepage/pricing/standard-sketch.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+High,/homepage/pricing/standard.png,300x300,Photo or graphic,At least 1200px wide (2x the largest size it shows at),lib/content/homeSections.ts
+Medium,/assets/Icons/all-seasons-adjusting-logo.png,150x150,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/shared.ts; lib/content/solutions/xactimateSketches.tsx
+Medium,/assets/Mobile-App_App-Store_300x100__ResizedImageWzIwMiw2OF0.png,202x68,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",page content: downloadIguidePlanixApp
+Medium,/assets/Mobile-App_Google-Play_300x100__ResizedImageWzIwNyw2OV0.png,207x69,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",page content: downloadIguidePlanixApp
+Medium,/assets/Uploads/CCS-Logo.png,62x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/cadDeliverables.tsx; page content: projectGroupDemo
+Medium,/assets/Uploads/Icons-_No-Fees__FitMaxWzYwLDYwXQ.png,60x60,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/landingPages/samples.ts
+Medium,/assets/Uploads/Icons-_Your-Data__FitMaxWzYwLDYwXQ.png,60x60,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/landingPages/samples.ts
+Medium,/assets/Uploads/Icons_3D-Tour__FitMaxWzYwLDYwXQ.png,60x60,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/landingPages/samples.ts
+Medium,/assets/Uploads/Icons_Floorplans-copy.png,260x261,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/landingPages/samples.ts
+Medium,/assets/Uploads/Icons_iGUIDE-Embed-2.png,260x261,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/landingPages/samples.ts
+Medium,/assets/Uploads/Icons_iGUIDE-Embed-3.png,260x261,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/landingPages/samples.ts
+Medium,/assets/Uploads/Max-Returns-44.png,294x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/cadDeliverables.tsx
+Medium,/assets/Uploads/RJM-Logo.png,82x39,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/cadDeliverables.tsx
+Medium,/assets/Uploads/Sheffield-Homes-logo-v3.png,163x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/cadDeliverables.tsx
+Medium,/assets/Uploads/Tetsimonial-Logo-Alden-Morris.png,78x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",page content: leadMagnet
+Medium,/assets/Uploads/Tetsimonial-Logo-Colorful-Virtual-Tours.png,163x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",page content: leadMagnet
+Medium,/assets/Uploads/Tetsimonial-Logo-Master-Trades-Group.png,53x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/cadDeliverables.tsx
+Medium,/assets/Uploads/Tetsimonial-Logo-Nanaimo-Photo.png,236x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/cameraHardware.tsx; page content: leadMagnet
+Medium,/assets/Uploads/Tetsimonial-Logo-Nashua-Video-Tours.png,166x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/cameraHardware.tsx; page content: leadMagnet
+Medium,/assets/Uploads/Tetsimonial-Logo-Snap-Photo.png,170x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/cameraHardware.tsx; page content: leadMagnet
+Medium,/assets/Uploads/Tetsimonial-Logo-Visual-Properties.png,166x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",page content: leadMagnet
+Medium,/assets/Uploads/Verisk_Logo.png,200x57,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/integrations.ts
+Medium,/assets/Uploads/scend-media.png,249x44,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/cameraHardware.tsx
+Medium,/assets/autocad-logo-aec.png,136x43,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/floorPlans.tsx
+Medium,/assets/chief-architect-logo-aec.png,150x39,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/floorPlans.tsx
+Medium,/assets/flexmls-v2.png,135x59,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/virtualTours.tsx
+Medium,/assets/pds-logo.png,251x150,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/designConstruction.tsx
+Medium,/assets/realtor-v2.ca.png,167x57,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/solutions/virtualTours.tsx
+Medium,/assets/revit-logo-aec.png,102x43,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/floorPlans.tsx
+Medium,/assets/sketchup-logo-aec.png,120x25,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/floorPlans.tsx
+Medium,/assets/vectorworks-logo-aec.png,163x32,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/floorPlans.tsx
+Medium,/assets/xacimate-logo-aec.png,167x27,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/solutions/floorPlans.tsx
+Medium,/homepage/stories/deft.png,295x148,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/homeSections.ts; lib/content/preview/about.ts
+Medium,/homepage/stories/monster-media-house.png,233x64,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/homeSections.ts; lib/content/preview/about.ts
+Medium,/homepage/stories/morgan-wasley.png,243x84,Logo or icon,"Send the logo as SVG (or PNG at least 600px wide, transparent)",lib/content/homeSections.ts; lib/content/preview/about.ts
+Medium,/assets/0807955cff/moyo.png,656x649,Photo or graphic,At least 1600px wide,page content: ultaBeauty
+Medium,/assets/3-clients.jpg,750x450,Photo or graphic,At least 1600px wide,page content: leadMagnet
+Medium,/assets/433a5b944e/pav.png,656x649,Photo or graphic,At least 1600px wide,page content: ultaBeauty
+Medium,/assets/4c9b44d922/kevin.png,656x649,Photo or graphic,At least 1600px wide,page content: ultaBeauty
+Medium,/assets/Australia/iGUIDE-REA-Chris.webp,750x572,Photo or graphic,At least 1600px wide,lib/content/au/residentialRealEstate.tsx
+Medium,/assets/Branded-Property-Overviews-Small.png,530x410,Photo or graphic,At least 1600px wide,lib/content/industries/residentialRealEstate.tsx
+Medium,/assets/Brandon_Cooper.jpg,605x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/Chris-Howell.png,745x745,Photo or graphic,At least 1600px wide,lib/content/industries/insuranceRestoration.tsx
+Medium,/assets/Integrations-and-Partnerships-Homes.webp,588x114,Photo or graphic,At least 1600px wide,lib/content/solutions/integrations.ts
+Medium,/assets/John-McKenna.jpeg,800x800,Photo or graphic,At least 1600px wide,lib/content/industries/architectureEngineeringConstruction.tsx
+Medium,/assets/Julie-Pringle.jpeg,800x800,Photo or graphic,At least 1600px wide,lib/content/industries/realEstatePhotography.tsx
+Medium,/assets/PLANIX-R1.png,901x667,Photo or graphic,At least 1600px wide,/brand-guideline; lib/content/industries/designConstruction.tsx; lib/content/preview/about.ts
+Medium,/assets/PMRE/2025/IMG_1203.jpg,844x769,Photo or graphic,At least 1600px wide,page content: pmre
+Medium,/assets/Picture_Profits_1280x400-Export-V2-2.jpg,800x250,Photo or graphic,At least 1600px wide,page content: webinarPhotographyBusiness2025
+Medium,/assets/Sample-Drawing-Packages/bryan.jpg,800x800,Photo or graphic,At least 1600px wide,lib/content/industries/designConstruction.tsx
+Medium,/assets/Tayyab-.jpg,800x800,Photo or graphic,At least 1600px wide,lib/content/industries/designConstruction.tsx; page content: ultaBeauty
+Medium,/assets/Uploads/1655DUPONT.jpg,625x470,Photo or graphic,At least 1600px wide,page content: cscShared
+Medium,/assets/Uploads/2-3__ScaleMaxWidthWzUzNV0.png,535x268,Photo or graphic,At least 1600px wide,lib/content/solutions/cameraHardware.tsx
+Medium,/assets/Uploads/3-3__ScaleMaxWidthWzUzNV0.png,535x268,Photo or graphic,At least 1600px wide,lib/content/solutions/cameraHardware.tsx
+Medium,/assets/Uploads/AEC-Images-After.png,900x800,Photo or graphic,At least 1600px wide,lib/content/industries/architectureEngineeringConstruction.tsx
+Medium,/assets/Uploads/AEC-Images-Before.png,900x800,Photo or graphic,At least 1600px wide,lib/content/industries/architectureEngineeringConstruction.tsx
+Medium,/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzUzNV0.png,535x285,Photo or graphic,At least 1600px wide,page content: careers
+Medium,/assets/Uploads/Best-practices-floor-plans-and-3D-virtual-tours__ScaleMaxWidthWzY1OF0.png,658x350,Photo or graphic,At least 1600px wide,/solutions
+Medium,/assets/Uploads/Brochure-TNs-iGUIDE-for-Real-Estate-Agents__ScaleMaxWidthWzUzNV0.png,535x268,Photo or graphic,At least 1600px wide,page content: careers
+Medium,/assets/Uploads/Careers-ImagesImage-1.png,900x760,Photo or graphic,At least 1600px wide,/careers-preview; page content: careers
+Medium,/assets/Uploads/Careers-ImagesImage-2-Temp.png,900x760,Photo or graphic,At least 1600px wide,lib/content/preview/careers.ts; page content: careers
+Medium,/assets/Uploads/DWG.png,565x1077,Photo or graphic,At least 1600px wide,page content: csc
+Medium,/assets/Uploads/IRC_iGUIDE_Showcase-2.png,900x760,Photo or graphic,At least 1600px wide,lib/content/solutions/xactimateSketches.tsx
+Medium,/assets/Uploads/Industries-Facility-Managementmonitor-progress.png,900x499,Photo or graphic,At least 1600px wide,lib/content/industries/facilityManagement.tsx
+Medium,/assets/Uploads/PDF.png,565x1077,Photo or graphic,At least 1600px wide,page content: csc
+Medium,/assets/Uploads/PLANIX_R1_Footer.png,619x1282,Photo or graphic,At least 1600px wide,components/resources/StoreCta.tsx; lib/content/solutions/cameraHardware.tsx
+Medium,/assets/Uploads/PR_Header_Editorial_Image_1_300dpi-1__ScaleMaxWidthWzUzNV0.jpg,535x281,Photo or graphic,At least 1600px wide,lib/content/solutions/cameraHardware.tsx
+Medium,/assets/Uploads/RVT-v2.png,565x1077,Photo or graphic,At least 1600px wide,page content: csc
+Medium,/assets/Uploads/a.png,587x587,Photo or graphic,At least 1600px wide,page content: webinarPhotographyBusiness2025
+Medium,/assets/Uploads/agent-analytics-meeting-v2.jpg,750x450,Photo or graphic,At least 1600px wide,page content: howToIguideAnalytics
+Medium,/assets/Uploads/bar_burrito-v3.png,586x172,Photo or graphic,At least 1600px wide,lib/content/industries/architectureEngineeringConstruction.tsx; lib/content/industries/designConstruction.tsx; lib/content/solutions/cadDeliverables.tsx; page content: bookADemo; page content: projectGroupDemo
+Medium,/assets/Uploads/chris.png,587x587,Photo or graphic,At least 1600px wide,page content: webinarPhotographyBusiness2025
+Medium,/assets/Uploads/csc2026.jpg,800x661,Photo or graphic,At least 1600px wide,page content: csc
+Medium,/assets/Uploads/csc_instructions.jpg,845x698,Photo or graphic,At least 1600px wide,page content: csc2020
+Medium,/assets/Uploads/customer-success-inline-showcase_real_estate_photography.jpg,736x472,Photo or graphic,At least 1600px wide,page content: iguidePhotos
+Medium,/assets/Uploads/floor_plans_dfx2.png,623x974,Photo or graphic,At least 1600px wide,page content: csc2018; page content: csc2019; page content: csc2020
+Medium,/assets/Uploads/floor_plans_pdf.png,623x974,Photo or graphic,At least 1600px wide,page content: csc2018; page content: csc2019; page content: csc2020
+Medium,/assets/Uploads/floor_plans_svg.png,623x974,Photo or graphic,At least 1600px wide,page content: csc2018; page content: csc2019; page content: csc2020
+Medium,/assets/Uploads/house_2.jpg,900x603,Photo or graphic,At least 1600px wide,page content: leadMagnet
+Medium,/assets/Uploads/iGUIDE_Contractor_900x760-copy.jpg,900x760,Photo or graphic,At least 1600px wide,lib/content/solutions/xactimateSketches.tsx
+Medium,/assets/Uploads/j.png,587x587,Photo or graphic,At least 1600px wide,page content: webinarPhotographyBusiness2025
+Medium,/assets/Uploads/master_trade_group.png,586x172,Photo or graphic,At least 1600px wide,page content: projectGroupDemo
+Medium,/assets/Uploads/past_events_321_courtland.jpg,625x470,Photo or graphic,At least 1600px wide,page content: cscShared
+Medium,/assets/Uploads/past_events_489_eagle.jpg,625x470,Photo or graphic,At least 1600px wide,page content: cscShared
+Medium,/assets/Uploads/video-call-conference-online-meeting-virtual-peopl-2023-11-27-05-36-42-utc-v2.jpg,994x663,Photo or graphic,At least 1600px wide,lib/content/industries/designConstruction.tsx
+Medium,/assets/alex-coombs-northern-spruce-media.jpeg,800x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/alex_photo.jpg,800x800,Photo or graphic,At least 1600px wide,page content: compareCubicasa
+Medium,/assets/barburrito-block.png,600x600,Photo or graphic,At least 1600px wide,lib/content/industries/designConstruction.tsx
+Medium,/assets/cabinets-and-tray-ceiling__ResizedImageWzYwMCwzMzhd.jpg,600x338,Photo or graphic,At least 1600px wide,page content: esxPricing
+Medium,/assets/cheyenne-crawford-infinite-views.jpeg,800x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/chris-white-iguide.jpeg,800x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/csc/2018_csc_instructions_image-800x661.jpg,800x661,Photo or graphic,At least 1600px wide,page content: csc2018
+Medium,/assets/csc/2019-csc-cover.jpg,600x496,Photo or graphic,At least 1600px wide,page content: csc2019
+Medium,/assets/csc/csc_instructions_2021.jpg,800x661,Photo or graphic,At least 1600px wide,page content: csc2021
+Medium,/assets/cubicasa-professional.png,850x1081,Photo or graphic,At least 1600px wide,page content: compareCubicasa
+Medium,/assets/demo.jpg,900x760,Photo or graphic,At least 1600px wide,lib/content/au/residentialRealEstate.tsx
+Medium,/assets/ea289cd8b1/lauren.png,800x800,Photo or graphic,At least 1600px wide,page content: compareCubicasa
+Medium,/assets/esx_premium.png,616x600,Photo or graphic,At least 1600px wide,lib/content/industries/insuranceRestoration.tsx
+Medium,/assets/esx_standard.png,600x600,Photo or graphic,At least 1600px wide,lib/content/industries/insuranceRestoration.tsx
+Medium,/assets/haunted-places-google-maps-2.png,628x468,Photo or graphic,At least 1600px wide,page content: hauntedTours
+Medium,/assets/iGUIDE_Hand_Sketching.png,928x1145,Photo or graphic,At least 1600px wide,page content: compareManualMeasurement
+Medium,/assets/iguide-vs-docusketch-jeremiah.jpg,690x672,Photo or graphic,At least 1600px wide,lib/content/industries/insuranceRestoration.tsx; page content: compareDocusketch
+Medium,/assets/iguide-vs-docusketch-r1.png,820x1080,Photo or graphic,At least 1600px wide,page content: compareDocusketch
+Medium,/assets/iguide-vs-matterport-bob.png,800x800,Photo or graphic,At least 1600px wide,page content: compareMatterport
+Medium,/assets/irc.jpg,788x630,Photo or graphic,At least 1600px wide,lib/content/industries/forensicInvestigation.tsx
+Medium,/assets/marketing-catalogue/au-complete-listing.webp,960x392,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/cad-commercial.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/cad-residential.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/checklist-elevations.webp,960x711,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/checklist-staging.webp,960x799,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/checklist-walkthrough.webp,960x746,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/drawing-3d-model.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/drawing-advanced-drawing-package.webp,960x768,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/drawing-exterior-elevations.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/drawing-floor-plans.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/drawing-reflected-ceiling-plans.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/drawing-roof-plans.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/ebook-revenue.webp,960x749,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/listing-brochure.webp,960x790,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/listing-flyer-2024.webp,960x617,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/photos-ae.webp,960x571,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/photos-irc.webp,960x639,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/photos-pro.webp,960x502,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/photos-r1.webp,960x811,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/photos-rre.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/pres-commercial.webp,960x455,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/pres-measurements.webp,960x468,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/pres-residential.webp,960x455,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/re-agent-brochure.webp,960x633,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/site-plans-agents.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/site-plans-photographers.webp,960x640,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-2d-furniture.webp,679x960,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-agent-get-a-listing-do-over-with-iguide.webp,960x540,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-agent-listings-with-iguide-sell-39-faster-than-photos-alone.webp,960x541,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-agent-r1-montage.webp,800x450,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-agent-start-harnessing-the-power-of-iguide.webp,960x536,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-site-plans-pool.webp,960x811,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/marketing-catalogue/video-site-plans.webp,960x811,Photo or graphic,At least 1600px wide,lib/content/marketingCatalogue.ts
+Medium,/assets/nathan-cool-photography.jpeg,800x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/phil-maurion-visual-advantage.jpeg,800x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/pmre-2026-thumbnail.png,830x647,Photo or graphic,At least 1600px wide,page content: pmre
+Medium,/assets/premium_rest.png,800x592,Photo or graphic,At least 1600px wide,lib/content/industries/designConstruction.tsx
+Medium,/assets/rachel_morgab.png,800x800,Photo or graphic,At least 1600px wide,lib/content/industries/residentialRealEstate.tsx
+Medium,/assets/realtor.com.png,860x170,Photo or graphic,At least 1600px wide,lib/content/solutions/virtualTours.tsx
+Medium,/assets/reed-fish-upmarket.jpeg,800x800,Photo or graphic,At least 1600px wide,page content: reportFramingWhatsNext2026
+Medium,/assets/ryan.jpg,800x800,Photo or graphic,At least 1600px wide,lib/content/solutions/floorPlans.tsx
+Medium,/assets/sketch.png,600x600,Photo or graphic,At least 1600px wide,lib/content/industries/insuranceRestoration.tsx
+Medium,/assets/space-planning.png,770x522,Photo or graphic,At least 1600px wide,lib/content/home.tsx; lib/content/industries/designConstruction.tsx
+Medium,/assets/standard_restaurant.png,800x592,Photo or graphic,At least 1600px wide,lib/content/industries/designConstruction.tsx
+Medium,/assets/ulta_addons.png,865x678,Photo or graphic,At least 1600px wide,page content: ultaBeauty
+Medium,/assets/ulta_prem.png,970x719,Photo or graphic,At least 1600px wide,page content: ultaBeauty

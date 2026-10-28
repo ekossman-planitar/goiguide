@@ -6,6 +6,7 @@ import {catalogueItem} from './documents/catalogueItem'
 import {clientLogo} from './documents/clientLogo'
 import {homePage} from './documents/homePage'
 import {logoBand} from './documents/logoBand'
+import {pressMention} from './documents/pressMention'
 import {sitePopup} from './documents/sitePopup'
 import {sidebarPromo} from './documents/sidebarPromo'
 import {event} from './documents/event'
@@ -31,6 +32,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     event,
     clientLogo,
     logoBand,
+    pressMention,
     testimonial,
     landingPage,
     landingPageFolder,

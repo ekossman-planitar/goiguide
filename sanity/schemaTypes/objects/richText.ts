@@ -7,8 +7,9 @@ import {LaunchIcon} from '@sanity/icons/Launch'
 import {PlayIcon} from '@sanity/icons/Play'
 import {BlockquoteIcon} from '@sanity/icons/Blockquote'
 import {SplitHorizontalIcon} from '@sanity/icons/SplitHorizontal'
+import {ThLargeIcon} from '@sanity/icons/ThLarge'
 
-/** Article body: headings, lists, links, images, videos, quotes, section breaks and call-to-action banners. */
+/** Article body: headings, lists, links, images, videos, tables, quotes, section breaks and call-to-action banners. */
 export const richText = defineType({
   name: 'richText',
   title: 'Body',
@@ -112,6 +113,60 @@ export const richText = defineType({
       preview: {
         select: {title: 'title', anchor: 'anchor', layout: 'layout'},
         prepare: ({title, anchor, layout}) => ({title: `Section: ${title || anchor || 'untitled'}`, subtitle: layout || 'plain'}),
+      },
+    }),
+    defineArrayMember({
+      name: 'table',
+      title: 'Table',
+      type: 'object',
+      icon: ThLargeIcon,
+      description: 'A comparison or spec table. Each cell holds text, a small icon (for example a tick or cross), or both.',
+      fields: [
+        defineField({name: 'headerRow', title: 'First row is a header', type: 'boolean', initialValue: true}),
+        defineField({name: 'firstColumnHeader', title: 'First column holds row labels', type: 'boolean', initialValue: true}),
+        defineField({
+          name: 'rows',
+          title: 'Rows',
+          type: 'array',
+          validation: (rule) => rule.required().min(1),
+          of: [
+            defineArrayMember({
+              name: 'tableRow',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'cells',
+                  title: 'Cells',
+                  type: 'array',
+                  of: [
+                    defineArrayMember({
+                      name: 'tableCell',
+                      type: 'object',
+                      fields: [
+                        defineField({name: 'text', title: 'Text', type: 'text', rows: 2}),
+                        defineField({name: 'bold', title: 'Bold', type: 'boolean'}),
+                        defineField({name: 'image', title: 'Icon', type: 'image', description: 'Shown small, before the text.'}),
+                        defineField({name: 'alt', title: 'Icon alt text', type: 'string', description: 'Say what the icon means, e.g. "Included". Leave empty if the text already says it.'}),
+                      ],
+                      preview: {select: {title: 'text', media: 'image'}, prepare: ({title, media}) => ({title: title || '(icon)', media})},
+                    }),
+                  ],
+                }),
+              ],
+              preview: {
+                select: {cells: 'cells'},
+                prepare: ({cells}: {cells?: {text?: string}[]}) => ({title: (cells ?? []).map((c) => c.text || '·').join(' | ')}),
+              },
+            }),
+          ],
+        }),
+      ],
+      preview: {
+        select: {rows: 'rows'},
+        prepare: ({rows}: {rows?: {cells?: {text?: string}[]}[]}) => ({
+          title: 'Table',
+          subtitle: `${rows?.length ?? 0} rows × ${rows?.[0]?.cells?.length ?? 0} columns`,
+        }),
       },
     }),
     defineArrayMember({

@@ -242,6 +242,7 @@ const ptSchema = compileSchema(
       {name: 'hubspotForm', fields: [{name: 'formId', type: 'string'}]},
       {name: 'faqPlaceholder', fields: [{name: 'index', type: 'number'}]},
       {name: 'quotePlaceholder', fields: [{name: 'index', type: 'number'}]},
+      {name: 'tablePlaceholder', fields: [{name: 'index', type: 'number'}]},
     ],
     inlineObjects: [{name: 'image', fields: [{name: 'src', type: 'string'}, {name: 'alt', type: 'string'}]}],
   }),
@@ -309,6 +310,11 @@ function tidyHtml(html) {
   const doc = jsdom(`<body>${html}</body>`).window.document
   for (const span of [...doc.body.querySelectorAll('span')].reverse()) span.replaceWith(...span.childNodes)
   replaceSupSub(doc.body)
+  // <li><div class="fusion-li-item-content"><p>…</p></div></li>: the converter only keeps a list
+  // item when the paragraph sits straight inside the <li>, so lift it out of the wrapper
+  for (const wrap of doc.body.querySelectorAll('li > div')) {
+    if (wrap.parentElement.children.length === 1) wrap.replaceWith(...wrap.childNodes)
+  }
   for (const p of doc.body.querySelectorAll('p')) splitParagraph(doc, p)
   return doc.body.innerHTML
 }
@@ -352,6 +358,12 @@ const PT_RULES = [
       return index == null ? undefined : createBlock({_type: 'quotePlaceholder', index: Number(index)})
     },
   },
+  {
+    deserialize(el, _next, createBlock) {
+      const index = el.getAttribute?.('data-table')
+      return index == null ? undefined : createBlock({_type: 'tablePlaceholder', index: Number(index)})
+    },
+  },
 ]
 
 const PT_TYPES = {
@@ -362,7 +374,7 @@ const PT_TYPES = {
       : undefined,
 }
 
-function htmlToBlocks(html, faqs = [], quotes = []) {
+function htmlToBlocks(html, faqs = [], quotes = [], tables = []) {
   const blocks = htmlToPortableText(tidyHtml(html), {
     schema: ptSchema,
     parseHtml: (h) => jsdom(h).window.document,
@@ -371,7 +383,7 @@ function htmlToBlocks(html, faqs = [], quotes = []) {
     types: PT_TYPES,
   })
   for (const b of blocks) if (b._type === 'block') fitBlockStyles(b)
-  const placeholders = {faqPlaceholder: faqs, quotePlaceholder: quotes}
+  const placeholders = {faqPlaceholder: faqs, quotePlaceholder: quotes, tablePlaceholder: tables}
   return blocks
     .flatMap(liftImages)
     .map((b) => (placeholders[b._type] ? placeholders[b._type][b.index] : b))
@@ -490,9 +502,58 @@ function extractQuotes(root) {
     const outer = box.closest('.white-block, .testimonial-container') ?? box
     // Name and company can be split over several paragraphs
     const by = [...box.querySelectorAll('p')].map((p) => textOf(p).replace(/,$/, '')).filter(Boolean).join(', ')
-    add(outer, {quote: textOf(box.querySelector('h3, h4, blockquote')), ...splitName(by)})
+    // Headshot: the first image that isn't the decorative quote-mark graphic
+    const photo = [...box.querySelectorAll('img')].map((i) => i.getAttribute('src')).find((src) => src && !/quote\.svg/i.test(src))
+    add(outer, {quote: textOf(box.querySelector('h3, h4, blockquote')), ...splitName(by), imageSrc: photo ? stripVariant(photo) : undefined})
   }
   return quotes
+}
+
+/**
+ * Tables: each <table> is replaced by a marker so it lands in the same place in the body as a
+ * "table" block (the converter would otherwise flatten it into paragraphs, and turn icon cells
+ * into full-width images). The first row is the header row, the first column the row labels.
+ */
+function extractTables(root) {
+  const tables = []
+  for (const table of root.querySelectorAll('table')) {
+    const rows = [...table.rows]
+      .map((tr) => ({_type: 'tableRow', _key: key(), cells: [...tr.cells].map(readTableCell)}))
+      .filter((r) => r.cells.length)
+    if (!rows.length) continue
+    const marker = root.ownerDocument.createElement('div')
+    marker.dataset.table = String(tables.length)
+    tables.push({_type: 'table', _key: key(), headerRow: true, firstColumnHeader: true, rows})
+    table.replaceWith(marker)
+  }
+  return tables
+}
+
+/** Alt text for the tick / cross icons used in comparison tables (live has none) */
+function iconAlt(src) {
+  const name = (src ?? '').split('/').pop().toLowerCase()
+  if (/^(check|tick)/.test(name)) return 'Advantage'
+  if (/^(x|cross)\d*\./.test(name)) return 'Drawback'
+  return undefined
+}
+
+function readTableCell(td) {
+  const img = td.querySelector('img')
+  const copy = td.cloneNode(true)
+  copy.querySelectorAll('img, script, style').forEach((n) => n.remove())
+  // One line per paragraph or list item
+  const paras = [...copy.querySelectorAll('li, p')].filter((n) => !n.querySelector('li, p'))
+  const text = paras.length ? paras.map(textOf).filter(Boolean).join('\n') : textOf(copy)
+  const squash = (t) => t.replaceAll(/\s+/g, '')
+  const strong = [...copy.querySelectorAll('strong, b')].map((n) => n.textContent).join('')
+  return {
+    _type: 'tableCell',
+    _key: key(),
+    text: text || undefined,
+    bold: text && squash(strong) === squash(text) ? true : undefined,
+    imageSrc: img?.getAttribute('src') ? stripVariant(img.getAttribute('src')) : undefined,
+    alt: clean(img?.getAttribute('alt')) || iconAlt(img?.getAttribute('src')),
+  }
 }
 
 /** Element kinds that get their own section layout on the new site */
@@ -672,6 +733,7 @@ function parseElement(el) {
   if (furniture) return furniture
 
   const quotes = extractQuotes(root)
+  const tables = extractTables(root)
   const layout = convertLayouts(root, kind)
 
   // One known pattern swaps the post's header image for a YouTube video
@@ -689,7 +751,7 @@ function parseElement(el) {
   root.querySelectorAll('script, style, noscript, link, #meta-info, .material-symbols-outlined, .material-icons').forEach((n) => n.remove())
 
   const faqs = extractFaqs(root, headings)
-  const blocks = htmlToBlocks(root.innerHTML, faqs, quotes)
+  const blocks = htmlToBlocks(root.innerHTML, faqs, quotes, tables)
   return {kind, blocks: popupForm ? addPopupFormBanner(blocks, root, popupForm) : blocks, layout, id: el.id}
 }
 
@@ -795,6 +857,17 @@ async function resolveImages(blocks) {
     } else if (b._type === 'testimonial') {
       const {imageSrc, ...rest} = b
       out.push(imageSrc ? {...rest, image: await imageRef(imageSrc)} : rest)
+    } else if (b._type === 'table') {
+      const rows = []
+      for (const r of b.rows) {
+        const cells = []
+        for (const c of r.cells) {
+          const {imageSrc, ...rest} = c
+          cells.push(imageSrc ? {...rest, image: await imageRef(imageSrc)} : rest)
+        }
+        rows.push({...r, cells})
+      }
+      out.push({...b, rows})
     } else if (b._type === 'ctaBanner' && b.imageSrc) {
       const {imageSrc, ...rest} = b
       out.push({...rest, image: await imageRef(imageSrc)})

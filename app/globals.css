@@ -8,12 +8,10 @@
   --font-text: var(--font-pangea-text), Helvetica, Arial, sans-serif;
 
   /* Colours: iGUIDE Brand Quick Guide (2026). Primary: REA Red, Snowgum 700, Snowgum 400, White.
-     Secondary: Blueprint, Laser, Slate, Mist. Red is for accents, highlights and calls to action only. */
+     Secondary: Slate, Mist (Blueprint and Laser removed, Evan 2026-10-27). Red is for accents, highlights and calls to action only. */
   --color-rea-red: #e4002b;
   --color-snowgum-700: #2e2c30;
   --color-snowgum-400: #716e75;
-  --color-blueprint: #5b8fdb;
-  --color-laser: #9fd356;
   --color-slate: #333f48;
   --color-mist: #f3f2f5;
 
@@ -235,4 +233,15 @@ html[data-region='ca'] [data-us-only] {
 }
 :is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) .bg-white :is(.bg-surface, .bg-sky, .bg-cream, .bg-mist, .bg-primary-soft) .text-muted {
   color: var(--color-slate);
+}
+
+/* Redline motif (About, Leadership and Careers previews): the red line that draws across the screen. Reduced motion jumps to the end state (rule above). */
+@keyframes easter-line {
+  0% { stroke-dashoffset: 1; opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.easter-line {
+  stroke-dasharray: 1;
+  animation: easter-line 2.2s ease-in-out forwards;
 }

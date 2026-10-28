@@ -139,6 +139,7 @@ export const structure: StructureResolver = (S) =>
             .items([
               S.documentTypeListItem('logoBand').title('Logo bands (rows on pages)'),
               S.documentTypeListItem('clientLogo').title('All client logos'),
+              S.documentTypeListItem('pressMention').title('As seen in (Leadership page)'),
             ]),
         ),
       S.documentTypeListItem('testimonial').title('Testimonials').icon(CommentIcon),
